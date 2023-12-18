@@ -1,10 +1,13 @@
 <template>
 	<header class="header container">
-		<div class="header__col header__col--name header__search-bar">
+		<div
+			class="header__col header__col--name header__search-bar"
+			v-if="!isFilteredToClass"
+		>
 			<i class="fa-solid fa-magnifying-glass"></i>
 			<input class="header__search-input" type="text" v-model.trim="search" />
 		</div>
-		<!-- <div class="header__col header__col--name">&nbsp;</div> -->
+		<div class="header__col header__col--name" v-else>&nbsp;</div>
 		<div class="header__col header__col--stat">★</div>
 		<div class="header__col header__col--stat">★★</div>
 		<div class="header__col header__col--stat">★★★</div>
@@ -14,17 +17,21 @@
 	</header>
 	<template v-if="!isFilteredToClass">
 		<item-row
-			v-for="item in filteredItems"
+			v-for="(item, idx) in filteredItems"
 			:key="item.id"
 			:item="item"
-			@click="handleClick(item.id)"
+			@click="handleClick(idx)"
 		></item-row>
 	</template>
-	<template v-if="isFilteredToClass">
-		<item-row :item="activeClass" @click="removeFilter()"></item-row>
 
-		<template v-if="'skills' in activeClass && activeClass.skills">
-			<skill-build :skills="activeClass.skills"></skill-build>
+	<template v-if="isFilteredToClass">
+		<item-row
+			:item="filteredItems[activeIdx]"
+			@click="removeFilter()"
+		></item-row>
+
+		<template v-if="filteredItems[activeIdx]">
+			<skill-build :skills="filteredItems[activeIdx].skills"></skill-build>
 		</template>
 	</template>
 
@@ -49,27 +56,15 @@ export default defineComponent({
 	components: { ItemRow, SkillBuild },
 	setup() {
 		const isFilteredToClass: Ref<boolean> = ref(false);
-		const activeId: Ref<string | null> = ref(null);
-		let activeClass = reactive<IItem>({
-			name: 'Стандартный',
-			id: 'standart',
-			lv1: [4, 4, 4],
-			lv2: [6, 6, 6],
-			lv3: [8, 8, 8],
-			lv4: [10, 10, 10],
-			lv5: [16, 16, 16],
-			perk: '',
-		});
+		const activeIdx: Ref<number> = ref(0);
 
-		function handleClick(id: string) {
-			activeId.value = id;
+		function handleClick(idx: number) {
 			isFilteredToClass.value = true;
-			console.log(activeClass);
+			activeIdx.value = idx;
 		}
 
 		function removeFilter() {
 			isFilteredToClass.value = false;
-			activeId.value = null;
 		}
 
 		function getImgPath(link: string): string {
@@ -532,12 +527,11 @@ export default defineComponent({
 			items,
 			handleClick,
 			isFilteredToClass,
-			activeId,
+			activeIdx,
 			removeFilter,
 			getImgPath,
 			search,
 			filteredItems,
-			activeClass,
 		};
 	},
 });
