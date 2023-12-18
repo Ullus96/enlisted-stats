@@ -1,0 +1,88 @@
+//basic resets, обнуление стилей:
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+// установка 1rem = 10px, но напрямую =10px - это перезаписать стандартный размер шрифта браузера, поэтому считаем, что (10px / 16px = 0.625 = 62.5%)
+html {
+	font-size: 62.5%;
+}
+
+body {
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	line-height: 1.2;
+	color: $color-white;
+	background-color: $color-background;
+	padding: 0;
+	min-height: 100vh;
+	position: relative;
+}
+
+a,
+a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+input,
+textarea,
+.btn {
+	text-decoration: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: transparent;
+	outline: none;
+	border: none;
+}
+
+.btn {
+	cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	padding: 0;
+	font-size: inherit;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+	scrollbar-width: none;
+	scrollbar-color: $color-white $color-background;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+	background: $color-background;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: $color-white;
+	border-radius: 10px;
+	border: 3px none $color-white;
+}

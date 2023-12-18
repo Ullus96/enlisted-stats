@@ -1,0 +1,59 @@
+.header {
+	padding: 1rem 2rem 0;
+	display: flex;
+	gap: 5px;
+	font-weight: 700;
+
+	@include desktop-medium {
+		gap: 2px;
+	}
+
+	@media (max-width: 620px) {
+		padding: 1rem 1rem 0;
+		gap: 1px;
+	}
+
+	@media (max-width: 420px) {
+		padding: 1rem 0.5rem 0;
+		gap: 1px;
+	}
+
+	&__col--name {
+		min-width: 92px;
+	}
+
+	&__col {
+		background-color: #111111;
+		text-align: center;
+		flex-basis: 10%;
+		padding: 1rem;
+
+		@include desktop-small {
+			flex-grow: 1;
+		}
+
+		@media (max-width: 620px) {
+			font-size: 0.6em;
+		}
+	}
+
+	&__col--desc {
+		flex-grow: 1;
+
+		@include desktop-small {
+			display: none;
+		}
+	}
+
+	&__search-bar {
+		display: flex;
+		flex-direction: row;
+		gap: 5px;
+	}
+
+	&__search-input {
+		border-bottom: 1px solid rgba($color-white, 0.4);
+		flex-grow: 1;
+		width: 100%;
+	}
+}

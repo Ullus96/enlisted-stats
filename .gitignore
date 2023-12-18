@@ -21,3 +21,8 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Another files
+src/sass/readme.txt
+.firebase
+/.firebase

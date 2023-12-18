@@ -1,0 +1,18 @@
+.container {
+	margin: 0 auto;
+	min-width: 32rem;
+	max-width: 140rem;
+	// padding: 0 1rem;
+
+	@include desktop-small {
+		max-width: 120rem;
+	}
+
+	&:last-child {
+		margin-bottom: 2rem;
+	}
+
+	// @media (max-width: 620px) {
+
+	// }
+}
