@@ -26,14 +26,14 @@
 	}
 
 	&__row:hover &__col {
-		background-color: #262626;
+		background-color: $color-black-light-2;
 	}
 
 	&__col {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-color: #222222;
+		background-color: $color-black-light-1;
 		flex-basis: 10%;
 		padding: 0.5rem 1rem;
 
@@ -52,17 +52,17 @@
 	}
 
 	&__col--stat span:nth-child(1) {
-		color: #97ff94;
+		color: $color-mobility;
 		font-weight: 700;
 	}
 
 	&__col--stat span:nth-child(3) {
-		color: #ff9497;
+		color: $color-vitality;
 		font-weight: 700;
 	}
 
 	&__col--stat span:nth-child(5) {
-		color: #fffe9a;
+		color: $color-weapon-handling;
 		font-weight: 700;
 	}
 

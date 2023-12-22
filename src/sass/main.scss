@@ -1,5 +1,6 @@
 @import 'abstracts/mixins';
 @import 'abstracts/variables';
+@import 'abstracts/stat-colors';
 
 @import 'base/base';
 @import 'base/typography';
@@ -9,4 +10,5 @@
 @import 'layout/container';
 
 @import 'components/btn';
+@import 'components/calculator';
 @import 'components/skills';

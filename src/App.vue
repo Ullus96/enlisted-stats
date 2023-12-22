@@ -2,7 +2,7 @@
 	<header class="header container">
 		<div
 			class="header__col header__col--name header__search-bar"
-			v-if="!isFilteredToClass"
+			v-if="!isFilteredToClass && false"
 		>
 			<i class="fa-solid fa-magnifying-glass"></i>
 			<input class="header__search-input" type="text" v-model.trim="search" />
@@ -15,32 +15,55 @@
 		<div class="header__col header__col--stat">★★★★★</div>
 		<div class="header__col header__col--desc">Начальный перк</div>
 	</header>
-	<template v-if="!isFilteredToClass">
-		<item-row
-			v-for="(item, idx) in filteredItems"
-			:key="item.id"
-			:item="item"
-			@click="handleClick(idx)"
-		></item-row>
-	</template>
-
-	<template v-if="isFilteredToClass">
-		<item-row
-			:item="filteredItems[activeIdx]"
-			@click="removeFilter()"
-		></item-row>
-
-		<template v-if="filteredItems[activeIdx]">
-			<skill-build :skills="filteredItems[activeIdx].skills"></skill-build>
+	<!-- temporary off everything -->
+	<template v-if="false">
+		<template v-if="!isFilteredToClass">
+			<item-row
+				v-for="(item, idx) in filteredItems"
+				:key="item.id"
+				:item="item"
+				@click="handleClick(idx)"
+			></item-row>
 		</template>
-	</template>
 
-	<div class="container">
-		<div class="btn-filter--wrapper" v-if="isFilteredToClass">
-			<button class="btn btn-filter" @click="removeFilter()">
-				Выключить фильтрацию
-			</button>
+		<template v-if="isFilteredToClass">
+			<item-row
+				:item="filteredItems[activeIdx]"
+				@click="removeFilter()"
+			></item-row>
+
+			<template v-if="filteredItems[activeIdx]">
+				<skill-build :skills="filteredItems[activeIdx].skills"></skill-build>
+			</template>
+		</template>
+
+		<div class="container">
+			<div class="btn-filter--wrapper" v-if="isFilteredToClass">
+				<button class="btn btn-filter" @click="removeFilter()">
+					Выключить фильтрацию
+				</button>
+			</div>
 		</div>
+	</template>
+	<!-- calculator -->
+	<div class="calculator container">
+		<div class="calculator__header">
+			<div class="calculator__stats">
+				<h2 class="calculator__stats-unused-title">Неиспользованные навыки:</h2>
+				<div class="calculator__stats-flex">
+					<div class="calculator__stats-item mobility">16</div>
+					<div class="calculator__stats-item vitality">12</div>
+					<div class="calculator__stats-item weapon-handling">14</div>
+				</div>
+			</div>
+			<div class="calculator__save-settings">
+				<input type="text" id="calculator-name" placeholder="Имя сборки" />
+				<label for="calculator-name">123</label>
+				<input type="checkbox" id="visible-for-public" />
+				<label for="visible-for-public">Сделать видимым для всех?</label>
+			</div>
+		</div>
+		<calculator-block></calculator-block>
 	</div>
 </template>
 
@@ -50,10 +73,19 @@ import ItemRow from './components/ItemRow.vue';
 import SkillBuild from './components/SkillBuild.vue';
 import { computed, defineComponent, reactive, ref } from 'vue';
 import type { Ref } from 'vue';
+import CalculatorBlock from './components/calculator/CalculatorBlock.vue';
+import CalculatorBranch from './components/calculator/CalculatorBranch.vue';
+import CalculatorSkill from './components/calculator/CalculatorSkill.vue';
 
 export default defineComponent({
 	name: 'App',
-	components: { ItemRow, SkillBuild },
+	components: {
+		ItemRow,
+		SkillBuild,
+		CalculatorBlock,
+		CalculatorBranch,
+		CalculatorSkill,
+	},
 	setup() {
 		const isFilteredToClass: Ref<boolean> = ref(false);
 		const activeIdx: Ref<number> = ref(0);
@@ -520,6 +552,16 @@ export default defineComponent({
 				lv4: [12, 10, 14],
 				lv5: [18, 16, 20],
 				perk: '+7% скорость починки техники',
+			},
+			{
+				name: 'Водитель БТР',
+				id: 'driver-btr',
+				lv1: [8, 4, 6],
+				lv2: [10, 6, 8],
+				lv3: [12, 8, 10],
+				lv4: [14, 10, 12],
+				lv5: [20, 16, 18],
+				perk: '+35% скорость переключения передач (навык водителя)',
 			},
 		];
 
