@@ -3,7 +3,8 @@
 		<div class="calculator__restriction-text-block">
 			<i class="fa-solid fa-lock"></i>
 			<p class="calculator__restriction-text">
-				Потрать еще 6 очков, чтобы получить доступ к Tier&#8209;2/3 навыкам
+				Потрать еще <b class="calculator__highlight">6 очков</b>, чтобы получить
+				доступ к Tier&#8209;2/3 навыкам
 			</p>
 		</div>
 	</div>

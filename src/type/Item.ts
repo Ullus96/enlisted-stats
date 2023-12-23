@@ -4,9 +4,11 @@ export interface ISkills {
 	link: string;
 }
 
+import { SkillTag } from '@/type/SkillTag';
 export interface IItem {
 	name: string;
 	id: string;
+	tags: SkillTag[];
 	lv1: [number, number, number];
 	lv2: [number, number, number];
 	lv3: [number, number, number];

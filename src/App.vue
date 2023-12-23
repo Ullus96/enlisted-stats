@@ -74,7 +74,7 @@ import SkillBuild from './components/SkillBuild.vue';
 import { computed, defineComponent, reactive, ref } from 'vue';
 import type { Ref } from 'vue';
 import CalculatorBlock from './components/calculator/CalculatorBlock.vue';
-import CalculatorBranch from './components/calculator/CalculatorBranch.vue';
+import CalculatorBranch from './components/calculator/CalculatorTier.vue';
 import CalculatorSkill from './components/calculator/CalculatorSkill.vue';
 
 export default defineComponent({
@@ -131,6 +131,7 @@ export default defineComponent({
 			{
 				name: 'Стандартный',
 				id: 'standart',
+				tags: ['base'],
 				lv1: [4, 4, 4],
 				lv2: [6, 6, 6],
 				lv3: [8, 8, 8],
@@ -141,6 +142,7 @@ export default defineComponent({
 			{
 				name: 'Боец I',
 				id: 'fighter1',
+				tags: ['base'],
 				lv1: [5, 5, 5],
 				lv2: [7, 7, 7],
 				lv3: [9, 9, 9],
@@ -163,6 +165,7 @@ export default defineComponent({
 			{
 				name: 'Боец II',
 				id: 'fighter2',
+				tags: ['base'],
 				lv1: [6, 6, 6],
 				lv2: [8, 8, 8],
 				lv3: [10, 10, 10],
@@ -173,6 +176,7 @@ export default defineComponent({
 			{
 				name: 'Боец III',
 				id: 'fighter3',
+				tags: ['base'],
 				lv1: [7, 7, 7],
 				lv2: [9, 9, 9],
 				lv3: [11, 11, 11],
@@ -195,6 +199,7 @@ export default defineComponent({
 			{
 				name: 'Медик',
 				id: 'medic',
+				tags: ['base', 'medic'],
 				lv1: [5, 6, 4],
 				lv2: [7, 8, 6],
 				lv3: [9, 10, 8],
@@ -205,6 +210,7 @@ export default defineComponent({
 			{
 				name: 'Штурмовик I',
 				id: 'assaulter1',
+				tags: ['base'],
 				lv1: [6, 4, 5],
 				lv2: [8, 6, 7],
 				lv3: [10, 8, 9],
@@ -222,6 +228,7 @@ export default defineComponent({
 			{
 				name: 'Штурмовик II',
 				id: 'assaulter2',
+				tags: ['base'],
 				lv1: [7, 5, 6],
 				lv2: [9, 7, 8],
 				lv3: [11, 9, 10],
@@ -239,6 +246,7 @@ export default defineComponent({
 			{
 				name: 'Штурмовик III',
 				id: 'assaulter3',
+				tags: ['base'],
 				lv1: [8, 6, 7],
 				lv2: [10, 8, 9],
 				lv3: [12, 10, 11],
@@ -261,6 +269,7 @@ export default defineComponent({
 			{
 				name: 'Штурмовик IV',
 				id: 'assaulter4',
+				tags: ['base'],
 				lv1: [9, 7, 8],
 				lv2: [11, 9, 10],
 				lv3: [13, 11, 12],
@@ -278,6 +287,7 @@ export default defineComponent({
 			{
 				name: 'Инженер I',
 				id: 'engineer1',
+				tags: ['base', 'engineer'],
 				lv1: [5, 6, 4],
 				lv2: [7, 8, 6],
 				lv3: [9, 10, 8],
@@ -288,6 +298,7 @@ export default defineComponent({
 			{
 				name: 'Инженер II',
 				id: 'engineer2',
+				tags: ['base', 'engineer'],
 				lv1: [6, 8, 4],
 				lv2: [8, 10, 6],
 				lv3: [10, 12, 8],
@@ -305,6 +316,7 @@ export default defineComponent({
 			{
 				name: 'Снайпер I',
 				id: 'sniper1',
+				tags: ['base'],
 				lv1: [6, 2, 7],
 				lv2: [8, 4, 9],
 				lv3: [10, 6, 11],
@@ -315,6 +327,7 @@ export default defineComponent({
 			{
 				name: 'Снайпер II',
 				id: 'sniper2',
+				tags: ['base'],
 				lv1: [6, 2, 8],
 				lv2: [8, 4, 10],
 				lv3: [10, 6, 12],
@@ -325,6 +338,7 @@ export default defineComponent({
 			{
 				name: 'Снайпер III',
 				id: 'sniper3',
+				tags: ['base'],
 				lv1: [6, 2, 10],
 				lv2: [8, 4, 12],
 				lv3: [10, 6, 14],
@@ -342,6 +356,7 @@ export default defineComponent({
 			{
 				name: 'Бронебойщик I',
 				id: 'at1',
+				tags: ['base'],
 				lv1: [2, 6, 7],
 				lv2: [4, 8, 9],
 				lv3: [6, 10, 11],
@@ -359,6 +374,7 @@ export default defineComponent({
 			{
 				name: 'Бронебойщик II',
 				id: 'at2',
+				tags: ['base'],
 				lv1: [2, 8, 8],
 				lv2: [4, 10, 10],
 				lv3: [6, 12, 12],
@@ -376,6 +392,7 @@ export default defineComponent({
 			{
 				name: 'Пулемётчик I',
 				id: 'mg1',
+				tags: ['base'],
 				lv1: [4, 4, 7],
 				lv2: [6, 6, 9],
 				lv3: [8, 8, 11],
@@ -386,6 +403,7 @@ export default defineComponent({
 			{
 				name: 'Пулемётчик II',
 				id: 'mg2',
+				tags: ['base'],
 				lv1: [4, 4, 10],
 				lv2: [6, 6, 12],
 				lv3: [8, 8, 14],
@@ -396,6 +414,7 @@ export default defineComponent({
 			{
 				name: 'Пулемётчик III',
 				id: 'mg3',
+				tags: ['base'],
 				lv1: [5, 6, 10],
 				lv2: [7, 8, 12],
 				lv3: [9, 10, 14],
@@ -406,6 +425,7 @@ export default defineComponent({
 			{
 				name: 'Радист I',
 				id: 'radio1',
+				tags: ['base'],
 				lv1: [9, 4, 2],
 				lv2: [11, 6, 4],
 				lv3: [13, 8, 6],
@@ -416,6 +436,7 @@ export default defineComponent({
 			{
 				name: 'Радист II',
 				id: 'radio2',
+				tags: ['base'],
 				lv1: [10, 6, 2],
 				lv2: [12, 8, 4],
 				lv3: [14, 10, 6],
@@ -426,6 +447,7 @@ export default defineComponent({
 			{
 				name: 'Миномётчик',
 				id: 'mortar',
+				tags: ['base', 'mortar'],
 				lv1: [3, 6, 6],
 				lv2: [5, 8, 8],
 				lv3: [7, 10, 10],
@@ -435,7 +457,8 @@ export default defineComponent({
 			},
 			{
 				name: 'Огнемётчик I',
-				id: 'flame1',
+				id: 'flamethrower1',
+				tags: ['base', 'flamethrower'],
 				lv1: [6, 9, 3],
 				lv2: [8, 11, 5],
 				lv3: [10, 13, 7],
@@ -445,7 +468,8 @@ export default defineComponent({
 			},
 			{
 				name: 'Огнемётчик II',
-				id: 'flame2',
+				id: 'flamethrower2',
+				tags: ['base', 'flamethrower'],
 				lv1: [6, 11, 4],
 				lv2: [8, 13, 6],
 				lv3: [10, 15, 8],
@@ -456,6 +480,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-истр. I',
 				id: 'pilot-fighter1',
+				tags: ['base', 'pilot'],
 				lv1: [4, 6, 5],
 				lv2: [6, 8, 7],
 				lv3: [8, 10, 9],
@@ -466,6 +491,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-истр. II',
 				id: 'pilot-fighter2',
+				tags: ['base', 'pilot'],
 				lv1: [5, 7, 6],
 				lv2: [7, 9, 8],
 				lv3: [9, 11, 10],
@@ -476,6 +502,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-истр. III',
 				id: 'pilot-fighter3',
+				tags: ['base', 'pilot'],
 				lv1: [5, 9, 7],
 				lv2: [7, 11, 9],
 				lv3: [9, 13, 11],
@@ -486,6 +513,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-штурм. I',
 				id: 'pilot-attacker1',
+				tags: ['base', 'pilot'],
 				lv1: [4, 5, 6],
 				lv2: [6, 7, 8],
 				lv3: [8, 9, 10],
@@ -496,6 +524,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-штурм. II',
 				id: 'pilot-attacker2',
+				tags: ['base', 'pilot'],
 				lv1: [5, 6, 7],
 				lv2: [7, 8, 9],
 				lv3: [9, 10, 11],
@@ -506,6 +535,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-штурм. III',
 				id: 'pilot-attacker3',
+				tags: ['base', 'pilot'],
 				lv1: [5, 7, 9],
 				lv2: [7, 9, 11],
 				lv3: [9, 11, 13],
@@ -516,6 +546,7 @@ export default defineComponent({
 			{
 				name: 'Танкист I',
 				id: 'tank1',
+				tags: ['base', 'tank'],
 				lv1: [7, 2, 6],
 				lv2: [9, 4, 8],
 				lv3: [11, 6, 10],
@@ -526,6 +557,7 @@ export default defineComponent({
 			{
 				name: 'Танкист II',
 				id: 'tank2',
+				tags: ['base', 'tank'],
 				lv1: [9, 2, 7],
 				lv2: [11, 4, 9],
 				lv3: [13, 6, 11],
@@ -536,6 +568,7 @@ export default defineComponent({
 			{
 				name: 'Танкист III',
 				id: 'tank3',
+				tags: ['base', 'tank'],
 				lv1: [11, 2, 8],
 				lv2: [13, 4, 10],
 				lv3: [15, 6, 12],
@@ -546,6 +579,7 @@ export default defineComponent({
 			{
 				name: 'Мотоциклист I',
 				id: 'moto1',
+				tags: ['base', 'motorcycle'],
 				lv1: [6, 4, 8],
 				lv2: [8, 6, 10],
 				lv3: [10, 8, 12],
@@ -555,7 +589,8 @@ export default defineComponent({
 			},
 			{
 				name: 'Водитель БТР',
-				id: 'driver-btr',
+				id: 'apc-driver',
+				tags: ['base', 'apc-driver'],
 				lv1: [8, 4, 6],
 				lv2: [10, 6, 8],
 				lv3: [12, 8, 10],
