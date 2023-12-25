@@ -4,6 +4,7 @@
 			:src="require('@/assets/skill_icons/' + skill.icon)"
 			alt=""
 			class="calculator__img"
+			:class="{ [branchColor]: skill.curLvl }"
 			@click="clickHandle('plus')"
 			@contextmenu.prevent="clickHandle('minus')"
 		/>
@@ -30,30 +31,34 @@
 			<button class="btn calculator__button" @click="clickHandle('minus')">
 				-
 			</button>
-			<div class="calculator__level">
-				<span>{{ skill.curLvl }}</span>
-				<span>/</span>
-				<span>{{ skill.maxLvl }}</span>
+			<div class="calculator__bars-wrapper">
+				<div
+					class="calculator__bar"
+					v-for="(item, index) in skill.maxLvl"
+					:key="item"
+					:class="{ 'calculator__bar-highlight': index < skill.curLvl }"
+				>
+					&nbsp;
+				</div>
 			</div>
 			<button class="btn calculator__button" @click="clickHandle('plus')">
 				+
 			</button>
 		</div>
-		<div class="calculator__cost-block" :class="branchColor">
-			<span class="calculator__cost">
-				<b>{{ skill.costPerLvl }}</b></span
-			>
-			/
-			<span class="calculator__total-spent">{{
-				skill.costPerLvl * skill.curLvl
-			}}</span>
+		<div class="calculator__cost-block">
+			<template v-for="(item, index) in skill.maxLvl" :key="item">
+				<span :class="{ calculator__highlight: skill.curLvl == index + 1 }">{{
+					(index + 1) * skill.costPerLvl
+				}}</span>
+				<span>{{ index == skill.maxLvl - 1 ? '' : '/' }}</span>
+			</template>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
 import { SkillEntity } from '@/type/Skills';
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, onMounted, PropType } from 'vue';
 
 export default defineComponent({
 	props: {

@@ -37,7 +37,7 @@
 		}
 
 		&:not(:last-child) {
-			min-height: 27.1rem;
+			min-height: 30.55rem;
 			border-bottom: 1px solid rgba($color-white, 0.4);
 		}
 	}
@@ -52,6 +52,21 @@
 		cursor: pointer;
 		max-width: 100%;
 		aspect-ratio: 1/1;
+
+		border: 3px solid $color-skill-inactive;
+		border-radius: 10px 10px 0 0;
+
+		&.mobility {
+			border: 3px solid $color-mobility;
+		}
+
+		&.vitality {
+			border: 3px solid $color-vitality;
+		}
+
+		&.weapon-handling {
+			border: 3px solid $color-weapon-handling;
+		}
 	}
 
 	&__tooltip {
@@ -98,31 +113,57 @@
 	}
 
 	&__counter-block {
-		margin-top: 5px;
-		// display: flex;
+		// margin-top: 5px;
 		display: grid;
 		grid-template-columns: 1fr 2fr 1fr;
 		align-items: center;
-		// gap: 1rem;
+		// border-radius: 10px 10px 0 0;
+		overflow: hidden;
 	}
 
 	&__button {
 		background-color: $color-black-light-1;
 		// flex-grow: 1;
-		padding: 0.4rem 0.8rem;
+		// padding: 0.4rem 0.8rem;
+		padding: 0.4rem 0;
+		text-align: center;
 
 		&:hover {
 			background-color: $color-black-light-2;
 		}
 	}
 
-	&__level {
+	&__bars-wrapper {
+		content: '';
+		height: 100%;
+		background-color: $color-black-light-2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		padding: 0 0.5rem;
-		text-align: center;
+		gap: 2px;
+	}
+
+	&__bar {
+		background-color: $color-skill-inactive;
+		flex-grow: 1;
+		height: 60%;
+	}
+
+	&__bar-highlight {
+		background-color: #f9da75;
 	}
 
 	&__cost-block {
-		margin-top: 0.5rem;
+		background-color: $color-black-light-2;
+		font-size: 0.8em;
+		padding: 0.2em;
+		display: flex;
+		gap: 2px;
+		justify-content: center;
+		align-items: center;
+		color: rgba($color-white, 0.65);
+		border-radius: 0 0 10px 10px;
 	}
 
 	// Restriction
