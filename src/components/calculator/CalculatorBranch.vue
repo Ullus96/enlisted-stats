@@ -4,20 +4,32 @@
 			<h2 class="calculator__title" :class="classBasedOnIndex">
 				{{ ['Мобильность', 'Живучесть', 'Оружие'][index] }}
 			</h2>
-			<p>Нераспределенные очки: <span :class="classBasedOnIndex">16</span></p>
+			<p>
+				Нераспределенные очки:
+				<span :class="classBasedOnIndex">{{ statsPool[index] }}</span>
+			</p>
 		</div>
 		<!-- tier 1 -->
-		<calculator-tier :tierSkills="skills.tier1"></calculator-tier>
+		<calculator-tier
+			:tierSkills="skills.tier1"
+			:branchColor="classBasedOnIndex"
+		></calculator-tier>
 
 		<div class="calculator__restriction-block">
 			<!-- block if user didn't spend 6 points -->
 			<calculator-restriction v-if="!true"></calculator-restriction>
 
 			<!-- tier 2 -->
-			<calculator-tier :tierSkills="skills.tier2"></calculator-tier>
+			<calculator-tier
+				:tierSkills="skills.tier2"
+				:branchColor="classBasedOnIndex"
+			></calculator-tier>
 
 			<!-- tier 3 -->
-			<calculator-tier :tierSkills="skills.tier3"></calculator-tier>
+			<calculator-tier
+				:tierSkills="skills.tier3"
+				:branchColor="classBasedOnIndex"
+			></calculator-tier>
 		</div>
 	</div>
 </template>
@@ -26,12 +38,14 @@
 import { defineComponent } from 'vue';
 import CalculatorTier from './CalculatorTier.vue';
 import CalculatorRestriction from './CalculatorRestriction.vue';
+import { SkillEntity } from '@/type/Skills';
 
 export default defineComponent({
 	components: { CalculatorTier, CalculatorRestriction },
 	props: {
 		skills: { required: true, type: Object },
 		index: { required: true, type: Number },
+		statsPool: { required: true, type: Object },
 	},
 	setup(props) {
 		type PossibleClass = 'mobility' | 'vitality' | 'weapon-handling';

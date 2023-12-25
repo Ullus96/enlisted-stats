@@ -360,10 +360,10 @@ h2 {
 }
 .calculator__tooltip {
   background-color: #111111;
-  padding: 0.6rem 1.2rem;
+  padding: 0.8rem 1.2rem 0.6rem;
   text-align: center;
   font-size: 0.8em;
-  width: 250%;
+  width: 300%;
   display: none;
   position: absolute;
   z-index: 10;
@@ -385,6 +385,12 @@ h2 {
 .calculator__skill:hover .calculator__tooltip {
   display: block;
 }
+.calculator__tooltip-desc {
+  display: block;
+}
+.calculator__tooltip-desc-block {
+  margin-top: 0.3rem;
+}
 .calculator__highlight {
   color: #f9da75;
 }
@@ -404,6 +410,9 @@ h2 {
 .calculator__level {
   padding: 0 0.5rem;
   text-align: center;
+}
+.calculator__cost-block {
+  margin-top: 0.5rem;
 }
 .calculator__restriction-block {
   position: relative;

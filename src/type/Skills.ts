@@ -1,9 +1,8 @@
 import { SkillTag } from './SkillTag';
 
 export interface SkillEntity {
-	name: string;
 	icon: string;
-	tag: SkillTag;
+	tags: SkillTag[];
 	desc: string;
 	curLvl: number;
 	maxLvl: number;
@@ -11,8 +10,12 @@ export interface SkillEntity {
 	progression: string[];
 }
 
+export interface SkillTier {
+	[key: string]: SkillEntity;
+}
+
 export interface SkillBranch {
-	tier1: SkillEntity[];
-	tier2: SkillEntity[];
-	tier3: SkillEntity[];
+	tier1: SkillTier;
+	tier2: SkillTier;
+	tier3: SkillTier;
 }

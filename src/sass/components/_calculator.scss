@@ -56,10 +56,10 @@
 
 	&__tooltip {
 		background-color: $color-black;
-		padding: 0.6rem 1.2rem;
+		padding: 0.8rem 1.2rem 0.6rem;
 		text-align: center;
 		font-size: 0.8em;
-		width: 250%;
+		width: 300%;
 		display: none;
 		position: absolute;
 		z-index: 10;
@@ -83,6 +83,14 @@
 	// display tooltip on hover
 	&__skill:hover &__tooltip {
 		display: block;
+	}
+
+	&__tooltip-desc {
+		display: block;
+	}
+
+	&__tooltip-desc-block {
+		margin-top: 0.3rem;
 	}
 
 	&__highlight {
@@ -112,6 +120,12 @@
 		padding: 0 0.5rem;
 		text-align: center;
 	}
+
+	&__cost-block {
+		margin-top: 0.5rem;
+	}
+
+	// Restriction
 
 	&__restriction-block {
 		position: relative;
