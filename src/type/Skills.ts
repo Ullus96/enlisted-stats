@@ -19,3 +19,5 @@ export interface SkillBranch {
 	tier2: SkillTier;
 	tier3: SkillTier;
 }
+
+export type SkillPossibleTiers = 'tier1' | 'tier2' | 'tier3';

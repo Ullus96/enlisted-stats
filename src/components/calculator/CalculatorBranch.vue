@@ -2,56 +2,82 @@
 	<div class="calculator__branch">
 		<div class="calculator__title-block">
 			<h2 class="calculator__title" :class="classBasedOnIndex">
-				{{ ['Мобильность', 'Живучесть', 'Оружие'][index] }}
+				{{ ['Мобильность', 'Живучесть', 'Оружие'][branchIndex] }}
 			</h2>
 			<p>
 				Нераспределенные очки:
-				<span :class="classBasedOnIndex">{{ statsPool[index] }}</span>
+				<span :class="classBasedOnIndex">{{
+					remainingStats[branchIndex]
+				}}</span>
 			</p>
+			<p>statsPool: {{ statsPool }}</p>
+			<p>remainingStats: {{ remainingStats }}</p>
+			<p>Points spent: {{ totalPointsSpent() }}</p>
+			<p>Tags: {{ tags }}</p>
 		</div>
 		<!-- tier 1 -->
 		<calculator-tier
 			:tierSkills="skills.tier1"
+			:tags="tags"
 			:branchColor="classBasedOnIndex"
+			:branchIndex="branchIndex"
+			:branchTier="'tier1'"
+			:branchRemainingStats="getRemainingStats(branchIndex)"
+			@statChanged="statChanged"
 		></calculator-tier>
 
 		<div class="calculator__restriction-block">
 			<!-- block if user didn't spend 6 points -->
-			<calculator-restriction v-if="!true"></calculator-restriction>
+			<calculator-restriction
+				v-if="isHigherTiersBlocked()"
+				:howManyPointsToUnlock="howManyPointsToUnlock()"
+			></calculator-restriction>
 
 			<!-- tier 2 -->
 			<calculator-tier
 				:tierSkills="skills.tier2"
+				:tags="tags"
 				:branchColor="classBasedOnIndex"
+				:branchIndex="branchIndex"
+				:branchTier="'tier2'"
+				:branchRemainingStats="getRemainingStats(branchIndex)"
+				@statChanged="statChanged"
 			></calculator-tier>
 
 			<!-- tier 3 -->
 			<calculator-tier
 				:tierSkills="skills.tier3"
+				:tags="tags"
 				:branchColor="classBasedOnIndex"
+				:branchIndex="branchIndex"
+				:branchTier="'tier3'"
+				:branchRemainingStats="getRemainingStats(branchIndex)"
+				@statChanged="statChanged"
 			></calculator-tier>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import CalculatorTier from './CalculatorTier.vue';
 import CalculatorRestriction from './CalculatorRestriction.vue';
-import { SkillEntity } from '@/type/Skills';
+import { SkillPossibleTiers } from '@/type/Skills';
 
 export default defineComponent({
 	components: { CalculatorTier, CalculatorRestriction },
 	props: {
 		skills: { required: true, type: Object },
-		index: { required: true, type: Number },
+		branchIndex: { required: true, type: Number },
 		statsPool: { required: true, type: Object },
+		remainingStats: { required: true, type: Object },
+		tags: { required: true, type: Object },
 	},
-	setup(props) {
+	setup(props, context) {
 		type PossibleClass = 'mobility' | 'vitality' | 'weapon-handling';
 
 		function getClassBasedOnIndex(): PossibleClass {
-			switch (props.index) {
+			switch (props.branchIndex) {
 				case 0:
 					return 'mobility';
 					break;
@@ -70,8 +96,52 @@ export default defineComponent({
 
 		const classBasedOnIndex = getClassBasedOnIndex();
 
+		function totalPointsSpent(): number {
+			const pointsTotal: number = props.statsPool.reduce(
+				(a: number, b: number) => a + b,
+				0
+			);
+			const pointsLeft: number = props.remainingStats.reduce(
+				(a: number, b: number) => a + b,
+				0
+			);
+
+			return pointsTotal - pointsLeft;
+		}
+
+		// const isRestricted: Ref<boolean> = ref(false);
+		function isHigherTiersBlocked(): boolean {
+			if (totalPointsSpent() < 6) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function howManyPointsToUnlock(): number {
+			return 6 - totalPointsSpent();
+		}
+
+		function statChanged(payload: {
+			skillKey: string;
+			curLvl: number;
+			branchTier: SkillPossibleTiers;
+			branchIndex: number;
+		}) {
+			context.emit('statChanged', payload);
+		}
+
+		function getRemainingStats(index: number): number {
+			return props.remainingStats[index];
+		}
+
 		return {
 			classBasedOnIndex,
+			totalPointsSpent,
+			isHigherTiersBlocked,
+			howManyPointsToUnlock,
+			statChanged,
+			getRemainingStats,
 		};
 	},
 });

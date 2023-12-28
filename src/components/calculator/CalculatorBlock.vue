@@ -6,8 +6,11 @@
 			v-for="(branch, index) in skillsList"
 			:key="branch"
 			:skills="skillsList[index]"
-			:index="index"
-			:statsPool="remainingStats"
+			:branchIndex="index"
+			:remainingStats="remainingStats ? remainingStats : statsPool"
+			:statsPool="statsPool"
+			:tags="tags"
+			@statChanged="statChanged"
 		></calculator-branch>
 	</div>
 </template>
@@ -16,13 +19,17 @@
 import { defineComponent, onMounted, reactive, watch } from 'vue';
 import skillsList from '@/data/skillsList';
 import CalculatorBranch from './CalculatorBranch.vue';
-import { SkillBranch, SkillEntity } from '@/type/Skills';
+import { SkillBranch, SkillEntity, SkillPossibleTiers } from '@/type/Skills';
+import { SkillTag } from '@/type/SkillTag';
 
 export default defineComponent({
 	components: { CalculatorBranch },
 	setup(props) {
-		const statsPool = reactive([21, 19, 20]);
 		const reactiveSkillsList = reactive(skillsList);
+
+		// Это мы получим от выбранного солдата
+		const statsPool = reactive([21, 19, 20]);
+		const tags: SkillTag[] = reactive(['base', 'medic']);
 
 		const remainingStats = reactive([] as number[]);
 
@@ -63,12 +70,28 @@ export default defineComponent({
 			console.log(remainingStats);
 		}
 
+		function statChanged(payload: {
+			skillKey: string;
+			curLvl: number;
+			branchTier: SkillPossibleTiers;
+			branchIndex: number;
+		}) {
+			// console.log('CalculatorBlock payload:');
+			// console.log(payload);
+
+			const { skillKey, curLvl, branchTier, branchIndex } = payload;
+			reactiveSkillsList[branchIndex][branchTier][skillKey].curLvl = curLvl;
+			calculateRemainingStats();
+		}
+
 		// Then you can work with reactiveSkillsList as a final product
 		return {
 			skillsList: reactiveSkillsList,
 			statsPool,
+			tags,
 			calculateRemainingStats,
 			remainingStats,
+			statChanged,
 		};
 	},
 });

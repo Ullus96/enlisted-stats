@@ -1,5 +1,5 @@
 <template>
-	<div class="calculator__skill">
+	<div class="calculator__skill" v-if="hasTag()">
 		<img
 			:src="require('@/assets/skill_icons/' + skill.icon)"
 			alt=""
@@ -58,7 +58,7 @@
 
 <script lang="ts">
 import { SkillEntity } from '@/type/Skills';
-import { defineComponent, onMounted, PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
 	props: {
@@ -70,14 +70,27 @@ export default defineComponent({
 			required: true,
 			type: String,
 		},
+		tags: {
+			required: true,
+			type: Object,
+		},
+		skillKey: {
+			required: true,
+			type: String,
+		},
+		branchRemainingStats: {
+			required: true,
+		},
 	},
-	setup(props) {
+	setup(props, context) {
 		function clickHandle(operation: 'plus' | 'minus') {
 			if (operation === 'plus') {
 				if (props.skill.curLvl == props.skill.maxLvl) {
 					props.skill.curLvl = props.skill.maxLvl;
 				} else {
-					props.skill.curLvl++;
+					if (checkIfEnoughPoints(props.skill.costPerLvl)) {
+						props.skill.curLvl++;
+					}
 				}
 			} else {
 				if (props.skill.curLvl == 0) {
@@ -86,10 +99,28 @@ export default defineComponent({
 					props.skill.curLvl--;
 				}
 			}
+
+			context.emit('statChanged', {
+				skillKey: props.skillKey,
+				curLvl: props.skill.curLvl,
+			});
+		}
+
+		function checkIfEnoughPoints(cost: number): boolean {
+			if (typeof props.branchRemainingStats === 'number') {
+				return props.branchRemainingStats - cost >= 0;
+			} else {
+				return false;
+			}
+		}
+
+		function hasTag(): boolean {
+			return props.skill.tags.some((element) => props.tags.includes(element));
 		}
 
 		return {
 			clickHandle,
+			hasTag,
 		};
 	},
 });

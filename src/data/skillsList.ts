@@ -7,7 +7,7 @@ const skillsList: SkillBranch[] = [
 				icon: 'mobility/tier1/jump-height.svg',
 				tags: ['base'],
 				desc: 'максимальная высота прыжка',
-				curLvl: 1,
+				curLvl: 0,
 				maxLvl: 2,
 				costPerLvl: 2,
 				progression: ['+20%', '+40%'],
@@ -129,7 +129,7 @@ const skillsList: SkillBranch[] = [
 				curLvl: 0,
 				maxLvl: 5,
 				costPerLvl: 1,
-				progression: ['+6%', '+12%', '+18%', '+24%', '+60%'],
+				progression: ['+6%', '+12%', '+18%', '+24%', '+30%'],
 			},
 			gearboxShiftSpeed: {
 				icon: 'mobility/tier2/gearbox-shift-speed.svg',
