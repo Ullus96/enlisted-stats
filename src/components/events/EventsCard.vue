@@ -19,7 +19,7 @@ export default defineComponent({
 	props: {
 		cardData: { required: true, type: Object as PropType<IStage> },
 		stageIndex: { required: true, type: Number },
-		reward: { required: true, type: String },
+		reward: { required: false, type: String, default: '—' },
 	},
 	setup(props) {
 		const options: Intl.DateTimeFormatOptions = {

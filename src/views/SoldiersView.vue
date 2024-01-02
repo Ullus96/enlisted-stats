@@ -9,7 +9,7 @@
 				class="table-header__search-input"
 				type="text"
 				v-model.trim="search"
-				autofocus
+				id="searchInput"
 			/>
 		</div>
 		<div class="table-header__col table-header__col--name" v-else>&nbsp;</div>
@@ -80,7 +80,14 @@
 import { IItem } from '@/type/Item';
 import ItemRow from '@/components/ItemRow.vue';
 import SkillBuild from '@/components/SkillBuild.vue';
-import { computed, defineComponent, ref } from 'vue';
+import {
+	computed,
+	defineComponent,
+	nextTick,
+	onMounted,
+	onUpdated,
+	ref,
+} from 'vue';
 import type { Ref } from 'vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
 import CalculatorBranch from '@/components/calculator/CalculatorTier.vue';
@@ -147,6 +154,24 @@ export default defineComponent({
 					break;
 			}
 		}
+
+		// https://stackoverflow.com/a/76009015
+		const setFocusToElement = async () => {
+			nextTick(() => {
+				const element = document.getElementById('searchInput');
+				if (element) {
+					element.focus();
+				}
+			});
+		};
+
+		onMounted(() => {
+			setFocusToElement();
+		});
+
+		onUpdated(() => {
+			setFocusToElement();
+		});
 
 		/*
 					{

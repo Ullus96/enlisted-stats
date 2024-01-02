@@ -23,13 +23,6 @@ export default defineComponent({
 		// },
 		const eventsData: IEvent[] = [
 			{
-				name: 'Операция "Тестовый прогон"',
-				startDate: new Date(Date.UTC(2023, 11, 31, 13, 0, 0)),
-				endDate: new Date(Date.UTC(2024, 0, 3, 12, 59, 59)),
-				stages: [],
-				rewards: ['', '', ''],
-			},
-			{
 				name: 'Операция "Зимнее Приключение"',
 				startDate: new Date(Date.UTC(2023, 11, 20, 13, 0, 0)),
 				endDate: new Date(Date.UTC(2024, 0, 19, 12, 59, 59)),
