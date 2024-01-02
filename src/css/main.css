@@ -378,11 +378,12 @@ h2 {
 }
 .calculator__tooltip {
   background-color: #111111;
-  padding: 0.8rem 1.2rem 0.6rem;
+  padding: 1.2rem 1.6rem;
   text-align: center;
   font-size: 0.8em;
   width: 300%;
   display: none;
+  border-radius: 1rem;
   position: absolute;
   z-index: 10;
   top: 0;
@@ -677,6 +678,7 @@ h2 {
   border: 1px solid #7f8388;
   border-radius: 1rem;
   text-align: center;
+  cursor: default;
   width: 10rem;
   padding: 1rem;
 }
@@ -692,6 +694,36 @@ h2 {
 }
 .events__month {
   padding-bottom: 0.5rem;
+}
+.events__card-tooltip {
+  background-color: #111111;
+  padding: 1.2rem 1.6rem;
+  text-align: center;
+  font-size: 1.2rem;
+  width: 200%;
+  display: none;
+  border-radius: 1rem;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+.events__card-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, 50%) rotateZ(45deg);
+  z-index: 5;
+  background: linear-gradient(-45deg, #111111 60%, transparent 60%);
+}
+.events__card:hover .events__card-tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 .events__countdown-block {
   display: flex;

@@ -73,11 +73,13 @@
 
 	&__tooltip {
 		background-color: $color-black;
-		padding: 0.8rem 1.2rem 0.6rem;
+		// padding: 0.8rem 1.2rem 0.6rem;
+		padding: 1.2rem 1.6rem;
 		text-align: center;
 		font-size: 0.8em;
 		width: 300%;
 		display: none;
+		border-radius: 1rem;
 		position: absolute;
 		z-index: 10;
 		top: 0;

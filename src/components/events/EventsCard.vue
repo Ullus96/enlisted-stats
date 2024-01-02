@@ -1,5 +1,9 @@
 <template>
 	<div class="events__card events__all-card">
+		<div class="events__card-tooltip">
+			<p>Награда:</p>
+			<p>{{ reward ? reward : '—' }}</p>
+		</div>
 		<p class="events__counter">#{{ stageIndex + 1 }}</p>
 		<p class="events__date">{{ day }}</p>
 		<p class="events__month">{{ month }}</p>
@@ -15,6 +19,7 @@ export default defineComponent({
 	props: {
 		cardData: { required: true, type: Object as PropType<IStage> },
 		stageIndex: { required: true, type: Number },
+		reward: { required: true, type: String },
 	},
 	setup(props) {
 		const options: Intl.DateTimeFormatOptions = {
@@ -38,7 +43,6 @@ export default defineComponent({
 			options
 		);
 		const parts = localDateTime.split(',');
-		console.log(parts);
 
 		const day = parts[1].split(' ')[1];
 		const month = parts[1].split(' ')[2];

@@ -11,13 +11,28 @@ export default defineComponent({
 	components: { TheEvent },
 	setup() {
 		// Год, месяц-1,число, часы, минуты, секунды
-		// 2023 декабря, 20, 16:00:00
-		// new Date(2023, 11, 20, 16, 0, 0)
+		// 2023 декабря, 20, 13:00:00 UTC (3 hours less than MSK)
+		// new Date(Date.UTC(2023, 11, 20, 13, 0, 0))
+
+		// {
+		// 	name: 'Операция "Имя"',
+		// 	startDate: new Date(Date.UTC(2023, 11, 20, 13, 0, 0)),
+		// 	endDate: new Date(Date.UTC(2024, 0, 19, 12, 59, 59)),
+		// 	stages: [],
+		// 	rewards: ['',	'',	''],
+		// },
 		const eventsData: IEvent[] = [
 			{
+				name: 'Операция "Тестовый прогон"',
+				startDate: new Date(Date.UTC(2023, 11, 31, 13, 0, 0)),
+				endDate: new Date(Date.UTC(2024, 0, 3, 12, 59, 59)),
+				stages: [],
+				rewards: ['', '', ''],
+			},
+			{
 				name: 'Операция "Зимнее Приключение"',
-				startDate: new Date(2023, 11, 20, 16, 0, 0),
-				endDate: new Date(2024, 0, 19, 15, 59, 59),
+				startDate: new Date(Date.UTC(2023, 11, 20, 13, 0, 0)),
+				endDate: new Date(Date.UTC(2024, 0, 19, 12, 59, 59)),
 				stages: [],
 				rewards: [
 					'внешка',
@@ -36,7 +51,6 @@ export default defineComponent({
 					'Золотая заявка на оружие',
 					'',
 				],
-				//
 			},
 		];
 
