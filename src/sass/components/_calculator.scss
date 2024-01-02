@@ -1,7 +1,5 @@
 .calculator {
-	&__stats-flex {
-		display: flex;
-	}
+	margin-top: 2rem;
 
 	&__grid {
 		display: grid;
@@ -55,17 +53,21 @@
 
 		border: 3px solid $color-skill-inactive;
 		border-radius: 10px 10px 0 0;
+		filter: grayscale(1);
 
 		&.mobility {
 			border: 3px solid $color-mobility;
+			filter: none;
 		}
 
 		&.vitality {
 			border: 3px solid $color-vitality;
+			filter: none;
 		}
 
 		&.weapon-handling {
 			border: 3px solid $color-weapon-handling;
+			filter: none;
 		}
 	}
 
@@ -109,7 +111,7 @@
 	}
 
 	&__highlight {
-		color: #f9da75;
+		color: $color-highlight;
 	}
 
 	&__counter-block {
@@ -151,7 +153,19 @@
 	}
 
 	&__bar-highlight {
-		background-color: #f9da75;
+		background-color: $color-highlight;
+
+		&.mobility {
+			background-color: $color-mobility;
+		}
+
+		&.vitality {
+			background-color: $color-vitality;
+		}
+
+		&.weapon-handling {
+			background-color: $color-weapon-handling;
+		}
 	}
 
 	&__cost-block {
@@ -173,24 +187,27 @@
 		flex-grow: 1;
 	}
 
-	&__restriction-wrapper {
-		position: absolute;
-		background-color: rgba($color-black, 0.8);
-		inset: 0 0 0 0;
-		z-index: 12;
-
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
 	&__restriction-text-block {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		gap: 1rem;
-		padding: 0 2rem;
+		padding: 2rem 2rem;
+
+		background-color: $color-blue;
+		border-bottom: 1px solid rgba($color-white, 0.4);
+
+		transform: rotateX(00deg);
+		transform-origin: top;
+		max-height: 20rem;
+		transition: 0.5s ease-in-out all;
+
+		&.inactive {
+			transform: rotateX(90deg);
+			max-height: 0;
+			padding: 0 2rem;
+		}
 
 		& i {
 			font-size: 3rem;
@@ -198,6 +215,34 @@
 
 		& p {
 			text-align: center;
+		}
+	}
+
+	&__restriction-bg {
+		background: repeating-linear-gradient(
+			-45deg,
+			rgba($color-skill-inactive, 0.4),
+			rgba($color-skill-inactive, 0.4) 15px,
+			transparent 15px,
+			transparent 40px
+		);
+
+		&.is-transparent {
+			background: none;
+		}
+
+		// error handler
+		&__error {
+			position: fixed;
+			left: 50%;
+			bottom: 4rem;
+			transform: translate(-50%, 0%);
+			background-color: $color-black-light-1;
+
+			border-left: 5px solid $color-error;
+			// box-shadow: 0 0 4rem $color-error;
+
+			padding: 4rem 16rem;
 		}
 	}
 }

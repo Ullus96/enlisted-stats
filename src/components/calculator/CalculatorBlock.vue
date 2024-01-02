@@ -1,6 +1,4 @@
 <template>
-	<button @click="calculateRemainingStats">Calculate Remaining Pool</button>
-	{{ remainingStats }}
 	<div class="calculator__grid">
 		<calculator-branch
 			v-for="(branch, index) in skillsList"
@@ -13,6 +11,11 @@
 			@statChanged="statChanged"
 		></calculator-branch>
 	</div>
+
+	<!-- error -->
+	<Teleport to="body">
+		<div class="calculator__error" v-if="false">Недостаточно очков!</div>
+	</Teleport>
 </template>
 
 <script lang="ts">
@@ -24,12 +27,27 @@ import { SkillTag } from '@/type/SkillTag';
 
 export default defineComponent({
 	components: { CalculatorBranch },
+	props: {
+		stats: {
+			required: true,
+			type: Object,
+		},
+		tags: {
+			required: true,
+			type: Object,
+		},
+	},
 	setup(props) {
+		// TODO: onMounted сделать так, чтобы стандартные статы
+		// сбрасывались к оригинальным
 		const reactiveSkillsList = reactive(skillsList);
 
-		// Это мы получим от выбранного солдата
-		const statsPool = reactive([21, 19, 20]);
-		const tags: SkillTag[] = reactive(['base', 'medic']);
+		// const statsPool = reactive([16, 16, 16]);
+		// const tags: SkillTag[] = reactive(['base']);
+
+		// Это мы получаем от выбранного солдата
+		const statsPool = reactive(props.stats);
+		const tags: SkillTag[] = reactive(props.tags as SkillTag[]);
 
 		const remainingStats = reactive([] as number[]);
 

@@ -10,10 +10,10 @@
 					remainingStats[branchIndex]
 				}}</span>
 			</p>
-			<p>statsPool: {{ statsPool }}</p>
+			<!-- <p>statsPool: {{ statsPool }}</p>
 			<p>remainingStats: {{ remainingStats }}</p>
 			<p>Points spent: {{ totalPointsSpent() }}</p>
-			<p>Tags: {{ tags }}</p>
+			<p>Tags: {{ tags }}</p> -->
 		</div>
 		<!-- tier 1 -->
 		<calculator-tier
@@ -26,10 +26,14 @@
 			@statChanged="statChanged"
 		></calculator-tier>
 
-		<div class="calculator__restriction-block">
+		<div
+			class="calculator__restriction-block calculator__restriction-bg"
+			:class="{ 'is-transparent': !isHigherTiersBlocked() }"
+		>
 			<!-- block if user didn't spend 6 points -->
+			<!-- v-if="isHigherTiersBlocked()" -->
 			<calculator-restriction
-				v-if="isHigherTiersBlocked()"
+				:isHigherTiersBlocked="isHigherTiersBlocked()"
 				:howManyPointsToUnlock="howManyPointsToUnlock()"
 			></calculator-restriction>
 

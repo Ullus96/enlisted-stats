@@ -1,22 +1,29 @@
 <template>
-	<header class="header container">
+	<the-header></the-header>
+	<div class="table-header container" v-if="!true">
 		<div
-			class="header__col header__col--name header__search-bar"
-			v-if="!isFilteredToClass && false"
+			class="table-header__col table-header__col--name table-header__search-bar"
+			v-if="!isFilteredToClass && true"
 		>
 			<i class="fa-solid fa-magnifying-glass"></i>
-			<input class="header__search-input" type="text" v-model.trim="search" />
+			<input
+				class="table-header__search-input"
+				type="text"
+				v-model.trim="search"
+				autofocus
+			/>
 		</div>
-		<div class="header__col header__col--name" v-else>&nbsp;</div>
-		<div class="header__col header__col--stat">★</div>
-		<div class="header__col header__col--stat">★★</div>
-		<div class="header__col header__col--stat">★★★</div>
-		<div class="header__col header__col--stat">★★★★</div>
-		<div class="header__col header__col--stat">★★★★★</div>
-		<div class="header__col header__col--desc">Начальный перк</div>
-	</header>
-	<!-- temporary off everything -->
-	<template v-if="false">
+		<div class="table-header__col table-header__col--name" v-else>&nbsp;</div>
+		<div class="table-header__col table-header__col--stat">★</div>
+		<div class="table-header__col table-header__col--stat">★★</div>
+		<div class="table-header__col table-header__col--stat">★★★</div>
+		<div class="table-header__col table-header__col--stat">★★★★</div>
+		<div class="table-header__col table-header__col--stat">★★★★★</div>
+		<div class="table-header__col table-header__col--desc">Начальный перк</div>
+	</div>
+
+	<!-- render all soldiers instances -->
+	<template v-if="!true">
 		<template v-if="!isFilteredToClass">
 			<item-row
 				v-for="(item, idx) in filteredItems"
@@ -26,65 +33,77 @@
 			></item-row>
 		</template>
 
+		<!-- render single selected soldier -->
 		<template v-if="isFilteredToClass">
 			<item-row
 				:item="filteredItems[activeIdx]"
 				@click="removeFilter()"
 			></item-row>
 
-			<template v-if="filteredItems[activeIdx]">
+			<!-- preset builds -->
+			<template v-if="filteredItems[activeIdx] && isPresetBuildsSelected">
 				<skill-build :skills="filteredItems[activeIdx].skills"></skill-build>
 			</template>
+
+			<!-- calculator -->
+			<div
+				class="calculator container"
+				v-if="isFilteredToClass && isCalculatorSelected"
+			>
+				<calculator-block
+					:stats="filteredItems[activeIdx].lv5"
+					:tags="filteredItems[activeIdx].tags"
+				></calculator-block>
+			</div>
 		</template>
 
 		<div class="container">
 			<div class="btn-filter--wrapper" v-if="isFilteredToClass">
+				<button
+					class="btn btn-filter"
+					@click="filteredSoldierButtonHandler('presets')"
+				>
+					Пресеты
+				</button>
+				<button
+					class="btn btn-filter"
+					@click="filteredSoldierButtonHandler('calculator')"
+				>
+					Калькулятор
+				</button>
 				<button class="btn btn-filter" @click="removeFilter()">
 					Выключить фильтрацию
 				</button>
 			</div>
 		</div>
 	</template>
-	<!-- calculator -->
-	<div class="calculator container">
-		<div class="calculator__header">
-			<div class="calculator__stats">
-				<h2 class="calculator__stats-unused-title">Неиспользованные навыки:</h2>
-				<div class="calculator__stats-flex">
-					<div class="calculator__stats-item mobility">16</div>
-					<div class="calculator__stats-item vitality">12</div>
-					<div class="calculator__stats-item weapon-handling">14</div>
-				</div>
-			</div>
-			<div class="calculator__save-settings">
-				<input type="text" id="calculator-name" placeholder="Имя сборки" />
-				<label for="calculator-name">123</label>
-				<input type="checkbox" id="visible-for-public" />
-				<label for="visible-for-public">Сделать видимым для всех?</label>
-			</div>
-		</div>
-		<calculator-block></calculator-block>
-	</div>
+
+	<!-- events -->
+	<events-view></events-view>
 </template>
 
 <script lang="ts">
+import TheHeader from './components/TheHeader.vue';
 import { IItem } from './type/Item';
 import ItemRow from './components/ItemRow.vue';
 import SkillBuild from './components/SkillBuild.vue';
-import { computed, defineComponent, reactive, ref } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import type { Ref } from 'vue';
 import CalculatorBlock from './components/calculator/CalculatorBlock.vue';
 import CalculatorBranch from './components/calculator/CalculatorTier.vue';
 import CalculatorSkill from './components/calculator/CalculatorSkill.vue';
+import EventsView from './components/EventsView.vue';
 
 export default defineComponent({
 	name: 'App',
 	components: {
+		TheHeader,
 		ItemRow,
 		SkillBuild,
 		CalculatorBlock,
 		CalculatorBranch,
 		CalculatorSkill,
+		EventsView,
 	},
 	setup() {
 		const isFilteredToClass: Ref<boolean> = ref(false);
@@ -118,6 +137,26 @@ export default defineComponent({
 				item.name.toLowerCase().includes(search.value.toLowerCase())
 			)
 		);
+
+		const isPresetBuildsSelected: Ref<boolean> = ref(true);
+		const isCalculatorSelected: Ref<boolean> = ref(false);
+
+		function filteredSoldierButtonHandler(option: 'presets' | 'calculator') {
+			isPresetBuildsSelected.value = false;
+			isCalculatorSelected.value = false;
+
+			switch (option) {
+				case 'presets':
+					isPresetBuildsSelected.value = true;
+					break;
+				case 'calculator':
+					isCalculatorSelected.value = true;
+					break;
+
+				default:
+					break;
+			}
+		}
 
 		/*
 					{
@@ -480,7 +519,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-истр. I',
 				id: 'pilot-fighter1',
-				tags: ['base', 'pilot'],
+				tags: ['pilot'],
 				lv1: [4, 6, 5],
 				lv2: [6, 8, 7],
 				lv3: [8, 10, 9],
@@ -491,7 +530,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-истр. II',
 				id: 'pilot-fighter2',
-				tags: ['base', 'pilot'],
+				tags: ['pilot'],
 				lv1: [5, 7, 6],
 				lv2: [7, 9, 8],
 				lv3: [9, 11, 10],
@@ -502,7 +541,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-истр. III',
 				id: 'pilot-fighter3',
-				tags: ['base', 'pilot'],
+				tags: ['pilot'],
 				lv1: [5, 9, 7],
 				lv2: [7, 11, 9],
 				lv3: [9, 13, 11],
@@ -513,7 +552,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-штурм. I',
 				id: 'pilot-attacker1',
-				tags: ['base', 'pilot'],
+				tags: ['pilot'],
 				lv1: [4, 5, 6],
 				lv2: [6, 7, 8],
 				lv3: [8, 9, 10],
@@ -524,7 +563,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-штурм. II',
 				id: 'pilot-attacker2',
-				tags: ['base', 'pilot'],
+				tags: ['pilot'],
 				lv1: [5, 6, 7],
 				lv2: [7, 8, 9],
 				lv3: [9, 10, 11],
@@ -535,7 +574,7 @@ export default defineComponent({
 			{
 				name: 'Пилот-штурм. III',
 				id: 'pilot-attacker3',
-				tags: ['base', 'pilot'],
+				tags: ['pilot'],
 				lv1: [5, 7, 9],
 				lv2: [7, 9, 11],
 				lv3: [9, 11, 13],
@@ -546,7 +585,7 @@ export default defineComponent({
 			{
 				name: 'Танкист I',
 				id: 'tank1',
-				tags: ['base', 'tank'],
+				tags: ['crew', 'tank'],
 				lv1: [7, 2, 6],
 				lv2: [9, 4, 8],
 				lv3: [11, 6, 10],
@@ -557,7 +596,7 @@ export default defineComponent({
 			{
 				name: 'Танкист II',
 				id: 'tank2',
-				tags: ['base', 'tank'],
+				tags: ['crew', 'tank'],
 				lv1: [9, 2, 7],
 				lv2: [11, 4, 9],
 				lv3: [13, 6, 11],
@@ -568,7 +607,7 @@ export default defineComponent({
 			{
 				name: 'Танкист III',
 				id: 'tank3',
-				tags: ['base', 'tank'],
+				tags: ['crew', 'tank'],
 				lv1: [11, 2, 8],
 				lv2: [13, 4, 10],
 				lv3: [15, 6, 12],
@@ -579,7 +618,7 @@ export default defineComponent({
 			{
 				name: 'Мотоциклист I',
 				id: 'moto1',
-				tags: ['base', 'motorcycle'],
+				tags: ['recon-crew', 'motorcycle'],
 				lv1: [6, 4, 8],
 				lv2: [8, 6, 10],
 				lv3: [10, 8, 12],
@@ -590,7 +629,7 @@ export default defineComponent({
 			{
 				name: 'Водитель БТР',
 				id: 'apc-driver',
-				tags: ['base', 'apc-driver'],
+				tags: ['recon-crew', 'apc-driver'],
 				lv1: [8, 4, 6],
 				lv2: [10, 6, 8],
 				lv3: [12, 8, 10],
@@ -609,6 +648,9 @@ export default defineComponent({
 			getImgPath,
 			search,
 			filteredItems,
+			isPresetBuildsSelected,
+			isCalculatorSelected,
+			filteredSoldierButtonHandler,
 		};
 	},
 });

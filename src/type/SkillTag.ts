@@ -7,5 +7,7 @@ export type SkillTag =
 	| 'flamethrower'
 	| 'pilot'
 	| 'tank'
+	| 'crew'
 	| 'motorcycle'
-	| 'apc-driver';
+	| 'apc-driver'
+	| 'recon-crew';

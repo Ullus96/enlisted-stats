@@ -5,7 +5,7 @@ const skillsList: SkillBranch[] = [
 		tier1: {
 			jumpHeight: {
 				icon: 'mobility/tier1/jump-height.svg',
-				tags: ['base'],
+				tags: ['base', 'recon-crew', 'pilot'],
 				desc: 'максимальная высота прыжка',
 				curLvl: 0,
 				maxLvl: 2,
@@ -21,24 +21,6 @@ const skillsList: SkillBranch[] = [
 				costPerLvl: 1,
 				progression: ['+20%', '+40%', '+60%'],
 			},
-			extinguishSpeed: {
-				icon: 'mobility/tier1/extinguish-speed.svg',
-				tags: ['base'],
-				desc: 'скорость тушения огня на солдате',
-				curLvl: 0,
-				maxLvl: 1,
-				costPerLvl: 1,
-				progression: ['+100%'],
-			},
-			bodyPosition: {
-				icon: 'mobility/tier1/body-position.svg',
-				tags: ['base'],
-				desc: 'скорость изменения положения тела',
-				curLvl: 0,
-				maxLvl: 1,
-				costPerLvl: 1,
-				progression: ['+50%'],
-			},
 			medicHealingSpeed: {
 				icon: 'mobility/tier1/medic-healing-speed.svg',
 				tags: ['medic'],
@@ -50,30 +32,12 @@ const skillsList: SkillBranch[] = [
 			},
 			changeSeatSpeed: {
 				icon: 'mobility/tier1/change-seat-speed.svg',
-				tags: ['tank'],
+				tags: ['tank', 'motorcycle', 'pilot'],
 				desc: 'скорость посадки, выхода и смены места в технике',
 				curLvl: 0,
 				maxLvl: 2,
 				costPerLvl: 1,
 				progression: ['+15%', '+30%'],
-			},
-			landingDamage: {
-				icon: 'mobility/tier1/landing-damage.svg',
-				tags: ['pilot'],
-				desc: 'урон при жестком приземлении с парашютом',
-				curLvl: 0,
-				maxLvl: 3,
-				costPerLvl: 2,
-				progression: ['-20%', '-40%', '-60%'],
-			},
-			brakeSpeed: {
-				icon: 'mobility/tier1/brake-speed.svg',
-				tags: ['tank', 'apc-driver'],
-				desc: 'скорость нажатия на тормоза (навык водителя)',
-				curLvl: 0,
-				maxLvl: 2,
-				costPerLvl: 2,
-				progression: ['+25%', '+50%'],
 			},
 			gearboxSaveSpeed: {
 				icon: 'mobility/tier1/gearbox-save-speed.svg',
@@ -84,11 +48,47 @@ const skillsList: SkillBranch[] = [
 				costPerLvl: 1,
 				progression: ['-33.3%', '-66.6%', '-100%'],
 			},
+			extinguishSpeed: {
+				icon: 'mobility/tier1/extinguish-speed.svg',
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
+				desc: 'скорость тушения огня на солдате',
+				curLvl: 0,
+				maxLvl: 1,
+				costPerLvl: 1,
+				progression: ['+100%'],
+			},
+			bodyPosition: {
+				icon: 'mobility/tier1/body-position.svg',
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
+				desc: 'скорость изменения положения тела',
+				curLvl: 0,
+				maxLvl: 1,
+				costPerLvl: 1,
+				progression: ['+50%'],
+			},
+			brakeSpeed: {
+				icon: 'mobility/tier1/brake-speed.svg',
+				tags: ['tank', 'apc-driver', 'motorcycle'],
+				desc: 'скорость нажатия на тормоза (навык водителя)',
+				curLvl: 0,
+				maxLvl: 2,
+				costPerLvl: 2,
+				progression: ['+25%', '+50%'],
+			},
+			landingDamage: {
+				icon: 'mobility/tier1/landing-damage.svg',
+				tags: ['pilot'],
+				desc: 'урон при жестком приземлении с парашютом',
+				curLvl: 0,
+				maxLvl: 3,
+				costPerLvl: 2,
+				progression: ['-20%', '-40%', '-60%'],
+			},
 		},
 		tier2: {
 			healingSpeed: {
 				icon: 'mobility/tier2/healing-speed.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: 'скорость использования аптечки',
 				curLvl: 0,
 				maxLvl: 3,
@@ -97,7 +97,7 @@ const skillsList: SkillBranch[] = [
 			},
 			climbingSpeed: {
 				icon: 'mobility/tier2/climbing-speed.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: 'скорость залезания на объекты',
 				curLvl: 0,
 				maxLvl: 4,
@@ -106,7 +106,7 @@ const skillsList: SkillBranch[] = [
 			},
 			aimingSpeed: {
 				icon: 'mobility/tier2/aiming-speed.svg',
-				tags: ['base'],
+				tags: ['base', 'recon-crew'],
 				desc: 'скорость прицеливания из оружия',
 				curLvl: 0,
 				maxLvl: 2,
@@ -115,7 +115,7 @@ const skillsList: SkillBranch[] = [
 			},
 			runningSpeed: {
 				icon: 'mobility/tier2/running-speed.svg',
-				tags: ['base'],
+				tags: ['base', 'recon-crew', 'pilot'],
 				desc: 'скорость бега',
 				curLvl: 0,
 				maxLvl: 2,
@@ -133,7 +133,7 @@ const skillsList: SkillBranch[] = [
 			},
 			gearboxShiftSpeed: {
 				icon: 'mobility/tier2/gearbox-shift-speed.svg',
-				tags: ['tank', 'apc-driver'],
+				tags: ['tank', 'apc-driver', 'motorcycle'],
 				desc: 'скорость переключения передач (навык водителя)',
 				curLvl: 0,
 				maxLvl: 2,
@@ -142,7 +142,7 @@ const skillsList: SkillBranch[] = [
 			},
 			repairSpeed: {
 				icon: 'mobility/tier2/repair-speed.svg',
-				tags: ['tank', 'apc-driver'],
+				tags: ['tank', 'apc-driver', 'motorcycle'],
 				desc: 'скорость починки техники',
 				curLvl: 0,
 				maxLvl: 3,
@@ -153,7 +153,7 @@ const skillsList: SkillBranch[] = [
 		tier3: {
 			sprintSpeed: {
 				icon: 'mobility/tier3/sprint-speed.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: 'скорость спринта',
 				curLvl: 0,
 				maxLvl: 1,
@@ -201,7 +201,7 @@ const skillsList: SkillBranch[] = [
 		tier1: {
 			passiveHealing: {
 				icon: 'vitality/tier1/passive-healing.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: '1.Количество восстанавливаемого здоровья вне боя; 2.Скорость восстановления здоровья вне боя',
 				curLvl: 0,
 				maxLvl: 5,
@@ -216,7 +216,7 @@ const skillsList: SkillBranch[] = [
 			},
 			contusionResist: {
 				icon: 'vitality/tier1/contusion-resist.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: '1.Эффект тряски головы, вызванный близкими взрывами; 2.Длительность контузии',
 				curLvl: 0,
 				maxLvl: 2,
@@ -225,7 +225,7 @@ const skillsList: SkillBranch[] = [
 			},
 			breathHold: {
 				icon: 'vitality/tier1/breath-hold.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: 'времени задержки дыхания при прицеливании',
 				curLvl: 0,
 				maxLvl: 3,
@@ -234,7 +234,7 @@ const skillsList: SkillBranch[] = [
 			},
 			enduranceRegenerationSpeed: {
 				icon: 'vitality/tier1/endurance-regeneration-speed.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: 'скорость восстановления выносливости',
 				curLvl: 0,
 				maxLvl: 1,
@@ -272,7 +272,7 @@ const skillsList: SkillBranch[] = [
 			},
 			damageStability: {
 				icon: 'vitality/tier2/damage-stability.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew'],
 				desc: 'стабильность прицела ручного оружия при получении повреждений',
 				curLvl: 0,
 				maxLvl: 4,
@@ -281,7 +281,7 @@ const skillsList: SkillBranch[] = [
 			},
 			healingAmount: {
 				icon: 'vitality/tier2/healing-amount.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: 'восстановления здоровья аптечкой',
 				curLvl: 0,
 				maxLvl: 2,
@@ -299,7 +299,7 @@ const skillsList: SkillBranch[] = [
 			},
 			enduranceAmount: {
 				icon: 'vitality/tier2/endurance-amount.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: 'выносливости',
 				curLvl: 0,
 				maxLvl: 3,
@@ -328,7 +328,7 @@ const skillsList: SkillBranch[] = [
 		tier3: {
 			additionalHp: {
 				icon: 'vitality/tier3/additional-hp.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: 'живучести',
 				curLvl: 0,
 				maxLvl: 1,
@@ -358,7 +358,7 @@ const skillsList: SkillBranch[] = [
 		tier1: {
 			bulletSpread: {
 				icon: 'weapon/tier1/bullet-spread.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: '1.Разброс пуль после резкого разворота; 2.Скорость уменьшения разброса после резкого разворота',
 				curLvl: 0,
 				maxLvl: 2,
@@ -367,7 +367,7 @@ const skillsList: SkillBranch[] = [
 			},
 			changeWeaponSpeed: {
 				icon: 'weapon/tier1/change-weapon-speed.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: 'скорость смены оружия',
 				curLvl: 0,
 				maxLvl: 1,
@@ -376,30 +376,30 @@ const skillsList: SkillBranch[] = [
 			},
 			throwingRange: {
 				icon: 'weapon/tier1/throwing-range.svg',
-				tags: ['base'],
+				tags: ['base', 'recon-crew', 'pilot'],
 				desc: 'дальность броска гранат',
 				curLvl: 0,
 				maxLvl: 2,
 				costPerLvl: 3,
 				progression: ['+25%', '+50%'],
 			},
-			repairToolsAmount: {
-				icon: 'weapon/tier1/repair-tools-amount.svg',
-				tags: ['tank', 'apc-driver'],
-				desc: 'к количеству использований ремкомплекта',
-				curLvl: 0,
-				maxLvl: 2,
-				costPerLvl: 3,
-				progression: ['+50%', '+100%'],
-			},
 			meleeDamage: {
 				icon: 'weapon/tier1/melee-damage.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: '1.Урона в ближнем бою; 2.Скорости атаки в ближнем бою',
 				curLvl: 0,
 				maxLvl: 4,
 				costPerLvl: 1,
 				progression: ['+25%,+5%', '+50%,+10%', '+75%,+15%', '+100%,+20%'],
+			},
+			repairToolsAmount: {
+				icon: 'weapon/tier1/repair-tools-amount.svg',
+				tags: ['tank', 'apc-driver', 'motorcycle'],
+				desc: 'к количеству использований ремкомплекта',
+				curLvl: 0,
+				maxLvl: 2,
+				costPerLvl: 3,
+				progression: ['+50%', '+100%'],
 			},
 			focusAngle: {
 				icon: 'weapon/tier1/focus-angle.svg',
@@ -423,7 +423,7 @@ const skillsList: SkillBranch[] = [
 		tier2: {
 			verticalRecoil: {
 				icon: 'weapon/tier2/vertical-recoil.svg',
-				tags: ['base'],
+				tags: ['base', 'recon-crew'],
 				desc: 'вертикальной отдачи при стрельбе из ручного оружия',
 				curLvl: 0,
 				maxLvl: 4,
@@ -432,7 +432,7 @@ const skillsList: SkillBranch[] = [
 			},
 			chamberingSpeed: {
 				icon: 'weapon/tier2/chambering-speed.svg',
-				tags: ['base'],
+				tags: ['base', 'recon-crew'],
 				desc: 'скорость досылания патрона при стрельбе из винтовок с продольно-скользящим затвором',
 				curLvl: 0,
 				maxLvl: 3,
@@ -441,7 +441,7 @@ const skillsList: SkillBranch[] = [
 			},
 			repairPower: {
 				icon: 'weapon/tier2/repair-power.svg',
-				tags: ['tank', 'apc-driver'],
+				tags: ['tank', 'apc-driver', 'motorcycle'],
 				desc: 'восстановления прочности модулей после починки',
 				curLvl: 0,
 				maxLvl: 2,
@@ -450,7 +450,7 @@ const skillsList: SkillBranch[] = [
 			},
 			knockoutBleeding: {
 				icon: 'weapon/tier2/knockout-bleeding.svg',
-				tags: ['base'],
+				tags: ['base', 'crew', 'recon-crew', 'pilot'],
 				desc: 'время в состоянии тяжелого ранения перед смертью; Больший шанс выжить при получении смертельного урона',
 				curLvl: 0,
 				maxLvl: 5,
@@ -459,7 +459,7 @@ const skillsList: SkillBranch[] = [
 			},
 			reloadingSpeed: {
 				icon: 'weapon/tier2/reloading-speed.svg',
-				tags: ['base'],
+				tags: ['base', 'recon-crew'],
 				desc: 'скорость перезарядки ручного оружия',
 				curLvl: 0,
 				maxLvl: 2,
@@ -488,7 +488,7 @@ const skillsList: SkillBranch[] = [
 		tier3: {
 			horizontalRecoil: {
 				icon: 'weapon/tier3/horizontal-recoil.svg',
-				tags: ['base'],
+				tags: ['base', 'recon-crew'],
 				desc: 'горизонтальной отдачи при стрельбе из ручного оружия',
 				curLvl: 0,
 				maxLvl: 1,

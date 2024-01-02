@@ -36,7 +36,10 @@
 					class="calculator__bar"
 					v-for="(item, index) in skill.maxLvl"
 					:key="item"
-					:class="{ 'calculator__bar-highlight': index < skill.curLvl }"
+					:class="{
+						'calculator__bar-highlight': index < skill.curLvl,
+						[branchColor]: true,
+					}"
 				>
 					&nbsp;
 				</div>

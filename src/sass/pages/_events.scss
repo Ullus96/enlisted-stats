@@ -1,0 +1,149 @@
+.events {
+	padding: 4rem 0;
+
+	&:not(:last-child) {
+		margin-bottom: 6rem;
+	}
+
+	&__count-block {
+		text-align: center;
+		margin-bottom: 6rem;
+	}
+
+	&__title {
+		font-family: 'Caveat', cursive;
+		font-size: 4.6rem;
+		font-weight: 700;
+		color: $color-highlight;
+		margin-bottom: 1rem;
+	}
+
+	&__count-title {
+		margin-bottom: 2rem;
+	}
+
+	&__card-top {
+		margin-bottom: 2rem;
+	}
+
+	&__reward-title {
+		margin-bottom: 0.5rem;
+	}
+
+	// card
+	&__card {
+		display: inline-block;
+		position: relative;
+		background-color: $color-black-light-1;
+		border: 1px solid $color-skill-inactive;
+		border-radius: 1rem;
+		text-align: center;
+
+		width: 10rem;
+		padding: 1rem;
+	}
+
+	&__counter {
+		position: absolute;
+		font-size: 1.2rem;
+		color: $color-skill-inactive;
+		left: 6px;
+		top: 6px;
+	}
+
+	&__date {
+		font-size: 4.6rem;
+	}
+
+	&__month {
+		padding-bottom: 0.5rem;
+	}
+
+	// countdown card
+	&__countdown-block {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+	&__countdown-card {
+		width: 7rem;
+		background-color: $color-black-light-1;
+		padding: 1rem;
+		border: 1px solid $color-skill-inactive;
+		border-radius: 1rem;
+	}
+
+	&__countdown-time {
+		font-weight: 400;
+	}
+
+	&__countdown-desc {
+		font-size: 1.2rem;
+		color: $color-skill-inactive;
+	}
+
+	// all cards of event
+	&__all-title {
+		padding-left: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	&__all-cards-flex {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		padding-left: 2rem;
+	}
+
+	&__all-card {
+		position: relative;
+	}
+
+	&__all-card:not(:first-child):before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: -2.1rem;
+		width: 2rem;
+		height: 2px;
+		transform: translateY(-50%);
+		background-color: $color-skill-inactive;
+		z-index: 2;
+	}
+
+	&__all-card:not(:last-child):after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		right: 0;
+		width: 1rem;
+		height: 1rem;
+		border-radius: 100px;
+		transform: translate(50%, -50%);
+		background: linear-gradient(
+			to right,
+			transparent 50%,
+			$color-skill-inactive 50%
+		);
+		z-index: 3;
+	}
+
+	// active card
+	&__all-card--active {
+		border: 1px solid $color-highlight;
+		box-shadow: 0 0 2.5rem rgba($color-highlight, 0.4);
+	}
+
+	&__all-card--active:not(:last-child):after {
+		background: linear-gradient(
+			to right,
+			transparent 50%,
+			$color-highlight 50%
+		);
+	}
+
+	&__all-card--active > &__counter {
+		color: $color-highlight;
+	}
+}
