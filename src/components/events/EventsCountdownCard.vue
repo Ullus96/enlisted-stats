@@ -1,14 +1,62 @@
 <template>
 	<div class="events__countdown-card">
-		<h2 class="events__countdown-time">25</h2>
-		<p class="events__countdown-desc">часов</p>
+		<h2 class="events__countdown-time">{{ timerValue }}</h2>
+		<p class="events__countdown-desc">{{ description }}</p>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, watchEffect } from 'vue';
 
 export default defineComponent({
-	setup() {},
+	props: {
+		timerValue: { required: true, type: Number },
+		index: {
+			required: true,
+			type: Number,
+		},
+	},
+	setup(props) {
+		const description = ref('');
+
+		const getDeclension = (number: any, words: any) => {
+			const cases = [2, 0, 1, 1, 1, 2];
+			return words[
+				number % 100 > 4 && number % 100 < 20
+					? 2
+					: cases[Math.min(number % 10, 5)]
+			];
+		};
+
+		const formatTime = () => {
+			if (props.index === 0) {
+				description.value = getDeclension(props.timerValue, [
+					'час',
+					'часа',
+					'часов',
+				]);
+			} else if (props.index === 1) {
+				description.value = getDeclension(props.timerValue, [
+					'минута',
+					'минуты',
+					'минут',
+				]);
+			} else if (props.index === 2) {
+				description.value = getDeclension(props.timerValue, [
+					'секунда',
+					'секунды',
+					'секунд',
+				]);
+			}
+		};
+
+		watchEffect(() => {
+			formatTime();
+		});
+
+		return {
+			description,
+		};
+	},
 });
 </script>

@@ -281,6 +281,10 @@ h2 {
     display: none;
   }
 }
+.item__break {
+  content: "";
+  height: 4rem;
+}
 
 .container {
   margin: 0 auto;

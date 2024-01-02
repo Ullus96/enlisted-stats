@@ -3,8 +3,12 @@
 		<nav class="container header__container">
 			<div class="header__left">
 				<ul class="header__links-list">
-					<li><a href="#" class="header__link">Бойцы</a></li>
-					<li><a href="#" class="header__link">Календарь событий</a></li>
+					<li><router-link to="/" class="header__link">Бойцы</router-link></li>
+					<li>
+						<router-link to="/events" class="header__link"
+							>Календарь событий</router-link
+						>
+					</li>
 				</ul>
 			</div>
 			<div class="header__right" v-if="false">

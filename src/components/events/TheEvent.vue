@@ -1,18 +1,32 @@
 <template>
-	{{ data }}
 	<div class="events container">
 		<div class="events__count-block">
 			<div class="events__title">Операция "Зимнее Приключение"</div>
-			<h2 class="events__count-title">Следующий этап [4/16]</h2>
-			<events-card-top></events-card-top>
+			<h2 class="events__count-title">
+				Следующий этап [{{ currentStageInfo.index + 2 }}/{{
+					data.stages.length
+				}}]
+			</h2>
+			<events-card-top
+				:stageIndex="currentStageInfo.index + 1"
+				:date="data.stages[currentStageInfo.index + 1].startDate"
+			></events-card-top>
 			<div class="events__countdown-block">
 				<events-countdown-card
-					v-for="item in 3"
+					v-for="(item, index) in 3"
 					:key="item"
+					:timerValue="timerValues[index]"
+					:index="index"
 				></events-countdown-card>
 			</div>
 			<h2 class="events__reward-title">Награда:</h2>
-			<p class="events__reward-desc">Декоратор техники “Снегоступы”</p>
+			<p class="events__reward-desc">
+				{{
+					data.rewards[currentStageInfo.index]
+						? data.rewards[currentStageInfo.index]
+						: '—'
+				}}
+			</p>
 		</div>
 		<div class="events__all-block">
 			<h2 class="events__all-title">Все этапы данного события:</h2>
@@ -21,7 +35,10 @@
 					v-for="(item, index) in data.stages"
 					:key="item"
 					:cardData="item"
-					:class="{ 'events__all-card--active': index === 2 }"
+					:stageIndex="index"
+					:class="{
+						'events__all-card--active': index === currentStageInfo.index,
+					}"
 				></events-card>
 				<!-- event card with :amount='multiple' to render lines -->
 			</div>
@@ -30,93 +47,90 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue';
+import { defineComponent, PropType, reactive, ref } from 'vue';
 import EventsCard from '@/components/events/EventsCard.vue';
 import EventsCardTop from '@/components/events/EventsCardTop.vue';
 import EventsCountdownCard from '@/components/events/EventsCountdownCard.vue';
+import { IEvent } from '@/type/Events';
 
 export default defineComponent({
 	components: { EventsCard, EventsCardTop, EventsCountdownCard },
 	props: {
 		data: {
 			required: true,
-			type: Object,
+			type: Object as PropType<IEvent>,
 		},
 	},
 	setup(props) {
-		// function getCurrentStage(event: any): { index: number; timeLeft: number } {
-		// 	const currentDate: Date = new Date();
+		function getCurrentStage(event: IEvent): {
+			index: number;
+			timeLeft: number;
+		} {
+			const currentDate: Date = new Date();
 
-		// 	if (currentDate < event.startDate) {
-		// 		// Событие еще не началось
-		// 		return {
-		// 			index: -1,
-		// 			timeLeft: event.startDate.getTime() - currentDate.getTime(),
-		// 		};
-		// 	}
+			if (currentDate < event.startDate) {
+				// Событие еще не началось
+				return {
+					index: -1,
+					timeLeft: event.startDate.getTime() - currentDate.getTime(),
+				};
+			}
 
-		// 	for (let i = 0; i < event.stages.length; i++) {
-		// 		const stage = event.stages[i];
+			for (let i = 0; i < event.stages.length; i++) {
+				const stage = event.stages[i];
 
-		// 		if (currentDate >= stage.startDate && currentDate <= stage.endDate) {
-		// 			// Мы находимся внутри этапа
-		// 			return {
-		// 				index: i,
-		// 				timeLeft: stage.endDate.getTime() - currentDate.getTime(),
-		// 			};
-		// 		}
+				if (currentDate >= stage.startDate && currentDate <= stage.endDate) {
+					// Мы находимся внутри этапа
+					return {
+						index: i,
+						timeLeft: stage.endDate.getTime() - currentDate.getTime(),
+					};
+				}
 
-		// 		if (currentDate < stage.startDate) {
-		// 			// Мы находимся перед началом этапа
-		// 			return {
-		// 				index: i,
-		// 				timeLeft: stage.startDate.getTime() - currentDate.getTime(),
-		// 			};
-		// 		}
-		// 	}
+				if (currentDate < stage.startDate) {
+					// Мы находимся перед началом этапа
+					return {
+						index: i,
+						timeLeft: stage.startDate.getTime() - currentDate.getTime(),
+					};
+				}
+			}
 
-		// 	// Событие уже завершилось
-		// 	return { index: event.stages.length, timeLeft: 0 };
-		// }
+			// Событие уже завершилось
+			return { index: event.stages.length, timeLeft: 0 };
+		}
 
-		// let currentStageInfo = reactive(getCurrentStage(props.data));
+		let currentStageInfo: { index: number; timeLeft: number } = reactive(
+			getCurrentStage(props.data)
+		);
 
-		// if (currentStageInfo.index === -1) {
-		// 	console.log(
-		// 		`Событие "${props.data.name}" еще не началось. Время до начала: ${currentStageInfo.timeLeft}`
-		// 	);
-		// } else if (currentStageInfo.index === props.data.stages.length) {
-		// 	console.log(`Событие "${props.data.name}" уже завершилось.`);
-		// } else {
-		// 	console.log(
-		// 		`Сейчас проходит этап ${currentStageInfo.index + 1} "${
-		// 			props.data.name
-		// 		}". Время до завершения: ${currentStageInfo.timeLeft}`
-		// 	);
-		// }
+		function updateTimer() {
+			currentStageInfo = getCurrentStage(props.data);
 
-		// function updateTimer() {
-		// 	currentStageInfo = getCurrentStage(props.data);
+			if (currentStageInfo.index === -1) {
+				console.log(
+					`Событие "${props.data.name}" еще не началось. Время до начала: ${currentStageInfo.timeLeft}`
+				);
+			} else if (currentStageInfo.index === props.data.stages.length) {
+				console.log(`Событие "${props.data.name}" уже завершилось.`);
+			} else {
+				// обновляем переменные
+				const date = new Date(currentStageInfo.timeLeft);
+				timerValues[0] = date.getHours();
+				timerValues[1] = date.getMinutes();
+				timerValues[2] = date.getSeconds();
+			}
+		}
 
-		// 	if (currentStageInfo.index === -1) {
-		// 		console.log(
-		// 			`Событие "${props.data.name}" еще не началось. Время до начала: ${currentStageInfo.timeLeft}`
-		// 		);
-		// 	} else if (currentStageInfo.index === props.data.stages.length) {
-		// 		console.log(`Событие "${props.data.name}" уже завершилось.`);
-		// 	} else {
-		// 		console.log(
-		// 			`Сейчас проходит этап ${currentStageInfo.index + 1} "${
-		// 				props.data.name
-		// 			}". Время до завершения: ${currentStageInfo.timeLeft}`
-		// 		);
-		// 	}
-		// }
+		const timerValues: string[] | number[] = reactive(['—', '—', '—']);
 
 		// Обновляем каждую секунду
-		// setInterval(updateTimer, 1000);
+		setInterval(updateTimer, 1000);
 
-		return {};
+		return {
+			currentStageInfo,
+			timerValues,
+		};
 	},
 });
 </script>
