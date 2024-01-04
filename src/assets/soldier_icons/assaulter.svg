@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 35.00 35.00">
+<path fill="#dcdcdc" d="
+  M 8.56 28.29
+  L 27.65 28.23
+  A 0.30 0.30 0.0 0 0 27.95 27.93
+  L 28.05 5.23
+  A 0.30 0.30 0.0 0 1 28.26 4.94
+  L 29.09 4.68
+  A 0.30 0.30 0.0 0 1 29.48 4.97
+  L 29.46 30.82
+  A 0.30 0.30 0.0 0 1 29.16 31.12
+  L 7.04 31.18
+  A 0.30 0.30 0.0 0 1 6.74 30.88
+  L 6.79 5.20
+  A 0.30 0.30 0.0 0 1 7.03 4.90
+  L 7.85 4.75
+  A 0.30 0.30 0.0 0 1 8.21 5.04
+  L 8.26 27.99
+  A 0.30 0.30 0.0 0 0 8.56 28.29
+  Z"
+/>
+<rect fill="#dcdcdc" x="-3.73" y="-1.52" transform="translate(19.26,10.45) rotate(-0.5)" width="7.46" height="3.04" rx="0.64"/>
+<ellipse fill="#dcdcdc" cx="0.00" cy="0.00" transform="translate(24.46,10.41) rotate(91.6)" rx="1.76" ry="0.55"/>
+<rect fill="#dcdcdc" x="-1.40" y="-1.40" transform="translate(13.14,10.51) rotate(-0.2)" width="2.80" height="2.80" rx="0.83"/>
+<path fill="#dcdcdc" d="
+  M 23.90 18.22
+  Q 23.87 16.99 24.09 15.85
+  Q 24.31 14.70 24.78 15.77
+  Q 25.46 17.31 24.68 18.45
+  A 0.43 0.43 0.0 0 1 23.90 18.22
+  Z"
+/>
+<path fill="#dcdcdc" d="
+  M 14.50 18.02
+  A 0.52 0.52 0.0 0 1 13.95 18.52
+  L 13.17 18.47
+  A 1.52 1.25 3.1 0 1 11.72 17.14
+  L 11.75 16.66
+  A 1.52 1.25 3.1 0 1 13.33 15.50
+  L 14.11 15.54
+  A 0.52 0.52 0.0 0 1 14.60 16.09
+  L 14.50 18.02
+  Z"
+/>
+<rect fill="#dcdcdc" x="-3.80" y="-1.53" transform="translate(19.31,16.99) rotate(-0.4)" width="7.60" height="3.06" rx="0.84"/>
+<rect fill="#dcdcdc" x="-3.87" y="-1.51" transform="translate(19.31,23.54) rotate(-0.7)" width="7.74" height="3.02" rx="1.04"/>
+<ellipse fill="#dcdcdc" cx="0.00" cy="0.00" transform="translate(24.41,23.51) rotate(93.3)" rx="1.50" ry="0.60"/>
+<rect fill="#dcdcdc" x="-1.39" y="-1.31" transform="translate(13.13,23.54) rotate(1.1)" width="2.78" height="2.62" rx="0.78"/>
+</svg>

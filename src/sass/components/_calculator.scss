@@ -20,6 +20,17 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		position: relative;
+		cursor: default;
+
+		&:hover .calculator__header-tooltip {
+			display: block;
+		}
+	}
+
+	&__header-tooltip {
+		width: 70%;
+		@include tooltip('up');
 	}
 
 	&__stats-block {
@@ -72,31 +83,8 @@
 	}
 
 	&__tooltip {
-		background-color: $color-black;
-		// padding: 0.8rem 1.2rem 0.6rem;
-		padding: 1.2rem 1.6rem;
-		text-align: center;
-		font-size: 0.8em;
 		width: 300%;
-		display: none;
-		border-radius: 1rem;
-		position: absolute;
-		z-index: 10;
-		top: 0;
-		left: 50%;
-		transform: translate(-50%, -100%);
-
-		&::after {
-			content: '';
-			position: absolute;
-			bottom: 0px;
-			left: 50%;
-			width: 10px;
-			height: 10px;
-			transform: translate(-50%, 50%) rotateZ(45deg);
-			z-index: 5;
-			background: linear-gradient(-45deg, $color-black 60%, transparent 60%);
-		}
+		@include tooltip('up');
 	}
 
 	// display tooltip on hover

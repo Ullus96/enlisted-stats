@@ -1,23 +1,37 @@
 .item {
 	&__row {
 		padding: 0.5rem 2rem 0;
-		display: flex;
-		gap: 5px;
 		cursor: pointer;
 
-		@include desktop-medium {
-			gap: 2px;
-			padding: 2px 2rem 0;
+		display: grid;
+		grid-template-columns: 4rem 15rem repeat(5, 1fr) 4fr;
+		gap: 0 5px;
+
+		@media (max-width: 1100px) {
+			grid-template-rows: 1fr 1fr;
+			grid-template-columns: 6rem 15rem repeat(5, 1fr);
+			gap: 5px 5px;
+			padding: 0.5rem 2rem 0.5rem;
+
+			.item__col--desc {
+				grid-column: 2 / -1;
+				grid-row: 2;
+				padding-left: 2rem;
+			}
+
+			.item__col--icon {
+				grid-row: 1 / -1;
+
+				& img {
+					width: 100%;
+				}
+			}
 		}
 
-		@media (max-width: 620px) {
-			gap: 1px;
-			padding: 1px 1rem 0;
-		}
-
-		@media (max-width: 420px) {
-			padding: 1px 0.5rem 0;
-			gap: 1px;
+		@media (max-width: 640px) {
+			gap: 2px 2px;
+			padding: 0.5rem;
+			grid-template-columns: 3.5rem 9.5rem repeat(5, 1fr);
 		}
 	}
 
@@ -37,13 +51,13 @@
 		flex-basis: 10%;
 		padding: 0.5rem 1rem;
 
-		@include desktop-small {
-			flex-grow: 1;
-		}
-
-		@media (max-width: 460px) {
+		@media (max-width: 640px) {
 			padding: 2px 0.5rem;
 		}
+	}
+
+	&__col.item__col--icon {
+		padding: 0.5rem 1rem;
 	}
 
 	&__col--name {
@@ -88,9 +102,9 @@
 		justify-content: start;
 		font-size: 0.85em;
 
-		@include desktop-small {
-			display: none;
-		}
+		// @include desktop-small {
+		// 	display: none;
+		// }
 	}
 
 	&__break {

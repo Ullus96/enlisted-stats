@@ -1,0 +1,17 @@
+export type SoldierName =
+	| 'antitank'
+	| 'apc-driver'
+	| 'assaulter'
+	| 'engineer'
+	| 'flamethrower'
+	| 'medic'
+	| 'mg'
+	| 'mortar'
+	| 'moto'
+	| 'paratrooper'
+	| 'pilot-attacker'
+	| 'pilot-fighter'
+	| 'radio'
+	| 'rifleman'
+	| 'sniper'
+	| 'tank';

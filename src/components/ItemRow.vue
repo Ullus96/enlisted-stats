@@ -1,7 +1,9 @@
 <template>
 	<div class="item__row container">
+		<div class="item__col item__col--icon">
+			<img :src="require('@/assets/soldier_icons/' + item.icon)" />
+		</div>
 		<div class="item__col item__col--name">{{ item.name }}</div>
-		<!-- {{ item }} -->
 		<div class="item__col item__col--stat">
 			<span>{{ calculateStatsByLvl(item.statsMod, 1)[0] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 1)[1] }}</span

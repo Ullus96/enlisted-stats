@@ -10,10 +10,12 @@
 					remainingStats[branchIndex]
 				}}</span>
 			</p>
-			<!-- <p>statsPool: {{ statsPool }}</p>
-			<p>remainingStats: {{ remainingStats }}</p>
-			<p>Points spent: {{ totalPointsSpent() }}</p>
-			<p>Tags: {{ tags }}</p> -->
+			<p class="calculator__header-tooltip">
+				{{ getBranchPerkDescription(branchIndex) }}
+				<span :class="classBasedOnIndex">{{
+					getBranchPerkAmount(branchIndex, statsPool[branchIndex])
+				}}</span>
+			</p>
 		</div>
 		<!-- tier 1 -->
 		<calculator-tier
@@ -139,6 +141,20 @@ export default defineComponent({
 			return props.remainingStats[index];
 		}
 
+		function getBranchPerkDescription(index: number): string {
+			const descriptions = [
+				'Увеличение скорости спринта: ',
+				'Увеличение количества выносливости: ',
+				'Уменьшение вертикальной отдачи при стрельбе из ручного оружия: ',
+			];
+			return descriptions[index];
+		}
+
+		function getBranchPerkAmount(index: number, stat: number): string {
+			const amounts = [stat / 2, stat, stat / 2];
+			return `${amounts[index]}%`;
+		}
+
 		return {
 			classBasedOnIndex,
 			totalPointsSpent,
@@ -146,6 +162,8 @@ export default defineComponent({
 			howManyPointsToUnlock,
 			statChanged,
 			getRemainingStats,
+			getBranchPerkDescription,
+			getBranchPerkAmount,
 		};
 	},
 });

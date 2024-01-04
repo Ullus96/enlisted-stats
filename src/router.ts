@@ -12,5 +12,9 @@ export default createRouter({
 			path: '/events',
 			component: () => import('@/views/EventsView.vue'),
 		},
+		{
+			path: '/calculator',
+			component: () => import('@/views/CustomCalculatorView.vue'),
+		},
 	],
 });

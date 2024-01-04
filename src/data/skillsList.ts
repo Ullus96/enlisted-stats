@@ -77,7 +77,7 @@ const skillsList: SkillBranch[] = [
 			},
 			landingDamage: {
 				icon: 'mobility/tier1/landing-damage.svg',
-				tags: ['pilot'],
+				tags: ['pilot', 'paratrooper'],
 				desc: 'урон при жестком приземлении с парашютом',
 				curLvl: 0,
 				maxLvl: 3,

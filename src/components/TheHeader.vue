@@ -9,6 +9,11 @@
 							>Календарь событий</router-link
 						>
 					</li>
+					<li>
+						<router-link to="/calculator" class="header__link"
+							>Калькулятор</router-link
+						>
+					</li>
 				</ul>
 			</div>
 			<div class="header__right" v-if="false">

@@ -1,6 +1,5 @@
 export type SkillTag =
 	| 'base'
-	| 'soldier'
 	| 'medic'
 	| 'engineer'
 	| 'mortar'
@@ -10,4 +9,5 @@ export type SkillTag =
 	| 'crew'
 	| 'motorcycle'
 	| 'apc-driver'
-	| 'recon-crew';
+	| 'recon-crew'
+	| 'paratrooper';

@@ -1,21 +1,24 @@
 .table-header {
-	padding: 1rem 2rem 0;
-	display: flex;
-	gap: 5px;
 	font-weight: 700;
+	padding: 0.5rem 2rem 0;
 
-	@include desktop-medium {
-		gap: 2px;
+	display: grid;
+	grid-template-columns: 19.5rem repeat(5, 1fr) 4fr;
+	gap: 5px;
+
+	@media (max-width: 1100px) {
+		grid-template-columns: 21.5rem repeat(5, 1fr);
+		gap: 5px;
+
+		&__col--desc {
+			display: none;
+		}
 	}
 
-	@media (max-width: 620px) {
-		padding: 1rem 1rem 0;
-		gap: 1px;
-	}
-
-	@media (max-width: 420px) {
-		padding: 1rem 0.5rem 0;
-		gap: 1px;
+	@media (max-width: 640px) {
+		gap: 2px 2px;
+		padding: 0.5rem;
+		grid-template-columns: 13.2rem repeat(5, 1fr);
 	}
 
 	&__col--name {
@@ -28,20 +31,8 @@
 		flex-basis: 10%;
 		padding: 1rem;
 
-		@include desktop-small {
-			flex-grow: 1;
-		}
-
 		@media (max-width: 620px) {
 			font-size: 0.6em;
-		}
-	}
-
-	&__col--desc {
-		flex-grow: 1;
-
-		@include desktop-small {
-			display: none;
 		}
 	}
 
@@ -53,7 +44,6 @@
 
 	&__search-input {
 		border-bottom: 1px solid rgba($color-white, 0.4);
-		flex-grow: 1;
 		width: 100%;
 	}
 }

@@ -32,3 +32,47 @@
 // @include phone {
 
 // }
+
+@mixin tooltip($direction: 'up') {
+	background-color: $color-black;
+	padding: 1.2rem 1.6rem;
+	text-align: center;
+	font-size: 0.8em;
+	display: none;
+	border-radius: 1rem;
+	position: absolute;
+	z-index: 10;
+	left: 50%;
+
+	@if $direction == 'up' {
+		top: 0;
+		transform: translate(-50%, -100%);
+	} @else if $direction == 'down' {
+		bottom: 0;
+		transform: translate(-50%, 100%);
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		width: 10px;
+		height: 10px;
+		z-index: 5;
+
+		@if $direction == 'up' {
+			bottom: 0px;
+			transform: translate(-50%, 50%) rotateZ(45deg);
+			background: linear-gradient(-45deg, $color-black 60%, transparent 60%);
+		} @else if $direction == 'down' {
+			top: 0px;
+			transform: translate(-50%, -50%) rotateZ(135deg);
+			background: linear-gradient(45deg, $color-black 60%, transparent 60%);
+		}
+	}
+}
+
+@mixin card-active {
+	border: 1px solid $color-highlight;
+	box-shadow: 0 0 2.5rem rgba($color-highlight, 0.4);
+}

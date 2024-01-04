@@ -1,0 +1,146 @@
+// custom calculator, if I would forget what is 'cc' stands for
+.cc {
+	&__stats-block {
+		padding-top: 4rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__stats-title {
+		margin-bottom: 2rem;
+	}
+
+	&__stats-flexbox {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 2rem;
+	}
+
+	// Upper stats block
+	&__stat-item {
+		background-color: $color-black-light-1;
+		min-width: 10rem;
+		border-radius: 1rem;
+		border: 1px solid $color-skill-inactive;
+		overflow: hidden;
+	}
+
+	&__stat-amount {
+		display: block;
+		max-width: 10rem;
+		padding: 1rem 0;
+		text-align: center;
+		font-size: 4.6rem;
+	}
+
+	&__stat-name {
+		padding: 5px;
+		font-size: 1.2rem;
+		color: $color-black;
+		font-weight: 700;
+		text-transform: uppercase;
+		text-align: center;
+	}
+
+	// Tags block
+	&__tag-item {
+		background-color: $color-black-light-1;
+		min-width: 10rem;
+		border-radius: 1rem;
+		border: 1px solid $color-skill-inactive;
+		position: relative;
+		padding: 1.5rem 2rem;
+
+		&:hover {
+			background-color: $color-black-light-2;
+		}
+
+		&:hover .cc__tag-tooltip {
+			display: block;
+		}
+	}
+
+	&__tag-checkbox {
+		position: absolute;
+		opacity: 0;
+	}
+
+	&__tag-label {
+		content: '';
+		position: absolute;
+		inset: 0 0 0 0;
+		opacity: 0;
+		z-index: 10;
+		cursor: pointer;
+	}
+
+	&__tag-add-btn {
+		display: block;
+		font-size: 6rem;
+		margin: 0 auto;
+		text-align: center;
+		margin-bottom: 1rem;
+
+		transition: transform 0.1s ease-out;
+	}
+
+	&__tag-name {
+		text-align: center;
+	}
+
+	// Tooltip
+	&__tag-tooltip {
+		width: 30rem;
+		@include tooltip('up');
+
+		&--description {
+			padding-bottom: 1rem;
+		}
+
+		&--title {
+			border-top: 1px solid $color-skill-inactive;
+			padding: 0.5rem 0;
+		}
+
+		&-classes-flex {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 5px;
+
+			& img {
+				max-width: 3rem;
+			}
+		}
+	}
+
+	// Tag active state
+	&__tag-item.active {
+		@include card-active;
+	}
+
+	&__tag-add-btn.active {
+		color: $color-highlight;
+		transform: rotateZ(45deg);
+	}
+
+	&__disclaimer {
+		padding-top: 2rem;
+		color: rgba($color-white, 0.85);
+		text-align: center;
+		margin: 0 auto;
+		width: 60%;
+
+		a {
+			color: $color-highlight;
+			text-decoration: underline;
+		}
+	}
+
+	&__btn {
+		display: block;
+		margin: 4rem auto 0;
+	}
+}

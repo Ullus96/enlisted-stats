@@ -8,11 +8,13 @@ import { SkillTag } from '@/type/SkillTag';
 export interface IItem {
 	name: string;
 	id: string;
+	icon: string;
 	tags: SkillTag[];
 	statsMod: [number, number, number];
 	perk: string;
 	skills?: ISkills[];
 }
+
 // export interface IItem {
 // 	name: string;
 // 	id: string;
