@@ -1,10 +1,16 @@
 <template>
-	<the-header></the-header>
-	<router-view></router-view>
+	<div class="page-wrapper">
+		<the-header></the-header>
+		<main class="main">
+			<router-view></router-view>
+		</main>
+		<the-footer></the-footer>
+	</div>
 </template>
 
 <script lang="ts">
 import TheHeader from './components/TheHeader.vue';
+import TheFooter from './components/TheFooter.vue';
 import { IItem } from './type/Item';
 import ItemRow from './components/ItemRow.vue';
 import SkillBuild from './components/SkillBuild.vue';
@@ -19,6 +25,7 @@ export default defineComponent({
 	name: 'App',
 	components: {
 		TheHeader,
+		TheFooter,
 		ItemRow,
 		SkillBuild,
 		CalculatorBlock,

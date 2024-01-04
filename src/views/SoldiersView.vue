@@ -28,7 +28,6 @@
 			:item="item"
 			@click="handleClick(idx)"
 		></item-row>
-		<div class="item__break">&nbsp;</div>
 	</template>
 
 	<!-- render single selected soldier -->

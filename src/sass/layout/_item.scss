@@ -35,10 +35,6 @@
 		}
 	}
 
-	&__row:last-child {
-		padding-bottom: 2rem;
-	}
-
 	&__row:hover &__col {
 		background-color: $color-black-light-2;
 	}
@@ -105,10 +101,5 @@
 		// @include desktop-small {
 		// 	display: none;
 		// }
-	}
-
-	&__break {
-		content: '';
-		height: 4rem;
 	}
 }

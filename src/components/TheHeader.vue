@@ -3,15 +3,22 @@
 		<nav class="container header__container">
 			<div class="header__left">
 				<ul class="header__links-list">
-					<li><router-link to="/" class="header__link">Бойцы</router-link></li>
 					<li>
-						<router-link to="/events" class="header__link"
-							>Календарь событий</router-link
+						<router-link to="/" class="header__link"
+							><i class="fa-solid fa-angles-up"></i
+							>&nbsp;&nbsp;Бойцы</router-link
 						>
 					</li>
 					<li>
 						<router-link to="/calculator" class="header__link"
-							>Калькулятор</router-link
+							><i class="fa-solid fa-square-root-variable"></i
+							>&nbsp;&nbsp;Калькулятор</router-link
+						>
+					</li>
+					<li>
+						<router-link to="/events" class="header__link"
+							><i class="fa-regular fa-calendar"></i>&nbsp;&nbsp;Календарь
+							событий</router-link
 						>
 					</li>
 				</ul>

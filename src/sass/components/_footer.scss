@@ -1,0 +1,62 @@
+.footer {
+	margin-top: 4rem;
+	background-color: $color-black;
+
+	&__container {
+		padding: 4rem 2rem 2rem;
+	}
+
+	&__block {
+		display: grid;
+		grid-template-columns: 1fr 3fr;
+		gap: 2rem;
+	}
+
+	&__gif {
+		display: block;
+		max-width: 15rem;
+		margin: 0 auto;
+	}
+
+	&__legal {
+		font-size: 0.8em;
+		opacity: 0.8;
+		margin: 2rem auto 0.5rem;
+		text-align: center;
+		width: 60%;
+	}
+
+	&__links-block {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+		margin-top: 1rem;
+	}
+
+	&__how-to-contact {
+		opacity: 0.8;
+	}
+
+	&__link-w-tooltip {
+		cursor: pointer;
+		position: relative;
+		display: block;
+
+		&:hover .footer__link-tooltip {
+			display: block;
+		}
+	}
+
+	&__link-tooltip {
+		width: 50%;
+		@include tooltip('up');
+		left: 0%;
+		transform: translate(0%, -100%);
+		cursor: text;
+		background-color: $color-black-light-1;
+
+		&::after {
+			display: none;
+		}
+	}
+}

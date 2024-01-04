@@ -30,7 +30,7 @@
 
 	&__header-tooltip {
 		width: 70%;
-		@include tooltip('up');
+		@include tooltip('down');
 	}
 
 	&__stats-block {

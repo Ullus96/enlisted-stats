@@ -64,7 +64,7 @@
 
 	&__tag-checkbox {
 		position: absolute;
-		// opacity: 0;
+		opacity: 0;
 	}
 
 	&__tag-label {
@@ -136,6 +136,10 @@
 		a {
 			color: $color-highlight;
 			text-decoration: underline;
+
+			&:hover {
+				color: mix($color-highlight, $color-white, 60%);
+			}
 		}
 	}
 
