@@ -1,80 +1,57 @@
 <template>
 	<div class="cc container">
-		<div class="cc__stats-block">
-			<h2 class="cc__stats-title">Определи характеристики солдата</h2>
-			<div class="cc__stats-flexbox">
-				<div class="cc__stat-item">
-					<input type="number" class="cc__stat-amount" v-model="stats[0]" />
-					<p class="cc__stat-name mobility-bg">Мобильность</p>
-				</div>
-				<div class="cc__stat-item">
-					<input type="number" class="cc__stat-amount" v-model="stats[1]" />
-					<p class="cc__stat-name vitality-bg">Живучесть</p>
-				</div>
-				<div class="cc__stat-item">
-					<input type="number" class="cc__stat-amount" v-model="stats[2]" />
-					<p class="cc__stat-name weapon-handling-bg">Оружие</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="cc__stats-block">
-			<h2 class="cc__stats-title">Определи специализации солдата</h2>
-			<div class="cc__stats-flexbox">
-				<c-c-tag-item
-					v-for="(item, tag) in avaliableTags"
-					:key="item"
-					:item="item"
-					:tag="tag"
-				></c-c-tag-item>
-
-				<!-- <div
-					class="cc__tag-item"
-					:class="{ active: isCheckboxChecked }"
-					v-for="item in avaliableTags"
-					:key="item"
-				>
-					<input
-						type="checkbox"
-						:name="123"
-						:id="123"
-						v-model="isCheckboxChecked"
-						class="cc__tag-checkbox"
-					/>
-					<label for="123" class="cc__tag-label">&nbsp;</label>
-					<i
-						class="fa-solid fa-plus cc__tag-add-btn"
-						:class="{ active: isCheckboxChecked }"
-					></i>
-					<p class="cc__tag-name">{{ item.name }}</p>
-					<div class="cc__tag-tooltip">
-						<p class="cc__tag-tooltip--description">
-							{{ item.desc }}
-						</p>
-						<p class="cc__tag-tooltip--title">Кто использует:</p>
-						<p class="cc__tag-tooltip-classes-flex">
-							<img
-								v-for="user in item.users"
-								:key="user"
-								:src="require('@/assets/soldier_icons/' + user + '.svg')"
-							/>
-						</p>
+		<template v-if="isEditingSettings">
+			<div class="cc__stats-block">
+				<h2 class="cc__stats-title">Определи характеристики солдата</h2>
+				<div class="cc__stats-flexbox">
+					<div class="cc__stat-item">
+						<input type="number" class="cc__stat-amount" v-model="stats[0]" />
+						<p class="cc__stat-name mobility-bg">Мобильность</p>
 					</div>
-				</div> -->
+					<div class="cc__stat-item">
+						<input type="number" class="cc__stat-amount" v-model="stats[1]" />
+						<p class="cc__stat-name vitality-bg">Живучесть</p>
+					</div>
+					<div class="cc__stat-item">
+						<input type="number" class="cc__stat-amount" v-model="stats[2]" />
+						<p class="cc__stat-name weapon-handling-bg">Оружие</p>
+					</div>
+				</div>
 			</div>
-		</div>
 
-		<p class="cc__disclaimer">
-			Это - кастомный калькулятор. Если нет необходимости раскидывать навыки для
-			премиумных отрядов - воспользуйтесь кнопкой "Калькулятор", выбрав бойца
-			нужной специализации в таблице
-			<router-link to="/">"Бойцы"</router-link>.
-		</p>
-		<p>{{ stats }}</p>
-		<p>{{ tags }}</p>
-		<button class="btn btn-main cc__btn">
-			Продолжить <i class="fa-solid fa-arrow-right"></i>
-		</button>
+			<div class="cc__stats-block">
+				<h2 class="cc__stats-title">Определи специализации солдата</h2>
+				<div class="cc__stats-flexbox">
+					<c-c-tag-item
+						v-for="(item, tag) in avaliableTags"
+						:key="item"
+						:item="item"
+						:tag="tag"
+						@tagClicked="tagClicked"
+					></c-c-tag-item>
+				</div>
+			</div>
+
+			<button
+				class="btn btn-main cc__btn"
+				@click.prevent="isEditingSettings = !isEditingSettings"
+			>
+				Продолжить <i class="fa-solid fa-arrow-right"></i>
+			</button>
+
+			<p class="cc__disclaimer">
+				Это - кастомный калькулятор. Если нет необходимости раскидывать навыки
+				для премиумных отрядов - воспользуйтесь кнопкой "Калькулятор", выбрав
+				бойца нужной специализации в таблице
+				<router-link to="/">"Бойцы"</router-link>.
+			</p>
+		</template>
+
+		<template v-else>
+			<div class="mt-m mb-m">
+				<calculator-block :stats="stats" :tags="tags"></calculator-block>
+			</div>
+		</template>
 	</div>
 </template>
 
@@ -82,14 +59,32 @@
 import { defineComponent, reactive, ref, Ref } from 'vue';
 import { avaliableTags } from '@/data/customCalculatorTags';
 import CCTagItem from '@/components/cc/CCTagItem.vue';
+import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
 
 export default defineComponent({
-	components: { CCTagItem },
+	components: { CCTagItem, CalculatorBlock },
 	setup() {
 		const stats = reactive([16, 16, 16]);
 		const tags = reactive(['base']);
+		const isEditingSettings: Ref<boolean> = ref(true);
 
-		return { avaliableTags, stats, tags };
+		function tagClicked(payload: { tag: string; operation: 'add' | 'remove' }) {
+			const { tag, operation } = payload;
+
+			// remove existing object
+			if (tags.includes(tag) && operation === 'remove') {
+				const newArray = tags.filter((el) => el != tag);
+				tags.length = 0;
+				tags.push(...newArray);
+			}
+
+			// add a new object if tags doesn't already have it
+			if (!tags.includes(tag) && operation === 'add') {
+				tags.push(tag);
+			}
+		}
+
+		return { avaliableTags, stats, tags, tagClicked, isEditingSettings };
 	},
 });
 </script>

@@ -64,7 +64,7 @@
 
 	&__tag-checkbox {
 		position: absolute;
-		opacity: 0;
+		// opacity: 0;
 	}
 
 	&__tag-label {
@@ -128,10 +128,10 @@
 
 	&__disclaimer {
 		padding-top: 2rem;
-		color: rgba($color-white, 0.85);
+		color: rgba($color-white, 0.8);
 		text-align: center;
 		margin: 0 auto;
-		width: 60%;
+		width: 50%;
 
 		a {
 			color: $color-highlight;
@@ -141,6 +141,6 @@
 
 	&__btn {
 		display: block;
-		margin: 4rem auto 0;
+		margin: 6rem auto 0;
 	}
 }

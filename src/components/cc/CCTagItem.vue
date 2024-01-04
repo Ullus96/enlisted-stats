@@ -4,9 +4,10 @@
 			type="checkbox"
 			:name="item.name"
 			:id="item.name"
+			v-model="isActive"
 			class="cc__tag-checkbox"
 		/>
-		<label :for="item.name" class="cc__tag-label" @click="isActive = !isActive"
+		<label :for="item.name" class="cc__tag-label" @click="handleClick()"
 			>&nbsp;</label
 		>
 		<i
@@ -40,10 +41,22 @@ export default defineComponent({
 		item: { required: true, type: Object as PropType<ICCTagEntity> },
 		tag: { required: true, type: String },
 	},
-	setup(props) {
+	setup(props, context) {
 		const isActive: Ref<boolean> = ref(false);
 
-		return { isActive };
+		if (props.tag === 'base') {
+			isActive.value = !isActive.value;
+		}
+
+		function handleClick() {
+			if (isActive.value) {
+				context.emit('tagClicked', { tag: props.tag, operation: 'remove' });
+			} else {
+				context.emit('tagClicked', { tag: props.tag, operation: 'add' });
+			}
+		}
+
+		return { isActive, handleClick };
 	},
 });
 </script>
