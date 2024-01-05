@@ -78,6 +78,7 @@ export default defineComponent({
 		statsPool: { required: true, type: Object },
 		remainingStats: { required: true, type: Object },
 		tags: { required: true, type: Object },
+		pointsSpentOnTier1: { required: true, type: Number },
 	},
 	setup(props, context) {
 		type PossibleClass = 'mobility' | 'vitality' | 'weapon-handling';
@@ -102,22 +103,9 @@ export default defineComponent({
 
 		const classBasedOnIndex = getClassBasedOnIndex();
 
-		function totalPointsSpent(): number {
-			const pointsTotal: number = props.statsPool.reduce(
-				(a: number, b: number) => a + b,
-				0
-			);
-			const pointsLeft: number = props.remainingStats.reduce(
-				(a: number, b: number) => a + b,
-				0
-			);
-
-			return pointsTotal - pointsLeft;
-		}
-
 		// const isRestricted: Ref<boolean> = ref(false);
 		function isHigherTiersBlocked(): boolean {
-			if (totalPointsSpent() < 6) {
+			if (props.pointsSpentOnTier1 < 6) {
 				return true;
 			} else {
 				return false;
@@ -125,7 +113,7 @@ export default defineComponent({
 		}
 
 		function howManyPointsToUnlock(): number {
-			return 6 - totalPointsSpent();
+			return 6 - props.pointsSpentOnTier1;
 		}
 
 		function statChanged(payload: {
@@ -157,7 +145,6 @@ export default defineComponent({
 
 		return {
 			classBasedOnIndex,
-			totalPointsSpent,
 			isHigherTiersBlocked,
 			howManyPointsToUnlock,
 			statChanged,

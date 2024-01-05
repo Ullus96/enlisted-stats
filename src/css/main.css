@@ -141,6 +141,12 @@ h2 {
   font-weight: 400;
 }
 
+.hotkey {
+  border: 1px solid #7f8388;
+  border-radius: 3px;
+  padding: 0.4rem 0.2rem;
+}
+
 .table-header {
   font-weight: 700;
   padding: 1rem 2rem 0;
@@ -181,11 +187,45 @@ h2 {
 .table-header__search-bar {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 10px;
+  position: relative;
+}
+.table-header__search-bar:hover .table-header__search-tooltip {
+  display: flex;
 }
 .table-header__search-input {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   width: 100%;
+}
+.table-header__search-tooltip {
+  width: 150%;
+  background-color: #111111;
+  padding: 1.2rem 1.6rem;
+  text-align: center;
+  font-size: 0.8em;
+  display: none;
+  border-radius: 1rem;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 100%);
+  flex-direction: column;
+  gap: 6px;
+}
+.table-header__search-tooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  z-index: 5;
+  top: 0px;
+  transform: translate(-50%, -50%) rotateZ(135deg);
+  background: linear-gradient(45deg, #111111 60%, transparent 60%);
+}
+.table-header__search-tooltip--desc {
+  opacity: 0.6;
 }
 
 .item__row {

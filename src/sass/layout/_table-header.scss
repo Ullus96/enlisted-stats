@@ -39,11 +39,27 @@
 	&__search-bar {
 		display: flex;
 		flex-direction: row;
-		gap: 5px;
+		gap: 10px;
+		position: relative;
+
+		&:hover .table-header__search-tooltip {
+			display: flex;
+		}
 	}
 
 	&__search-input {
 		border-bottom: 1px solid rgba($color-white, 0.4);
 		width: 100%;
+	}
+
+	&__search-tooltip {
+		width: 150%;
+		@include tooltip('down');
+		flex-direction: column;
+		gap: 6px;
+
+		&--desc {
+			opacity: 0.6;
+		}
 	}
 }

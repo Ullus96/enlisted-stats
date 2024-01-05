@@ -41,12 +41,12 @@ export default defineComponent({
 				branchIndex: props.branchIndex,
 			});
 
-			console.log('CalculatorTier payload:');
-			console.log(payload);
+			// console.log('CalculatorTier payload:');
+			// console.log(payload);
 		}
 
 		onMounted(() => {
-			console.log(props.branchRemainingStats);
+			// console.log(props.branchRemainingStats);
 		});
 
 		return {

@@ -10,7 +10,14 @@
 				type="text"
 				v-model.trim="search"
 				id="searchInput"
+				@keydown.esc="search = ''"
 			/>
+			<div class="table-header__search-tooltip">
+				<p><span class="hotkey">Esc</span> сбросить строку поиска</p>
+				<p class="table-header__search-tooltip--desc">
+					(при активном поле ввода)
+				</p>
+			</div>
 		</div>
 		<div class="table-header__col table-header__col--name" v-else>&nbsp;</div>
 		<div class="table-header__col table-header__col--stat">★</div>

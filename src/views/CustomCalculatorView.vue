@@ -60,6 +60,7 @@ import { defineComponent, reactive, ref, Ref } from 'vue';
 import { avaliableTags } from '@/data/customCalculatorTags';
 import CCTagItem from '@/components/cc/CCTagItem.vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
 	components: { CCTagItem, CalculatorBlock },
@@ -81,6 +82,14 @@ export default defineComponent({
 			// add a new object if tags doesn't already have it
 			if (!tags.includes(tag) && operation === 'add') {
 				tags.push(tag);
+			}
+
+			// After handling tags, update the route
+			const router = useRouter();
+
+			if (!isEditingSettings.value) {
+				// If not editing settings, navigate to /calculator/edit
+				router.push({ path: '/calculator/edit' });
 			}
 		}
 

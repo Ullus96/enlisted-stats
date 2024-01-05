@@ -8,6 +8,7 @@
 			:remainingStats="remainingStats ? remainingStats : statsPool"
 			:statsPool="statsPool"
 			:tags="tags"
+			:pointsSpentOnTier1="pointsSpentOnTier1"
 			@statChanged="statChanged"
 		></calculator-branch>
 	</div>
@@ -19,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, watch } from 'vue';
+import { defineComponent, onMounted, reactive, ref, Ref, watch } from 'vue';
 import skillsList from '@/data/skillsList';
 import CalculatorBranch from './CalculatorBranch.vue';
 import { SkillBranch, SkillEntity, SkillPossibleTiers } from '@/type/Skills';
@@ -38,20 +39,16 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		// TODO: onMounted сделать так, чтобы стандартные статы
-		// сбрасывались к оригинальным
 		const reactiveSkillsList = reactive(skillsList);
 
-		// const statsPool = reactive([16, 16, 16]);
-		// const tags: SkillTag[] = reactive(['base']);
-
-		// Это мы получаем от выбранного солдата
+		// Это мы получаем от выбранного солдата (переданных пропсов)
 		const statsPool = reactive(props.stats);
 		const tags: SkillTag[] = reactive(props.tags as SkillTag[]);
 
 		const remainingStats = reactive([] as number[]);
 
 		onMounted(() => {
+			resetStatsOnLoad();
 			calculateRemainingStats();
 		});
 
@@ -85,7 +82,7 @@ export default defineComponent({
 				branchIndex++;
 			});
 
-			console.log(remainingStats);
+			// console.log(remainingStats);
 		}
 
 		function statChanged(payload: {
@@ -100,6 +97,45 @@ export default defineComponent({
 			const { skillKey, curLvl, branchTier, branchIndex } = payload;
 			reactiveSkillsList[branchIndex][branchTier][skillKey].curLvl = curLvl;
 			calculateRemainingStats();
+			countHowMuchIsSpentOnTier1();
+		}
+
+		function resetStatsOnLoad() {
+			reactiveSkillsList.forEach((branch: SkillBranch) => {
+				for (const tierKey in branch) {
+					if (Object.prototype.hasOwnProperty.call(branch, tierKey)) {
+						const tier = branch[tierKey as keyof SkillBranch];
+						for (const skillKey in tier) {
+							if (Object.prototype.hasOwnProperty.call(tier, skillKey)) {
+								const skill = tier[
+									skillKey as keyof typeof tier
+								] as SkillEntity;
+								// Сбрасываем в 0;
+								skill.curLvl = 0;
+							}
+						}
+					}
+				}
+			});
+		}
+
+		const pointsSpentOnTier1: Ref<number> = ref(0);
+		function countHowMuchIsSpentOnTier1() {
+			pointsSpentOnTier1.value = 0;
+
+			reactiveSkillsList.forEach((branch: SkillBranch) => {
+				for (const skillKey in branch['tier1']) {
+					if (Object.prototype.hasOwnProperty.call(branch['tier1'], skillKey)) {
+						const skill = branch['tier1'][
+							skillKey as keyof (typeof branch)['tier1']
+						] as SkillEntity;
+						// Сбрасываем в 0;
+						pointsSpentOnTier1.value =
+							pointsSpentOnTier1.value + skill.curLvl * skill.costPerLvl;
+					}
+				}
+			});
+			console.log(pointsSpentOnTier1.value);
 		}
 
 		// Then you can work with reactiveSkillsList as a final product
@@ -110,6 +146,7 @@ export default defineComponent({
 			calculateRemainingStats,
 			remainingStats,
 			statChanged,
+			pointsSpentOnTier1,
 		};
 	},
 });
