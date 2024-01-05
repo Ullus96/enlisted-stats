@@ -203,6 +203,7 @@ h2 {
 }
 .table-header__search-tooltip {
   width: 150%;
+  font-weight: 400;
   background-color: #111111;
   padding: 1.2rem 1.6rem;
   text-align: center;
@@ -242,6 +243,7 @@ h2 {
   display: flex;
 }
 .table-header__col--name-tooltip {
+  font-weight: 400;
   text-align: center;
   width: 100%;
   max-width: 200%;
@@ -1190,4 +1192,7 @@ h2 {
 .cc__btn {
   display: block;
   margin: 6rem auto 0;
+}
+.cc__btn-back {
+  margin-left: 2rem;
 }/*# sourceMappingURL=main.css.map */

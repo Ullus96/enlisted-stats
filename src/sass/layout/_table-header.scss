@@ -55,6 +55,7 @@
 
 	&__search-tooltip {
 		width: 150%;
+		font-weight: 400;
 		@include tooltip('down');
 		flex-direction: column;
 		gap: 6px;
@@ -79,6 +80,7 @@
 	}
 
 	&__col--name-tooltip {
+		font-weight: 400;
 		text-align: center;
 		width: 100%;
 		max-width: 200%;

@@ -40,11 +40,12 @@ export default defineComponent({
 	props: {
 		item: { required: true, type: Object as PropType<ICCTagEntity> },
 		tag: { required: true, type: String },
+		activeTags: { required: false, type: Object },
 	},
 	setup(props, context) {
 		const isActive: Ref<boolean> = ref(false);
 
-		if (props.tag === 'base') {
+		if (props.activeTags && props.activeTags.includes(props.tag)) {
 			isActive.value = !isActive.value;
 		}
 

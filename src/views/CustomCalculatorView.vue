@@ -27,6 +27,7 @@
 						:key="item"
 						:item="item"
 						:tag="tag"
+						:activeTags="tags"
 						@tagClicked="tagClicked"
 					></c-c-tag-item>
 				</div>
@@ -48,7 +49,13 @@
 		</template>
 
 		<template v-else>
-			<div class="mt-m mb-m">
+			<div class="mt-s mb-m">
+				<button
+					class="btn btn-small mb-s cc__btn-back"
+					@click="isEditingSettings = !isEditingSettings"
+				>
+					<i class="fa-solid fa-arrow-left"></i> Вернуться
+				</button>
 				<calculator-block :stats="stats" :tags="tags"></calculator-block>
 			</div>
 		</template>
