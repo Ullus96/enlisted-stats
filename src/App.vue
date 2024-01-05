@@ -11,11 +11,9 @@
 <script lang="ts">
 import TheHeader from './components/TheHeader.vue';
 import TheFooter from './components/TheFooter.vue';
-import { IItem } from './type/Item';
 import ItemRow from './components/ItemRow.vue';
 import SkillBuild from './components/SkillBuild.vue';
-import { computed, defineComponent, ref } from 'vue';
-import type { Ref } from 'vue';
+import { defineComponent } from 'vue';
 import CalculatorBlock from './components/calculator/CalculatorBlock.vue';
 import CalculatorBranch from './components/calculator/CalculatorTier.vue';
 import CalculatorSkill from './components/calculator/CalculatorSkill.vue';

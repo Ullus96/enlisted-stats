@@ -19,7 +19,12 @@
 				</p>
 			</div>
 		</div>
-		<div class="table-header__col table-header__col--name" v-else>&nbsp;</div>
+		<div class="table-header__col table-header__col--name filtered" v-else>
+			<i class="fa-regular fa-circle-question"></i>
+			<p class="table-header__col--name-tooltip">
+				Нажми по отфильтрованной строчке, чтобы выключить фильтрацию
+			</p>
+		</div>
 		<div class="table-header__col table-header__col--stat">★</div>
 		<div class="table-header__col table-header__col--stat">★★</div>
 		<div class="table-header__col table-header__col--stat">★★★</div>
@@ -61,22 +66,19 @@
 		</div>
 	</template>
 
-	<div class="container">
-		<div class="btn-filter--wrapper" v-if="isFilteredToClass">
+	<div class="container mt-s" v-if="isFilteredToClass">
+		<div class="btn-flexbox">
 			<button
-				class="btn btn-filter"
+				class="btn btn-small"
 				@click="filteredSoldierButtonHandler('presets')"
 			>
 				Пресеты
 			</button>
 			<button
-				class="btn btn-filter"
+				class="btn btn-small"
 				@click="filteredSoldierButtonHandler('calculator')"
 			>
 				Калькулятор
-			</button>
-			<button class="btn btn-filter" @click="removeFilter()">
-				Выключить фильтрацию
 			</button>
 		</div>
 	</div>

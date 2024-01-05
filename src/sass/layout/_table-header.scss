@@ -36,6 +36,7 @@
 		}
 	}
 
+	// tooltip on normal state
 	&__search-bar {
 		display: flex;
 		flex-direction: row;
@@ -61,5 +62,26 @@
 		&--desc {
 			opacity: 0.6;
 		}
+	}
+
+	// tooltip on filtered state
+	&__col--name {
+		text-align: left;
+		position: relative;
+
+		&.filtered {
+			cursor: pointer;
+		}
+
+		&:hover .table-header__col--name-tooltip {
+			display: flex;
+		}
+	}
+
+	&__col--name-tooltip {
+		text-align: center;
+		width: 100%;
+		max-width: 200%;
+		@include tooltip('down');
 	}
 }

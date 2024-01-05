@@ -12,6 +12,7 @@
 		background-color: $color-blue;
 		display: flex;
 		flex-direction: column;
+		position: relative;
 	}
 
 	&__title-block {
@@ -31,6 +32,26 @@
 	&__header-tooltip {
 		width: 70%;
 		@include tooltip('down');
+	}
+
+	// hotkeys tooltip
+	&__hotkeys-block {
+		position: absolute;
+		left: 1rem;
+		top: 1rem;
+		z-index: 9;
+
+		&:hover .calculator__hotkeys-tooltip {
+			display: flex;
+		}
+	}
+
+	&__hotkeys-tooltip {
+		flex-direction: column;
+		gap: 1rem;
+		align-items: start;
+		width: 1500%;
+		@include tooltip('up');
 	}
 
 	&__stats-block {

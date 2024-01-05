@@ -1,5 +1,13 @@
 <template>
 	<div class="calculator__branch">
+		<div class="calculator__hotkeys-block" v-if="branchIndex === 0">
+			<i class="fa-regular fa-circle-question"></i>
+			<div class="calculator__hotkeys-tooltip">
+				<p>При нажатии по иконке скилла:</p>
+				<p><span class="hotkey">ЛКМ</span> - повысить уровень на 1</p>
+				<p><span class="hotkey">ПКМ</span> - понизить уровень на 1</p>
+			</div>
+		</div>
 		<div class="calculator__title-block">
 			<h2 class="calculator__title" :class="classBasedOnIndex">
 				{{ ['Мобильность', 'Живучесть', 'Оружие'][branchIndex] }}

@@ -129,13 +129,12 @@ export default defineComponent({
 						const skill = branch['tier1'][
 							skillKey as keyof (typeof branch)['tier1']
 						] as SkillEntity;
-						// Сбрасываем в 0;
+						// Считаем потраченные поинты со всех тир1 скиллов;
 						pointsSpentOnTier1.value =
 							pointsSpentOnTier1.value + skill.curLvl * skill.costPerLvl;
 					}
 				}
 			});
-			console.log(pointsSpentOnTier1.value);
 		}
 
 		// Then you can work with reactiveSkillsList as a final product
