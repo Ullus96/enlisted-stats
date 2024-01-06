@@ -686,15 +686,6 @@ h2 {
 .calculator__restriction-bg.is-transparent {
   background: none;
 }
-.calculator__restriction-bg__error {
-  position: fixed;
-  left: 50%;
-  bottom: 4rem;
-  transform: translate(-50%, 0%);
-  background-color: #222222;
-  border-left: 5px solid #ff4136;
-  padding: 4rem 16rem;
-}
 
 .skills__block {
   position: relative;
@@ -905,6 +896,47 @@ h2 {
   display: none;
 }
 
+.error {
+  position: fixed;
+  left: 50%;
+  bottom: 4rem;
+  transform: translate(-50%, 0%);
+  background-color: #222222;
+  border-left: 5px solid #ff4136;
+  padding: 4rem 8rem 4rem 4rem;
+  animation: tilt-n-move-shaking 0.2s linear;
+}
+.error__btn-close {
+  position: absolute;
+  opacity: 0.8;
+  right: 1rem;
+  top: 1rem;
+}
+.error__title {
+  margin-bottom: 5px;
+}
+.error__desc {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+@keyframes tilt-n-move-shaking {
+  0% {
+    transform: translate(-50%, 0%) rotate(0deg);
+  }
+  25% {
+    transform: translate(calc(-50% + 2px), calc(0% + 2px)) rotate(2deg);
+  }
+  50% {
+    transform: translate(-50%, 0%) rotate(0deg);
+  }
+  75% {
+    transform: translate(calc(-50% - 2px), calc(0% + 2px)) rotate(-2deg);
+  }
+  100% {
+    transform: translate(-50%, 0%) rotate(0deg);
+  }
+}
 .events {
   padding: 4rem 0;
 }

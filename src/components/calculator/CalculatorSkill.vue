@@ -111,6 +111,14 @@ export default defineComponent({
 
 		function checkIfEnoughPoints(cost: number): boolean {
 			if (typeof props.branchRemainingStats === 'number') {
+				// check if not enough points, then form an error
+				if (props.branchRemainingStats - cost < 0) {
+					context.emit('notEnoughPoints', {
+						title: 'Недостаточно очков!',
+						desc: 'Навык стоит больше, чем у тебя имеется очков в распоряжении.',
+					});
+				}
+				// if everything is okay, just add a skill lvl
 				return props.branchRemainingStats - cost >= 0;
 			} else {
 				return false;

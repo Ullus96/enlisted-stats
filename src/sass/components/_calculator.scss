@@ -241,19 +241,5 @@
 		&.is-transparent {
 			background: none;
 		}
-
-		// error handler
-		&__error {
-			position: fixed;
-			left: 50%;
-			bottom: 4rem;
-			transform: translate(-50%, 0%);
-			background-color: $color-black-light-1;
-
-			border-left: 5px solid $color-error;
-			// box-shadow: 0 0 4rem $color-error;
-
-			padding: 4rem 16rem;
-		}
 	}
 }

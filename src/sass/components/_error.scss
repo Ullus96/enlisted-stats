@@ -1,0 +1,47 @@
+.error {
+	position: fixed;
+	left: 50%;
+	bottom: 4rem;
+	transform: translate(-50%, 0%);
+	background-color: $color-black-light-1;
+
+	border-left: 5px solid $color-error;
+	// box-shadow: 0 0 4rem $color-error;
+
+	padding: 4rem 8rem 4rem 4rem;
+	animation: tilt-n-move-shaking 0.2s linear;
+
+	&__btn-close {
+		position: absolute;
+		opacity: 0.8;
+		right: 1rem;
+		top: 1rem;
+	}
+
+	&__title {
+		margin-bottom: 5px;
+	}
+
+	&__desc {
+		font-size: 0.8em;
+		opacity: 0.8;
+	}
+}
+
+@keyframes tilt-n-move-shaking {
+	0% {
+		transform: translate(-50%, 0%) rotate(0deg);
+	}
+	25% {
+		transform: translate(calc(-50% + 2px), calc(0% + 2px)) rotate(2deg);
+	}
+	50% {
+		transform: translate(-50%, 0%) rotate(0deg);
+	}
+	75% {
+		transform: translate(calc(-50% - 2px), calc(0% + 2px)) rotate(-2deg);
+	}
+	100% {
+		transform: translate(-50%, 0%) rotate(0deg);
+	}
+}

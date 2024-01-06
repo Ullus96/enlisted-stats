@@ -10,13 +10,12 @@
 			:tags="tags"
 			:pointsSpentOnTier1="pointsSpentOnTier1"
 			@statChanged="statChanged"
+			@notEnoughPoints="notEnoughPoints"
 		></calculator-branch>
 	</div>
 
 	<!-- error -->
-	<Teleport to="body">
-		<div class="calculator__error" v-if="false">Недостаточно очков!</div>
-	</Teleport>
+	<error-block :anError="anError"></error-block>
 </template>
 
 <script lang="ts">
@@ -25,9 +24,11 @@ import skillsList from '@/data/skillsList';
 import CalculatorBranch from './CalculatorBranch.vue';
 import { SkillBranch, SkillEntity, SkillPossibleTiers } from '@/type/Skills';
 import { SkillTag } from '@/type/SkillTag';
+import ErrorBlock from '@/components/error/ErrorBlock.vue';
+import { IErrorEntity } from '@/type/CustomErrors';
 
 export default defineComponent({
-	components: { CalculatorBranch },
+	components: { CalculatorBranch, ErrorBlock },
 	props: {
 		stats: {
 			required: true,
@@ -137,6 +138,12 @@ export default defineComponent({
 			});
 		}
 
+		const anError: Ref<IErrorEntity | null> = ref(null);
+		function notEnoughPoints(payload: { title: string; desc: string }) {
+			console.log(payload);
+			anError.value = payload;
+		}
+
 		// Then you can work with reactiveSkillsList as a final product
 		return {
 			skillsList: reactiveSkillsList,
@@ -146,6 +153,8 @@ export default defineComponent({
 			remainingStats,
 			statChanged,
 			pointsSpentOnTier1,
+			notEnoughPoints,
+			anError,
 		};
 	},
 });

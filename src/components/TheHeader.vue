@@ -11,7 +11,7 @@
 					</li>
 					<li>
 						<router-link to="/calculator" class="header__link"
-							><i class="fa-solid fa-square-root-variable"></i
+							><i class="fa-solid fa-plus-minus"></i
 							>&nbsp;&nbsp;Калькулятор</router-link
 						>
 					</li>

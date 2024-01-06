@@ -34,6 +34,7 @@
 			:branchTier="'tier1'"
 			:branchRemainingStats="getRemainingStats(branchIndex)"
 			@statChanged="statChanged"
+			@notEnoughPoints="notEnoughPoints"
 		></calculator-tier>
 
 		<div
@@ -56,6 +57,7 @@
 				:branchTier="'tier2'"
 				:branchRemainingStats="getRemainingStats(branchIndex)"
 				@statChanged="statChanged"
+				@notEnoughPoints="notEnoughPoints"
 			></calculator-tier>
 
 			<!-- tier 3 -->
@@ -67,6 +69,7 @@
 				:branchTier="'tier3'"
 				:branchRemainingStats="getRemainingStats(branchIndex)"
 				@statChanged="statChanged"
+				@notEnoughPoints="notEnoughPoints"
 			></calculator-tier>
 		</div>
 	</div>
@@ -151,6 +154,10 @@ export default defineComponent({
 			return `${amounts[index]}%`;
 		}
 
+		function notEnoughPoints(payload: { title: string; desc: string }) {
+			context.emit('notEnoughPoints', payload);
+		}
+
 		return {
 			classBasedOnIndex,
 			isHigherTiersBlocked,
@@ -159,6 +166,7 @@ export default defineComponent({
 			getRemainingStats,
 			getBranchPerkDescription,
 			getBranchPerkAmount,
+			notEnoughPoints,
 		};
 	},
 });
