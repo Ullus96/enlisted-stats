@@ -904,7 +904,7 @@ h2 {
   background-color: #222222;
   border-left: 5px solid #ff4136;
   padding: 4rem 8rem 4rem 4rem;
-  animation: tilt-n-move-shaking 0.2s linear;
+  animation: error-shaking-and-move-out 2s linear;
 }
 .error__btn-close {
   position: absolute;
@@ -935,6 +935,41 @@ h2 {
   }
   100% {
     transform: translate(-50%, 0%) rotate(0deg);
+  }
+}
+@keyframes move-out-down {
+  0% {
+    transform: translate(-50%, 0%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 200%) rotate(0deg);
+    opacity: 0;
+  }
+}
+@keyframes error-shaking-and-move-out {
+  0% {
+    transform: translate(-50%, 0%) rotate(0deg);
+  }
+  2.5% {
+    transform: translate(calc(-50% + 2px), calc(0% + 2px)) rotate(2deg);
+  }
+  5% {
+    transform: translate(-50%, 0%) rotate(0deg);
+  }
+  7.5% {
+    transform: translate(calc(-50% - 2px), calc(0% + 2px)) rotate(-2deg);
+  }
+  10% {
+    transform: translate(-50%, 0%) rotate(0deg);
+  }
+  90% {
+    transform: translate(-50%, 0%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 200%) rotate(0deg);
+    opacity: 0;
   }
 }
 .events {

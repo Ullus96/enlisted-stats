@@ -5,7 +5,6 @@
 			:key="error"
 			:errorData="error"
 			:index="index"
-			@closeError="closeError"
 		></error-entity>
 	</Teleport>
 </template>
@@ -37,14 +36,6 @@ export default defineComponent({
 			}
 		});
 
-		// setTimeout(() => {
-		// 	clearErrors();
-		// 	createError(
-		// 		'Ой! Что-то пошло не так!',
-		// 		'Возникла ошибка, попробуйте перезагрузить страницу и попробовать снова. Возникла ошибка, попробуйте перезагрузить страницу и попробовать снова.'
-		// 	);
-		// }, 2000);
-
 		function clearErrors() {
 			errorData.value.splice(0, errorData.value.length);
 		}
@@ -56,12 +47,12 @@ export default defineComponent({
 			});
 		}
 
-		function closeError(index: number) {
-			console.log(`Caught closeError on parent with index ${index}`);
-			errorData.value.splice(index, 1);
-		}
+		// function closeError(index: number) {
+		// 	console.log(`Caught closeError on parent with index ${index}`);
+		// 	errorData.value.splice(index, 1);
+		// }
 
-		return { errorData, closeError };
+		return { errorData };
 	},
 });
 </script>

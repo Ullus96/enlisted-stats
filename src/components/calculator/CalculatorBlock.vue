@@ -139,8 +139,33 @@ export default defineComponent({
 		}
 
 		const anError: Ref<IErrorEntity | null> = ref(null);
+		// function notEnoughPoints(payload: { title: string; desc: string }) {
+		// 	anError.value = null;
+		// 	anError.value = payload;
+
+		// 	setTimeout(() => {
+		// 		anError.value = null;
+		// 	}, 2000);
+		// }
+
+		// const errorData: Ref<IErrorEntity[]> = ref([]);
+		let timerId: any;
+
 		function notEnoughPoints(payload: { title: string; desc: string }) {
-			console.log(payload);
+			clearErrors();
+			createError(payload);
+
+			timerId = setTimeout(() => {
+				clearErrors();
+			}, 2000);
+		}
+
+		function clearErrors() {
+			anError.value = null;
+			clearTimeout(timerId);
+		}
+
+		function createError(payload: { title: string; desc: string }) {
 			anError.value = payload;
 		}
 

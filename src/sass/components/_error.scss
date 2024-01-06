@@ -9,7 +9,7 @@
 	// box-shadow: 0 0 4rem $color-error;
 
 	padding: 4rem 8rem 4rem 4rem;
-	animation: tilt-n-move-shaking 0.2s linear;
+	animation: error-shaking-and-move-out 2s linear;
 
 	&__btn-close {
 		position: absolute;
@@ -43,5 +43,42 @@
 	}
 	100% {
 		transform: translate(-50%, 0%) rotate(0deg);
+	}
+}
+
+@keyframes move-out-down {
+	0% {
+		transform: translate(-50%, 0%) rotate(0deg);
+		opacity: 1;
+	}
+	100% {
+		transform: translate(-50%, 200%) rotate(0deg);
+		opacity: 0;
+	}
+}
+
+@keyframes error-shaking-and-move-out {
+	0% {
+		transform: translate(-50%, 0%) rotate(0deg);
+	}
+	2.5% {
+		transform: translate(calc(-50% + 2px), calc(0% + 2px)) rotate(2deg);
+	}
+	5% {
+		transform: translate(-50%, 0%) rotate(0deg);
+	}
+	7.5% {
+		transform: translate(calc(-50% - 2px), calc(0% + 2px)) rotate(-2deg);
+	}
+	10% {
+		transform: translate(-50%, 0%) rotate(0deg);
+	}
+	90% {
+		transform: translate(-50%, 0%) rotate(0deg);
+		opacity: 1;
+	}
+	100% {
+		transform: translate(-50%, 200%) rotate(0deg);
+		opacity: 0;
 	}
 }
