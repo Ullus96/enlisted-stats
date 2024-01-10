@@ -686,6 +686,11 @@ h2 {
 .calculator__restriction-bg.is-transparent {
   background: none;
 }
+.calculator__save-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
 
 .skills__block {
   position: relative;
@@ -901,6 +906,13 @@ h2 {
   left: 50%;
   bottom: 4rem;
   transform: translate(-50%, 0%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  gap: 1rem;
+}
+.error__item {
   background-color: #222222;
   border-left: 5px solid #ff4136;
   padding: 4rem 8rem 4rem 4rem;
@@ -922,19 +934,19 @@ h2 {
 
 @keyframes tilt-n-move-shaking {
   0% {
-    transform: translate(-50%, 0%) rotate(0deg);
+    transform: translate(0, 0) rotate(0deg);
   }
   25% {
-    transform: translate(calc(-50% + 2px), calc(0% + 2px)) rotate(2deg);
+    transform: translate(2px, 2px) rotate(2deg);
   }
   50% {
-    transform: translate(-50%, 0%) rotate(0deg);
+    transform: translate(0, 0) rotate(0deg);
   }
   75% {
-    transform: translate(calc(-50% - 2px), calc(0% + 2px)) rotate(-2deg);
+    transform: translate(-2px, 2px) rotate(-2deg);
   }
   100% {
-    transform: translate(-50%, 0%) rotate(0deg);
+    transform: translate(0, 0) rotate(0deg);
   }
 }
 @keyframes move-out-down {
@@ -949,26 +961,26 @@ h2 {
 }
 @keyframes error-shaking-and-move-out {
   0% {
-    transform: translate(-50%, 0%) rotate(0deg);
+    transform: translate(0, 0) rotate(0deg);
   }
   2.5% {
-    transform: translate(calc(-50% + 2px), calc(0% + 2px)) rotate(2deg);
+    transform: translate(2px, 2px) rotate(2deg);
   }
   5% {
-    transform: translate(-50%, 0%) rotate(0deg);
+    transform: translate(0, 0) rotate(0deg);
   }
   7.5% {
-    transform: translate(calc(-50% - 2px), calc(0% + 2px)) rotate(-2deg);
+    transform: translate(-2px, 2px) rotate(-2deg);
   }
   10% {
-    transform: translate(-50%, 0%) rotate(0deg);
+    transform: translate(0, 0) rotate(0deg);
   }
   90% {
-    transform: translate(-50%, 0%) rotate(0deg);
+    transform: translate(0, 0) rotate(0deg);
     opacity: 1;
   }
   100% {
-    transform: translate(-50%, 200%) rotate(0deg);
+    transform: translate(0, 200%) rotate(0deg);
     opacity: 0;
   }
 }
@@ -1156,6 +1168,47 @@ h2 {
   text-transform: uppercase;
   text-align: center;
 }
+.cc__tags-title {
+  position: relative;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.cc__tags-tooltip-icon:hover ~ .cc__tags-tooltip {
+  display: flex;
+}
+.cc__tags-tooltip {
+  width: 150%;
+  background-color: #111111;
+  padding: 1.2rem 1.6rem;
+  text-align: center;
+  font-size: 0.8em;
+  display: none;
+  border-radius: 1rem;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -100%);
+  flex-direction: column;
+  gap: 2px;
+}
+.cc__tags-tooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  z-index: 5;
+  bottom: 0px;
+  transform: translate(-50%, 50%) rotateZ(45deg);
+  background: linear-gradient(-45deg, #111111 60%, transparent 60%);
+}
+.cc__tags-tooltip b {
+  color: #f9da75;
+}
 .cc__tag-item {
   background-color: #222222;
   min-width: 10rem;
@@ -1262,4 +1315,104 @@ h2 {
 }
 .cc__btn-back {
   margin-left: 2rem;
+}
+
+.sbuild__grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.sbuild__item {
+  background-color: #222222;
+  border-radius: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+.sbuild__item:hover {
+  background-color: #262626;
+}
+.sbuild__header-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2px;
+}
+.sbuild__likes-block {
+  padding-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+.sbuild__likes-block:hover .sbuild__likes-svg path {
+  stroke: #ff4136;
+}
+.sbuild__likes-amount {
+  padding-top: 2px;
+}
+.sbuild__likes-svg {
+  height: 1.4rem;
+}
+.sbuild__likes-svg path {
+  transition: 0.1s ease-in-out all;
+}
+.sbuild__likes-block.active:hover .sbuild__likes-svg path {
+  fill: transparent;
+}
+.sbuild__likes-block.active .sbuild__likes-amount {
+  color: #ff4136;
+}
+.sbuild__likes-block.active .sbuild__likes-svg path {
+  stroke: #ff4136;
+  fill: #ff4136;
+}
+.sbuild__data-block {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.sbuild__data-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.sbuild__data-icon {
+  height: 16px;
+  aspect-ratio: 1/1;
+}
+.sbuild__data-desc {
+  opacity: 0.8;
+}
+.sbuild__data-stats {
+  padding-left: 2rem;
+}
+.sbuild__data-stats span:nth-child(1) {
+  color: #97ff94;
+}
+.sbuild__data-stats span:nth-child(2) {
+  color: #ff9497;
+}
+.sbuild__data-stats span:nth-child(3) {
+  color: #fffe9a;
+}
+.sbuild__author-block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.sbuild__author-avatar {
+  width: 5rem;
+  height: 5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 1rem;
+}
+.sbuild__author-block-right {
+  display: flex;
+  flex-direction: column;
+}
+.sbuild__author-date {
+  color: #7f8388;
+  font-size: 0.8em;
 }/*# sourceMappingURL=main.css.map */

@@ -2,7 +2,7 @@
 	<div class="cc container">
 		<template v-if="isEditingSettings">
 			<div class="cc__stats-block">
-				<h2 class="cc__stats-title">Определи характеристики солдата</h2>
+				<h2 class="cc__stats-title">Распределить характеристики солдата</h2>
 				<div class="cc__stats-flexbox">
 					<div class="cc__stat-item">
 						<input type="number" class="cc__stat-amount" v-model="stats[0]" />
@@ -20,7 +20,26 @@
 			</div>
 
 			<div class="cc__stats-block">
-				<h2 class="cc__stats-title">Определи специализации солдата</h2>
+				<div class="cc__tags-title">
+					<h2>Выбрать специализации солдата</h2>
+					<i class="fa-regular fa-circle-question cc__tags-tooltip-icon"></i>
+					<div class="cc__tags-tooltip">
+						<p>
+							Выбери специализации для солдата, чтобы определить доступные ему
+							навыки.
+						</p>
+						<p>
+							Например, солдат со специализациями <b>пехотинец</b> и
+							<b>инженер</b> будет обладать навыками стрельбы (отдача и пр.) и
+							строительства.
+						</p>
+						<p>
+							В то время как солдат со специализациями <b>член экипажа</b> и
+							<b>танкист</b> будет обладать навыками танкиста.
+						</p>
+					</div>
+				</div>
+
 				<div class="cc__stats-flexbox">
 					<c-c-tag-item
 						v-for="(item, tag) in avaliableTags"

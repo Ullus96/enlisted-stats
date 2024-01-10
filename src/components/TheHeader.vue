@@ -6,13 +6,19 @@
 					<li>
 						<router-link to="/" class="header__link"
 							><i class="fa-solid fa-angles-up"></i
-							>&nbsp;&nbsp;Бойцы</router-link
+							>&nbsp;&nbsp;Таблица</router-link
 						>
 					</li>
 					<li>
 						<router-link to="/calculator" class="header__link"
-							><i class="fa-solid fa-plus-minus"></i
+							><i class="fa-solid fa-user-gear"></i
 							>&nbsp;&nbsp;Калькулятор</router-link
+						>
+					</li>
+					<li>
+						<router-link to="/skill-builds" class="header__link"
+							><i class="fa-solid fa-book-open"></i
+							>&nbsp;&nbsp;Сборки</router-link
 						>
 					</li>
 					<li>

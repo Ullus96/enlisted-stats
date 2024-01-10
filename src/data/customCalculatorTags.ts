@@ -15,6 +15,7 @@ export const avaliableTags: IAvaliableTagsItems = {
 			'radio',
 			'mortar',
 			'flamethrower',
+			'paratrooper',
 		],
 	},
 	medic: {

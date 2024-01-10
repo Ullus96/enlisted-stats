@@ -35,7 +35,7 @@ export default defineComponent({
 		const localDateTime = props.date.toLocaleString('ru-RU', options);
 		const parts = localDateTime.split(',');
 
-		const day = parts[1].split('')[1];
+		const day = parts[1].split(' ')[1];
 		const month = parts[1].split(' ')[2];
 		const hours = parts[1].split(' ')[6].split(':')[0];
 

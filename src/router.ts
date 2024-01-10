@@ -16,5 +16,9 @@ export default createRouter({
 			path: '/calculator',
 			component: () => import('@/views/CustomCalculatorView.vue'),
 		},
+		{
+			path: '/skill-builds',
+			component: () => import('@/views/SkillBuildsView.vue'),
+		},
 	],
 });

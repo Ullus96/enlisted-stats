@@ -14,8 +14,46 @@
 		></calculator-branch>
 	</div>
 
+	<div class="calculator__save-btn">
+		<button class="btn btn-main" @click="saveBtnHandler">
+			Сохранить сборку
+		</button>
+	</div>
+	<!-- {{ savedDataOut }} -->
+	<div v-if="savedDataOut">
+		{{ savedDataOut.data.name }}
+		{{ savedDataOut.data.author }}
+		{{ savedDataOut.data.date }}
+		{{ savedDataOut.data.key }}
+	</div>
+	<div v-if="savedDataOut">
+		{{ savedDataOut.tags }}
+	</div>
+	<div
+		style="
+			display: flex;
+			flex-direction: row;
+			gap: 5px;
+			justify-content: center;
+		"
+	>
+		<div
+			v-for="(branch, branchName) in savedDataOut.skillsData"
+			:key="branch"
+			style="flex-grow: 1"
+		>
+			<h2>{{ branchName }}</h2>
+			<div v-for="(tier, tierName) in branch" :key="tier">
+				<h3>{{ tierName }}</h3>
+				<div v-for="skill in tier" :key="skill">
+					<p>{{ skill.skillKey }}: {{ skill.curLvl }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- error -->
-	<error-block :anError="anError"></error-block>
+	<error-block :errorArray="errorArray"></error-block>
 </template>
 
 <script lang="ts">
@@ -26,6 +64,10 @@ import { SkillBranch, SkillEntity, SkillPossibleTiers } from '@/type/Skills';
 import { SkillTag } from '@/type/SkillTag';
 import ErrorBlock from '@/components/error/ErrorBlock.vue';
 import { IErrorEntity } from '@/type/CustomErrors';
+import {
+	saveToLocalStorage,
+	loadFromLocalStorage,
+} from '@/functions/localStorageUtils';
 
 export default defineComponent({
 	components: { CalculatorBranch, ErrorBlock },
@@ -138,20 +180,12 @@ export default defineComponent({
 			});
 		}
 
-		const anError: Ref<IErrorEntity | null> = ref(null);
-		// function notEnoughPoints(payload: { title: string; desc: string }) {
-		// 	anError.value = null;
-		// 	anError.value = payload;
+		// Error Handler
 
-		// 	setTimeout(() => {
-		// 		anError.value = null;
-		// 	}, 2000);
-		// }
+		const errorArray: Ref<IErrorEntity[]> = ref([]);
+		let timerId: ReturnType<typeof setTimeout>;
 
-		// const errorData: Ref<IErrorEntity[]> = ref([]);
-		let timerId: any;
-
-		function notEnoughPoints(payload: { title: string; desc: string }) {
+		function notEnoughPoints(payload: IErrorEntity) {
 			clearErrors();
 			createError(payload);
 
@@ -161,12 +195,86 @@ export default defineComponent({
 		}
 
 		function clearErrors() {
-			anError.value = null;
+			if (errorArray.value.length > 1) {
+				errorArray.value.shift();
+			}
 			clearTimeout(timerId);
+			clearArrayAfterDelay(errorArray.value, 2000);
 		}
 
-		function createError(payload: { title: string; desc: string }) {
-			anError.value = payload;
+		function createError(payload: IErrorEntity) {
+			if (errorArray) {
+				errorArray.value.push(payload);
+			}
+		}
+
+		function clearArrayAfterDelay(array: IErrorEntity[], delay: number) {
+			timerId = setTimeout(() => {
+				array.shift();
+			}, delay);
+		}
+
+		// Save functionality
+		function generateKey() {
+			return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+		}
+
+		const savedDataOut: Ref<any> = ref('');
+		function saveBtnHandler() {
+			const savedData = {
+				data: {
+					name: 'Название сборки',
+					author: 'getAuthor()',
+					date: new Date(),
+					key: generateKey(),
+				},
+				tags: tags,
+				skillsData: {
+					mobility: {
+						tier1: getSkillsLevelsFromTier(reactiveSkillsList[0], 'tier1'),
+						tier2: getSkillsLevelsFromTier(reactiveSkillsList[0], 'tier2'),
+						tier3: getSkillsLevelsFromTier(reactiveSkillsList[0], 'tier3'),
+					},
+					vitality: {
+						tier1: getSkillsLevelsFromTier(reactiveSkillsList[1], 'tier1'),
+						tier2: getSkillsLevelsFromTier(reactiveSkillsList[1], 'tier2'),
+						tier3: getSkillsLevelsFromTier(reactiveSkillsList[1], 'tier3'),
+					},
+					weapon: {
+						tier1: getSkillsLevelsFromTier(reactiveSkillsList[2], 'tier1'),
+						tier2: getSkillsLevelsFromTier(reactiveSkillsList[2], 'tier2'),
+						tier3: getSkillsLevelsFromTier(reactiveSkillsList[2], 'tier3'),
+					},
+				},
+			};
+			console.log(savedData);
+			savedDataOut.value = savedData;
+
+			loadFromLocalStorage('savedSkills');
+			saveToLocalStorage('savedSkills', savedData);
+		}
+
+		function getSkillsLevelsFromBranch(branchIndex: number) {
+			return reactiveSkillsList[branchIndex];
+		}
+
+		function getSkillsLevelsFromTier(
+			branch: SkillBranch,
+			tierIndex: 'tier1' | 'tier2' | 'tier3'
+		) {
+			if (branch) {
+				let tierData = [];
+				const tier = branch[tierIndex as keyof SkillBranch];
+				for (const skillKey in tier) {
+					if (Object.prototype.hasOwnProperty.call(tier, skillKey)) {
+						const skill = tier[skillKey as keyof typeof tier] as SkillEntity;
+						// Сохраняем все скиллы
+						let skillData = { skillKey, curLvl: skill.curLvl };
+						tierData.push(skillData);
+					}
+				}
+				return tierData;
+			}
 		}
 
 		// Then you can work with reactiveSkillsList as a final product
@@ -179,7 +287,9 @@ export default defineComponent({
 			statChanged,
 			pointsSpentOnTier1,
 			notEnoughPoints,
-			anError,
+			errorArray,
+			saveBtnHandler,
+			savedDataOut,
 		};
 	},
 });

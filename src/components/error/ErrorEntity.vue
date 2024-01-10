@@ -1,5 +1,5 @@
 <template>
-	<div class="error">
+	<div class="error__item">
 		<!-- <button class="btn error__btn-close" @click="closeError(index)">
 			<i class="fa-solid fa-xmark"></i>
 		</button> -->
@@ -20,15 +20,14 @@ export default defineComponent({
 			required: true,
 			type: Object as PropType<IErrorEntity>,
 		},
-		index: { required: true, type: Number },
+		// index: { required: true, type: Number },
 	},
 	setup(props, context) {
-		function closeError(index: number) {
-			// console.log(`Error with index ${index} is closed!`);
-			context.emit('closeError', index);
-		}
-
-		return { closeError };
+		// function closeError(index: number) {
+		// 	// console.log(`Error with index ${index} is closed!`);
+		// 	context.emit('closeError', index);
+		// }
+		// return { closeError };
 	},
 });
 </script>
