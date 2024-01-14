@@ -79,8 +79,14 @@
 	}
 
 	// profile menu popup
+	&__right:hover {
+		.header__profile-popup {
+			display: block;
+		}
+	}
 	&__profile {
 		&-popup {
+			display: none;
 			position: absolute;
 			right: 0;
 			background-color: $color-black-light-1;

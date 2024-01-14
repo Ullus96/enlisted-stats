@@ -3,10 +3,6 @@
 		<div class="container footer__container">
 			<div class="footer__block">
 				<div class="footer__col">
-					<!-- <p>&nbsp;</p> -->
-					<img src="@/assets/cursed-cat.gif" alt="" class="footer__gif" />
-				</div>
-				<div class="footer__col">
 					<p class="footer__how-to-contact">
 						Если вы заметили какие-то несостыковки в цифрах, или что-то в таком
 						роде, можете связаться со мной:
@@ -20,12 +16,14 @@
 						</div>
 					</div>
 				</div>
+				<div class="footer__col">
+					<p class="footer__legal">
+						Enlisted — зарегистрированная товарная марка Gaijin Games Kft. Этот
+						сайт не аффилирован с Gaijin Games Kft. Все игровые изображения и
+						имена являются собственностью Gaijin Games Kft.
+					</p>
+				</div>
 			</div>
-			<p class="footer__legal">
-				Enlisted — зарегистрированная товарная марка Gaijin Games Kft. Этот сайт
-				не аффилирован с Gaijin Games Kft. Все игровые изображения и имена
-				являются собственностью Gaijin Games Kft.
-			</p>
 		</div>
 	</footer>
 </template>

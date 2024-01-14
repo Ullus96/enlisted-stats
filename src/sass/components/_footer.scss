@@ -3,27 +3,22 @@
 	background-color: $color-black;
 
 	&__container {
-		padding: 4rem 2rem 2rem;
+		padding: 4rem 2rem 4rem;
 	}
 
 	&__block {
 		display: grid;
-		grid-template-columns: 1fr 3fr;
+		grid-template-columns: 2fr 3fr;
+		justify-content: center;
+		align-items: start;
 		gap: 2rem;
-	}
-
-	&__gif {
-		display: block;
-		max-width: 15rem;
-		margin: 0 auto;
 	}
 
 	&__legal {
 		font-size: 0.8em;
 		opacity: 0.8;
-		margin: 2rem auto 0.5rem;
+		margin: 0 2rem;
 		text-align: center;
-		width: 60%;
 	}
 
 	&__links-block {

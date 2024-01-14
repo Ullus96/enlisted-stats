@@ -27,14 +27,40 @@
 						:index="index"
 					></events-countdown-card>
 				</div>
-				<h2 class="events__reward-title">Награда:</h2>
-				<p class="events__reward-desc">
-					{{
-						data.rewards[currentStageInfo.index + 1]
-							? data.rewards[currentStageInfo.index + 1]
-							: '—'
-					}}
-				</p>
+
+				<div class="events__reward-block">
+					<div class="events__reward-upper-block">
+						<div class="events__reward-bar events__reward-bar-left">
+							<div
+								class="events__reward-bar-progress"
+								:style="{
+									background: `linear-gradient(to right,  #47484a ${progressBarPercents}%, transparent ${progressBarPercents}%`,
+								}"
+							></div>
+							<div class="events__reward-bar-animated"></div>
+							<p class="events__reward-text">
+								{{
+									data.rewards[currentStageInfo.index]
+										? data.rewards[currentStageInfo.index]
+										: '—'
+								}}
+							</p>
+						</div>
+						<div class="events__reward-bar events__reward-bar-right">
+							<p class="events__reward-text">
+								{{
+									data.rewards[currentStageInfo.index + 1]
+										? data.rewards[currentStageInfo.index + 1]
+										: '—'
+								}}
+							</p>
+						</div>
+					</div>
+					<div class="events__reward-lower-block">
+						<p class="events__reward-description">текущая награда</p>
+						<p class="events__reward-description">следующая награда</p>
+					</div>
+				</div>
 			</div>
 			<div class="events__all-block">
 				<h2 class="events__all-title">Все этапы данного события:</h2>
@@ -49,7 +75,6 @@
 							'events__all-card--active': index === currentStageInfo.index,
 						}"
 					></events-card>
-					<!-- event card with :amount='multiple' to render lines -->
 				</div>
 			</div>
 		</div>
@@ -135,7 +160,9 @@ export default defineComponent({
 
 		const timerValues: number[] = reactive([0, 0, 0]);
 
-		// Обновляем каждую секунду
+		// get timer values on page load
+		updateTimer();
+		// then update every second
 		setInterval(updateTimer, 1000);
 
 		function checkIfTheStageIsFinal(index: number): boolean {
@@ -146,11 +173,26 @@ export default defineComponent({
 			}
 		}
 
+		// progress bar
+		let progressBarPercents: Ref<number> = ref(0);
+
+		function getProgressBarPercentage() {
+			const { timeLeft } = getCurrentStage(props.data);
+			const twoDaysInMs: number = 172800000;
+			progressBarPercents.value = (1 - timeLeft / twoDaysInMs) * 100;
+		}
+
+		// get percents on page load
+		getProgressBarPercentage();
+		// then update percents every hour
+		setInterval(getProgressBarPercentage, 3600000);
+
 		return {
 			currentStageInfo,
 			timerValues,
 			isFinalStage,
 			checkIfTheStageIsFinal,
+			progressBarPercents,
 		};
 	},
 });

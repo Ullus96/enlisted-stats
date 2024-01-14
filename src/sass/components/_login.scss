@@ -1,0 +1,59 @@
+.login {
+	&__page-mask {
+		@include page-mask;
+	}
+
+	&__popup {
+		@include popup;
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 3rem;
+	}
+
+	&__error-msg {
+		color: $color-error;
+	}
+
+	&__input-block {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		width: 80%;
+	}
+
+	&__input-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		& input {
+			border: 1px solid $color-skill-inactive;
+			padding: 1rem 1.5rem;
+		}
+	}
+
+	&__or-text {
+		display: flex;
+		width: 80%;
+		gap: 1rem;
+		text-transform: uppercase;
+		color: $color-skill-inactive;
+
+		span {
+			transform: translateY(0.5em);
+			height: 1px;
+			flex-grow: 1;
+			background-color: $color-skill-inactive;
+		}
+	}
+
+	&__no-account {
+		a {
+			color: $color-highlight;
+			text-decoration: underline;
+		}
+	}
+}

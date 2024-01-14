@@ -26,8 +26,75 @@
 		margin-bottom: 2rem;
 	}
 
-	&__reward-title {
-		margin-bottom: 0.5rem;
+	&__reward {
+		&-block {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		&-upper-block {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			width: clamp(40rem, 50%, 100rem);
+			background-color: $color-black-light-1;
+			border-radius: 1rem;
+			overflow: hidden;
+		}
+
+		&-bar {
+			background-color: $color-black-light-1;
+			padding: 1.5rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&-bar-left {
+			position: relative;
+		}
+
+		&-bar-progress {
+			position: absolute;
+			inset: 0 0 0 0;
+			z-index: 2;
+
+			background: linear-gradient(to right, #47484a 0, transparent 0);
+		}
+
+		&-bar-animated {
+			position: absolute;
+			inset: 0 0 0 0;
+			z-index: 1;
+			background: repeating-linear-gradient(
+				-45deg,
+				rgba($color-skill-inactive, 0.1),
+				rgba($color-skill-inactive, 0.1) 10px,
+				transparent 10px,
+				transparent 20px
+			);
+			animation: progressBarAnimation 4s linear infinite;
+		}
+
+		&-text {
+			position: relative;
+			z-index: 3;
+		}
+
+		&-bar-right {
+			position: relative;
+			z-index: 3;
+			border-left: 2px solid $color-blue;
+		}
+
+		&-lower-block {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			width: clamp(40rem, 50%, 100rem);
+			padding-top: 0.5rem;
+			opacity: 0.4;
+			font-size: 1.2rem;
+		}
 	}
 
 	// card
@@ -156,5 +223,17 @@
 
 	&__all-card--active > &__counter {
 		color: $color-highlight;
+	}
+}
+
+@keyframes progressBarAnimation {
+	0% {
+		inset: 0 0 0 0;
+		// transform: translateX(0);
+	}
+
+	100% {
+		inset: 0 -28px 0 0;
+		// transform: translateX(2rem);
 	}
 }

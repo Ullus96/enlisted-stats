@@ -43,6 +43,13 @@ textarea,
 	border: none;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+	-webkit-text-fill-color: $color-white;
+	-webkit-box-shadow: 0 0 0px 40rem $color-black-light-1 inset;
+}
+
 .btn {
 	cursor: pointer;
 }

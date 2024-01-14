@@ -15,7 +15,7 @@
 							>&nbsp;&nbsp;Калькулятор</router-link
 						>
 					</li>
-					<li>
+					<li v-if="false">
 						<router-link to="/skill-builds" class="header__link"
 							><i class="fa-solid fa-book-open"></i
 							>&nbsp;&nbsp;Сборки</router-link
@@ -29,29 +29,17 @@
 					</li>
 				</ul>
 			</div>
-			<div class="header__right" v-if="false">
-				<div class="header__user-block">
-					<p class="header__user-nickname">Nickname</p>
-					<i class="fa-regular fa-user"></i>
-				</div>
-				<div class="header__profile-popup">
-					<ul class="header__profile-popup-block">
-						<li class="header__profile-link">Мои сборки</li>
-					</ul>
-					<ul class="header__profile-popup-block">
-						<li class="header__profile-link">Настройки профиля</li>
-						<li class="header__profile-link">Выйти</li>
-					</ul>
-				</div>
-			</div>
+			<login-block v-if="false"></login-block>
 		</nav>
 	</header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import LoginBlock from '@/components/login/LoginBlock.vue';
 
 export default defineComponent({
+	components: { LoginBlock },
 	setup() {},
 });
 </script>
