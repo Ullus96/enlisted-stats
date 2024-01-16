@@ -29,7 +29,7 @@
 					</li>
 				</ul>
 			</div>
-			<login-block v-if="false"></login-block>
+			<login-block></login-block>
 		</nav>
 	</header>
 </template>

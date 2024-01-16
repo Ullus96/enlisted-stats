@@ -1047,7 +1047,10 @@ h2 {
   flex-grow: 1;
   background-color: #7f8388;
 }
-.login__no-account a {
+.login__switch-states {
+  text-align: center;
+}
+.login__switch-states a {
   color: #f9da75;
   text-decoration: underline;
 }
@@ -1106,7 +1109,7 @@ h2 {
 }
 .events__reward-bar-animated {
   position: absolute;
-  inset: 0 0 0 0;
+  inset: 0 0 0 -28px;
   z-index: 1;
   background: repeating-linear-gradient(-45deg, rgba(127, 131, 136, 0.1), rgba(127, 131, 136, 0.1) 10px, transparent 10px, transparent 20px);
   animation: progressBarAnimation 4s linear infinite;
@@ -1186,7 +1189,7 @@ h2 {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .events__countdown-card {
   width: 7rem;
@@ -1251,7 +1254,7 @@ h2 {
 
 @keyframes progressBarAnimation {
   0% {
-    inset: 0 0 0 0;
+    inset: 0 0 0 -28px;
   }
   100% {
     inset: 0 -28px 0 0;

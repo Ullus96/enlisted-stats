@@ -26,3 +26,6 @@ pnpm-debug.log*
 src/sass/readme.txt
 .firebase
 /.firebase
+
+# Firebase Config
+/src/firebaseConfig.ts
