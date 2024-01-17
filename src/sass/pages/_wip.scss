@@ -1,0 +1,21 @@
+.wip {
+	&__block {
+		margin: 6rem auto 0;
+		width: 60rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		img {
+			border-radius: 1rem;
+		}
+
+		h2 {
+			margin-top: 2rem;
+		}
+
+		p {
+			margin-top: 1rem;
+		}
+	}
+}

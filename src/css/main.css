@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .mobility {
   color: #97ff94;
 }
@@ -752,6 +760,14 @@ h2 {
   right: 10%;
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .header {
   background-color: #111111;
 }
@@ -874,6 +890,14 @@ h2 {
   padding-bottom: 1rem;
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .footer {
   margin-top: 4rem;
   background-color: #111111;
@@ -1590,4 +1614,21 @@ h2 {
 .sbuild__author-date {
   color: #7f8388;
   font-size: 0.8em;
+}
+
+.wip__block {
+  margin: 6rem auto 0;
+  width: 60rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wip__block img {
+  border-radius: 1rem;
+}
+.wip__block h2 {
+  margin-top: 2rem;
+}
+.wip__block p {
+  margin-top: 1rem;
 }/*# sourceMappingURL=main.css.map */

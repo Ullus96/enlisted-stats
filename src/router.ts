@@ -21,6 +21,14 @@ export default createRouter({
 			component: () => import('@/views/SkillBuildsView.vue'),
 		},
 		{
+			path: '/my-builds',
+			component: () => import('@/views/MyBuildsView.vue'),
+		},
+		{
+			path: '/saved-builds',
+			component: () => import('@/views/SavedBuildsView.vue'),
+		},
+		{
 			path: '/profile',
 			component: () => import('@/views/ProfileView.vue'),
 		},

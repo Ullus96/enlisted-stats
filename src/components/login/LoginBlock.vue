@@ -40,21 +40,33 @@
 
 				<div class="header__breakline"></div>
 
-				<div class="header__profile-link">
+				<router-link
+					to="/my-builds"
+					@click="handleClick"
+					class="header__profile-link"
+				>
 					<i class="fa-solid fa-book-open"></i>
 					<p>Мои сборки</p>
-				</div>
-				<div class="header__profile-link">
+				</router-link>
+				<router-link
+					to="/saved-builds"
+					@click="handleClick"
+					class="header__profile-link"
+				>
 					<i class="fa-solid fa-heart"></i>
 					<p>Сохраненные</p>
-				</div>
+				</router-link>
 
 				<div class="header__breakline"></div>
 
-				<div class="header__profile-link">
+				<router-link
+					to="/profile"
+					@click="handleClick"
+					class="header__profile-link"
+				>
 					<i class="fa-solid fa-gear"></i>
 					<p>Профиль</p>
-				</div>
+				</router-link>
 				<div class="header__profile-link" @click="handleSignOut">
 					<i class="fa-solid fa-arrow-right-from-bracket"></i>
 					<p>Выйти</p>
@@ -107,12 +119,14 @@ export default defineComponent({
 		function closePopup() {
 			// isLoginPopup.value = !isLoginPopup.value;
 			store.commit('closeLoginPopup');
-			console.log('closeLoginPopup on LoginBlock.vue');
-			console.log(store.state.showLoginPopup);
 		}
 
 		function handleSignOut() {
 			signOut(getAuth());
+			closeMenu();
+		}
+
+		function handleClick() {
 			closeMenu();
 		}
 
@@ -130,6 +144,7 @@ export default defineComponent({
 			auth,
 			showMenu,
 			store,
+			handleClick,
 		};
 	},
 });
