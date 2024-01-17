@@ -1,10 +1,18 @@
 <template>
-	<div class="login__page-mask" @click.self="closePopup">
+	<div class="login__page-mask">
 		<login
 			v-if="isLoginPopup"
 			@switchToRegistration="isLoginPopup = false"
+			@loginCompleted="closePopup"
+			@closePopup="closePopup"
 		></login>
-		<register v-else @switchToLogin="isLoginPopup = true"></register>
+		<register
+			v-else
+			@switchToLogin="isLoginPopup = true"
+			@registerCompleted="closePopup"
+			@closePopup="closePopup"
+		></register>
+		<!-- TODO: Error block on successfuly login or register -->
 	</div>
 </template>
 

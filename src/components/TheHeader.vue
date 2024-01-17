@@ -4,28 +4,28 @@
 			<div class="header__left">
 				<ul class="header__links-list">
 					<li>
-						<router-link to="/" class="header__link"
-							><i class="fa-solid fa-angles-up"></i
-							>&nbsp;&nbsp;Таблица</router-link
-						>
+						<router-link to="/" class="header__link">
+							<i class="fa-solid fa-angles-up"></i>
+							<span>Таблица</span>
+						</router-link>
 					</li>
 					<li>
-						<router-link to="/calculator" class="header__link"
-							><i class="fa-solid fa-user-gear"></i
-							>&nbsp;&nbsp;Калькулятор</router-link
-						>
-					</li>
-					<li v-if="false">
-						<router-link to="/skill-builds" class="header__link"
-							><i class="fa-solid fa-book-open"></i
-							>&nbsp;&nbsp;Сборки</router-link
-						>
+						<router-link to="/calculator" class="header__link">
+							<i class="fa-solid fa-user-gear"></i>
+							<span>Калькулятор</span>
+						</router-link>
 					</li>
 					<li>
-						<router-link to="/events" class="header__link"
-							><i class="fa-regular fa-calendar"></i>&nbsp;&nbsp;Календарь
-							событий</router-link
-						>
+						<router-link to="/skill-builds" class="header__link">
+							<i class="fa-solid fa-book-open"></i>
+							<span>Сборки</span>
+						</router-link>
+					</li>
+					<li>
+						<router-link to="/events" class="header__link">
+							<i class="fa-regular fa-calendar"></i>
+							<span>Календарь событий</span>
+						</router-link>
 					</li>
 				</ul>
 			</div>

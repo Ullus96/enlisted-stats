@@ -163,11 +163,6 @@
 
 		a {
 			color: $color-highlight;
-			text-decoration: underline;
-
-			&:hover {
-				color: mix($color-highlight, $color-white, 60%);
-			}
 		}
 	}
 

@@ -696,10 +696,25 @@ h2 {
 .calculator__restriction-bg.is-transparent {
   background: none;
 }
+.calculator__tell-to-login {
+  text-align: center;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 60rem;
+}
+.calculator__tell-to-login a {
+  color: #f9da75;
+}
 .calculator__save-btn {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+}
+
+#saveBuild:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
 }
 
 .skills__block {
@@ -737,14 +752,6 @@ h2 {
   right: 10%;
 }
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 .header {
   background-color: #111111;
 }
@@ -771,12 +778,19 @@ h2 {
 .header__user-block i {
   font-size: 2.6rem;
 }
+.header__user-img {
+  height: 4.2rem;
+  border-radius: 1rem;
+}
 .header__right {
   position: relative;
 }
 .header__link {
   padding: 2rem 0;
   position: relative;
+}
+.header__link span {
+  padding-left: 1rem;
 }
 .header__link::before, .header__user-block::before {
   content: "";
@@ -810,35 +824,54 @@ h2 {
   transform-origin: right;
   transform: scaleX(1);
 }
-.header__right:hover .header__profile-popup {
-  display: block;
-}
 .header__profile-popup {
-  display: none;
+  display: block;
   position: absolute;
+  z-index: 21;
+  transform: translate(8px, -2px);
   right: 0;
   background-color: #222222;
-  width: 20rem;
-  border: 1px solid #7f8388;
-  border-radius: 0 0 1rem 1rem;
-  padding: 0.5rem 1rem 1rem;
+  width: 23rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  animation: fade-in 0.2s ease-out;
 }
 .header__profile-popup-block {
-  padding-top: 0.5rem;
-  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-.header__profile-popup-block:not(:last-child) {
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .header__profile-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
   cursor: pointer;
 }
+.header__profile-link i {
+  text-align: center;
+  width: 2rem;
+  opacity: 0.8;
+}
 .header__profile-link:hover {
-  text-decoration: underline;
+  background-color: #2b2b2b;
+}
+.header__profile-data-block {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.5rem;
+}
+.header__profile-user-img {
+  width: 5.5rem;
+  border-radius: 1rem;
+}
+.header__breakline {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 .footer {
@@ -999,6 +1032,8 @@ h2 {
   z-index: 20;
   inset: 0 0 0 0;
   background-color: rgba(17, 17, 17, 0.6);
+  opacity: 1;
+  animation: fade-in 0.1s ease-in;
 }
 .login__popup {
   position: fixed;
@@ -1015,6 +1050,12 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: 3rem;
+}
+.login__close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem;
 }
 .login__error-msg {
   color: #ff4136;
@@ -1053,6 +1094,15 @@ h2 {
 .login__switch-states a {
   color: #f9da75;
   text-decoration: underline;
+}
+
+.page-mask {
+  position: absolute;
+  z-index: 20;
+  inset: 0 0 0 0;
+  background-color: rgba(17, 17, 17, 0.25);
+  opacity: 1;
+  animation: fade-in 0.1s ease-in;
 }
 
 .events {
@@ -1433,10 +1483,6 @@ h2 {
 }
 .cc__disclaimer a {
   color: #f9da75;
-  text-decoration: underline;
-}
-.cc__disclaimer a:hover {
-  color: #fbe9ac;
 }
 .cc__btn {
   display: block;

@@ -13,6 +13,13 @@
 		gap: 3rem;
 	}
 
+	&__close-btn {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		padding: 1rem;
+	}
+
 	&__error-msg {
 		color: $color-error;
 	}

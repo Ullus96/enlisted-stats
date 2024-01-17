@@ -20,5 +20,9 @@ export default createRouter({
 			path: '/skill-builds',
 			component: () => import('@/views/SkillBuildsView.vue'),
 		},
+		{
+			path: '/profile',
+			component: () => import('@/views/ProfileView.vue'),
+		},
 	],
 });

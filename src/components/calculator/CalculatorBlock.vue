@@ -14,8 +14,25 @@
 		></calculator-branch>
 	</div>
 
+	<!-- if not authorized - tell user that he needs 
+		to login to save skill build -->
+	<template v-if="!auth">
+		<div class="calculator__tell-to-login">
+			Вы не авторизованы.
+			<a href="/login" @click.prevent="openLoginPopup"
+				>Зарегистрируйте или войдите</a
+			>
+			в учетную запись, чтобы иметь возможность сохранять сборки, а так же
+			делиться ими с другими пользователями.
+		</div>
+	</template>
 	<div class="calculator__save-btn">
-		<button class="btn btn-main" @click="saveBtnHandler">
+		<button
+			class="btn btn-main"
+			@click="saveBtnHandler"
+			:disabled="!auth"
+			id="saveBuild"
+		>
 			Сохранить сборку
 		</button>
 	</div>
@@ -68,6 +85,8 @@ import {
 	saveToLocalStorage,
 	loadFromLocalStorage,
 } from '@/functions/localStorageUtils';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useStore } from 'vuex';
 
 export default defineComponent({
 	components: { CalculatorBranch, ErrorBlock },
@@ -82,6 +101,7 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
+		const store = useStore();
 		const reactiveSkillsList = reactive(skillsList);
 
 		// Это мы получаем от выбранного солдата (переданных пропсов)
@@ -94,6 +114,22 @@ export default defineComponent({
 			resetStatsOnLoad();
 			calculateRemainingStats();
 		});
+
+		// AUTHENTIFICATION
+		let auth = ref(getAuth().currentUser);
+
+		onAuthStateChanged(getAuth(), (user) => {
+			if (user) {
+				auth.value = getAuth().currentUser;
+			} else {
+				auth.value = null;
+			}
+		});
+
+		function openLoginPopup() {
+			store.commit('showLoginPopup');
+		}
+		// ==============
 
 		function calculateRemainingStats() {
 			// Очищаем массив, чтобы сохранить его реактивность
@@ -290,6 +326,8 @@ export default defineComponent({
 			errorArray,
 			saveBtnHandler,
 			savedDataOut,
+			auth,
+			openLoginPopup,
 		};
 	},
 });

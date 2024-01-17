@@ -77,11 +77,13 @@
 	box-shadow: 0 0 2.5rem rgba($color-highlight, 0.4);
 }
 
-@mixin page-mask {
+@mixin page-mask($opacity: 0.6) {
 	position: absolute;
 	z-index: 20;
 	inset: 0 0 0 0;
-	background-color: rgba($color-black, 0.6);
+	background-color: rgba($color-black, $opacity);
+	opacity: 1;
+	animation: fade-in 0.1s ease-in;
 }
 
 @mixin popup {

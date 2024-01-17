@@ -243,10 +243,28 @@
 		}
 	}
 
+	// text if not auth
+	&__tell-to-login {
+		text-align: center;
+		margin: 2rem auto 0;
+		padding: 0 1rem;
+		width: 100%;
+		max-width: 60rem;
+
+		a {
+			color: $color-highlight;
+		}
+	}
+
 	// save btn and modal
 	&__save-btn {
 		display: flex;
 		justify-content: center;
 		margin-top: 2rem;
 	}
+}
+
+#saveBuild:disabled {
+	cursor: not-allowed;
+	opacity: 0.8;
 }
