@@ -76,6 +76,7 @@ export default defineComponent({
 		const loadedData: Ref<any[]> = ref([]);
 		function loadData(key: string) {
 			loadedData.value = loadFromLocalStorage(key);
+			console.log(loadedData.value);
 		}
 
 		function getTrueOrFalse(): boolean {

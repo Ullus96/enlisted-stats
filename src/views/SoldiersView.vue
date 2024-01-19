@@ -62,6 +62,7 @@
 			<calculator-block
 				:stats="calculateStatsByLvl(filteredItems[activeIdx].statsMod, 5)"
 				:tags="filteredItems[activeIdx].tags"
+				:soldierClass="filteredItems[activeIdx].id"
 			></calculator-block>
 		</div>
 	</template>

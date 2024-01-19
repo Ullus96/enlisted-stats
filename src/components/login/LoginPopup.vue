@@ -1,5 +1,5 @@
 <template>
-	<div class="login__page-mask">
+	<div class="modal__page-mask">
 		<login
 			v-if="isLoginPopup"
 			@switchToRegistration="isLoginPopup = false"

@@ -29,13 +29,23 @@
 	<div class="calculator__save-btn">
 		<button
 			class="btn btn-main"
-			@click="saveBtnHandler"
+			@click="showSaveModal = true"
 			:disabled="!auth"
 			id="saveBuild"
 		>
 			Сохранить сборку
 		</button>
 	</div>
+	<!-- modal on save -->
+	<Teleport to="body">
+		<calculator-save-modal
+			v-if="showSaveModal"
+			@closeModal="showSaveModal = false"
+			@saveBuild="saveBuild"
+			:soldierClass="soldierClass"
+		></calculator-save-modal>
+	</Teleport>
+
 	<!-- {{ savedDataOut }} -->
 	<div v-if="savedDataOut">
 		{{ savedDataOut.data.name }}
@@ -43,9 +53,9 @@
 		{{ savedDataOut.data.date }}
 		{{ savedDataOut.data.key }}
 	</div>
-	<div v-if="savedDataOut">
-		{{ savedDataOut.tags }}
-	</div>
+	<div v-if="savedDataOut">Tags: {{ savedDataOut.tags }}</div>
+	<div v-if="savedDataOut">SoldierClass: {{ savedDataOut.soldierClass }}</div>
+	<div v-if="savedDataOut">Stats: {{ savedDataOut.stats }}</div>
 	<div
 		style="
 			display: flex;
@@ -77,6 +87,7 @@
 import { defineComponent, onMounted, reactive, ref, Ref, watch } from 'vue';
 import skillsList from '@/data/skillsList';
 import CalculatorBranch from './CalculatorBranch.vue';
+import CalculatorSaveModal from './CalculatorSaveModal.vue';
 import { SkillBranch, SkillEntity, SkillPossibleTiers } from '@/type/Skills';
 import { SkillTag } from '@/type/SkillTag';
 import ErrorBlock from '@/components/error/ErrorBlock.vue';
@@ -89,7 +100,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useStore } from 'vuex';
 
 export default defineComponent({
-	components: { CalculatorBranch, ErrorBlock },
+	components: { CalculatorBranch, ErrorBlock, CalculatorSaveModal },
 	props: {
 		stats: {
 			required: true,
@@ -98,6 +109,11 @@ export default defineComponent({
 		tags: {
 			required: true,
 			type: Object,
+		},
+		soldierClass: {
+			required: true,
+			type: String,
+			default: 'custom',
 		},
 	},
 	setup(props) {
@@ -251,20 +267,26 @@ export default defineComponent({
 		}
 
 		// Save functionality
+		const showSaveModal: Ref<boolean> = ref(false);
 		function generateKey() {
 			return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
 		}
 
 		const savedDataOut: Ref<any> = ref('');
-		function saveBtnHandler() {
+
+		function saveBuild(payload: { title: string; isPublic: boolean }) {
+			const { title, isPublic } = payload;
 			const savedData = {
 				data: {
-					name: 'Название сборки',
-					author: 'getAuthor()',
+					name: title,
+					author: getAuthor(),
 					date: new Date(),
+					isPublic: isPublic,
 					key: generateKey(),
 				},
+				soldierClass: props.soldierClass,
 				tags: tags,
+				stats: props.stats,
 				skillsData: {
 					mobility: {
 						tier1: getSkillsLevelsFromTier(reactiveSkillsList[0], 'tier1'),
@@ -289,6 +311,12 @@ export default defineComponent({
 			loadFromLocalStorage('savedSkills');
 			saveToLocalStorage('savedSkills', savedData);
 		}
+
+		function getAuthor() {
+			const auth = getAuth();
+			return auth?.currentUser?.uid || null;
+		}
+		console.log(getAuthor());
 
 		function getSkillsLevelsFromBranch(branchIndex: number) {
 			return reactiveSkillsList[branchIndex];
@@ -324,7 +352,8 @@ export default defineComponent({
 			pointsSpentOnTier1,
 			notEnoughPoints,
 			errorArray,
-			saveBtnHandler,
+			showSaveModal,
+			saveBuild,
 			savedDataOut,
 			auth,
 			openLoginPopup,

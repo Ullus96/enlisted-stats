@@ -478,6 +478,9 @@ h2 {
 .calculator__title-block:hover .calculator__header-tooltip {
   display: block;
 }
+.calculator__title {
+  text-transform: uppercase;
+}
 .calculator__header-tooltip {
   width: 70%;
   background-color: #111111;
@@ -1051,7 +1054,16 @@ h2 {
     opacity: 0;
   }
 }
-.login__page-mask {
+.page-mask {
+  position: absolute;
+  z-index: 20;
+  inset: 0 0 0 0;
+  background-color: rgba(17, 17, 17, 0.25);
+  opacity: 1;
+  animation: fade-in 0.1s ease-in;
+}
+
+.page-mask-darker {
   position: absolute;
   z-index: 20;
   inset: 0 0 0 0;
@@ -1059,7 +1071,16 @@ h2 {
   opacity: 1;
   animation: fade-in 0.1s ease-in;
 }
-.login__popup {
+
+.modal__page-mask {
+  position: absolute;
+  z-index: 20;
+  inset: 0 0 0 0;
+  background-color: rgba(17, 17, 17, 0.6);
+  opacity: 1;
+  animation: fade-in 0.1s ease-in;
+}
+.modal__popup {
   position: fixed;
   z-index: 21;
   left: 50%;
@@ -1075,58 +1096,70 @@ h2 {
   justify-content: center;
   gap: 3rem;
 }
-.login__close-btn {
+.modal__popup-calc {
+  max-width: 50rem;
+}
+.modal__close-btn {
   position: absolute;
   top: 1rem;
   right: 1rem;
   padding: 1rem;
 }
-.login__error-msg {
+.modal__error-msg {
   color: #ff4136;
 }
-.login__input-block {
+.modal__input-block {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   width: 80%;
 }
-.login__input-item {
+.modal__input-item {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.login__input-item input {
+.modal__input-item input {
   border: 1px solid #7f8388;
   padding: 1rem 1.5rem;
 }
-.login__or-text {
+.modal__input-item-inline {
+  display: flex;
+  gap: 0.5rem;
+}
+.modal__input-item-required label::after {
+  padding-left: 0.15em;
+  content: "*";
+  color: #ff4136;
+}
+.modal__or-text {
   display: flex;
   width: 80%;
   gap: 1rem;
   text-transform: uppercase;
   color: #7f8388;
 }
-.login__or-text span {
+.modal__or-text span {
   transform: translateY(0.5em);
   height: 1px;
   flex-grow: 1;
   background-color: #7f8388;
 }
-.login__switch-states {
+.modal__switch-states {
   text-align: center;
 }
-.login__switch-states a {
+.modal__switch-states a {
   color: #f9da75;
   text-decoration: underline;
 }
-
-.page-mask {
-  position: absolute;
-  z-index: 20;
-  inset: 0 0 0 0;
-  background-color: rgba(17, 17, 17, 0.25);
-  opacity: 1;
-  animation: fade-in 0.1s ease-in;
+.modal__text-desc {
+  margin-top: -1rem;
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+.modal__btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
 }
 
 .events {

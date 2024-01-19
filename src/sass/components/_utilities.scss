@@ -1,3 +1,7 @@
 .page-mask {
 	@include page-mask(0.25);
 }
+
+.page-mask-darker {
+	@include page-mask;
+}

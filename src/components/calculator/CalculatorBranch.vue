@@ -11,6 +11,7 @@
 		<div class="calculator__title-block">
 			<h2 class="calculator__title" :class="classBasedOnIndex">
 				{{ ['Мобильность', 'Живучесть', 'Оружие'][branchIndex] }}
+				<span>{{ statsPool[branchIndex] }}</span>
 			</h2>
 			<p>
 				Нераспределенные очки:

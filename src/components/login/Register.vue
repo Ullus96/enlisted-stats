@@ -1,16 +1,16 @@
 <template>
-	<div class="login__popup">
-		<button class="btn login__close-btn" @click="closePopup">
+	<div class="modal__popup">
+		<button class="btn modal__close-btn" @click="closePopup">
 			<i class="fa-solid fa-xmark"></i>
 		</button>
 		<h2>Зарегистрироваться</h2>
-		<p class="login__error-msg" v-if="errorMsg">{{ errorMsg }}</p>
-		<div class="login__input-block">
-			<div class="login__input-item">
+		<p class="modal__error-msg" v-if="errorMsg">{{ errorMsg }}</p>
+		<div class="modal__input-block">
+			<div class="modal__input-item">
 				<label for="email">Email</label>
 				<input type="email" v-model="email" id="email" autocomplete="email" />
 			</div>
-			<div class="login__input-item">
+			<div class="modal__input-item">
 				<label for="password">Пароль</label>
 				<input
 					type="password"
@@ -19,7 +19,7 @@
 					autocomplete="new-password"
 				/>
 			</div>
-			<div class="login__input-item">
+			<div class="modal__input-item">
 				<label for="password-2">Повторите пароль</label>
 				<input
 					type="password"
@@ -32,7 +32,7 @@
 		<button class="btn btn-small btn-wide" @click="register">
 			Зарегистрироваться
 		</button>
-		<div class="login__or-text">
+		<div class="modal__or-text">
 			<span></span>
 			<p>Или</p>
 			<span></span>
@@ -40,7 +40,7 @@
 		<button class="btn btn-small btn-wide" @click="signInWithGoogle">
 			Войти с помощью Google
 		</button>
-		<div class="login__switch-states">
+		<div class="modal__switch-states">
 			<p>Есть учетная записи?</p>
 			<a href="#" @click.prevent="switchToLogin">Войти</a>
 		</div>

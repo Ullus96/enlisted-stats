@@ -29,6 +29,10 @@
 		}
 	}
 
+	&__title {
+		text-transform: uppercase;
+	}
+
 	&__header-tooltip {
 		width: 70%;
 		@include tooltip('down');

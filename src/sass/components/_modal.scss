@@ -1,4 +1,4 @@
-.login {
+.modal {
 	&__page-mask {
 		@include page-mask;
 	}
@@ -11,6 +11,10 @@
 		align-items: center;
 		justify-content: center;
 		gap: 3rem;
+
+		&-calc {
+			max-width: 50rem;
+		}
 	}
 
 	&__close-btn {
@@ -40,6 +44,19 @@
 			border: 1px solid $color-skill-inactive;
 			padding: 1rem 1.5rem;
 		}
+
+		&-inline {
+			display: flex;
+			gap: 0.5rem;
+		}
+
+		&-required {
+			label::after {
+				padding-left: 0.15em;
+				content: '*';
+				color: $color-error;
+			}
+		}
 	}
 
 	&__or-text {
@@ -63,5 +80,16 @@
 			color: $color-highlight;
 			text-decoration: underline;
 		}
+	}
+
+	&__text-desc {
+		margin-top: -1rem;
+		font-size: 0.8em;
+		opacity: 0.6;
+	}
+
+	&__btn:disabled {
+		cursor: not-allowed;
+		opacity: 0.8;
 	}
 }
