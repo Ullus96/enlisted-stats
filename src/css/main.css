@@ -1657,6 +1657,7 @@ h2 {
   align-items: center;
 }
 .wip__block img {
+  width: 70rem;
   border-radius: 1rem;
 }
 .wip__block h2 {

@@ -18,6 +18,7 @@
 								? `Оружие/отряд - название`
 								: `Оружие/особенность или название`
 						"
+						@keypress="keysPressedCounter++"
 					/>
 				</div>
 				<p class="modal__text-desc" v-if="soldierClass == 'custom'">
@@ -31,7 +32,7 @@
 					или<br />- Болтовки - скорострельность.
 				</p>
 				<div class="modal__input-item-inline">
-					<label for="isPublic">Видима для всех пользователей:</label>
+					<label for="isPublic">Видна для всех пользователей:</label>
 					<input type="checkbox" v-model="isPublic" id="isPublic" />
 				</div>
 			</div>
@@ -64,7 +65,7 @@ export default defineComponent({
 	setup(props, context) {
 		const title: Ref<string> = ref('');
 		const isPublic: Ref<boolean> = ref(true);
-		// let errorMsg: Ref<string> = ref('');
+		const keysPressedCounter: Ref<number> = ref(0);
 
 		function closeModal() {
 			context.emit('closeModal');
@@ -82,15 +83,19 @@ export default defineComponent({
 			console.log(title.value);
 			console.log(isPublic.value);
 			console.log(isBtnDisabled.value);
+			console.log(keysPressedCounter.value);
 		}
 
 		let errorMsg = computed(() => {
-			if (!title.value) {
+			if (!title.value && keysPressedCounter.value > 0) {
 				return 'Название не может быть пустым';
 			}
 		});
 
 		let isBtnDisabled = computed(() => {
+			if (keysPressedCounter.value == 0) {
+				return true;
+			}
 			return !!errorMsg.value;
 		});
 
@@ -101,6 +106,7 @@ export default defineComponent({
 			isBtnDisabled,
 			closeModal,
 			saveBuild,
+			keysPressedCounter,
 			saveTest,
 		};
 	},
