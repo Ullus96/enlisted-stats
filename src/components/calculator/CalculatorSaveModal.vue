@@ -19,6 +19,7 @@
 								: `Оружие/особенность или название`
 						"
 						@keypress="keysPressedCounter++"
+						:class="{ 'btn-error': errorMsg }"
 					/>
 				</div>
 				<p class="modal__text-desc" v-if="soldierClass == 'custom'">

@@ -1,8 +1,10 @@
 .container {
-	margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
 	min-width: 32rem;
 	max-width: 140rem;
-	// padding: 0 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
 
 	@include desktop-small {
 		max-width: 120rem;
@@ -17,6 +19,15 @@
 	// }
 }
 
+.container-sm {
+	margin-left: auto;
+	margin-right: auto;
+	min-width: 32rem;
+	max-width: 100rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
 .page-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -25,28 +36,4 @@
 
 .main {
 	flex-grow: 1;
-}
-
-.mt-s {
-	margin-top: 2rem;
-}
-
-.mt-m {
-	margin-top: 4rem;
-}
-
-.mt-l {
-	margin-top: 6rem;
-}
-
-.mb-s {
-	margin-bottom: 2rem;
-}
-
-.mb-m {
-	margin-bottom: 4rem;
-}
-
-.mb-l {
-	margin-bottom: 6rem;
 }

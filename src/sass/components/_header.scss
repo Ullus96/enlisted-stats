@@ -32,7 +32,21 @@
 
 	&__user-img {
 		height: 4.2rem;
+		width: 4.2rem;
+		object-fit: cover;
 		border-radius: 1rem;
+
+		&--blank {
+			background-color: mix(#fff, $color-skill-inactive, 10%);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			i {
+				font-size: 1.4em;
+				color: mix(#fff, $color-skill-inactive, 70%);
+			}
+		}
 	}
 
 	&__right {
