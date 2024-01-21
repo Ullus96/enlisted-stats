@@ -16,7 +16,7 @@
 			border-radius: 1rem;
 
 			&--blank {
-				background-color: mix(#fff, $color-skill-inactive, 10%);
+				background-color: $color-loading;
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -25,6 +25,23 @@
 					font-size: 1.4em;
 					color: mix(#fff, $color-skill-inactive, 70%);
 				}
+			}
+
+			&.loading {
+				background-color: $color-loading;
+
+				@include loading-animation;
+			}
+		}
+
+		&-title {
+			&.loading {
+				background-color: $color-loading;
+				color: $color-loading;
+				border-radius: 1rem;
+				width: 30%;
+
+				@include loading-animation;
 			}
 		}
 	}
@@ -36,6 +53,12 @@
 		position: relative;
 		z-index: 1;
 		border-radius: 0 0 2rem 2rem;
+
+		&.loading {
+			display: flex;
+			flex-direction: column;
+			gap: 3rem;
+		}
 	}
 
 	&__input {
@@ -83,6 +106,20 @@
 			font-size: 1.2rem;
 			opacity: 0.5;
 			text-align: right;
+		}
+
+		&-loading {
+			background-color: $color-loading;
+			color: $color-loading;
+			border-radius: 1rem;
+			font-size: 2.6rem;
+
+			@include loading-animation;
+
+			&--sm {
+				font-size: 0.7em;
+				width: 30%;
+			}
 		}
 	}
 

@@ -106,3 +106,44 @@
 	border-radius: 1rem;
 	background-color: $color-black-light-1;
 }
+
+@mixin loading-animation($color: $color-loading) {
+	position: relative;
+	overflow: hidden;
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: -1rem;
+		width: 6rem;
+		height: 250%;
+		top: -75%;
+		transform: rotateZ(30deg);
+		background: linear-gradient(
+			to right,
+			transparent 0%,
+			mix(#fff, $color-loading, 15%) 40%,
+			mix(#fff, $color-loading, 15%) 60%,
+			transparent 100%
+		);
+		animation: loading-shine 2s ease-in-out infinite;
+	}
+}
+
+@keyframes loading-shine {
+	0% {
+		left: -6rem;
+	}
+
+	20% {
+		left: -6rem;
+	}
+
+	80% {
+		left: calc(100% + 6rem);
+	}
+
+	100% {
+		left: calc(100% + 6rem);
+	}
+}

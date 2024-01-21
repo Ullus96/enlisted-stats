@@ -26,6 +26,7 @@ pnpm-debug.log*
 src/sass/readme.txt
 .firebase
 /.firebase
+/src/data/bannedSymbols.ts
 
 # Firebase Config
 /src/firebaseConfig.ts

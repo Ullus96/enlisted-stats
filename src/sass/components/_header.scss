@@ -37,10 +37,11 @@
 		border-radius: 1rem;
 
 		&--blank {
-			background-color: mix(#fff, $color-skill-inactive, 10%);
+			background-color: $color-loading;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			// @include loading-animation;
 
 			i {
 				font-size: 1.4em;

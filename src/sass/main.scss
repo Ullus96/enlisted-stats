@@ -1,6 +1,7 @@
-@import 'abstracts/mixins';
 @import 'abstracts/variables';
 @import 'abstracts/stat-colors';
+@import 'abstracts/mixins';
+@import 'abstracts/animations';
 
 @import 'base/base';
 @import 'base/typography';
@@ -16,6 +17,7 @@
 @import 'components/header';
 @import 'components/footer';
 @import 'components/error';
+@import 'components/lower-popup';
 @import 'components/utilities';
 @import 'components/modal';
 @import 'components/profile';

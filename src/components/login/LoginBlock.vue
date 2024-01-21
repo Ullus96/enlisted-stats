@@ -21,7 +21,7 @@
 		<div class="header__right" v-if="isLoggedIn">
 			<div class="header__user-block" @click="showMenu = true">
 				<p class="header__user-nickname" v-if="auth?.currentUser?.displayName">
-					{{ auth.currentUser.displayName }}
+					{{ store.state.displayName || auth.currentUser.displayName }}
 				</p>
 				<p class="header__user-nickname" v-else>Профиль</p>
 
