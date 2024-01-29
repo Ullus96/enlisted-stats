@@ -6,7 +6,8 @@ const router = createRouter({
 	history: createWebHistory(),
 	routes: [
 		{
-			path: '/',
+			path: '/:id?',
+			name: 'Home',
 			component: SoldiersView,
 			meta: {
 				title: 'Таблица бойцов',
@@ -14,6 +15,7 @@ const router = createRouter({
 		},
 		{
 			path: '/events',
+			name: 'Events',
 			component: () => import('@/views/EventsView.vue'),
 			meta: {
 				title: 'События',
@@ -21,6 +23,7 @@ const router = createRouter({
 		},
 		{
 			path: '/calculator',
+			name: 'Calculator',
 			component: () => import('@/views/CustomCalculatorView.vue'),
 			meta: {
 				title: 'Калькулятор',
@@ -28,6 +31,7 @@ const router = createRouter({
 		},
 		{
 			path: '/skill-builds',
+			name: 'Skill builds',
 			component: () => import('@/views/SkillBuildsView.vue'),
 			meta: {
 				title: 'Список сборок',
@@ -35,6 +39,7 @@ const router = createRouter({
 		},
 		{
 			path: '/my-builds',
+			name: 'My builds',
 			component: () => import('@/views/MyBuildsView.vue'),
 			meta: {
 				title: 'Мои сборки',
@@ -43,6 +48,7 @@ const router = createRouter({
 		},
 		{
 			path: '/saved-builds',
+			name: 'Saved builds',
 			component: () => import('@/views/SavedBuildsView.vue'),
 			meta: {
 				title: 'Сохраненные сборки',
@@ -51,6 +57,7 @@ const router = createRouter({
 		},
 		{
 			path: '/profile',
+			name: 'Profile',
 			component: () => import('@/views/ProfileView.vue'),
 			meta: {
 				title: 'Профиль',

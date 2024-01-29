@@ -5,15 +5,31 @@
 				<h2 class="cc__stats-title">Распределить характеристики солдата</h2>
 				<div class="cc__stats-flexbox">
 					<div class="cc__stat-item">
-						<input type="number" class="cc__stat-amount" v-model="stats[0]" />
+						<input
+							type="number"
+							class="cc__stat-amount"
+							v-model="stats[0]"
+							id="ccFirstStat"
+							placeholder="16"
+						/>
 						<p class="cc__stat-name mobility-bg">Мобильность</p>
 					</div>
 					<div class="cc__stat-item">
-						<input type="number" class="cc__stat-amount" v-model="stats[1]" />
+						<input
+							type="number"
+							class="cc__stat-amount"
+							v-model="stats[1]"
+							placeholder="16"
+						/>
 						<p class="cc__stat-name vitality-bg">Живучесть</p>
 					</div>
 					<div class="cc__stat-item">
-						<input type="number" class="cc__stat-amount" v-model="stats[2]" />
+						<input
+							type="number"
+							class="cc__stat-amount"
+							v-model="stats[2]"
+							placeholder="16"
+						/>
 						<p class="cc__stat-name weapon-handling-bg">Оружие</p>
 					</div>
 				</div>
@@ -55,6 +71,7 @@
 			<button
 				class="btn btn-main cc__btn"
 				@click.prevent="isEditingSettings = !isEditingSettings"
+				:disabled="isDisabled"
 			>
 				Продолжить <i class="fa-solid fa-arrow-right"></i>
 			</button>
@@ -86,7 +103,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, Ref } from 'vue';
+import {
+	computed,
+	defineComponent,
+	nextTick,
+	onMounted,
+	reactive,
+	ref,
+	Ref,
+} from 'vue';
 import { avaliableTags } from '@/data/customCalculatorTags';
 import CCTagItem from '@/components/cc/CCTagItem.vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
@@ -95,7 +120,7 @@ import { useRouter } from 'vue-router';
 export default defineComponent({
 	components: { CCTagItem, CalculatorBlock },
 	setup() {
-		const stats = reactive([16, 16, 16]);
+		const stats = reactive([null, null, null]);
 		const tags = reactive(['base']);
 		const isEditingSettings: Ref<boolean> = ref(true);
 
@@ -123,7 +148,39 @@ export default defineComponent({
 			}
 		}
 
-		return { avaliableTags, stats, tags, tagClicked, isEditingSettings };
+		// https://stackoverflow.com/a/76009015
+		const setFocusToElement = async () => {
+			nextTick(() => {
+				const element = document.getElementById('ccFirstStat');
+				if (element) {
+					element.focus();
+				}
+			});
+		};
+
+		onMounted(() => {
+			setFocusToElement();
+		});
+
+		const isDisabled = computed(() => {
+			let isNotFilled = false;
+			stats.forEach((elem) => {
+				if (!elem) {
+					isNotFilled = true;
+				}
+			});
+
+			return isNotFilled;
+		});
+
+		return {
+			avaliableTags,
+			stats,
+			tags,
+			tagClicked,
+			isEditingSettings,
+			isDisabled,
+		};
 	},
 });
 </script>

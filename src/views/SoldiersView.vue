@@ -93,6 +93,7 @@ import {
 	defineComponent,
 	nextTick,
 	onMounted,
+	onUnmounted,
 	onUpdated,
 	ref,
 } from 'vue';
@@ -102,6 +103,7 @@ import CalculatorBranch from '@/components/calculator/CalculatorTier.vue';
 import CalculatorSkill from '@/components/calculator/CalculatorSkill.vue';
 import { calculateStatsByLvl } from '@/functions/characterUtils';
 import { items } from '@/data/soldiersList';
+import { useRoute, useRouter } from 'vue-router';
 
 export default defineComponent({
 	name: 'App',
@@ -115,14 +117,18 @@ export default defineComponent({
 	setup() {
 		const isFilteredToClass: Ref<boolean> = ref(false);
 		const activeIdx: Ref<number> = ref(0);
+		const route = useRoute();
+		const router = useRouter();
 
 		function handleClick(idx: number) {
 			isFilteredToClass.value = true;
 			activeIdx.value = idx;
+			router.push({ name: 'Home', params: { id: idx } });
 		}
 
 		function removeFilter() {
 			isFilteredToClass.value = false;
+			router.push({ name: 'Home' });
 		}
 
 		function getImgPath(link: string): string {
@@ -171,13 +177,37 @@ export default defineComponent({
 			});
 		};
 
+		// route manipulation
+		function handleRoute() {
+			if (+route.params.id > 0 && +route.params.id < items.length) {
+				handleClick(+route.params.id);
+			} else {
+				router.push({ name: 'Home' });
+			}
+		}
+
 		onMounted(() => {
 			setFocusToElement();
+			handleRoute();
+			window.addEventListener('popstate', handlePopState);
 		});
 
 		onUpdated(() => {
 			setFocusToElement();
 		});
+
+		onUnmounted(() => {
+			window.removeEventListener('popstate', handlePopState);
+		});
+
+		const handlePopState = () => {
+			// При изменении истории (например, нажатии "назад")
+			// Ты можешь проверить текущий путь и выполнить необходимые действия
+			const path = router.currentRoute.value.path;
+			if (path === '/') {
+				isFilteredToClass.value = false;
+			}
+		};
 
 		return {
 			items,
