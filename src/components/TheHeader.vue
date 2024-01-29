@@ -4,7 +4,7 @@
 			<div class="header__left">
 				<ul class="header__links-list">
 					<li>
-						<router-link to="/" class="header__link">
+						<router-link :to="{ name: 'Home' }" class="header__link">
 							<i class="fa-solid fa-angles-up"></i>
 							<span>Таблица</span>
 						</router-link>

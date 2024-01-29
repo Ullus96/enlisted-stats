@@ -34,12 +34,11 @@
 	</div>
 
 	<template v-if="!isFilteredToClass">
-		<item-row
-			v-for="(item, idx) in filteredItems"
-			:key="item.id"
-			:item="item"
-			@click="handleClick(idx)"
-		></item-row>
+		<template v-for="(item, idx) in filteredItems" :key="item.id">
+			<router-link :to="{ name: 'Home', params: { id: idx > 0 ? idx : '' } }">
+				<item-row :item="item" @click="handleClick(idx)"></item-row>
+			</router-link>
+		</template>
 	</template>
 
 	<!-- render single selected soldier -->
@@ -103,7 +102,7 @@ import CalculatorBranch from '@/components/calculator/CalculatorTier.vue';
 import CalculatorSkill from '@/components/calculator/CalculatorSkill.vue';
 import { calculateStatsByLvl } from '@/functions/characterUtils';
 import { items } from '@/data/soldiersList';
-import { useRoute, useRouter } from 'vue-router';
+import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
 
 export default defineComponent({
 	name: 'App',
@@ -178,8 +177,16 @@ export default defineComponent({
 		};
 
 		// route manipulation
+		function isInItemsRange() {
+			if (typeof route.params.id === 'undefined') {
+				return false;
+			}
+
+			return +route.params.id > 0 && +route.params.id < items.length;
+		}
+
 		function handleRoute() {
-			if (+route.params.id > 0 && +route.params.id < items.length) {
+			if (isInItemsRange()) {
 				handleClick(+route.params.id);
 			} else {
 				router.push({ name: 'Home' });
@@ -203,9 +210,12 @@ export default defineComponent({
 		const handlePopState = () => {
 			// При изменении истории (например, нажатии "назад")
 			// Ты можешь проверить текущий путь и выполнить необходимые действия
-			const path = router.currentRoute.value.path;
+			// const path = router.currentRoute.value.path;
+			const path = route.path;
 			if (path === '/') {
 				isFilteredToClass.value = false;
+			} else if (isInItemsRange()) {
+				handleClick(+route.params.id);
 			}
 		};
 
