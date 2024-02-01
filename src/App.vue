@@ -2,7 +2,7 @@
 	<div class="page-wrapper">
 		<the-header></the-header>
 		<main class="main">
-			<router-view :key="$route.fullPath"></router-view>
+			<router-view></router-view>
 		</main>
 		<the-footer></the-footer>
 	</div>

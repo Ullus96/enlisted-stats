@@ -33,12 +33,14 @@
 		<div class="table-header__col table-header__col--desc">Начальный перк</div>
 	</div>
 
+	<!-- table itself -->
 	<template v-if="!isFilteredToClass">
-		<template v-for="(item, idx) in filteredItems" :key="item.id">
-			<router-link :to="{ name: 'Home', params: { id: idx > 0 ? idx : '' } }">
-				<item-row :item="item" @click="handleClick(idx)"></item-row>
-			</router-link>
-		</template>
+		<item-row
+			v-for="(item, idx) in filteredItems"
+			:key="item.id"
+			:item="item"
+			@click="handleClick(idx)"
+		></item-row>
 	</template>
 
 	<!-- render single selected soldier -->
@@ -122,7 +124,6 @@ export default defineComponent({
 		function handleClick(idx: number) {
 			isFilteredToClass.value = true;
 			activeIdx.value = idx;
-			router.push({ name: 'Home', params: { id: idx } });
 		}
 
 		function removeFilter() {
@@ -176,48 +177,13 @@ export default defineComponent({
 			});
 		};
 
-		// route manipulation
-		function isInItemsRange() {
-			if (typeof route.params.id === 'undefined') {
-				return false;
-			}
-
-			return +route.params.id > 0 && +route.params.id < items.length;
-		}
-
-		function handleRoute() {
-			if (isInItemsRange()) {
-				handleClick(+route.params.id);
-			} else {
-				router.push({ name: 'Home' });
-			}
-		}
-
 		onMounted(() => {
 			setFocusToElement();
-			handleRoute();
-			window.addEventListener('popstate', handlePopState);
 		});
 
 		onUpdated(() => {
 			setFocusToElement();
 		});
-
-		onUnmounted(() => {
-			window.removeEventListener('popstate', handlePopState);
-		});
-
-		const handlePopState = () => {
-			// При изменении истории (например, нажатии "назад")
-			// Ты можешь проверить текущий путь и выполнить необходимые действия
-			// const path = router.currentRoute.value.path;
-			const path = route.path;
-			if (path === '/') {
-				isFilteredToClass.value = false;
-			} else if (isInItemsRange()) {
-				handleClick(+route.params.id);
-			}
-		};
 
 		return {
 			items,
