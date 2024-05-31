@@ -55,6 +55,8 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup,
 } from 'firebase/auth';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { db } from '@/firebase/firebase';
 
 export default defineComponent({
 	setup(props, context) {
@@ -67,9 +69,19 @@ export default defineComponent({
 		function register() {
 			const auth = getAuth();
 			createUserWithEmailAndPassword(auth, email.value, password.value)
-				.then((data) => {
-					console.log('Регистрация прошла удачно!');
-					console.log(auth.currentUser);
+				.then(async (data) => {
+					// console.log('Регистрация прошла удачно!');
+					// console.log(auth.currentUser);
+
+					try {
+						await setDoc(doc(db, 'users', data.user.uid), {
+							displayName: data.user.displayName,
+							photoURL: data.user.photoURL,
+						});
+					} catch (err: any) {
+						console.log('Error on creating `users` instance: ', err.message);
+					}
+
 					context.emit('registerCompleted');
 				})
 				.catch((error) => {
@@ -80,9 +92,19 @@ export default defineComponent({
 		function signInWithGoogle() {
 			const provider = new GoogleAuthProvider();
 			signInWithPopup(getAuth(), provider)
-				.then((result) => {
+				.then(async (data) => {
 					console.log('Регистрация прошла удачно!');
 					console.log(getAuth().currentUser);
+
+					try {
+						await setDoc(doc(db, 'users', data.user.uid), {
+							displayName: data.user.displayName,
+							photoURL: data.user.photoURL,
+						});
+					} catch (err: any) {
+						console.log('Error on creating `users` instance: ', err.message);
+					}
+
 					context.emit('registerCompleted');
 				})
 				.catch((error) => {

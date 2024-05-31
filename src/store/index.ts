@@ -4,6 +4,7 @@ export default createStore({
 	state: {
 		showLoginPopup: false,
 		displayName: '',
+		inDevelop: !false,
 	},
 	mutations: {
 		showLoginPopup(state) {

@@ -8,19 +8,28 @@
 						роде, можете связаться со мной:
 					</p>
 					<div class="footer__links-block">
-						<div class="footer__link-w-tooltip">
-							<p class="footer__link">
-								<i class="fa-brands fa-discord"></i> Discord
+						<div class="footer__link">
+							<p><i class="fa-brands fa-discord"></i> @ullus77</p>
+						</div>
+						<!-- <div class="footer__link-w-tooltip">
+							<p>
+								<i class="fa-brands fa-discord"></i> @ullus77
 							</p>
 							<div class="footer__link-tooltip">ullus77</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="footer__col">
 					<p class="footer__legal">
-						Enlisted — зарегистрированная товарная марка Gaijin Games Kft. Этот
-						сайт не аффилирован с Gaijin Games Kft. Все игровые изображения и
-						имена являются собственностью Gaijin Games Kft.
+						<span
+							>Enlisted — зарегистрированная товарная марка Gaijin Games
+							Kft.</span
+						><br />
+						<span
+							>Этот сайт не аффилирован с Gaijin Games Kft. Все игровые
+							изображения и имена являются собственностью Gaijin Games
+							Kft.</span
+						>
 					</p>
 				</div>
 			</div>

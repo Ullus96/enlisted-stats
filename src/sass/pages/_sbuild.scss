@@ -11,10 +11,17 @@
 		border-radius: 1rem;
 		padding: 1rem;
 		cursor: pointer;
+		position: relative;
 
 		&:hover {
 			background-color: $color-black-light-2;
 		}
+	}
+
+	&__link {
+		position: absolute;
+		z-index: 3;
+		inset: 0 0 0 0;
 	}
 
 	&__header-block {
@@ -24,12 +31,28 @@
 		margin-bottom: 2px;
 	}
 
-	&__likes-block {
-		padding-left: 5px;
+	&__name {
 		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding-right: 4rem;
+	}
+
+	&__visibility {
+		font-size: 0.6em;
+		vertical-align: middle;
+		color: rgba($color-white, 0.6);
+	}
+
+	&__likes-block {
+		position: absolute;
+		right: 0.5rem;
+		top: 0.5rem;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 2px;
 
 		&:hover {
 			.sbuild {
@@ -38,10 +61,6 @@
 				}
 			}
 		}
-	}
-
-	&__likes-amount {
-		padding-top: 2px;
 	}
 
 	&__likes-svg {
@@ -75,6 +94,33 @@
 		}
 	}
 	// end
+
+	// Likes animation
+	&__icon {
+		&-container {
+			position: relative;
+		}
+
+		&-sub {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			opacity: 1;
+			transition: top 0.6s ease-out, left 0.6s ease-out, opacity 0.6s ease-out;
+
+			& path {
+				stroke: $color-error !important;
+				fill: $color-error !important;
+			}
+		}
+
+		&-main {
+			position: relative;
+			z-index: 2;
+		}
+	}
+	// end of likes animation
 
 	&__data-block {
 		display: flex;
@@ -133,5 +179,85 @@
 	&__author-date {
 		color: $color-skill-inactive;
 		font-size: 0.8em;
+	}
+
+	// single build page
+	&__single-build {
+		cursor: default;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+
+		& .sbuild__likes-block {
+			cursor: pointer;
+		}
+	}
+
+	&__load-more {
+		margin-top: 2rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	&__no-more-text-block {
+		margin-top: 2rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	&__no-more-text {
+		display: block;
+		padding: 1.2rem 0;
+	}
+
+	// delete btn
+	&__delete-btn {
+		color: $color-loading;
+		padding: 0.6rem;
+		border-radius: 0.6rem;
+		align-self: center;
+		transition: 0.2s ease-in-out color;
+
+		&:hover {
+			color: $color-white;
+		}
+	}
+
+	&__delete-popup {
+		@include popup;
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+
+		&-btns {
+			display: flex;
+			gap: 1rem;
+		}
+
+		&-title {
+			font-weight: normal;
+		}
+
+		&-name {
+			font-weight: 700;
+		}
+
+		&-btn {
+			&--inner {
+				padding: 1.2rem 2.4rem;
+				border-radius: 1rem;
+			}
+
+			&--yes {
+				background-color: $color-error;
+			}
+
+			&--no {
+				background-color: $color-black-light-2;
+			}
+		}
 	}
 }

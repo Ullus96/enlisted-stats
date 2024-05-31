@@ -1,4 +1,4 @@
-import { SoldierName } from './SoldierName';
+import { SoldierName } from './Soldier';
 
 export interface ICCTagEntity {
 	name: string;

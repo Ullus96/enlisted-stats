@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SoldiersView from '@/views/SoldiersView.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { checkIfUserAnAdmin } from '@/components/login/functions/checkIfUserAnAdmin';
+import { adminsList } from './firebase/adminsList';
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -38,6 +40,14 @@ const router = createRouter({
 			},
 		},
 		{
+			path: '/build/:id',
+			name: 'Build',
+			component: () => import('@/views/SingleBuildView.vue'),
+			meta: {
+				title: 'Сборка',
+			},
+		},
+		{
 			path: '/my-builds',
 			name: 'My builds',
 			component: () => import('@/views/MyBuildsView.vue'),
@@ -64,6 +74,16 @@ const router = createRouter({
 				requiresAuth: true,
 			},
 		},
+		{
+			path: '/admin',
+			name: 'Admin',
+			component: () => import('@/views/AdminPanelView.vue'),
+			meta: {
+				title: 'Панель администратора',
+				requiresAuth: true,
+				requiredAdminRights: true,
+			},
+		},
 	],
 });
 
@@ -86,6 +106,21 @@ router.beforeEach(async (to, from, next) => {
 	// If the route has a title, set it as the page title of the document/page
 	if (title) {
 		document.title = title;
+	}
+
+	if (to.matched.some((record) => record.meta.requiredAdminRights)) {
+		try {
+			const user: any = await getCurrentUser();
+			const uid = user.uid;
+			if (adminsList.includes(uid)) {
+				next();
+			} else {
+				next('/');
+			}
+		} catch (error) {
+			console.error('Error getting current user:', error);
+			next('/');
+		}
 	}
 
 	if (to.matched.some((record) => record.meta.requiresAuth)) {

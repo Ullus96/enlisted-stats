@@ -75,7 +75,7 @@
 							<i class="fa-solid fa-check"></i>
 						</button>
 					</div>
-					<div class="profile__input-lower-info">
+					<div class="profile__input-lower-info--inline-btn">
 						<p class="profile__input-error">
 							{{ errorMsg }}
 						</p>
@@ -154,6 +154,8 @@ import { useRoute, useRouter } from 'vue-router';
 import bannedSymbols from '@/data/bannedSymbols';
 import LowerPopUp from '@/components/error/LowerPopUp.vue';
 import { useStore } from 'vuex';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '@/firebase/firebase';
 
 export default defineComponent({
 	components: { WorkInProgress, LowerPopUp },
@@ -208,11 +210,24 @@ export default defineComponent({
 				updateProfile(auth.currentUser, {
 					displayName: newName.value,
 				})
-					.then(() => {
+					.then(async () => {
 						popUpMsg.type = 'success';
 						popUpMsg.title = 'Имя изменено';
 						popUpMsg.desc = 'Ваше новое имя: ' + newName.value;
 						store.commit('setNewDisplayName', newName.value);
+						// add data to DB
+						if (auth.currentUser) {
+							try {
+								await setDoc(doc(db, 'users', auth.currentUser.uid), {
+									displayName: newName.value,
+									photoURL: auth.currentUser.photoURL,
+								});
+							} catch (err: any) {
+								console.log('Error adding document: ', err.message);
+							}
+						}
+
+						// clear the inputs
 						newName.value = '';
 						keysPressedCounter.value = 0;
 

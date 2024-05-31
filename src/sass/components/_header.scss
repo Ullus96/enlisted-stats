@@ -30,6 +30,20 @@
 		}
 	}
 
+	&__user-nickname {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		&--admin {
+			& > i {
+				color: $color-highlight;
+				font-size: 1em;
+				vertical-align: middle;
+			}
+		}
+	}
+
 	&__user-img {
 		height: 4.2rem;
 		width: 4.2rem;

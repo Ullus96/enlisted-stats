@@ -57,6 +57,17 @@
 				color: $color-error;
 			}
 		}
+
+		&-counter {
+			text-align: right;
+			color: $color-skill-inactive;
+			font-size: 0.75em;
+			transition: 0.15s ease-in-out color;
+
+			&--error {
+				color: $color-error;
+			}
+		}
 	}
 
 	&__or-text {

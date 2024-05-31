@@ -34,6 +34,7 @@
 			:branchIndex="branchIndex"
 			:branchTier="'tier1'"
 			:branchRemainingStats="getRemainingStats(branchIndex)"
+			:soldierClass="soldierClass"
 			@statChanged="statChanged"
 			@notEnoughPoints="notEnoughPoints"
 		></calculator-tier>
@@ -57,6 +58,7 @@
 				:branchIndex="branchIndex"
 				:branchTier="'tier2'"
 				:branchRemainingStats="getRemainingStats(branchIndex)"
+				:soldierClass="soldierClass"
 				@statChanged="statChanged"
 				@notEnoughPoints="notEnoughPoints"
 			></calculator-tier>
@@ -69,6 +71,7 @@
 				:branchIndex="branchIndex"
 				:branchTier="'tier3'"
 				:branchRemainingStats="getRemainingStats(branchIndex)"
+				:soldierClass="soldierClass"
 				@statChanged="statChanged"
 				@notEnoughPoints="notEnoughPoints"
 			></calculator-tier>
@@ -77,10 +80,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 import CalculatorTier from './CalculatorTier.vue';
 import CalculatorRestriction from './CalculatorRestriction.vue';
 import { SkillPossibleTiers } from '@/type/Skills';
+import { SoldierID } from '@/type/Soldier';
 
 export default defineComponent({
 	components: { CalculatorTier, CalculatorRestriction },
@@ -91,6 +95,7 @@ export default defineComponent({
 		remainingStats: { required: true, type: Object },
 		tags: { required: true, type: Object },
 		pointsSpentOnTier1: { required: true, type: Number },
+		soldierClass: { required: true, type: String as PropType<SoldierID> },
 	},
 	setup(props, context) {
 		type PossibleClass = 'mobility' | 'vitality' | 'weapon-handling';

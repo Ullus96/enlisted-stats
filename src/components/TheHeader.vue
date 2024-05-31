@@ -29,7 +29,7 @@
 					</li>
 				</ul>
 			</div>
-			<login-block></login-block>
+			<login-block v-if="$store.state.inDevelop"></login-block>
 		</nav>
 	</header>
 </template>

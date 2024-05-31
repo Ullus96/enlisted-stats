@@ -11,10 +11,10 @@
 	}
 
 	&__title {
-		font-family: 'Caveat', cursive;
+		font-family: 'machine', monospace;
+		letter-spacing: 3px;
 		font-size: 4.6rem;
 		font-weight: 700;
-		color: $color-highlight;
 		margin-bottom: 1rem;
 	}
 
@@ -109,6 +109,12 @@
 
 		width: 10rem;
 		padding: 1rem;
+
+		&.finish {
+			& > .finish {
+				color: $color-skill-inactive;
+			}
+		}
 	}
 
 	&__counter {

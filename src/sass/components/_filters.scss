@@ -1,0 +1,150 @@
+.filter {
+	&__block {
+		position: relative;
+		display: flex;
+		width: 100%;
+		background: $color-black-light-1;
+		padding: 2rem 2rem;
+		gap: 3rem;
+		// margin-bottom: 2rem;
+	}
+
+	&__item {
+		position: relative;
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	&__selected {
+		display: flex;
+		gap: 0.35rem;
+		transition: 0.15s ease-in-out color;
+
+		&:hover {
+			color: $color-highlight;
+		}
+	}
+
+	&__chevron {
+		font-size: 0.8em;
+		transition: 0.15s ease-out transform;
+
+		&.rotate {
+			transform: rotateX(-180deg);
+		}
+	}
+
+	// Classes
+	&__classes-block {
+		z-index: 21;
+		position: absolute;
+		left: 0;
+		top: 90%;
+		background: $color-black-light-2;
+		padding: 2rem 3rem;
+		box-shadow: 0 0 2.5rem rgba($color-black, 0.4);
+		border-radius: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+	}
+
+	&__group {
+		display: flex;
+		background: $color-black-light-1;
+		border: 1px solid $color-skill-inactive;
+		border-radius: 1rem;
+	}
+
+	&__icon {
+		height: 1.25em;
+	}
+
+	&__class {
+		padding: 1rem 1rem 1rem 0.5rem;
+		border-radius: 1rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		transition: 0.15s ease-in-out background, 0.15s ease-in-out color;
+
+		&.gap-none {
+			gap: 0;
+		}
+		&.gap-m {
+			gap: 0.35rem;
+		}
+		&.gap-l {
+			gap: 0.5rem;
+		}
+
+		&--no-icons {
+			&:nth-child(1) {
+				padding: 1rem 1rem 1rem 1.5rem;
+			}
+			&:last-child {
+				padding: 1rem 1.5rem 1rem 1rem;
+			}
+		}
+
+		&:hover {
+			background: $color-black;
+			color: $color-highlight;
+		}
+	}
+
+	// sort by
+	&__sort-by-block {
+		z-index: 21;
+		position: absolute;
+		left: 50%;
+		top: 90%;
+		transform: translateX(-50%);
+		background: $color-black-light-2;
+		padding: 1.5rem 1rem;
+		box-shadow: 0 0 2.5rem rgba($color-black, 0.4);
+		border-radius: 1rem;
+		min-width: 20rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	&__sort-by-desc {
+		font-size: 0.75em;
+		opacity: 0.8;
+		padding: 0.5rem 2rem 1rem;
+	}
+
+	&__sort-item {
+		padding: 1rem 2rem;
+		width: 100%;
+		border-radius: 1rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		transition: 0.15s ease-in-out background, 0.15s ease-in-out color;
+
+		&:hover {
+			background: $color-black-light-1;
+			// color: $color-highlight;
+		}
+	}
+
+	&__title-block {
+		border-radius: 1rem 1rem 0 0;
+		padding: 2rem 2rem 1rem;
+		background-color: $color-black-light-1;
+	}
+
+	// under
+	&__under {
+		background-color: $color-black-light-2;
+		width: 100%;
+		margin-bottom: 2rem;
+		padding: 1rem 2rem 2rem;
+		border-radius: 0 0 1rem 1rem;
+	}
+}

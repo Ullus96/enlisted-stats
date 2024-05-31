@@ -1,16 +1,15 @@
 <template>
-	<div class="container">
-		<work-in-progress></work-in-progress>
-	</div>
+	<builds-block :from="'liked'" :title="'Сохраненные сборки'"></builds-block>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { getAuth } from 'firebase/auth';
-import WorkInProgress from '@/components/no-page/WorkInProgress.vue';
+import BuildsBlock from '@/components/build/BuildsBlock.vue';
 
 export default defineComponent({
-	components: { WorkInProgress },
-	setup() {},
+	components: { BuildsBlock },
+	setup() {
+		return {};
+	},
 });
 </script>

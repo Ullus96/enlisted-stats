@@ -3,7 +3,7 @@
 		<div class="events container">
 			<div class="events__count-block">
 				<!-- check if there is more stages -->
-				<div class="events__title">{{ data.name }}</div>
+				<div class="events__title">{{ data.name }}.</div>
 				<template v-if="checkIfTheStageIsFinal(currentStageInfo.index + 1)">
 					<h2 class="events__count-title">
 						Следующий этап [{{ currentStageInfo.index + 2 }}/{{
@@ -75,6 +75,18 @@
 							'events__all-card--active': index === currentStageInfo.index,
 						}"
 					></events-card>
+
+					<div class="events__card events__all-card finish">
+						<div class="events__card-tooltip">
+							<p>Конец события</p>
+						</div>
+						<p class="events__counter">
+							<i class="fa-regular fa-flag"></i>
+						</p>
+						<p class="events__date finish">{{ day }}</p>
+						<p class="events__month finish">{{ month }}</p>
+						<p class="events__time finish">{{ hours }}:00</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -187,12 +199,38 @@ export default defineComponent({
 		// then update percents every hour
 		setInterval(getProgressBarPercentage, 3600000);
 
+		const options: Intl.DateTimeFormatOptions = {
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+			hour: 'numeric',
+			minute: 'numeric',
+			second: 'numeric',
+			timeZoneName: 'short',
+		};
+
+		// не локальное время
+		// const day = props.date.getDate(); // Получаем число
+		// const month = props.date.getMonth() + 1; // Месяцы в JavaScript начинаются с 0, поэтому добавляем 1
+		// const hours = props.date.getHours(); // Получаем часы
+
+		const localDateTime = props.data.endDate.toLocaleString('ru-RU', options);
+		const parts = localDateTime.split(',');
+
+		const day = parts[1].split(' ')[1];
+		const month = parts[1].split(' ')[2];
+		const hours = parts[1].split(' ')[6].split(':')[0];
+
 		return {
 			currentStageInfo,
 			timerValues,
 			isFinalStage,
 			checkIfTheStageIsFinal,
 			progressBarPercents,
+			day,
+			month,
+			hours,
 		};
 	},
 });

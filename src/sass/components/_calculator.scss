@@ -105,6 +105,12 @@
 			border: 3px solid $color-weapon-handling;
 			filter: none;
 		}
+
+		&.soldier-perk {
+			border: 3px solid $color-highlight;
+			background-color: $color-black-light-1;
+			filter: none;
+		}
 	}
 
 	&__tooltip {

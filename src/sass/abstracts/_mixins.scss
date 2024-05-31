@@ -45,10 +45,10 @@
 	left: 50%;
 
 	@if $direction == 'up' {
-		top: 0;
+		top: -5px;
 		transform: translate(-50%, -100%);
 	} @else if $direction == 'down' {
-		bottom: 0;
+		bottom: -5px;
 		transform: translate(-50%, 100%);
 	}
 

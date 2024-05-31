@@ -30,3 +30,5 @@ src/sass/readme.txt
 
 # Firebase Config
 /src/firebaseConfig.ts
+/src/firebase/firebaseConfig.ts
+/src/firebase/adminsList.ts

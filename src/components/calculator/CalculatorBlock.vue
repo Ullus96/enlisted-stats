@@ -9,6 +9,7 @@
 			:statsPool="statsPool"
 			:tags="tags"
 			:pointsSpentOnTier1="pointsSpentOnTier1"
+			:soldierClass="soldierClass"
 			@statChanged="statChanged"
 			@notEnoughPoints="notEnoughPoints"
 		></calculator-branch>
@@ -26,16 +27,32 @@
 			делиться ими с другими пользователями.
 		</div>
 	</template>
-	<div class="calculator__save-btn">
-		<button
-			class="btn btn-main"
-			@click="showSaveModal = true"
-			:disabled="!auth"
-			id="saveBuild"
-		>
-			Сохранить сборку
-		</button>
-	</div>
+	<!-- Default behaviour if opened by Table or Calculator -->
+	<template v-if="!isOpenedBySkillBuild">
+		<div class="calculator__save-btn">
+			<button
+				class="btn btn-main"
+				@click="showSaveModal = true"
+				:disabled="!auth"
+				id="saveBuild"
+			>
+				Сохранить сборку
+			</button>
+		</div>
+	</template>
+	<!-- behaviour on change already created build -->
+	<template v-if="openedInSingleBuild">
+		<div class="calculator__save-btn">
+			<button
+				class="btn btn-main"
+				@click="showSaveModal = true"
+				:disabled="!auth"
+				id="saveBuild"
+			>
+				Сохранить сборку
+			</button>
+		</div>
+	</template>
 	<!-- modal on save -->
 	<Teleport to="body">
 		<calculator-save-modal
@@ -43,48 +60,18 @@
 			@closeModal="showSaveModal = false"
 			@saveBuild="saveBuild"
 			:soldierClass="soldierClass"
+			:openedInSingleBuild="openedInSingleBuild"
+			:item="item"
+			@modifyBuild="modifyBuild"
 		></calculator-save-modal>
 	</Teleport>
-
-	<!-- {{ savedDataOut }} -->
-	<div v-if="savedDataOut">
-		{{ savedDataOut.data.name }}
-		{{ savedDataOut.data.author }}
-		{{ savedDataOut.data.date }}
-		{{ savedDataOut.data.key }}
-	</div>
-	<div v-if="savedDataOut">Tags: {{ savedDataOut.tags }}</div>
-	<div v-if="savedDataOut">SoldierClass: {{ savedDataOut.soldierClass }}</div>
-	<div v-if="savedDataOut">Stats: {{ savedDataOut.stats }}</div>
-	<div
-		style="
-			display: flex;
-			flex-direction: row;
-			gap: 5px;
-			justify-content: center;
-		"
-	>
-		<div
-			v-for="(branch, branchName) in savedDataOut.skillsData"
-			:key="branch"
-			style="flex-grow: 1"
-		>
-			<h2>{{ branchName }}</h2>
-			<div v-for="(tier, tierName) in branch" :key="tier">
-				<h3>{{ tierName }}</h3>
-				<div v-for="skill in tier" :key="skill">
-					<p>{{ skill.skillKey }}: {{ skill.curLvl }}</p>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- error -->
 	<error-block :errorArray="errorArray"></error-block>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, Ref, watch } from 'vue';
+import { defineComponent, onMounted, PropType, reactive, ref, Ref } from 'vue';
 import skillsList from '@/data/skillsList';
 import CalculatorBranch from './CalculatorBranch.vue';
 import CalculatorSaveModal from './CalculatorSaveModal.vue';
@@ -93,18 +80,29 @@ import { SkillTag } from '@/type/SkillTag';
 import ErrorBlock from '@/components/error/ErrorBlock.vue';
 import { IErrorEntity } from '@/type/CustomErrors';
 import {
-	saveToLocalStorage,
-	loadFromLocalStorage,
+	saveToLocalStorageArray,
+	loadFromLocalStorageArray,
 } from '@/functions/localStorageUtils';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useStore } from 'vuex';
+import {
+	addDoc,
+	collection,
+	doc,
+	Timestamp,
+	updateDoc,
+} from 'firebase/firestore';
+import { ISkillBuild } from '@/type/SkillBuild';
+import { SoldierID } from '@/type/Soldier';
+import { db } from '@/firebase/firebase';
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
 	components: { CalculatorBranch, ErrorBlock, CalculatorSaveModal },
 	props: {
 		stats: {
 			required: true,
-			type: Object,
+			type: Object as PropType<[number, number, number]>,
 		},
 		tags: {
 			required: true,
@@ -112,8 +110,33 @@ export default defineComponent({
 		},
 		soldierClass: {
 			required: true,
-			type: String,
+			type: String as PropType<SoldierID>,
 			default: 'custom',
+		},
+		isOpenedBySkillBuild: {
+			required: false,
+			type: Boolean,
+			default: false,
+		},
+		dataFromDB: {
+			required: false,
+			type: Object as PropType<ISkillBuild['skillsData']>,
+		},
+		openedInSingleBuild: {
+			required: false,
+			type: Boolean,
+		},
+		item: {
+			required: false,
+			type: Object as PropType<ISkillBuild>,
+		},
+		userData: {
+			required: false,
+			type: Object as PropType<{
+				photoURL: string;
+				displayName: string;
+				dbId: string;
+			}>,
 		},
 	},
 	setup(props) {
@@ -126,9 +149,18 @@ export default defineComponent({
 
 		const remainingStats = reactive([] as number[]);
 
+		const router = useRoute();
+		const routerPathArray = router.path.split('/');
+		const buildID = routerPathArray[routerPathArray.length - 1];
+
 		onMounted(() => {
-			resetStatsOnLoad();
+			if (props.dataFromDB) {
+				calculateStatsOnLoad(props.dataFromDB);
+			} else {
+				resetStatsOnLoad();
+			}
 			calculateRemainingStats();
+			countHowMuchIsSpentOnTier1();
 		});
 
 		// AUTHENTIFICATION
@@ -214,6 +246,35 @@ export default defineComponent({
 			});
 		}
 
+		function calculateStatsOnLoad(dataFromDB: ISkillBuild['skillsData']) {
+			reactiveSkillsList.forEach((branch: SkillBranch, idx) => {
+				const currentBranch = ['mobility', 'vitality', 'weapon'][idx];
+				for (const tierKey in branch) {
+					if (Object.prototype.hasOwnProperty.call(branch, tierKey)) {
+						const tier = branch[tierKey as keyof SkillBranch];
+						for (const skillKey in tier) {
+							if (Object.prototype.hasOwnProperty.call(tier, skillKey)) {
+								const skill = tier[
+									skillKey as keyof typeof tier
+								] as SkillEntity;
+								// Находим соответствующий скилл в данных из БД и сбрасываем его уровень в 0
+								// @ts-ignore
+								const foundSkill = dataFromDB[currentBranch]?.[tierKey]?.find(
+									// @ts-ignore
+									(s) => s.skillKey === skillKey
+								);
+								if (foundSkill) {
+									skill.curLvl = foundSkill.curLvl;
+								} else {
+									skill.curLvl = 0;
+								}
+							}
+						}
+					}
+				}
+			});
+		}
+
 		const pointsSpentOnTier1: Ref<number> = ref(0);
 		function countHowMuchIsSpentOnTier1() {
 			pointsSpentOnTier1.value = 0;
@@ -268,48 +329,72 @@ export default defineComponent({
 
 		// Save functionality
 		const showSaveModal: Ref<boolean> = ref(false);
-		function generateKey() {
-			return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
-		}
 
-		const savedDataOut: Ref<any> = ref('');
-
-		function saveBuild(payload: { title: string; isPublic: boolean }) {
+		async function saveBuild(payload: { title: string; isPublic: boolean }) {
 			const { title, isPublic } = payload;
-			const savedData = {
+			const savedData: ISkillBuild = {
 				data: {
 					name: title,
-					author: getAuthor(),
-					date: new Date(),
+					nameLowercase: title.toLowerCase(),
+					author: auth.value?.uid || '',
+					createdAt: Timestamp.fromDate(new Date(Date.now())),
 					isPublic: isPublic,
-					key: generateKey(),
+					isCloned: false,
+					likedBy: [],
+					// @ts-ignore
+					likesAmount: 0,
 				},
 				soldierClass: props.soldierClass,
 				tags: tags,
 				stats: props.stats,
 				skillsData: {
 					mobility: {
-						tier1: getSkillsLevelsFromTier(reactiveSkillsList[0], 'tier1'),
-						tier2: getSkillsLevelsFromTier(reactiveSkillsList[0], 'tier2'),
-						tier3: getSkillsLevelsFromTier(reactiveSkillsList[0], 'tier3'),
+						tier1: getSkillsLevelsFromTier(reactiveSkillsList[0], 'tier1') || [
+							{ skillKey: '', curLvl: 0 },
+						],
+						tier2: getSkillsLevelsFromTier(reactiveSkillsList[0], 'tier2') || [
+							{ skillKey: '', curLvl: 0 },
+						],
+						tier3: getSkillsLevelsFromTier(reactiveSkillsList[0], 'tier3') || [
+							{ skillKey: '', curLvl: 0 },
+						],
 					},
 					vitality: {
-						tier1: getSkillsLevelsFromTier(reactiveSkillsList[1], 'tier1'),
-						tier2: getSkillsLevelsFromTier(reactiveSkillsList[1], 'tier2'),
-						tier3: getSkillsLevelsFromTier(reactiveSkillsList[1], 'tier3'),
+						tier1: getSkillsLevelsFromTier(reactiveSkillsList[1], 'tier1') || [
+							{ skillKey: '', curLvl: 0 },
+						],
+						tier2: getSkillsLevelsFromTier(reactiveSkillsList[1], 'tier2') || [
+							{ skillKey: '', curLvl: 0 },
+						],
+						tier3: getSkillsLevelsFromTier(reactiveSkillsList[1], 'tier3') || [
+							{ skillKey: '', curLvl: 0 },
+						],
 					},
 					weapon: {
-						tier1: getSkillsLevelsFromTier(reactiveSkillsList[2], 'tier1'),
-						tier2: getSkillsLevelsFromTier(reactiveSkillsList[2], 'tier2'),
-						tier3: getSkillsLevelsFromTier(reactiveSkillsList[2], 'tier3'),
+						tier1: getSkillsLevelsFromTier(reactiveSkillsList[2], 'tier1') || [
+							{ skillKey: '', curLvl: 0 },
+						],
+						tier2: getSkillsLevelsFromTier(reactiveSkillsList[2], 'tier2') || [
+							{ skillKey: '', curLvl: 0 },
+						],
+						tier3: getSkillsLevelsFromTier(reactiveSkillsList[2], 'tier3') || [
+							{ skillKey: '', curLvl: 0 },
+						],
 					},
 				},
 			};
 			console.log(savedData);
-			savedDataOut.value = savedData;
 
-			loadFromLocalStorage('savedSkills');
-			saveToLocalStorage('savedSkills', savedData);
+			try {
+				const docRef = await addDoc(collection(db, 'builds'), savedData);
+				console.log('Document written with ID: ', docRef.id);
+			} catch (e) {
+				console.error('Error adding document: ', e);
+			}
+
+			// FOR TESTING PURPOSES: saving to localStorage
+			// loadFromLocalStorageArray('savedSkills');
+			// saveToLocalStorageArray('savedSkills', savedData);
 		}
 
 		function getAuthor() {
@@ -341,6 +426,170 @@ export default defineComponent({
 			}
 		}
 
+		function modifyBuild(payload: {
+			saveAction: 'update' | 'new';
+			title: string;
+			isPublic: boolean;
+		}) {
+			console.log(payload);
+			saveModifiedBuild(payload);
+		}
+
+		async function saveModifiedBuild(payload: {
+			saveAction: 'update' | 'new';
+			title: string;
+			isPublic: boolean;
+		}) {
+			const { saveAction, title, isPublic } = payload;
+
+			console.log(props.item);
+			console.log(skillsList);
+
+			if (saveAction === 'new') {
+				const savedData: ISkillBuild = {
+					data: {
+						name: title,
+						nameLowercase: title.toLowerCase(),
+						author: auth.value?.uid || '',
+						createdAt: Timestamp.fromDate(new Date(Date.now())),
+						isPublic: false,
+						isCloned: true,
+						likedBy: [],
+						// @ts-ignore
+						likesAmount: 0,
+					},
+					soldierClass: props.soldierClass,
+					tags: tags,
+					stats: props.stats,
+					skillsData: {
+						mobility: {
+							tier1: getSkillsLevelsFromTier(
+								reactiveSkillsList[0],
+								'tier1'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier2: getSkillsLevelsFromTier(
+								reactiveSkillsList[0],
+								'tier2'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier3: getSkillsLevelsFromTier(
+								reactiveSkillsList[0],
+								'tier3'
+							) || [{ skillKey: '', curLvl: 0 }],
+						},
+						vitality: {
+							tier1: getSkillsLevelsFromTier(
+								reactiveSkillsList[1],
+								'tier1'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier2: getSkillsLevelsFromTier(
+								reactiveSkillsList[1],
+								'tier2'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier3: getSkillsLevelsFromTier(
+								reactiveSkillsList[1],
+								'tier3'
+							) || [{ skillKey: '', curLvl: 0 }],
+						},
+						weapon: {
+							tier1: getSkillsLevelsFromTier(
+								reactiveSkillsList[2],
+								'tier1'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier2: getSkillsLevelsFromTier(
+								reactiveSkillsList[2],
+								'tier2'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier3: getSkillsLevelsFromTier(
+								reactiveSkillsList[2],
+								'tier3'
+							) || [{ skillKey: '', curLvl: 0 }],
+						},
+					},
+				};
+				console.log(savedData);
+
+				try {
+					const docRef = await addDoc(collection(db, 'builds'), savedData);
+					console.log('Document written with ID: ', docRef.id);
+				} catch (e) {
+					console.error('Error adding document: ', e);
+				}
+			} else if (
+				saveAction === 'update' &&
+				props.userData?.dbId == auth.value?.uid
+			) {
+				const savedData: ISkillBuild = {
+					data: {
+						name: title,
+						nameLowercase: title.toLowerCase(),
+						author: auth.value?.uid || '',
+						createdAt: Timestamp.fromDate(new Date(Date.now())),
+						isPublic: props.item?.data.isPublic || false,
+						isCloned: false,
+						likedBy: props.item?.data.likedBy || [],
+						// @ts-ignore
+						likesAmount: props.item?.data.likesAmount || 0,
+					},
+					soldierClass: props.soldierClass,
+					tags: tags,
+					stats: props.stats,
+					skillsData: {
+						mobility: {
+							tier1: getSkillsLevelsFromTier(
+								reactiveSkillsList[0],
+								'tier1'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier2: getSkillsLevelsFromTier(
+								reactiveSkillsList[0],
+								'tier2'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier3: getSkillsLevelsFromTier(
+								reactiveSkillsList[0],
+								'tier3'
+							) || [{ skillKey: '', curLvl: 0 }],
+						},
+						vitality: {
+							tier1: getSkillsLevelsFromTier(
+								reactiveSkillsList[1],
+								'tier1'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier2: getSkillsLevelsFromTier(
+								reactiveSkillsList[1],
+								'tier2'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier3: getSkillsLevelsFromTier(
+								reactiveSkillsList[1],
+								'tier3'
+							) || [{ skillKey: '', curLvl: 0 }],
+						},
+						weapon: {
+							tier1: getSkillsLevelsFromTier(
+								reactiveSkillsList[2],
+								'tier1'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier2: getSkillsLevelsFromTier(
+								reactiveSkillsList[2],
+								'tier2'
+							) || [{ skillKey: '', curLvl: 0 }],
+							tier3: getSkillsLevelsFromTier(
+								reactiveSkillsList[2],
+								'tier3'
+							) || [{ skillKey: '', curLvl: 0 }],
+						},
+					},
+				};
+				console.log(savedData);
+
+				try {
+					const docRef = doc(db, 'builds', buildID);
+					await updateDoc(docRef, { ...savedData });
+					console.log(`${savedData.data.name} updated!`);
+				} catch (e) {
+					console.error('Error adding document: ', e);
+				}
+			}
+		}
+
 		// Then you can work with reactiveSkillsList as a final product
 		return {
 			skillsList: reactiveSkillsList,
@@ -354,9 +603,9 @@ export default defineComponent({
 			errorArray,
 			showSaveModal,
 			saveBuild,
-			savedDataOut,
 			auth,
 			openLoginPopup,
+			modifyBuild,
 		};
 	},
 });

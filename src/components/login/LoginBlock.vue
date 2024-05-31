@@ -22,6 +22,9 @@
 			<div class="header__user-block" @click="showMenu = true">
 				<p class="header__user-nickname" v-if="auth?.currentUser?.displayName">
 					{{ store.state.displayName || auth.currentUser.displayName }}
+					<span class="header__user-nickname--admin" v-if="isUserAnAdmin">
+						<i class="fa-solid fa-crown"></i>
+					</span>
 				</p>
 				<p class="header__user-nickname" v-else>Профиль</p>
 
@@ -61,6 +64,19 @@
 						<!-- if no name -->
 						<p class="header__user-nickname" v-else>Пользователь</p>
 					</div>
+
+					<template v-if="isUserAnAdmin">
+						<div class="header__breakline"></div>
+
+						<router-link
+							to="/admin"
+							@click="handleClick"
+							class="header__profile-link"
+						>
+							<i class="fa-solid fa-crown"></i>
+							<p>Админка</p>
+						</router-link>
+					</template>
 
 					<div class="header__breakline"></div>
 
@@ -111,9 +127,22 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, Ref } from 'vue';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import {
+	getAuth,
+	onAuthStateChanged,
+	signOut,
+	updateProfile,
+	User,
+} from 'firebase/auth';
 import LoginPopup from '@/components/login/LoginPopup.vue';
 import { useStore } from 'vuex';
+import { checkIfUserAnAdmin } from './functions/checkIfUserAnAdmin';
+import {
+	loadFromLocalStorage,
+	saveToLocalStorage,
+} from '@/functions/localStorageUtils';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '@/firebase/firebase';
 
 export default defineComponent({
 	components: { LoginPopup },
@@ -125,11 +154,15 @@ export default defineComponent({
 		const pageLoading: Ref<boolean> = ref(true);
 
 		let auth;
+		let isUserAnAdmin: Ref<boolean> = ref(false);
 		onMounted(() => {
 			auth = getAuth();
 			onAuthStateChanged(auth, (user) => {
 				if (user) {
 					isLoggedIn.value = true;
+					isUserAnAdmin.value = checkIfUserAnAdmin();
+					forceUpdatePhoto();
+					comparePhotoURLs(user);
 				} else {
 					isLoggedIn.value = false;
 				}
@@ -162,6 +195,50 @@ export default defineComponent({
 			showMenu.value = false;
 		}
 
+		// On page loading (use on onMounted), check in localStorage if the photoURL
+		// is the same as before. If not => update it in the DB
+		function comparePhotoURLs(user: User) {
+			// 1
+			const previousPhoto = loadFromLocalStorage('photoURL') || false;
+
+			// 2
+			// If user don't have a photo in localStorage => push his URL to there.
+			// Also, we need to add `""` around user.photoURL to make it looks
+			// the same as the localStorage record
+			if (!previousPhoto || previousPhoto.toString() !== user.photoURL) {
+				console.log('localStorage:  ' + previousPhoto.toString());
+				console.log('user.photoURL: ' + user.photoURL);
+				console.log('Saved your photoURL to localStorage');
+				saveToLocalStorage('photoURL', user.photoURL);
+				updatePhotoURL(user);
+			}
+		}
+
+		async function updatePhotoURL(user: User) {
+			try {
+				await setDoc(doc(db, 'users', user.uid), {
+					displayName: user.displayName,
+					photoURL: user.photoURL,
+				});
+				console.log('PhotoURL updated in the database.');
+			} catch (err: any) {
+				console.log('Error adding document: ', err.message);
+			}
+		}
+
+		function forceUpdatePhoto() {
+			const auth = getAuth();
+			if (
+				auth.currentUser &&
+				auth.currentUser.photoURL !== auth.currentUser.providerData[0].photoURL
+			) {
+				console.log('Changing photo!');
+				updateProfile(auth.currentUser, {
+					photoURL: auth.currentUser.providerData[0].photoURL,
+				});
+			}
+		}
+
 		return {
 			isLoginPopup,
 			openLoginPopup,
@@ -173,6 +250,7 @@ export default defineComponent({
 			store,
 			handleClick,
 			pageLoading,
+			isUserAnAdmin,
 		};
 	},
 });

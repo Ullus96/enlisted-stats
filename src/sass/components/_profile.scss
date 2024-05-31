@@ -61,6 +61,12 @@
 		}
 	}
 
+	&__inputs-flex {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
 	&__input {
 		&-block {
 			display: flex;
@@ -77,6 +83,7 @@
 
 		&-input {
 			flex-grow: 1;
+			color-scheme: dark;
 		}
 
 		&-btn {
@@ -92,13 +99,23 @@
 
 		&-lower-info {
 			display: flex;
-			padding-right: 6rem;
+			padding-right: 1rem;
+
+			&--inline-btn {
+				display: flex;
+				padding-right: 6rem;
+			}
 		}
 
 		&-error {
 			flex-grow: 1;
 			font-size: 1.2rem;
 			color: $color-error;
+
+			&--no-color {
+				color: $color-white;
+				opacity: 0.5;
+			}
 		}
 
 		&-counter {
@@ -121,6 +138,12 @@
 				width: 30%;
 			}
 		}
+	}
+
+	&__small-text {
+		max-width: 40rem;
+		padding-right: 1rem;
+		margin-top: -1.2rem;
 	}
 
 	&__no-img {
@@ -146,6 +169,90 @@
 
 		&-desc {
 			opacity: 0.8;
+		}
+	}
+
+	// ===============
+	// = ADMIN PANEL =
+	// ===============
+	&__header-admin {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		background-color: $color-black-light-1;
+		padding: 2rem;
+		border-radius: 2rem;
+		position: relative;
+		z-index: 2;
+	}
+
+	&__tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	&__tab {
+		padding: 1rem 2rem;
+		border-radius: 1rem;
+		border: 1px solid $color-skill-inactive;
+		background-color: $color-black-light-1;
+		transition: 0.15s ease-in-out background-color;
+
+		&:hover {
+			background-color: $color-skill-inactive;
+		}
+
+		&.active {
+			@include card-active;
+			color: $color-highlight;
+		}
+	}
+
+	&__sub-tabs {
+		margin-top: -2rem;
+		padding: 2rem 0 1rem;
+		// border-top: 1px solid rgba($color-skill-inactive, 0.4);
+	}
+
+	&__stages {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+	}
+
+	&__btn-admin {
+		max-width: 40rem;
+		background-color: $color-black;
+		padding: 1.2rem 1.8rem;
+		border-radius: 1rem;
+		border: 1px solid $color-skill-inactive;
+		transition: 0.15s ease-in-out background-color;
+
+		&:hover {
+			background-color: $color-skill-inactive;
+		}
+
+		&--delete {
+			background-color: $color-error;
+			padding: 1.2rem 1.8rem;
+			border-radius: 1rem;
+			border: 1px solid $color-skill-inactive;
+			transition: 0.15s ease-in-out background-color;
+
+			&:hover {
+				background-color: mix($color-white, $color-error, 15%);
+			}
+		}
+	}
+
+	&__update-delete-btns {
+		width: 40rem;
+		display: flex;
+		gap: 1rem;
+
+		& > .profile__btn-admin {
+			flex-grow: 1;
 		}
 	}
 }

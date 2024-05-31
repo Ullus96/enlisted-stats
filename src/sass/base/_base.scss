@@ -75,8 +75,8 @@ input::-webkit-inner-spin-button {
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
 * {
-	scrollbar-width: none;
-	scrollbar-color: $color-white $color-background;
+	scrollbar-width: 15px;
+	scrollbar-color: $color-skill-inactive $color-background;
 }
 
 /* Chrome, Edge, and Safari */

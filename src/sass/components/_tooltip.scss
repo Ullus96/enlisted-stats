@@ -1,0 +1,21 @@
+.tooltip {
+	&-parent {
+		position: relative;
+
+		&:hover .tooltip-item {
+			width: 300%;
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+			color: $color-white;
+		}
+	}
+
+	&-up {
+		@include tooltip('up');
+	}
+
+	&-down {
+		@include tooltip('down');
+	}
+}
