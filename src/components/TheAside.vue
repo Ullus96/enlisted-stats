@@ -9,7 +9,11 @@
 		<div class="aside__main-content">
 			<nav class="aside__navigation">
 				<ul class="aside__links">
-					<li class="aside__link">1</li>
+					<li class="aside__link">
+						<icon-base :iconName="cog">
+							<icon-cog></icon-cog>
+						</icon-base>
+					</li>
 					<li class="aside__link">2</li>
 					<li class="aside__link">3</li>
 					<li class="aside__link">3</li>
@@ -44,8 +48,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconCog from '@/components/ui/icons/IconCog.vue';
 
 export default defineComponent({
+	components: { IconBase, IconCog },
 	setup() {},
 });
 </script>
