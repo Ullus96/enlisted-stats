@@ -344,7 +344,7 @@ export const items: IItem[] = [
 		icon: 'tank.svg',
 		tags: ['crew', 'tank'],
 		statsMod: [5, -2, 3],
-		perk: '+5% скорость починки техники',
+		perk: '+7.5% скорость починки техники',
 	},
 	{
 		name: 'Танкист III',
