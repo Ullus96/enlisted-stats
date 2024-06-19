@@ -147,3 +147,11 @@
 		left: calc(100% + 6rem);
 	}
 }
+
+@mixin ui-shadow {
+	box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
+}
+
+@mixin ui-background-blur {
+	backdrop-filter: blur(20px);
+}
