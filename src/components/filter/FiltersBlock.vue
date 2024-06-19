@@ -17,18 +17,21 @@
 		</filter-sort-by>
 		<!-- end of popups -->
 
-		<div class="filter__item">
-			<span class="filter__label"> Класс: </span>
-			<a href="" class="filter__selected" @click.prevent="showFilterClasses">
-				{{ selectedClassName }}
-				<span
-					><i
-						class="fa-solid fa-chevron-down filter__chevron"
-						:class="{ rotate: isFilterClassesVisible }"
-					></i
-				></span>
-			</a>
-		</div>
+		<!-- temporary hide classes -->
+		<template v-if="false">
+			<div class="filter__item">
+				<span class="filter__label"> Класс: </span>
+				<a href="" class="filter__selected" @click.prevent="showFilterClasses">
+					{{ selectedClassName }}
+					<span
+						><i
+							class="fa-solid fa-chevron-down filter__chevron"
+							:class="{ rotate: isFilterClassesVisible }"
+						></i
+					></span>
+				</a>
+			</div>
+		</template>
 
 		<div class="filter__item" id="sortBy">
 			<!-- <span>Сортировка:</span> -->
@@ -96,9 +99,9 @@ export default defineComponent({
 		const isSortByVisible: Ref<boolean> = ref(false);
 		const selectedClass: Ref<SoldierID | false> = ref(false);
 		const selectedClassName: Ref<SoldierID | 'Акционные' | 'Все'> = ref('Все');
-		const sortByID: Ref<string> = ref('nameLowercase');
+		const sortByID: Ref<string> = ref('createdAt');
 		const sortByMethod: Ref<'asc' | 'desc'> = ref('desc');
-		const sortByName: Ref<string> = ref('По названию');
+		const sortByName: Ref<string> = ref('По дате создания');
 
 		function showFilterClasses() {
 			isFilterClassesVisible.value = !isFilterClassesVisible.value;

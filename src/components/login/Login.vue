@@ -4,28 +4,31 @@
 			<i class="fa-solid fa-xmark"></i>
 		</button>
 		<h2>Войти</h2>
-		<p class="modal__error-msg" v-if="errorMsg">{{ errorMsg }}</p>
-		<div class="modal__input-block">
-			<div class="modal__input-item">
-				<label for="email">Email</label>
-				<input type="email" v-model="email" id="email" autocomplete="email" />
+		<template v-if="false">
+			<p class="modal__error-msg" v-if="errorMsg">{{ errorMsg }}</p>
+			<div class="modal__input-block">
+				<div class="modal__input-item">
+					<label for="email">Email</label>
+					<input type="email" v-model="email" id="email" autocomplete="email" />
+				</div>
+				<div class="modal__input-item">
+					<label for="password">Пароль</label>
+					<input
+						type="password"
+						v-model="password"
+						id="password"
+						autocomplete="password"
+					/>
+				</div>
 			</div>
-			<div class="modal__input-item">
-				<label for="password">Пароль</label>
-				<input
-					type="password"
-					v-model="password"
-					id="password"
-					autocomplete="password"
-				/>
+			<button class="btn btn-small btn-wide" @click="login">Войти</button>
+			<div class="modal__or-text">
+				<span></span>
+				<p>Или</p>
+				<span></span>
 			</div>
-		</div>
-		<button class="btn btn-small btn-wide" @click="login">Войти</button>
-		<div class="modal__or-text">
-			<span></span>
-			<p>Или</p>
-			<span></span>
-		</div>
+		</template>
+
 		<button class="btn btn-small btn-wide" @click="signInWithGoogle">
 			Войти с помощью Google
 		</button>

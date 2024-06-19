@@ -308,7 +308,7 @@ export default defineComponent({
 		// filters
 		const filterParams: Ref<IFilterParams> = ref({
 			selectedClass: false,
-			sortByID: 'nameLowercase',
+			sortByID: 'createdAt',
 			sortByMethod: 'desc',
 		});
 

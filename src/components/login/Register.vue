@@ -4,39 +4,42 @@
 			<i class="fa-solid fa-xmark"></i>
 		</button>
 		<h2>Зарегистрироваться</h2>
-		<p class="modal__error-msg" v-if="errorMsg">{{ errorMsg }}</p>
-		<div class="modal__input-block">
-			<div class="modal__input-item">
-				<label for="email">Email</label>
-				<input type="email" v-model="email" id="email" autocomplete="email" />
+		<template v-if="false">
+			<p class="modal__error-msg" v-if="errorMsg">{{ errorMsg }}</p>
+			<div class="modal__input-block">
+				<div class="modal__input-item">
+					<label for="email">Email</label>
+					<input type="email" v-model="email" id="email" autocomplete="email" />
+				</div>
+				<div class="modal__input-item">
+					<label for="password">Пароль</label>
+					<input
+						type="password"
+						v-model="password"
+						id="password"
+						autocomplete="new-password"
+					/>
+				</div>
+				<div class="modal__input-item">
+					<label for="password-2">Повторите пароль</label>
+					<input
+						type="password"
+						v-model="password2"
+						id="password-2"
+						autocomplete="new-password"
+					/>
+				</div>
 			</div>
-			<div class="modal__input-item">
-				<label for="password">Пароль</label>
-				<input
-					type="password"
-					v-model="password"
-					id="password"
-					autocomplete="new-password"
-				/>
+			<button class="btn btn-small btn-wide" @click="register">
+				Зарегистрироваться
+			</button>
+			<div class="modal__or-text">
+				<span></span>
+				<p>Или</p>
+				<span></span>
 			</div>
-			<div class="modal__input-item">
-				<label for="password-2">Повторите пароль</label>
-				<input
-					type="password"
-					v-model="password2"
-					id="password-2"
-					autocomplete="new-password"
-				/>
-			</div>
-		</div>
-		<button class="btn btn-small btn-wide" @click="register">
-			Зарегистрироваться
-		</button>
-		<div class="modal__or-text">
-			<span></span>
-			<p>Или</p>
-			<span></span>
-		</div>
+		</template>
+
 		<button class="btn btn-small btn-wide" @click="signInWithGoogle">
 			Войти с помощью Google
 		</button>
@@ -55,7 +58,7 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup,
 } from 'firebase/auth';
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 
 export default defineComponent({
