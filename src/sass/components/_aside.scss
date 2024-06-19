@@ -10,6 +10,12 @@
 	display: flex;
 	flex-direction: column;
 
+	&__profile {
+		display: flex;
+		gap: 0.8rem;
+		align-items: center;
+	}
+
 	&__avatar {
 		display: block;
 		width: 5rem;
@@ -17,6 +23,10 @@
 		object-fit: cover;
 		border-radius: 100%;
 		margin: 0 auto;
+	}
+
+	&__nickname {
+		display: none;
 	}
 
 	&__line {
@@ -57,17 +67,68 @@
 	}
 
 	&__link {
+		width: 100%;
 		line-height: 100%;
 		display: block;
 		padding: 0.8rem;
-
-		& a {
-			width: 100%;
-			height: 100%;
-		}
+		border-radius: 0.4rem;
+		display: flex;
+		gap: 0.8rem;
 
 		&.router-link-active {
 			background-color: $color-bg-300;
+		}
+	}
+
+	&__link-desc {
+		display: none;
+	}
+
+	&__footer {
+		font-size: $ui-font-size-xs;
+		color: $color-text-700;
+		line-height: 150%;
+	}
+
+	&__footer-legal {
+		display: none;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
+	&__footer-links {
+		margin-top: 1.2rem;
+		display: none;
+
+		& a {
+			text-decoration: underline;
+		}
+	}
+
+	// Aside hover state
+	&:hover {
+		width: 24rem;
+
+		.aside {
+			&__profile {
+				padding: 0 2rem;
+			}
+
+			&__nickname {
+				display: block;
+			}
+
+			&__link-desc {
+				display: inline-block;
+			}
+
+			&__footer-legal {
+				display: flex;
+			}
+
+			&__footer-links {
+				display: block;
+			}
 		}
 	}
 }

@@ -1,10 +1,13 @@
 <template>
 	<aside class="aside">
-		<img
-			src="https://i.imgur.com/T39kQkM.jpeg"
-			alt="Profile Picture"
-			class="aside__avatar"
-		/>
+		<div class="aside__profile">
+			<img
+				src="https://i.imgur.com/T39kQkM.jpeg"
+				alt="Profile Picture"
+				class="aside__avatar"
+			/>
+			<p class="aside__nickname">zxcvenorez but with 2 lines</p>
+		</div>
 		<div class="aside__line aside__line--top"></div>
 		<div class="aside__main-content">
 			<nav class="aside__navigation">
@@ -95,10 +98,18 @@
 
 			<footer class="aside__footer">
 				<div class="aside__footer-legal">
-					<p>1</p>
-					<p>2</p>
+					<p>Enlisted — зарегистрированная товарная марка Gaijin Games Kft.</p>
+					<p>
+						Этот сайт не аффилирован с Gaijin Games Kft. Все игровые изображения
+						и имена являются собственностью Gaijin Games Kft.
+					</p>
 				</div>
-				<div class="aside__footer-links">1 | 2</div>
+				<div class="aside__footer-links">
+					<router-link to="/terms">Политика конфиденциальности</router-link> |
+					<router-link to="/user-agreement"
+						>Пользовательское соглашение</router-link
+					>
+				</div>
 			</footer>
 		</div>
 	</aside>
