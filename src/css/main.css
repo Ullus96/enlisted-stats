@@ -105,6 +105,10 @@ p {
   font-size: inherit;
 }
 
+li {
+  list-style: none;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -1725,8 +1729,54 @@ h3 {
   bottom: 0;
   left: 0;
   width: 7.2rem;
-  padding: 2.4rem 0;
+  padding: 2.4rem 0 1.2rem;
   background-color: rgba(35, 35, 35, 0.75);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+}
+.aside__avatar {
+  display: block;
+  width: 5rem;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 100%;
+  margin: 0 auto;
+}
+.aside__line {
+  height: 1px;
+  background-color: rgb(57, 57, 57);
+  margin: 0 auto;
+  width: 100%;
+}
+.aside__line--top {
+  width: calc(100% - 4rem);
+  margin: 2rem auto 1.6rem;
+}
+.aside__main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0 2rem;
+}
+.aside__navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0.8rem;
+}
+.aside__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0.8rem;
+  font-size: 1.6rem;
 }
 
 .events {

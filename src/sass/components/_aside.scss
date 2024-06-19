@@ -4,6 +4,56 @@
 	bottom: 0;
 	left: 0;
 	width: 7.2rem;
-	padding: 2.4rem 0;
+	padding: 2.4rem 0 1.2rem;
 	background-color: $color-bg-a-700;
+	@include ui-background-blur;
+	display: flex;
+	flex-direction: column;
+
+	&__avatar {
+		display: block;
+		width: 5rem;
+		aspect-ratio: 1/1;
+		object-fit: cover;
+		border-radius: 100%;
+		margin: 0 auto;
+	}
+
+	&__line {
+		height: 1px;
+		background-color: $color-text-900;
+		margin: 0 auto;
+		width: 100%;
+
+		&--top {
+			width: calc(100% - 4rem);
+			margin: 2rem auto 1.6rem;
+		}
+	}
+
+	&__main-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		flex: 1;
+		padding: 0 2rem;
+	}
+
+	&__navigation {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		gap: 0.8rem;
+	}
+
+	&__links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		gap: 0.8rem;
+		font-size: $ui-font-size-base;
+	}
 }
