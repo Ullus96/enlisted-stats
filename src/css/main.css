@@ -428,9 +428,9 @@ h3 {
   margin-left: auto;
   margin-right: auto;
   min-width: 32rem;
-  max-width: 140rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  max-width: 144rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 @media (min-width: 0px) and (max-width: 1123px) {
   .container {
@@ -455,6 +455,7 @@ h3 {
 
 .main {
   flex-grow: 1;
+  padding-left: 7.2rem;
 }
 
 .btn:disabled {
