@@ -1,17 +1,17 @@
 .mobility {
-  color: #97ff94;
+  color: rgb(151, 255, 148);
 }
 
 .mobility-bg {
-  background-color: #97ff94;
+  background-color: rgb(151, 255, 148);
 }
 
 .vitality {
-  color: #ff9497;
+  color: rgb(255, 148, 151);
 }
 
 .vitality-bg {
-  background-color: #ff9497;
+  background-color: rgb(255, 148, 151);
 }
 
 .weapon-handling {
@@ -394,11 +394,11 @@ h2 {
   min-width: 92px;
 }
 .item__col--stat span:nth-child(1) {
-  color: #97ff94;
+  color: rgb(151, 255, 148);
   font-weight: 700;
 }
 .item__col--stat span:nth-child(3) {
-  color: #ff9497;
+  color: rgb(255, 148, 151);
   font-weight: 700;
 }
 .item__col--stat span:nth-child(5) {
@@ -625,11 +625,11 @@ h2 {
   filter: grayscale(1);
 }
 .calculator__img.mobility {
-  border: 3px solid #97ff94;
+  border: 3px solid rgb(151, 255, 148);
   filter: none;
 }
 .calculator__img.vitality {
-  border: 3px solid #ff9497;
+  border: 3px solid rgb(255, 148, 151);
   filter: none;
 }
 .calculator__img.weapon-handling {
@@ -711,10 +711,10 @@ h2 {
   background-color: #f9da75;
 }
 .calculator__bar-highlight.mobility {
-  background-color: #97ff94;
+  background-color: rgb(151, 255, 148);
 }
 .calculator__bar-highlight.vitality {
-  background-color: #ff9497;
+  background-color: rgb(255, 148, 151);
 }
 .calculator__bar-highlight.weapon-handling {
   background-color: #fffe9a;
@@ -2220,10 +2220,10 @@ h2 {
   padding-left: 2rem;
 }
 .sbuild__data-stats span:nth-child(1) {
-  color: #97ff94;
+  color: rgb(151, 255, 148);
 }
 .sbuild__data-stats span:nth-child(2) {
-  color: #ff9497;
+  color: rgb(255, 148, 151);
 }
 .sbuild__data-stats span:nth-child(3) {
   color: #fffe9a;
