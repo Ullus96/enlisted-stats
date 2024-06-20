@@ -19,21 +19,21 @@
 						<span class="aside__link-desc">Таблица</span>
 					</router-link>
 
-					<router-link class="aside__link" to="/">
+					<router-link class="aside__link" to="/calculator">
 						<IconBase :iconName="'Calculator'">
 							<IconUserCog />
 						</IconBase>
 						<span class="aside__link-desc">Калькулятор</span>
 					</router-link>
 
-					<router-link class="aside__link" to="/">
+					<router-link class="aside__link" to="/skill-builds">
 						<IconBase :iconName="'Skill Builds'">
 							<IconBookOpen />
 						</IconBase>
 						<span class="aside__link-desc">Сборки</span>
 					</router-link>
 
-					<router-link class="aside__link" to="/">
+					<router-link class="aside__link" to="/events">
 						<IconBase :iconName="'Events Calendar'">
 							<IconCalendar />
 						</IconBase>
@@ -44,14 +44,14 @@
 				<div class="aside__line"></div>
 
 				<section class="aside__links">
-					<router-link class="aside__link" to="/">
+					<router-link class="aside__link" to="/my-builds">
 						<IconBase :iconName="'My Builds'">
 							<IconHammer />
 						</IconBase>
 						<span class="aside__link-desc">Мои сборки</span>
 					</router-link>
 
-					<router-link class="aside__link" to="/">
+					<router-link class="aside__link" to="/saved-builds">
 						<IconBase :iconName="'Saved Builds'">
 							<IconBookmark />
 						</IconBase>
@@ -62,7 +62,7 @@
 				<div class="aside__line"></div>
 
 				<section class="aside__links">
-					<router-link class="aside__link" to="/">
+					<router-link class="aside__link" to="/admin">
 						<IconBase :iconName="'Admin Panel'">
 							<IconCrown />
 						</IconBase>
@@ -73,21 +73,21 @@
 				<div class="aside__line"></div>
 
 				<section class="aside__links">
-					<router-link class="aside__link" to="/">
+					<router-link class="aside__link" to="/settings">
 						<IconBase :iconName="'Settings'">
 							<IconCog />
 						</IconBase>
 						<span class="aside__link-desc">Настройки</span>
 					</router-link>
 
-					<button class="aside__link" to="/">
+					<button class="aside__link" to="/contacts">
 						<IconBase :iconName="'Discord'">
 							<IconDiscord />
 						</IconBase>
 						<span class="aside__link-desc">Контакты</span>
 					</button>
 
-					<button class="aside__link" to="/">
+					<button class="aside__link" to="/sign-out">
 						<IconBase :iconName="'Skill Builds'">
 							<IconSignOut />
 						</IconBase>

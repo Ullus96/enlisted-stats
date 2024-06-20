@@ -7,13 +7,15 @@
 	padding: 2.4rem 0 1.2rem;
 	background-color: $color-bg-a-700;
 	@include ui-background-blur;
+	white-space: nowrap;
 	display: flex;
 	flex-direction: column;
+	transition: width 0.2s ease-in-out;
 
 	&__profile {
+		position: relative;
 		display: flex;
 		gap: 0.8rem;
-		align-items: center;
 	}
 
 	&__avatar {
@@ -22,11 +24,18 @@
 		aspect-ratio: 1/1;
 		object-fit: cover;
 		border-radius: 100%;
-		margin: 0 auto;
+		margin: 0 1.1rem;
+		transition: margin 0.2s ease-in-out;
 	}
 
 	&__nickname {
 		display: none;
+		position: absolute;
+		top: 50%;
+		right: 2rem;
+		transform: translateX(-40px, -50%);
+		opacity: 0;
+		left: calc(2rem + 5rem + 0.8rem);
 	}
 
 	&__line {
@@ -80,25 +89,35 @@
 		}
 	}
 
+	// оно
 	&__link-desc {
-		display: none;
+		position: absolute;
+		transform: translateX(-40px);
+		opacity: 0;
 	}
 
 	&__footer {
 		font-size: $ui-font-size-xs;
 		color: $color-text-700;
 		line-height: 150%;
+		white-space: nowrap;
 	}
 
 	&__footer-legal {
 		display: none;
 		flex-direction: column;
 		gap: 0.6rem;
+		position: absolute;
+		transform: translateX(-40px);
+		opacity: 0;
 	}
 
 	&__footer-links {
-		margin-top: 1.2rem;
 		display: none;
+		margin-top: 1.2rem;
+		position: absolute;
+		transform: translateX(-40px);
+		opacity: 0;
 
 		& a {
 			text-decoration: underline;
@@ -111,24 +130,91 @@
 
 		.aside {
 			&__profile {
-				padding: 0 2rem;
+				padding-right: 2rem;
+			}
+
+			&__avatar {
+				margin: 0 2rem;
 			}
 
 			&__nickname {
 				display: block;
+				animation: nicknameSlide 0.4s ease-in-out forwards;
 			}
 
 			&__link-desc {
+				position: relative;
 				display: inline-block;
+				animation: navigationSlide 0.4s ease-in-out forwards;
+			}
+
+			&__footer {
+				animation: removeWhiteSpace 0.4s ease-in-out forwards;
 			}
 
 			&__footer-legal {
+				position: relative;
 				display: flex;
+				animation: navigationSlide 0.4s ease-in-out forwards;
 			}
 
 			&__footer-links {
+				position: relative;
 				display: block;
+				animation: navigationSlide 0.4s ease-in-out forwards;
 			}
 		}
+	}
+}
+
+@keyframes navigationSlide {
+	0% {
+		position: absolute;
+
+		transform: translateX(-40px);
+	}
+
+	49% {
+		position: absolute;
+	}
+
+	50% {
+		position: relative;
+		opacity: 0;
+	}
+
+	100% {
+		position: relative;
+		transform: translateX(0px);
+		opacity: 1;
+	}
+}
+
+@keyframes nicknameSlide {
+	0% {
+		transform: translate(-40px, -50%);
+		white-space: nowrap;
+	}
+
+	50% {
+		opacity: 0;
+		white-space: normal;
+	}
+
+	100% {
+		white-space: normal;
+		transform: translate(0px, -50%);
+		opacity: 1;
+	}
+}
+
+@keyframes removeWhiteSpace {
+	0%,
+	75% {
+		white-space: nowrap;
+	}
+
+	100% {
+		white-space: normal;
 	}
 }

@@ -1733,13 +1733,15 @@ h3 {
   background-color: rgba(35, 35, 35, 0.75);
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
+  white-space: nowrap;
   display: flex;
   flex-direction: column;
+  transition: width 0.2s ease-in-out;
 }
 .aside__profile {
+  position: relative;
   display: flex;
   gap: 0.8rem;
-  align-items: center;
 }
 .aside__avatar {
   display: block;
@@ -1748,10 +1750,17 @@ h3 {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 100%;
-  margin: 0 auto;
+  margin: 0 1.1rem;
+  transition: margin 0.2s ease-in-out;
 }
 .aside__nickname {
   display: none;
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateX(-40px, -50%);
+  opacity: 0;
+  left: 7.8rem;
 }
 .aside__line {
   height: 1px;
@@ -1798,21 +1807,30 @@ h3 {
   background-color: rgb(47, 47, 47);
 }
 .aside__link-desc {
-  display: none;
+  position: absolute;
+  transform: translateX(-40px);
+  opacity: 0;
 }
 .aside__footer {
   font-size: 1.1rem;
   color: rgb(116, 116, 116);
   line-height: 150%;
+  white-space: nowrap;
 }
 .aside__footer-legal {
   display: none;
   flex-direction: column;
   gap: 0.6rem;
+  position: absolute;
+  transform: translateX(-40px);
+  opacity: 0;
 }
 .aside__footer-links {
-  margin-top: 1.2rem;
   display: none;
+  margin-top: 1.2rem;
+  position: absolute;
+  transform: translateX(-40px);
+  opacity: 0;
 }
 .aside__footer-links a {
   text-decoration: underline;
@@ -1821,21 +1839,75 @@ h3 {
   width: 24rem;
 }
 .aside:hover .aside__profile {
-  padding: 0 2rem;
+  padding-right: 2rem;
+}
+.aside:hover .aside__avatar {
+  margin: 0 2rem;
 }
 .aside:hover .aside__nickname {
   display: block;
+  animation: nicknameSlide 0.4s ease-in-out forwards;
 }
 .aside:hover .aside__link-desc {
+  position: relative;
   display: inline-block;
+  animation: navigationSlide 0.4s ease-in-out forwards;
+}
+.aside:hover .aside__footer {
+  animation: removeWhiteSpace 0.4s ease-in-out forwards;
 }
 .aside:hover .aside__footer-legal {
+  position: relative;
   display: flex;
+  animation: navigationSlide 0.4s ease-in-out forwards;
 }
 .aside:hover .aside__footer-links {
+  position: relative;
   display: block;
+  animation: navigationSlide 0.4s ease-in-out forwards;
 }
 
+@keyframes navigationSlide {
+  0% {
+    position: absolute;
+    transform: translateX(-40px);
+  }
+  49% {
+    position: absolute;
+  }
+  50% {
+    position: relative;
+    opacity: 0;
+  }
+  100% {
+    position: relative;
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+@keyframes nicknameSlide {
+  0% {
+    transform: translate(-40px, -50%);
+    white-space: nowrap;
+  }
+  50% {
+    opacity: 0;
+    white-space: normal;
+  }
+  100% {
+    white-space: normal;
+    transform: translate(0px, -50%);
+    opacity: 1;
+  }
+}
+@keyframes removeWhiteSpace {
+  0%, 75% {
+    white-space: nowrap;
+  }
+  100% {
+    white-space: normal;
+  }
+}
 .events {
   padding: 4rem 0;
 }
