@@ -83,9 +83,26 @@
 		border-radius: 0.4rem;
 		display: flex;
 		gap: 0.8rem;
+		cursor: pointer;
+
+		&:focus {
+			@include focused($color-text-100, $color-bg-a-700);
+		}
+
+		&:hover {
+			@include hovered($color-text-100, $color-bg-a-700);
+		}
 
 		&.router-link-active {
 			background-color: $color-bg-300;
+
+			&:focus {
+				@include focused($color-text-100, $color-bg-300);
+			}
+
+			&:hover {
+				@include hovered($color-text-100, $color-bg-300);
+			}
 		}
 	}
 

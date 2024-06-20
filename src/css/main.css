@@ -93,6 +93,15 @@ input:-webkit-autofill:focus {
   cursor: pointer;
 }
 
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 h1,
 h2,
 h3,
@@ -1802,9 +1811,24 @@ h3 {
   border-radius: 0.4rem;
   display: flex;
   gap: 0.8rem;
+  cursor: pointer;
+}
+.aside__link:focus {
+  outline: 1px solid #e2e2e2;
+  background-color: rgba(70, 70, 70, 0.78);
+}
+.aside__link:hover {
+  background-color: rgba(47, 47, 47, 0.76);
 }
 .aside__link.router-link-active {
   background-color: rgb(47, 47, 47);
+}
+.aside__link.router-link-active:focus {
+  outline: 1px solid #e2e2e2;
+  background-color: #444444;
+}
+.aside__link.router-link-active:hover {
+  background-color: #363636;
 }
 .aside__link-desc {
   position: absolute;

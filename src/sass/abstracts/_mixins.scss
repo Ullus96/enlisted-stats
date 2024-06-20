@@ -155,3 +155,13 @@
 @mixin ui-background-blur {
 	backdrop-filter: blur(20px);
 }
+
+// Material UI states
+@mixin hovered($text-color, $background-color) {
+	background-color: mix($text-color, $background-color, 4%);
+}
+
+@mixin focused($text-color, $background-color) {
+	outline: 1px solid mix($text-color, $background-color, 100%);
+	background-color: mix($text-color, $background-color, 12%);
+}
