@@ -1815,22 +1815,17 @@ h3 {
   font-size: 1.1rem;
   color: rgb(116, 116, 116);
   line-height: 150%;
-  white-space: nowrap;
+  white-space: normal;
+  position: absolute;
 }
 .aside__footer-legal {
   display: none;
   flex-direction: column;
   gap: 0.6rem;
-  position: absolute;
-  transform: translateX(-40px);
-  opacity: 0;
 }
 .aside__footer-links {
   display: none;
   margin-top: 1.2rem;
-  position: absolute;
-  transform: translateX(-40px);
-  opacity: 0;
 }
 .aside__footer-links a {
   text-decoration: underline;
@@ -1854,17 +1849,13 @@ h3 {
   animation: navigationSlide 0.4s ease-in-out forwards;
 }
 .aside:hover .aside__footer {
-  animation: removeWhiteSpace 0.4s ease-in-out forwards;
+  animation: showFooter 0.6s ease-in-out forwards;
 }
 .aside:hover .aside__footer-legal {
-  position: relative;
   display: flex;
-  animation: navigationSlide 0.4s ease-in-out forwards;
 }
 .aside:hover .aside__footer-links {
-  position: relative;
   display: block;
-  animation: navigationSlide 0.4s ease-in-out forwards;
 }
 
 @keyframes navigationSlide {
@@ -1906,6 +1897,20 @@ h3 {
   }
   100% {
     white-space: normal;
+  }
+}
+@keyframes showFooter {
+  0% {
+    position: absolute;
+    opacity: 0;
+  }
+  50% {
+    position: relative;
+    opacity: 0;
+  }
+  100% {
+    position: relative;
+    opacity: 1;
   }
 }
 .events {
