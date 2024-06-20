@@ -1742,6 +1742,7 @@ h3 {
   background-color: rgba(35, 35, 35, 0.75);
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
+  z-index: 30;
   white-space: nowrap;
   display: flex;
   flex-direction: column;
@@ -1836,7 +1837,7 @@ h3 {
   opacity: 0;
 }
 .aside__footer {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: rgb(116, 116, 116);
   line-height: 150%;
   white-space: normal;

@@ -1,13 +1,28 @@
 <template>
 	<aside class="aside">
-		<div class="aside__profile">
-			<img
-				src="https://i.imgur.com/T39kQkM.jpeg"
-				alt="Profile Picture"
-				class="aside__avatar"
-			/>
-			<p class="aside__nickname">zxcvenorez but with 2 lines</p>
-		</div>
+		<!-- User is logged in -->
+		<template v-if="$store.state.user.isLoggedIn">
+			<div class="aside__profile">
+				<img
+					src="https://i.imgur.com/T39kQkM.jpeg"
+					alt="Profile Picture"
+					class="aside__avatar"
+				/>
+				<p class="aside__nickname">zxcvenorez but with 2 lines</p>
+			</div>
+		</template>
+		<!-- User is NOT logged in -->
+		<template v-else>
+			<div class="aside__profile">
+				<img
+					src="https://i.imgur.com/T39kQkM.jpeg"
+					alt="Profile Picture"
+					class="aside__avatar"
+				/>
+				<p class="aside__nickname">You are not logged in</p>
+			</div>
+		</template>
+
 		<div class="aside__line aside__line--top"></div>
 		<div class="aside__main-content">
 			<nav class="aside__navigation">
@@ -37,7 +52,7 @@
 						<IconBase :iconName="'Events Calendar'">
 							<IconCalendar />
 						</IconBase>
-						<span class="aside__link-desc">Календарь событий</span>
+						<span class="aside__link-desc">События</span>
 					</router-link>
 				</section>
 
@@ -73,7 +88,7 @@
 				<div class="aside__line"></div>
 
 				<section class="aside__links">
-					<router-link class="aside__link" to="/settings">
+					<router-link class="aside__link" to="/profile">
 						<IconBase :iconName="'Settings'">
 							<IconCog />
 						</IconBase>
@@ -105,10 +120,8 @@
 					</p>
 				</div>
 				<div class="aside__footer-links">
-					<router-link to="/terms">Политика конфиденциальности</router-link> |
-					<router-link to="/user-agreement"
-						>Пользовательское соглашение</router-link
-					>
+					<router-link to="/">Политика конфиденциальности</router-link> |
+					<router-link to="/">Пользовательское соглашение</router-link>
 				</div>
 			</footer>
 		</div>
@@ -117,6 +130,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useStore } from 'vuex';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconAngleDoubleUp from '@/components/ui/icons/IconAngleDoubleUp.vue';
 import IconUserCog from '@/components/ui/icons/IconUserCog.vue';
@@ -143,6 +157,9 @@ export default defineComponent({
 		IconDiscord,
 		IconSignOut,
 	},
-	setup() {},
+	setup() {
+		const store = useStore();
+		console.log(store);
+	},
 });
 </script>
