@@ -28,7 +28,7 @@
 			<template v-else>
 				<div class="aside__profile">
 					<img
-						src="@/assets/avatar-skeleton.svg"
+						src="@/assets/avatar-unknown.svg"
 						alt="No User Generic Profile Picture"
 						class="aside__avatar"
 					/>
@@ -72,39 +72,47 @@
 					</router-link>
 				</section>
 
+				<template v-if="$store.state.user.isLoggedIn">
+					<div class="aside__line"></div>
+
+					<section class="aside__links">
+						<router-link class="aside__link" to="/my-builds">
+							<IconBase :iconName="'My Builds'">
+								<IconHammer />
+							</IconBase>
+							<span class="aside__link-desc">Мои сборки</span>
+						</router-link>
+
+						<router-link class="aside__link" to="/saved-builds">
+							<IconBase :iconName="'Saved Builds'">
+								<IconBookmark />
+							</IconBase>
+							<span class="aside__link-desc">Сохраненные</span>
+						</router-link>
+					</section>
+				</template>
+
+				<template v-if="$store.state.user.isAdmin">
+					<div class="aside__line"></div>
+
+					<section class="aside__links">
+						<router-link class="aside__link" to="/admin">
+							<IconBase :iconName="'Admin Panel'">
+								<IconCrown />
+							</IconBase>
+							<span class="aside__link-desc">Админка</span>
+						</router-link>
+					</section>
+				</template>
+
 				<div class="aside__line"></div>
 
 				<section class="aside__links">
-					<router-link class="aside__link" to="/my-builds">
-						<IconBase :iconName="'My Builds'">
-							<IconHammer />
-						</IconBase>
-						<span class="aside__link-desc">Мои сборки</span>
-					</router-link>
-
-					<router-link class="aside__link" to="/saved-builds">
-						<IconBase :iconName="'Saved Builds'">
-							<IconBookmark />
-						</IconBase>
-						<span class="aside__link-desc">Сохраненные</span>
-					</router-link>
-				</section>
-
-				<div class="aside__line"></div>
-
-				<section class="aside__links">
-					<router-link class="aside__link" to="/admin">
-						<IconBase :iconName="'Admin Panel'">
-							<IconCrown />
-						</IconBase>
-						<span class="aside__link-desc">Админка</span>
-					</router-link>
-				</section>
-
-				<div class="aside__line"></div>
-
-				<section class="aside__links">
-					<router-link class="aside__link" to="/profile">
+					<router-link
+						class="aside__link"
+						to="/profile"
+						v-if="$store.state.user.isLoggedIn"
+					>
 						<IconBase :iconName="'Settings'">
 							<IconCog />
 						</IconBase>
@@ -115,10 +123,14 @@
 						<IconBase :iconName="'Discord'">
 							<IconDiscord />
 						</IconBase>
-						<span class="aside__link-desc">Контакты</span>
+						<span class="aside__link-desc">Связаться</span>
 					</button>
 
-					<button class="aside__link" to="/sign-out">
+					<button
+						class="aside__link"
+						to="/sign-out"
+						v-if="$store.state.user.isLoggedIn"
+					>
 						<IconBase :iconName="'Skill Builds'">
 							<IconSignOut />
 						</IconBase>
