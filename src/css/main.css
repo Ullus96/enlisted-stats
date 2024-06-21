@@ -74,7 +74,7 @@ body::before {
   height: 100%;
   bottom: 0%;
   background: rgba(88, 15, 15, 0.7019607843);
-  background: radial-gradient(at -200% 240%, rgba(88, 15, 15, 0.7019607843), rgba(30, 30, 30, 0));
+  background: radial-gradient(at -200% 240%, rgba(88, 15, 15, 0.7019607843), rgba(30, 30, 30, 0) 85%);
 }
 body::after {
   content: "";
@@ -1799,6 +1799,9 @@ h3 {
   transform: translateX(-40px, -50%);
   opacity: 0;
   left: 7.8rem;
+}
+.aside__nickname > .btn {
+  font-size: 1.6rem;
 }
 .aside__line {
   height: 1px;

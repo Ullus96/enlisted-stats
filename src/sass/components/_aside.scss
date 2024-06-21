@@ -38,6 +38,10 @@
 		transform: translateX(-40px, -50%);
 		opacity: 0;
 		left: calc(2rem + 5rem + 0.8rem);
+
+		& > .btn {
+			font-size: 1.6rem;
+		}
 	}
 
 	&__line {

@@ -8,7 +8,7 @@
 					alt="Profile Picture"
 					class="aside__avatar"
 				/>
-				<p class="aside__nickname">zxcvenorez but with 2 lines</p>
+				<div class="aside__nickname">zxcvenorez but with 2 lines</div>
 			</div>
 		</template>
 		<!-- User is NOT logged in -->
@@ -19,7 +19,9 @@
 					alt="Profile Picture"
 					class="aside__avatar"
 				/>
-				<p class="aside__nickname">You are not logged in</p>
+				<div class="aside__nickname">
+					<button class="btn btn-sm btn-tertiary">Войти</button>
+				</div>
 			</div>
 		</template>
 
