@@ -1,28 +1,42 @@
 <template>
 	<aside class="aside">
-		<!-- User is logged in -->
-		<template v-if="$store.state.user.isLoggedIn">
+		<!-- User not loaded yet -->
+		<template v-if="!$store.state.loading.isAuthInitialized">
 			<div class="aside__profile">
 				<img
-					src="https://i.imgur.com/T39kQkM.jpeg"
-					alt="Profile Picture"
+					src="@/assets/avatar-skeleton.svg"
+					alt="Profile Picture Skeleton"
 					class="aside__avatar"
 				/>
-				<div class="aside__nickname">zxcvenorez but with 2 lines</div>
+				<div class="aside__nickname"> </div>
 			</div>
 		</template>
-		<!-- User is NOT logged in -->
+		<!-- Else have a data about user is logged in or not -->
 		<template v-else>
-			<div class="aside__profile">
-				<img
-					src="https://i.imgur.com/T39kQkM.jpeg"
-					alt="Profile Picture"
-					class="aside__avatar"
-				/>
-				<div class="aside__nickname">
-					<button class="btn btn-sm btn-tertiary">Войти</button>
+			<!-- User is logged in -->
+			<template v-if="$store.state.user.isLoggedIn">
+				<div class="aside__profile">
+					<img
+						:src="$store.state.user.photoUrl"
+						alt="Profile Picture"
+						class="aside__avatar"
+					/>
+					<div class="aside__nickname">{{ $store.state.user.displayName }}</div>
 				</div>
-			</div>
+			</template>
+			<!-- User is NOT logged in -->
+			<template v-else>
+				<div class="aside__profile">
+					<img
+						src="@/assets/avatar-skeleton.svg"
+						alt="No User Generic Profile Picture"
+						class="aside__avatar"
+					/>
+					<div class="aside__nickname">
+						<button class="btn btn-sm btn-tertiary">Войти</button>
+					</div>
+				</div>
+			</template>
 		</template>
 
 		<div class="aside__line aside__line--top"></div>
