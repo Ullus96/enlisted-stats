@@ -48,6 +48,14 @@ const router = createRouter({
 			},
 		},
 		{
+			path: '/test',
+			name: 'Test page',
+			component: () => import('@/views/TestView.vue'),
+			meta: {
+				title: 'Тестовая страница',
+			},
+		},
+		{
 			path: '/my-builds',
 			name: 'My builds',
 			component: () => import('@/views/MyBuildsView.vue'),
