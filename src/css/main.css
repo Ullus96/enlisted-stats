@@ -482,14 +482,29 @@ h3 {
 }
 
 .page-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+#visible-screen {
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  margin-top: -100dvh;
+  width: 100%;
+}
+
 .main {
   flex-grow: 1;
   padding-left: 7.2rem;
+}
+@media (min-width: 0px) and (max-width: 1123px) {
+  .main {
+    padding-left: 0;
+  }
 }
 
 .btn {
@@ -510,8 +525,8 @@ h3 {
 }
 .btn-primary {
   background-color: rgba(106, 24, 24, 0.75);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
 }
 .btn-primary:hover {
   background-color: rgba(114, 37, 37, 0.76);
@@ -523,8 +538,8 @@ h3 {
 .btn-secondary {
   background-color: rgba(30, 30, 30, 0.75);
   outline: 1px solid rgb(56, 56, 56);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
 }
 .btn-secondary:hover {
   background-color: rgba(43, 43, 43, 0.76);
@@ -1768,13 +1783,18 @@ h3 {
   width: 7.2rem;
   padding: 2.4rem 0 1.2rem;
   background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
   z-index: 30;
   white-space: nowrap;
   display: flex;
   flex-direction: column;
   transition: width 0.2s ease-in-out;
+}
+@media (min-width: 0px) and (max-width: 1123px) {
+  .aside {
+    visibility: hidden;
+  }
 }
 .aside__profile {
   position: relative;
@@ -1935,6 +1955,27 @@ h3 {
 }
 .aside:hover .aside__footer-links {
   display: block;
+}
+.aside__hamburger-btn {
+  display: none;
+  z-index: 1;
+  position: absolute;
+  bottom: 2.4rem;
+  right: 2.4rem;
+  padding: 1.2rem;
+  background-color: rgba(35, 35, 35, 0.75);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 0.8rem;
+  z-index: 30;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 0px) and (max-width: 1123px) {
+  .aside__hamburger-btn {
+    display: flex;
+  }
 }
 
 @keyframes navigationSlide {

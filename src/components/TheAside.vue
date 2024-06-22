@@ -154,6 +154,14 @@
 			</footer>
 		</div>
 	</aside>
+
+	<Teleport to="#visible-screen">
+		<button class="btn btn-secondary aside__hamburger-btn">
+			<IconBase :iconName="'Mobile Navigation'" :width="25" :height="25">
+				<IconHamburger />
+			</IconBase>
+		</button>
+	</Teleport>
 </template>
 
 <script lang="ts">
@@ -170,6 +178,7 @@ import IconCrown from '@/components/ui/icons/IconCrown.vue';
 import IconCog from '@/components/ui/icons/IconCog.vue';
 import IconDiscord from '@/components/ui/icons/IconDiscord.vue';
 import IconSignOut from '@/components/ui/icons/IconSignOut.vue';
+import IconHamburger from '@/components/ui/icons/IconHamburger.vue';
 
 export default defineComponent({
 	components: {
@@ -184,6 +193,7 @@ export default defineComponent({
 		IconCog,
 		IconDiscord,
 		IconSignOut,
+		IconHamburger,
 	},
 	setup() {
 		const store = useStore();

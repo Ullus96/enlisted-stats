@@ -29,12 +29,25 @@
 }
 
 .page-wrapper {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
 }
 
+#visible-screen {
+	z-index: 1;
+	position: sticky;
+	top: 0;
+	height: 100dvh;
+	margin-top: -100dvh;
+	width: 100%;
+}
+
 .main {
 	flex-grow: 1;
 	padding-left: 7.2rem;
+	@include desktop-small {
+		padding-left: 0;
+	}
 }

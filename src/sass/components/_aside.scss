@@ -14,6 +14,10 @@
 	flex-direction: column;
 	transition: width 0.2s ease-in-out;
 
+	@include desktop-small {
+		visibility: hidden;
+	}
+
 	&__profile {
 		position: relative;
 		display: flex;
@@ -183,6 +187,27 @@
 			&__footer-links {
 				display: block;
 			}
+		}
+	}
+
+	// Mobile layout
+	&__hamburger-btn {
+		display: none;
+		z-index: 1;
+		position: absolute;
+		bottom: 2.4rem;
+		right: 2.4rem;
+		padding: 1.2rem;
+		background-color: $color-bg-a-700;
+		@include ui-background-blur;
+		border-radius: 0.8rem;
+		z-index: 30;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		@include desktop-small {
+			display: flex;
 		}
 	}
 }

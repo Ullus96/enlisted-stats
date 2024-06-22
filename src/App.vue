@@ -1,4 +1,5 @@
 <template>
+	<div id="visible-screen"></div>
 	<div class="page-wrapper">
 		<!-- <the-header></the-header> -->
 		<auth-init></auth-init>
