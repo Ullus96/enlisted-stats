@@ -90,6 +90,12 @@
 		display: flex;
 		gap: 0.8rem;
 		cursor: pointer;
+		z-index: 0;
+
+		@include pressed($color-text-100, $color-bg-a-700);
+		&::after {
+			z-index: -1;
+		}
 
 		&:focus {
 			@include focused($color-text-100, $color-bg-a-700);

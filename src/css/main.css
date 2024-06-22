@@ -1844,6 +1844,29 @@ h3 {
   display: flex;
   gap: 0.8rem;
   cursor: pointer;
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
+}
+.aside__link:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(65, 65, 65, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+}
+.aside__link:active:after {
+  transform: translate(-50%, -50%) scale(7);
+  opacity: 1;
+}
+.aside__link::after {
+  z-index: -1;
 }
 .aside__link:focus {
   outline: 1px solid #e2e2e2;
