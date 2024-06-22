@@ -155,17 +155,19 @@
 		</div>
 	</aside>
 
-	<Teleport to="#visible-screen">
-		<button class="btn btn-secondary aside__hamburger-btn">
-			<IconBase :iconName="'Mobile Navigation'" :width="25" :height="25">
-				<IconHamburger />
-			</IconBase>
-		</button>
-	</Teleport>
+	<template v-if="mounted">
+		<Teleport to="#page">
+			<button class="btn btn-secondary aside__hamburger-btn">
+				<IconBase :iconName="'Mobile Navigation'" :width="24" :height="24">
+					<IconHamburger />
+				</IconBase>
+			</button>
+		</Teleport>
+	</template>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconAngleDoubleUp from '@/components/ui/icons/IconAngleDoubleUp.vue';
@@ -197,7 +199,14 @@ export default defineComponent({
 	},
 	setup() {
 		const store = useStore();
-		console.log(store);
+		// console.log(store);
+
+		const mounted = ref(false);
+		onMounted(() => {
+			mounted.value = true;
+		});
+
+		return { mounted };
 	},
 });
 </script>

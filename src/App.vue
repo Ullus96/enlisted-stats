@@ -1,6 +1,6 @@
 <template>
 	<div id="visible-screen"></div>
-	<div class="page-wrapper">
+	<div class="page-wrapper" id="page">
 		<!-- <the-header></the-header> -->
 		<auth-init></auth-init>
 		<vuex-debug></vuex-debug>
@@ -32,5 +32,3 @@ export default defineComponent({
 	setup() {},
 });
 </script>
-
-<style></style>
