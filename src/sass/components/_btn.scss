@@ -20,6 +20,8 @@
 		background-color: $color-primary-a-500;
 		@include ui-background-blur;
 
+		@include pressed($color-text-100, $color-primary-a-400, 2.5);
+
 		&:hover {
 			@include hovered($color-text-100, $color-primary-a-500);
 		}
@@ -34,6 +36,8 @@
 		outline: 1px solid $color-bg-050;
 		@include ui-background-blur;
 
+		@include pressed($color-text-100, $color-bg-a-600, 2.5);
+
 		&:hover {
 			@include hovered($color-text-100, $color-bg-a-800);
 		}
@@ -44,6 +48,8 @@
 	}
 
 	&-tertiary {
+		@include pressed($color-text-100, $color-bg-a-300, 2.5);
+
 		&:hover {
 			@include hovered($color-text-100, $color-bg-a-300);
 		}

@@ -3,7 +3,7 @@
 	<div class="page-wrapper" id="page">
 		<!-- <the-header></the-header> -->
 		<auth-init></auth-init>
-		<vuex-debug></vuex-debug>
+		<!-- <vuex-debug></vuex-debug> -->
 		<the-aside></the-aside>
 		<main class="main">
 			<router-view></router-view>

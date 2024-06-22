@@ -97,9 +97,6 @@
 		z-index: 0;
 
 		@include pressed($color-text-100, $color-bg-a-700);
-		&::after {
-			z-index: -1;
-		}
 
 		&:focus {
 			@include focused($color-text-100, $color-bg-a-700);
@@ -119,6 +116,8 @@
 			&:hover {
 				@include hovered($color-text-100, $color-bg-300);
 			}
+
+			@include pressed($color-text-100, $color-bg-300);
 		}
 	}
 
@@ -191,22 +190,35 @@
 	}
 
 	// Mobile layout
+	&__hamburger-wrapper {
+		position: sticky;
+		display: flex;
+		margin: -4.8rem 0 0 auto;
+		z-index: 30;
+		bottom: 2.4rem;
+		right: 2.4rem;
+	}
 	&__hamburger-btn {
 		display: none;
 		z-index: 1;
-		position: sticky;
-		margin-left: auto;
-		margin-top: -4.8rem;
-		bottom: 2.4rem;
-		right: 2.4rem;
 		padding: 1.2rem;
 		background-color: $color-bg-a-700;
 		@include ui-background-blur;
 		border-radius: 0.8rem;
-		z-index: 30;
+		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+
+		@include pressed($color-text-100, $color-bg-a-500, 1.5);
+
+		&:hover {
+			@include hovered($color-text-100, $color-bg-a-700);
+		}
+
+		&:focus {
+			@include focused($color-text-100, $color-bg-a-700);
+		}
 
 		@include desktop-small {
 			display: flex;

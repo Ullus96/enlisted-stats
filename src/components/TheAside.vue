@@ -157,11 +157,13 @@
 
 	<template v-if="mounted">
 		<Teleport to="#page">
-			<button class="btn btn-secondary aside__hamburger-btn">
-				<IconBase :iconName="'Mobile Navigation'" :width="24" :height="24">
-					<IconHamburger />
-				</IconBase>
-			</button>
+			<div class="aside__hamburger-wrapper">
+				<button class="btn btn-secondary aside__hamburger-btn" tabindex="1">
+					<IconBase :iconName="'Mobile Navigation'" :width="24" :height="24">
+						<IconHamburger />
+					</IconBase>
+				</button>
+			</div>
 		</Teleport>
 	</template>
 </template>
@@ -199,7 +201,6 @@ export default defineComponent({
 	},
 	setup() {
 		const store = useStore();
-		// console.log(store);
 
 		const mounted = ref(false);
 		onMounted(() => {

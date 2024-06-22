@@ -518,6 +518,26 @@ h3 {
   background-color: rgba(106, 24, 24, 0.75);
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(139, 62, 62, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.btn-primary:active:after {
+  transform: translate(-50%, -50%) scale(2.5);
+  opacity: 1;
 }
 .btn-primary:hover {
   background-color: rgba(114, 37, 37, 0.76);
@@ -531,6 +551,26 @@ h3 {
   outline: 1px solid rgb(56, 56, 56);
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+.btn-secondary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(67, 67, 67, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.btn-secondary:active:after {
+  transform: translate(-50%, -50%) scale(2.5);
+  opacity: 1;
 }
 .btn-secondary:hover {
   background-color: rgba(43, 43, 43, 0.76);
@@ -538,6 +578,28 @@ h3 {
 .btn-secondary:focus {
   outline: 1px solid #e2e2e2;
   background-color: rgba(66, 66, 66, 0.78);
+}
+.btn-tertiary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-tertiary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(75, 75, 75, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.btn-tertiary:active:after {
+  transform: translate(-50%, -50%) scale(2.5);
+  opacity: 1;
 }
 .btn-tertiary:hover {
   background-color: rgba(59, 59, 59, 0.76);
@@ -1859,7 +1921,7 @@ h3 {
   position: relative;
   overflow: hidden;
 }
-.aside__link:after {
+.aside__link::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -1871,13 +1933,11 @@ h3 {
   border-radius: 50%;
   transition: transform 0.2s, opacity 0.2s;
   opacity: 0;
+  z-index: -1;
 }
 .aside__link:active:after {
   transform: translate(-50%, -50%) scale(7);
   opacity: 1;
-}
-.aside__link::after {
-  z-index: -1;
 }
 .aside__link:focus {
   outline: 1px solid #e2e2e2;
@@ -1888,6 +1948,8 @@ h3 {
 }
 .aside__link.router-link-active {
   background-color: rgb(47, 47, 47);
+  position: relative;
+  overflow: hidden;
 }
 .aside__link.router-link-active:focus {
   outline: 1px solid #e2e2e2;
@@ -1895,6 +1957,24 @@ h3 {
 }
 .aside__link.router-link-active:hover {
   background-color: #363636;
+}
+.aside__link.router-link-active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: #414141;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.aside__link.router-link-active:active:after {
+  transform: translate(-50%, -50%) scale(7);
+  opacity: 1;
 }
 .aside__link-desc {
   position: absolute;
@@ -1947,23 +2027,53 @@ h3 {
 .aside:hover .aside__footer-links {
   display: block;
 }
+.aside__hamburger-wrapper {
+  position: sticky;
+  display: flex;
+  margin: -4.8rem 0 0 auto;
+  z-index: 30;
+  bottom: 2.4rem;
+  right: 2.4rem;
+}
 .aside__hamburger-btn {
   display: none;
   z-index: 1;
-  position: sticky;
-  margin-left: auto;
-  margin-top: -4.8rem;
-  bottom: 2.4rem;
-  right: 2.4rem;
   padding: 1.2rem;
   background-color: rgba(35, 35, 35, 0.75);
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
   border-radius: 0.8rem;
-  z-index: 30;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.aside__hamburger-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(68, 68, 68, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.aside__hamburger-btn:active:after {
+  transform: translate(-50%, -50%) scale(1.5);
+  opacity: 1;
+}
+.aside__hamburger-btn:hover {
+  background-color: rgba(47, 47, 47, 0.76);
+}
+.aside__hamburger-btn:focus {
+  outline: 1px solid #e2e2e2;
+  background-color: rgba(70, 70, 70, 0.78);
 }
 @media (min-width: 0px) and (max-width: 1123px) {
   .aside__hamburger-btn {

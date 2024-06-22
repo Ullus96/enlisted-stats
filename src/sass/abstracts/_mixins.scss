@@ -166,11 +166,11 @@
 	background-color: mix($text-color, $background-color, 12%);
 }
 
-@mixin pressed($text-color, $background-color) {
+@mixin pressed($text-color, $background-color, $scale-size: 7) {
 	position: relative;
 	overflow: hidden;
 
-	&:after {
+	&::after {
 		content: '';
 		position: absolute;
 		top: 50%;
@@ -182,10 +182,11 @@
 		border-radius: 50%;
 		transition: transform 0.2s, opacity 0.2s;
 		opacity: 0;
+		z-index: -1;
 	}
 
 	&:active:after {
-		transform: translate(-50%, -50%) scale(7);
+		transform: translate(-50%, -50%) scale($scale-size);
 		opacity: 1;
 	}
 }
