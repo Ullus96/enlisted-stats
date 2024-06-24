@@ -34,7 +34,7 @@
 					/>
 					<div class="aside__nickname">
 						<button
-							@click="toggleNavigationVisibility"
+							@click="hideNavigationVisibility"
 							class="btn btn-sm btn-tertiary"
 						>
 							Войти
@@ -49,7 +49,7 @@
 			<nav class="aside__navigation">
 				<section class="aside__links">
 					<router-link
-						@click="toggleNavigationVisibility"
+						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/"
 					>
@@ -60,7 +60,7 @@
 					</router-link>
 
 					<router-link
-						@click="toggleNavigationVisibility"
+						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/calculator"
 					>
@@ -71,7 +71,7 @@
 					</router-link>
 
 					<router-link
-						@click="toggleNavigationVisibility"
+						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/skill-builds"
 					>
@@ -82,7 +82,7 @@
 					</router-link>
 
 					<router-link
-						@click="toggleNavigationVisibility"
+						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/events"
 					>
@@ -98,7 +98,7 @@
 
 					<section class="aside__links">
 						<router-link
-							@click="toggleNavigationVisibility"
+							@click="hideNavigationVisibility"
 							class="aside__link"
 							to="/my-builds"
 						>
@@ -109,7 +109,7 @@
 						</router-link>
 
 						<router-link
-							@click="toggleNavigationVisibility"
+							@click="hideNavigationVisibility"
 							class="aside__link"
 							to="/saved-builds"
 						>
@@ -126,7 +126,7 @@
 
 					<section class="aside__links">
 						<router-link
-							@click="toggleNavigationVisibility"
+							@click="hideNavigationVisibility"
 							class="aside__link"
 							to="/admin"
 						>
@@ -142,7 +142,7 @@
 
 				<section class="aside__links">
 					<router-link
-						@click="toggleNavigationVisibility"
+						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/profile"
 						v-if="$store.state.user.isLoggedIn"
@@ -154,7 +154,7 @@
 					</router-link>
 
 					<button
-						@click="toggleNavigationVisibility"
+						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/contacts"
 					>
@@ -165,7 +165,7 @@
 					</button>
 
 					<button
-						@click="toggleNavigationVisibility"
+						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/sign-out"
 						v-if="$store.state.user.isLoggedIn"
@@ -186,11 +186,11 @@
 					</p>
 				</div>
 				<div class="aside__footer-links">
-					<router-link @click="toggleNavigationVisibility" to="/"
+					<router-link @click="hideNavigationVisibility" to="/"
 						>Политика конфиденциальности</router-link
 					>
 					|
-					<router-link @click="toggleNavigationVisibility" to="/"
+					<router-link @click="hideNavigationVisibility" to="/"
 						>Пользовательское соглашение</router-link
 					>
 				</div>
@@ -282,7 +282,11 @@ export default defineComponent({
 			store.commit('toggleNavigationVisibility');
 		}
 
-		return { mounted, toggleNavigationVisibility };
+		function hideNavigationVisibility() {
+			store.commit('toggleNavigationVisibility', true);
+		}
+
+		return { mounted, toggleNavigationVisibility, hideNavigationVisibility };
 	},
 });
 </script>

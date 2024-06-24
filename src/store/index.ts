@@ -59,7 +59,11 @@ export default createStore<State>({
 			state.loading.isAuthInitialized = true;
 		},
 
-		toggleNavigationVisibility(state) {
+		toggleNavigationVisibility(state, forceOff: boolean = false) {
+			if (forceOff) {
+				state.isNavigationVisible = false;
+				return;
+			}
 			state.isNavigationVisible = !state.isNavigationVisible;
 		},
 	},
