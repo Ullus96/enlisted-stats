@@ -155,7 +155,11 @@
 		</div>
 	</aside>
 
-	<div class="page-mask" v-if="isNavigationVisible"></div>
+	<div
+		class="page-mask"
+		v-if="isNavigationVisible"
+		@click.stop="toggleNavigationVisibility"
+	></div>
 
 	<template v-if="mounted">
 		<Teleport to="#page">

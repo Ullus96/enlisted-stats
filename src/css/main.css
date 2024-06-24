@@ -516,8 +516,8 @@ h3 {
 }
 .btn-primary {
   background-color: rgba(106, 24, 24, 0.75);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(9px);
+          backdrop-filter: blur(9px);
   position: relative;
   overflow: hidden;
 }
@@ -549,8 +549,8 @@ h3 {
 .btn-secondary {
   background-color: rgba(30, 30, 30, 0.75);
   outline: 1px solid rgb(56, 56, 56);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(9px);
+          backdrop-filter: blur(9px);
   position: relative;
   overflow: hidden;
 }
@@ -1836,25 +1836,13 @@ h3 {
   width: 7.2rem;
   padding: 2.4rem 0 1.2rem;
   background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(9px);
+          backdrop-filter: blur(9px);
   z-index: 30;
   white-space: nowrap;
   display: flex;
   flex-direction: column;
   transition: width 0.2s ease-in-out;
-}
-@media (min-width: 0px) and (max-width: 1123px) {
-  .aside {
-    display: none;
-  }
-  .aside.visible {
-    display: flex;
-    width: 80%;
-  }
-  .aside.visible:hover {
-    width: 80%;
-  }
 }
 .aside__profile {
   position: relative;
@@ -1876,7 +1864,7 @@ h3 {
   position: absolute;
   top: 50%;
   right: 2rem;
-  transform: translateX(-40px, -50%);
+  transform: translate(-40px, -50%);
   opacity: 0;
   left: 7.8rem;
 }
@@ -2047,8 +2035,8 @@ h3 {
   z-index: 1;
   padding: 1.2rem;
   background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(9px);
+          backdrop-filter: blur(9px);
   border-radius: 0.8rem;
   display: flex;
   flex-direction: column;
@@ -2085,6 +2073,81 @@ h3 {
 @media (min-width: 0px) and (max-width: 1123px) {
   .aside__hamburger-btn {
     display: flex;
+  }
+}
+@media (min-width: 0px) and (max-width: 1123px) {
+  .aside {
+    display: none;
+  }
+  .aside__profile {
+    opacity: 0;
+  }
+  .aside.visible {
+    display: flex;
+    width: clamp(75%, 24rem, 100%);
+  }
+  .aside.visible .aside__profile {
+    padding-right: 2rem;
+    animation: navigationSlideRelative 0.4s ease-out forwards;
+  }
+  .aside.visible .aside__avatar {
+    margin: 0 2rem;
+  }
+  .aside.visible .aside__nickname {
+    position: relative;
+    display: flex;
+    transform: none;
+    opacity: 1;
+    top: auto;
+    left: auto;
+    align-self: center;
+    animation: none;
+  }
+  .aside.visible .aside__link-desc {
+    position: relative;
+    display: inline-block;
+    animation: navigationSlide 0.4s ease-in-out forwards;
+  }
+  .aside.visible .aside__footer {
+    animation: showFooter 0.6s ease-in-out forwards;
+  }
+  .aside.visible .aside__footer-legal {
+    display: flex;
+  }
+  .aside.visible .aside__footer-links {
+    display: block;
+  }
+  .aside.visible .aside:hover {
+    width: 80%;
+  }
+  .aside.visible .aside:hover__profile {
+    padding-right: 2rem;
+  }
+  .aside.visible .aside:hover__avatar {
+    margin: 0 2rem;
+  }
+  .aside.visible .aside:hover__nickname {
+    position: relative;
+    display: flex;
+    transform: none;
+    opacity: 1;
+    top: auto;
+    left: auto;
+    align-self: center;
+  }
+  .aside.visible .aside:hover__link-desc {
+    position: relative;
+    display: inline-block;
+    animation: navigationSlide 0.4s ease-in-out forwards;
+  }
+  .aside.visible .aside:hover__footer {
+    animation: showFooter 0.6s ease-in-out forwards;
+  }
+  .aside.visible .aside:hover__footer-legal {
+    display: flex;
+  }
+  .aside.visible .aside:hover__footer-links {
+    display: block;
   }
 }
 
@@ -2140,6 +2203,18 @@ h3 {
   }
   100% {
     position: relative;
+    opacity: 1;
+  }
+}
+@keyframes navigationSlideRelative {
+  0% {
+    transform: translateX(-40px);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
     opacity: 1;
   }
 }

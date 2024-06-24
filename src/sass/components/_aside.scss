@@ -14,19 +14,6 @@
 	flex-direction: column;
 	transition: width 0.2s ease-in-out;
 
-	@include desktop-small {
-		display: none;
-
-		&.visible {
-			display: flex;
-			width: 80%;
-
-			&:hover {
-				width: 80%;
-			}
-		}
-	}
-
 	&__profile {
 		position: relative;
 		display: flex;
@@ -48,7 +35,7 @@
 		position: absolute;
 		top: 50%;
 		right: 2rem;
-		transform: translateX(-40px, -50%);
+		transform: translate(-40px, -50%);
 		opacity: 0;
 		left: calc(2rem + 5rem + 0.8rem);
 
@@ -233,6 +220,101 @@
 			display: flex;
 		}
 	}
+
+	// Aside mobile structure with activated state
+	@include desktop-small {
+		display: none;
+
+		&__profile {
+			opacity: 0;
+		}
+
+		&.visible {
+			display: flex;
+			width: clamp(75%, 24rem, 100%);
+
+			.aside {
+				&__profile {
+					padding-right: 2rem;
+					// margin: 0 auto;
+					animation: navigationSlideRelative 0.4s ease-out forwards;
+				}
+
+				&__avatar {
+					margin: 0 2rem;
+				}
+
+				&__nickname {
+					position: relative;
+					display: flex;
+					transform: none;
+					opacity: 1;
+					top: auto;
+					left: auto;
+					align-self: center;
+					animation: none;
+				}
+
+				&__link-desc {
+					position: relative;
+					display: inline-block;
+					animation: navigationSlide 0.4s ease-in-out forwards;
+				}
+
+				&__footer {
+					animation: showFooter 0.6s ease-in-out forwards;
+				}
+
+				&__footer-legal {
+					display: flex;
+				}
+
+				&__footer-links {
+					display: block;
+				}
+
+				&:hover {
+					width: 80%;
+
+					&__profile {
+						padding-right: 2rem;
+					}
+
+					&__avatar {
+						margin: 0 2rem;
+					}
+
+					&__nickname {
+						position: relative;
+						display: flex;
+						transform: none;
+						opacity: 1;
+						top: auto;
+						left: auto;
+						align-self: center;
+					}
+
+					&__link-desc {
+						position: relative;
+						display: inline-block;
+						animation: navigationSlide 0.4s ease-in-out forwards;
+					}
+
+					&__footer {
+						animation: showFooter 0.6s ease-in-out forwards;
+					}
+
+					&__footer-legal {
+						display: flex;
+					}
+
+					&__footer-links {
+						display: block;
+					}
+				}
+			}
+		}
+	}
 }
 
 @keyframes navigationSlide {
@@ -299,6 +381,21 @@
 
 	100% {
 		position: relative;
+		opacity: 1;
+	}
+}
+
+@keyframes navigationSlideRelative {
+	0% {
+		transform: translateX(-40px);
+	}
+
+	50% {
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0px);
 		opacity: 1;
 	}
 }
