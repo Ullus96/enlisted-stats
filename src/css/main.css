@@ -1846,7 +1846,14 @@ h3 {
 }
 @media (min-width: 0px) and (max-width: 1123px) {
   .aside {
-    visibility: hidden;
+    display: none;
+  }
+  .aside.visible {
+    display: flex;
+    width: 80%;
+  }
+  .aside.visible:hover {
+    width: 80%;
   }
 }
 .aside__profile {

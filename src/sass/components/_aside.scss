@@ -15,7 +15,16 @@
 	transition: width 0.2s ease-in-out;
 
 	@include desktop-small {
-		visibility: hidden;
+		display: none;
+
+		&.visible {
+			display: flex;
+			width: 80%;
+
+			&:hover {
+				width: 80%;
+			}
+		}
 	}
 
 	&__profile {

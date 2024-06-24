@@ -1,5 +1,5 @@
 <template>
-	<aside class="aside">
+	<aside class="aside" :class="{ visible: isNavigationVisible }">
 		<!-- User not loaded yet -->
 		<template v-if="!$store.state.loading.isAuthInitialized">
 			<div class="aside__profile">
@@ -155,10 +155,16 @@
 		</div>
 	</aside>
 
+	<div class="page-mask" v-if="isNavigationVisible"></div>
+
 	<template v-if="mounted">
 		<Teleport to="#page">
 			<div class="aside__hamburger-wrapper">
-				<button class="btn btn-secondary aside__hamburger-btn" tabindex="1">
+				<button
+					class="btn btn-secondary aside__hamburger-btn"
+					tabindex="1"
+					@click="toggleNavigationVisibility"
+				>
 					<IconBase :iconName="'Mobile Navigation'" :width="24" :height="24">
 						<IconHamburger />
 					</IconBase>
@@ -169,7 +175,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, Ref, ref } from 'vue';
 import { useStore } from 'vuex';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconAngleDoubleUp from '@/components/ui/icons/IconAngleDoubleUp.vue';
@@ -202,12 +208,18 @@ export default defineComponent({
 	setup() {
 		const store = useStore();
 
+		// Fix error caused by Teleporting button mounting
 		const mounted = ref(false);
 		onMounted(() => {
 			mounted.value = true;
 		});
 
-		return { mounted };
+		const isNavigationVisible: Ref<boolean> = ref(false);
+		function toggleNavigationVisibility() {
+			isNavigationVisible.value = !isNavigationVisible.value;
+		}
+
+		return { mounted, isNavigationVisible, toggleNavigationVisibility };
 	},
 });
 </script>
