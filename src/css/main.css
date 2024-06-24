@@ -1901,9 +1901,9 @@ h3 {
   align-items: center;
   width: 100%;
   gap: 0.8rem;
-  overflow-y: scroll;
-  overflow-x: hidden;
   flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .aside__links {
   display: flex;
@@ -2034,11 +2034,16 @@ h3 {
 }
 .aside__hamburger-wrapper {
   position: sticky;
-  display: flex;
+  display: none;
   margin: -4.8rem 0 0 auto;
   z-index: 30;
   bottom: 2.4rem;
   right: 2.4rem;
+}
+@media (min-width: 0px) and (max-width: 1123px) {
+  .aside__hamburger-wrapper {
+    display: flex;
+  }
 }
 .aside__hamburger-btn {
   display: none;
