@@ -45,7 +45,7 @@
 	}
 
 	&__line {
-		height: 1px;
+		min-height: 1px;
 		background-color: $color-text-900;
 		margin: 0 auto;
 		width: 100%;
@@ -63,6 +63,14 @@
 		justify-content: space-between;
 		flex: 1;
 		padding: 0 2rem;
+		gap: 2.4rem;
+
+		@include desktop-small {
+			// 2rem - 1.2rem - paddings of Aside itself
+			// 5rem - height of the profile block
+			// 3.7rem - line (.1rem) + its' paddings
+			max-height: calc(100dvh - 2rem - 1.2rem - 5rem - 3.7rem);
+		}
 	}
 
 	&__navigation {
@@ -71,6 +79,10 @@
 		align-items: center;
 		width: 100%;
 		gap: 0.8rem;
+		// max-height: 58%;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		flex: 1 1 auto;
 	}
 
 	&__links {
@@ -117,7 +129,6 @@
 		}
 	}
 
-	// оно
 	&__link-desc {
 		position: absolute;
 		transform: translateX(-40px);
@@ -130,6 +141,9 @@
 		line-height: 150%;
 		white-space: normal;
 		position: absolute;
+		flex: 0 0 auto;
+		// height: fit-content;
+		// flex-basis: fit-content;
 	}
 
 	&__footer-legal {
@@ -236,7 +250,6 @@
 			.aside {
 				&__profile {
 					padding-right: 2rem;
-					// margin: 0 auto;
 					animation: navigationSlideRelative 0.4s ease-out forwards;
 				}
 

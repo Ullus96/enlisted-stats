@@ -1872,7 +1872,7 @@ h3 {
   font-size: 1.6rem;
 }
 .aside__line {
-  height: 1px;
+  min-height: 1px;
   background-color: rgb(57, 57, 57);
   margin: 0 auto;
   width: 100%;
@@ -1888,6 +1888,12 @@ h3 {
   justify-content: space-between;
   flex: 1;
   padding: 0 2rem;
+  gap: 2.4rem;
+}
+@media (min-width: 0px) and (max-width: 1123px) {
+  .aside__main-content {
+    max-height: calc(100dvh - 2rem - 1.2rem - 5rem - 3.7rem);
+  }
 }
 .aside__navigation {
   display: flex;
@@ -1895,6 +1901,9 @@ h3 {
   align-items: center;
   width: 100%;
   gap: 0.8rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex: 1 1 auto;
 }
 .aside__links {
   display: flex;
@@ -1982,6 +1991,7 @@ h3 {
   line-height: 150%;
   white-space: normal;
   position: absolute;
+  flex: 0 0 auto;
 }
 .aside__footer-legal {
   display: none;

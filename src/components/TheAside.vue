@@ -138,7 +138,6 @@
 					</button>
 				</section>
 			</nav>
-
 			<footer class="aside__footer">
 				<div class="aside__footer-legal">
 					<p>Enlisted — зарегистрированная товарная марка Gaijin Games Kft.</p>
