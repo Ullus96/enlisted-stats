@@ -2085,6 +2085,16 @@ h3 {
     display: flex;
   }
 }
+.aside__hamburger-icon {
+  opacity: 0;
+  transform: rotate(-90deg);
+  transition: opacity 0.2s ease-in-out, transform 0.4s ease-in-out;
+}
+.aside__hamburger-icon.visible {
+  position: absolute;
+  opacity: 1;
+  transform: rotate(0deg);
+}
 @media (min-width: 0px) and (max-width: 1123px) {
   .aside {
     display: none;

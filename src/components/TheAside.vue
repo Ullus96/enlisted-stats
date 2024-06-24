@@ -168,8 +168,23 @@
 					tabindex="1"
 					@click="toggleNavigationVisibility"
 				>
-					<IconBase :iconName="'Mobile Navigation'" :width="24" :height="24">
+					<IconBase
+						:iconName="'Open Mobile Navigation'"
+						:width="24"
+						:height="24"
+						class="aside__hamburger-icon"
+						:class="{ visible: !isNavigationVisible }"
+					>
 						<IconHamburger />
+					</IconBase>
+					<IconBase
+						:iconName="'Close Mobile Navigation'"
+						:width="24"
+						:height="24"
+						class="aside__hamburger-icon"
+						:class="{ visible: isNavigationVisible }"
+					>
+						<IconTimes />
 					</IconBase>
 				</button>
 			</div>
@@ -192,6 +207,7 @@ import IconCog from '@/components/ui/icons/IconCog.vue';
 import IconDiscord from '@/components/ui/icons/IconDiscord.vue';
 import IconSignOut from '@/components/ui/icons/IconSignOut.vue';
 import IconHamburger from '@/components/ui/icons/IconHamburger.vue';
+import IconTimes from '@/components/ui/icons/IconTimes.vue';
 
 export default defineComponent({
 	components: {
@@ -207,6 +223,7 @@ export default defineComponent({
 		IconDiscord,
 		IconSignOut,
 		IconHamburger,
+		IconTimes,
 	},
 	setup() {
 		const store = useStore();
