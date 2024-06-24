@@ -56,6 +56,22 @@ const router = createRouter({
 			},
 		},
 		{
+			path: '/privacy',
+			name: 'Privacy policy',
+			component: () => import('@/views/legal/PrivacyView.vue'),
+			meta: {
+				title: 'Политика конфиденциальности',
+			},
+		},
+		{
+			path: '/user-agreement',
+			name: 'User agreement',
+			component: () => import('@/views/legal/UserAgreementView.vue'),
+			meta: {
+				title: 'Пользовательское соглашение',
+			},
+		},
+		{
 			path: '/my-builds',
 			name: 'My builds',
 			component: () => import('@/views/MyBuildsView.vue'),

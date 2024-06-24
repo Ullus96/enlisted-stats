@@ -186,11 +186,11 @@
 					</p>
 				</div>
 				<div class="aside__footer-links">
-					<router-link @click="hideNavigationVisibility" to="/"
+					<router-link @click="hideNavigationVisibility" to="/privacy"
 						>Политика конфиденциальности</router-link
 					>
 					|
-					<router-link @click="hideNavigationVisibility" to="/"
+					<router-link @click="hideNavigationVisibility" to="/user-agreement"
 						>Пользовательское соглашение</router-link
 					>
 				</div>
