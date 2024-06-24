@@ -1,5 +1,5 @@
 <template>
-	<aside class="aside" :class="{ visible: isNavigationVisible }">
+	<aside class="aside" :class="{ visible: $store.state.isNavigationVisible }">
 		<!-- User not loaded yet -->
 		<template v-if="!$store.state.loading.isAuthInitialized">
 			<div class="aside__profile">
@@ -33,7 +33,12 @@
 						class="aside__avatar"
 					/>
 					<div class="aside__nickname">
-						<button class="btn btn-sm btn-tertiary">Войти</button>
+						<button
+							@click="toggleNavigationVisibility"
+							class="btn btn-sm btn-tertiary"
+						>
+							Войти
+						</button>
 					</div>
 				</div>
 			</template>
@@ -43,28 +48,44 @@
 		<div class="aside__main-content">
 			<nav class="aside__navigation">
 				<section class="aside__links">
-					<router-link class="aside__link" to="/">
+					<router-link
+						@click="toggleNavigationVisibility"
+						class="aside__link"
+						to="/"
+					>
 						<IconBase :iconName="'Table'">
 							<IconAngleDoubleUp />
 						</IconBase>
 						<span class="aside__link-desc">Таблица</span>
 					</router-link>
 
-					<router-link class="aside__link" to="/calculator">
+					<router-link
+						@click="toggleNavigationVisibility"
+						class="aside__link"
+						to="/calculator"
+					>
 						<IconBase :iconName="'Calculator'">
 							<IconUserCog />
 						</IconBase>
 						<span class="aside__link-desc">Калькулятор</span>
 					</router-link>
 
-					<router-link class="aside__link" to="/skill-builds">
+					<router-link
+						@click="toggleNavigationVisibility"
+						class="aside__link"
+						to="/skill-builds"
+					>
 						<IconBase :iconName="'Skill Builds'">
 							<IconBookOpen />
 						</IconBase>
 						<span class="aside__link-desc">Сборки</span>
 					</router-link>
 
-					<router-link class="aside__link" to="/events">
+					<router-link
+						@click="toggleNavigationVisibility"
+						class="aside__link"
+						to="/events"
+					>
 						<IconBase :iconName="'Events Calendar'">
 							<IconCalendar />
 						</IconBase>
@@ -76,14 +97,22 @@
 					<div class="aside__line"></div>
 
 					<section class="aside__links">
-						<router-link class="aside__link" to="/my-builds">
+						<router-link
+							@click="toggleNavigationVisibility"
+							class="aside__link"
+							to="/my-builds"
+						>
 							<IconBase :iconName="'My Builds'">
 								<IconHammer />
 							</IconBase>
 							<span class="aside__link-desc">Мои сборки</span>
 						</router-link>
 
-						<router-link class="aside__link" to="/saved-builds">
+						<router-link
+							@click="toggleNavigationVisibility"
+							class="aside__link"
+							to="/saved-builds"
+						>
 							<IconBase :iconName="'Saved Builds'">
 								<IconBookmark />
 							</IconBase>
@@ -96,7 +125,11 @@
 					<div class="aside__line"></div>
 
 					<section class="aside__links">
-						<router-link class="aside__link" to="/admin">
+						<router-link
+							@click="toggleNavigationVisibility"
+							class="aside__link"
+							to="/admin"
+						>
 							<IconBase :iconName="'Admin Panel'">
 								<IconCrown />
 							</IconBase>
@@ -109,6 +142,7 @@
 
 				<section class="aside__links">
 					<router-link
+						@click="toggleNavigationVisibility"
 						class="aside__link"
 						to="/profile"
 						v-if="$store.state.user.isLoggedIn"
@@ -119,7 +153,11 @@
 						<span class="aside__link-desc">Настройки</span>
 					</router-link>
 
-					<button class="aside__link" to="/contacts">
+					<button
+						@click="toggleNavigationVisibility"
+						class="aside__link"
+						to="/contacts"
+					>
 						<IconBase :iconName="'Discord'">
 							<IconDiscord />
 						</IconBase>
@@ -127,6 +165,7 @@
 					</button>
 
 					<button
+						@click="toggleNavigationVisibility"
 						class="aside__link"
 						to="/sign-out"
 						v-if="$store.state.user.isLoggedIn"
@@ -147,8 +186,13 @@
 					</p>
 				</div>
 				<div class="aside__footer-links">
-					<router-link to="/">Политика конфиденциальности</router-link> |
-					<router-link to="/">Пользовательское соглашение</router-link>
+					<router-link @click="toggleNavigationVisibility" to="/"
+						>Политика конфиденциальности</router-link
+					>
+					|
+					<router-link @click="toggleNavigationVisibility" to="/"
+						>Пользовательское соглашение</router-link
+					>
 				</div>
 			</footer>
 		</div>
@@ -156,7 +200,7 @@
 
 	<div
 		class="page-mask"
-		v-if="isNavigationVisible"
+		v-if="$store.state.isNavigationVisible"
 		@click.stop="toggleNavigationVisibility"
 	></div>
 
@@ -173,7 +217,7 @@
 						:width="24"
 						:height="24"
 						class="aside__hamburger-icon"
-						:class="{ visible: !isNavigationVisible }"
+						:class="{ visible: !$store.state.isNavigationVisible }"
 					>
 						<IconHamburger />
 					</IconBase>
@@ -182,7 +226,7 @@
 						:width="24"
 						:height="24"
 						class="aside__hamburger-icon"
-						:class="{ visible: isNavigationVisible }"
+						:class="{ visible: $store.state.isNavigationVisible }"
 					>
 						<IconTimes />
 					</IconBase>
@@ -234,12 +278,11 @@ export default defineComponent({
 			mounted.value = true;
 		});
 
-		const isNavigationVisible: Ref<boolean> = ref(false);
 		function toggleNavigationVisibility() {
-			isNavigationVisible.value = !isNavigationVisible.value;
+			store.commit('toggleNavigationVisibility');
 		}
 
-		return { mounted, isNavigationVisible, toggleNavigationVisibility };
+		return { mounted, toggleNavigationVisibility };
 	},
 });
 </script>

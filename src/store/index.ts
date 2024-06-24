@@ -3,6 +3,7 @@ export interface State {
 	showLoginPopup: boolean;
 	displayName: string;
 	inDevelop: boolean;
+	isNavigationVisible: boolean;
 	loading: {
 		isAuthInitialized: boolean;
 	};
@@ -20,6 +21,7 @@ export default createStore<State>({
 		showLoginPopup: false,
 		displayName: '',
 		inDevelop: !false,
+		isNavigationVisible: false,
 		loading: {
 			isAuthInitialized: false,
 		},
@@ -35,13 +37,16 @@ export default createStore<State>({
 		showLoginPopup(state) {
 			state.showLoginPopup = true;
 		},
+
 		closeLoginPopup(state) {
 			state.showLoginPopup = false;
 		},
+
 		setNewDisplayName(state, payload) {
 			state.displayName = payload;
 			state.user.displayName = payload;
 		},
+
 		setUserData(state, payload) {
 			state.user.isLoggedIn = true;
 			state.user.uid = payload.uid;
@@ -49,8 +54,13 @@ export default createStore<State>({
 			state.user.photoUrl = payload.photoUrl;
 			state.user.isAdmin = payload.isAdmin;
 		},
+
 		finishFirstAuthInitialization(state) {
 			state.loading.isAuthInitialized = true;
+		},
+
+		toggleNavigationVisibility(state) {
+			state.isNavigationVisible = !state.isNavigationVisible;
 		},
 	},
 });
