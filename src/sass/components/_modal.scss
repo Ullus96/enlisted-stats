@@ -114,7 +114,7 @@
 	align-items: center;
 	width: clamp(20rem, calc(100% - 4rem), 34rem);
 	margin: 0 auto;
-	padding: 4rem 2rem 2rem;
+	padding: 3.2rem 2rem 2rem;
 	background-color: $color-bg-a-700;
 	@include ui-background-blur;
 	border-radius: 1.2rem;
@@ -185,7 +185,7 @@
 		gap: 2rem;
 		text-align: left;
 		color: $color-text-400;
-		margin-top: 4rem;
+		margin-top: 2.4rem;
 		font-size: $ui-font-size-s;
 	}
 

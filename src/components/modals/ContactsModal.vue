@@ -19,7 +19,7 @@
 					<IconBase :iconName="'Enlisted Forum'" :width="24" :height="24">
 						<IconLetter />
 					</IconBase>
-					<a href="https://forum.enlisted.net/ru/u/Ullus/"
+					<a href="https://forum.enlisted.net/ru/u/Ullus/" target="_blank"
 						>forum.enlisted.net/ru/u/Ullus/</a
 					>
 				</p>

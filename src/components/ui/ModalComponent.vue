@@ -2,7 +2,11 @@
 	<Teleport to="#visible-screen-40">
 		<div class="page-mask page-mask--above" @click.stop="closeModal"></div>
 		<section class="modal">
-			<button class="btn btn-tertiary btn-sm modal__btn" @click="closeModal">
+			<button
+				class="btn btn-tertiary btn-sm modal__btn"
+				@click="closeModal"
+				ref="closeBtn"
+			>
 				<IconBase :iconName="'Close modal window'">
 					<IconTimes />
 				</IconBase>
@@ -14,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, onMounted, PropType, Ref, ref } from 'vue';
 import { ModalState } from '@/store/index';
 import { useStore } from 'vuex';
 import IconBase from '@/components/ui/icons/IconBase.vue';
@@ -38,7 +42,16 @@ export default defineComponent({
 			});
 		}
 
-		return { closeModal };
+		const closeBtn: Ref<null | HTMLButtonElement> = ref(null);
+		function focusCloseBtn() {
+			if (closeBtn.value) {
+				closeBtn.value.focus();
+			}
+		}
+
+		onMounted(focusCloseBtn);
+
+		return { closeModal, closeBtn };
 	},
 });
 </script>
