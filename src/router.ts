@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SoldiersView from '@/views/SoldiersView.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { checkIfUserAnAdmin } from '@/components/login/functions/checkIfUserAnAdmin';
+import { checkIfUserAnAdmin } from '@/components/auth/functions/checkIfUserAnAdmin';
 import { adminsList } from './firebase/adminsList';
 
 const router = createRouter({
