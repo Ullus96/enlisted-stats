@@ -1,10 +1,15 @@
 import { createStore } from 'vuex';
+
+export interface ModalState {
+	isLoginModalVisible: boolean;
+	isContactsModalVisible: boolean;
+}
 export interface State {
 	showLoginPopup: boolean;
 	displayName: string;
 	inDevelop: boolean;
 	isNavigationVisible: boolean;
-	isLoginModalVisible: boolean;
+	modal: ModalState;
 	loading: {
 		isAuthInitialized: boolean;
 	};
@@ -23,7 +28,10 @@ export default createStore<State>({
 		displayName: '',
 		inDevelop: !false,
 		isNavigationVisible: false,
-		isLoginModalVisible: false,
+		modal: {
+			isLoginModalVisible: false,
+			isContactsModalVisible: false,
+		},
 		loading: {
 			isAuthInitialized: false,
 		},
@@ -79,11 +87,28 @@ export default createStore<State>({
 
 		toggleLoginModalVisibility(state, forceClose: boolean = false) {
 			if (forceClose) {
-				state.isLoginModalVisible = false;
+				state.modal.isLoginModalVisible = false;
 				return;
 			}
 
-			state.isLoginModalVisible = !state.isLoginModalVisible;
+			state.modal.isLoginModalVisible = !state.modal.isLoginModalVisible;
+		},
+
+		toggleModalVisibility(
+			state,
+			payload: {
+				name: keyof State['modal'];
+				forceClose: boolean | undefined;
+			}
+		) {
+			const { name, forceClose } = payload;
+			console.log(payload);
+			if (forceClose) {
+				state.modal[name] = false;
+				return;
+			}
+
+			state.modal[name] = !state.modal[name];
 		},
 	},
 });

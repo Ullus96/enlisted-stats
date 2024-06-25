@@ -3,7 +3,7 @@
 	<div
 		class="visible-screen"
 		id="visible-screen-40"
-		v-if="$store.state.isLoginModalVisible"
+		v-if="isAnyModalVisible"
 	></div>
 	<div class="page-wrapper" id="page">
 		<auth-init></auth-init>
@@ -19,7 +19,8 @@
 import TheAside from './components/TheAside.vue';
 import AuthInit from './components/auth/AuthInit.vue';
 import VuexDebug from './components/debug/VuexDebug.vue';
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
+import { useStore } from 'vuex';
 
 export default defineComponent({
 	name: 'App',
@@ -28,6 +29,17 @@ export default defineComponent({
 		AuthInit,
 		VuexDebug,
 	},
-	setup() {},
+	setup() {
+		const store = useStore();
+
+		// Computed свойство для проверки, если любой modal видим
+		const isAnyModalVisible = computed(() => {
+			return Object.values(store.state.modal).some((value) => value);
+		});
+
+		return {
+			isAnyModalVisible,
+		};
+	},
 });
 </script>

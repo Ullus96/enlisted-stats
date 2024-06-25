@@ -36,7 +36,7 @@
 						<button
 							@click="
 								hideNavigationVisibility;
-								$store.state.isLoginModalVisible = true;
+								$store.state.modal.isLoginModalVisible = true;
 							"
 							class="btn btn-sm btn-tertiary"
 						>
@@ -156,11 +156,7 @@
 						<span class="aside__link-desc">Настройки</span>
 					</router-link>
 
-					<button
-						@click="hideNavigationVisibility"
-						class="aside__link"
-						to="/contacts"
-					>
+					<button @click="showContactsModal" class="aside__link" to="/contacts">
 						<IconBase :iconName="'Discord'">
 							<IconDiscord />
 						</IconBase>
@@ -238,7 +234,8 @@
 		</Teleport>
 	</template>
 
-	<LoginOrRegister v-if="$store.state.isLoginModalVisible" />
+	<LoginOrRegister v-if="$store.state.modal.isLoginModalVisible" />
+	<ContactsModal v-if="$store.state.modal.isContactsModalVisible" />
 </template>
 
 <script lang="ts">
@@ -260,6 +257,7 @@ import IconHamburger from '@/components/ui/icons/IconHamburger.vue';
 import IconTimes from '@/components/ui/icons/IconTimes.vue';
 import LoginOrRegister from '@/components/auth/LoginOrRegister.vue';
 import { getAuth, signOut } from 'firebase/auth';
+import ContactsModal from '@/components/modals/ContactsModal.vue';
 
 export default defineComponent({
 	components: {
@@ -277,6 +275,7 @@ export default defineComponent({
 		IconHamburger,
 		IconTimes,
 		LoginOrRegister,
+		ContactsModal,
 	},
 	setup() {
 		const store = useStore();
@@ -296,6 +295,11 @@ export default defineComponent({
 			store.commit('toggleNavigationVisibility', true);
 		}
 
+		// Контакты
+		function showContactsModal() {
+			store.commit('toggleModalVisibility', { name: 'isContactsModalVisible' });
+		}
+
 		// Регистрация/Логин/Выход
 
 		// TODO: Добавить сообщение в Pop-up, что успешно вышел с аккаунта
@@ -312,6 +316,7 @@ export default defineComponent({
 			mounted,
 			toggleNavigationVisibility,
 			hideNavigationVisibility,
+			showContactsModal,
 			handleSignOut,
 		};
 	},
