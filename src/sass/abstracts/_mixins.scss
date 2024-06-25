@@ -77,11 +77,11 @@
 	box-shadow: 0 0 2.5rem rgba($color-highlight, 0.4);
 }
 
-@mixin page-mask($opacity: 0.6) {
+@mixin page-mask($opacity: 0.4) {
 	position: absolute;
 	z-index: 20;
 	inset: 0 0 0 0;
-	background-color: rgba($color-black, $opacity);
+	background-color: rgba($color-bg-900, $opacity);
 	opacity: 1;
 	animation: fade-in 0.1s ease-in;
 }

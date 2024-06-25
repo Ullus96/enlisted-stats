@@ -1,5 +1,10 @@
 <template>
-	<div id="visible-screen"></div>
+	<div class="visible-screen" id="visible-screen" v-if="false"></div>
+	<div
+		class="visible-screen"
+		id="visible-screen-40"
+		v-if="$store.state.isLoginModalVisible"
+	></div>
 	<div class="page-wrapper" id="page">
 		<!-- <the-header></the-header> -->
 		<auth-init></auth-init>

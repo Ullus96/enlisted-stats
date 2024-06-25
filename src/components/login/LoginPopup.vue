@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import Login from './Login.vue';
+import Login from './Login2.vue';
 import Register from './Register.vue';
 
 export default defineComponent({

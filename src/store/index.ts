@@ -4,6 +4,7 @@ export interface State {
 	displayName: string;
 	inDevelop: boolean;
 	isNavigationVisible: boolean;
+	isLoginModalVisible: boolean;
 	loading: {
 		isAuthInitialized: boolean;
 	};
@@ -22,6 +23,7 @@ export default createStore<State>({
 		displayName: '',
 		inDevelop: !false,
 		isNavigationVisible: false,
+		isLoginModalVisible: false,
 		loading: {
 			isAuthInitialized: false,
 		},
@@ -59,12 +61,21 @@ export default createStore<State>({
 			state.loading.isAuthInitialized = true;
 		},
 
-		toggleNavigationVisibility(state, forceOff: boolean = false) {
-			if (forceOff) {
+		toggleNavigationVisibility(state, forceClose: boolean = false) {
+			if (forceClose) {
 				state.isNavigationVisible = false;
 				return;
 			}
 			state.isNavigationVisible = !state.isNavigationVisible;
+		},
+
+		toggleLoginModalVisibility(state, forceClose: boolean = false) {
+			if (forceClose) {
+				state.isLoginModalVisible = false;
+				return;
+			}
+
+			state.isLoginModalVisible = !state.isLoginModalVisible;
 		},
 	},
 });

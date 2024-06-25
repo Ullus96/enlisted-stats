@@ -5,6 +5,7 @@
 		</button>
 		<p class="debug__title">Other data:</p>
 		<p>isNavigationVisible: {{ $store.state.isNavigationVisible }}</p>
+		<p>isLoginModalVisible: {{ $store.state.isLoginModalVisible }}</p>
 		<div class="aside__line debug__line"></div>
 		<p class="debug__title">LoadingData:</p>
 		<p v-for="(line, key) in store.state.loading" :key="line">

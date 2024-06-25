@@ -34,7 +34,10 @@
 					/>
 					<div class="aside__nickname">
 						<button
-							@click="hideNavigationVisibility"
+							@click="
+								hideNavigationVisibility;
+								$store.state.isLoginModalVisible = true;
+							"
 							class="btn btn-sm btn-tertiary"
 						>
 							Войти
@@ -234,6 +237,10 @@
 			</div>
 		</Teleport>
 	</template>
+
+	<template v-if="$store.state.isLoginModalVisible">
+		<LoginOrRegister />
+	</template>
 </template>
 
 <script lang="ts">
@@ -252,6 +259,7 @@ import IconDiscord from '@/components/ui/icons/IconDiscord.vue';
 import IconSignOut from '@/components/ui/icons/IconSignOut.vue';
 import IconHamburger from '@/components/ui/icons/IconHamburger.vue';
 import IconTimes from '@/components/ui/icons/IconTimes.vue';
+import LoginOrRegister from '@/components/login/LoginOrRegister.vue';
 
 export default defineComponent({
 	components: {
@@ -268,6 +276,7 @@ export default defineComponent({
 		IconSignOut,
 		IconHamburger,
 		IconTimes,
+		LoginOrRegister,
 	},
 	setup() {
 		const store = useStore();
