@@ -153,7 +153,7 @@
 						<IconBase :iconName="'Settings'">
 							<IconCog />
 						</IconBase>
-						<span class="aside__link-desc">Настройки</span>
+						<span class="aside__link-desc">Профиль</span>
 					</router-link>
 
 					<button @click="showContactsModal" class="aside__link" to="/contacts">

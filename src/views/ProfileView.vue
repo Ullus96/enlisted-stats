@@ -1,6 +1,6 @@
 <template>
 	<!-- loading skeleton -->
-	<template v-if="pageLoading">
+	<!-- <template v-if="pageLoading">
 		<div class="container-sm mt-s">
 			<div class="profile__header">
 				<div class="profile__header-img loading">&nbsp;</div>
@@ -24,20 +24,21 @@
 				</div>
 			</div>
 		</div>
-	</template>
+	</template> -->
+
 	<!-- actual content -->
-	<template v-else>
+	<!-- <template v-else>
 		<div class="container-sm mt-s">
-			<div class="profile__header">
-				<!-- if pfp -->
-				<img
+			<div class="profile__header"> -->
+	<!-- if pfp -->
+	<!-- <img
 					:src="auth.currentUser?.photoURL"
 					alt="Profile Picture"
 					v-if="auth.currentUser?.photoURL"
 					class="profile__header-img"
-				/>
-				<!-- else if no pfp -->
-				<div class="profile__header-img profile__header-img--blank" v-else>
+				/> -->
+	<!-- else if no pfp -->
+	<!-- <div class="profile__header-img profile__header-img--blank" v-else>
 					<i class="fa-regular fa-user"></i>
 				</div>
 
@@ -83,12 +84,12 @@
 							{{ newName.split('').length }}/32
 						</p>
 					</div>
-				</div>
+				</div> -->
 
-				<!-- ------------------------- -->
-				<!-- BLOCK FOR TESTING PURPOSE -->
-				<!-- ------------------------- -->
-				<template v-if="false">
+	<!-- ------------------------- -->
+	<!-- BLOCK FOR TESTING PURPOSE -->
+	<!-- ------------------------- -->
+	<!-- <template v-if="false">
 					<div class="profile__input-block">
 						<label for="getID">Имя пользователя по ID</label>
 						<div class="profile__input-flex">
@@ -107,22 +108,22 @@
 							<p>{{ loadedUserData.displayName }}</p>
 						</div>
 					</div>
-				</template>
-				<!-- ------------------------- -->
-				<!-- ------------------------- -->
+				</template> -->
+	<!-- ------------------------- -->
+	<!-- ------------------------- -->
 
-				<div class="profile__no-img">
+	<!-- <div class="profile__no-img">
 					<p class="profile__no-img-title">Аватар пользователя</p>
-					<div class="profile__no-img-inner">
-						<!-- if pfp -->
-						<img
+					<div class="profile__no-img-inner"> -->
+	<!-- if pfp -->
+	<!-- <img
 							:src="auth.currentUser?.photoURL"
 							alt="Profile Picture"
 							v-if="auth.currentUser?.photoURL"
 							class="profile__no-img--img"
-						/>
-						<!-- else if no pfp -->
-						<div class="profile__no-img--img profile__header-img--blank" v-else>
+						/> -->
+	<!-- else if no pfp -->
+	<!-- <div class="profile__no-img--img profile__header-img--blank" v-else>
 							<i class="fa-regular fa-user"></i>
 						</div>
 						<p class="profile__no-img-desc">
@@ -143,7 +144,51 @@
 		>
 			{{ popUpMsg.desc }}
 		</lower-pop-up>
-	</Teleport>
+	</Teleport> -->
+
+	<div class="container mt-l">
+		<div class="container-sm">
+			<h3>Настройки профиля</h3>
+			<div class="profile__avatar-block">
+				<img
+					src="https://i.imgur.com/T39kQkM.jpeg"
+					alt="Profile picture"
+					class="profile__avatar"
+				/>
+				<span class="profile__nickname">zxcvenorez</span>
+			</div>
+			<section class="profile__block">
+				<input type="text" name="" id="" />
+				<div class="profile__text-block">
+					<p class="profile__option-name">Аватар пользователя</p>
+					<div class="profile__change-photo-block">
+						<img
+							src="https://i.imgur.com/T39kQkM.jpeg"
+							alt="Profile picture"
+							class="profile__change-photo-avatar"
+						/>
+						<p class="profile__option-desc">
+							Для смены аватара пользователя, перейдите в Управление аккаунтом
+							Google - Личная информация, и поменяйте фотографию пользователя
+							там.
+						</p>
+					</div>
+				</div>
+				<div class="profile__delete-block">
+					<div class="profile__text-block">
+						<p class="profile__option-name">Удалить профиль</p>
+						<p class="profile__option-desc">
+							При удалении учетной записи, вся информация, включая электронную
+							почту пользователя, аватар пользователя, а так же отображаемое имя
+							будут удалены. Сборки все еще будут доступны, однако, автор сборки
+							сменится на “Неизвестен”
+						</p>
+					</div>
+					<button class="btn btn-secondary btn-m">Удалить профиль</button>
+				</div>
+			</section>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">

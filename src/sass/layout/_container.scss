@@ -5,6 +5,7 @@
 	max-width: 144rem;
 	padding-left: 2rem;
 	padding-right: 2rem;
+	padding-bottom: 2rem;
 
 	@include desktop-small {
 		max-width: 120rem;
@@ -20,12 +21,8 @@
 }
 
 .container-sm {
-	margin-left: auto;
-	margin-right: auto;
-	min-width: 32rem;
-	max-width: 100rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
+	width: 100%;
+	max-width: 80rem;
 }
 
 .page-wrapper {
