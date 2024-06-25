@@ -57,6 +57,14 @@ export default createStore<State>({
 			state.user.isAdmin = payload.isAdmin;
 		},
 
+		clearUserData(state) {
+			state.user.isLoggedIn = false;
+			state.user.uid = null;
+			state.user.displayName = null;
+			state.user.photoUrl = null;
+			state.user.isAdmin = false;
+		},
+
 		finishFirstAuthInitialization(state) {
 			state.loading.isAuthInitialized = true;
 		},

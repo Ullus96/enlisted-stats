@@ -168,7 +168,7 @@
 					</button>
 
 					<button
-						@click="hideNavigationVisibility"
+						@click="handleSignOut"
 						class="aside__link"
 						to="/sign-out"
 						v-if="$store.state.user.isLoggedIn"
@@ -238,14 +238,13 @@
 		</Teleport>
 	</template>
 
-	<template v-if="$store.state.isLoginModalVisible">
-		<LoginOrRegister />
-	</template>
+	<LoginOrRegister v-if="$store.state.isLoginModalVisible" />
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, Ref, ref } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconAngleDoubleUp from '@/components/ui/icons/IconAngleDoubleUp.vue';
 import IconUserCog from '@/components/ui/icons/IconUserCog.vue';
@@ -259,7 +258,8 @@ import IconDiscord from '@/components/ui/icons/IconDiscord.vue';
 import IconSignOut from '@/components/ui/icons/IconSignOut.vue';
 import IconHamburger from '@/components/ui/icons/IconHamburger.vue';
 import IconTimes from '@/components/ui/icons/IconTimes.vue';
-import LoginOrRegister from '@/components/login/LoginOrRegister.vue';
+import LoginOrRegister from '@/components/auth/LoginOrRegister.vue';
+import { getAuth, signOut } from 'firebase/auth';
 
 export default defineComponent({
 	components: {
@@ -280,6 +280,7 @@ export default defineComponent({
 	},
 	setup() {
 		const store = useStore();
+		const router = useRouter();
 
 		// Fix error caused by Teleporting button mounting
 		const mounted = ref(false);
@@ -295,7 +296,24 @@ export default defineComponent({
 			store.commit('toggleNavigationVisibility', true);
 		}
 
-		return { mounted, toggleNavigationVisibility, hideNavigationVisibility };
+		// Регистрация/Логин/Выход
+
+		// TODO: Добавить сообщение в Pop-up, что успешно вышел с аккаунта
+		// TODO: сделать Dialog-компонент, который возвращает @confirm и @reject
+		// и после @confirm уже ливать с акка
+		function handleSignOut() {
+			signOut(getAuth());
+			hideNavigationVisibility();
+			router.push('/');
+			store.commit('clearUserData');
+		}
+
+		return {
+			mounted,
+			toggleNavigationVisibility,
+			hideNavigationVisibility,
+			handleSignOut,
+		};
 	},
 });
 </script>
