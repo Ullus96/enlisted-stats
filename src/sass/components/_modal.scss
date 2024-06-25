@@ -106,6 +106,7 @@
 // }
 
 .modal {
+	// Base modal template styles
 	z-index: 40;
 	position: relative;
 	display: flex;
@@ -125,6 +126,9 @@
 		top: 0;
 		padding: 1.2rem;
 	}
+
+	// ==============
+	// Register modal
 
 	&__title {
 		margin: 0 auto;
