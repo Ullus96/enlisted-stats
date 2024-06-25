@@ -2,7 +2,7 @@
 	<Teleport to="#visible-screen-40">
 		<div class="page-mask page-mask--above" @click.stop="forceClose"></div>
 		<section class="modal">
-			<button class="btn btn-tertiary btn-sm modal__btn">
+			<button class="btn btn-tertiary btn-sm modal__btn" @click="forceClose">
 				<IconBase :iconName="'Close modal window'">
 					<IconTimes />
 				</IconBase>
@@ -10,11 +10,15 @@
 			<h3 class="modal__title">Войти или зарегистрироваться</h3>
 
 			<button class="modal__google-btn btn">
-				<img
-					src="@/assets/google-icon.svg"
-					alt="Sign in with Google"
+				<IconBase
+					:iconName="'Sign in with Google'"
 					class="modal__google-icon"
-				/>
+					:width="32"
+					:height="32"
+					:viewBox="`0 0 32 32`"
+				>
+					<IconGoogle />
+				</IconBase>
 				<span class="modal__google-text">Войти при помощи Google</span>
 			</button>
 
@@ -37,9 +41,10 @@ import { defineComponent } from 'vue';
 import { useStore } from 'vuex';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconTimes from '@/components/ui/icons/IconTimes.vue';
+import IconGoogle from '@/components/ui/icons/IconGoogle.vue';
 
 export default defineComponent({
-	components: { IconBase, IconTimes },
+	components: { IconBase, IconTimes, IconGoogle },
 	setup() {
 		const store = useStore();
 
