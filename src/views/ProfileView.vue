@@ -149,16 +149,19 @@
 	<div class="container mt-l">
 		<div class="container-sm">
 			<h3>Настройки профиля</h3>
+
 			<div class="profile__avatar-block">
 				<img
 					src="https://i.imgur.com/T39kQkM.jpeg"
 					alt="Profile picture"
 					class="profile__avatar"
 				/>
-				<span class="profile__nickname">zxcvenorez</span>
+				<h2 class="profile__nickname">zxcvenorez</h2>
 			</div>
+
 			<section class="profile__block">
-				<input type="text" name="" id="" />
+				<input type="text" name="" id="" placeholder="123" />
+
 				<div class="profile__text-block">
 					<p class="profile__option-name">Аватар пользователя</p>
 					<div class="profile__change-photo-block">
@@ -168,12 +171,13 @@
 							class="profile__change-photo-avatar"
 						/>
 						<p class="profile__option-desc">
-							Для смены аватара пользователя, перейдите в Управление аккаунтом
-							Google - Личная информация, и поменяйте фотографию пользователя
-							там.
+							Для смены аватара пользователя, перейди в Управление аккаунтом
+							Google - Личная информация, и поменяй фотографию пользователя там.
+							Обновление займет какое-то время.
 						</p>
 					</div>
 				</div>
+
 				<div class="profile__delete-block">
 					<div class="profile__text-block">
 						<p class="profile__option-name">Удалить профиль</p>
@@ -184,7 +188,9 @@
 							сменится на “Неизвестен”
 						</p>
 					</div>
-					<button class="btn btn-secondary btn-m">Удалить профиль</button>
+					<button class="btn btn-secondary btn-m profile__btn">
+						Удалить профиль
+					</button>
 				</div>
 			</section>
 		</div>
