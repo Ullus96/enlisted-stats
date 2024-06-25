@@ -8,8 +8,16 @@
 				</IconBase>
 			</button>
 			<h3 class="modal__title">Войти или зарегистрироваться</h3>
-			<!-- google btn -->
-			<div class="modal__google-btn">Кнопка</div>
+
+			<button class="modal__google-btn btn">
+				<img
+					src="@/assets/google-icon.svg"
+					alt="Sign in with Google"
+					class="modal__google-icon"
+				/>
+				<span class="modal__google-text">Войти при помощи Google</span>
+			</button>
+
 			<p class="modal__legal">
 				Регистрируясь на сайте, Вы соглашаетесь с
 				<router-link to="/user-agreement" class="modal__link"

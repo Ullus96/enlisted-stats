@@ -111,7 +111,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 34rem;
+	width: clamp(20rem, calc(100% - 4rem), 34rem);
 	margin: 0 auto;
 	padding: 4rem 2rem 2rem;
 	background-color: $color-bg-a-700;
@@ -132,7 +132,32 @@
 	}
 
 	&__google-btn {
-		margin-top: 6rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: $color-text-100;
+		margin: 6rem auto 0;
+		padding: 1.2rem 1.6rem;
+		border-radius: 0.8rem;
+		gap: 0.8rem;
+
+		@include pressed($color-bg-100, $color-text-100, 2.5);
+
+		&:hover {
+			@include hovered($color-bg-100, $color-text-100);
+		}
+
+		&:focus {
+			@include focused($color-bg-100, $color-text-100);
+		}
+	}
+
+	&__google-icon {
+		flex: 0 0 auto;
+	}
+
+	&__google-text {
+		color: $color-bg-100;
 	}
 
 	&__legal {
