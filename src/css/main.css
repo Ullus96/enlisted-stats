@@ -495,6 +495,8 @@ h3 {
   top: 0;
   height: 100dvh;
   margin-top: -100dvh;
+  display: grid;
+  place-items: center;
 }
 
 #visible-screen {
@@ -1309,10 +1311,7 @@ h3 {
 
 .modal {
   z-index: 40;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1322,6 +1321,29 @@ h3 {
   background-color: rgba(35, 35, 35, 0.75);
   -webkit-backdrop-filter: blur(9px);
           backdrop-filter: blur(9px);
+  border-radius: 1.2rem;
+  text-align: center;
+}
+.modal__btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 1.2rem;
+}
+.modal__title {
+  margin: 0 auto;
+  text-wrap: balance;
+}
+.modal__google-btn {
+  margin-top: 6rem;
+}
+.modal__legal {
+  margin-top: 8rem;
+  color: rgb(165, 165, 165);
+}
+.modal__link {
+  color: rgb(175, 61, 61);
+  text-decoration: underline;
 }
 
 .profile__header {
