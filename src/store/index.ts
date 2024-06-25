@@ -85,15 +85,6 @@ export default createStore<State>({
 			state.isNavigationVisible = !state.isNavigationVisible;
 		},
 
-		toggleLoginModalVisibility(state, forceClose: boolean = false) {
-			if (forceClose) {
-				state.modal.isLoginModalVisible = false;
-				return;
-			}
-
-			state.modal.isLoginModalVisible = !state.modal.isLoginModalVisible;
-		},
-
 		toggleModalVisibility(
 			state,
 			payload: {

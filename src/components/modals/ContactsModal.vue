@@ -1,12 +1,11 @@
 <template>
-	<ModalComponent @closeModal="close">
+	<ModalComponent :modalName="'isContactsModalVisible'">
 		<h3 class="modal__title">Связаться с автором сайта</h3>
 	</ModalComponent>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useStore } from 'vuex';
 import ModalComponent from '@/components/ui/ModalComponent.vue';
 
 export default defineComponent({
@@ -14,16 +13,7 @@ export default defineComponent({
 		ModalComponent,
 	},
 	setup() {
-		const store = useStore();
-
-		function close() {
-			store.commit('toggleModalVisibility', {
-				name: 'isContactsModalVisible',
-				forceClose: true,
-			});
-		}
-
-		return { close };
+		return {};
 	},
 });
 </script>

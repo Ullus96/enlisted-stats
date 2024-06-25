@@ -14,16 +14,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
+import { ModalState } from '@/store/index';
+import { useStore } from 'vuex';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconTimes from '@/components/ui/icons/IconTimes.vue';
 
 export default defineComponent({
+	props: {
+		modalName: {
+			required: true,
+			type: String as PropType<keyof ModalState>,
+		},
+	},
 	components: { IconBase, IconTimes },
-	emits: ['closeModal'],
 	setup(props, context) {
+		const store = useStore();
+
 		function closeModal() {
-			context.emit('closeModal');
+			store.commit('toggleModalVisibility', {
+				name: props.modalName,
+				forceClose: true,
+			});
 		}
 
 		return { closeModal };

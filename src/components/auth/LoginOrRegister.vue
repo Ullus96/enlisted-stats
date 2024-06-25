@@ -1,5 +1,5 @@
 <template>
-	<ModalComponent @closeModal="forceClose">
+	<ModalComponent :modalName="'isLoginModalVisible'">
 		<h3 class="modal__title">Войти или зарегистрироваться</h3>
 
 		<button class="modal__google-btn btn" @click="signInWithGoogle">
@@ -48,12 +48,11 @@ export default defineComponent({
 	setup() {
 		const store = useStore();
 
-		function forceClose() {
-			store.commit('toggleLoginModalVisibility', true);
-		}
-
 		function closeModalAndNavigation() {
-			store.commit('toggleLoginModalVisibility', true);
+			store.commit('toggleModalVisibility', {
+				name: 'isLoginModalVisible',
+				forceClose: true,
+			});
 			store.commit('toggleNavigationVisibility', true);
 		}
 
@@ -101,7 +100,6 @@ export default defineComponent({
 		}
 
 		return {
-			forceClose,
 			closeModalAndNavigation,
 			signInWithGoogle,
 		};
