@@ -14,7 +14,7 @@
 					<span class="input__error"> {{ errorMsg }} </span>
 					<span class="input__desc" v-if="desc"> {{ desc }} </span>
 					<span class="input__desc" v-if="counter">
-						{{ 0 }} / {{ counter }}
+						{{ currentCounter }} / {{ counter }}
 					</span>
 				</div>
 			</div>
@@ -22,7 +22,7 @@
 			<button
 				class="btn btn-secondary btn-m input__btn"
 				v-if="inlineButton"
-				:disabled="errorMsg"
+				:disabled="errorMsg || isEmpty"
 			>
 				<IconBase :iconName="'Confirm'">
 					<IconCheck />
@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, Ref, ref, watch } from 'vue';
+import { computed, defineComponent, PropType, Ref, ref, watch } from 'vue';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconCheck from '@/components/ui/icons/IconCheck.vue';
 import { blacklistedWords } from '@/data/bannedSymbols';
@@ -71,19 +71,28 @@ export default defineComponent({
 	setup(props, context) {
 		const inputValue = ref();
 		const errorMsg: Ref<string | null> = ref(null);
+		const currentCounter: Ref<number> = ref(0);
+		const keysPressedCounter: Ref<number> = ref(0);
 
 		watch(inputValue, (newValue) => {
+			keysPressedCounter.value++;
 			let hasForbiddenWords = false;
+
 			// Тут проверку на валидность
+			errorMsg.value = null;
+
 			if (props.type === 'text' || props.type === 'number') {
 				hasForbiddenWords = containsBlacklistedWords(newValue);
 			}
 
 			if (hasForbiddenWords) {
 				errorMsg.value = 'Замени запрещенные символы';
-			} else {
-				errorMsg.value = null;
 			}
+
+			if (keysPressedCounter.value > 0 && isEmpty.value) {
+				errorMsg.value = 'Не может быть пустым';
+			}
+
 			// Тут эмиты
 			context.emit('onChange', newValue);
 		});
@@ -96,9 +105,16 @@ export default defineComponent({
 			);
 		}
 
+		const isEmpty = computed(() => {
+			return !inputValue.value || !keysPressedCounter.value;
+		});
+
 		return {
 			inputValue,
 			errorMsg,
+			currentCounter,
+			keysPressedCounter,
+			isEmpty,
 		};
 	},
 });
