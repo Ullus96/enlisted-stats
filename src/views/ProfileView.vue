@@ -59,11 +59,12 @@
 
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue';
-import { getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth';
+import { deleteUser, getAuth, updateProfile } from 'firebase/auth';
 import WorkInProgress from '@/components/no-page/WorkInProgress.vue';
 import LowerPopUp from '@/components/error/LowerPopUp.vue';
 import { useStore } from 'vuex';
-import { doc, setDoc } from 'firebase/firestore';
+import { useRouter } from 'vue-router';
+import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import InputComponent from '@/components/ui/InputComponent.vue';
 
@@ -71,7 +72,9 @@ export default defineComponent({
 	components: { WorkInProgress, LowerPopUp, InputComponent },
 	setup() {
 		const auth = getAuth();
+		const user = auth.currentUser;
 		const store = useStore();
+		const router = useRouter();
 
 		const inputName: Ref<string | null> = ref(null);
 
@@ -104,6 +107,37 @@ export default defineComponent({
 						console.log(error);
 					});
 			}
+		}
+
+		// Удаление
+
+		function deleteAccountTest() {
+			console.log('Account deleted');
+			// тут твоя функция deleteAccount
+		}
+
+		function deleteAccount() {
+			if (!user) return;
+
+			deleteUser(user)
+				.then(() => {
+					// User deleted.
+					const docRef = doc(db, 'users', user.uid);
+
+					try {
+						deleteDoc(docRef);
+						// TODO: сделать оповещение во vuex что профиль удален
+						router.push('/');
+					} catch (err: any) {
+						// TODO: ту же ошибку что и ниже
+						alert(`Произошла ошибка: ${err.message}`);
+					}
+				})
+				.catch((error) => {
+					// TODO: Сообщение во vuex об ошибке удаления
+					// и типа свяжитесь с администратором напрямую
+					// через кнопку "Контакты" в боковом меню
+				});
 		}
 
 		return {
