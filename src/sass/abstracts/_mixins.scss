@@ -166,6 +166,19 @@
 	background-color: mix($text-color, $background-color, 12%);
 }
 
+@mixin disabled-filled($background-color) {
+	background-color: mix($color-bg-050, $background-color, 12%);
+}
+
+@mixin disabled-outlined($text-color, $outline-color) {
+	color: mix($color-bg-050, $text-color, 38%);
+	outline: 1px solid mix($color-bg-050, $outline-color, 12%);
+
+	& path {
+		fill: mix($color-bg-050, $text-color, 38%);
+	}
+}
+
 @mixin pressed($text-color, $background-color, $scale-size: 7) {
 	position: relative;
 	overflow: hidden;

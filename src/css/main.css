@@ -562,6 +562,9 @@ h3 {
   outline: 1px solid #e2e2e2;
   background-color: rgba(128, 61, 61, 0.78);
 }
+.btn-primary:disabled {
+  background-color: rgba(97, 30, 30, 0.78);
+}
 .btn-secondary {
   background-color: rgba(30, 30, 30, 0.75);
   outline: 1px solid rgb(56, 56, 56);
@@ -594,6 +597,13 @@ h3 {
 .btn-secondary:focus {
   outline: 1px solid #e2e2e2;
   background-color: rgba(66, 66, 66, 0.78);
+}
+.btn-secondary:disabled {
+  color: #a1a1a1;
+  outline: 1px solid #383838;
+}
+.btn-secondary:disabled path {
+  fill: #a1a1a1;
 }
 .btn-tertiary {
   position: relative;

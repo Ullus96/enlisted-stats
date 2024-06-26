@@ -24,7 +24,7 @@
 				v-if="inlineButton"
 				:disabled="errorMsg"
 			>
-				<IconBase>
+				<IconBase :iconName="'Confirm'">
 					<IconCheck />
 				</IconBase>
 			</button>

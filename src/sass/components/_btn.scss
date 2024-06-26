@@ -29,6 +29,10 @@
 		&:focus {
 			@include focused($color-text-100, $color-primary-a-500);
 		}
+
+		&:disabled {
+			@include disabled-filled($color-primary-a-500);
+		}
 	}
 
 	&-secondary {
@@ -44,6 +48,10 @@
 
 		&:focus {
 			@include focused($color-text-100, $color-bg-a-800);
+		}
+
+		&:disabled {
+			@include disabled-outlined($color-text-100, $color-bg-050);
 		}
 	}
 
