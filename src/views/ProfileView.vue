@@ -160,13 +160,15 @@
 			</div>
 
 			<section class="profile__block">
+				inputData: {{ inputData }}
 				<InputComponent
 					:label="'Отображаемое имя'"
 					:placeholder="'zxcvenorez'"
 					:inlineButton="true"
 					:counter="32"
+					@onChange="modifyInputData"
 				/>
-				<InputComponent />
+				<InputComponent :type="'datetime-local'" />
 
 				<div class="profile__text-block">
 					<p class="profile__option-name">Аватар пользователя</p>
@@ -330,6 +332,14 @@ export default defineComponent({
 			getAuth();
 		}
 
+		// ===========
+		// Redesign
+		const inputData: Ref<string | null> = ref(null);
+
+		function modifyInputData(newValue: string) {
+			inputData.value = newValue;
+		}
+
 		return {
 			auth,
 			nameOnFirstLoad,
@@ -344,6 +354,8 @@ export default defineComponent({
 			newID,
 			loadedUserData,
 			getUserByID,
+			inputData,
+			modifyInputData,
 		};
 	},
 });
