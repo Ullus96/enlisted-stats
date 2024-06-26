@@ -65,5 +65,9 @@
 		&:focus {
 			@include focused($color-text-100, $color-bg-a-300);
 		}
+
+		&:disabled {
+			@include disabled-outlined($color-text-100, $color-bg-050);
+		}
 	}
 }

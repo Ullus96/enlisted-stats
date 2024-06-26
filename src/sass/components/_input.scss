@@ -41,6 +41,10 @@
 		&:focus {
 			@include focused($color-text-100, $color-bg-800);
 		}
+
+		&.error {
+			outline: 1px solid $color-danger-200;
+		}
 	}
 
 	&__sub-text {

@@ -5,6 +5,7 @@
 			<div class="input__main-content">
 				<input
 					class="input__input"
+					:class="{ error: errorMsg }"
 					:type="type"
 					:placeholder="placeholder"
 					v-model="inputValue"
@@ -22,7 +23,8 @@
 			<button
 				class="btn btn-secondary btn-m input__btn"
 				v-if="inlineButton"
-				:disabled="errorMsg || isEmpty"
+				:disabled="errorMsg || isEmpty || outOfCharacters"
+				@click="handleClick"
 			>
 				<IconBase :iconName="'Confirm'">
 					<IconCheck />
@@ -67,11 +69,10 @@ export default defineComponent({
 		},
 	},
 	components: { IconBase, IconCheck },
-	emits: ['onChange'],
+	emits: ['onChange', 'onClick'],
 	setup(props, context) {
 		const inputValue = ref();
 		const errorMsg: Ref<string | null> = ref(null);
-		const currentCounter: Ref<number> = ref(0);
 		const keysPressedCounter: Ref<number> = ref(0);
 
 		watch(inputValue, (newValue) => {
@@ -93,8 +94,13 @@ export default defineComponent({
 				errorMsg.value = 'Не может быть пустым';
 			}
 
+			if (outOfCharacters.value) {
+				errorMsg.value = 'Превышен лимит символов';
+			}
+
 			// Тут эмиты
 			context.emit('onChange', newValue);
+			console.log(outOfCharacters.value);
 		});
 
 		function containsBlacklistedWords(phrase: string | number) {
@@ -109,12 +115,31 @@ export default defineComponent({
 			return !inputValue.value || !keysPressedCounter.value;
 		});
 
+		// Counter
+		const currentCounter = computed(() => {
+			if (!inputValue.value) return 0;
+			return inputValue.value.length;
+		});
+
+		const outOfCharacters = computed(() => {
+			if (!props.counter) return false;
+
+			return currentCounter.value > props.counter;
+		});
+
+		// Handle click
+		function handleClick() {
+			context.emit('onClick');
+		}
+
 		return {
 			inputValue,
 			errorMsg,
 			currentCounter,
 			keysPressedCounter,
 			isEmpty,
+			outOfCharacters,
+			handleClick,
 		};
 	},
 });

@@ -168,6 +168,12 @@
 					:counter="32"
 					@onChange="modifyInputData"
 				/>
+				<InputComponent
+					:label="'Локация'"
+					:placeholder="'Митте'"
+					:inlineButton="true"
+					:desc="'Типа да'"
+				/>
 				<InputComponent :type="'datetime-local'" />
 
 				<div class="profile__text-block">

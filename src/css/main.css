@@ -634,6 +634,13 @@ h3 {
   outline: 1px solid #e2e2e2;
   background-color: rgba(80, 80, 80, 0.78);
 }
+.btn-tertiary:disabled {
+  color: #a1a1a1;
+  outline: 1px solid #383838;
+}
+.btn-tertiary:disabled path {
+  fill: #a1a1a1;
+}
 
 .calculator {
   margin-top: 2rem;
@@ -960,7 +967,7 @@ h3 {
     opacity: 1;
   }
 }
-.error {
+.error1 {
   position: fixed;
   left: 50%;
   bottom: 4rem;
@@ -971,22 +978,22 @@ h3 {
   flex-direction: column-reverse;
   gap: 1rem;
 }
-.error__item {
+.error1__item {
   background-color: #222222;
   border-left: 5px solid #ff4136;
   padding: 4rem 8rem 4rem 4rem;
   animation: error-shaking-and-move-out 2s linear;
 }
-.error__btn-close {
+.error1__btn-close {
   position: absolute;
   opacity: 0.8;
   right: 1rem;
   top: 1rem;
 }
-.error__title {
+.error1__title {
   margin-bottom: 5px;
 }
-.error__desc {
+.error1__desc {
   font-size: 0.8em;
   opacity: 0.8;
 }
@@ -1348,6 +1355,9 @@ h3 {
 .input__input:focus {
   outline: 1px solid #e2e2e2;
   background-color: #363636;
+}
+.input__input.error {
+  outline: 1px solid rgb(201, 45, 55);
 }
 .input__sub-text {
   display: flex;
