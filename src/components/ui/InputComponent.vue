@@ -69,7 +69,7 @@ export default defineComponent({
 		},
 	},
 	components: { IconBase, IconCheck },
-	emits: ['onChange', 'onClick'],
+	emits: ['onChange', 'onConfirm'],
 	setup(props, context) {
 		const inputValue = ref();
 		const errorMsg: Ref<string | null> = ref(null);
@@ -135,7 +135,7 @@ export default defineComponent({
 		// Handle click
 		function handleClick() {
 			resetInput();
-			context.emit('onClick');
+			context.emit('onConfirm');
 		}
 
 		function resetInput() {
