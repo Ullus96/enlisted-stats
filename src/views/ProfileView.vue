@@ -64,7 +64,7 @@
 		v-if="$store.state.dialog.isDeletingAccount"
 		:yes="{ text: 'Удалить', type: 'tertiary' }"
 		:no="{ text: 'Отмена', type: 'primary' }"
-		@confirm="deleteAccountTest"
+		@confirm="deleteAccount"
 	>
 		<h3 class="dialog__title">Удалить учетную запись?</h3>
 		<p class="dialog__desc">
@@ -128,12 +128,6 @@ export default defineComponent({
 		}
 
 		// Удаление
-
-		function deleteAccountTest() {
-			console.log('Account deleted');
-			// тут твоя функция deleteAccount
-		}
-
 		function deleteAccount() {
 			if (!user) return;
 
@@ -163,7 +157,7 @@ export default defineComponent({
 			inputName,
 			modifyInputData,
 			updateDisplayName,
-			deleteAccountTest,
+			deleteAccount,
 		};
 	},
 });
