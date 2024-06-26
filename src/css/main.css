@@ -1298,17 +1298,6 @@ h3 {
   background: linear-gradient(45deg, #111111 60%, transparent 60%);
 }
 
-.input {
-  border: 1px solid #7f8388;
-  padding: 1rem 1.5rem;
-}
-
-.input-rounded {
-  border: 1px solid #7f8388;
-  border-radius: 1rem;
-  padding: 1rem 1.5rem;
-}
-
 .input__label {
   font-size: 1.4rem;
 }

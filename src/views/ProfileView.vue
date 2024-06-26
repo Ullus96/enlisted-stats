@@ -160,7 +160,12 @@
 			</div>
 
 			<section class="profile__block">
-				<InputComponent />
+				<InputComponent
+					:label="'Отображаемое имя'"
+					:placeholder="'zxcvenorez'"
+					:inlineButton="true"
+					:counter="32"
+				/>
 				<InputComponent />
 
 				<div class="profile__text-block">
