@@ -74,8 +74,14 @@ export default defineComponent({
 		const inputValue = ref();
 		const errorMsg: Ref<string | null> = ref(null);
 		const keysPressedCounter: Ref<number> = ref(0);
+		const isAfterReset: Ref<boolean> = ref(false);
 
 		watch(inputValue, (newValue) => {
+			if (isAfterReset.value) {
+				isAfterReset.value = false;
+				return;
+			}
+
 			keysPressedCounter.value++;
 			let hasForbiddenWords = false;
 
@@ -100,7 +106,6 @@ export default defineComponent({
 
 			// Тут эмиты
 			context.emit('onChange', newValue);
-			console.log(outOfCharacters.value);
 		});
 
 		function containsBlacklistedWords(phrase: string | number) {
@@ -129,7 +134,15 @@ export default defineComponent({
 
 		// Handle click
 		function handleClick() {
+			resetInput();
 			context.emit('onClick');
+		}
+
+		function resetInput() {
+			inputValue.value = null;
+			keysPressedCounter.value = 0;
+			errorMsg.value = null;
+			isAfterReset.value = true;
 		}
 
 		return {
