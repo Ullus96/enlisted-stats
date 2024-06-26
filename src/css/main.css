@@ -1309,6 +1309,63 @@ h3 {
   padding: 1rem 1.5rem;
 }
 
+.input__label {
+  font-size: 1.4rem;
+}
+.input__content {
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 2rem;
+}
+.input__btn {
+  padding: 1.2rem;
+  border-radius: 0.8rem;
+  height: -moz-min-content;
+  height: min-content;
+  flex: 0 0 auto;
+}
+.input__btn > * {
+  display: block;
+}
+.input__main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: 0.4rem;
+}
+.input__input {
+  border-radius: 1.2rem;
+  padding: 1.2rem 1.6rem;
+  background-color: rgb(30, 30, 30);
+  outline: 1px solid rgba(56, 56, 56, 0.75);
+  font-size: 1.6rem;
+}
+.input__input::-moz-placeholder {
+  color: rgb(116, 116, 116);
+}
+.input__input::placeholder {
+  color: rgb(116, 116, 116);
+}
+.input__input:focus {
+  outline: 1px solid #e2e2e2;
+  background-color: #363636;
+}
+.input__sub-text {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.input__error {
+  color: rgb(255, 45, 55);
+  font-size: 1.6rem;
+}
+.input__desc {
+  text-align: right;
+  color: rgb(116, 116, 116);
+  font-size: 1.2rem;
+  flex: 0 0 max(25%, 6rem);
+}
+
 .filter__block {
   position: relative;
   display: flex;

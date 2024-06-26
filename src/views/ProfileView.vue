@@ -160,7 +160,8 @@
 			</div>
 
 			<section class="profile__block">
-				<input type="text" name="" id="" placeholder="123" />
+				<InputComponent />
+				<InputComponent />
 
 				<div class="profile__text-block">
 					<p class="profile__option-name">Аватар пользователя</p>
@@ -207,9 +208,10 @@ import LowerPopUp from '@/components/error/LowerPopUp.vue';
 import { useStore } from 'vuex';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
+import InputComponent from '@/components/ui/InputComponent.vue';
 
 export default defineComponent({
-	components: { WorkInProgress, LowerPopUp },
+	components: { WorkInProgress, LowerPopUp, InputComponent },
 	setup() {
 		const auth = getAuth();
 		const nameOnFirstLoad = auth.currentUser?.displayName || 'Имя пользователя';

@@ -79,6 +79,7 @@ $color-text-900: rgb(57, 57, 57);
 
 // States
 $color-danger-200: rgb(201, 45, 55);
+$color-danger-100: rgb(255, 45, 55);
 $color-warning-200: rgb(185, 157, 58);
 $color-success-200: rgb(58, 185, 63);
 
@@ -98,6 +99,7 @@ $color-weapon-a: rgba(255, 254, 154, 0.75);
 $ui-font-size-xs: 1.2rem;
 $ui-font-size-s: 1.4rem;
 $ui-font-size-base: 1.6rem;
+$ui-font-size-m: $ui-font-size-base;
 $ui-font-size-h1: 4.8rem;
 $ui-font-size-h2: 3.2rem;
 $ui-font-size-h3: 2.4rem;

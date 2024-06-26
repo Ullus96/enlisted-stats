@@ -8,3 +8,68 @@
 	border-radius: 1rem;
 	padding: 1rem 1.5rem;
 }
+
+// Redesign
+.input {
+	&__label {
+		font-size: $ui-font-size-s;
+	}
+
+	&__content {
+		margin-top: 0.4rem;
+		display: flex;
+		gap: 2rem;
+	}
+
+	&__btn {
+		padding: 1.2rem;
+		border-radius: 0.8rem;
+		height: min-content;
+		flex: 0 0 auto;
+
+		& > * {
+			display: block;
+		}
+	}
+
+	&__main-content {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		gap: 0.4rem;
+	}
+
+	&__input {
+		border-radius: 1.2rem;
+		padding: 1.2rem 1.6rem;
+		background-color: $color-bg-800;
+		outline: 1px solid $color-bg-a-050;
+		font-size: $ui-font-size-base;
+
+		&::placeholder {
+			color: $color-text-700;
+		}
+
+		&:focus {
+			@include focused($color-text-100, $color-bg-800);
+		}
+	}
+
+	&__sub-text {
+		display: flex;
+		justify-content: space-between;
+		gap: 2rem;
+	}
+
+	&__error {
+		color: $color-danger-100;
+		font-size: $ui-font-size-m;
+	}
+
+	&__desc {
+		text-align: right;
+		color: $color-text-700;
+		font-size: $ui-font-size-xs;
+		flex: 0 0 max(25%, 6rem);
+	}
+}
