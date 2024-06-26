@@ -3,7 +3,7 @@
 	<div
 		class="visible-screen"
 		id="visible-screen-40"
-		v-if="isAnyModalVisible"
+		v-if="isAnyModalVisible || isAnyDialogVisible"
 	></div>
 	<div class="page-wrapper" id="page">
 		<auth-init></auth-init>
@@ -37,8 +37,13 @@ export default defineComponent({
 			return Object.values(store.state.modal).some((value) => value);
 		});
 
+		const isAnyDialogVisible = computed(() => {
+			return Object.values(store.state.dialog).some((value) => value);
+		});
+
 		return {
 			isAnyModalVisible,
+			isAnyDialogVisible,
 		};
 	},
 });

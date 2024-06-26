@@ -4,12 +4,17 @@ export interface ModalState {
 	isLoginModalVisible: boolean;
 	isContactsModalVisible: boolean;
 }
+
+export interface DialogState {
+	isDeletingAccount: boolean;
+}
 export interface State {
 	showLoginPopup: boolean;
 	displayName: string;
 	inDevelop: boolean;
 	isNavigationVisible: boolean;
 	modal: ModalState;
+	dialog: DialogState;
 	loading: {
 		isAuthInitialized: boolean;
 	};
@@ -31,6 +36,9 @@ export default createStore<State>({
 		modal: {
 			isLoginModalVisible: false,
 			isContactsModalVisible: false,
+		},
+		dialog: {
+			isDeletingAccount: true,
 		},
 		loading: {
 			isAuthInitialized: false,
@@ -100,6 +108,23 @@ export default createStore<State>({
 			}
 
 			state.modal[name] = !state.modal[name];
+		},
+
+		toggleDialogVisibility(
+			state,
+			payload: {
+				name: keyof State['dialog'];
+				forceClose: boolean | undefined;
+			}
+		) {
+			const { name, forceClose } = payload;
+			console.log(payload);
+			if (forceClose) {
+				state.dialog[name] = false;
+				return;
+			}
+
+			state.dialog[name] = !state.dialog[name];
 		},
 	},
 });

@@ -48,13 +48,30 @@
 							сменится на “Неизвестен”
 						</p>
 					</div>
-					<button class="btn btn-secondary btn-m profile__btn">
+					<button
+						class="btn btn-secondary btn-m profile__btn"
+						@click="$store.state.dialog.isDeletingAccount = true"
+					>
 						Удалить профиль
 					</button>
 				</div>
 			</section>
 		</div>
 	</div>
+
+	<DialogComponent
+		:dialogName="'isDeletingAccount'"
+		v-if="$store.state.dialog.isDeletingAccount"
+		:yes="{ text: 'Удалить', type: 'tertiary' }"
+		:no="{ text: 'Отмена', type: 'primary' }"
+		@confirm="deleteAccountTest"
+	>
+		<h3 class="dialog__title">Удалить учетную запись?</h3>
+		<p class="dialog__desc">
+			Это действие необратимо. Возможности восстановить учетную запись, а так же
+			все сохраненные сборки - не будет.
+		</p>
+	</DialogComponent>
 </template>
 
 <script lang="ts">
@@ -67,9 +84,10 @@ import { useRouter } from 'vue-router';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import InputComponent from '@/components/ui/InputComponent.vue';
+import DialogComponent from '@/components/ui/DialogComponent.vue';
 
 export default defineComponent({
-	components: { WorkInProgress, LowerPopUp, InputComponent },
+	components: { WorkInProgress, LowerPopUp, InputComponent, DialogComponent },
 	setup() {
 		const auth = getAuth();
 		const user = auth.currentUser;
@@ -145,6 +163,7 @@ export default defineComponent({
 			inputName,
 			modifyInputData,
 			updateDisplayName,
+			deleteAccountTest,
 		};
 	},
 });

@@ -1933,6 +1933,26 @@ h3 {
   margin: 1.6rem 0;
 }
 
+.dialog__title {
+  margin: 0 auto;
+  text-wrap: balance;
+}
+.dialog__desc {
+  margin-top: 2rem;
+  text-align: left;
+  color: rgb(165, 165, 165);
+  font-size: 1.4rem;
+}
+.dialog__buttons {
+  margin-top: 4rem;
+  display: flex;
+  gap: 1.6rem;
+  width: 100%;
+}
+.dialog__buttons .btn {
+  flex: 1 1 auto;
+}
+
 .events {
   padding: 4rem 0;
 }
