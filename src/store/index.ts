@@ -30,6 +30,8 @@ export interface State {
 export default createStore<State>({
 	state: {
 		showLoginPopup: false,
+		// TODO: после завершения редизайна, удалить это
+		// свойство нахуй)) Оно в user.displayName дублировано
 		displayName: '',
 		inDevelop: !false,
 		isNavigationVisible: false,
@@ -38,7 +40,7 @@ export default createStore<State>({
 			isContactsModalVisible: false,
 		},
 		dialog: {
-			isDeletingAccount: true,
+			isDeletingAccount: false,
 		},
 		loading: {
 			isAuthInitialized: false,
