@@ -20,9 +20,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, onBeforeUnmount } from 'vue';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconTimes from '@/components/ui/icons/IconTimes.vue';
+import { deletePopUp } from '@/components/popup/utils';
+import { useStore } from 'vuex';
 
 export default defineComponent({
 	components: { IconBase, IconTimes },
@@ -39,7 +41,22 @@ export default defineComponent({
 			required: false,
 			type: String,
 		},
+		duration: {
+			required: false,
+			type: Number,
+			default: 5,
+		},
 	},
-	setup() {},
+	setup(props) {
+		const store = useStore();
+		const timer = setTimeout(() => {
+			deletePopUp(store);
+		}, props.duration * 1000);
+
+		onBeforeUnmount(() => {
+			console.log(`clear timer ${timer}`);
+			clearTimeout(timer);
+		});
+	},
 });
 </script>

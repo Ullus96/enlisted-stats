@@ -14,6 +14,7 @@ export interface PopUp {
 	type: 'danger' | 'warning' | 'success' | '';
 	title: string;
 	desc: string;
+	duration?: number;
 	id?: number;
 }
 export interface State {
@@ -50,6 +51,7 @@ export default createStore<State>({
 			type: '',
 			title: '',
 			desc: '',
+			duration: 5,
 			id: Math.random(),
 		},
 		modal: {
@@ -157,6 +159,7 @@ export default createStore<State>({
 			state.popUpData.type = '';
 			state.popUpData.title = '';
 			state.popUpData.desc = '';
+			state.popUpData.duration = 5;
 			state.popUpData.id = Math.random();
 			state.isPopUpExists = false;
 		},

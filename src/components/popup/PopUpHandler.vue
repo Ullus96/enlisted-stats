@@ -9,6 +9,7 @@
 			:type="popUpData.type"
 			:title="popUpData.title"
 			:desc="popUpData.desc"
+			:duration="popUpData.duration"
 		/>
 	</transition>
 	<div></div>

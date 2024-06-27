@@ -12,22 +12,25 @@
 			"
 		>
 			<button class="btn btn-m btn-secondary">Create an empty popup</button>
-			<button class="btn btn-m btn-secondary" @click="createPopUp(dangerPopUp)">
+			<button
+				class="btn btn-m btn-secondary"
+				@click="createPopUpHandler(dangerPopUp)"
+			>
 				Create a danger popup
 			</button>
 			<button
 				class="btn btn-m btn-secondary"
-				@click="createPopUp(warningPopUp)"
+				@click="createPopUpHandler(warningPopUp)"
 			>
 				Create a warning popup
 			</button>
 			<button
 				class="btn btn-m btn-secondary"
-				@click="createPopUp(successPopUp)"
+				@click="createPopUpHandler(successPopUp)"
 			>
 				Create a success popup
 			</button>
-			<button class="btn btn-m btn-secondary" @click="deletePopUp">
+			<button class="btn btn-m btn-secondary" @click="deletePopUpHandler">
 				Delete a popup
 			</button>
 			<p>-</p>
@@ -60,6 +63,7 @@
 import { defineComponent } from 'vue';
 import { useStore } from 'vuex';
 import { PopUp } from '@/store/index';
+import { createPopUp, deletePopUp } from '@/components/popup/utils';
 
 export default defineComponent({
 	setup() {
@@ -69,6 +73,7 @@ export default defineComponent({
 			type: 'danger',
 			title: 'Ахтунг!',
 			desc: 'Все пошло не так!!!',
+			duration: 1,
 		};
 
 		const warningPopUp: PopUp = {
@@ -81,20 +86,20 @@ export default defineComponent({
 			type: 'success',
 			title: 'Все хорошо',
 			desc: '',
+			duration: 10,
 		};
 
-		function createPopUp(data: PopUp) {
-			store.commit('deletePopUp');
-			store.commit('createPopUp', data);
+		function createPopUpHandler(data: PopUp) {
+			createPopUp(store, data);
 		}
 
-		function deletePopUp() {
-			store.commit('deletePopUp');
+		function deletePopUpHandler() {
+			deletePopUp(store);
 		}
 
 		return {
-			createPopUp,
-			deletePopUp,
+			createPopUpHandler,
+			deletePopUpHandler,
 			dangerPopUp,
 			warningPopUp,
 			successPopUp,
