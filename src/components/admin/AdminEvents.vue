@@ -113,12 +113,27 @@
 					<button
 						class="btn btn-m btn-secondary admin__delete-btn svg"
 						:disabled="!eventData.rewards.length"
-						@click="deleteEvent"
+						@click="$store.state.dialog.isDeletingEvent = true"
 					>
 						<IconBase :iconName="'Delete'">
 							<IconTrash />
 						</IconBase>
 					</button>
+
+					<DialogComponent
+						:dialogName="'isDeletingEvent'"
+						v-if="$store.state.dialog.isDeletingEvent"
+						:yes="{ text: 'Удалить', type: 'tertiary' }"
+						:no="{ text: 'Отмена', type: 'primary' }"
+						@confirm="deleteEvent"
+					>
+						<h3 class="dialog__title">Удалить событие?</h3>
+						<p class="dialog__desc">
+							Это действие удалит событие
+							<span class="dialog__accent">{{ eventData.name }}</span
+							>.
+						</p>
+					</DialogComponent>
 				</div>
 			</template>
 		</template>
@@ -143,9 +158,17 @@ import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconPlus from '@/components/ui/icons/IconPlus.vue';
 import IconTrash from '@/components/ui/icons/IconTrash.vue';
 import InputComponent from '@/components/ui/InputComponent.vue';
+import DialogComponent from '@/components/ui/DialogComponent.vue';
 
 export default defineComponent({
-	components: { LoadingSpinner, IconBase, IconPlus, IconTrash, InputComponent },
+	components: {
+		LoadingSpinner,
+		IconBase,
+		IconPlus,
+		IconTrash,
+		InputComponent,
+		DialogComponent,
+	},
 	setup() {
 		const startDate = ref();
 		const endDate = ref();

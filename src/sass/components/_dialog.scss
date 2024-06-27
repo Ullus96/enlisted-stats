@@ -11,6 +11,11 @@
 		font-size: $ui-font-size-s;
 	}
 
+	&__accent {
+		color: $color-primary-200;
+		font-weight: 700;
+	}
+
 	&__buttons {
 		margin-top: 4rem;
 		display: flex;
