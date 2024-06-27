@@ -1954,6 +1954,27 @@ h3 {
   flex: 1 1 auto;
 }
 
+.admin__tabs {
+  margin-top: 2rem;
+  display: flex;
+}
+.admin__tab {
+  padding: 0.8rem 1.2rem;
+  color: rgb(116, 116, 116);
+  border-bottom: 2px solid rgb(116, 116, 116);
+  transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
+}
+.admin__tab.active {
+  color: rgb(226, 226, 226);
+  border-bottom: 2px solid rgb(226, 226, 226);
+}
+.admin__tab:focus {
+  outline: none;
+}
+.admin__category {
+  margin-top: 3.2rem;
+}
+
 .events {
   padding: 4rem 0;
 }
