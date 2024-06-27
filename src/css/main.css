@@ -1977,12 +1977,10 @@ h3 {
 .admin__chips-flex {
   display: flex;
   gap: 1.2rem;
+  margin-top: 1.2rem;
 }
-.admin__chip {
-  padding: 0.8rem 1.2rem;
-}
-.admin__chip svg {
-  display: block;
+.admin__inputs-block {
+  margin-top: 4rem;
 }
 
 .chip {
@@ -2027,6 +2025,9 @@ h3 {
 }
 .chip:disabled path {
   fill: #a1a1a1;
+}
+.chip svg {
+  display: block;
 }
 
 .chip-square {

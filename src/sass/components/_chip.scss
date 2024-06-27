@@ -19,6 +19,10 @@
 	&:disabled {
 		@include disabled-outlined($color-text-100, $color-bg-050);
 	}
+
+	& svg {
+		display: block;
+	}
 }
 
 .chip-square {

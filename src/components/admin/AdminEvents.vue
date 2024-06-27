@@ -25,24 +25,20 @@
 					</IconBase>
 				</button>
 			</div>
+
+			<div class="admin__inputs-block">
+				<p>Название: {{ name }}</p>
+				<InputComponent
+					:label="'Название события'"
+					:placeholder="
+						operationNames[Math.floor(Math.random() * operationNames.length)]
+					"
+					@onChange="(val) => (name = val)"
+				/>
+			</div>
 		</template>
 
 		<!-- <template v-else>
-			<h2 class="profile__sub-tabs">События в Базе:</h2>
-			<div class="profile__tabs mb-m">
-				<template v-if="events">
-					<button
-						class="btn profile__tab"
-						v-for="event in events"
-						:key="event.dbId"
-						@click="setActiveEvent(event.dbId)"
-						:class="{ active: event.dbId == eventData.dbId }"
-					>
-						{{ event.name }}
-					</button>
-				</template>
-				<button class="btn profile__tab" @click="createNewEvent">+</button>
-			</div>
 
 			<div class="profile__inputs-flex">
 				<div class="profile__input-block">
@@ -197,9 +193,10 @@ import { operationNames } from '@/data/operationNames';
 import LoadingSpinner from '../LoadingSpinner.vue';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconPlus from '@/components/ui/icons/IconPlus.vue';
+import InputComponent from '@/components/ui/InputComponent.vue';
 
 export default defineComponent({
-	components: { LoadingSpinner, IconBase, IconPlus },
+	components: { LoadingSpinner, IconBase, IconPlus, InputComponent },
 	setup() {
 		const startDate = ref();
 		const endDate = ref();
@@ -344,6 +341,9 @@ export default defineComponent({
 			loadEvents();
 		}
 
+		// Redesign
+		const name: Ref<string> = ref('');
+
 		return {
 			operationNames,
 			eventData,
@@ -358,6 +358,7 @@ export default defineComponent({
 			createNewEvent,
 			deleteEvent,
 			updateEvent,
+			name,
 			// eventName,
 			// eventStartDate,
 			// eventEndDate,

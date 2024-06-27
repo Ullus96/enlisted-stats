@@ -105,6 +105,8 @@ export default defineComponent({
 			}
 
 			// Тут эмиты
+			if (errorMsg.value) return;
+
 			context.emit('onChange', newValue);
 		});
 
