@@ -9,17 +9,20 @@ export interface DialogState {
 	isDeletingAccount: boolean;
 	isDeletingEvent: boolean;
 }
+
+export interface PopUp {
+	type: 'danger' | 'warning' | 'success' | '';
+	title: string;
+	desc: string;
+	id?: number;
+}
 export interface State {
 	showLoginPopup: boolean;
 	displayName: string;
 	inDevelop: boolean;
 	isNavigationVisible: boolean;
 	isPopUpExists: boolean;
-	popUpData: {
-		type: 'danger' | 'warning' | 'success' | '';
-		title: string;
-		desc: string;
-	};
+	popUpData: PopUp;
 	modal: ModalState;
 	dialog: DialogState;
 	loading: {
@@ -47,6 +50,7 @@ export default createStore<State>({
 			type: '',
 			title: '',
 			desc: '',
+			id: Math.random(),
 		},
 		modal: {
 			isLoginModalVisible: false,
@@ -141,6 +145,20 @@ export default createStore<State>({
 			}
 
 			state.dialog[name] = !state.dialog[name];
+		},
+
+		createPopUp(state, payload: PopUp) {
+			state.popUpData = { ...payload };
+			state.popUpData.id = Math.random();
+			state.isPopUpExists = true;
+		},
+
+		deletePopUp(state) {
+			state.popUpData.type = '';
+			state.popUpData.title = '';
+			state.popUpData.desc = '';
+			state.popUpData.id = Math.random();
+			state.isPopUpExists = false;
 		},
 	},
 });

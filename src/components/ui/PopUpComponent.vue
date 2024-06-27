@@ -1,30 +1,26 @@
 <template>
-	<template v-if="mounted">
-		<Teleport to="#screen-bottom">
-			<section
-				class="popup"
-				:class="{
-					danger: type === 'danger',
-					warning: type === 'warning',
-					success: type === 'success',
-				}"
-			>
-				<button class="btn btn-tertiary btn-sm modal__btn">
-					<IconBase :iconName="'Close pop-up'">
-						<IconTimes />
-					</IconBase>
-				</button>
-				<h2 class="popup__title">{{ title }}</h2>
-				<p class="popup__desc" v-if="desc">
-					{{ desc }}
-				</p>
-			</section>
-		</Teleport>
-	</template>
+	<section
+		class="popup"
+		:class="{
+			danger: type === 'danger',
+			warning: type === 'warning',
+			success: type === 'success',
+		}"
+	>
+		<button class="btn btn-tertiary btn-sm modal__btn">
+			<IconBase :iconName="'Close pop-up'">
+				<IconTimes />
+			</IconBase>
+		</button>
+		<h2 class="popup__title">{{ title }}</h2>
+		<p class="popup__desc" v-if="desc">
+			{{ desc }}
+		</p>
+	</section>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, ref } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconTimes from '@/components/ui/icons/IconTimes.vue';
 
@@ -44,15 +40,6 @@ export default defineComponent({
 			type: String,
 		},
 	},
-	setup() {
-		const mounted = ref(false);
-		onMounted(() => {
-			mounted.value = true;
-		});
-
-		return {
-			mounted,
-		};
-	},
+	setup() {},
 });
 </script>
