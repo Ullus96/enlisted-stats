@@ -5,6 +5,12 @@
 		id="visible-screen-40"
 		v-if="isAnyModalVisible || isAnyDialogVisible"
 	></div>
+	<div class="screen-bottom" id="screen-bottom"></div>
+	<PopUpComponent
+		:type="'danger'"
+		:title="'Недостаточно очков!'"
+		:desc="'Навык стоит больше, чем у тебя имеется очков в распоряжении. Я убил ее, Марк, у меня была причина. Имею право на убийство, как Аль-Пачино.'"
+	/>
 	<div class="page-wrapper" id="page">
 		<auth-init></auth-init>
 		<!-- <vuex-debug></vuex-debug> -->
@@ -21,6 +27,7 @@ import AuthInit from './components/auth/AuthInit.vue';
 import VuexDebug from './components/debug/VuexDebug.vue';
 import { computed, defineComponent } from 'vue';
 import { useStore } from 'vuex';
+import PopUpComponent from './components/ui/PopUpComponent.vue';
 
 export default defineComponent({
 	name: 'App',
@@ -28,6 +35,7 @@ export default defineComponent({
 		TheAside,
 		AuthInit,
 		VuexDebug,
+		PopUpComponent,
 	},
 	setup() {
 		const store = useStore();

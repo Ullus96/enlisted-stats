@@ -8,68 +8,13 @@
 				gap: 20px;
 				width: fit-content;
 				margin: 0 auto;
+				padding: 1.2rem;
 			"
 		>
-			<div>
-				<button class="btn">Test</button>
-			</div>
-			<div>
-				<button class="btn" disabled>Disabled</button>
-			</div>
-			Normal:
-			<div>
-				<button class="btn btn-m btn-primary">Medium</button>
-			</div>
-			<div>
-				<button class="btn btn-m btn-secondary">Medium</button>
-			</div>
-			<div>
-				<button class="btn btn-m btn-tertiary">Medium</button>
-			</div>
-			Small:
-			<div>
-				<button class="btn btn-sm btn-primary">Small</button>
-			</div>
-			<div>
-				<button class="btn btn-sm btn-secondary">Small</button>
-			</div>
-			<div>
-				<button class="btn btn-sm btn-tertiary">Small</button>
-			</div>
-
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
-			<p>-</p>
+			<button class="btn btn-m btn-secondary">Create an empty popup</button>
+			<button class="btn btn-m btn-secondary">Create a danger popup</button>
+			<button class="btn btn-m btn-secondary">Create a warning popup</button>
+			<button class="btn btn-m btn-secondary">Create a success popup</button>
 			<p>-</p>
 			<p>-</p>
 			<p>-</p>

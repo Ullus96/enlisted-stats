@@ -14,6 +14,12 @@ export interface State {
 	displayName: string;
 	inDevelop: boolean;
 	isNavigationVisible: boolean;
+	isPopUpExists: boolean;
+	popUpData: {
+		type: 'danger' | 'warning' | 'success' | '';
+		title: string;
+		desc: string;
+	};
 	modal: ModalState;
 	dialog: DialogState;
 	loading: {
@@ -36,6 +42,12 @@ export default createStore<State>({
 		displayName: '',
 		inDevelop: !false,
 		isNavigationVisible: false,
+		isPopUpExists: false,
+		popUpData: {
+			type: '',
+			title: '',
+			desc: '',
+		},
 		modal: {
 			isLoginModalVisible: false,
 			isContactsModalVisible: false,
