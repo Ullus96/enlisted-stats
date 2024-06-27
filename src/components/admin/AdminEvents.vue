@@ -30,7 +30,7 @@
 				</button>
 			</div>
 
-			<transition name="slide-fade" mode="out-in">
+			<transition name="slide-to-top" mode="out-in">
 				<div :key="eventData.dbId">
 					<div class="admin__inputs-block">
 						<InputComponent
@@ -353,18 +353,18 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.slide-fade-enter-active,
-.slide-fade-leave-active {
+.slide-to-top-enter-active,
+.slide-to-top-leave-active {
 	transition: opacity 0.4s ease-in-out, transform 0.3s ease-in;
 }
 
-.slide-fade-enter-from,
-.slide-fade-leave-to {
+.slide-to-top-enter-from,
+.slide-to-top-leave-to {
 	transform: translateY(10rem);
 	opacity: 0;
 }
-.slide-fade-enter-to,
-.slide-fade-leave-from {
+.slide-to-top-enter-to,
+.slide-to-top-leave-from {
 	transform: translateY(0rem);
 	opacity: 1;
 }
