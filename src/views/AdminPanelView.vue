@@ -16,13 +16,6 @@
 				>
 					События
 				</button>
-				<button
-					@click="setActiveTab('placeholder')"
-					class="btn btn-tertiary admin__tab"
-					:class="{ active: activeTab == 'placeholder' }"
-				>
-					Placeholder
-				</button>
 			</div>
 
 			<transition name="slide-fade" mode="out-in">

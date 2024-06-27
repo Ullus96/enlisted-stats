@@ -33,6 +33,11 @@
 		background-color: $color-bg-800;
 		outline: 1px solid $color-bg-a-050;
 		font-size: $ui-font-size-base;
+		color-scheme: dark;
+
+		&[type='datetime-local']::-webkit-calendar-picker-indicator {
+			filter: invert(28%);
+		}
 
 		&::placeholder {
 			color: $color-text-700;
