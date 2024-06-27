@@ -19,123 +19,130 @@
 						{{ event.name }}
 					</button>
 				</template>
-				<button class="chip active admin__chip" @click="createNewEvent">
+				<button
+					class="chip admin__chip"
+					@click="createNewEvent"
+					:class="{ active: !eventData.dbId }"
+				>
 					<IconBase :iconName="'New event'">
 						<IconPlus />
 					</IconBase>
 				</button>
 			</div>
 
-			<div class="admin__inputs-block">
-				<!-- <p v-for="(item, key) in eventData" :key="key">{{ key }}: {{ item }}</p> -->
-				<InputComponent
-					:key="eventData.dbId"
-					:type="'text'"
-					:label="'Название события'"
-					:placeholder="
-						operationNames[Math.floor(Math.random() * operationNames.length)]
-					"
-					:presetInput="eventData.name"
-					@onChange="(val) => (eventData.name = val)"
-				/>
+			<transition name="slide-fade" mode="out-in">
+				<div :key="eventData.dbId">
+					<div class="admin__inputs-block">
+						<InputComponent
+							:key="eventData.dbId"
+							:type="'text'"
+							:label="'Название события'"
+							:placeholder="operationName"
+							:presetInput="eventData.name"
+							@onChange="(val) => (eventData.name = val)"
+						/>
 
-				<InputComponent
-					:key="eventData.dbId"
-					:type="'datetime-local'"
-					:label="'Дата начала'"
-					:desc="eventData.dbId ? eventData.startDate : 'По местному'"
-					:presetInput="startDate"
-					@onChange="(val) => (startDate = val)"
-				/>
+						<InputComponent
+							:key="eventData.dbId"
+							:type="'datetime-local'"
+							:label="'Дата начала'"
+							:desc="eventData.dbId ? eventData.startDate : 'По местному'"
+							:presetInput="startDate"
+							@onChange="(val) => (startDate = val)"
+						/>
 
-				<InputComponent
-					:key="eventData.dbId"
-					:type="'datetime-local'"
-					:label="'Дата конца'"
-					:desc="eventData.dbId ? eventData.endDate : 'По местному'"
-					:presetInput="endDate"
-					@onChange="(val) => (endDate = val)"
-				/>
+						<InputComponent
+							:key="eventData.dbId"
+							:type="'datetime-local'"
+							:label="'Дата конца'"
+							:desc="eventData.dbId ? eventData.endDate : 'По местному'"
+							:presetInput="endDate"
+							@onChange="(val) => (endDate = val)"
+						/>
 
-				<InputComponent
-					:key="eventData.dbId"
-					:type="'number'"
-					:label="'Часов между этапами'"
-					:placeholder="48"
-					:desc="'24, 48, 72...'"
-					:presetInput="eventData.hoursInStage"
-					@onChange="(val) => (eventData.hoursInStage = val)"
-				/>
-			</div>
+						<InputComponent
+							:key="eventData.dbId"
+							:type="'number'"
+							:label="'Часов между этапами'"
+							:placeholder="48"
+							:desc="'24, 48, 72...'"
+							:presetInput="eventData.hoursInStage"
+							@onChange="(val) => (eventData.hoursInStage = val)"
+						/>
+					</div>
 
-			<button
-				class="btn btn-secondary btn-m admin__btn"
-				@click="calculateStages"
-			>
-				Рассчитать количество этапов
-			</button>
-			<span class="admin__small-text">Сбросит все существующие награды</span>
-
-			<template v-if="eventData.rewards.length">
-				<p class="admin__stages-title">Награды за этапы</p>
-				<div class="admin__stages">
-					<input
-						type="text"
-						class="input__input admin__input"
-						v-for="(reward, idx) in eventData.rewards"
-						:key="idx"
-						v-model="eventData.rewards[idx]"
-						:placeholder="idx + 1"
-					/>
-				</div>
-			</template>
-
-			<template v-if="!eventData.dbId">
-				<div class="admin__last-btns">
 					<button
-						class="btn btn-m btn-primary admin__btn"
-						:disabled="!eventData.rewards.length"
-						@click="addEventToDB"
+						class="btn btn-secondary btn-m admin__btn"
+						@click="calculateStages"
 					>
-						Создать событие
+						Рассчитать количество этапов
 					</button>
-				</div>
-			</template>
-			<template v-else>
-				<div class="admin__last-btns">
-					<button
-						class="btn btn-m btn-primary admin__update-btn"
-						:disabled="!eventData.rewards.length"
-						@click="updateEvent"
+					<span class="admin__small-text"
+						>Сбросит все существующие награды</span
 					>
-						Обновить
-					</button>
-					<button
-						class="btn btn-m btn-secondary admin__delete-btn svg"
-						:disabled="!eventData.rewards.length"
-						@click="$store.state.dialog.isDeletingEvent = true"
-					>
-						<IconBase :iconName="'Delete'">
-							<IconTrash />
-						</IconBase>
-					</button>
 
-					<DialogComponent
-						:dialogName="'isDeletingEvent'"
-						v-if="$store.state.dialog.isDeletingEvent"
-						:yes="{ text: 'Удалить', type: 'tertiary' }"
-						:no="{ text: 'Отмена', type: 'primary' }"
-						@confirm="deleteEvent"
-					>
-						<h3 class="dialog__title">Удалить событие?</h3>
-						<p class="dialog__desc">
-							Это действие удалит событие
-							<span class="dialog__accent">{{ eventData.name }}</span
-							>.
-						</p>
-					</DialogComponent>
+					<template v-if="eventData.rewards.length">
+						<p class="admin__stages-title">Награды за этапы</p>
+						<div class="admin__stages">
+							<input
+								type="text"
+								class="input__input admin__input"
+								v-for="(reward, idx) in eventData.rewards"
+								:key="idx"
+								v-model="eventData.rewards[idx]"
+								:placeholder="idx + 1"
+							/>
+						</div>
+					</template>
+
+					<template v-if="!eventData.dbId">
+						<div class="admin__last-btns">
+							<button
+								class="btn btn-m btn-primary admin__btn"
+								:disabled="!eventData.rewards.length"
+								@click="addEventToDB"
+							>
+								Создать событие
+							</button>
+						</div>
+					</template>
+					<template v-else>
+						<div class="admin__last-btns">
+							<button
+								class="btn btn-m btn-primary admin__update-btn"
+								:disabled="!eventData.rewards.length"
+								@click="updateEvent"
+							>
+								Обновить
+							</button>
+							<button
+								class="btn btn-m btn-secondary admin__delete-btn svg"
+								:disabled="!eventData.rewards.length"
+								@click="$store.state.dialog.isDeletingEvent = true"
+							>
+								<IconBase :iconName="'Delete'">
+									<IconTrash />
+								</IconBase>
+							</button>
+
+							<DialogComponent
+								:dialogName="'isDeletingEvent'"
+								v-if="$store.state.dialog.isDeletingEvent"
+								:yes="{ text: 'Удалить', type: 'tertiary' }"
+								:no="{ text: 'Отмена', type: 'primary' }"
+								@confirm="deleteEvent"
+							>
+								<h3 class="dialog__title">Удалить событие?</h3>
+								<p class="dialog__desc">
+									Это действие удалит событие
+									<span class="dialog__accent">{{ eventData.name }}</span
+									>.
+								</p>
+							</DialogComponent>
+						</div>
+					</template>
 				</div>
-			</template>
+			</transition>
 		</template>
 	</section>
 </template>
@@ -317,10 +324,12 @@ export default defineComponent({
 		}
 
 		// Redesign
-		const name: Ref<string> = ref('Куляба');
+		const operationName: Ref<string> = ref(
+			operationNames[Math.floor(Math.random() * operationNames.length)]
+		);
 
 		return {
-			operationNames,
+			operationName,
 			eventData,
 			calculateStages,
 			checkTime,
@@ -342,3 +351,21 @@ export default defineComponent({
 	},
 });
 </script>
+
+<style scoped>
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+	transition: opacity 0.4s ease-in-out, transform 0.3s ease-in;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+	transform: translateY(10rem);
+	opacity: 0;
+}
+.slide-fade-enter-to,
+.slide-fade-leave-from {
+	transform: translateY(0rem);
+	opacity: 1;
+}
+</style>

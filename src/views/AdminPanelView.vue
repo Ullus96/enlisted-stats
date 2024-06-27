@@ -60,7 +60,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .slide-fade-enter-active,
 .slide-fade-leave-active {
 	transition: opacity 0.4s ease-in-out, transform 0.3s ease-in-out;
