@@ -1974,6 +1974,107 @@ h3 {
 .admin__category {
   margin-top: 3.2rem;
 }
+.admin__chips-flex {
+  display: flex;
+  gap: 1.2rem;
+}
+.admin__chip {
+  padding: 0.8rem 1.2rem;
+}
+.admin__chip svg {
+  display: block;
+}
+
+.chip {
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.8rem;
+  background-color: rgba(39, 39, 39, 0.75);
+  border: 1px solid rgb(56, 56, 56);
+  box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
+  -webkit-backdrop-filter: blur(9px);
+          backdrop-filter: blur(9px);
+  position: relative;
+  overflow: hidden;
+}
+.chip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(68, 68, 68, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.chip:active:after {
+  transform: translate(-50%, -50%) scale(2.5);
+  opacity: 1;
+}
+.chip:hover {
+  background-color: rgba(51, 51, 51, 0.76);
+}
+.chip:focus {
+  outline: 1px solid #e2e2e2;
+  background-color: rgba(74, 74, 74, 0.78);
+}
+.chip:disabled {
+  color: #a1a1a1;
+  outline: 1px solid #383838;
+}
+.chip:disabled path {
+  fill: #a1a1a1;
+}
+
+.chip-square {
+  padding: 1.2rem;
+  border-radius: 1.2rem;
+}
+
+.chip.active {
+  color: rgb(175, 61, 61);
+  border: 1px solid rgb(175, 61, 61);
+  position: relative;
+  overflow: hidden;
+}
+.chip.active path {
+  fill: rgb(175, 61, 61);
+}
+.chip.active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(60, 42, 42, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.chip.active:active:after {
+  transform: translate(-50%, -50%) scale(2.5);
+  opacity: 1;
+}
+.chip.active:hover {
+  background-color: rgba(48, 40, 40, 0.76);
+}
+.chip.active:focus {
+  outline: 1px solid #af3d3d;
+  background-color: rgba(64, 43, 43, 0.78);
+}
+.chip.active:disabled {
+  color: #823b3b;
+  outline: 1px solid #a13c3c;
+}
+.chip.active:disabled path {
+  fill: #823b3b;
+}
 
 .events {
   padding: 4rem 0;
