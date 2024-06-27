@@ -33,6 +33,7 @@
 					:placeholder="
 						operationNames[Math.floor(Math.random() * operationNames.length)]
 					"
+					:presetInput="'name'"
 					@onChange="(val) => (name = val)"
 				/>
 			</div>
@@ -342,7 +343,7 @@ export default defineComponent({
 		}
 
 		// Redesign
-		const name: Ref<string> = ref('');
+		const name: Ref<string> = ref('Куляба');
 
 		return {
 			operationNames,

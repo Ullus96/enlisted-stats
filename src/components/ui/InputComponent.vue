@@ -67,6 +67,10 @@ export default defineComponent({
 			type: String as PropType<'text' | 'number' | 'datetime-local'>,
 			default: 'text',
 		},
+		presetInput: {
+			required: false,
+			type: [String, Number],
+		},
 	},
 	components: { IconBase, IconCheck },
 	emits: ['onChange', 'onConfirm'],
@@ -75,6 +79,11 @@ export default defineComponent({
 		const errorMsg: Ref<string | null> = ref(null);
 		const keysPressedCounter: Ref<number> = ref(0);
 		const isAfterReset: Ref<boolean> = ref(false);
+
+		if (props.presetInput) {
+			inputValue.value = props.presetInput;
+			context.emit('onChange', inputValue.value);
+		}
 
 		watch(inputValue, (newValue) => {
 			if (isAfterReset.value) {
