@@ -30,6 +30,18 @@
 			>
 				Create a success popup
 			</button>
+			<button
+				class="btn btn-m btn-secondary"
+				@click="createPopUpHandler(POPUP_DELETE_USER_SUCCESS)"
+			>
+				Delete user (success)
+			</button>
+			<button
+				class="btn btn-m btn-secondary"
+				@click="createPopUpHandler(POPUP_DELETE_USER_ERROR)"
+			>
+				Delete user (error)
+			</button>
 			<button class="btn btn-m btn-secondary" @click="deletePopUpHandler">
 				Delete a popup
 			</button>
@@ -64,6 +76,10 @@ import { defineComponent } from 'vue';
 import { useStore } from 'vuex';
 import { PopUp } from '@/store/index';
 import { createPopUp, deletePopUp } from '@/components/popup/utils';
+import {
+	POPUP_DELETE_USER_SUCCESS,
+	POPUP_DELETE_USER_ERROR,
+} from '@/components/popup/data';
 
 export default defineComponent({
 	setup() {
@@ -103,6 +119,8 @@ export default defineComponent({
 			dangerPopUp,
 			warningPopUp,
 			successPopUp,
+			POPUP_DELETE_USER_SUCCESS,
+			POPUP_DELETE_USER_ERROR,
 		};
 	},
 });

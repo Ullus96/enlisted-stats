@@ -39,8 +39,13 @@
 		}
 	}
 
+	&__wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+	}
+
 	&__desc {
 		color: $color-text-400;
-		margin-top: 0.8rem;
 	}
 }

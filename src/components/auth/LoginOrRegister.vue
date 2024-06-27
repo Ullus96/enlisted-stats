@@ -42,6 +42,11 @@ import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconGoogle from '@/components/ui/icons/IconGoogle.vue';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { checkIfUserAnAdmin } from './functions/checkIfUserAnAdmin';
+import { createPopUp } from '@/components/popup/utils';
+import {
+	POPUP_LOGIN_SUCCESS,
+	POPUP_LOGIN_ERROR,
+} from '@/components/popup/data';
 
 export default defineComponent({
 	components: { ModalComponent, IconBase, IconGoogle },
@@ -59,14 +64,11 @@ export default defineComponent({
 		// Регистрация / Логин
 		const isUserAnAdmin: Ref<boolean> = ref(false);
 
-		// TODO: сделать popup окна либо с успешным "вы вошли в аккаунт"
-		// либо с ошибкой
 		function signInWithGoogle() {
 			const provider = new GoogleAuthProvider();
 			signInWithPopup(getAuth(), provider)
 				.then((result) => {
-					console.log('Авторизация прошла удачно!');
-					console.log(getAuth().currentUser);
+					createPopUp(store, POPUP_LOGIN_SUCCESS);
 
 					const auth = getAuth();
 					isUserAnAdmin.value = checkIfUserAnAdmin();
@@ -81,8 +83,9 @@ export default defineComponent({
 					}
 				})
 				.catch((error) => {
+					createPopUp(store, POPUP_LOGIN_ERROR);
 					console.log(error.code);
-					alert(error.message);
+					console.log(error.message);
 				})
 				.finally(() => {
 					closeModalAndNavigation();

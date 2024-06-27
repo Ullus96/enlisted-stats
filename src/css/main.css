@@ -2161,9 +2161,13 @@ h3 {
 .popup.success::after {
   background-color: rgb(58, 185, 63);
 }
+.popup__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
 .popup__desc {
   color: rgb(165, 165, 165);
-  margin-top: 0.8rem;
 }
 
 .events {

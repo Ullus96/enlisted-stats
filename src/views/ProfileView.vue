@@ -85,6 +85,13 @@ import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import InputComponent from '@/components/ui/InputComponent.vue';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
+import { createPopUp } from '@/components/popup/utils';
+import {
+	POPUP_CHANGE_NAME_SUCCESS,
+	POPUP_CHANGE_NAME_ERROR,
+	POPUP_DELETE_USER_SUCCESS,
+	POPUP_DELETE_USER_ERROR,
+} from '@/components/popup/data';
 
 export default defineComponent({
 	components: { WorkInProgress, LowerPopUp, InputComponent, DialogComponent },
@@ -106,7 +113,7 @@ export default defineComponent({
 					displayName: inputName.value,
 				})
 					.then(async () => {
-						// TODO: Отсылать во vuex сообщение об успешном смене имени
+						createPopUp(store, POPUP_CHANGE_NAME_SUCCESS);
 						store.commit('setNewDisplayName', inputName.value);
 						// add data to DB
 						if (auth.currentUser) {
@@ -121,7 +128,7 @@ export default defineComponent({
 						}
 					})
 					.catch((error) => {
-						// TODO: Сообщение во vuex об ошибке при смене имени
+						createPopUp(store, POPUP_CHANGE_NAME_ERROR);
 						console.log(error);
 					});
 			}
@@ -138,17 +145,16 @@ export default defineComponent({
 
 					try {
 						deleteDoc(docRef);
-						// TODO: сделать оповещение во vuex что профиль удален
+						createPopUp(store, POPUP_DELETE_USER_SUCCESS);
 						router.push('/');
-					} catch (err: any) {
-						// TODO: ту же ошибку что и ниже
-						alert(`Произошла ошибка: ${err.message}`);
+					} catch (error: any) {
+						createPopUp(store, POPUP_DELETE_USER_ERROR);
+						console.log(error.message);
 					}
 				})
 				.catch((error) => {
-					// TODO: Сообщение во vuex об ошибке удаления
-					// и типа свяжитесь с администратором напрямую
-					// через кнопку "Контакты" в боковом меню
+					createPopUp(store, POPUP_DELETE_USER_ERROR);
+					console.log(error.message);
 				});
 		}
 

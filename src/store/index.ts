@@ -8,6 +8,7 @@ export interface ModalState {
 export interface DialogState {
 	isDeletingAccount: boolean;
 	isDeletingEvent: boolean;
+	isLoggingOut: boolean;
 }
 
 export interface PopUp {
@@ -61,6 +62,7 @@ export default createStore<State>({
 		dialog: {
 			isDeletingAccount: false,
 			isDeletingEvent: false,
+			isLoggingOut: false,
 		},
 		loading: {
 			isAuthInitialized: false,

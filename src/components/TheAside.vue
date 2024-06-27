@@ -258,6 +258,8 @@ import IconTimes from '@/components/ui/icons/IconTimes.vue';
 import LoginOrRegister from '@/components/auth/LoginOrRegister.vue';
 import { getAuth, signOut } from 'firebase/auth';
 import ContactsModal from '@/components/modals/ContactsModal.vue';
+import { createPopUp } from '@/components/popup/utils';
+import { POPUP_LOGOUT_SUCCESS } from '@/components/popup/data';
 
 export default defineComponent({
 	components: {
@@ -301,13 +303,10 @@ export default defineComponent({
 		}
 
 		// Регистрация/Логин/Выход
-
-		// TODO: Добавить сообщение в Pop-up, что успешно вышел с аккаунта
-		// TODO: сделать Dialog-компонент, который возвращает @confirm и @reject
-		// и после @confirm уже ливать с акка
 		function handleSignOut() {
 			signOut(getAuth());
 			hideNavigationVisibility();
+			createPopUp(store, POPUP_LOGOUT_SUCCESS);
 			router.push('/');
 			store.commit('clearUserData');
 		}

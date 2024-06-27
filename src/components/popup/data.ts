@@ -6,3 +6,59 @@ export const example: PopUp = {
 	desc: '',
 	duration: 5,
 };
+
+export const POPUP_LOGOUT_SUCCESS: PopUp = {
+	type: 'success',
+	title: '',
+	desc: 'Вы успешно вышли из аккаунта',
+	duration: 3,
+};
+
+export const POPUP_LOGIN_SUCCESS: PopUp = {
+	type: 'success',
+	title: 'Авторизация успешна',
+	desc: '',
+	duration: 3,
+};
+
+export const POPUP_LOGIN_ERROR: PopUp = {
+	type: 'danger',
+	title: 'Что-то пошло не так!',
+	desc: 'Попробуйте позднее. Если ошибка повторится - свяжитесь с администратором.',
+	duration: 8,
+};
+
+export const POPUP_CHANGE_NAME_SUCCESS: PopUp = {
+	type: 'success',
+	title: 'Имя изменено',
+	desc: '',
+	duration: 3,
+};
+
+export const POPUP_CHANGE_NAME_ERROR: PopUp = {
+	type: 'danger',
+	title: 'Что-то пошло не так!',
+	desc: 'Попробуйте позднее. Если ошибка повторится - свяжитесь с администратором.',
+	duration: 8,
+};
+
+export const POPUP_DELETE_USER_SUCCESS: PopUp = {
+	type: 'success',
+	title: 'Учетная запись была удалена',
+	desc: '',
+	duration: 8,
+};
+
+export const POPUP_DELETE_USER_ERROR: PopUp = {
+	type: 'danger',
+	title: 'Что-то пошло не так!',
+	desc: 'Попробуйте позднее. Если ошибка повторится - свяжитесь с администратором, для удаления профиля напрямую.',
+	duration: 12,
+};
+
+export const POPUP_DELETE_BUILD_SUCCESS: PopUp = {
+	type: 'success',
+	title: 'Сборка успешно удалена',
+	desc: '',
+	duration: 3,
+};

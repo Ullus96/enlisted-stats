@@ -12,10 +12,12 @@
 				<IconTimes />
 			</IconBase>
 		</button>
-		<h2 class="popup__title">{{ title }}</h2>
-		<p class="popup__desc" v-if="desc">
-			{{ desc }}
-		</p>
+		<div class="popup__wrapper">
+			<h2 class="popup__title" v-if="title">{{ title }}</h2>
+			<p class="popup__desc" v-if="desc">
+				{{ desc }}
+			</p>
+		</div>
 	</section>
 </template>
 

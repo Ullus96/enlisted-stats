@@ -187,6 +187,9 @@ import { db } from '@/firebase/firebase';
 import AnimatedLikeEntity from './AnimatedLikeEntity.vue';
 import randomNum from '@/functions/randomNum';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import { createPopUp } from '@/components/popup/utils';
+import { POPUP_DELETE_BUILD_SUCCESS } from '@/components/popup/data';
 
 export default defineComponent({
 	props: {
@@ -227,6 +230,7 @@ export default defineComponent({
 	},
 	components: { ToolTip, AnimatedLikeEntity },
 	setup(props) {
+		const store = useStore();
 		function getTrueOrFalse(): boolean {
 			return !!Math.floor(Math.random() * 2);
 		}
@@ -371,7 +375,7 @@ export default defineComponent({
 			try {
 				await deleteDoc(docRef);
 				console.log(`${props.buildId} был удален из БД`);
-				// TODO: можно сделать переадресацию на '/success-deleted'
+				createPopUp(store, POPUP_DELETE_BUILD_SUCCESS);
 				router.push('/');
 			} catch (err: any) {
 				alert(`Произошла ошибка: ${err.message}`);
