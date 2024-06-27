@@ -7,7 +7,7 @@
 			success: type === 'success',
 		}"
 	>
-		<button class="btn btn-tertiary btn-sm modal__btn">
+		<button class="btn btn-tertiary btn-sm modal__btn" @click="closePopup">
 			<IconBase :iconName="'Close pop-up'">
 				<IconTimes />
 			</IconBase>
@@ -54,9 +54,16 @@ export default defineComponent({
 		}, props.duration * 1000);
 
 		onBeforeUnmount(() => {
-			console.log(`clear timer ${timer}`);
 			clearTimeout(timer);
 		});
+
+		function closePopup() {
+			deletePopUp(store);
+		}
+
+		return {
+			closePopup,
+		};
 	},
 });
 </script>
