@@ -466,6 +466,7 @@ h3 {
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 2rem;
+  overflow: hidden;
 }
 @media (min-width: 0px) and (max-width: 1123px) {
   .container {
@@ -1101,6 +1102,10 @@ h3 {
   animation: fade-in 0.1s ease-in;
 }
 
+.svg svg {
+  display: block;
+}
+
 .modal {
   z-index: 40;
   position: relative;
@@ -1362,6 +1367,7 @@ h3 {
 }
 .input__sub-text {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   gap: 2rem;
 }
@@ -1371,9 +1377,10 @@ h3 {
 }
 .input__desc {
   text-align: right;
+  align-self: flex-end;
   color: rgb(116, 116, 116);
   font-size: 1.2rem;
-  flex: 0 0 max(25%, 6rem);
+  flex: 0 0 auto;
 }
 
 .filter__block {
@@ -1976,11 +1983,59 @@ h3 {
 }
 .admin__chips-flex {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.2rem;
   margin-top: 1.2rem;
 }
 .admin__inputs-block {
+  width: 100%;
+  max-width: 48rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
   margin-top: 4rem;
+}
+.admin__btn {
+  width: 100%;
+  max-width: 48rem;
+  margin-top: 2.4rem;
+}
+.admin__small-text {
+  display: block;
+  width: 100%;
+  max-width: 48rem;
+  margin-top: 0.8rem;
+  text-align: right;
+  color: rgb(116, 116, 116);
+  font-size: 1.2rem;
+}
+.admin__stages-title {
+  margin-top: 2.4rem;
+}
+.admin__stages {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.admin__input {
+  width: calc(33% - 1.6rem);
+  min-width: 24rem;
+  flex: 1 1 max(24rem, 33% - 1.6rem);
+}
+.admin__last-btns {
+  width: 100%;
+  max-width: 48rem;
+  margin-top: 2.4rem;
+  display: flex;
+  gap: 0.8rem;
+}
+.admin__update-btn {
+  flex: 1 1 auto;
+}
+.admin__delete-btn {
+  padding: 1.6rem;
+  flex: 0 0 auto;
 }
 
 .chip {

@@ -48,11 +48,11 @@ export default defineComponent({
 		},
 		placeholder: {
 			required: false,
-			type: [String, Number],
+			type: [String, Number, Date],
 		},
 		desc: {
 			required: false,
-			type: [String, Number],
+			type: [String, Number, Date],
 		},
 		counter: {
 			required: false,
@@ -69,7 +69,7 @@ export default defineComponent({
 		},
 		presetInput: {
 			required: false,
-			type: [String, Number],
+			type: [String, Number, Date],
 		},
 	},
 	components: { IconBase, IconCheck },

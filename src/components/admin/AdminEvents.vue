@@ -27,154 +27,101 @@
 			</div>
 
 			<div class="admin__inputs-block">
-				<p>Название: {{ name }}</p>
+				<!-- <p v-for="(item, key) in eventData" :key="key">{{ key }}: {{ item }}</p> -->
 				<InputComponent
+					:key="eventData.dbId"
+					:type="'text'"
 					:label="'Название события'"
 					:placeholder="
 						operationNames[Math.floor(Math.random() * operationNames.length)]
 					"
-					:presetInput="'name'"
-					@onChange="(val) => (name = val)"
+					:presetInput="eventData.name"
+					@onChange="(val) => (eventData.name = val)"
+				/>
+
+				<InputComponent
+					:key="eventData.dbId"
+					:type="'datetime-local'"
+					:label="'Дата начала'"
+					:desc="eventData.dbId ? eventData.startDate : 'По местному'"
+					:presetInput="startDate"
+					@onChange="(val) => (startDate = val)"
+				/>
+
+				<InputComponent
+					:key="eventData.dbId"
+					:type="'datetime-local'"
+					:label="'Дата конца'"
+					:desc="eventData.dbId ? eventData.endDate : 'По местному'"
+					:presetInput="endDate"
+					@onChange="(val) => (endDate = val)"
+				/>
+
+				<InputComponent
+					:key="eventData.dbId"
+					:type="'number'"
+					:label="'Часов между этапами'"
+					:placeholder="48"
+					:desc="'24, 48, 72...'"
+					:presetInput="eventData.hoursInStage"
+					@onChange="(val) => (eventData.hoursInStage = val)"
 				/>
 			</div>
-		</template>
 
-		<!-- <template v-else>
+			<button
+				class="btn btn-secondary btn-m admin__btn"
+				@click="calculateStages"
+			>
+				Рассчитать количество этапов
+			</button>
+			<span class="admin__small-text">Сбросит все существующие награды</span>
 
-			<div class="profile__inputs-flex">
-				<div class="profile__input-block">
-					<label for="eventName">Название</label>
-					<div class="profile__input-flex">
-						<input
-							type="text"
-							class="input profile__input-input"
-							id="eventName"
-							v-model="eventData.name"
-							:placeholder="
-								operationNames[
-									Math.floor(Math.random() * operationNames.length)
-								]
-							"
-							:class="{ 'btn-error': false }"
-						/>
-					</div>
-					<div class="profile__input-lower-info">
-						<p class="profile__input-error"></p>
-						<p class="profile__input-counter">Кавычки - " ”</p>
-					</div>
+			<template v-if="eventData.rewards.length">
+				<p class="admin__stages-title">Награды за этапы</p>
+				<div class="admin__stages">
+					<input
+						type="text"
+						class="input__input admin__input"
+						v-for="(reward, idx) in eventData.rewards"
+						:key="idx"
+						v-model="eventData.rewards[idx]"
+						:placeholder="idx + 1"
+					/>
 				</div>
+			</template>
 
-				<div class="profile__input-block">
-					<label for="eventStartDate">Дата начала</label>
-					<div class="profile__input-flex">
-						<input
-							type="datetime-local"
-							class="input profile__input-input"
-							id="eventStartDate"
-							v-model="startDate"
-							:class="{ 'btn-error': false }"
-						/>
-					</div>
-					<div class="profile__input-lower-info">
-						<p
-							class="profile__input-error profile__input-error--no-color"
-							v-if="eventData.startDate && eventData.dbId"
-						>
-							{{ eventData.startDate }}
-						</p>
-						<p class="profile__input-error" v-else></p>
-						<p class="profile__input-counter">Часы по местному</p>
-					</div>
-				</div>
-
-				<div class="profile__input-block">
-					<label for="eventEndDate">Дата конца</label>
-					<div class="profile__input-flex">
-						<input
-							type="datetime-local"
-							class="input profile__input-input"
-							id="eventEndDate"
-							v-model="endDate"
-							:class="{ 'btn-error': false }"
-						/>
-					</div>
-					<div class="profile__input-lower-info">
-						<p
-							class="profile__input-error profile__input-error--no-color"
-							v-if="eventData.endDate && eventData.dbId"
-						>
-							{{ eventData.endDate }}
-						</p>
-						<p class="profile__input-error" v-else></p>
-						<p class="profile__input-counter">Часы по местному</p>
-					</div>
-				</div>
-
-				<div class="profile__input-block">
-					<label for="eventHoursInStage">Часов между этапами</label>
-					<div class="profile__input-flex">
-						<input
-							type="number"
-							class="input profile__input-input"
-							id="eventHoursInStage"
-							placeholder="48"
-							v-model="eventData.hoursInStage"
-							:class="{ 'btn-error': false }"
-						/>
-					</div>
-					<div class="profile__input-lower-info">
-						<p class="profile__input-error"></p>
-						<p class="profile__input-counter">24, 48, 72...</p>
-					</div>
-				</div>
-				<button class="btn profile__btn-admin" @click="calculateStages">
-					Рассчитать количество этапов
-				</button>
-				<div class="profile__small-text">
-					<p class="profile__input-counter">Сбросит все награды</p>
-				</div>
-
-				<template v-if="eventData.rewards.length">
-					<div class="profile__stages-title">Награда за этапы:</div>
-					<div class="profile__stages">
-						<input
-							type="text"
-							class="input profile__input-input"
-							v-for="(reward, idx) in eventData.rewards"
-							:key="idx"
-							v-model="eventData.rewards[idx]"
-							:placeholder="idx + 1"
-						/>
-					</div>
-				</template>
-				<template v-if="!eventData.dbId">
+			<template v-if="!eventData.dbId">
+				<div class="admin__last-btns">
 					<button
-						class="btn profile__btn-admin"
+						class="btn btn-m btn-primary admin__btn"
 						:disabled="!eventData.rewards.length"
 						@click="addEventToDB"
 					>
 						Создать событие
 					</button>
-				</template>
-				<template v-else>
-					<div class="profile__update-delete-btns">
-						<button
-							class="btn profile__btn-admin"
-							:disabled="!eventData.rewards.length"
-							@click="updateEvent"
-						>
-							Перезаписать
-						</button>
-						<button
-							class="btn profile__btn-admin--delete"
-							:disabled="!eventData.rewards.length"
-							@click="deleteEvent"
-						>
-							<i class="fa-regular fa-trash-can"></i>
-						</button>
-					</div>
-				</template></div
-		></template> -->
+				</div>
+			</template>
+			<template v-else>
+				<div class="admin__last-btns">
+					<button
+						class="btn btn-m btn-primary admin__update-btn"
+						:disabled="!eventData.rewards.length"
+						@click="updateEvent"
+					>
+						Обновить
+					</button>
+					<button
+						class="btn btn-m btn-secondary admin__delete-btn svg"
+						:disabled="!eventData.rewards.length"
+						@click="deleteEvent"
+					>
+						<IconBase :iconName="'Delete'">
+							<IconTrash />
+						</IconBase>
+					</button>
+				</div>
+			</template>
+		</template>
 	</section>
 </template>
 
@@ -194,10 +141,11 @@ import { operationNames } from '@/data/operationNames';
 import LoadingSpinner from '../LoadingSpinner.vue';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconPlus from '@/components/ui/icons/IconPlus.vue';
+import IconTrash from '@/components/ui/icons/IconTrash.vue';
 import InputComponent from '@/components/ui/InputComponent.vue';
 
 export default defineComponent({
-	components: { LoadingSpinner, IconBase, IconPlus, InputComponent },
+	components: { LoadingSpinner, IconBase, IconPlus, IconTrash, InputComponent },
 	setup() {
 		const startDate = ref();
 		const endDate = ref();
@@ -231,6 +179,9 @@ export default defineComponent({
 
 		function generateStages(event: IEvent | IEventFirestore) {
 			const stageDurationInMillis: number = event.hoursInStage * 60 * 60 * 1000; // 2 дня в миллисекундах
+
+			console.log(event.endDate);
+			console.log(typeof event.endDate);
 
 			const durationInMillis = +event.endDate - +event.startDate;
 
@@ -359,7 +310,6 @@ export default defineComponent({
 			createNewEvent,
 			deleteEvent,
 			updateEvent,
-			name,
 			// eventName,
 			// eventStartDate,
 			// eventEndDate,

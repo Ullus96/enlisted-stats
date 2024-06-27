@@ -9,3 +9,9 @@
 .page-mask-darker {
 	@include page-mask(0.6);
 }
+
+.svg {
+	svg {
+		display: block;
+	}
+}
