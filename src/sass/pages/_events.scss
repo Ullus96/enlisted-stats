@@ -243,3 +243,14 @@
 // 		// transform: translateX(2rem);
 // 	}
 // }
+
+.event {
+	&__title {
+		text-align: center;
+	}
+
+	&__end {
+		text-align: center;
+		color: $color-text-400;
+	}
+}

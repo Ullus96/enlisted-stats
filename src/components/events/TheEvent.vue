@@ -1,6 +1,21 @@
 <template>
-	<template v-if="data.stages[currentStageInfo.index]?.startDate"> </template>
-	<template v-else>Событие {{ data.name }} завершилось.</template>
+	<template v-if="status === 'going'">
+		<div class="container mt-l">
+			<h1 class="event__title">{{ data.name }}</h1>
+		</div>
+	</template>
+
+	<template v-else-if="status === 'finished'">
+		<div class="container mt-l">
+			<p class="event__end">Событие "{{ data.name }}" завершилось.</p>
+		</div>
+	</template>
+
+	<template v-else-if="status === 'notStarted'">
+		<div class="container mt-l">
+			<p class="event__end">Событие "{{ data.name }}" еще не началось.</p>
+		</div>
+	</template>
 	<!-- <template v-if="data.stages[currentStageInfo.index]?.startDate">
 		<div class="events container">
 			<div class="events__count-block"> -->
@@ -112,6 +127,7 @@ export default defineComponent({
 	},
 	setup(props) {
 		const isFinalStage: Ref<boolean> = ref(false);
+		let status: 'notStarted' | 'going' | 'finished' | null = null;
 
 		function getCurrentStage(event: IEvent): {
 			index: number;
@@ -121,6 +137,7 @@ export default defineComponent({
 
 			if (currentDate < event.startDate) {
 				// Событие еще не началось
+				status = 'notStarted';
 				return {
 					index: -1,
 					timeLeft: event.startDate.getTime() - currentDate.getTime(),
@@ -131,6 +148,7 @@ export default defineComponent({
 				const stage = event.stages[i];
 
 				if (currentDate >= stage.startDate && currentDate <= stage.endDate) {
+					status = 'going';
 					// Мы находимся внутри этапа
 					return {
 						index: i,
@@ -148,6 +166,7 @@ export default defineComponent({
 			}
 
 			// Событие уже завершилось
+			status = 'finished';
 			return { index: event.stages.length, timeLeft: 0 };
 		}
 
@@ -237,6 +256,7 @@ export default defineComponent({
 		const hours = parts[1].split(' ')[6].split(':')[0];
 
 		return {
+			status,
 			currentStageInfo,
 			timerValues,
 			isFinalStage,
