@@ -1,9 +1,11 @@
 <template>
-	<template v-if="data.stages[currentStageInfo.index]?.startDate">
+	<template v-if="data.stages[currentStageInfo.index]?.startDate"> </template>
+	<template v-else>Событие {{ data.name }} завершилось.</template>
+	<!-- <template v-if="data.stages[currentStageInfo.index]?.startDate">
 		<div class="events container">
-			<div class="events__count-block">
-				<!-- check if there is more stages -->
-				<div class="events__title">{{ data.name }}.</div>
+			<div class="events__count-block"> -->
+	<!-- check if there is more stages -->
+	<!-- <div class="events__title">{{ data.name }}.</div>
 				<template v-if="checkIfTheStageIsFinal(currentStageInfo.index + 1)">
 					<h2 class="events__count-title">
 						Следующий этап [{{ currentStageInfo.index + 2 }}/{{
@@ -14,9 +16,9 @@
 						:stageIndex="currentStageInfo.index + 1"
 						:date="data.stages[currentStageInfo.index + 1].startDate"
 					></events-card-top>
-				</template>
-				<!-- else we show the timer until the end of the event -->
-				<template v-else>
+				</template> -->
+	<!-- else we show the timer until the end of the event -->
+	<!-- <template v-else>
 					<h2 class="events__count-title">До завершения события:</h2>
 				</template>
 				<div class="events__countdown-block">
@@ -90,7 +92,7 @@
 				</div>
 			</div>
 		</div>
-	</template>
+	</template> -->
 </template>
 
 <script lang="ts">
@@ -110,6 +112,7 @@ export default defineComponent({
 	},
 	setup(props) {
 		const isFinalStage: Ref<boolean> = ref(false);
+
 		function getCurrentStage(event: IEvent): {
 			index: number;
 			timeLeft: number;
@@ -152,6 +155,9 @@ export default defineComponent({
 			getCurrentStage(props.data)
 		);
 
+		// Timer
+		let intervalID: number | null = null;
+
 		function updateTimer() {
 			currentStageInfo = getCurrentStage(props.data);
 
@@ -159,8 +165,16 @@ export default defineComponent({
 				console.log(
 					`Событие "${props.data.name}" еще не началось. Время до начала: ${currentStageInfo.timeLeft}`
 				);
+				if (intervalID) {
+					clearInterval(intervalID);
+					intervalID = null;
+				}
 			} else if (currentStageInfo.index === props.data.stages.length) {
 				console.log(`Событие "${props.data.name}" уже завершилось.`);
+				if (intervalID) {
+					clearInterval(intervalID);
+					intervalID = null;
+				}
 			} else {
 				// обновляем переменные
 				const date = new Date(currentStageInfo.timeLeft);
@@ -175,7 +189,7 @@ export default defineComponent({
 		// get timer values on page load
 		updateTimer();
 		// then update every second
-		setInterval(updateTimer, 1000);
+		intervalID = setInterval(updateTimer, 1000);
 
 		function checkIfTheStageIsFinal(index: number): boolean {
 			if (props.data.stages[index]?.startDate) {
