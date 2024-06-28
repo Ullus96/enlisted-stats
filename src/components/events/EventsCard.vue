@@ -4,6 +4,10 @@
 			<p>Награда:</p>
 			<p>{{ reward ? reward : '—' }}</p>
 		</div> -->
+		<TooltipComponent>
+			<p>Награда:</p>
+			<p>{{ reward ? reward : '—' }}</p>
+		</TooltipComponent>
 		<p class="event__counter">#{{ stageIndex + 1 }}</p>
 		<p class="event__date">{{ day }}</p>
 		<p class="event__month">{{ month }}</p>
@@ -14,8 +18,10 @@
 <script lang="ts">
 import { IStage } from '@/type/Events';
 import { defineComponent, PropType } from 'vue';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
+	components: { TooltipComponent },
 	props: {
 		cardData: { required: true, type: Object as PropType<IStage> },
 		stageIndex: { required: true, type: Number },

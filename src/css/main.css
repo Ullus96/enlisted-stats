@@ -542,8 +542,8 @@ h3 {
 }
 .btn-primary {
   background-color: rgba(106, 24, 24, 0.75);
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
   position: relative;
   overflow: hidden;
 }
@@ -578,8 +578,8 @@ h3 {
 .btn-secondary {
   background-color: rgba(30, 30, 30, 0.75);
   outline: 1px solid rgb(56, 56, 56);
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
   position: relative;
   overflow: hidden;
 }
@@ -1095,8 +1095,8 @@ h3 {
   margin: 0 auto;
   padding: 3.2rem 2rem 2rem;
   background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
   border-radius: 1.2rem;
   text-align: center;
 }
@@ -1241,63 +1241,51 @@ h3 {
   width: fit-content;
 }
 
-.tooltip-parent {
-  position: relative;
-}
-.tooltip-parent:hover .tooltip-item {
-  width: 300%;
+.tooltip {
+  --tooltip-arrow-position: "50%";
+  position: absolute;
+  padding: 0.8rem 1.2rem;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  color: #fff;
-}
-.tooltip-up {
-  background-color: #111111;
-  padding: 1.2rem 1.6rem;
-  text-align: center;
-  font-size: 0.8em;
-  display: none;
-  border-radius: 1rem;
-  position: absolute;
-  z-index: 10;
+  align-items: center;
+  gap: 0.4rem;
   left: 50%;
+  width: 40rem;
+  z-index: 20;
+  border-radius: 0.8rem;
+  background-color: rgba(39, 39, 39, 0.75);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
+}
+.tooltip::after {
+  content: "";
+  position: absolute;
+  left: var(--tooltip-arrow-position);
+  width: 10px;
+  height: 10px;
+  z-index: 5;
+}
+.tooltip p {
+  text-align: center;
+}
+.tooltip.top {
   top: -5px;
   transform: translate(-50%, -100%);
 }
-.tooltip-up::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  z-index: 5;
+.tooltip.top::after {
   bottom: 0px;
   transform: translate(-50%, 50%) rotateZ(45deg);
-  background: linear-gradient(-45deg, #111111 60%, transparent 60%);
+  background: linear-gradient(-45deg, rgb(106, 24, 24) 60%, transparent 60%);
 }
-.tooltip-down {
-  background-color: #111111;
-  padding: 1.2rem 1.6rem;
-  text-align: center;
-  font-size: 0.8em;
-  display: none;
-  border-radius: 1rem;
-  position: absolute;
-  z-index: 10;
-  left: 50%;
+.tooltip.bottom {
   bottom: -5px;
   transform: translate(-50%, 100%);
 }
-.tooltip-down::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  z-index: 5;
+.tooltip.bottom::after {
   top: 0px;
   transform: translate(-50%, -50%) rotateZ(135deg);
-  background: linear-gradient(45deg, #111111 60%, transparent 60%);
+  background: linear-gradient(45deg, rgb(106, 24, 24) 60%, transparent 60%);
 }
 
 .input__label {
@@ -1499,8 +1487,8 @@ h3 {
   width: 7.2rem;
   padding: 2.4rem 0 1.2rem;
   background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
   z-index: 30;
   white-space: nowrap;
   display: flex;
@@ -1714,8 +1702,8 @@ h3 {
   z-index: 1;
   padding: 1.2rem;
   background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
   border-radius: 0.8rem;
   display: flex;
   flex-direction: column;
@@ -2040,8 +2028,8 @@ h3 {
   background-color: rgba(39, 39, 39, 0.75);
   border: 1px solid rgb(56, 56, 56);
   box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
   position: relative;
   overflow: hidden;
 }
@@ -2139,8 +2127,8 @@ h3 {
   background-color: rgba(39, 39, 39, 0.75);
   border-radius: 0.8rem;
   overflow: hidden;
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
 }
 .popup::after {
   content: "";
@@ -2198,6 +2186,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  margin-top: 4rem;
 }
 .event__card {
   position: relative;
@@ -2206,14 +2195,20 @@ h3 {
   border-radius: 0.8rem;
   padding: 2rem 1.6rem;
   box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
 }
 .event__card.finish {
   color: rgb(116, 116, 116);
 }
 .event__card.finish .event__time {
   color: rgb(116, 116, 116);
+}
+.event__card--active {
+  outline: 1px solid rgb(175, 61, 61);
+}
+.event__card--active .event__counter {
+  color: rgb(175, 61, 61);
 }
 .event__counter {
   position: absolute;

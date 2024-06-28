@@ -280,6 +280,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 2rem;
+		margin-top: 4rem;
 	}
 
 	// Cards
@@ -298,6 +299,14 @@
 
 			& .event__time {
 				color: $color-text-700;
+			}
+		}
+
+		&--active {
+			outline: 1px solid $color-primary-200;
+
+			& .event__counter {
+				color: $color-primary-200;
 			}
 		}
 	}

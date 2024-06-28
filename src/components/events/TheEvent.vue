@@ -27,9 +27,9 @@
 						></events-card>
 
 						<div class="event__card finish">
-							<!-- <div class="events__card-tooltip">
+							<TooltipComponent>
 								<p>Конец события</p>
-							</div> -->
+							</TooltipComponent>
 							<p class="event__counter">
 								<i class="fa-regular fa-flag"></i>
 							</p>
@@ -158,6 +158,7 @@ import EventsCountdownCard from '@/components/events/EventsCountdownCard.vue';
 import { IEvent } from '@/type/Events';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconCog from '@/components/ui/icons/IconCog.vue';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
 	components: {
@@ -166,6 +167,7 @@ export default defineComponent({
 		EventsCountdownCard,
 		IconBase,
 		IconCog,
+		TooltipComponent,
 	},
 	props: {
 		data: {

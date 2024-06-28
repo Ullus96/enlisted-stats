@@ -1,21 +1,85 @@
-.tooltip {
-	&-parent {
-		position: relative;
+// .tooltip {
+// 	&-parent {
+// 		position: relative;
 
-		&:hover .tooltip-item {
-			width: 300%;
-			display: flex;
-			flex-direction: column;
-			gap: 4px;
-			color: $color-white;
+// 		&:hover .tooltip-item {
+// 			width: 300%;
+// 			display: flex;
+// 			flex-direction: column;
+// 			gap: 4px;
+// 			color: $color-white;
+// 		}
+// 	}
+
+// 	&-up {
+// 		@include tooltip('up');
+// 	}
+
+// 	&-down {
+// 		@include tooltip('down');
+// 	}
+// }
+
+// Redesign
+.tooltip {
+	--tooltip-arrow-position: '50%';
+	position: absolute;
+	padding: 0.8rem 1.2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.4rem;
+	left: 50%;
+	width: 40rem;
+	z-index: 20;
+	border-radius: 0.8rem;
+
+	background-color: $color-bg-a-500;
+	@include ui-background-blur;
+	@include ui-shadow;
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: var(--tooltip-arrow-position);
+		width: 10px;
+		height: 10px;
+		z-index: 5;
+	}
+
+	& p {
+		text-align: center;
+	}
+
+	// Top
+	&.top {
+		top: -5px;
+		transform: translate(-50%, -100%);
+
+		&::after {
+			bottom: 0px;
+			transform: translate(-50%, 50%) rotateZ(45deg);
+			background: linear-gradient(
+				-45deg,
+				$color-primary-500 60%,
+				transparent 60%
+			);
 		}
 	}
 
-	&-up {
-		@include tooltip('up');
-	}
+	// bottom
+	&.bottom {
+		bottom: -5px;
+		transform: translate(-50%, 100%);
 
-	&-down {
-		@include tooltip('down');
+		&::after {
+			top: 0px;
+			transform: translate(-50%, -50%) rotateZ(135deg);
+			background: linear-gradient(
+				45deg,
+				$color-primary-500 60%,
+				transparent 60%
+			);
+		}
 	}
 }
