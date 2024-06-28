@@ -40,7 +40,73 @@
 					</div>
 				</div>
 
-				<div class="event__right-col">Счетчик</div>
+				<div class="event__right-col">
+					<div class="event__timer-block">
+						<events-countdown-card
+							v-for="(item, index) in 3"
+							:key="item"
+							:timerValue="timerValues[index]"
+							:index="index"
+						></events-countdown-card>
+					</div>
+
+					<div class="event__reward-block">
+						<button
+							class="event__chip"
+							:class="{ 'event__chip--active': activeReward === 'current' }"
+							@mouseenter="setActiveReward('current')"
+							@click="setActiveReward('current')"
+						>
+							<IconBase :iconName="'Previous reward'">
+								<IconCoins />
+							</IconBase>
+						</button>
+						<button
+							class="event__chip"
+							:class="{ 'event__chip--active': activeReward === 'next' }"
+							@mouseenter="setActiveReward('next')"
+							@click="setActiveReward('next')"
+						>
+							<IconBase :iconName="'Next reward'">
+								<IconCoins />
+							</IconBase>
+						</button>
+					</div>
+
+					<div class="events__reward-block">
+						<div class="events__reward-upper-block">
+							<div class="events__reward-bar events__reward-bar-left">
+								<div
+									class="events__reward-bar-progress"
+									:style="{
+										background: `linear-gradient(to right,  #47484a ${progressBarPercents}%, transparent ${progressBarPercents}%`,
+									}"
+								></div>
+								<div class="events__reward-bar-animated"></div>
+								<p class="events__reward-text">
+									{{
+										data.rewards[currentStageInfo.index]
+											? data.rewards[currentStageInfo.index]
+											: '—'
+									}}
+								</p>
+							</div>
+							<div class="events__reward-bar events__reward-bar-right">
+								<p class="events__reward-text">
+									{{
+										data.rewards[currentStageInfo.index + 1]
+											? data.rewards[currentStageInfo.index + 1]
+											: '—'
+									}}
+								</p>
+							</div>
+						</div>
+						<div class="events__reward-lower-block">
+							<p class="events__reward-description">текущая награда</p>
+							<p class="events__reward-description">следующая награда</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 	</template>
@@ -158,6 +224,7 @@ import EventsCountdownCard from '@/components/events/EventsCountdownCard.vue';
 import { IEvent } from '@/type/Events';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconCog from '@/components/ui/icons/IconCog.vue';
+import IconCoins from '@/components/ui/icons/IconCoins.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
@@ -167,6 +234,7 @@ export default defineComponent({
 		EventsCountdownCard,
 		IconBase,
 		IconCog,
+		IconCoins,
 		TooltipComponent,
 	},
 	props: {
@@ -178,6 +246,7 @@ export default defineComponent({
 	setup(props) {
 		const isFinalStage: Ref<boolean> = ref(false);
 		let status: 'notStarted' | 'going' | 'finished' | null = null;
+		const activeReward: Ref<'current' | 'next'> = ref('next');
 
 		function getCurrentStage(event: IEvent): {
 			index: number;
@@ -305,6 +374,10 @@ export default defineComponent({
 		const month = parts[1].split(' ')[2];
 		const hours = parts[1].split(' ')[6].split(':')[0];
 
+		function setActiveReward(status: 'current' | 'next') {
+			activeReward.value = status;
+		}
+
 		return {
 			status,
 			currentStageInfo,
@@ -315,6 +388,8 @@ export default defineComponent({
 			day,
 			month,
 			hours,
+			activeReward,
+			setActiveReward,
 		};
 	},
 });

@@ -2183,9 +2183,10 @@ h3 {
   margin-top: 6rem;
   display: flex;
   justify-content: space-between;
+  gap: 10rem;
 }
 .event__left-col {
-  flex: 1 1 auto;
+  flex: 1 1 83rem;
 }
 .event__header {
   display: flex;
@@ -2252,6 +2253,105 @@ h3 {
   font-size: 1.4rem;
   text-align: center;
   margin-top: 0.8rem;
+}
+.event__right-col {
+  margin-top: 8rem;
+  flex: 1 1 45rem;
+}
+.event__timer-block {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+}
+.event__countdown-card {
+  width: 7rem;
+  padding: 1.2rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: rgb(39, 39, 39);
+  border-radius: 0.8rem;
+  box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
+}
+.event__countdown-time {
+  line-height: 100%;
+  font-size: 2.4rem;
+}
+.event__countdown-desc {
+  line-height: 100%;
+  color: rgb(165, 165, 165);
+  font-size: 1.2rem;
+}
+.event__chip {
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  background-color: rgba(35, 35, 35, 0.75);
+  border: none;
+  box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  position: relative;
+  overflow: hidden;
+}
+.event__chip svg {
+  display: block;
+}
+.event__chip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(65, 65, 65, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.event__chip:active:after {
+  transform: translate(-50%, -50%) scale(2.5);
+  opacity: 1;
+}
+.event__chip:hover {
+  background-color: rgba(47, 47, 47, 0.76);
+}
+.event__chip:focus {
+  outline: 1px solid #e2e2e2;
+  background-color: rgba(70, 70, 70, 0.78);
+}
+.event__chip--active {
+  background-color: rgba(106, 24, 24, 0.75);
+  position: relative;
+  overflow: hidden;
+}
+.event__chip--active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(125, 56, 56, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.event__chip--active:active:after {
+  transform: translate(-50%, -50%) scale(2.5);
+  opacity: 1;
+}
+.event__chip--active:hover {
+  background-color: rgba(114, 37, 37, 0.76);
+}
+.event__chip--active:focus {
+  outline: 1px solid #e2e2e2;
+  background-color: rgba(128, 61, 61, 0.78);
 }
 
 .cc__stats-block {

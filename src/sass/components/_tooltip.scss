@@ -1,26 +1,3 @@
-// .tooltip {
-// 	&-parent {
-// 		position: relative;
-
-// 		&:hover .tooltip-item {
-// 			width: 300%;
-// 			display: flex;
-// 			flex-direction: column;
-// 			gap: 4px;
-// 			color: $color-white;
-// 		}
-// 	}
-
-// 	&-up {
-// 		@include tooltip('up');
-// 	}
-
-// 	&-down {
-// 		@include tooltip('down');
-// 	}
-// }
-
-// Redesign
 .tooltip {
 	--tooltip-arrow-position: '50%';
 	position: absolute;
