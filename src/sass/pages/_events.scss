@@ -247,10 +247,23 @@
 		display: flex;
 		justify-content: space-between;
 		gap: 10rem;
+
+		@include desktop-small {
+			gap: 6rem;
+		}
+
+		@include tablet {
+			flex-direction: column;
+		}
 	}
 
 	&__left-col {
 		flex: 1 1 83rem;
+
+		@include tablet {
+			order: 1;
+			flex: 1 1 auto;
+		}
 	}
 
 	&__header {
@@ -270,6 +283,10 @@
 		flex-wrap: wrap;
 		gap: 2rem;
 		margin-top: 4rem;
+
+		@include tablet {
+			justify-content: center;
+		}
 	}
 
 	// Cards
@@ -333,7 +350,12 @@
 	// Right column
 	&__right-col {
 		margin-top: 8rem;
-		flex: 1 1 45rem;
+		flex: 0.5 0.5 45rem;
+
+		@include tablet {
+			margin-top: 0;
+			flex: 1 1 auto;
+		}
 	}
 
 	&__timer-block {
