@@ -61,6 +61,45 @@
 								<IconCoins />
 							</IconBase>
 						</button>
+
+						<div class="event__progress-bar-block">
+							<div class="event__progress-bar">
+								<div
+									class="event__progress-bar-progress"
+									:style="{
+										background: `linear-gradient(to right,  #621313 ${progressBarPercents}%, transparent ${progressBarPercents}%`,
+									}"
+								></div>
+								<div class="event__progress-bar-animated"></div>
+
+								<!-- <p class="event__progress-text">
+									{{
+										data.rewards[currentStageInfo.index]
+											? data.rewards[currentStageInfo.index]
+											: '—'
+									}}
+								</p> -->
+							</div>
+
+							<span
+								class="event__progress-bar-stage event__progress-bar-stage--current"
+							>
+								{{ currentStageInfo.index + 1 }}
+							</span>
+							<span
+								v-if="checkIfTheStageIsNotFinal(currentStageInfo.index + 2)"
+								class="event__progress-bar-stage event__progress-bar-stage--next"
+							>
+								{{ currentStageInfo.index + 2 }}
+							</span>
+							<span
+								v-else
+								class="event__progress-bar-stage event__progress-bar-stage--next"
+							>
+								конец
+							</span>
+						</div>
+
 						<button
 							class="event__chip"
 							:class="{ 'event__chip--active': activeReward === 'next' }"
@@ -73,7 +112,7 @@
 						</button>
 					</div>
 
-					<div class="events__reward-block">
+					<!-- <div class="events__reward-block">
 						<div class="events__reward-upper-block">
 							<div class="events__reward-bar events__reward-bar-left">
 								<div
@@ -105,7 +144,8 @@
 							<p class="events__reward-description">текущая награда</p>
 							<p class="events__reward-description">следующая награда</p>
 						</div>
-					</div>
+					</div> -->
+					<!--  -->
 				</div>
 			</div>
 		</section>
@@ -127,7 +167,7 @@
 			<div class="events__count-block"> -->
 	<!-- check if there is more stages -->
 	<!-- <div class="events__title">{{ data.name }}.</div>
-				<template v-if="checkIfTheStageIsFinal(currentStageInfo.index + 1)">
+				<template v-if="checkIfTheStageIsNotFinal(currentStageInfo.index + 1)">
 					<h2 class="events__count-title">
 						Следующий этап [{{ currentStageInfo.index + 2 }}/{{
 							data.stages.length
@@ -329,7 +369,7 @@ export default defineComponent({
 		// then update every second
 		intervalID = setInterval(updateTimer, 1000);
 
-		function checkIfTheStageIsFinal(index: number): boolean {
+		function checkIfTheStageIsNotFinal(index: number): boolean {
 			if (props.data.stages[index]?.startDate) {
 				return true;
 			} else {
@@ -383,7 +423,7 @@ export default defineComponent({
 			currentStageInfo,
 			timerValues,
 			isFinalStage,
-			checkIfTheStageIsFinal,
+			checkIfTheStageIsNotFinal,
 			progressBarPercents,
 			day,
 			month,

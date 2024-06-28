@@ -232,18 +232,6 @@
 // 	}
 // }
 
-// @keyframes progressBarAnimation {
-// 	0% {
-// 		inset: 0 0 0 -28px;
-// 		// transform: translateX(0);
-// 	}
-
-// 	100% {
-// 		inset: 0 -28px 0 0;
-// 		// transform: translateX(2rem);
-// 	}
-// }
-
 .event {
 	&__title {
 		text-align: center;
@@ -378,6 +366,12 @@
 		font-size: $ui-font-size-xs;
 	}
 
+	&__reward-block {
+		margin-top: 4rem;
+		display: flex;
+		gap: 1.2rem;
+	}
+
 	&__chip {
 		border-radius: 0.8rem;
 		padding: 1.2rem;
@@ -385,6 +379,7 @@
 		border: none;
 		@include ui-shadow;
 		@include ui-background-blur;
+		flex: 0 0 auto;
 
 		& svg {
 			display: block;
@@ -413,5 +408,79 @@
 				@include focused($color-text-100, $color-primary-a-500);
 			}
 		}
+	}
+
+	&__progress-bar-block {
+		position: relative;
+		flex: 1 1 auto;
+	}
+
+	&__progress-bar {
+		background-color: $color-bg-700;
+		height: 4rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		overflow: hidden;
+		border-radius: 0.8rem;
+	}
+
+	&__progress-bar-progress {
+		position: absolute;
+		inset: 0 0 0 0;
+		z-index: 2;
+
+		background: linear-gradient(to right, $color-primary-600 0, transparent 0);
+	}
+
+	&__progress-bar-animated {
+		position: absolute;
+		inset: 0 0 0 -28px;
+		z-index: 1;
+		background: repeating-linear-gradient(
+			-45deg,
+			rgba($color-text-700, 0.05),
+			rgba($color-text-700, 0.05) 10px,
+			transparent 10px,
+			transparent 20px
+		);
+		animation: progressBarAnimation 4s linear infinite;
+	}
+
+	&__progress-bar-stage {
+		position: absolute;
+		color: $color-text-700;
+		font-size: $ui-font-size-xs;
+		top: calc(100% + 0.4rem);
+
+		&--current {
+			left: 1.2rem;
+		}
+
+		&--next {
+			right: 1.2rem;
+		}
+
+		&::after {
+			position: absolute;
+			left: 50%;
+			bottom: calc(100% - 0.2rem);
+			content: '';
+			height: 2rem;
+			width: 1px;
+			background-color: $color-bg-050;
+			z-index: -1;
+		}
+	}
+}
+
+@keyframes progressBarAnimation {
+	0% {
+		inset: 0 0 0 -28px;
+	}
+
+	100% {
+		inset: 0 -28px 0 0;
 	}
 }
