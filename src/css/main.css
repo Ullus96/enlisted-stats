@@ -2176,6 +2176,69 @@ h3 {
   text-align: center;
   color: rgb(165, 165, 165);
 }
+.event__content {
+  margin-top: 6rem;
+  display: flex;
+  justify-content: space-between;
+}
+.event__left-col {
+  flex: 1 1 auto;
+}
+.event__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.8rem;
+}
+.event__header .btn {
+  padding: 0.8rem;
+  transform: translateY(-1px);
+}
+.event__cards-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.event__card {
+  position: relative;
+  width: 10rem;
+  background-color: rgba(39, 39, 39, 0.75);
+  border-radius: 0.8rem;
+  padding: 2rem 1.6rem;
+  box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
+  -webkit-backdrop-filter: blur(9px);
+          backdrop-filter: blur(9px);
+}
+.event__card.finish {
+  color: rgb(116, 116, 116);
+}
+.event__card.finish .event__time {
+  color: rgb(116, 116, 116);
+}
+.event__counter {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  line-height: 100%;
+  color: rgb(116, 116, 116);
+  font-size: 1.4rem;
+}
+.event__date {
+  font-size: 3.6rem;
+  text-align: center;
+  line-height: 100%;
+}
+.event__month {
+  margin-top: 0.4rem;
+  text-align: center;
+  line-height: 100%;
+}
+.event__time {
+  color: rgb(165, 165, 165);
+  font-size: 1.4rem;
+  text-align: center;
+  margin-top: 0.8rem;
+}
 
 .cc__stats-block {
   padding-top: 4rem;

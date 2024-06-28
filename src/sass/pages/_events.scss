@@ -253,4 +253,80 @@
 		text-align: center;
 		color: $color-text-400;
 	}
+
+	&__content {
+		margin-top: 6rem;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__left-col {
+		flex: 1 1 auto;
+	}
+
+	&__header {
+		display: flex;
+		align-items: baseline;
+		justify-content: center;
+		gap: 0.8rem;
+
+		& .btn {
+			padding: 0.8rem;
+			transform: translateY(-1px);
+		}
+	}
+
+	&__cards-flex {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+	}
+
+	// Cards
+	&__card {
+		position: relative;
+		width: 10rem;
+		background-color: $color-bg-a-500;
+		border-radius: 0.8rem;
+		padding: 2rem 1.6rem;
+
+		@include ui-shadow;
+		@include ui-background-blur;
+
+		&.finish {
+			color: $color-text-700;
+
+			& .event__time {
+				color: $color-text-700;
+			}
+		}
+	}
+
+	&__counter {
+		position: absolute;
+		top: 0.6rem;
+		left: 0.6rem;
+		line-height: 100%;
+		color: $color-text-700;
+		font-size: $ui-font-size-s;
+	}
+
+	&__date {
+		font-size: 3.6rem;
+		text-align: center;
+		line-height: 100%;
+	}
+
+	&__month {
+		margin-top: 0.4rem;
+		text-align: center;
+		line-height: 100%;
+	}
+
+	&__time {
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
+		text-align: center;
+		margin-top: 0.8rem;
+	}
 }

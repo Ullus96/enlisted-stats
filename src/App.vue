@@ -10,7 +10,7 @@
 	</div>
 	<div class="page-wrapper" id="page">
 		<auth-init></auth-init>
-		<vuex-debug></vuex-debug>
+		<!-- <vuex-debug></vuex-debug> -->
 		<the-aside></the-aside>
 		<main class="main">
 			<router-view></router-view>

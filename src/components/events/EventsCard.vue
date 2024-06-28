@@ -1,13 +1,13 @@
 <template>
-	<div class="events__card events__all-card">
-		<div class="events__card-tooltip">
+	<div class="event__card">
+		<!-- <div class="event__card-tooltip">
 			<p>Награда:</p>
 			<p>{{ reward ? reward : '—' }}</p>
-		</div>
-		<p class="events__counter">#{{ stageIndex + 1 }}</p>
-		<p class="events__date">{{ day }}</p>
-		<p class="events__month">{{ month }}</p>
-		<p class="events__time">{{ hours }}:00</p>
+		</div> -->
+		<p class="event__counter">#{{ stageIndex + 1 }}</p>
+		<p class="event__date">{{ day }}</p>
+		<p class="event__month">{{ month }}</p>
+		<p class="event__time">{{ hours }}:00</p>
 	</div>
 </template>
 

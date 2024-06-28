@@ -1,20 +1,60 @@
 <template>
 	<template v-if="status === 'going'">
-		<div class="container mt-l">
+		<section class="container mt-l">
 			<h1 class="event__title">{{ data.name }}</h1>
-		</div>
+
+			<div class="event__content">
+				<div class="event__left-col">
+					<div class="event__header">
+						<h2>Все награды события</h2>
+						<button class="btn btn-sm btn-tertiary">
+							<IconBase :iconName="'Set last stage'">
+								<IconCog />
+							</IconBase>
+						</button>
+					</div>
+
+					<div class="event__cards-flex">
+						<events-card
+							v-for="(item, index) in data.stages"
+							:key="item"
+							:cardData="item"
+							:stageIndex="index"
+							:reward="data.rewards[index]"
+							:class="{
+								'event__card--active': index === currentStageInfo.index,
+							}"
+						></events-card>
+
+						<div class="event__card finish">
+							<!-- <div class="events__card-tooltip">
+								<p>Конец события</p>
+							</div> -->
+							<p class="event__counter">
+								<i class="fa-regular fa-flag"></i>
+							</p>
+							<p class="event__date">{{ day }}</p>
+							<p class="event__month">{{ month }}</p>
+							<p class="event__time">{{ hours }}:00</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="event__right-col">Счетчик</div>
+			</div>
+		</section>
 	</template>
 
 	<template v-else-if="status === 'finished'">
-		<div class="container mt-l">
+		<section class="container mt-l">
 			<p class="event__end">Событие "{{ data.name }}" завершилось.</p>
-		</div>
+		</section>
 	</template>
 
 	<template v-else-if="status === 'notStarted'">
-		<div class="container mt-l">
+		<section class="container mt-l">
 			<p class="event__end">Событие "{{ data.name }}" еще не началось.</p>
-		</div>
+		</section>
 	</template>
 	<!-- <template v-if="data.stages[currentStageInfo.index]?.startDate">
 		<div class="events container">
@@ -116,9 +156,17 @@ import EventsCard from '@/components/events/EventsCard.vue';
 import EventsCardTop from '@/components/events/EventsCardTop.vue';
 import EventsCountdownCard from '@/components/events/EventsCountdownCard.vue';
 import { IEvent } from '@/type/Events';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconCog from '@/components/ui/icons/IconCog.vue';
 
 export default defineComponent({
-	components: { EventsCard, EventsCardTop, EventsCountdownCard },
+	components: {
+		EventsCard,
+		EventsCardTop,
+		EventsCountdownCard,
+		IconBase,
+		IconCog,
+	},
 	props: {
 		data: {
 			required: true,
