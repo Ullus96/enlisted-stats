@@ -1,10 +1,6 @@
 <template>
 	<div class="event__card">
-		<!-- <div class="event__card-tooltip">
-			<p>Награда:</p>
-			<p>{{ reward ? reward : '—' }}</p>
-		</div> -->
-		<TooltipComponent>
+		<TooltipComponent :direction="'top'" :width="20">
 			<p>Награда:</p>
 			<p>{{ reward ? reward : '—' }}</p>
 		</TooltipComponent>

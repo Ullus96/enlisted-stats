@@ -309,6 +309,8 @@
 				color: $color-primary-200;
 			}
 		}
+
+		@include showTooltip;
 	}
 
 	&__counter {

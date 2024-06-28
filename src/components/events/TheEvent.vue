@@ -27,7 +27,7 @@
 						></events-card>
 
 						<div class="event__card finish">
-							<TooltipComponent>
+							<TooltipComponent :direction="'top'" :width="20">
 								<p>Конец события</p>
 							</TooltipComponent>
 							<p class="event__counter">

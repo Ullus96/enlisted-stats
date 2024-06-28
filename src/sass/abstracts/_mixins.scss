@@ -203,3 +203,12 @@
 		opacity: 1;
 	}
 }
+
+@mixin showTooltip {
+	&:hover {
+		.tooltip {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}

@@ -2,8 +2,7 @@
 	<div
 		class="tooltip"
 		:class="{ top: direction === 'top', bottom: direction === 'bottom' }"
-		data-top-arrow="translate(-50%, 50%) rotateZ(45deg)"
-		data-bottom-arrow="translate(-50%, -50%) rotateZ(135deg)"
+		:style="{ width: `${width}rem` }"
 		ref="tooltip"
 	>
 		<slot></slot>
@@ -41,6 +40,7 @@ export default defineComponent({
 			if (tooltipElement) {
 				const rect = tooltipElement.getBoundingClientRect();
 				const viewportWidth = window.innerWidth;
+				console.log(rect);
 
 				if (rect.left < 40 && rect.right > viewportWidth - 40) {
 					tooltipElement.style.width = `${viewportWidth - 40}px`;

@@ -1253,9 +1253,11 @@ h3 {
   width: 40rem;
   z-index: 20;
   border-radius: 0.8rem;
-  background-color: rgba(39, 39, 39, 0.75);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  color: rgb(226, 226, 226);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.12s ease-in, visibility 0.2s ease-in;
+  background-color: rgb(39, 39, 39);
   box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
 }
 .tooltip::after {
@@ -1266,26 +1268,39 @@ h3 {
   height: 10px;
   z-index: 5;
 }
+.tooltip::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1rem;
+}
 .tooltip p {
   text-align: center;
 }
 .tooltip.top {
-  top: -5px;
+  top: -0.8rem;
   transform: translate(-50%, -100%);
 }
 .tooltip.top::after {
   bottom: 0px;
   transform: translate(-50%, 50%) rotateZ(45deg);
-  background: linear-gradient(-45deg, rgb(106, 24, 24) 60%, transparent 60%);
+  background: linear-gradient(-45deg, rgba(39, 39, 39, 0.75) 60%, transparent 60%);
+}
+.tooltip.top::before {
+  bottom: -1rem;
 }
 .tooltip.bottom {
-  bottom: -5px;
+  bottom: -0.8rem;
   transform: translate(-50%, 100%);
 }
 .tooltip.bottom::after {
   top: 0px;
   transform: translate(-50%, -50%) rotateZ(135deg);
-  background: linear-gradient(45deg, rgb(106, 24, 24) 60%, transparent 60%);
+  background: linear-gradient(45deg, rgba(39, 39, 39, 0.75) 60%, transparent 60%);
+}
+.tooltip.bottom::before {
+  top: -1rem;
 }
 
 .input__label {
@@ -2209,6 +2224,10 @@ h3 {
 }
 .event__card--active .event__counter {
   color: rgb(175, 61, 61);
+}
+.event__card:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 .event__counter {
   position: absolute;
