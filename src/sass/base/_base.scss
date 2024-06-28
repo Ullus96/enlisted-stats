@@ -64,8 +64,8 @@ textarea,
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-	-webkit-text-fill-color: $color-white;
-	-webkit-box-shadow: 0 0 0px 40rem $color-black-light-1 inset;
+	-webkit-text-fill-color: $color-text-100;
+	-webkit-box-shadow: 0 0 0px 40rem $color-bg-500 inset;
 }
 
 .btn {
@@ -107,7 +107,7 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 * {
 	scrollbar-width: 15px;
-	scrollbar-color: $color-skill-inactive $color-background;
+	scrollbar-color: $color-text-400 transparent;
 }
 
 /* Chrome, Edge, and Safari */
@@ -116,11 +116,11 @@ input::-webkit-inner-spin-button {
 }
 
 *::-webkit-scrollbar-track {
-	background: $color-background;
+	background: $color-bg-800;
 }
 
 *::-webkit-scrollbar-thumb {
-	background-color: $color-white;
+	background-color: $color-text-400;
 	border-radius: 10px;
-	border: 3px none $color-white;
+	border: 3px none $color-text-400;
 }

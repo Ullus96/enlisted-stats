@@ -106,8 +106,8 @@ textarea,
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #fff;
-  -webkit-box-shadow: 0 0 0px 40rem #222222 inset;
+  -webkit-text-fill-color: rgb(226, 226, 226);
+  -webkit-box-shadow: 0 0 0px 40rem rgb(39, 39, 39) inset;
 }
 
 .btn {
@@ -149,7 +149,7 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 * {
   scrollbar-width: 15px;
-  scrollbar-color: #7f8388 #27373d;
+  scrollbar-color: rgb(165, 165, 165) transparent;
 }
 
 /* Chrome, Edge, and Safari */
@@ -158,13 +158,13 @@ input::-webkit-inner-spin-button {
 }
 
 *::-webkit-scrollbar-track {
-  background: #27373d;
+  background: rgb(30, 30, 30);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #fff;
+  background-color: rgb(165, 165, 165);
   border-radius: 10px;
-  border: 3px none #fff;
+  border: 3px none rgb(165, 165, 165);
 }
 
 @font-face {
@@ -466,7 +466,6 @@ h3 {
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 2rem;
-  overflow: hidden;
 }
 @media (min-width: 0px) and (max-width: 1123px) {
   .container {
