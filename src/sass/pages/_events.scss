@@ -495,6 +495,73 @@
 			z-index: -1;
 		}
 	}
+
+	// description block
+	&__reward-description-block {
+		margin-top: 3.2rem;
+		padding: 0 5.2rem;
+	}
+
+	&__reward-wrapper {
+		position: relative;
+		padding: 0.8rem;
+	}
+
+	&__reward-boundary {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 5px;
+		border-top: 1px solid $color-bg-050;
+		border-bottom: 1px solid $color-bg-050;
+
+		&::after {
+			position: absolute;
+			content: '';
+			width: 3.3rem;
+			height: 1px;
+			top: 50%;
+			transform: translateY(-50%);
+			background-color: $color-bg-050;
+		}
+
+		&::before {
+			position: absolute;
+			content: '';
+			height: calc(100% + 2rem);
+			transform: translateY(calc(-50% - 1rem));
+			z-index: -1;
+			background-color: $color-bg-050;
+		}
+
+		&--left {
+			left: 0;
+			border-left: 1px solid $color-bg-050;
+
+			&::after {
+				right: 5px;
+			}
+
+			&::before {
+				right: calc(5px + 3.2rem);
+				width: 1px;
+			}
+		}
+
+		&--right {
+			right: 0;
+			border-right: 1px solid $color-bg-050;
+
+			&::after {
+				left: 5px;
+			}
+
+			&::before {
+				left: calc(5px + 3.2rem);
+				width: 1px;
+			}
+		}
+	}
 }
 
 @keyframes progressBarAnimation {

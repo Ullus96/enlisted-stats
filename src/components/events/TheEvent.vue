@@ -71,14 +71,6 @@
 									}"
 								></div>
 								<div class="event__progress-bar-animated"></div>
-
-								<!-- <p class="event__progress-text">
-									{{
-										data.rewards[currentStageInfo.index]
-											? data.rewards[currentStageInfo.index]
-											: '—'
-									}}
-								</p> -->
 							</div>
 
 							<span
@@ -110,6 +102,24 @@
 								<IconCoins />
 							</IconBase>
 						</button>
+					</div>
+
+					<div class="event__reward-description-block">
+						<div class="event__reward-wrapper">
+							<div
+								class="event__reward-boundary event__reward-boundary--left"
+							></div>
+							<div
+								class="event__reward-boundary event__reward-boundary--right"
+							></div>
+							<p class="event__reward-item">
+								{{
+									data.rewards[currentStageInfo.index]
+										? data.rewards[currentStageInfo.index]
+										: '—'
+								}}
+							</p>
+						</div>
 					</div>
 
 					<!-- <div class="events__reward-block">

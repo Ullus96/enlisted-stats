@@ -2435,6 +2435,61 @@ h3 {
   background-color: rgb(56, 56, 56);
   z-index: -1;
 }
+.event__reward-description-block {
+  margin-top: 3.2rem;
+  padding: 0 5.2rem;
+}
+.event__reward-wrapper {
+  position: relative;
+  padding: 0.8rem;
+}
+.event__reward-boundary {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  border-top: 1px solid rgb(56, 56, 56);
+  border-bottom: 1px solid rgb(56, 56, 56);
+}
+.event__reward-boundary::after {
+  position: absolute;
+  content: "";
+  width: 3.3rem;
+  height: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgb(56, 56, 56);
+}
+.event__reward-boundary::before {
+  position: absolute;
+  content: "";
+  height: calc(100% + 2rem);
+  transform: translateY(calc(-50% - 1rem));
+  z-index: -1;
+  background-color: rgb(56, 56, 56);
+}
+.event__reward-boundary--left {
+  left: 0;
+  border-left: 1px solid rgb(56, 56, 56);
+}
+.event__reward-boundary--left::after {
+  right: 5px;
+}
+.event__reward-boundary--left::before {
+  right: calc(5px + 3.2rem);
+  width: 1px;
+}
+.event__reward-boundary--right {
+  right: 0;
+  border-right: 1px solid rgb(56, 56, 56);
+}
+.event__reward-boundary--right::after {
+  left: 5px;
+}
+.event__reward-boundary--right::before {
+  left: calc(5px + 3.2rem);
+  width: 1px;
+}
 
 @keyframes progressBarAnimation {
   0% {
