@@ -39,11 +39,12 @@ export default defineComponent({
 			const tooltipElement = tooltip.value;
 			if (tooltipElement) {
 				const rect = tooltipElement.getBoundingClientRect();
-				// const viewportWidth = window.innerWidth;
-				const viewportWidth = window.outerWidth;
-				console.log('window.outerWidth:' + window.outerWidth);
-				console.log('viewportWidth:' + viewportWidth);
-				console.log('rect.width:' + rect.width);
+
+				let viewportWidth = window.outerWidth;
+				if (window.innerWidth <= window.outerWidth) {
+					viewportWidth = window.innerWidth;
+				}
+
 				if (viewportWidth < rect.width / 2 || viewportWidth - 80 < rect.width) {
 					console.log('viewportWidth:' + viewportWidth);
 					console.log('rect.width:' + rect.width);
