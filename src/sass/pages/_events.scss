@@ -397,7 +397,7 @@
 	&__chip {
 		border-radius: 0.8rem;
 		padding: 1.2rem;
-		background-color: $color-bg-a-700;
+		background-color: $color-bg-700;
 		border: none;
 		@include ui-shadow;
 		@include ui-background-blur;
@@ -407,27 +407,27 @@
 			display: block;
 		}
 
-		@include pressed($color-text-100, $color-bg-a-700, 2.5);
+		@include pressed($color-text-100, $color-bg-700, 2.5);
 
 		&:hover {
-			@include hovered($color-text-100, $color-bg-a-700);
+			@include hovered($color-text-100, $color-bg-700);
 		}
 
 		&:focus {
-			@include focused($color-text-100, $color-bg-a-700);
+			@include focused($color-text-100, $color-bg-700);
 		}
 
 		&--active {
-			background-color: $color-primary-a-500;
+			background-color: $color-primary-600;
 
-			@include pressed($color-text-100, $color-primary-a-500, 2.5);
+			@include pressed($color-text-100, $color-primary-600, 2.5);
 
 			&:hover {
-				@include hovered($color-text-100, $color-primary-a-500);
+				@include hovered($color-text-100, $color-primary-600);
 			}
 
 			&:focus {
-				@include focused($color-text-100, $color-primary-a-500);
+				@include focused($color-text-100, $color-primary-600);
 			}
 		}
 	}
@@ -507,6 +507,12 @@
 		padding: 0.8rem;
 	}
 
+	&__reward-item {
+		&--right {
+			text-align: right;
+		}
+	}
+
 	&__reward-boundary {
 		position: absolute;
 		top: 0;
@@ -535,6 +541,7 @@
 		}
 
 		&--left {
+			transform-origin: left;
 			left: 0;
 			border-left: 1px solid $color-bg-050;
 
@@ -549,6 +556,7 @@
 		}
 
 		&--right {
+			transform-origin: right;
 			right: 0;
 			border-right: 1px solid $color-bg-050;
 

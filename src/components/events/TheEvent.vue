@@ -57,7 +57,7 @@
 							@mouseenter="setActiveReward('current')"
 							@click="setActiveReward('current')"
 						>
-							<IconBase :iconName="'Previous reward'">
+							<IconBase :iconName="'Current reward'">
 								<IconCoins />
 							</IconBase>
 						</button>
@@ -106,56 +106,43 @@
 
 					<div class="event__reward-description-block">
 						<div class="event__reward-wrapper">
-							<div
-								class="event__reward-boundary event__reward-boundary--left"
-							></div>
-							<div
-								class="event__reward-boundary event__reward-boundary--right"
-							></div>
-							<p class="event__reward-item">
-								{{
-									data.rewards[currentStageInfo.index]
-										? data.rewards[currentStageInfo.index]
-										: '—'
-								}}
-							</p>
+							<transition name="boundary-fade" mode="out-in">
+								<div
+									v-if="activeReward === 'current'"
+									class="event__reward-boundary event__reward-boundary--left"
+								></div>
+								<div
+									v-else
+									class="event__reward-boundary event__reward-boundary--right"
+								></div>
+							</transition>
+
+							<transition name="reward" mode="out-in">
+								<div v-if="activeReward === 'current'">
+									<p
+										class="event__reward-item"
+										v-for="item in separateLineBySemicolon(
+											data.rewards[currentStageInfo.index]
+										)"
+										:key="item"
+									>
+										{{ item ? item : '—' }}
+									</p>
+								</div>
+								<div v-else>
+									<p
+										class="event__reward-item event__reward-item--right"
+										v-for="item in separateLineBySemicolon(
+											data.rewards[currentStageInfo.index + 1]
+										)"
+										:key="item"
+									>
+										{{ item ? item : '—' }}
+									</p>
+								</div>
+							</transition>
 						</div>
 					</div>
-
-					<!-- <div class="events__reward-block">
-						<div class="events__reward-upper-block">
-							<div class="events__reward-bar events__reward-bar-left">
-								<div
-									class="events__reward-bar-progress"
-									:style="{
-										background: `linear-gradient(to right,  #47484a ${progressBarPercents}%, transparent ${progressBarPercents}%`,
-									}"
-								></div>
-								<div class="events__reward-bar-animated"></div>
-								<p class="events__reward-text">
-									{{
-										data.rewards[currentStageInfo.index]
-											? data.rewards[currentStageInfo.index]
-											: '—'
-									}}
-								</p>
-							</div>
-							<div class="events__reward-bar events__reward-bar-right">
-								<p class="events__reward-text">
-									{{
-										data.rewards[currentStageInfo.index + 1]
-											? data.rewards[currentStageInfo.index + 1]
-											: '—'
-									}}
-								</p>
-							</div>
-						</div>
-						<div class="events__reward-lower-block">
-							<p class="events__reward-description">текущая награда</p>
-							<p class="events__reward-description">следующая награда</p>
-						</div>
-					</div> -->
-					<!--  -->
 				</div>
 			</div>
 		</section>
@@ -172,98 +159,6 @@
 			<p class="event__end">Событие "{{ data.name }}" еще не началось.</p>
 		</section>
 	</template>
-	<!-- <template v-if="data.stages[currentStageInfo.index]?.startDate">
-		<div class="events container">
-			<div class="events__count-block"> -->
-	<!-- check if there is more stages -->
-	<!-- <div class="events__title">{{ data.name }}.</div>
-				<template v-if="checkIfTheStageIsNotFinal(currentStageInfo.index + 1)">
-					<h2 class="events__count-title">
-						Следующий этап [{{ currentStageInfo.index + 2 }}/{{
-							data.stages.length
-						}}]
-					</h2>
-					<events-card-top
-						:stageIndex="currentStageInfo.index + 1"
-						:date="data.stages[currentStageInfo.index + 1].startDate"
-					></events-card-top>
-				</template> -->
-	<!-- else we show the timer until the end of the event -->
-	<!-- <template v-else>
-					<h2 class="events__count-title">До завершения события:</h2>
-				</template>
-				<div class="events__countdown-block">
-					<events-countdown-card
-						v-for="(item, index) in 3"
-						:key="item"
-						:timerValue="timerValues[index]"
-						:index="index"
-					></events-countdown-card>
-				</div>
-
-				<div class="events__reward-block">
-					<div class="events__reward-upper-block">
-						<div class="events__reward-bar events__reward-bar-left">
-							<div
-								class="events__reward-bar-progress"
-								:style="{
-									background: `linear-gradient(to right,  #47484a ${progressBarPercents}%, transparent ${progressBarPercents}%`,
-								}"
-							></div>
-							<div class="events__reward-bar-animated"></div>
-							<p class="events__reward-text">
-								{{
-									data.rewards[currentStageInfo.index]
-										? data.rewards[currentStageInfo.index]
-										: '—'
-								}}
-							</p>
-						</div>
-						<div class="events__reward-bar events__reward-bar-right">
-							<p class="events__reward-text">
-								{{
-									data.rewards[currentStageInfo.index + 1]
-										? data.rewards[currentStageInfo.index + 1]
-										: '—'
-								}}
-							</p>
-						</div>
-					</div>
-					<div class="events__reward-lower-block">
-						<p class="events__reward-description">текущая награда</p>
-						<p class="events__reward-description">следующая награда</p>
-					</div>
-				</div>
-			</div>
-			<div class="events__all-block">
-				<h2 class="events__all-title">Все этапы данного события:</h2>
-				<div class="events__all-cards-flex">
-					<events-card
-						v-for="(item, index) in data.stages"
-						:key="item"
-						:cardData="item"
-						:stageIndex="index"
-						:reward="data.rewards[index]"
-						:class="{
-							'events__all-card--active': index === currentStageInfo.index,
-						}"
-					></events-card>
-
-					<div class="events__card events__all-card finish">
-						<div class="events__card-tooltip">
-							<p>Конец события</p>
-						</div>
-						<p class="events__counter">
-							<i class="fa-regular fa-flag"></i>
-						</p>
-						<p class="events__date finish">{{ day }}</p>
-						<p class="events__month finish">{{ month }}</p>
-						<p class="events__time finish">{{ hours }}:00</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</template> -->
 </template>
 
 <script lang="ts">
@@ -276,6 +171,7 @@ import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconCog from '@/components/ui/icons/IconCog.vue';
 import IconCoins from '@/components/ui/icons/IconCoins.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
+import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
 
 export default defineComponent({
 	components: {
@@ -440,7 +336,50 @@ export default defineComponent({
 			hours,
 			activeReward,
 			setActiveReward,
+			separateLineBySemicolon,
 		};
 	},
 });
 </script>
+
+<style scoped>
+.boundary-fade-enter-active,
+.boundary-fade-leave-active {
+	transition: opacity 0.1s 0.05s ease-in, transform 0.2s ease-in-out;
+}
+
+.boundary-fade-enter-from,
+.boundary-fade-leave-to {
+	opacity: 0;
+	transform: scaleY(0);
+}
+
+.boundary-fade-enter-to,
+.boundary-fade-leave-from {
+	opacity: 1;
+	transform: scaleY(1);
+}
+
+.reward-enter-active,
+.reward-leave-active {
+	transition: opacity 0.4s 0.1s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.reward-enter-from,
+.reward-leave-to {
+	opacity: 0;
+	transform: translateX(-2rem);
+}
+
+.event__reward-item--right.reward-enter-from,
+.event__reward-item--right.reward-leave-to {
+	opacity: 0;
+	transform: translateX(2rem);
+}
+
+.reward-enter-to,
+.reward-leave-from {
+	opacity: 1;
+	transform: translateX(0);
+}
+</style>
