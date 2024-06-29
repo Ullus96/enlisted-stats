@@ -40,7 +40,6 @@ export default defineComponent({
 			if (tooltipElement) {
 				const rect = tooltipElement.getBoundingClientRect();
 				const viewportWidth = window.innerWidth;
-				console.log(rect);
 
 				if (rect.left < 40 && rect.right > viewportWidth - 40) {
 					tooltipElement.style.width = `${viewportWidth - 40}px`;

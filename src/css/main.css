@@ -1241,6 +1241,14 @@ h3 {
   width: fit-content;
 }
 
+.tooltip-anchor {
+  position: relative;
+}
+.tooltip-anchor:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 .tooltip {
   --tooltip-arrow-position: "50%";
   position: absolute;
@@ -2234,6 +2242,7 @@ h3 {
   transform: rotateZ(0) scale(1);
   opacity: 1;
   transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  cursor: pointer;
   box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);

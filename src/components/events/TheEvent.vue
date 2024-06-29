@@ -5,13 +5,25 @@
 
 			<div class="event__content">
 				<div class="event__left-col">
-					<div class="event__header">
+					<div class="event__header tooltip-anchor">
 						<h2>Все награды события</h2>
-						<button class="btn btn-sm btn-tertiary">
-							<IconBase :iconName="'Set last stage'">
-								<IconCog />
-							</IconBase>
-						</button>
+						<div class="tooltip-anchor">
+							<TooltipComponent :direction="'top'" :width="40">
+								<p>
+									Если пропустил награды, нажимай по пропущенным этапам
+									слева-направо.
+								</p>
+								<p>
+									В случае некорректного отображения наград - перезагрузи
+									страницу.
+								</p>
+							</TooltipComponent>
+							<button class="btn btn-sm btn-tertiary">
+								<IconBase :iconName="'Information'">
+									<IconQuestionCircle />
+								</IconBase>
+							</button>
+						</div>
 					</div>
 
 					<div class="event__cards-flex">
@@ -176,7 +188,8 @@ import EventsCardTop from '@/components/events/EventsCardTop.vue';
 import EventsCountdownCard from '@/components/events/EventsCountdownCard.vue';
 import { IEvent, IEventFirestore } from '@/type/Events';
 import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconCog from '@/components/ui/icons/IconCog.vue';
+import IconQuestion from '@/components/ui/icons/IconQuestion.vue';
+import IconQuestionCircle from '@/components/ui/icons/IconQuestionCircle.vue';
 import IconCoins from '@/components/ui/icons/IconCoins.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
@@ -191,7 +204,8 @@ export default defineComponent({
 		EventsCardTop,
 		EventsCountdownCard,
 		IconBase,
-		IconCog,
+		IconQuestion,
+		IconQuestionCircle,
 		IconCoins,
 		TooltipComponent,
 	},
@@ -202,7 +216,6 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		console.log(props.data);
 		const isFinalStage: Ref<boolean> = ref(false);
 		let status: 'notStarted' | 'going' | 'finished' | null = null;
 		const activeReward: Ref<'current' | 'next'> = ref('next');

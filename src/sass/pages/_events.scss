@@ -299,6 +299,7 @@
 		transform: rotateZ(0) scale(1);
 		opacity: 1;
 		transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+		cursor: pointer;
 
 		@include ui-shadow;
 		@include ui-background-blur;
