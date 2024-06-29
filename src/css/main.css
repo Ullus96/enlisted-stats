@@ -84,6 +84,11 @@ body::after {
   background: url("@/assets/noise.png") repeat;
   opacity: 0.08;
 }
+@media (max-width: 849px) {
+  body {
+    overflow-x: hidden;
+  }
+}
 
 a,
 a:visited {
@@ -1248,6 +1253,10 @@ h3 {
   visibility: visible;
   opacity: 1;
 }
+.tooltip-anchor:focus .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
 
 .tooltip {
   --tooltip-arrow-position: "50%";
@@ -2222,6 +2231,13 @@ h3 {
   padding: 0.8rem;
   transform: translateY(-1px);
 }
+@media (max-width: 849px) {
+  .event__header {
+    align-items: center;
+    text-wrap: balance;
+    text-align: center;
+  }
+}
 .event__cards-flex {
   display: flex;
   flex-wrap: wrap;
@@ -2267,6 +2283,10 @@ h3 {
   visibility: visible;
   opacity: 1;
 }
+.event__card:focus .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
 .event__counter {
   position: absolute;
   top: 0.6rem;
@@ -2290,6 +2310,28 @@ h3 {
   font-size: 1.4rem;
   text-align: center;
   margin-top: 0.8rem;
+}
+.event__mobile-reward-block {
+  border-top: 1px solid rgb(56, 56, 56);
+  margin-top: 0.4rem;
+  padding-top: 0.8rem;
+  color: rgb(165, 165, 165);
+  word-break: break-word;
+  text-wrap: balance;
+  text-align: center;
+  -webkit-hyphens: auto;
+          hyphens: auto;
+  line-height: 130%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 1.2rem;
+  display: none;
+}
+@media (max-width: 849px) {
+  .event__mobile-reward-block {
+    display: flex;
+  }
 }
 .event__right-col {
   margin-top: 8rem;

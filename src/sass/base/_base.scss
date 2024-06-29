@@ -41,6 +41,10 @@ body {
 		background: url('@/assets/noise.png') repeat;
 		opacity: 0.08;
 	}
+
+	@include tablet {
+		overflow-x: hidden;
+	}
 }
 
 a,

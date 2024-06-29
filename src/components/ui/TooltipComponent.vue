@@ -39,10 +39,23 @@ export default defineComponent({
 			const tooltipElement = tooltip.value;
 			if (tooltipElement) {
 				const rect = tooltipElement.getBoundingClientRect();
-				const viewportWidth = window.innerWidth;
+				// const viewportWidth = window.innerWidth;
+				const viewportWidth = window.outerWidth;
+				console.log('window.outerWidth:' + window.outerWidth);
+				console.log('viewportWidth:' + viewportWidth);
+				console.log('rect.width:' + rect.width);
+				if (viewportWidth < rect.width / 2 || viewportWidth - 80 < rect.width) {
+					console.log('viewportWidth:' + viewportWidth);
+					console.log('rect.width:' + rect.width);
+					tooltipElement.style.width = `${
+						viewportWidth - 20 - viewportWidth / 2
+					}px`;
+					tooltipElement.style.transform = 'translate(-50%, -100%)';
+					tooltipElement.style.setProperty('--tooltip-arrow-position', '50%');
+				}
 
 				if (rect.left < 40 && rect.right > viewportWidth - 40) {
-					tooltipElement.style.width = `${viewportWidth - 40}px`;
+					tooltipElement.style.width = `${rect.width - 40}px`;
 					tooltipElement.style.transform = 'translate(-50%, -100%)';
 					tooltipElement.style.setProperty('--tooltip-arrow-position', '50%');
 				}
@@ -53,12 +66,6 @@ export default defineComponent({
 				} else if (rect.right > viewportWidth - 20) {
 					tooltipElement.style.transform = 'translate(-80%, -100%)';
 					tooltipElement.style.setProperty('--tooltip-arrow-position', '80%');
-				}
-
-				if (viewportWidth < rect.width / 2 || viewportWidth - 80 < rect.width) {
-					tooltipElement.style.width = `${rect.width - 40}px`;
-					tooltipElement.style.transform = 'translate(-50%, -100%)';
-					tooltipElement.style.setProperty('--tooltip-arrow-position', '50%');
 				}
 			}
 		};

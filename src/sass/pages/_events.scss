@@ -276,6 +276,12 @@
 			padding: 0.8rem;
 			transform: translateY(-1px);
 		}
+
+		@include tablet {
+			align-items: center;
+			text-wrap: balance;
+			text-align: center;
+		}
 	}
 
 	&__cards-flex {
@@ -354,6 +360,27 @@
 		font-size: $ui-font-size-s;
 		text-align: center;
 		margin-top: 0.8rem;
+	}
+
+	&__mobile-reward-block {
+		border-top: 1px solid $color-bg-050;
+		margin-top: 0.4rem;
+		padding-top: 0.8rem;
+		color: $color-text-400;
+		word-break: break-word;
+		text-wrap: balance;
+		text-align: center;
+		hyphens: auto;
+		line-height: 130%;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		font-size: $ui-font-size-xs;
+		display: none;
+
+		@include tablet {
+			display: flex;
+		}
 	}
 
 	// Right column

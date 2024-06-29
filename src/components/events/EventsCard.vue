@@ -9,12 +9,19 @@
 	>
 		<TooltipComponent :direction="'top'" :width="20">
 			<p>Награда:</p>
-			<p>{{ reward ? reward : '—' }}</p>
+			<p v-for="item in separateLineBySemicolon(reward)" :key="item">
+				{{ item ? item : '—' }}
+			</p>
 		</TooltipComponent>
 		<p class="event__counter">#{{ stageIndex + 1 }}</p>
 		<p class="event__date">{{ day }}</p>
 		<p class="event__month">{{ month }}</p>
 		<p class="event__time">{{ hours }}:00</p>
+		<div class="event__mobile-reward-block">
+			<p v-for="item in separateLineBySemicolon(reward)" :key="item">
+				{{ item ? item : '—' }}
+			</p>
+		</div>
 	</div>
 </template>
 
@@ -22,6 +29,7 @@
 import { IStage } from '@/type/Events';
 import { defineComponent, PropType, ref, Ref } from 'vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
+import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
 
 export default defineComponent({
 	components: { TooltipComponent },
@@ -68,6 +76,7 @@ export default defineComponent({
 			month,
 			hours,
 			handleClick,
+			separateLineBySemicolon,
 		};
 	},
 });

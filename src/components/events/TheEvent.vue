@@ -8,7 +8,7 @@
 					<div class="event__header tooltip-anchor">
 						<h2>Все награды события</h2>
 						<div class="tooltip-anchor">
-							<TooltipComponent :direction="'top'" :width="40">
+							<TooltipComponent :direction="'top'" :width="37.5">
 								<p>
 									Если пропустил награды, нажимай по пропущенным этапам
 									слева-направо.
