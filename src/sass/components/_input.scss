@@ -70,5 +70,10 @@
 		color: $color-text-700;
 		font-size: $ui-font-size-xs;
 		flex: 0 0 auto;
+
+		@include tablet {
+			max-width: 80dvw;
+			word-break: break-word;
+		}
 	}
 }

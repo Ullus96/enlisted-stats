@@ -466,6 +466,7 @@ h3 {
 .container {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 6.4rem;
   min-width: 32rem;
   max-width: 144rem;
   padding-left: 2rem;
@@ -1384,6 +1385,12 @@ h3 {
   color: rgb(116, 116, 116);
   font-size: 1.2rem;
   flex: 0 0 auto;
+}
+@media (max-width: 849px) {
+  .input__desc {
+    max-width: 80dvw;
+    word-break: break-word;
+  }
 }
 
 .filter__block {
