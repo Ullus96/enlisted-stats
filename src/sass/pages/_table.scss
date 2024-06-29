@@ -1,0 +1,43 @@
+.table {
+	&__search {
+		margin: 0 auto;
+		width: 100%;
+		max-width: 45rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: $color-bg-800;
+		border: 1px solid $color-bg-a-050;
+		border-radius: 1.2rem;
+
+		& path {
+			fill: $color-text-700;
+		}
+
+		&:focus {
+			@include focused($color-text-100, $color-bg-800);
+		}
+	}
+
+	&__search-icon {
+		padding: 1.2rem 0.4rem 1.2rem 1.2rem;
+		flex: 0 0 fit-content;
+	}
+
+	&__input {
+		padding: 1.2rem 1.6rem 1.2rem 0.8rem;
+		font-size: $ui-font-size-base;
+		color-scheme: dark;
+		width: 100%;
+		max-width: 40rem;
+		flex: 0 0 auto;
+
+		&::placeholder {
+			color: $color-text-700;
+		}
+
+		&.error {
+			outline: 1px solid $color-danger-200;
+		}
+	}
+}

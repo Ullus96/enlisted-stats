@@ -46,8 +46,8 @@ export default defineComponent({
 				}
 
 				if (viewportWidth < rect.width / 2 || viewportWidth - 80 < rect.width) {
-					console.log('viewportWidth:' + viewportWidth);
-					console.log('rect.width:' + rect.width);
+					// console.log('viewportWidth:' + viewportWidth);
+					// console.log('rect.width:' + rect.width);
 					tooltipElement.style.width = `${
 						viewportWidth - 20 - viewportWidth / 2
 					}px`;

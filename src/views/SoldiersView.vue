@@ -1,5 +1,26 @@
 <template>
-	<div class="table-header container">
+	<div class="container mt-m">
+		<label for="soldier-search">
+			<div class="table__search">
+				<div class="table__search-icon tooltip-anchor">
+					<TooltipComponent :direction="'bottom'">
+						<p>Esc - сбросить ввод</p>
+					</TooltipComponent>
+					<IconBase :iconName="'Search'">
+						<IconSearch />
+					</IconBase>
+				</div>
+				<input
+					type="text"
+					class="table__input"
+					id="soldier-search"
+					placeholder="Начни вводить название класса"
+				/>
+			</div>
+		</label>
+		<div class="table__wrapper mt-m"></div>
+	</div>
+	<!-- <div class="table-header container">
 		<div
 			class="table-header__col table-header__col--name table-header__search-bar"
 			v-if="!isFilteredToClass"
@@ -31,32 +52,32 @@
 		<div class="table-header__col table-header__col--stat">★★★★</div>
 		<div class="table-header__col table-header__col--stat">★★★★★</div>
 		<div class="table-header__col table-header__col--desc">Начальный перк</div>
-	</div>
+	</div> -->
 
 	<!-- table itself -->
-	<template v-if="!isFilteredToClass">
+	<!-- <template v-if="!isFilteredToClass">
 		<item-row
 			v-for="(item, idx) in filteredItems"
 			:key="item.id"
 			:item="item"
 			@click="handleClick(idx)"
 		></item-row>
-	</template>
+	</template> -->
 
 	<!-- render single selected soldier -->
-	<template v-if="isFilteredToClass">
+	<!-- <template v-if="isFilteredToClass">
 		<item-row
 			:item="filteredItems[activeIdx]"
 			@click="removeFilter()"
-		></item-row>
+		></item-row> -->
 
-		<!-- preset builds -->
-		<template v-if="filteredItems[activeIdx] && isPresetBuildsSelected">
+	<!-- preset builds -->
+	<!-- <template v-if="filteredItems[activeIdx] && isPresetBuildsSelected">
 			<skill-build :skills="filteredItems[activeIdx].skills"></skill-build>
-		</template>
+		</template> -->
 
-		<!-- calculator -->
-		<div
+	<!-- calculator -->
+	<!-- <div
 			class="calculator container"
 			v-if="isFilteredToClass && isCalculatorSelected"
 		>
@@ -83,7 +104,7 @@
 				Калькулятор
 			</button>
 		</div>
-	</div>
+	</div> -->
 </template>
 
 <script lang="ts">
@@ -105,6 +126,9 @@ import CalculatorSkill from '@/components/calculator/CalculatorSkill.vue';
 import { calculateStatsByLvl } from '@/functions/characterUtils';
 import { items } from '@/data/soldiersList';
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconSearch from '@/components/ui/icons/IconSearch.vue';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
 	name: 'App',
@@ -114,6 +138,9 @@ export default defineComponent({
 		CalculatorBlock,
 		CalculatorBranch,
 		CalculatorSkill,
+		IconBase,
+		IconSearch,
+		TooltipComponent,
 	},
 	setup() {
 		const isFilteredToClass: Ref<boolean> = ref(false);
