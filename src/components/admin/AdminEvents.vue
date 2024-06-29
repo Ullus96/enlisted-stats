@@ -160,7 +160,7 @@ import {
 } from 'firebase/firestore';
 import getEvents from '@/functions/getEvents';
 import { operationNames } from '@/data/operationNames';
-import LoadingSpinner from '../LoadingSpinner.vue';
+import LoadingSpinner from '../ui/LoadingSpinner.vue';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconPlus from '@/components/ui/icons/IconPlus.vue';
 import IconTrash from '@/components/ui/icons/IconTrash.vue';

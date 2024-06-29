@@ -47,7 +47,7 @@ import { getSoldierData } from '@/functions/convertSoldierDataToName';
 import { useRoute } from 'vue-router';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
-import LoadingSpinner from '@/components/LoadingSpinner.vue';
+import LoadingSpinner from '@/components/ui/LoadingSpinner.vue';
 import Page404 from '@/components/no-page/Page404.vue';
 import {
 	loadFromLocalStorage,

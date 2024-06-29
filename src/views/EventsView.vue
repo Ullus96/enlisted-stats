@@ -21,7 +21,7 @@ import TheEvent from '@/components/events/TheEvent.vue';
 import { IEvent } from '@/type/Events';
 import NoEvents from '@/components/no-page/NoEvents.vue';
 import getEvents from '@/functions/getEvents';
-import LoadingSpinner from '@/components/LoadingSpinner.vue';
+import LoadingSpinner from '@/components/ui/LoadingSpinner.vue';
 
 export default defineComponent({
 	components: { TheEvent, NoEvents, LoadingSpinner },
