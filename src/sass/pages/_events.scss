@@ -296,6 +296,9 @@
 		background-color: $color-bg-a-500;
 		border-radius: 0.8rem;
 		padding: 2rem 1.6rem;
+		transform: rotateZ(0) scale(1);
+		opacity: 1;
+		transition: transform 0.3s ease-in, opacity 0.3s ease-in;
 
 		@include ui-shadow;
 		@include ui-background-blur;
@@ -314,6 +317,11 @@
 			& .event__counter {
 				color: $color-primary-200;
 			}
+		}
+
+		&.skipped {
+			opacity: 0.6;
+			transform: rotateZ(-6deg) scale(0.96);
 		}
 
 		@include showTooltip;
@@ -579,5 +587,16 @@
 
 	100% {
 		inset: 0 -28px 0 0;
+	}
+}
+
+@keyframes skip-card {
+	from {
+		opacity: 1;
+		transform: rotateZ(0) scale(1);
+	}
+	to {
+		opacity: 0.6;
+		transform: rotateZ(-8deg) scale(0.9);
 	}
 }

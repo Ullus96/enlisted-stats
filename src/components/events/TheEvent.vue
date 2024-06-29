@@ -16,14 +16,14 @@
 
 					<div class="event__cards-flex">
 						<events-card
-							v-for="(item, index) in data.stages"
+							v-for="(item, index) in stagesWithRewards"
 							:key="item"
 							:cardData="item"
 							:stageIndex="index"
-							:reward="data.rewards[index]"
-							:class="{
-								'event__card--active': index === currentStageInfo.index,
-							}"
+							:reward="item.reward"
+							:isActive="index === currentStageInfo.index"
+							:isSkipped="skippedStages.includes(index)"
+							@skip-stage="handleSkipStage"
 						></events-card>
 
 						<div class="event__card finish">
@@ -122,7 +122,7 @@
 									<p
 										class="event__reward-item"
 										v-for="item in separateLineBySemicolon(
-											data.rewards[currentStageInfo.index]
+											stagesWithRewards[currentStageInfo.index].reward
 										)"
 										:key="item"
 									>
@@ -133,7 +133,7 @@
 									<p
 										class="event__reward-item event__reward-item--right"
 										v-for="item in separateLineBySemicolon(
-											data.rewards[currentStageInfo.index + 1]
+											stagesWithRewards[currentStageInfo.index + 1].reward
 										)"
 										:key="item"
 									>
@@ -162,16 +162,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, Ref, ref } from 'vue';
+import {
+	computed,
+	defineComponent,
+	onMounted,
+	PropType,
+	reactive,
+	Ref,
+	ref,
+} from 'vue';
 import EventsCard from '@/components/events/EventsCard.vue';
 import EventsCardTop from '@/components/events/EventsCardTop.vue';
 import EventsCountdownCard from '@/components/events/EventsCountdownCard.vue';
-import { IEvent } from '@/type/Events';
+import { IEvent, IEventFirestore } from '@/type/Events';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconCog from '@/components/ui/icons/IconCog.vue';
 import IconCoins from '@/components/ui/icons/IconCoins.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
+import {
+	loadFromLocalStorage,
+	saveToLocalStorage,
+} from '@/functions/localStorageUtils';
 
 export default defineComponent({
 	components: {
@@ -190,6 +202,7 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
+		console.log(props.data);
 		const isFinalStage: Ref<boolean> = ref(false);
 		let status: 'notStarted' | 'going' | 'finished' | null = null;
 		const activeReward: Ref<'current' | 'next'> = ref('next');
@@ -324,6 +337,67 @@ export default defineComponent({
 			activeReward.value = status;
 		}
 
+		// Skipped stages
+		const skippedStages: Ref<number[]> = ref([]);
+		// @ts-ignore
+		const storageKey = props.data.dbId;
+		const endDateKey = `end-${storageKey}`;
+		const currentDate = new Date();
+
+		const stagesWithRewards = computed(() =>
+			props.data.stages.map((stage, index) => ({
+				...stage,
+				reward: calculateReward(index),
+			}))
+		);
+
+		function calculateReward(index: number) {
+			const rewards = [...props.data.rewards];
+			skippedStages.value.forEach((skippedIndex) => {
+				if (skippedIndex <= index) {
+					rewards.splice(skippedIndex, 0, rewards[skippedIndex - 1]);
+				}
+			});
+			return rewards[index];
+		}
+
+		function handleSkipStage(stageIndex: number) {
+			const stageIndexPosition = skippedStages.value.indexOf(stageIndex);
+			if (stageIndexPosition !== -1) {
+				skippedStages.value.splice(stageIndexPosition, 1);
+			} else {
+				skippedStages.value.push(stageIndex);
+			}
+			saveToLocalStorage(storageKey, skippedStages.value);
+			saveToLocalStorage(endDateKey, props.data.endDate);
+			updateRewards();
+		}
+
+		function updateRewards() {
+			stagesWithRewards.value; // Пересчитываем награды
+		}
+
+		function loadAndCleanLocalStorage() {
+			const savedSkippedStages = loadFromLocalStorage(storageKey);
+			const savedEndDate = new Date(loadFromLocalStorage(endDateKey));
+
+			if (
+				savedSkippedStages &&
+				savedSkippedStages.length > 0 &&
+				currentDate <= savedEndDate
+			) {
+				skippedStages.value = savedSkippedStages;
+			} else {
+				localStorage.removeItem(storageKey);
+				localStorage.removeItem(endDateKey);
+			}
+		}
+
+		onMounted(() => {
+			loadAndCleanLocalStorage();
+			updateRewards(); // Пересчитываем награды при загрузке компонента
+		});
+
 		return {
 			status,
 			currentStageInfo,
@@ -337,6 +411,10 @@ export default defineComponent({
 			activeReward,
 			setActiveReward,
 			separateLineBySemicolon,
+			skippedStages,
+			stagesWithRewards,
+			handleSkipStage,
+			updateRewards,
 		};
 	},
 });

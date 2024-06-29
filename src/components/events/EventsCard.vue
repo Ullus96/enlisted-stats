@@ -1,5 +1,12 @@
 <template>
-	<div class="event__card">
+	<div
+		class="event__card"
+		:class="{
+			'event__card--active': isActive,
+			skipped: isSkipped,
+		}"
+		@click="handleClick"
+	>
 		<TooltipComponent :direction="'top'" :width="20">
 			<p>Награда:</p>
 			<p>{{ reward ? reward : '—' }}</p>
@@ -13,7 +20,7 @@
 
 <script lang="ts">
 import { IStage } from '@/type/Events';
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, ref, Ref } from 'vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
@@ -22,8 +29,10 @@ export default defineComponent({
 		cardData: { required: true, type: Object as PropType<IStage> },
 		stageIndex: { required: true, type: Number },
 		reward: { required: false, type: String, default: '—' },
+		isActive: { required: true, type: Boolean },
+		isSkipped: { required: true, type: Boolean },
 	},
-	setup(props) {
+	setup(props, context) {
 		const options: Intl.DateTimeFormatOptions = {
 			weekday: 'long',
 			year: 'numeric',
@@ -50,10 +59,15 @@ export default defineComponent({
 		const month = parts[1].split(' ')[2];
 		const hours = parts[1].split(' ')[6].split(':')[0];
 
+		function handleClick() {
+			context.emit('skip-stage', props.stageIndex);
+		}
+
 		return {
 			day,
 			month,
 			hours,
+			handleClick,
 		};
 	},
 });
