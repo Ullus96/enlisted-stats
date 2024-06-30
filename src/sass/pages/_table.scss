@@ -28,7 +28,7 @@
 		padding: 1.2rem 1.6rem 1.2rem 0.8rem;
 		font-size: $ui-font-size-base;
 		color-scheme: dark;
-		width: 100%;
+		width: calc(100% - 3.2rem);
 		max-width: 40rem;
 		flex: 0 0 auto;
 
@@ -38,6 +38,179 @@
 
 		&.error {
 			outline: 1px solid $color-danger-200;
+		}
+	}
+
+	// table itself
+	&__header {
+		background-color: $color-bg-900;
+		padding: 2rem;
+		display: flex;
+		justify-content: space-between;
+
+		&.table__header {
+			cursor: auto;
+		}
+	}
+
+	&__col--first {
+		flex: 0 0 16rem;
+
+		@include tablet {
+			display: none;
+		}
+	}
+
+	&__col--star {
+		flex: 0.5 1 9rem;
+		display: flex;
+		justify-content: center;
+
+		@include tablet {
+			font-size: $ui-font-size-xs;
+		}
+	}
+
+	&__col--perk {
+		flex: 0 0.9 30rem;
+		display: flex;
+		justify-content: center;
+
+		@include tablet {
+			display: none;
+		}
+	}
+
+	&__row {
+		border-radius: 1.2rem;
+		display: flex;
+	}
+
+	&__wrapper--body {
+		display: flex;
+		flex-direction: column;
+		margin-top: 1.2rem;
+		gap: 0.8rem;
+	}
+
+	&__row--body {
+		cursor: pointer;
+		background-color: $color-bg-500;
+		padding: 2rem 1.6rem;
+		font-size: $ui-font-size-s;
+		display: grid;
+		grid-template-columns: 16rem repeat(5, 1fr) 4fr;
+		gap: 0.8rem 0rem;
+
+		&:hover {
+			@include hovered($color-text-100, $color-bg-500);
+		}
+
+		@include pressed($color-text-100, $color-bg-500);
+
+		@include tablet {
+			grid-template-columns: repeat(5, 1fr);
+			grid-template-rows: 1fr auto;
+		}
+	}
+
+	&__col--icon {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		flex: 0 0 16rem;
+
+		&::after {
+			content: '';
+			position: absolute;
+			right: 0;
+			width: 1px;
+			top: -1.2rem;
+			bottom: -1.2rem;
+			background-color: $color-bg-050;
+		}
+
+		@include tablet {
+			grid-column: 1/3;
+			padding-bottom: 0.4rem;
+			border-bottom: 1px solid $color-bg-050;
+
+			&::after {
+				display: none;
+			}
+		}
+	}
+
+	&__col--icon img {
+		height: 2.4rem;
+		aspect-ratio: 1/1;
+	}
+
+	&__col--stat {
+		flex: 0.5 1 9rem;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+
+		& span {
+			flex-basis: 1.2rem;
+			text-align: center;
+
+			@media (max-width: 1100px) {
+				flex-basis: 1.1rem;
+			}
+
+			@media (max-width: 620px) {
+				flex-basis: 0.9rem;
+			}
+
+			@media (max-width: 460px) {
+				font-size: 0.75em;
+			}
+		}
+	}
+
+	&__col--stat span:nth-child(1) {
+		color: $color-mobility;
+		font-weight: 700;
+	}
+
+	&__col--stat span:nth-child(3) {
+		color: $color-vitality;
+		font-weight: 700;
+	}
+
+	&__col--stat span:nth-child(5) {
+		color: $color-weapon-handling;
+		font-weight: 700;
+	}
+
+	&__col--desc {
+		position: relative;
+		padding-left: 1.2rem;
+		flex: 0 0.9 30rem;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			width: 1px;
+			top: -1.2rem;
+			bottom: -1.2rem;
+			background-color: $color-bg-050;
+		}
+
+		@include tablet {
+			font-size: $ui-font-size-xs;
+			grid-row: 1/2;
+			grid-column: 3/6;
+			padding-bottom: 0.4rem;
+			border-bottom: 1px solid $color-bg-050;
+
+			&::before {
+				display: none;
+			}
 		}
 	}
 }

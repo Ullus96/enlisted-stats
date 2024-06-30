@@ -1,36 +1,36 @@
 <template>
-	<div class="item__row container">
-		<div class="item__col item__col--icon">
+	<div class="table__row table__row--body">
+		<div class="table__col table__col--icon">
 			<img :src="require('@/assets/soldier_icons/' + item.icon)" />
+			<span class="table__col table__col--name">{{ item.name }}</span>
 		</div>
-		<div class="item__col item__col--name">{{ item.name }}</div>
-		<div class="item__col item__col--stat">
+		<div class="table__col table__col--stat">
 			<span>{{ calculateStatsByLvl(item.statsMod, 1)[0] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 1)[1] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 1)[2] }}</span>
 		</div>
-		<div class="item__col item__col--stat">
+		<div class="table__col table__col--stat">
 			<span>{{ calculateStatsByLvl(item.statsMod, 2)[0] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 2)[1] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 2)[2] }}</span>
 		</div>
-		<div class="item__col item__col--stat">
+		<div class="table__col table__col--stat">
 			<span>{{ calculateStatsByLvl(item.statsMod, 3)[0] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 3)[1] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 3)[2] }}</span>
 		</div>
-		<div class="item__col item__col--stat">
+		<div class="table__col table__col--stat">
 			<span>{{ calculateStatsByLvl(item.statsMod, 4)[0] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 4)[1] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 4)[2] }}</span>
 		</div>
-		<div class="item__col item__col--stat">
+		<div class="table__col table__col--stat">
 			<span>{{ calculateStatsByLvl(item.statsMod, 5)[0] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 5)[1] }}</span
 			><span>-</span><span>{{ calculateStatsByLvl(item.statsMod, 5)[2] }}</span>
 		</div>
 
-		<div class="item__col item__col--desc">
+		<div class="table__col table__col--desc">
 			{{ item.perk }}
 		</div>
 	</div>
