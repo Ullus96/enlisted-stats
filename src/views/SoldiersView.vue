@@ -1,6 +1,6 @@
 <template>
 	<div class="container mt-m">
-		<label for="searchInput" v-if="!isFilteredToClass">
+		<label for="searchInput">
 			<div class="table__search">
 				<div class="table__search-icon tooltip-anchor">
 					<TooltipComponent :direction="'bottom'">
@@ -17,6 +17,7 @@
 					id="searchInput"
 					@keydown.esc="search = ''"
 					placeholder="Начни вводить название класса"
+					:disabled="isFilteredToClass"
 				/>
 			</div>
 		</label>
