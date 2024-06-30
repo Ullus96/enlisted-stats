@@ -66,7 +66,7 @@
 				</div>
 
 				<div
-					class="calculator container"
+					class="calculator"
 					v-if="isFilteredToClass && isCalculatorSelected"
 				>
 					<calculator-block
@@ -76,19 +76,28 @@
 					></calculator-block>
 				</div>
 
-				<div class="btn-flexbox">
-					<button
-						class="btn btn-small"
-						@click="filteredSoldierButtonHandler('presets')"
-					>
-						Пресеты
-					</button>
-					<button
-						class="btn btn-small"
-						@click="filteredSoldierButtonHandler('calculator')"
-					>
-						Калькулятор
-					</button>
+				<div class="table__promo-block" v-else>
+					<h2>Популярные сборки от сообщества</h2>
+					<div class="table__promo-builds">
+						<div class="table__build" v-for="item in 3" :key="item"> </div>
+					</div>
+					<div class="table__promo-buttons">
+						<router-link to="/test">
+							<button
+								class="btn btn-m btn-secondary"
+								@click="filteredSoldierButtonHandler('presets')"
+							>
+								Посмотреть еще
+							</button>
+						</router-link>
+						<span class="table__promo-or">ИЛИ</span>
+						<button
+							class="btn btn-m btn-primary"
+							@click="filteredSoldierButtonHandler('calculator')"
+						>
+							Создать свою сборку
+						</button>
+					</div>
 				</div>
 			</template>
 		</div>

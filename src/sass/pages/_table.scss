@@ -218,4 +218,52 @@
 			}
 		}
 	}
+
+	// Promo
+	&__promo-block {
+		margin-top: 6rem;
+		text-align: center;
+		text-wrap: balance;
+	}
+
+	&__promo-builds {
+		margin-top: 4rem;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 2rem;
+
+		@include phone {
+			flex-wrap: nowrap;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
+	&__build {
+		border-radius: 1.2rem;
+		background-color: $color-bg-a-600;
+		@include ui-background-blur;
+		height: 20rem;
+		flex: 0 0 45rem;
+		min-width: 45rem;
+
+		@include phone {
+			flex: 1 1 auto;
+			min-width: 100%;
+		}
+	}
+
+	&__promo-buttons {
+		margin-top: 4rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.2rem;
+	}
+
+	&__promo-or {
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
+	}
 }
