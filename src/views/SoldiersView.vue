@@ -16,7 +16,9 @@
 					v-model.trim="search"
 					id="searchInput"
 					@keydown.esc="search = ''"
-					placeholder="Начни вводить название класса"
+					:placeholder="
+						!isFilteredToClass ? 'Начни вводить название класса' : ''
+					"
 					:disabled="isFilteredToClass"
 				/>
 			</div>
@@ -102,56 +104,6 @@
 			</template>
 		</div>
 	</div>
-	<!-- <div class="table-header container">
-		<div
-			class="table-header__col table-header__col--name table-header__search-bar"
-			v-if="!isFilteredToClass"
-		>
-			<i class="fa-solid fa-magnifying-glass"></i>
-			<input
-				class="table-header__search-input"
-				type="text"
-				v-model.trim="search"
-				id="searchInput"
-				@keydown.esc="search = ''"
-			/>
-			<div class="table-header__search-tooltip">
-				<p><span class="hotkey">Esc</span> сбросить строку поиска</p>
-				<p class="table-header__search-tooltip--desc">
-					(при активном поле ввода)
-				</p>
-			</div>
-		</div>
-		<div class="table-header__col table-header__col--name filtered" v-else>
-			<i class="fa-regular fa-circle-question"></i>
-			<p class="table-header__col--name-tooltip">
-				Нажми по отфильтрованной строчке, чтобы выключить фильтрацию
-			</p>
-		</div>
-		<div class="table-header__col table-header__col--stat">★</div>
-		<div class="table-header__col table-header__col--stat">★★</div>
-		<div class="table-header__col table-header__col--stat">★★★</div>
-		<div class="table-header__col table-header__col--stat">★★★★</div>
-		<div class="table-header__col table-header__col--stat">★★★★★</div>
-		<div class="table-header__col table-header__col--desc">Начальный перк</div>
-	</div> -->
-
-	<!-- table itself -->
-	<!-- <template v-if="!isFilteredToClass">
-		<item-row
-			v-for="(item, idx) in filteredItems"
-			:key="item.id"
-			:item="item"
-			@click="handleClick(idx)"
-		></item-row>
-	</template> -->
-
-	<!-- render single selected soldier -->
-	<!-- <template v-if="isFilteredToClass">
-		<item-row
-			:item="filteredItems[activeIdx]"
-			@click="removeFilter()"
-		></item-row> -->
 
 	<!-- preset builds -->
 	<!-- <template v-if="filteredItems[activeIdx] && isPresetBuildsSelected">
@@ -191,13 +143,11 @@
 
 <script lang="ts">
 import ItemRow from '@/components/ItemRow.vue';
-import SkillBuild from '@/components/SkillBuild.vue';
 import {
 	computed,
 	defineComponent,
 	nextTick,
 	onMounted,
-	onUnmounted,
 	onUpdated,
 	ref,
 } from 'vue';
@@ -207,7 +157,7 @@ import CalculatorBranch from '@/components/calculator/CalculatorTier.vue';
 import CalculatorSkill from '@/components/calculator/CalculatorSkill.vue';
 import { calculateStatsByLvl } from '@/functions/characterUtils';
 import { items } from '@/data/soldiersList';
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconSearch from '@/components/ui/icons/IconSearch.vue';
 import IconQuestionCircle from '@/components/ui/icons/IconQuestionCircle.vue';
@@ -217,7 +167,6 @@ export default defineComponent({
 	name: 'App',
 	components: {
 		ItemRow,
-		SkillBuild,
 		CalculatorBlock,
 		CalculatorBranch,
 		CalculatorSkill,
@@ -258,17 +207,12 @@ export default defineComponent({
 			)
 		);
 
-		const isPresetBuildsSelected: Ref<boolean> = ref(true);
 		const isCalculatorSelected: Ref<boolean> = ref(false);
 
 		function filteredSoldierButtonHandler(option: 'presets' | 'calculator') {
-			isPresetBuildsSelected.value = false;
 			isCalculatorSelected.value = false;
 
 			switch (option) {
-				case 'presets':
-					isPresetBuildsSelected.value = true;
-					break;
 				case 'calculator':
 					isCalculatorSelected.value = true;
 					break;
@@ -305,7 +249,6 @@ export default defineComponent({
 			getImgPath,
 			search,
 			filteredItems,
-			isPresetBuildsSelected,
 			isCalculatorSelected,
 			filteredSoldierButtonHandler,
 			calculateStatsByLvl,

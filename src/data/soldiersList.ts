@@ -20,18 +20,6 @@ export const items: IItem[] = [
 		tags: ['base'],
 		statsMod: [1, 1, 1],
 		perk: '+10.5% скорости уменьшения разброса после резкого разворота',
-		skills: [
-			{
-				key: generateKey(),
-				title: 'Полуавтоматическая винтовка',
-				link: 'rifleman1-vertical.jpg',
-			},
-			{
-				key: generateKey(),
-				title: 'Гренадер',
-				link: 'rifleman1-grenadier.jpg',
-			},
-		],
 	},
 	{
 		name: 'Боец II',
@@ -48,18 +36,6 @@ export const items: IItem[] = [
 		tags: ['base'],
 		statsMod: [3, 3, 3],
 		perk: '+15% скорость использования аптечки',
-		skills: [
-			{
-				key: generateKey(),
-				title: 'Полуавтоматическая винтовка',
-				link: 'rifleman3-1.jpg',
-			},
-			{
-				key: generateKey(),
-				title: 'Гренадер',
-				link: 'rifleman3-2.jpg',
-			},
-		],
 	},
 	{
 		name: 'Медик',
@@ -76,13 +52,6 @@ export const items: IItem[] = [
 		tags: ['base'],
 		statsMod: [2, 0, 1],
 		perk: '+35% скорость залезания на объекты',
-		skills: [
-			{
-				key: generateKey(),
-				title: 'До патча',
-				link: 'assaulter1.jpg',
-			},
-		],
 	},
 	{
 		name: 'Штурмовик II',
@@ -91,13 +60,6 @@ export const items: IItem[] = [
 		tags: ['base'],
 		statsMod: [3, 1, 2],
 		perk: '+35% выносливости',
-		skills: [
-			{
-				key: generateKey(),
-				title: 'Вертикальная',
-				link: 'assaulter2-vertical.jpg',
-			},
-		],
 	},
 	{
 		name: 'Штурмовик III',
@@ -106,18 +68,6 @@ export const items: IItem[] = [
 		tags: ['base'],
 		statsMod: [4, 2, 3],
 		perk: '+100% восстановления здоровья аптечкой',
-		skills: [
-			{
-				key: generateKey(),
-				title: 'Горизонтальная (без ударок)',
-				link: 'assaulter3-horizontal-no-gren.jpg',
-			},
-			{
-				key: generateKey(),
-				title: 'Вертикальная (без ударок)',
-				link: 'assaulter3-vertical-no-gren.jpg',
-			},
-		],
 	},
 	{
 		name: 'Штурмовик IV',
@@ -126,13 +76,6 @@ export const items: IItem[] = [
 		tags: ['base'],
 		statsMod: [5, 3, 4],
 		perk: '+12% скорость перезарядки ручного оружия',
-		skills: [
-			{
-				key: generateKey(),
-				title: 'MP40',
-				link: 'assaulter4.jpg',
-			},
-		],
 	},
 	{
 		name: 'Инженер I',
@@ -149,13 +92,6 @@ export const items: IItem[] = [
 		tags: ['base', 'engineer'],
 		statsMod: [2, 4, 0],
 		perk: '+35% скорость восстановления выносливости',
-		skills: [
-			{
-				key: generateKey(),
-				title: 'Терпеливый (медленная постройка)',
-				link: 'eng2-slow.jpg',
-			},
-		],
 	},
 	{
 		name: 'Снайпер I',
@@ -180,13 +116,6 @@ export const items: IItem[] = [
 		tags: ['base'],
 		statsMod: [2, -2, 6],
 		perk: '+4.8% скорость перезарядки ручного оружия',
-		skills: [
-			{
-				key: generateKey(),
-				title: 'Снайперский Mkb',
-				link: 'sniper3.jpg',
-			},
-		],
 	},
 	{
 		name: 'Бронебойщик I',
@@ -195,13 +124,6 @@ export const items: IItem[] = [
 		tags: ['base'],
 		statsMod: [-2, 2, 3],
 		perk: '+52.5% скорость изменения положения тела',
-		skills: [
-			{
-				key: generateKey(),
-				title: 'Стандартный',
-				link: 'at1.jpg',
-			},
-		],
 	},
 	{
 		name: 'Бронебойщик II',
@@ -210,13 +132,6 @@ export const items: IItem[] = [
 		tags: ['base'],
 		statsMod: [-2, 4, 4],
 		perk: '+17.5% дальности броска гранат',
-		skills: [
-			{
-				key: generateKey(),
-				title: 'Полуавтоматическая винтовка',
-				link: 'at2-vertical.jpg',
-			},
-		],
 	},
 	{
 		name: 'Пулемётчик I',
