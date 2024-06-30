@@ -463,8 +463,7 @@ h3 {
 .calculator__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  padding: 0 2rem;
+  gap: 2rem;
 }
 .calculator__branch {
   background-color: #313a46;
@@ -1066,7 +1065,6 @@ h3 {
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  left: 50%;
   width: 40rem;
   z-index: 20;
   border-radius: 0.8rem;
@@ -1086,8 +1084,13 @@ h3 {
   z-index: 5;
 }
 .tooltip::before {
-  content: "";
   position: absolute;
+  content: "";
+}
+.tooltip.top, .tooltip.bottom {
+  left: 50%;
+}
+.tooltip.top::before, .tooltip.bottom::before {
   left: 0;
   right: 0;
   height: 1rem;
@@ -1118,6 +1121,40 @@ h3 {
 }
 .tooltip.bottom::before {
   top: -1rem;
+}
+.tooltip.left {
+  left: -0.8rem;
+  top: 50%;
+  transform: translate(-100%, -50%);
+}
+.tooltip.left::after {
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%) rotateZ(-135deg);
+  background: linear-gradient(45deg, rgba(39, 39, 39, 0.75) 60%, transparent 60%);
+}
+.tooltip.left::before {
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  width: 1rem;
+}
+.tooltip.right {
+  right: -0.8rem;
+  top: 50%;
+  transform: translate(100%, -50%);
+}
+.tooltip.right::after {
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%) rotateZ(45deg);
+  background: linear-gradient(45deg, rgba(39, 39, 39, 0.75) 60%, transparent 60%);
+}
+.tooltip.right::before {
+  right: 100%;
+  top: 0;
+  bottom: 0;
+  width: 1rem;
 }
 
 .input__label {
@@ -2841,10 +2878,17 @@ h3 {
     grid-template-columns: repeat(5, 1fr);
   }
 }
+.table__col--first {
+  display: flex;
+  align-items: center;
+}
 @media (max-width: 849px) {
   .table__col--first {
     display: none;
   }
+}
+.table__header-question-icon {
+  flex: 0 0 auto;
 }
 .table__col--star {
   display: flex;
@@ -3048,4 +3092,7 @@ h3 {
 .table__promo-or {
   color: rgb(165, 165, 165);
   font-size: 1.4rem;
+}
+.table__calculator {
+  margin-top: 4rem;
 }/*# sourceMappingURL=main.css.map */

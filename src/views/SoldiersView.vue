@@ -26,15 +26,16 @@
 
 		<div class="table__wrapper mt-s">
 			<div class="table__header table__row">
-				<div
-					class="table__header--col table__col table__col--first tooltip-anchor"
-				>
-					<TooltipComponent>
-						<p>Нажми по строчке чтобы включить/выключить фильтрацию.</p>
-					</TooltipComponent>
-					<IconBase :iconName="'Tooltip'">
-						<IconQuestionCircle />
-					</IconBase>
+				<div class="table__header--col table__col table__col--first">
+					<div class="table__header-question-icon tooltip-anchor">
+						<TooltipComponent :direction="'right'">
+							<p>Нажми по строчке чтобы включить/выключить фильтрацию.</p>
+						</TooltipComponent>
+
+						<IconBase :iconName="'Tooltip'">
+							<IconQuestionCircle />
+						</IconBase>
+					</div>
 				</div>
 				<div class="table__header--col table__col table__col--star">★</div>
 				<div class="table__header--col table__col table__col--star">★★</div>
@@ -68,7 +69,7 @@
 				</div>
 
 				<div
-					class="calculator"
+					class="calculator table__calculator"
 					v-if="isFilteredToClass && isCalculatorSelected"
 				>
 					<calculator-block
@@ -84,13 +85,10 @@
 						<div class="table__build" v-for="item in 3" :key="item"> </div>
 					</div>
 					<div class="table__promo-buttons">
+						<!-- TODO: сделать редирект на страницу сборок вместе 
+						с параметром поиска в виде класса и сорт бай нью, сначала новые -->
 						<router-link to="/test">
-							<button
-								class="btn btn-m btn-secondary"
-								@click="filteredSoldierButtonHandler('presets')"
-							>
-								Посмотреть еще
-							</button>
+							<button class="btn btn-m btn-secondary">Посмотреть еще</button>
 						</router-link>
 						<span class="table__promo-or">ИЛИ</span>
 						<button
@@ -104,41 +102,6 @@
 			</template>
 		</div>
 	</div>
-
-	<!-- preset builds -->
-	<!-- <template v-if="filteredItems[activeIdx] && isPresetBuildsSelected">
-			<skill-build :skills="filteredItems[activeIdx].skills"></skill-build>
-		</template> -->
-
-	<!-- calculator -->
-	<!-- <div
-			class="calculator container"
-			v-if="isFilteredToClass && isCalculatorSelected"
-		>
-			<calculator-block
-				:stats="calculateStatsByLvl(filteredItems[activeIdx].statsMod, 5)"
-				:tags="filteredItems[activeIdx].tags"
-				:soldierClass="filteredItems[activeIdx].id"
-			></calculator-block>
-		</div>
-	</template>
-
-	<div class="container mt-s" v-if="isFilteredToClass">
-		<div class="btn-flexbox">
-			<button
-				class="btn btn-small"
-				@click="filteredSoldierButtonHandler('presets')"
-			>
-				Пресеты
-			</button>
-			<button
-				class="btn btn-small"
-				@click="filteredSoldierButtonHandler('calculator')"
-			>
-				Калькулятор
-			</button>
-		</div>
-	</div> -->
 </template>
 
 <script lang="ts">

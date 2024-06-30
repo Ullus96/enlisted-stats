@@ -1,7 +1,12 @@
 <template>
 	<div
 		class="tooltip"
-		:class="{ top: direction === 'top', bottom: direction === 'bottom' }"
+		:class="{
+			top: direction === 'top',
+			bottom: direction === 'bottom',
+			right: direction === 'right',
+			left: direction === 'left',
+		}"
 		:style="{ width: `${width}rem` }"
 		ref="tooltip"
 	>
@@ -23,7 +28,7 @@ export default defineComponent({
 	props: {
 		direction: {
 			required: false,
-			type: String as PropType<'top' | 'bottom'>,
+			type: String as PropType<'top' | 'bottom' | 'right' | 'left'>,
 			default: 'top',
 		},
 		width: {
@@ -46,8 +51,6 @@ export default defineComponent({
 				}
 
 				if (viewportWidth < rect.width / 2 || viewportWidth - 80 < rect.width) {
-					// console.log('viewportWidth:' + viewportWidth);
-					// console.log('rect.width:' + rect.width);
 					tooltipElement.style.width = `${
 						viewportWidth - 20 - viewportWidth / 2
 					}px`;
@@ -72,12 +75,16 @@ export default defineComponent({
 		};
 
 		onMounted(() => {
-			adjustPosition();
-			window.addEventListener('resize', adjustPosition);
+			if (props.direction === 'top' || props.direction === 'bottom') {
+				adjustPosition();
+				window.addEventListener('resize', adjustPosition);
+			}
 		});
 
 		onBeforeUnmount(() => {
-			window.removeEventListener('resize', adjustPosition);
+			if (props.direction === 'top' || props.direction === 'bottom') {
+				window.removeEventListener('resize', adjustPosition);
+			}
 		});
 
 		return {

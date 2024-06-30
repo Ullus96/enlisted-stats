@@ -63,9 +63,15 @@
 	}
 
 	&__col--first {
+		display: flex;
+		align-items: center;
 		@include tablet {
 			display: none;
 		}
+	}
+
+	&__header-question-icon {
+		flex: 0 0 auto;
 	}
 
 	&__col--star {
@@ -264,5 +270,9 @@
 	&__promo-or {
 		color: $color-text-400;
 		font-size: $ui-font-size-s;
+	}
+
+	&__calculator {
+		margin-top: 4rem;
 	}
 }
