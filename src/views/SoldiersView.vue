@@ -45,14 +45,14 @@
 
 			<!-- Table itself -->
 			<template v-if="!isFilteredToClass">
-				<div class="table__wrapper--body">
+				<transition-group name="fade" tag="div" class="table__wrapper--body">
 					<item-row
 						v-for="(item, idx) in filteredItems"
 						:key="item.id"
 						:item="item"
 						@click="handleClick(idx)"
 					></item-row>
-				</div>
+				</transition-group>
 			</template>
 
 			<!-- render single selected soldier -->
@@ -304,4 +304,14 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.18s ease-in-out, transform 0.2s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+	transform: translateY(-10px);
+}
+</style>
