@@ -28,7 +28,7 @@
 			<div class="table__header table__row">
 				<div class="table__header--col table__col table__col--first">
 					<div class="table__header-question-icon tooltip-anchor">
-						<TooltipComponent :direction="'right'">
+						<TooltipComponent :direction="'right'" :width="25">
 							<p>Нажми по строчке чтобы включить/выключить фильтрацию.</p>
 						</TooltipComponent>
 

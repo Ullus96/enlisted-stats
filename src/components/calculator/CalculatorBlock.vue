@@ -19,19 +19,21 @@
 		to login to save skill build -->
 	<template v-if="!auth">
 		<div class="calculator__tell-to-login">
-			Вы не авторизованы.
-			<a href="/login" @click.prevent="openLoginPopup"
-				>Зарегистрируйте или войдите</a
+			Ты не авторизован.
+			<a
+				href="#"
+				class="link"
+				@click.prevent="$store.state.modal.isLoginModalVisible = true"
+				>Зарегистрируйся или войди</a
 			>
-			в учетную запись, чтобы иметь возможность сохранять сборки, а так же
-			делиться ими с другими пользователями.
+			в аккаунт, чтобы сохранять свои сборки и делиться ими с другими.
 		</div>
 	</template>
 	<!-- Default behaviour if opened by Table or Calculator -->
 	<template v-if="!isOpenedBySkillBuild">
 		<div class="calculator__save-btn">
 			<button
-				class="btn btn-main"
+				class="btn btn-m btn-primary"
 				@click="showSaveModal = true"
 				:disabled="!auth"
 				id="saveBuild"
@@ -44,7 +46,7 @@
 	<template v-if="openedInSingleBuild">
 		<div class="calculator__save-btn">
 			<button
-				class="btn btn-main"
+				class="btn btn-m btn-primary"
 				@click="showSaveModal = true"
 				:disabled="!auth"
 				id="saveBuild"

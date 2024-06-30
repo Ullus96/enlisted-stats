@@ -4,6 +4,10 @@
 	@include showTooltip;
 }
 
+.tooltip-anchor--no-relative {
+	@include showTooltip;
+}
+
 .tooltip {
 	--tooltip-arrow-position: '50%';
 	position: absolute;
@@ -109,9 +113,14 @@
 
 	// right
 	&.right {
+		align-items: flex-start;
 		right: -0.8rem;
 		top: 50%;
 		transform: translate(100%, -50%);
+
+		& p {
+			text-align: left;
+		}
 
 		&::after {
 			left: 0;
