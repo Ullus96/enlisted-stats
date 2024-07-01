@@ -89,6 +89,8 @@ import { ref, Ref, defineComponent, PropType } from 'vue';
 import { useStore } from 'vuex';
 import ModalComponent from '@/components/ui/ModalComponent.vue';
 import InputComponent from '@/components/ui/InputComponent.vue';
+import { createPopUp } from '../popup/utils';
+import { POPUP_BUILD_CREATED, POPUP_BUILD_MODIFIED } from '../popup/data';
 
 export default defineComponent({
 	components: { ModalComponent, InputComponent },
@@ -115,7 +117,10 @@ export default defineComponent({
 		const store = useStore();
 
 		function closeModal() {
-			//
+			store.commit('toggleModalVisibility', {
+				name: 'isBuildSaveModalVisible',
+				forceClose: true,
+			});
 		}
 
 		function saveBuild() {
@@ -123,6 +128,7 @@ export default defineComponent({
 				title: title.value,
 				isPublic: isPublic.value,
 			});
+			createPopUp(store, POPUP_BUILD_CREATED);
 			closeModal();
 		}
 
@@ -132,6 +138,7 @@ export default defineComponent({
 				title: title.value,
 				isPublic: isPublic.value,
 			});
+			createPopUp(store, POPUP_BUILD_MODIFIED);
 			closeModal();
 		}
 

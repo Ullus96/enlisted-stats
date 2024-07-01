@@ -69,3 +69,17 @@ export const POPUP_NOT_ENOUGH_POINTS: PopUp = {
 	desc: 'Навык стоит больше, чем у тебя имеется очков в распоряжении.',
 	duration: 2,
 };
+
+export const POPUP_BUILD_CREATED: PopUp = {
+	type: 'success',
+	title: 'Сборка успешно создана!',
+	desc: 'Теперь ты можешь найти ее во вкладке "Мои сборки".',
+	duration: 5,
+};
+
+export const POPUP_BUILD_MODIFIED: PopUp = {
+	type: 'success',
+	title: 'Сборка успешно обновлена!',
+	desc: 'Все изменения были сохранены.',
+	duration: 5,
+};
