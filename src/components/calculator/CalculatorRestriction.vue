@@ -3,20 +3,26 @@
 		class="calculator__restriction-text-block"
 		:class="{ inactive: !isHigherTiersBlocked }"
 	>
-		<i class="fa-solid fa-lock"></i>
+		<IconBase :iconName="'Restriction'" :height="24" :width="24">
+			<IconLock />
+		</IconBase>
 		<p class="calculator__restriction-text">
 			Потрать еще
 			<b class="calculator__highlight"
 				>{{ howManyPointsToUnlock }} {{ getDeclension() }}</b
 			>, чтобы получить доступ к Tier&#8209;2/3 навыкам
 		</p>
+		<div class="calculator__separator"></div>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, Ref } from 'vue';
+import { defineComponent } from 'vue';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconLock from '@/components/ui/icons/IconLock.vue';
 
 export default defineComponent({
+	components: { IconBase, IconLock },
 	props: {
 		howManyPointsToUnlock: {
 			required: true,

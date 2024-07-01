@@ -33,6 +33,7 @@
 			</div>
 		</div>
 		<!-- tier 1 -->
+		<div class="calculator__separator"></div>
 		<calculator-tier
 			:tierSkills="skills.tier1"
 			:tags="tags"
@@ -44,6 +45,8 @@
 			@statChanged="statChanged"
 			@notEnoughPoints="notEnoughPoints"
 		></calculator-tier>
+
+		<div class="calculator__separator"></div>
 
 		<div
 			class="calculator__restriction-block calculator__restriction-bg"
@@ -57,6 +60,7 @@
 			></calculator-restriction>
 
 			<!-- tier 2 -->
+
 			<calculator-tier
 				:tierSkills="skills.tier2"
 				:tags="tags"
@@ -70,6 +74,8 @@
 			></calculator-tier>
 
 			<!-- tier 3 -->
+			<div class="calculator__separator"></div>
+
 			<calculator-tier
 				:tierSkills="skills.tier3"
 				:tags="tags"
