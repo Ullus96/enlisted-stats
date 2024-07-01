@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 export interface ModalState {
 	isLoginModalVisible: boolean;
 	isContactsModalVisible: boolean;
+	isBuildSaveModalVisible: boolean;
 }
 
 export interface DialogState {
@@ -58,6 +59,7 @@ export default createStore<State>({
 		modal: {
 			isLoginModalVisible: false,
 			isContactsModalVisible: false,
+			isBuildSaveModalVisible: false,
 		},
 		dialog: {
 			isDeletingAccount: false,

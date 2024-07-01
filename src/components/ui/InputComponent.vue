@@ -8,6 +8,7 @@
 					:class="{ error: errorMsg }"
 					:type="type"
 					:placeholder="placeholder"
+					:required="required"
 					v-model="inputValue"
 				/>
 
@@ -67,13 +68,18 @@ export default defineComponent({
 			type: String as PropType<'text' | 'number' | 'datetime-local'>,
 			default: 'text',
 		},
+		required: {
+			required: false,
+			type: Boolean,
+			default: false,
+		},
 		presetInput: {
 			required: false,
 			type: [String, Number, Date],
 		},
 	},
 	components: { IconBase, IconCheck },
-	emits: ['onChange', 'onConfirm'],
+	emits: ['onChange', 'onConfirm', 'hasErrors'],
 	setup(props, context) {
 		const inputValue = ref();
 		const errorMsg: Ref<string | null> = ref(null);
@@ -114,6 +120,7 @@ export default defineComponent({
 			}
 
 			// Тут эмиты
+			context.emit('hasErrors', !!errorMsg.value);
 			if (errorMsg.value) return;
 
 			context.emit('onChange', newValue);

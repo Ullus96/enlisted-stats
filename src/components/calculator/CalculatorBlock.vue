@@ -33,7 +33,7 @@
 		<div class="calculator__save-btn">
 			<button
 				class="btn btn-m btn-primary"
-				@click="showSaveModal = true"
+				@click="$store.state.modal.isBuildSaveModalVisible = true"
 				:disabled="!auth"
 				id="saveBuild"
 			>
@@ -46,7 +46,7 @@
 		<div class="calculator__save-btn">
 			<button
 				class="btn btn-m btn-primary"
-				@click="showSaveModal = true"
+				@click="$store.state.modal.isBuildSaveModalVisible = true"
 				:disabled="!auth"
 				id="saveBuild"
 			>
@@ -57,8 +57,7 @@
 	<!-- modal on save -->
 	<Teleport to="body">
 		<calculator-save-modal
-			v-if="showSaveModal"
-			@closeModal="showSaveModal = false"
+			v-if="$store.state.modal.isBuildSaveModalVisible"
 			@saveBuild="saveBuild"
 			:soldierClass="soldierClass"
 			:openedInSingleBuild="openedInSingleBuild"

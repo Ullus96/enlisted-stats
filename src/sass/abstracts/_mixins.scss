@@ -167,11 +167,13 @@
 }
 
 @mixin disabled-filled($background-color) {
+	color: $color-text-400;
 	background-color: mix($color-bg-050, $background-color, 12%);
 }
 
 @mixin disabled-outlined($text-color, $outline-color) {
-	color: mix($color-bg-050, $text-color, 38%);
+	color: $color-text-400;
+	// color: mix($color-bg-050, $text-color, 38%);
 	outline: 1px solid mix($color-bg-050, $outline-color, 12%);
 
 	& path {

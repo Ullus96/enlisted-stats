@@ -1,110 +1,3 @@
-// .modal {
-// 	&__page-mask {
-// 		@include page-mask;
-// 	}
-
-// 	&__popup {
-// 		@include popup;
-// 		padding: 2rem;
-// 		display: flex;
-// 		flex-direction: column;
-// 		align-items: center;
-// 		justify-content: center;
-// 		gap: 3rem;
-
-// 		&-calc {
-// 			max-width: 50rem;
-// 		}
-// 	}
-
-// 	&__close-btn {
-// 		position: absolute;
-// 		top: 1rem;
-// 		right: 1rem;
-// 		padding: 1rem;
-// 	}
-
-// 	&__error-msg {
-// 		color: $color-error;
-// 	}
-
-// 	&__input-block {
-// 		display: flex;
-// 		flex-direction: column;
-// 		gap: 2rem;
-// 		width: 80%;
-// 	}
-
-// 	&__input-item {
-// 		display: flex;
-// 		flex-direction: column;
-// 		gap: 0.5rem;
-
-// 		& input {
-// 			border: 1px solid $color-skill-inactive;
-// 			padding: 1rem 1.5rem;
-// 		}
-
-// 		&-inline {
-// 			display: flex;
-// 			gap: 0.5rem;
-// 		}
-
-// 		&-required {
-// 			label::after {
-// 				padding-left: 0.15em;
-// 				content: '*';
-// 				color: $color-error;
-// 			}
-// 		}
-
-// 		&-counter {
-// 			text-align: right;
-// 			color: $color-skill-inactive;
-// 			font-size: 0.75em;
-// 			transition: 0.15s ease-in-out color;
-
-// 			&--error {
-// 				color: $color-error;
-// 			}
-// 		}
-// 	}
-
-// 	&__or-text {
-// 		display: flex;
-// 		width: 80%;
-// 		gap: 1rem;
-// 		text-transform: uppercase;
-// 		color: $color-skill-inactive;
-
-// 		span {
-// 			transform: translateY(0.5em);
-// 			height: 1px;
-// 			flex-grow: 1;
-// 			background-color: $color-skill-inactive;
-// 		}
-// 	}
-
-// 	&__switch-states {
-// 		text-align: center;
-// 		a {
-// 			color: $color-highlight;
-// 			text-decoration: underline;
-// 		}
-// 	}
-
-// 	&__text-desc {
-// 		margin-top: -1rem;
-// 		font-size: 0.8em;
-// 		opacity: 0.6;
-// 	}
-
-// 	&__btn:disabled {
-// 		cursor: not-allowed;
-// 		opacity: 0.8;
-// 	}
-// }
-
 .modal {
 	// Base modal template styles
 	z-index: 40;
@@ -181,6 +74,7 @@
 	// "Contacts" modal
 	&__body {
 		display: flex;
+		width: 100%;
 		flex-direction: column;
 		gap: 2rem;
 		text-align: left;
@@ -205,5 +99,22 @@
 
 	&__contact.modal__link {
 		text-decoration: underline;
+	}
+
+	// Save Modal
+	&__desc {
+		font-size: $ui-font-size-s;
+	}
+
+	&__input-checkbox {
+		display: flex;
+		align-items: center;
+		color: $color-text-100;
+		gap: 0.8rem;
+	}
+
+	&__confirm {
+		margin-top: 2rem;
+		width: 100%;
 	}
 }

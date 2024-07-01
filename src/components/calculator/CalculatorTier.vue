@@ -23,8 +23,7 @@
 <script lang="ts">
 import { SkillPossibleTiers } from '@/type/Skills';
 import { SoldierID } from '@/type/Soldier';
-import { defineComponent, onMounted, PropType, ref } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent, onMounted, PropType } from 'vue';
 import CalculatorSkill from './CalculatorSkill.vue';
 import CalculatorBasePerk from '@/components/calculator/CalculatorBasePerk.vue';
 

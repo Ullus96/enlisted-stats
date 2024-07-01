@@ -18,7 +18,7 @@
 		/>
 
 		<div class="calculator__cost-block">
-			<span class="base-perk">Перк класса</span>
+			<span>Перк класса</span>
 		</div>
 	</div>
 </template>

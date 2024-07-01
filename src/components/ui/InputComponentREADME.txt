@@ -2,6 +2,7 @@
 
 Содержание:
   1. Пропсы (с пояснениями)
+  2. Эмиты
   2. Синтаксис Родительского компонента
 
 
@@ -46,6 +47,13 @@ type: {
 	default: 'text',
 },
 
+  - Required
+required: {
+  required: false,
+  type: Boolean,
+  default: false,
+},
+
   - Передать в компонент стартовое значение инпута.
 presetInput: {
   required: false,
@@ -54,7 +62,19 @@ presetInput: {
 
 
 
-2. Синтаксис Родительского компонента:
+2. Эмиты
+
+  - Получить значение в переменную из Инпута
+@onChange="(val) => {newName = val}"
+
+  - Выполнить действие при нажатии inline-кнопки
+@onConfirm="updateDisplayName"
+
+  - Вернуть true boolean-значение, если компонент имеет ошибки
+@hasErrors="(val) => {isInputHasErrors = val}"
+
+
+3. Синтаксис Родительского компонента:
 
 <InputComponent
   :label="'Отображаемое имя'"
@@ -62,8 +82,10 @@ presetInput: {
   :inlineButton="true"
   :counter="32"
   :presetInput="$store.state.user.displayName"
+  :required="true"
   @onChange="(val) => {newName = val}"
   @onConfirm="updateDisplayName"
+  @hasErrors="(val) => {isInputHasErrors = val}"
 />
 
 Пояснение: @onChange меняет переменную из Родительского компонента
