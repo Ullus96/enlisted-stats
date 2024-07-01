@@ -1,5 +1,25 @@
 <template>
-	<div class="calculator__skill" v-if="hasTag()">
+	<div class="calculator__skill tooltip-anchor" v-if="hasTag()">
+		<TooltipComponent :width="25" class="calculator__tooltip">
+			<div>
+				<template
+					v-for="(progression, index) in skill.progression"
+					:key="progression"
+				>
+					<span :class="skill.curLvl == index + 1 ? branchColor : ''">{{
+						progression
+					}}</span>
+					<span>{{ index == skill.progression.length - 1 ? '' : ' / ' }}</span>
+				</template>
+			</div>
+
+			<div class="calculator__tooltip-desc-block">
+				<template v-for="desc in skill.desc.split(';')" :key="desc">
+					<span class="calculator__tooltip-desc">{{ desc }}</span>
+				</template>
+			</div>
+		</TooltipComponent>
+
 		<img
 			:src="require('@/assets/skill_icons/' + skill.icon)"
 			alt=""
@@ -8,23 +28,7 @@
 			@click="clickHandle('plus')"
 			@contextmenu.prevent="clickHandle('minus')"
 		/>
-		<div class="calculator__tooltip">
-			<template
-				v-for="(progression, index) in skill.progression"
-				:key="progression"
-			>
-				<span :class="skill.curLvl == index + 1 ? branchColor : ''">{{
-					progression
-				}}</span>
-				<span>{{ index == skill.progression.length - 1 ? '' : ' / ' }}</span>
-			</template>
 
-			<div class="calculator__tooltip-desc-block">
-				<template v-for="desc in skill.desc.split(';')" :key="desc">
-					<span class="calculator__tooltip-desc">{{ desc }}</span>
-				</template>
-			</div>
-		</div>
 		<div class="calculator__counter-block">
 			<button class="btn calculator__button" @click="clickHandle('minus')">
 				-
@@ -60,8 +64,13 @@
 <script lang="ts">
 import { SkillEntity } from '@/type/Skills';
 import { defineComponent, PropType } from 'vue';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconPlus from '@/components/ui/icons/IconPlus.vue';
+import IconMinus from '@/components/ui/icons/IconMinus.vue';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
+	components: { IconBase, IconPlus, IconMinus, TooltipComponent },
 	props: {
 		skill: {
 			required: true,

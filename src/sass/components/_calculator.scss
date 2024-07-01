@@ -4,7 +4,7 @@
 	&__grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 2rem;
+		gap: 2.8rem;
 	}
 
 	&__branch {
@@ -89,6 +89,8 @@
 		// }
 	}
 
+	// ============
+	// Single skill
 	&__skill {
 		width: 25%;
 		position: relative;
@@ -101,25 +103,21 @@
 	&__img {
 		display: block;
 		cursor: pointer;
-		max-width: 100%;
+		margin: 0 auto;
+		width: 75%;
 		aspect-ratio: 1/1;
 
-		border: 3px solid $color-skill-inactive;
-		border-radius: 10px 10px 0 0;
 		filter: grayscale(1);
 
 		&.mobility {
-			border: 3px solid $color-mobility;
 			filter: none;
 		}
 
 		&.vitality {
-			border: 3px solid $color-vitality;
 			filter: none;
 		}
 
 		&.weapon-handling {
-			border: 3px solid $color-weapon-handling;
 			filter: none;
 		}
 
@@ -131,22 +129,15 @@
 	}
 
 	&__tooltip {
-		width: 300%;
-		@include tooltip('up');
-	}
-
-	// display tooltip on hover
-	&__skill:hover &__tooltip {
-		display: block;
+		text-align: center;
+		font-size: $ui-font-size-s;
 	}
 
 	&__tooltip-desc {
 		display: block;
 	}
 
-	&__tooltip-desc-block {
-		margin-top: 0.3rem;
-	}
+	// &__tooltip-desc-block {	}
 
 	&__counter-block {
 		// margin-top: 5px;

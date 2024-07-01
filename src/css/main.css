@@ -468,7 +468,7 @@ h3 {
 .calculator__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 2.8rem;
 }
 .calculator__branch {
   background-color: rgba(37, 37, 37, 0.75);
@@ -549,22 +549,18 @@ h3 {
 .calculator__img {
   display: block;
   cursor: pointer;
-  max-width: 100%;
+  margin: 0 auto;
+  width: 75%;
   aspect-ratio: 1/1;
-  border: 3px solid #7f8388;
-  border-radius: 10px 10px 0 0;
   filter: grayscale(1);
 }
 .calculator__img.mobility {
-  border: 3px solid rgb(151, 255, 148);
   filter: none;
 }
 .calculator__img.vitality {
-  border: 3px solid rgb(255, 148, 151);
   filter: none;
 }
 .calculator__img.weapon-handling {
-  border: 3px solid #fffe9a;
   filter: none;
 }
 .calculator__img.soldier-perk {
@@ -573,38 +569,11 @@ h3 {
   filter: none;
 }
 .calculator__tooltip {
-  width: 300%;
-  background-color: #111111;
-  padding: 1.2rem 1.6rem;
   text-align: center;
-  font-size: 0.8em;
-  display: none;
-  border-radius: 1rem;
-  position: absolute;
-  z-index: 10;
-  left: 50%;
-  top: -5px;
-  transform: translate(-50%, -100%);
-}
-.calculator__tooltip::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  z-index: 5;
-  bottom: 0px;
-  transform: translate(-50%, 50%) rotateZ(45deg);
-  background: linear-gradient(-45deg, #111111 60%, transparent 60%);
-}
-.calculator__skill:hover .calculator__tooltip {
-  display: block;
+  font-size: 1.4rem;
 }
 .calculator__tooltip-desc {
   display: block;
-}
-.calculator__tooltip-desc-block {
-  margin-top: 0.3rem;
 }
 .calculator__counter-block {
   display: grid;
