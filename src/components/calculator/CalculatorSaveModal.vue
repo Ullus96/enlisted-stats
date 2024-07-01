@@ -142,7 +142,7 @@ export default defineComponent({
 			closeModal();
 		}
 
-		let isBtnDisabled: Ref<boolean> = ref(false);
+		let isBtnDisabled: Ref<boolean> = ref(true);
 
 		return {
 			title,
