@@ -576,39 +576,62 @@ h3 {
   display: block;
 }
 .calculator__counter-block {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  display: flex;
   align-items: center;
-  overflow: hidden;
 }
 .calculator__button {
-  background-color: #222222;
-  padding: 0.4rem 0;
-  text-align: center;
+  background-color: rgb(30, 30, 30);
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.4rem;
+  flex: 0 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.calculator__button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: #323232;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.calculator__button:active:after {
+  transform: translate(-50%, -50%) scale(2.5);
+  opacity: 1;
 }
 .calculator__button:hover {
   background-color: #262626;
 }
+.calculator__button:focus {
+  outline: 1px solid #e2e2e2;
+  background-color: #363636;
+}
 .calculator__bars-wrapper {
   content: "";
   height: 100%;
-  background-color: #262626;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0.5rem;
+  flex: 1 1 auto;
   gap: 2px;
+  padding: 0.4rem 0.2rem;
 }
 .calculator__bar {
   background-color: #7f8388;
-  flex-grow: 1;
-  height: 60%;
+  flex: 1 1 auto;
+  border-radius: 0.4rem;
 }
 .calculator .base-perk {
   color: rgb(191, 96, 96);
 }
 .calculator__bar-highlight {
-  background-color: #f9da75;
+  background-color: rgb(191, 96, 96);
 }
 .calculator__bar-highlight.mobility {
   background-color: rgb(151, 255, 148);
@@ -620,15 +643,13 @@ h3 {
   background-color: #fffe9a;
 }
 .calculator__cost-block {
-  background-color: #262626;
-  font-size: 0.8em;
-  padding: 0.2em;
+  font-size: 1.2rem;
+  padding: 0.4rem;
   display: flex;
   gap: 2px;
   justify-content: center;
   align-items: center;
-  color: rgba(255, 255, 255, 0.65);
-  border-radius: 0 0 10px 10px;
+  color: rgb(165, 165, 165);
 }
 .calculator__restriction-block {
   position: relative;

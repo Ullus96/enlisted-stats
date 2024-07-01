@@ -31,7 +31,9 @@
 
 		<div class="calculator__counter-block">
 			<button class="btn calculator__button" @click="clickHandle('minus')">
-				-
+				<IconBase :iconName="'Level down'" :height="16" :width="16">
+					<IconMinus />
+				</IconBase>
 			</button>
 			<div class="calculator__bars-wrapper">
 				<div
@@ -47,7 +49,9 @@
 				</div>
 			</div>
 			<button class="btn calculator__button" @click="clickHandle('plus')">
-				+
+				<IconBase :iconName="'Level up'" :height="16" :width="16">
+					<IconPlus />
+				</IconBase>
 			</button>
 		</div>
 		<div class="calculator__cost-block">
