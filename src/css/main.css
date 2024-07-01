@@ -674,6 +674,9 @@ h3 {
 .calculator__restriction-text-block p {
   text-align: center;
 }
+.calculator__restriction-text {
+  padding: 0 2rem;
+}
 .calculator__highlight {
   color: rgb(175, 61, 61);
 }

@@ -16,7 +16,6 @@
 			:skillKey="index"
 			:branchRemainingStats="branchRemainingStats"
 			@statChanged="statChanged"
-			@notEnoughPoints="notEnoughPoints"
 		></calculator-skill>
 	</div>
 </template>
@@ -59,17 +58,12 @@ export default defineComponent({
 			// console.log(payload);
 		}
 
-		function notEnoughPoints(payload: { title: string; desc: string }) {
-			context.emit('notEnoughPoints', payload);
-		}
-
 		onMounted(() => {
 			// console.log(props.branchRemainingStats);
 		});
 
 		return {
 			statChanged,
-			notEnoughPoints,
 		};
 	},
 });

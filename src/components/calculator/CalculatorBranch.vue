@@ -43,7 +43,6 @@
 			:branchRemainingStats="getRemainingStats(branchIndex)"
 			:soldierClass="soldierClass"
 			@statChanged="statChanged"
-			@notEnoughPoints="notEnoughPoints"
 		></calculator-tier>
 
 		<div class="calculator__separator"></div>
@@ -70,7 +69,6 @@
 				:branchRemainingStats="getRemainingStats(branchIndex)"
 				:soldierClass="soldierClass"
 				@statChanged="statChanged"
-				@notEnoughPoints="notEnoughPoints"
 			></calculator-tier>
 
 			<!-- tier 3 -->
@@ -85,7 +83,6 @@
 				:branchRemainingStats="getRemainingStats(branchIndex)"
 				:soldierClass="soldierClass"
 				@statChanged="statChanged"
-				@notEnoughPoints="notEnoughPoints"
 			></calculator-tier>
 		</div>
 	</div>
@@ -192,10 +189,6 @@ export default defineComponent({
 			return `${amounts[index]}%`;
 		}
 
-		function notEnoughPoints(payload: { title: string; desc: string }) {
-			context.emit('notEnoughPoints', payload);
-		}
-
 		return {
 			classBasedOnIndex,
 			statIconLink,
@@ -205,7 +198,6 @@ export default defineComponent({
 			getRemainingStats,
 			getBranchPerkDescription,
 			getBranchPerkAmount,
-			notEnoughPoints,
 		};
 	},
 });

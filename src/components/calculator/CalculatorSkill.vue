@@ -68,10 +68,13 @@
 <script lang="ts">
 import { SkillEntity } from '@/type/Skills';
 import { defineComponent, PropType } from 'vue';
+import { useStore } from 'vuex';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconPlus from '@/components/ui/icons/IconPlus.vue';
 import IconMinus from '@/components/ui/icons/IconMinus.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
+import { createPopUp } from '../popup/utils';
+import { POPUP_NOT_ENOUGH_POINTS } from '../popup/data';
 
 export default defineComponent({
 	components: { IconBase, IconPlus, IconMinus, TooltipComponent },
@@ -97,6 +100,8 @@ export default defineComponent({
 		},
 	},
 	setup(props, context) {
+		const store = useStore();
+
 		function clickHandle(operation: 'plus' | 'minus') {
 			if (operation === 'plus') {
 				if (props.skill.curLvl == props.skill.maxLvl) {
@@ -124,10 +129,7 @@ export default defineComponent({
 			if (typeof props.branchRemainingStats === 'number') {
 				// check if not enough points, then form an error
 				if (props.branchRemainingStats - cost < 0) {
-					context.emit('notEnoughPoints', {
-						title: 'Недостаточно очков!',
-						desc: 'Навык стоит больше, чем у тебя имеется очков в распоряжении.',
-					});
+					createPopUp(store, POPUP_NOT_ENOUGH_POINTS);
 				}
 				// if everything is okay, just add a skill lvl
 				return props.branchRemainingStats - cost >= 0;

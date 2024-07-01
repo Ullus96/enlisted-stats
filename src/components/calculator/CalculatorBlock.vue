@@ -11,7 +11,6 @@
 			:pointsSpentOnTier1="pointsSpentOnTier1"
 			:soldierClass="soldierClass"
 			@statChanged="statChanged"
-			@notEnoughPoints="notEnoughPoints"
 		></calculator-branch>
 	</div>
 
@@ -67,9 +66,6 @@
 			@modifyBuild="modifyBuild"
 		></calculator-save-modal>
 	</Teleport>
-
-	<!-- error -->
-	<error-block :errorArray="errorArray"></error-block>
 </template>
 
 <script lang="ts">
@@ -79,12 +75,6 @@ import CalculatorBranch from './CalculatorBranch.vue';
 import CalculatorSaveModal from './CalculatorSaveModal.vue';
 import { SkillBranch, SkillEntity, SkillPossibleTiers } from '@/type/Skills';
 import { SkillTag } from '@/type/SkillTag';
-import ErrorBlock from '@/components/error/ErrorBlock.vue';
-import { IErrorEntity } from '@/type/CustomErrors';
-import {
-	saveToLocalStorageArray,
-	loadFromLocalStorageArray,
-} from '@/functions/localStorageUtils';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useStore } from 'vuex';
 import {
@@ -100,7 +90,7 @@ import { db } from '@/firebase/firebase';
 import { useRoute } from 'vue-router';
 
 export default defineComponent({
-	components: { CalculatorBranch, ErrorBlock, CalculatorSaveModal },
+	components: { CalculatorBranch, CalculatorSaveModal },
 	props: {
 		stats: {
 			required: true,
@@ -293,40 +283,6 @@ export default defineComponent({
 					}
 				}
 			});
-		}
-
-		// Error Handler
-
-		const errorArray: Ref<IErrorEntity[]> = ref([]);
-		let timerId: ReturnType<typeof setTimeout>;
-
-		function notEnoughPoints(payload: IErrorEntity) {
-			clearErrors();
-			createError(payload);
-
-			timerId = setTimeout(() => {
-				clearErrors();
-			}, 2000);
-		}
-
-		function clearErrors() {
-			if (errorArray.value.length > 1) {
-				errorArray.value.shift();
-			}
-			clearTimeout(timerId);
-			clearArrayAfterDelay(errorArray.value, 2000);
-		}
-
-		function createError(payload: IErrorEntity) {
-			if (errorArray) {
-				errorArray.value.push(payload);
-			}
-		}
-
-		function clearArrayAfterDelay(array: IErrorEntity[], delay: number) {
-			timerId = setTimeout(() => {
-				array.shift();
-			}, delay);
 		}
 
 		// Save functionality
@@ -601,8 +557,6 @@ export default defineComponent({
 			remainingStats,
 			statChanged,
 			pointsSpentOnTier1,
-			notEnoughPoints,
-			errorArray,
 			showSaveModal,
 			saveBuild,
 			auth,

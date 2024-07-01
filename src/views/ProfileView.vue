@@ -77,8 +77,6 @@
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue';
 import { deleteUser, getAuth, updateProfile } from 'firebase/auth';
-import WorkInProgress from '@/components/no-page/WorkInProgress.vue';
-import LowerPopUp from '@/components/error/LowerPopUp.vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
@@ -94,7 +92,7 @@ import {
 } from '@/components/popup/data';
 
 export default defineComponent({
-	components: { WorkInProgress, LowerPopUp, InputComponent, DialogComponent },
+	components: { InputComponent, DialogComponent },
 	setup() {
 		const auth = getAuth();
 		const user = auth.currentUser;

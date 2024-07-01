@@ -62,3 +62,10 @@ export const POPUP_DELETE_BUILD_SUCCESS: PopUp = {
 	desc: '',
 	duration: 3,
 };
+
+export const POPUP_NOT_ENOUGH_POINTS: PopUp = {
+	type: 'danger',
+	title: 'Недостаточно очков!',
+	desc: 'Навык стоит больше, чем у тебя имеется очков в распоряжении.',
+	duration: 2,
+};
