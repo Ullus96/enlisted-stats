@@ -106,7 +106,11 @@
 		}
 
 		&:not(:last-child) {
-			min-height: calc(12.1rem * 2 + 4rem);
+			min-height: calc(13.73rem * 2 + 4rem);
+
+			@media (max-width: 1600px) {
+				min-height: calc(12.1rem * 2 + 4rem);
+			}
 
 			@include tablet {
 				min-height: calc(13.8rem * 2 + 2rem);

@@ -556,7 +556,12 @@ h3 {
   }
 }
 .calculator__stats-block:not(:last-child) {
-  min-height: 28.2rem;
+  min-height: 31.46rem;
+}
+@media (max-width: 1600px) {
+  .calculator__stats-block:not(:last-child) {
+    min-height: 28.2rem;
+  }
 }
 @media (max-width: 849px) {
   .calculator__stats-block:not(:last-child) {
