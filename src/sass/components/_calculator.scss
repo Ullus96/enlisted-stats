@@ -105,9 +105,13 @@
 			padding: 0 1rem;
 		}
 
-		// &:not(:last-child) {
-		// 	min-height: 30.55rem;
-		// }
+		&:not(:last-child) {
+			min-height: calc(12.1rem * 2 + 4rem);
+
+			@include tablet {
+				min-height: calc(13.8rem * 2 + 2rem);
+			}
+		}
 	}
 
 	// ============
@@ -115,6 +119,7 @@
 	&__skill {
 		width: 25%;
 		position: relative;
+		height: fit-content;
 
 		@include tablet {
 			width: 30%;
@@ -143,8 +148,6 @@
 		}
 
 		&.soldier-perk {
-			border: 3px solid $color-highlight;
-			background-color: $color-black-light-1;
 			filter: none;
 		}
 	}

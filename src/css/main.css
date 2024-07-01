@@ -554,9 +554,19 @@ h3 {
     padding: 0 1rem;
   }
 }
+.calculator__stats-block:not(:last-child) {
+  min-height: 28.2rem;
+}
+@media (max-width: 849px) {
+  .calculator__stats-block:not(:last-child) {
+    min-height: 29.6rem;
+  }
+}
 .calculator__skill {
   width: 25%;
   position: relative;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 @media (max-width: 849px) {
   .calculator__skill {
@@ -581,8 +591,6 @@ h3 {
   filter: none;
 }
 .calculator__img.soldier-perk {
-  border: 3px solid #f9da75;
-  background-color: #222222;
   filter: none;
 }
 .calculator__tooltip {

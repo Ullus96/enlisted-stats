@@ -23,7 +23,8 @@
 <script lang="ts">
 import { SkillPossibleTiers } from '@/type/Skills';
 import { SoldierID } from '@/type/Soldier';
-import { defineComponent, onMounted, PropType } from 'vue';
+import { defineComponent, onMounted, PropType, ref } from 'vue';
+import { useStore } from 'vuex';
 import CalculatorSkill from './CalculatorSkill.vue';
 import CalculatorBasePerk from '@/components/calculator/CalculatorBasePerk.vue';
 
@@ -53,14 +54,9 @@ export default defineComponent({
 				branchTier: props.branchTier,
 				branchIndex: props.branchIndex,
 			});
-
-			// console.log('CalculatorTier payload:');
-			// console.log(payload);
 		}
 
-		onMounted(() => {
-			// console.log(props.branchRemainingStats);
-		});
+		onMounted(() => {});
 
 		return {
 			statChanged,
