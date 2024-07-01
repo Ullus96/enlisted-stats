@@ -15,11 +15,11 @@
 				}}</span>
 			</div>
 		</div>
-		<div class="calculator__counter-block">
+		<!-- <div class="calculator__counter-block">
 			<button class="btn calculator__button">&nbsp;</button>
 			<div class="calculator__bars-wrapper">
 				<div
-					class="calculator__bar calculator__bar-highlight"
+					class="calculator__bar calculator__bar-highlight base-perk"
 					v-for="item in 1"
 					:key="item"
 				>
@@ -27,9 +27,9 @@
 				</div>
 			</div>
 			<button class="btn calculator__button">&nbsp;</button>
-		</div>
+		</div> -->
 		<div class="calculator__cost-block">
-			<span class="calculator__highlight">–</span>
+			<span class="base-perk">Перк класса</span>
 		</div>
 	</div>
 </template>

@@ -70,24 +70,32 @@
 
 	&__stats-block {
 		display: flex;
-		gap: 4.5rem;
+		gap: 5%;
 		row-gap: 2rem;
+		padding: 0 2rem;
 		flex-wrap: wrap;
-		justify-content: center;
+		justify-content: space-around;
 
 		&:last-child {
 			padding-bottom: 2rem;
 		}
 
-		&:not(:last-child) {
-			min-height: 30.55rem;
-			// border-bottom: 1px solid rgba($color-white, 0.4);
+		@include tablet {
+			padding: 0 1rem;
 		}
+
+		// &:not(:last-child) {
+		// 	min-height: 30.55rem;
+		// }
 	}
 
 	&__skill {
-		width: calc(33.3% - 4.5rem);
+		width: 25%;
 		position: relative;
+
+		@include tablet {
+			width: 30%;
+		}
 	}
 
 	&__img {
@@ -176,6 +184,10 @@
 		background-color: $color-skill-inactive;
 		flex-grow: 1;
 		height: 60%;
+	}
+
+	.base-perk {
+		color: $color-primary-100;
 	}
 
 	&__bar-highlight {

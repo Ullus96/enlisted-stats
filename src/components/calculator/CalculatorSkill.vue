@@ -9,15 +9,13 @@
 			@contextmenu.prevent="clickHandle('minus')"
 		/>
 		<div class="calculator__tooltip">
-			<!-- <span class="calculator__highlight">+25%</span>/+50%/+75% -->
 			<template
 				v-for="(progression, index) in skill.progression"
 				:key="progression"
 			>
-				<span
-					:class="skill.curLvl == index + 1 ? 'calculator__highlight' : ''"
-					>{{ progression }}</span
-				>
+				<span :class="skill.curLvl == index + 1 ? branchColor : ''">{{
+					progression
+				}}</span>
 				<span>{{ index == skill.progression.length - 1 ? '' : ' / ' }}</span>
 			</template>
 
@@ -50,7 +48,7 @@
 		</div>
 		<div class="calculator__cost-block">
 			<template v-for="(item, index) in skill.maxLvl" :key="item">
-				<span :class="{ calculator__highlight: skill.curLvl == index + 1 }">{{
+				<span :class="{ [branchColor]: skill.curLvl == index + 1 }">{{
 					(index + 1) * skill.costPerLvl
 				}}</span>
 				<span>{{ index == skill.maxLvl - 1 ? '' : '/' }}</span>
