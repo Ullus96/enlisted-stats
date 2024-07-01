@@ -9,14 +9,14 @@
 // 	}
 // }
 
-@mixin desktop-small {
-	@media (max-width: 1123px) {
+@mixin desktop-medium {
+	@media (max-width: 1401px) {
 		@content;
 	}
 }
 
-@mixin desktop-medium {
-	@media (max-width: 1401px) {
+@mixin desktop-small {
+	@media (max-width: 1123px) {
 		@content;
 	}
 }

@@ -42,9 +42,9 @@ body {
 		opacity: 0.08;
 	}
 
-	@include tablet {
-		overflow-x: hidden;
-	}
+	overflow-x: hidden;
+	// @include tablet {
+	// }
 }
 
 a,

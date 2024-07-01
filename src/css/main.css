@@ -65,6 +65,7 @@ body {
   position: relative;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
+  overflow-x: hidden;
 }
 body::before {
   content: "";
@@ -83,11 +84,6 @@ body::after {
   inset: 0 0 0 0;
   background: url("@/assets/noise.png") repeat;
   opacity: 0.08;
-}
-@media (max-width: 849px) {
-  body {
-    overflow-x: hidden;
-  }
 }
 
 a,
@@ -465,6 +461,26 @@ h3 {
 .calculator {
   margin-top: 2rem;
 }
+@media (max-width: 1600px) {
+  .calculator {
+    padding-left: 2rem;
+  }
+}
+@media (max-width: 1400px) {
+  .calculator {
+    padding: 0 0 2rem 2rem;
+    min-width: 32rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .calculator__grid {
+    width: 115rem;
+    scroll-snap-type: x mandatory;
+  }
+  .calculator__save-btn {
+    width: 120rem;
+  }
+}
 .calculator__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -476,6 +492,7 @@ h3 {
   flex-direction: column;
   position: relative;
   border-radius: 1.2rem;
+  scroll-snap-align: start;
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
 }

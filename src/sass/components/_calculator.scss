@@ -1,6 +1,26 @@
 .calculator {
 	margin-top: 2rem;
 
+	@media (max-width: 1600px) {
+		padding-left: 2rem;
+	}
+
+	@media (max-width: 1400px) {
+		padding: 0 0 2rem 2rem;
+		min-width: 32rem;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+
+		&__grid {
+			width: 115rem;
+			scroll-snap-type: x mandatory;
+		}
+
+		&__save-btn {
+			width: 120rem;
+		}
+	}
+
 	&__grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -13,6 +33,7 @@
 		flex-direction: column;
 		position: relative;
 		border-radius: 1.2rem;
+		scroll-snap-align: start;
 		@include ui-background-blur;
 	}
 
