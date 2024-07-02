@@ -97,39 +97,6 @@
 		}
 	}
 
-	// ==========
-	// Убрать
-	// Tags block
-	&__tags-title {
-		position: relative;
-		margin-bottom: 2rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 10px;
-	}
-
-	// tooltip on how tags works
-	&__tags-tooltip-icon:hover {
-		~ .cc__tags-tooltip {
-			display: flex;
-		}
-	}
-
-	&__tags-tooltip {
-		width: 150%;
-		@include tooltip('up');
-
-		flex-direction: column;
-		gap: 2px;
-
-		b {
-			color: $color-highlight;
-		}
-	}
-	//
-	// ===========
-
 	// ========
 	// Это чипы
 	&__tag-item {

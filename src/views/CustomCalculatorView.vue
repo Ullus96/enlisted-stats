@@ -223,6 +223,10 @@ export default defineComponent({
 			return isNotFilled;
 		});
 
+		function addMedic() {
+			tags.push('medic');
+		}
+
 		return {
 			avaliableTags,
 			stats,
@@ -230,6 +234,7 @@ export default defineComponent({
 			tagClicked,
 			isEditingSettings,
 			isDisabled,
+			addMedic,
 		};
 	},
 });
