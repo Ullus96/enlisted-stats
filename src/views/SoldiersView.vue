@@ -69,7 +69,7 @@
 				</div>
 
 				<div
-					class="calculator table__calculator"
+					class="table__calculator"
 					v-if="isFilteredToClass && isCalculatorSelected"
 				>
 					<calculator-block

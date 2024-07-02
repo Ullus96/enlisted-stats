@@ -141,6 +141,7 @@
 				>
 					<i class="fa-solid fa-arrow-left"></i> Вернуться
 				</button>
+
 				<calculator-block
 					:stats="stats"
 					:tags="tags"

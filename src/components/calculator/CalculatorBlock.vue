@@ -1,17 +1,19 @@
 <template>
-	<div class="calculator__grid">
-		<calculator-branch
-			v-for="(branch, index) in skillsList"
-			:key="branch"
-			:skills="skillsList[index]"
-			:branchIndex="index"
-			:remainingStats="remainingStats ? remainingStats : statsPool"
-			:statsPool="statsPool"
-			:tags="tags"
-			:pointsSpentOnTier1="pointsSpentOnTier1"
-			:soldierClass="soldierClass"
-			@statChanged="statChanged"
-		></calculator-branch>
+	<div class="calculator">
+		<div class="calculator__grid">
+			<calculator-branch
+				v-for="(branch, index) in skillsList"
+				:key="branch"
+				:skills="skillsList[index]"
+				:branchIndex="index"
+				:remainingStats="remainingStats ? remainingStats : statsPool"
+				:statsPool="statsPool"
+				:tags="tags"
+				:pointsSpentOnTier1="pointsSpentOnTier1"
+				:soldierClass="soldierClass"
+				@statChanged="statChanged"
+			></calculator-branch>
+		</div>
 	</div>
 
 	<!-- if not authorized - tell user that he needs 

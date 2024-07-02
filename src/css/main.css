@@ -490,7 +490,7 @@ h3 {
     width: 115rem;
     scroll-snap-type: x mandatory;
   }
-  .calculator__save-btn {
+  .calculator__grid__save-btn {
     width: 120rem;
   }
 }
@@ -739,12 +739,16 @@ h3 {
   color: rgb(165, 165, 165);
 }
 .calculator__save-btn {
-  display: flex;
-  justify-content: center;
-  margin-top: 4rem;
+  display: block;
+  width: 100%;
+  margin: 4rem 0 0;
+}
+.calculator__save-btn button {
+  display: block;
+  margin: 0 auto;
 }
 .calculator__tell-to-login ~ .calculator__save-btn {
-  margin-top: 2.4rem;
+  margin: 2.4rem auto 0;
 }
 
 #saveBuild:disabled {

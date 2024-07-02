@@ -14,10 +14,10 @@
 		&__grid {
 			width: 115rem;
 			scroll-snap-type: x mandatory;
-		}
 
-		&__save-btn {
-			width: 120rem;
+			&__save-btn {
+				width: 120rem;
+			}
 		}
 	}
 
@@ -301,13 +301,18 @@
 
 	// save btn and modal
 	&__save-btn {
-		display: flex;
-		justify-content: center;
-		margin-top: 4rem;
+		display: block;
+		width: 100%;
+		margin: 4rem 0 0;
+
+		& button {
+			display: block;
+			margin: 0 auto;
+		}
 	}
 
 	&__tell-to-login ~ .calculator__save-btn {
-		margin-top: 2.4rem;
+		margin: 2.4rem auto 0;
 	}
 }
 
