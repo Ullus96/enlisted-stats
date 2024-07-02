@@ -1109,12 +1109,15 @@ h3 {
   width: 40rem;
   z-index: 20;
   border-radius: 0.8rem;
-  color: rgb(226, 226, 226);
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.12s ease-in, visibility 0.2s ease-in;
-  background-color: rgb(39, 39, 39);
   box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
+  color: rgb(226, 226, 226);
+  background-color: rgb(39, 39, 39);
+}
+.tooltip.dark {
+  background-color: rgb(30, 30, 30);
 }
 .tooltip::after {
   content: "";
@@ -1146,10 +1149,13 @@ h3 {
 .tooltip.top::after {
   bottom: 0px;
   transform: translate(-50%, 50%) rotateZ(45deg);
-  background: linear-gradient(-45deg, rgba(39, 39, 39, 0.75) 60%, transparent 60%);
+  background: linear-gradient(-45deg, rgb(39, 39, 39) 60%, transparent 60%);
 }
 .tooltip.top::before {
   bottom: -1rem;
+}
+.tooltip.dark.top::after {
+  background: linear-gradient(-45deg, rgb(30, 30, 30) 60%, transparent 60%);
 }
 .tooltip.bottom {
   bottom: -0.8rem;
@@ -1158,10 +1164,13 @@ h3 {
 .tooltip.bottom::after {
   top: 0px;
   transform: translate(-50%, -50%) rotateZ(135deg);
-  background: linear-gradient(45deg, rgba(39, 39, 39, 0.75) 60%, transparent 60%);
+  background: linear-gradient(45deg, rgb(39, 39, 39) 60%, transparent 60%);
 }
 .tooltip.bottom::before {
   top: -1rem;
+}
+.tooltip.dark.bottom::after {
+  background: linear-gradient(45deg, rgb(30, 30, 30) 60%, transparent 60%);
 }
 .tooltip.left {
   left: -0.8rem;
@@ -1172,13 +1181,16 @@ h3 {
   right: 0;
   top: 50%;
   transform: translate(50%, -50%) rotateZ(-135deg);
-  background: linear-gradient(45deg, rgba(39, 39, 39, 0.75) 60%, transparent 60%);
+  background: linear-gradient(45deg, rgb(39, 39, 39) 60%, transparent 60%);
 }
 .tooltip.left::before {
   left: 100%;
   top: 0;
   bottom: 0;
   width: 1rem;
+}
+.tooltip.dark.left::after {
+  background: linear-gradient(45deg, rgb(30, 30, 30) 60%, transparent 60%);
 }
 .tooltip.right {
   align-items: flex-start;
@@ -1193,13 +1205,16 @@ h3 {
   left: 0;
   top: 50%;
   transform: translate(-50%, -50%) rotateZ(45deg);
-  background: linear-gradient(45deg, rgba(39, 39, 39, 0.75) 60%, transparent 60%);
+  background: linear-gradient(45deg, rgb(39, 39, 39) 60%, transparent 60%);
 }
 .tooltip.right::before {
   right: 100%;
   top: 0;
   bottom: 0;
   width: 1rem;
+}
+.tooltip.dark.right::after {
+  background: linear-gradient(45deg, rgb(30, 30, 30) 60%, transparent 60%);
 }
 
 .input__label {

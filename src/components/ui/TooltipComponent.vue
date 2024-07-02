@@ -2,6 +2,7 @@
 	<div
 		class="tooltip"
 		:class="{
+			dark: color === 'dark',
 			top: direction === 'top',
 			bottom: direction === 'bottom',
 			right: direction === 'right',
@@ -35,6 +36,11 @@ export default defineComponent({
 			required: false,
 			type: Number,
 			default: 20,
+		},
+		color: {
+			required: false,
+			type: String as PropType<'normal' | 'dark'>,
+			default: 'normal',
 		},
 	},
 	setup(props) {

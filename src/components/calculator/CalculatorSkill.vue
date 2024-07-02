@@ -1,6 +1,6 @@
 <template>
 	<div class="calculator__skill tooltip-anchor" v-if="hasTag()">
-		<TooltipComponent :width="25" class="calculator__tooltip">
+		<TooltipComponent :width="25" class="calculator__tooltip" :color="'dark'">
 			<div>
 				<template
 					v-for="(progression, index) in skill.progression"

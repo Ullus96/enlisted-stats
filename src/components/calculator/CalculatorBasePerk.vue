@@ -1,6 +1,6 @@
 <template>
 	<div class="calculator__skill tooltip-anchor">
-		<TooltipComponent :width="25">
+		<TooltipComponent :width="25" :color="'dark'" class="calculator__tooltip">
 			<div class="calculator__tooltip-desc-block">
 				<span class="calculator__tooltip-desc">{{
 					getSoldierData('id', soldierClass, 'perk')

@@ -7,7 +7,7 @@
 			<IconBase :iconName="'Hotkeys'">
 				<IconQuestionCircle />
 			</IconBase>
-			<TooltipComponent :direction="'right'" :width="30">
+			<TooltipComponent :direction="'right'" :width="30" :color="'dark'">
 				<p>При нажатии по иконке скилла:</p>
 				<p><span class="hotkey">ЛКМ</span> - повысить уровень на 1</p>
 				<p><span class="hotkey">ПКМ</span> - понизить уровень на 1</p>

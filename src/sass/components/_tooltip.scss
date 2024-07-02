@@ -19,14 +19,18 @@
 	width: 40rem;
 	z-index: 20;
 	border-radius: 0.8rem;
-	color: $color-text-100;
 	visibility: hidden;
 	opacity: 0;
 	transition: opacity 0.12s ease-in, visibility 0.2s ease-in;
-
-	background-color: $color-bg-500;
-	// @include ui-background-blur;
 	@include ui-shadow;
+	// @include ui-background-blur;
+
+	color: $color-text-100;
+	background-color: $color-bg-500;
+
+	&.dark {
+		background-color: $color-bg-800;
+	}
 
 	&::after {
 		content: '';
@@ -66,12 +70,16 @@
 		&::after {
 			bottom: 0px;
 			transform: translate(-50%, 50%) rotateZ(45deg);
-			background: linear-gradient(-45deg, $color-bg-a-500 60%, transparent 60%);
+			background: linear-gradient(-45deg, $color-bg-500 60%, transparent 60%);
 		}
 
 		&::before {
 			bottom: -1rem;
 		}
+	}
+
+	&.dark.top::after {
+		background: linear-gradient(-45deg, $color-bg-800 60%, transparent 60%);
 	}
 
 	// bottom
@@ -82,12 +90,16 @@
 		&::after {
 			top: 0px;
 			transform: translate(-50%, -50%) rotateZ(135deg);
-			background: linear-gradient(45deg, $color-bg-a-500 60%, transparent 60%);
+			background: linear-gradient(45deg, $color-bg-500 60%, transparent 60%);
 		}
 
 		&::before {
 			top: -1rem;
 		}
+	}
+
+	&.dark.bottom::after {
+		background: linear-gradient(45deg, $color-bg-800 60%, transparent 60%);
 	}
 
 	// left
@@ -100,7 +112,7 @@
 			right: 0;
 			top: 50%;
 			transform: translate(50%, -50%) rotateZ(-135deg);
-			background: linear-gradient(45deg, $color-bg-a-500 60%, transparent 60%);
+			background: linear-gradient(45deg, $color-bg-500 60%, transparent 60%);
 		}
 
 		&::before {
@@ -109,6 +121,10 @@
 			bottom: 0;
 			width: 1rem;
 		}
+	}
+
+	&.dark.left::after {
+		background: linear-gradient(45deg, $color-bg-800 60%, transparent 60%);
 	}
 
 	// right
@@ -126,7 +142,7 @@
 			left: 0;
 			top: 50%;
 			transform: translate(-50%, -50%) rotateZ(45deg);
-			background: linear-gradient(45deg, $color-bg-a-500 60%, transparent 60%);
+			background: linear-gradient(45deg, $color-bg-500 60%, transparent 60%);
 		}
 
 		&::before {
@@ -135,5 +151,9 @@
 			bottom: 0;
 			width: 1rem;
 		}
+	}
+
+	&.dark.right::after {
+		background: linear-gradient(45deg, $color-bg-800 60%, transparent 60%);
 	}
 }
