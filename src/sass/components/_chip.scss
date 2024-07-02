@@ -5,8 +5,9 @@
 	border: 1px solid $color-bg-050;
 	@include ui-shadow;
 	@include ui-background-blur;
+	cursor: pointer;
 
-	@include pressed($color-text-100, $color-bg-a-500, 2.5);
+	// @include pressed($color-text-100, $color-bg-a-500, 2.5);
 
 	&:hover {
 		@include hovered($color-text-100, $color-bg-a-500);
@@ -28,6 +29,18 @@
 .chip-square {
 	padding: 1.2rem;
 	border-radius: 1.2rem;
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+
+	& svg {
+		display: block;
+	}
+
+	& img {
+		height: 3.2rem;
+		aspect-ratio: 1/1;
+	}
 }
 
 .chip.active {

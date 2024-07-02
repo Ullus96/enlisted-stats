@@ -67,8 +67,7 @@
 	}
 
 	&__link {
-		color: $color-primary-200;
-		text-decoration: underline;
+		@include link;
 	}
 
 	// "Contacts" modal

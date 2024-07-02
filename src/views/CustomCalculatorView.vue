@@ -35,8 +35,57 @@
 				</div>
 			</div>
 
-			<div class="cc__stats-block">
-				<div class="cc__tags-title">
+			<div class="cc__main-block">
+				<div class="cc__left-col cc__col">
+					<h2>Выбери прототип солдата</h2>
+					<p class="cc__text-desc">
+						Выбирая прототип, ты выбираешь предустановки тегов. Этот шаг не
+						обязателен. Ты всегда можешь добавить теги, сделав из инженера -
+						десантника-инженера, или наоборот, выборочно удалить ненужные.
+					</p>
+
+					<div class="cc__chips-flex cc__chips-flex--square">
+						<div
+							class="chip chip-square tooltip-anchor"
+							v-for="(n, i) in 15"
+							:key="i"
+						>
+							<TooltipComponent :width="30">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. At, a
+								dolores ex quidem deserunt, iure veritatis doloremque,
+								voluptates blanditiis exercitationem atque nostrum reiciendis
+								enim fuga voluptatibus id? At, ipsam qui!
+							</TooltipComponent>
+							<img
+								:src="require('../assets/soldier_icons/antitank.svg')"
+								alt=""
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div class="cc__right-col cc__col">
+					<h2>Выбери теги способностей</h2>
+					<p class="cc__text-desc">
+						Выбирая теги, ты определяешь то, какими способностями будет обладать
+						солдат. Например, солдат с тегами пехотинец и инженер будет иметь
+						навыки стрельбы (отдача и пр.) и строительства. Теги член
+						экипажа и танкист — навыками танкиста.
+					</p>
+
+					<div class="cc__chips-flex cc__chips-flex--wide">
+						<div class="chip tooltip-anchor" v-for="(n, i) in 12" :key="i">
+							<TooltipComponent :width="30">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. At, a
+								dolores ex quidem deserunt, iure veritatis doloremque,
+								voluptates blanditiis exercitationem atque nostrum reiciendis
+								enim fuga voluptatibus id? At, ipsam qui!
+							</TooltipComponent>
+							Пехотинец
+						</div>
+					</div>
+				</div>
+				<!-- <div class="cc__tags-title">
 					<h2>Выбрать специализации солдата</h2>
 					<i class="fa-regular fa-circle-question cc__tags-tooltip-icon"></i>
 					<div class="cc__tags-tooltip">
@@ -65,15 +114,15 @@
 						:activeTags="tags"
 						@tagClicked="tagClicked"
 					></c-c-tag-item>
-				</div>
+				</div> -->
 			</div>
 
 			<button
-				class="btn btn-main cc__btn"
+				class="btn btn-m btn-primary cc__btn"
 				@click.prevent="isEditingSettings = !isEditingSettings"
 				:disabled="isDisabled"
 			>
-				Продолжить <i class="fa-solid fa-arrow-right"></i>
+				Продолжить
 			</button>
 
 			<p class="cc__disclaimer">
@@ -116,9 +165,10 @@ import { avaliableTags } from '@/data/customCalculatorTags';
 import CCTagItem from '@/components/cc/CCTagItem.vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
 import { useRouter } from 'vue-router';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
-	components: { CCTagItem, CalculatorBlock },
+	components: { CCTagItem, CalculatorBlock, TooltipComponent },
 	setup() {
 		const stats = reactive([null, null, null]);
 		const tags = reactive(['base']);

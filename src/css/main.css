@@ -1947,26 +1947,7 @@ h3 {
   box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
-  position: relative;
-  overflow: hidden;
-}
-.chip::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 100%;
-  aspect-ratio: 1/1;
-  background-color: rgba(68, 68, 68, 0.775);
-  transform: translate(-50%, -50%) scale(0);
-  border-radius: 50%;
-  transition: transform 0.2s, opacity 0.2s;
-  opacity: 0;
-  z-index: -1;
-}
-.chip:active:after {
-  transform: translate(-50%, -50%) scale(2.5);
-  opacity: 1;
+  cursor: pointer;
 }
 .chip:hover {
   background-color: rgba(51, 51, 51, 0.76);
@@ -1989,6 +1970,16 @@ h3 {
 .chip-square {
   padding: 1.2rem;
   border-radius: 1.2rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.chip-square svg {
+  display: block;
+}
+.chip-square img {
+  height: 3.2rem;
+  aspect-ratio: 1/1;
 }
 
 .chip.active {
@@ -2492,6 +2483,30 @@ h3 {
   text-transform: uppercase;
   text-align: center;
 }
+.cc__main-block {
+  margin-top: 10rem;
+  display: flex;
+  gap: 15%;
+}
+.cc__col {
+  flex: 1 1 50%;
+}
+.cc__text-desc {
+  margin-top: 1.6rem;
+  color: rgb(165, 165, 165);
+  font-size: 1.4rem;
+}
+.cc__chips-flex {
+  margin-top: 3.2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.cc__chips-flex--square {
+  gap: 2rem;
+}
+.cc__chips-flex--wide {
+  gap: 1.2rem;
+}
 .cc__tags-title {
   position: relative;
   margin-bottom: 2rem;
@@ -2619,19 +2634,21 @@ h3 {
   color: #f9da75;
   transform: rotateZ(45deg);
 }
+.cc__btn {
+  margin: 4rem auto 0;
+  display: block;
+}
 .cc__disclaimer {
-  padding-top: 2rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(116, 116, 116);
+  font-size: 1.4rem;
   text-align: center;
-  margin: 0 auto;
-  width: 50%;
+  margin: 2rem auto 0;
+  width: 100%;
+  max-width: 54rem;
 }
 .cc__disclaimer a {
-  color: #f9da75;
-}
-.cc__btn {
-  display: block;
-  margin: 6rem auto 0;
+  color: rgb(175, 61, 61);
+  text-decoration: underline;
 }
 .cc__btn-back {
   margin-left: 2rem;

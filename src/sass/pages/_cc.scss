@@ -41,6 +41,39 @@
 		text-align: center;
 	}
 
+	// main block
+	&__main-block {
+		margin-top: 10rem;
+		display: flex;
+		gap: 15%;
+	}
+
+	&__col {
+		flex: 1 1 50%;
+	}
+
+	&__text-desc {
+		margin-top: 1.6rem;
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
+	}
+
+	&__chips-flex {
+		margin-top: 3.2rem;
+		display: flex;
+		flex-wrap: wrap;
+
+		&--square {
+			gap: 2rem;
+		}
+
+		&--wide {
+			gap: 1.2rem;
+		}
+	}
+
+	// ==========
+	// Убрать
 	// Tags block
 	&__tags-title {
 		position: relative;
@@ -69,6 +102,8 @@
 			color: $color-highlight;
 		}
 	}
+	//
+	// ===========
 
 	&__tag-item {
 		background-color: $color-black-light-1;
@@ -151,21 +186,22 @@
 		transform: rotateZ(45deg);
 	}
 
-	&__disclaimer {
-		padding-top: 2rem;
-		color: rgba($color-white, 0.8);
-		text-align: center;
-		margin: 0 auto;
-		width: 50%;
-
-		a {
-			color: $color-highlight;
-		}
+	&__btn {
+		margin: 4rem auto 0;
+		display: block;
 	}
 
-	&__btn {
-		display: block;
-		margin: 6rem auto 0;
+	&__disclaimer {
+		color: $color-text-700;
+		font-size: $ui-font-size-s;
+		text-align: center;
+		margin: 2rem auto 0;
+		width: 100%;
+		max-width: 54rem;
+
+		& a {
+			@include link;
+		}
 	}
 
 	&__btn-back {

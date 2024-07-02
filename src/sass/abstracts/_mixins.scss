@@ -221,3 +221,8 @@
 		}
 	}
 }
+
+@mixin link {
+	color: $color-primary-200;
+	text-decoration: underline;
+}
