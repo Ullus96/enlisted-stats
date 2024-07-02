@@ -2004,29 +2004,9 @@ h3 {
 .chip.active {
   color: rgb(175, 61, 61);
   border: 1px solid rgb(175, 61, 61);
-  position: relative;
-  overflow: hidden;
 }
 .chip.active path {
   fill: rgb(175, 61, 61);
-}
-.chip.active::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 100%;
-  aspect-ratio: 1/1;
-  background-color: rgba(60, 42, 42, 0.775);
-  transform: translate(-50%, -50%) scale(0);
-  border-radius: 50%;
-  transition: transform 0.2s, opacity 0.2s;
-  opacity: 0;
-  z-index: -1;
-}
-.chip.active:active:after {
-  transform: translate(-50%, -50%) scale(2.5);
-  opacity: 1;
 }
 .chip.active:hover {
   background-color: rgba(48, 40, 40, 0.76);
@@ -2596,18 +2576,7 @@ h3 {
   color: #f9da75;
 }
 .cc__tag-item {
-  background-color: #222222;
-  min-width: 10rem;
-  border-radius: 1rem;
-  border: 1px solid #7f8388;
   position: relative;
-  padding: 1.5rem 2rem;
-}
-.cc__tag-item:hover {
-  background-color: #262626;
-}
-.cc__tag-item:hover .cc__tag-tooltip {
-  display: block;
 }
 .cc__tag-checkbox {
   position: absolute;
@@ -2621,49 +2590,6 @@ h3 {
   z-index: 10;
   cursor: pointer;
 }
-.cc__tag-add-btn {
-  display: block;
-  font-size: 6rem;
-  margin: 0 auto;
-  text-align: center;
-  margin-bottom: 1rem;
-  transition: transform 0.1s ease-out;
-}
-.cc__tag-name {
-  text-align: center;
-}
-.cc__tag-tooltip {
-  width: 30rem;
-  background-color: #111111;
-  padding: 1.2rem 1.6rem;
-  text-align: center;
-  font-size: 0.8em;
-  display: none;
-  border-radius: 1rem;
-  position: absolute;
-  z-index: 10;
-  left: 50%;
-  top: -5px;
-  transform: translate(-50%, -100%);
-}
-.cc__tag-tooltip::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  z-index: 5;
-  bottom: 0px;
-  transform: translate(-50%, 50%) rotateZ(45deg);
-  background: linear-gradient(-45deg, #111111 60%, transparent 60%);
-}
-.cc__tag-tooltip--description {
-  padding-bottom: 1rem;
-}
-.cc__tag-tooltip--title {
-  border-top: 1px solid #7f8388;
-  padding: 0.5rem 0;
-}
 .cc__tag-tooltip-classes-flex {
   display: flex;
   flex-wrap: wrap;
@@ -2671,15 +2597,15 @@ h3 {
   gap: 5px;
 }
 .cc__tag-tooltip-classes-flex img {
-  max-width: 3rem;
+  height: 2.4rem;
+  aspect-ratio: 1/1;
 }
-.cc__tag-item.active {
-  border: 1px solid #f9da75;
-  box-shadow: 0 0 2.5rem rgba(249, 218, 117, 0.4);
-}
-.cc__tag-add-btn.active {
-  color: #f9da75;
-  transform: rotateZ(45deg);
+.cc__tag-line {
+  display: block;
+  height: 1px;
+  margin: 0.4rem auto;
+  width: calc(100% - 2rem);
+  background-color: rgba(56, 56, 56, 0.75);
 }
 .cc__btn {
   margin: 4rem auto 0;

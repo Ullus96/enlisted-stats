@@ -74,15 +74,14 @@
 					</p>
 
 					<div class="cc__chips-flex cc__chips-flex--wide">
-						<div class="chip tooltip-anchor" v-for="(n, i) in 12" :key="i">
-							<TooltipComponent :width="30">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. At, a
-								dolores ex quidem deserunt, iure veritatis doloremque,
-								voluptates blanditiis exercitationem atque nostrum reiciendis
-								enim fuga voluptatibus id? At, ipsam qui!
-							</TooltipComponent>
-							Пехотинец
-						</div>
+						<CcTagItem
+							v-for="(item, tag) in avaliableTags"
+							:key="item"
+							:item="item"
+							:tag="tag"
+							:activeTags="tags"
+							@tagClicked="tagClicked"
+						></CcTagItem>
 					</div>
 				</div>
 				<!-- <div class="cc__tags-title">
@@ -163,13 +162,13 @@ import {
 	Ref,
 } from 'vue';
 import { avaliableTags } from '@/data/customCalculatorTags';
-import CCTagItem from '@/components/cc/CCTagItem.vue';
+import CcTagItem from '@/components/cc/CcTagItem.vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
 import { useRouter } from 'vue-router';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
-	components: { CCTagItem, CalculatorBlock, TooltipComponent },
+	components: { CcTagItem, CalculatorBlock, TooltipComponent },
 	setup() {
 		const stats = reactive([null, null, null]);
 		const tags = reactive(['base']);

@@ -130,21 +130,10 @@
 	//
 	// ===========
 
+	// ========
+	// Это чипы
 	&__tag-item {
-		background-color: $color-black-light-1;
-		min-width: 10rem;
-		border-radius: 1rem;
-		border: 1px solid $color-skill-inactive;
 		position: relative;
-		padding: 1.5rem 2rem;
-
-		&:hover {
-			background-color: $color-black-light-2;
-		}
-
-		&:hover .cc__tag-tooltip {
-			display: block;
-		}
 	}
 
 	&__tag-checkbox {
@@ -161,56 +150,28 @@
 		cursor: pointer;
 	}
 
-	&__tag-add-btn {
-		display: block;
-		font-size: 6rem;
-		margin: 0 auto;
-		text-align: center;
-		margin-bottom: 1rem;
-
-		transition: transform 0.1s ease-out;
-	}
-
-	&__tag-name {
-		text-align: center;
-	}
-
 	// Tooltip
-	&__tag-tooltip {
-		width: 30rem;
-		@include tooltip('up');
+	&__tag-tooltip-classes-flex {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 5px;
 
-		&--description {
-			padding-bottom: 1rem;
-		}
-
-		&--title {
-			border-top: 1px solid $color-skill-inactive;
-			padding: 0.5rem 0;
-		}
-
-		&-classes-flex {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			gap: 5px;
-
-			& img {
-				max-width: 3rem;
-			}
+		& img {
+			height: 2.4rem;
+			aspect-ratio: 1/1;
 		}
 	}
 
-	// Tag active state
-	&__tag-item.active {
-		@include card-active;
+	&__tag-line {
+		display: block;
+		height: 1px;
+		margin: 0.4rem auto;
+		width: calc(100% - 2rem);
+		background-color: $color-bg-a-050;
 	}
 
-	&__tag-add-btn.active {
-		color: $color-highlight;
-		transform: rotateZ(45deg);
-	}
-
+	// Bottom element
 	&__btn {
 		margin: 4rem auto 0;
 		display: block;

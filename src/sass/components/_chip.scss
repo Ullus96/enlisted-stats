@@ -51,7 +51,7 @@
 		fill: $color-primary-200;
 	}
 
-	@include pressed($color-primary-200, $color-bg-a-500, 2.5);
+	// @include pressed($color-primary-200, $color-bg-a-500, 2.5);
 
 	&:hover {
 		@include hovered($color-primary-200, $color-bg-a-500);
