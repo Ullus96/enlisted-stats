@@ -1,16 +1,13 @@
-// custom calculator, if I would forget what is 'cc' stands for
+// сс = custom calculator
 .cc {
 	&__stats-block {
-		padding-top: 4rem;
 		display: flex;
+		gap: 4rem;
 		flex-direction: column;
 		align-items: center;
 	}
 
-	&__stats-title {
-		margin-bottom: 2rem;
-	}
-
+	// Upper stats block
 	&__stats-flexbox {
 		display: flex;
 		flex-wrap: wrap;
@@ -18,28 +15,27 @@
 		gap: 2rem;
 	}
 
-	// Upper stats block
 	&__stat-item {
-		background-color: $color-black-light-1;
-		min-width: 10rem;
-		border-radius: 1rem;
-		border: 1px solid $color-skill-inactive;
+		background-color: $color-bg-a-800;
+		min-width: 11rem;
+		border-radius: 0.8rem;
+		border: 1px solid $color-bg-a-050;
 		overflow: hidden;
 	}
 
 	&__stat-amount {
 		display: block;
-		max-width: 10rem;
-		padding: 1rem 0;
+		max-width: 11rem;
+		padding: 1.6rem;
 		margin: 0 auto;
 		text-align: center;
-		font-size: 4.6rem;
+		font-size: $ui-font-size-h1;
 	}
 
 	&__stat-name {
-		padding: 5px;
-		font-size: 1.2rem;
-		color: $color-black;
+		padding: 0.8rem 1.2rem;
+		font-size: $ui-font-size-xs;
+		color: $color-bg-800;
 		font-weight: 700;
 		text-transform: uppercase;
 		text-align: center;

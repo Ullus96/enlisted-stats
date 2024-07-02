@@ -1,8 +1,8 @@
 <template>
-	<div class="cc container">
+	<section class="container mt-l">
 		<template v-if="isEditingSettings">
 			<div class="cc__stats-block">
-				<h2 class="cc__stats-title">Распределить характеристики солдата</h2>
+				<h2>Задай характеристики</h2>
 				<div class="cc__stats-flexbox">
 					<div class="cc__stat-item">
 						<input
@@ -12,7 +12,7 @@
 							id="ccFirstStat"
 							placeholder="16"
 						/>
-						<p class="cc__stat-name mobility-bg">Мобильность</p>
+						<p class="cc__stat-name mobility-bg-a">Мобильность</p>
 					</div>
 					<div class="cc__stat-item">
 						<input
@@ -21,7 +21,7 @@
 							v-model="stats[1]"
 							placeholder="16"
 						/>
-						<p class="cc__stat-name vitality-bg">Живучесть</p>
+						<p class="cc__stat-name vitality-bg-a">Живучесть</p>
 					</div>
 					<div class="cc__stat-item">
 						<input
@@ -30,7 +30,7 @@
 							v-model="stats[2]"
 							placeholder="16"
 						/>
-						<p class="cc__stat-name weapon-handling-bg">Оружие</p>
+						<p class="cc__stat-name weapon-bg-a">Оружие</p>
 					</div>
 				</div>
 			</div>
@@ -99,7 +99,7 @@
 				></calculator-block>
 			</div>
 		</template>
-	</div>
+	</section>
 </template>
 
 <script lang="ts">

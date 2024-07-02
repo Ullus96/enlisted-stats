@@ -147,7 +147,7 @@
 			filter: none;
 		}
 
-		&.weapon-handling {
+		&.weapon {
 			filter: none;
 		}
 
@@ -221,8 +221,8 @@
 			background-color: $color-vitality;
 		}
 
-		&.weapon-handling {
-			background-color: $color-weapon-handling;
+		&.weapon {
+			background-color: $color-weapon;
 		}
 	}
 
