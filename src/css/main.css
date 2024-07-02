@@ -2454,6 +2454,16 @@ h3 {
   flex-direction: column;
   align-items: center;
 }
+@media (max-width: 499px) {
+  .cc__stats-block {
+    gap: 2rem;
+  }
+}
+@media (max-width: 849px) {
+  .cc__title {
+    text-align: center;
+  }
+}
 .cc__stats-flexbox {
   display: flex;
   flex-wrap: wrap;
@@ -2488,6 +2498,19 @@ h3 {
   display: flex;
   gap: 15%;
 }
+@media (max-width: 849px) {
+  .cc__main-block {
+    flex-direction: column;
+    gap: 6rem;
+    margin-top: 8rem;
+  }
+}
+@media (max-width: 499px) {
+  .cc__main-block {
+    gap: 4rem;
+    margin-top: 6rem;
+  }
+}
 .cc__col {
   flex: 1 1 50%;
 }
@@ -2506,6 +2529,11 @@ h3 {
 }
 .cc__chips-flex--wide {
   gap: 1.2rem;
+}
+@media (max-width: 849px) {
+  .cc__chips-flex {
+    justify-content: space-around;
+  }
 }
 .cc__tags-title {
   position: relative;

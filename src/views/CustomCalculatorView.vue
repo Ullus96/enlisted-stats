@@ -2,7 +2,7 @@
 	<section class="container mt-l">
 		<template v-if="isEditingSettings">
 			<div class="cc__stats-block">
-				<h2>Задай характеристики</h2>
+				<h2 class="cc__title">Задай характеристики</h2>
 				<div class="cc__stats-flexbox">
 					<div class="cc__stat-item">
 						<input
@@ -37,7 +37,7 @@
 
 			<div class="cc__main-block">
 				<div class="cc__left-col cc__col">
-					<h2>Выбери прототип солдата</h2>
+					<h2 class="cc__title">Выбери прототип солдата</h2>
 					<p class="cc__text-desc">
 						Выбирая прототип, ты выбираешь предустановки тегов. Этот шаг не
 						обязателен. Ты всегда можешь добавить теги, сделав из инженера -
@@ -65,7 +65,7 @@
 				</div>
 
 				<div class="cc__right-col cc__col">
-					<h2>Выбери теги способностей</h2>
+					<h2 class="cc__title">Выбери теги способностей</h2>
 					<p class="cc__text-desc">
 						Выбирая теги, ты определяешь то, какими способностями будет обладать
 						солдат. Например, солдат с тегами пехотинец и инженер будет иметь
