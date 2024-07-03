@@ -157,7 +157,37 @@
 		}
 	}
 
-	&__btn-back {
-		margin-left: 2rem;
+	// Second stage styles
+	&__s-data-block {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4rem;
+		margin-top: 1.2rem;
+	}
+
+	&__s-stats-block {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+	}
+
+	&__s-stat {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	&__s-inline-separator {
+		color: $color-text-700;
+	}
+
+	&__s-tags-block {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	&__s-btn-back {
+		margin-top: 2rem;
 	}
 }

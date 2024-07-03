@@ -2592,8 +2592,32 @@ h3 {
   color: rgb(175, 61, 61);
   text-decoration: underline;
 }
-.cc__btn-back {
-  margin-left: 2rem;
+.cc__s-data-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  margin-top: 1.2rem;
+}
+.cc__s-stats-block {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.cc__s-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.cc__s-inline-separator {
+  color: rgb(116, 116, 116);
+}
+.cc__s-tags-block {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.cc__s-btn-back {
+  margin-top: 2rem;
 }
 
 .sbuild__grid {

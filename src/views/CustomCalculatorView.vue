@@ -103,19 +103,44 @@
 		<template v-else>
 			<div class="mt-l">
 				<h3>Текущие параметры</h3>
-				<div class="cc__stats-block">
-					<IconBase>
-						<IconMobility />
-					</IconBase>
-					<IconBase>
-						<IconVitality />
-					</IconBase>
-					<IconBase>
-						<IconWeapon />
-					</IconBase>
+				<div class="cc__s-data-block">
+					<div class="cc__s-stats-block">
+						<div class="cc__s-stat">
+							<IconBase>
+								<IconMobility />
+							</IconBase>
+							<span> {{ stats[0] }} </span>
+						</div>
+						<span class="cc__s-inline-separator"> - </span>
+						<div class="cc__s-stat">
+							<IconBase>
+								<IconVitality />
+							</IconBase>
+							<span> {{ stats[1] }} </span>
+						</div>
+						<span class="cc__s-inline-separator"> - </span>
+						<div class="cc__s-stat">
+							<IconBase>
+								<IconWeapon />
+							</IconBase>
+							<span> {{ stats[2] }} </span>
+						</div>
+					</div>
+
+					<div class="cc__s-tags-block">
+						<IconBase>
+							<IconTags />
+						</IconBase>
+						<div class="cc_s-tags">
+							<span v-for="(tag, idx) in tags" :key="tag">
+								{{ avaliableTags[tag].name
+								}}{{ idx < tags.length - 1 ? ', ' : '' }}
+							</span>
+						</div>
+					</div>
 				</div>
 				<button
-					class="btn btn-m btn-secondary cc__btn-back"
+					class="btn btn-m btn-secondary cc__s-btn-back"
 					@click="isEditingSettings = !isEditingSettings"
 				>
 					Изменить параметры
@@ -150,6 +175,7 @@ import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconMobility from '@/components/ui/icons/IconMobility.vue';
 import IconVitality from '@/components/ui/icons/IconVitality.vue';
 import IconWeapon from '@/components/ui/icons/IconWeapon.vue';
+import IconTags from '@/components/ui/icons/IconTags.vue';
 
 export default defineComponent({
 	components: {
@@ -160,6 +186,7 @@ export default defineComponent({
 		IconMobility,
 		IconVitality,
 		IconWeapon,
+		IconTags,
 	},
 	setup() {
 		const stats = reactive([null, null, null]);
