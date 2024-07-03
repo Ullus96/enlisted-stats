@@ -47,17 +47,15 @@
 					<div class="cc__chips-flex cc__chips-flex--square">
 						<div
 							class="chip chip-square tooltip-anchor"
-							v-for="(n, i) in 15"
-							:key="i"
+							v-for="(soldier, idx) in uniqueSoldiersList"
+							:key="soldier.name"
+							@click="setTags(idx)"
 						>
-							<TooltipComponent :width="30">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. At, a
-								dolores ex quidem deserunt, iure veritatis doloremque,
-								voluptates blanditiis exercitationem atque nostrum reiciendis
-								enim fuga voluptatibus id? At, ipsam qui!
+							<TooltipComponent>
+								{{ soldier.name }}
 							</TooltipComponent>
 							<img
-								:src="require('../assets/soldier_icons/antitank.svg')"
+								:src="require(`../assets/soldier_icons/${soldier.icon}`)"
 								alt=""
 							/>
 						</div>
@@ -84,36 +82,6 @@
 						></CcTagItem>
 					</div>
 				</div>
-				<!-- <div class="cc__tags-title">
-					<h2>Выбрать специализации солдата</h2>
-					<i class="fa-regular fa-circle-question cc__tags-tooltip-icon"></i>
-					<div class="cc__tags-tooltip">
-						<p>
-							Выбери специализации для солдата, чтобы определить доступные ему
-							навыки.
-						</p>
-						<p>
-							Например, солдат со специализациями <b>пехотинец</b> и
-							<b>инженер</b> будет обладать навыками стрельбы (отдача и пр.) и
-							строительства.
-						</p>
-						<p>
-							В то время как солдат со специализациями <b>член экипажа</b> и
-							<b>танкист</b> будет обладать навыками танкиста.
-						</p>
-					</div>
-				</div>
-
-				<div class="cc__stats-flexbox">
-					<c-c-tag-item
-						v-for="(item, tag) in avaliableTags"
-						:key="item"
-						:item="item"
-						:tag="tag"
-						:activeTags="tags"
-						@tagClicked="tagClicked"
-					></c-c-tag-item>
-				</div> -->
 			</div>
 
 			<button
@@ -162,6 +130,7 @@ import {
 	Ref,
 } from 'vue';
 import { avaliableTags } from '@/data/customCalculatorTags';
+import { uniqueSoldiersList } from '@/data/soldiersList';
 import CcTagItem from '@/components/cc/CcTagItem.vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
@@ -214,18 +183,20 @@ export default defineComponent({
 			return isNotFilled;
 		});
 
-		function addMedic() {
-			tags.push('medic');
+		function setTags(idx: number) {
+			tags.length = 0;
+			tags.push(...uniqueSoldiersList[idx].tags);
 		}
 
 		return {
 			avaliableTags,
+			uniqueSoldiersList,
 			stats,
 			tags,
 			tagClicked,
 			isEditingSettings,
 			isDisabled,
-			addMedic,
+			setTags,
 		};
 	},
 });

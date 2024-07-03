@@ -286,3 +286,76 @@ export const items: IItem[] = [
 		perk: '+35% скорость переключения передач (навык водителя)',
 	},
 ];
+
+export const uniqueSoldiersList = [
+	{
+		name: 'Боец',
+		icon: 'rifleman.svg',
+		tags: ['base'],
+	},
+	{
+		name: 'Медик',
+		icon: 'medic.svg',
+		tags: ['base', 'medic'],
+	},
+	{
+		name: 'Штурмовик',
+		icon: 'assaulter.svg',
+		tags: ['base'],
+	},
+	{
+		name: 'Инженер',
+		icon: 'engineer.svg',
+		tags: ['base', 'engineer'],
+	},
+	{
+		name: 'Снайпер',
+		icon: 'sniper.svg',
+		tags: ['base'],
+	},
+	{
+		name: 'Бронебойщик',
+		icon: 'antitank.svg',
+		tags: ['base'],
+	},
+	{
+		name: 'Пулемётчик',
+		icon: 'mg.svg',
+		tags: ['base'],
+	},
+	{
+		name: 'Радист',
+		icon: 'radio.svg',
+		tags: ['base'],
+	},
+	{
+		name: 'Миномётчик',
+		icon: 'mortar.svg',
+		tags: ['base', 'mortar'],
+	},
+	{
+		name: 'Огнемётчик',
+		icon: 'flamethrower.svg',
+		tags: ['base', 'flamethrower'],
+	},
+	{
+		name: 'Пилот',
+		icon: 'pilot-fighter.svg',
+		tags: ['pilot'],
+	},
+	{
+		name: 'Танкист',
+		icon: 'tank.svg',
+		tags: ['crew', 'tank'],
+	},
+	{
+		name: 'Мотоциклист',
+		icon: 'moto.svg',
+		tags: ['recon-crew', 'motorcycle'],
+	},
+	{
+		name: 'Водитель БТР',
+		icon: 'apc-driver.svg',
+		tags: ['recon-crew', 'apc-driver'],
+	},
+];
