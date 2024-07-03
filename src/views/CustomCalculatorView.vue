@@ -69,7 +69,7 @@
 					<p class="cc__text-desc">
 						Выбирая теги, ты определяешь то, какими способностями будет обладать
 						солдат. Например, солдат с тегами пехотинец и инженер будет иметь
-						навыки стрельбы (отдача и пр.) и строительства. Теги член
+						навыки стрельбы (отдача&nbsp;и&nbsp;пр.) и строительства. Теги член
 						экипажа и танкист — навыками танкиста.
 					</p>
 
@@ -164,7 +164,6 @@ import {
 import { avaliableTags } from '@/data/customCalculatorTags';
 import CcTagItem from '@/components/cc/CcTagItem.vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
-import { useRouter } from 'vue-router';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
@@ -187,14 +186,6 @@ export default defineComponent({
 			// add a new object if tags doesn't already have it
 			if (!tags.includes(tag) && operation === 'add') {
 				tags.push(tag);
-			}
-
-			// After handling tags, update the route
-			const router = useRouter();
-
-			if (!isEditingSettings.value) {
-				// If not editing settings, navigate to /calculator/edit
-				router.push({ path: '/calculator/edit' });
 			}
 		}
 

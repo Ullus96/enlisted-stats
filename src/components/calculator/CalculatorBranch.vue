@@ -116,7 +116,7 @@ export default defineComponent({
 		soldierClass: { required: true, type: String as PropType<SoldierID> },
 	},
 	setup(props, context) {
-		type PossibleClass = 'mobility' | 'vitality' | 'weapon-handling';
+		type PossibleClass = 'mobility' | 'vitality' | 'weapon';
 
 		function getClassBasedOnIndex(): PossibleClass {
 			switch (props.branchIndex) {
@@ -125,7 +125,7 @@ export default defineComponent({
 				case 1:
 					return 'vitality';
 				case 2:
-					return 'weapon-handling';
+					return 'weapon';
 
 				default:
 					throw new Error('No class found at getClassBasedOnIndex()');
