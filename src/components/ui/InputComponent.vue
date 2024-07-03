@@ -27,7 +27,7 @@
 				:disabled="errorMsg || isEmpty || outOfCharacters"
 				@click="handleClick"
 			>
-				<IconBase :iconName="'Confirm'">
+				<IconBase>
 					<IconCheck />
 				</IconBase>
 			</button>

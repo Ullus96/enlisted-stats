@@ -8,7 +8,7 @@
 		}"
 	>
 		<button class="btn btn-tertiary btn-sm modal__btn" @click="closePopup">
-			<IconBase :iconName="'Close pop-up'">
+			<IconBase>
 				<IconTimes />
 			</IconBase>
 		</button>

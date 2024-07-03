@@ -24,7 +24,7 @@
 					@click="createNewEvent"
 					:class="{ active: !eventData.dbId }"
 				>
-					<IconBase :iconName="'New event'">
+					<IconBase>
 						<IconPlus />
 					</IconBase>
 				</button>
@@ -120,7 +120,7 @@
 								:disabled="!eventData.rewards.length"
 								@click="$store.state.dialog.isDeletingEvent = true"
 							>
-								<IconBase :iconName="'Delete'">
+								<IconBase>
 									<IconTrash />
 								</IconBase>
 							</button>

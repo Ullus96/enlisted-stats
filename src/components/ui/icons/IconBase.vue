@@ -4,10 +4,8 @@
 		:width="width"
 		:height="height"
 		:viewBox="viewBox"
-		:aria-labelledby="iconName"
 		role="presentation"
 	>
-		<title :id="iconName" lang="en">{{ iconName }} icon</title>
 		<g :fill="iconColor">
 			<slot />
 		</g>
@@ -19,10 +17,6 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
 	props: {
-		iconName: {
-			type: String,
-			default: 'cog',
-		},
 		width: {
 			type: [Number, String],
 			default: 16,

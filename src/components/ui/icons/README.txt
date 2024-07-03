@@ -1,9 +1,7 @@
 Юзать как-то так:
 
-<icon-base :iconName="cog">
+<icon-base :width="24" :height="24" :viewBox="0 0 24 24">
   <icon-cog></icon-cog>
 </icon-base>
 
-Можно так же передать :height, :width, :iconColor
-
-:iconName - это название при наведении
+Доступные пропсы: :height, :width, :viewBox, :iconColor

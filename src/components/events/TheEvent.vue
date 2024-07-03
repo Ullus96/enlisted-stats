@@ -19,7 +19,7 @@
 								</p>
 							</TooltipComponent>
 							<button class="btn btn-sm btn-tertiary">
-								<IconBase :iconName="'Information'">
+								<IconBase>
 									<IconQuestionCircle />
 								</IconBase>
 							</button>
@@ -69,7 +69,7 @@
 							@mouseenter="setActiveReward('current')"
 							@click="setActiveReward('current')"
 						>
-							<IconBase :iconName="'Current reward'">
+							<IconBase>
 								<IconCoins />
 							</IconBase>
 						</button>
@@ -110,7 +110,7 @@
 							@mouseenter="setActiveReward('next')"
 							@click="setActiveReward('next')"
 						>
-							<IconBase :iconName="'Next reward'">
+							<IconBase>
 								<IconCoins />
 							</IconBase>
 						</button>

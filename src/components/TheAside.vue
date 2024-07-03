@@ -56,7 +56,7 @@
 						class="aside__link"
 						to="/"
 					>
-						<IconBase :iconName="'Table'">
+						<IconBase>
 							<IconAngleDoubleUp />
 						</IconBase>
 						<span class="aside__link-desc">Таблица</span>
@@ -67,7 +67,7 @@
 						class="aside__link"
 						to="/calculator"
 					>
-						<IconBase :iconName="'Calculator'">
+						<IconBase>
 							<IconUserCog />
 						</IconBase>
 						<span class="aside__link-desc">Калькулятор</span>
@@ -78,7 +78,7 @@
 						class="aside__link"
 						to="/skill-builds"
 					>
-						<IconBase :iconName="'Skill Builds'">
+						<IconBase>
 							<IconBookOpen />
 						</IconBase>
 						<span class="aside__link-desc">Сборки</span>
@@ -89,7 +89,7 @@
 						class="aside__link"
 						to="/events"
 					>
-						<IconBase :iconName="'Events Calendar'">
+						<IconBase>
 							<IconCalendar />
 						</IconBase>
 						<span class="aside__link-desc">События</span>
@@ -105,7 +105,7 @@
 							class="aside__link"
 							to="/my-builds"
 						>
-							<IconBase :iconName="'My Builds'">
+							<IconBase>
 								<IconHammer />
 							</IconBase>
 							<span class="aside__link-desc">Мои сборки</span>
@@ -116,7 +116,7 @@
 							class="aside__link"
 							to="/saved-builds"
 						>
-							<IconBase :iconName="'Saved Builds'">
+							<IconBase>
 								<IconBookmark />
 							</IconBase>
 							<span class="aside__link-desc">Сохраненные</span>
@@ -133,7 +133,7 @@
 							class="aside__link"
 							to="/admin"
 						>
-							<IconBase :iconName="'Admin Panel'">
+							<IconBase>
 								<IconCrown />
 							</IconBase>
 							<span class="aside__link-desc">Админка</span>
@@ -150,14 +150,14 @@
 						to="/profile"
 						v-if="$store.state.user.isLoggedIn"
 					>
-						<IconBase :iconName="'Settings'">
+						<IconBase>
 							<IconCog />
 						</IconBase>
 						<span class="aside__link-desc">Профиль</span>
 					</router-link>
 
 					<button @click="showContactsModal" class="aside__link" to="/contacts">
-						<IconBase :iconName="'Discord'">
+						<IconBase>
 							<IconDiscord />
 						</IconBase>
 						<span class="aside__link-desc">Связаться</span>
@@ -169,7 +169,7 @@
 						to="/sign-out"
 						v-if="$store.state.user.isLoggedIn"
 					>
-						<IconBase :iconName="'Skill Builds'">
+						<IconBase>
 							<IconSignOut />
 						</IconBase>
 						<span class="aside__link-desc">Выйти</span>
@@ -212,7 +212,6 @@
 					@click="toggleNavigationVisibility"
 				>
 					<IconBase
-						:iconName="'Open Mobile Navigation'"
 						:width="24"
 						:height="24"
 						class="aside__hamburger-icon"
@@ -221,7 +220,6 @@
 						<IconHamburger />
 					</IconBase>
 					<IconBase
-						:iconName="'Close Mobile Navigation'"
 						:width="24"
 						:height="24"
 						class="aside__hamburger-icon"

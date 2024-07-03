@@ -4,7 +4,6 @@
 
 		<button class="modal__google-btn btn" @click="signInWithGoogle">
 			<IconBase
-				:iconName="'Sign in with Google'"
 				class="modal__google-icon"
 				:width="32"
 				:height="32"

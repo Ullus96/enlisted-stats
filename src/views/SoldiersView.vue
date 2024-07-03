@@ -6,7 +6,7 @@
 					<TooltipComponent :direction="'bottom'">
 						<p><span class="hotkey">Esc</span> - сбросить ввод</p>
 					</TooltipComponent>
-					<IconBase :iconName="'Search'">
+					<IconBase>
 						<IconSearch />
 					</IconBase>
 				</div>
@@ -32,7 +32,7 @@
 							<p>Нажми по строчке чтобы включить/выключить фильтрацию.</p>
 						</TooltipComponent>
 
-						<IconBase :iconName="'Tooltip'">
+						<IconBase>
 							<IconQuestionCircle />
 						</IconBase>
 					</div>

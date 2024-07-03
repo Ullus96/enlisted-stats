@@ -101,12 +101,24 @@
 		</template>
 
 		<template v-else>
-			<div class="mt-s mb-m">
+			<div class="mt-l">
+				<h3>Текущие параметры</h3>
+				<div class="cc__stats-block">
+					<IconBase>
+						<IconMobility />
+					</IconBase>
+					<IconBase>
+						<IconVitality />
+					</IconBase>
+					<IconBase>
+						<IconWeapon />
+					</IconBase>
+				</div>
 				<button
-					class="btn btn-small mb-s cc__btn-back"
+					class="btn btn-m btn-secondary cc__btn-back"
 					@click="isEditingSettings = !isEditingSettings"
 				>
-					<i class="fa-solid fa-arrow-left"></i> Вернуться
+					Изменить параметры
 				</button>
 
 				<calculator-block
@@ -134,9 +146,21 @@ import { uniqueSoldiersList } from '@/data/soldiersList';
 import CcTagItem from '@/components/cc/CcTagItem.vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconMobility from '@/components/ui/icons/IconMobility.vue';
+import IconVitality from '@/components/ui/icons/IconVitality.vue';
+import IconWeapon from '@/components/ui/icons/IconWeapon.vue';
 
 export default defineComponent({
-	components: { CcTagItem, CalculatorBlock, TooltipComponent },
+	components: {
+		CcTagItem,
+		CalculatorBlock,
+		TooltipComponent,
+		IconBase,
+		IconMobility,
+		IconVitality,
+		IconWeapon,
+	},
 	setup() {
 		const stats = reactive([null, null, null]);
 		const tags = reactive(['base']);

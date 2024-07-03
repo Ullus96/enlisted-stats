@@ -4,7 +4,7 @@
 			class="calculator__hotkeys-block tooltip-anchor--no-relative"
 			v-if="branchIndex === 0"
 		>
-			<IconBase :iconName="'Hotkeys'">
+			<IconBase>
 				<IconQuestionCircle />
 			</IconBase>
 			<TooltipComponent :direction="'right'" :width="30" :color="'dark'">

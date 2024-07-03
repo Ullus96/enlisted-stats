@@ -3,7 +3,7 @@
 		class="calculator__restriction-text-block"
 		:class="{ inactive: !isHigherTiersBlocked }"
 	>
-		<IconBase :iconName="'Restriction'" :height="24" :width="24">
+		<IconBase :height="24" :width="24">
 			<IconLock />
 		</IconBase>
 		<p class="calculator__restriction-text">

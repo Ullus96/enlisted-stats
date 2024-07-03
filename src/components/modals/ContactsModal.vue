@@ -9,14 +9,14 @@
 			</p>
 			<div class="modal__contacts">
 				<p class="modal__contact">
-					<IconBase :iconName="'Discord'" :width="24" :height="24">
+					<IconBase :width="24" :height="24">
 						<IconDiscord />
 					</IconBase>
 					<span>@ullus77</span>
 				</p>
 
 				<p class="modal__contact modal__link">
-					<IconBase :iconName="'Enlisted Forum'" :width="24" :height="24">
+					<IconBase :width="24" :height="24">
 						<IconLetter />
 					</IconBase>
 					<a href="https://forum.enlisted.net/ru/u/Ullus/" target="_blank"

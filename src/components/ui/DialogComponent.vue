@@ -7,7 +7,7 @@
 				@click="closeModal"
 				ref="closeBtn"
 			>
-				<IconBase :iconName="'Close modal window'">
+				<IconBase>
 					<IconTimes />
 				</IconBase>
 			</button>
