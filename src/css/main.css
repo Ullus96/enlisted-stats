@@ -3119,6 +3119,42 @@ h3 {
   margin-top: 4rem;
 }
 
+.legal {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+.legal section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.legal ul {
+  padding-left: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.legal table {
+  background-color: rgba(37, 37, 37, 0.75);
+}
+.legal table td {
+  padding: 0.8rem 1.2rem;
+}
+.legal table tr td:nth-child(1) {
+  border-right: solid 1px rgb(56, 56, 56);
+  border-left: solid 1px rgb(56, 56, 56);
+}
+.legal table tr td:nth-child(2) {
+  border-right: solid 1px rgb(56, 56, 56);
+}
+.legal table tr:nth-child(1) td {
+  border-top: 1px solid rgb(56, 56, 56);
+}
+.legal table td {
+  border-bottom: 1px solid rgb(56, 56, 56);
+}
+
 .checkbox-wrapper-2 .ikxBAC {
   -webkit-appearance: none;
      -moz-appearance: none;
