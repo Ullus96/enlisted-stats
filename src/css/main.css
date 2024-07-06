@@ -557,7 +557,7 @@ h3 {
   row-gap: 2rem;
   padding: 0 2rem;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 .calculator__stats-block:last-child {
   padding-bottom: 2rem;
@@ -2633,12 +2633,14 @@ h3 {
           backdrop-filter: blur(6px);
   display: flex;
   gap: 1.2rem;
+}
+.sbuild__item--clickable {
   cursor: pointer;
   position: relative;
   position: relative;
   overflow: hidden;
 }
-.sbuild__item::after {
+.sbuild__item--clickable::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -2652,11 +2654,11 @@ h3 {
   opacity: 0;
   z-index: -1;
 }
-.sbuild__item:active:after {
+.sbuild__item--clickable:active:after {
   transform: translate(-50%, -50%) scale(4);
   opacity: 1;
 }
-.sbuild__item:hover {
+.sbuild__item--clickable:hover {
   background-color: rgba(51, 51, 51, 0.76);
 }
 .sbuild__main-content {
@@ -2727,7 +2729,7 @@ h3 {
   font-size: 1.4rem;
 }
 .sbuild__single-build {
-  cursor: default;
+  cursor: auto;
   margin-left: auto;
   margin-right: auto;
   width: 100%;

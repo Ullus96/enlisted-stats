@@ -1,6 +1,6 @@
 <template>
 	<template v-if="isFinishedLoading && loadedUserData">
-		<section class="sbuild__item">
+		<section class="sbuild__item sbuild__item--clickable">
 			<router-link
 				:to="/build/ + item.dbId"
 				target="_blank"

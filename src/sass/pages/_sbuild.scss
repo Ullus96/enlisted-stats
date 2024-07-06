@@ -13,12 +13,14 @@
 		display: flex;
 		gap: 1.2rem;
 
-		cursor: pointer;
-		position: relative;
+		&--clickable {
+			cursor: pointer;
+			position: relative;
 
-		@include pressed($color-text-100, $color-bg-a-500, 4);
-		&:hover {
-			@include hovered($color-text-100, $color-bg-a-500);
+			@include pressed($color-text-100, $color-bg-a-500, 4);
+			&:hover {
+				@include hovered($color-text-100, $color-bg-a-500);
+			}
 		}
 	}
 
@@ -110,7 +112,7 @@
 
 	// single build page
 	&__single-build {
-		cursor: default;
+		cursor: auto;
 		margin-left: auto;
 		margin-right: auto;
 		width: 100%;
