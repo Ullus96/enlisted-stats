@@ -23,6 +23,7 @@
 						  }
 				"
 				:isFinishedLoading="isFinishedLoading"
+				:isStatusVisible="true"
 			></build-card>
 		</div>
 		<div class="sbuild__load-more" v-if="lastVisible">

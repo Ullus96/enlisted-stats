@@ -2621,20 +2621,46 @@ h3 {
 }
 
 .sbuild__grid {
-  margin-top: 4rem;
+  margin-top: 6rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 .sbuild__item {
-  background-color: #222222;
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: 0.8rem;
+  background-color: rgba(39, 39, 39, 0.75);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  display: flex;
   cursor: pointer;
   position: relative;
+  position: relative;
+  overflow: hidden;
+}
+.sbuild__item::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(68, 68, 68, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.sbuild__item:active:after {
+  transform: translate(-50%, -50%) scale(4);
+  opacity: 1;
 }
 .sbuild__item:hover {
-  background-color: #262626;
+  background-color: rgba(51, 51, 51, 0.76);
+}
+.sbuild__main-content {
+  flex: 1 1 auto;
+  padding: 1.2rem;
 }
 .sbuild__link {
   position: absolute;
@@ -2657,54 +2683,6 @@ h3 {
   font-size: 0.6em;
   vertical-align: middle;
   color: rgba(255, 255, 255, 0.6);
-}
-.sbuild__likes-block {
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.sbuild__likes-block:hover .sbuild__likes-svg path {
-  stroke: #ff4136;
-}
-.sbuild__likes-svg {
-  height: 1.4rem;
-}
-.sbuild__likes-svg path {
-  transition: 0.1s ease-in-out all;
-}
-.sbuild__likes-block.active:hover .sbuild__likes-svg path {
-  fill: transparent;
-}
-.sbuild__likes-block.active .sbuild__likes-amount {
-  color: #ff4136;
-}
-.sbuild__likes-block.active .sbuild__likes-svg path {
-  stroke: #ff4136;
-  fill: #ff4136;
-}
-.sbuild__icon-container {
-  position: relative;
-}
-.sbuild__icon-sub {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  opacity: 1;
-  transition: top 0.6s ease-out, left 0.6s ease-out, opacity 0.6s ease-out;
-}
-.sbuild__icon-sub path {
-  stroke: #ff4136 !important;
-  fill: #ff4136 !important;
-}
-.sbuild__icon-main {
-  position: relative;
-  z-index: 2;
 }
 .sbuild__data-block {
   display: flex;
@@ -2823,6 +2801,59 @@ h3 {
 }
 .sbuild__delete-popup-btn--no {
   background-color: #262626;
+}
+.sbuild__info-col {
+  flex: 0 0 auto;
+  padding: 0.4rem;
+  color: rgb(165, 165, 165);
+  font-size: 1.4rem;
+}
+.sbuild__likes-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem;
+  gap: 0.4rem;
+}
+.sbuild__likes-block:hover .sbuild__likes-svg path {
+  stroke: rgb(201, 45, 55);
+  fill: rgb(201, 45, 55);
+}
+.sbuild__likes-svg {
+  height: 1.4rem;
+}
+.sbuild__likes-svg path {
+  transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
+}
+.sbuild__likes-block.active:hover .sbuild__likes-svg path {
+  fill: transparent;
+}
+.sbuild__likes-block.active .sbuild__likes-amount {
+  color: rgb(201, 45, 55);
+}
+.sbuild__likes-block.active .sbuild__likes-svg path {
+  stroke: rgb(201, 45, 55);
+  fill: rgb(201, 45, 55);
+}
+.sbuild__icon-container {
+  position: relative;
+}
+.sbuild__icon-sub {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 1;
+  transition: top 0.6s ease-out, left 0.6s ease-out, opacity 0.6s ease-out;
+}
+.sbuild__icon-sub path {
+  stroke: rgb(201, 45, 55) !important;
+  fill: rgb(201, 45, 55) !important;
+}
+.sbuild__icon-main {
+  position: relative;
+  z-index: 2;
 }
 
 .wip__block {
