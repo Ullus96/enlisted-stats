@@ -10,6 +10,7 @@ export interface DialogState {
 	isDeletingAccount: boolean;
 	isDeletingEvent: boolean;
 	isLoggingOut: boolean;
+	isDeletingBuild: boolean;
 }
 
 export interface PopUp {
@@ -65,6 +66,7 @@ export default createStore<State>({
 			isDeletingAccount: false,
 			isDeletingEvent: false,
 			isLoggingOut: false,
+			isDeletingBuild: false,
 		},
 		loading: {
 			isAuthInitialized: false,

@@ -1,13 +1,13 @@
 <template>
 	<template v-if="isFinishedLoading && loadedUserData">
 		<section class="sbuild__item">
-			<!-- <router-link
+			<router-link
 				:to="/build/ + item.dbId"
 				target="_blank"
 				class="sbuild__link"
 				v-if="hasLink"
 			>
-			</router-link> -->
+			</router-link>
 			<div class="sbuild__main-content">
 				<p class="sbuild__name">
 					{{ item.data.name }}
@@ -204,7 +204,6 @@
 <script lang="ts">
 import { defineComponent, PropType, Ref, ref } from 'vue';
 import { ISkillBuild, ISkillBuildWithID } from '@/type/SkillBuild';
-import ToolTip from '@/components/ToolTip.vue';
 import {
 	convertSkillTagToName,
 	getSoldierData,
@@ -250,7 +249,6 @@ export default defineComponent({
 		},
 	},
 	components: {
-		ToolTip,
 		TooltipComponent,
 		IconBase,
 		IconHeart,

@@ -1,5 +1,5 @@
 <template>
-	<div class="container mt-s">
+	<div class="container mt-l">
 		<!-- {{ loadedData }} -->
 
 		<template v-if="isLoading">
@@ -13,7 +13,7 @@
 				:buildId="id"
 				:hasLink="false"
 				:isStatusVisible="true"
-				class="sbuild__single-build mb-s"
+				class="sbuild__single-build"
 			></build-card-single>
 
 			<template v-if="loadedData">
