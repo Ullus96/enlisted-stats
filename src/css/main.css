@@ -2693,6 +2693,7 @@ h3 {
   gap: 0.4rem;
   align-items: center;
   color: rgb(165, 165, 165);
+  font-size: 1.4rem;
 }
 .sbuild__data-stat {
   display: flex;
@@ -2703,24 +2704,27 @@ h3 {
   color: rgb(116, 116, 116);
 }
 .sbuild__author-block {
+  margin-top: 1.6rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 .sbuild__author-avatar {
-  width: 5rem;
-  height: 5rem;
+  width: 4.8rem;
+  height: 4.8rem;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 1rem;
+  border-radius: 100%;
 }
 .sbuild__author-block-right {
   display: flex;
   flex-direction: column;
+  gap: 0.4rem;
+  line-height: 120%;
 }
 .sbuild__author-date {
-  color: #7f8388;
-  font-size: 0.8em;
+  color: rgb(116, 116, 116);
+  font-size: 1.4rem;
 }
 .sbuild__single-build {
   cursor: default;

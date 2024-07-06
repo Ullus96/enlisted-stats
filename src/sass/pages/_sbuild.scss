@@ -50,6 +50,7 @@
 		align-items: center;
 		gap: 0.4rem;
 		color: $color-text-400;
+		// font-size: $ui-font-size-s;
 	}
 
 	&__data-icon {
@@ -63,6 +64,7 @@
 		gap: 0.4rem;
 		align-items: center;
 		color: $color-text-400;
+		font-size: $ui-font-size-s;
 	}
 
 	&__data-stat {
@@ -77,26 +79,33 @@
 
 	// Author block
 	&__author-block {
+		margin-top: 1.6rem;
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.8rem;
 	}
 
 	&__author-avatar {
-		width: 5rem;
-		height: 5rem;
+		width: 4.8rem;
+		height: 4.8rem;
 		object-fit: cover;
-		border-radius: 1rem;
+		border-radius: 100%;
 	}
 
 	&__author-block-right {
 		display: flex;
 		flex-direction: column;
+		gap: 0.4rem;
+		line-height: 120%;
 	}
 
+	// &__author-name {
+	// 	color: $color-text-400;
+	// }
+
 	&__author-date {
-		color: $color-skill-inactive;
-		font-size: 0.8em;
+		color: $color-text-700;
+		font-size: $ui-font-size-s;
 	}
 
 	// single build page

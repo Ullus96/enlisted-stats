@@ -47,21 +47,21 @@
 					</div>
 					<div class="sbuild__data-stats">
 						<span class="sbuild__data-stat">
-							<IconBase :iconColor="'#94FF94'">
+							<IconBase :iconColor="'#94FF94'" :width="14" :height="14">
 								<IconMobility />
 							</IconBase>
 							{{ item.stats[0] }}
 						</span>
 						<span class="sbuild__data-separator">-</span>
 						<span class="sbuild__data-stat">
-							<IconBase :iconColor="'#FF9494'">
+							<IconBase :iconColor="'#FF9494'" :width="14" :height="14">
 								<IconMobility />
 							</IconBase>
 							{{ item.stats[1] }}
 						</span>
 						<span class="sbuild__data-separator">-</span>
 						<span class="sbuild__data-stat">
-							<IconBase :iconColor="'#FFFF94'">
+							<IconBase :iconColor="'#FFFF94'" :width="14" :height="14">
 								<IconMobility />
 							</IconBase>
 							{{ item.stats[2] }}
@@ -113,6 +113,7 @@
 				</template>
 			</div>
 
+			<!-- Icons column -->
 			<div class="sbuild__info-col">
 				<div class="sbuild__icons-top">
 					<div
