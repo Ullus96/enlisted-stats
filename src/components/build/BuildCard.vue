@@ -9,14 +9,12 @@
 			>
 			</router-link> -->
 			<div class="sbuild__main-content">
-				<div class="sbuild__header-block">
-					<h2 class="sbuild__name">
-						{{ item.data.name }}
-					</h2>
-				</div>
+				<p class="sbuild__name">
+					{{ item.data.name }}
+				</p>
 
 				<div class="sbuild__data-block">
-					<div class="sbuild__data-left">
+					<div class="sbuild__data-class">
 						<!-- if soldier has a preset class -->
 						<template v-if="item.soldierClass !== 'custom'">
 							<img
@@ -27,7 +25,7 @@
 								alt=""
 								class="sbuild__data-icon"
 							/>
-							<p class="sbuild__data-desc">
+							<p>
 								{{ getSoldierData('id', item.soldierClass, 'name') }}
 							</p>
 						</template>
@@ -39,7 +37,7 @@
 								alt=""
 								class="sbuild__data-icon"
 							/>
-							<p class="sbuild__data-desc">
+							<p>
 								<span v-for="(tag, idx) in item.tags" :key="tag"
 									>{{ convertSkillTagToName(tag)
 									}}{{ idx + 1 < item.tags.length ? ', ' : '' }}</span
@@ -48,9 +46,26 @@
 						</template>
 					</div>
 					<div class="sbuild__data-stats">
-						[<span> {{ item.stats[0] }} </span> -
-						<span> {{ item.stats[1] }} </span> -
-						<span> {{ item.stats[2] }} </span>]
+						<span class="sbuild__data-stat">
+							<IconBase :iconColor="'#94FF94'">
+								<IconMobility />
+							</IconBase>
+							{{ item.stats[0] }}
+						</span>
+						<span class="sbuild__data-separator">-</span>
+						<span class="sbuild__data-stat">
+							<IconBase :iconColor="'#FF9494'">
+								<IconMobility />
+							</IconBase>
+							{{ item.stats[1] }}
+						</span>
+						<span class="sbuild__data-separator">-</span>
+						<span class="sbuild__data-stat">
+							<IconBase :iconColor="'#FFFF94'">
+								<IconMobility />
+							</IconBase>
+							{{ item.stats[2] }}
+						</span>
 					</div>
 				</div>
 
@@ -201,6 +216,9 @@ import IconGlobe from '@/components/ui/icons/IconGlobe.vue';
 import IconEyeSlash from '@/components/ui/icons/IconEyeSlash.vue';
 import IconTrash from '@/components/ui/icons/IconTrash.vue';
 import IconCopy from '@/components/ui/icons/IconCopy.vue';
+import IconMobility from '@/components/ui/icons/IconMobility.vue';
+import IconVitality from '@/components/ui/icons/IconVitality.vue';
+import IconWeapon from '@/components/ui/icons/IconWeapon.vue';
 
 export default defineComponent({
 	props: {
@@ -239,6 +257,9 @@ export default defineComponent({
 		IconEyeSlash,
 		IconTrash,
 		IconCopy,
+		IconMobility,
+		IconVitality,
+		IconWeapon,
 	},
 	setup(props) {
 		function getTrueOrFalse(): boolean {
