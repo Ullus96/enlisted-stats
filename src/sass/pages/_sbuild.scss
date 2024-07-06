@@ -47,12 +47,6 @@
 		padding-right: 4rem;
 	}
 
-	&__visibility {
-		font-size: 0.6em;
-		vertical-align: middle;
-		color: rgba($color-white, 0.6);
-	}
-
 	&__data-block {
 		display: flex;
 		flex-direction: column;
@@ -198,6 +192,23 @@
 		padding: 0.4rem;
 		color: $color-text-400;
 		font-size: $ui-font-size-s;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	&__card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.8rem;
+		border-radius: 0.4rem;
+
+		@include pressed($color-text-100, $color-bg-a-200, 4);
+		&:hover {
+			@include hovered($color-text-100, $color-bg-a-200);
+		}
 	}
 
 	&__likes-block {
@@ -219,7 +230,7 @@
 	}
 
 	&__likes-svg {
-		height: 1.4rem;
+		width: 1.6rem;
 		path {
 			transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
 		}

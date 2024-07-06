@@ -2679,11 +2679,6 @@ h3 {
   gap: 1rem;
   padding-right: 4rem;
 }
-.sbuild__visibility {
-  font-size: 0.6em;
-  vertical-align: middle;
-  color: rgba(255, 255, 255, 0.6);
-}
 .sbuild__data-block {
   display: flex;
   flex-direction: column;
@@ -2807,6 +2802,40 @@ h3 {
   padding: 0.4rem;
   color: rgb(165, 165, 165);
   font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sbuild__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem;
+  border-radius: 0.4rem;
+  position: relative;
+  overflow: hidden;
+}
+.sbuild__card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: rgba(78, 78, 78, 0.775);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+}
+.sbuild__card:active:after {
+  transform: translate(-50%, -50%) scale(4);
+  opacity: 1;
+}
+.sbuild__card:hover {
+  background-color: rgba(62, 62, 62, 0.76);
 }
 .sbuild__likes-block {
   display: flex;
@@ -2821,7 +2850,7 @@ h3 {
   fill: rgb(201, 45, 55);
 }
 .sbuild__likes-svg {
-  height: 1.4rem;
+  width: 1.6rem;
 }
 .sbuild__likes-svg path {
   transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;

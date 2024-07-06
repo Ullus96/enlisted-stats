@@ -5,6 +5,7 @@
 		:height="height"
 		:viewBox="viewBox"
 		role="presentation"
+		ref="svgRef"
 	>
 		<g :fill="iconColor">
 			<slot />
@@ -13,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 
 export default defineComponent({
 	props: {
@@ -34,6 +35,19 @@ export default defineComponent({
 			default: 'currentColor',
 		},
 	},
-	setup() {},
+	setup(props) {
+		const svgRef = ref<SVGElement | null>(null);
+
+		onMounted(() => {
+			const paths = svgRef.value?.querySelectorAll('path');
+			if (paths) {
+				paths.forEach((path) => {
+					path.setAttribute('fill', props.iconColor);
+				});
+			}
+		});
+
+		return { svgRef };
+	},
 });
 </script>

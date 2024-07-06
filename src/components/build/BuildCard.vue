@@ -128,20 +128,56 @@
 						<span class="sbuild__likes-amount">{{ likesAmountOnLoad }}</span>
 					</div>
 
+					<!-- Shows all buttons (visibility, cloned) -->
 					<template v-if="isStatusVisible">
-						<span
-							class="sbuild__visibility tooltip-parent"
-							v-if="item.data.isPublic"
-						>
-							<i class="fa-solid fa-globe"></i>
-							<tool-tip :width="'20rem'"
-								>Сборка видна всем пользователям</tool-tip
-							>
-						</span>
-						<span class="sbuild__visibility tooltip-parent" v-else>
-							<i class="fa-regular fa-eye-slash"></i>
-							<tool-tip :width="'20rem'">Сборка видна только вам</tool-tip>
-						</span>
+						<!-- Visibility -->
+						<div class="tooltip-anchor" v-if="item.data.isPublic">
+							<TooltipComponent :direction="'left'" :width="22">
+								<p>Видна всем пользователям</p>
+							</TooltipComponent>
+							<div class="sbuild__card">
+								<IconBase :iconColor="'#a5a5a5'">
+									<IconGlobe />
+								</IconBase>
+							</div>
+						</div>
+						<div class="tooltip-anchor" v-else>
+							<TooltipComponent :direction="'left'" :width="22">
+								<p>Видна только вам</p>
+							</TooltipComponent>
+							<div class="sbuild__card">
+								<IconBase :iconColor="'#a5a5a5'">
+									<IconEyeSlash />
+								</IconBase>
+							</div>
+						</div>
+						<!-- End of Visibility -->
+						<!-- Cloned -->
+						<div class="tooltip-anchor" v-if="item.data.isCloned">
+							<TooltipComponent :direction="'left'" :width="22">
+								<p>Сборка является копией</p>
+							</TooltipComponent>
+							<div class="sbuild__card">
+								<IconBase :iconColor="'#a5a5a5'">
+									<IconCopy />
+								</IconBase>
+							</div>
+						</div>
+					</template>
+				</div>
+
+				<div class="sbuild__icons-bottom">
+					<template v-if="isStatusVisible">
+						<div class="tooltip-anchor">
+							<TooltipComponent :direction="'left'" :width="10">
+								<p>Удалить</p>
+							</TooltipComponent>
+							<div class="sbuild__card">
+								<IconBase :iconColor="'#a5a5a5'">
+									<IconTrash />
+								</IconBase>
+							</div>
+						</div>
 					</template>
 				</div>
 			</div>
@@ -158,11 +194,13 @@ import {
 	getSoldierData,
 } from '@/functions/convertSoldierDataToName';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconHeart from '@/components/ui/icons/IconHeart.vue';
 import IconGlobe from '@/components/ui/icons/IconGlobe.vue';
 import IconEyeSlash from '@/components/ui/icons/IconEyeSlash.vue';
 import IconTrash from '@/components/ui/icons/IconTrash.vue';
+import IconCopy from '@/components/ui/icons/IconCopy.vue';
 
 export default defineComponent({
 	props: {
@@ -194,11 +232,13 @@ export default defineComponent({
 	},
 	components: {
 		ToolTip,
+		TooltipComponent,
 		IconBase,
 		IconHeart,
 		IconGlobe,
 		IconEyeSlash,
 		IconTrash,
+		IconCopy,
 	},
 	setup(props) {
 		function getTrueOrFalse(): boolean {
