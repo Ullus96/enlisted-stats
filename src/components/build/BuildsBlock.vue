@@ -121,92 +121,188 @@ export default defineComponent({
 				// If Loading from 'skill-builds'
 				if (props.from === 'base') {
 					if (!lastVisible.value) {
-						res = await getDocs(
-							query(
-								collection(db, 'builds'),
-								orderBy(
-									`data.${filterParams.value.sortByID}`,
-									filterParams.value.sortByMethod
-								),
-								where('data.isPublic', '==', true),
-								limit(12)
-							)
-						);
+						// Check if there is a selected class
+						if (filterParams.value.selectedClass) {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.isPublic', '==', true),
+									where('soldierClass', '==', filterParams.value.selectedClass),
+									limit(12)
+								)
+							);
+						} else {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.isPublic', '==', true),
+									limit(12)
+								)
+							);
+						}
 					} else {
-						res = await getDocs(
-							query(
-								collection(db, 'builds'),
-								orderBy(
-									`data.${filterParams.value.sortByID}`,
-									filterParams.value.sortByMethod
-								),
-								where('data.isPublic', '==', true),
-								startAfter(lastVisible.value),
-								limit(12)
-							)
-						);
+						if (filterParams.value.selectedClass) {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.isPublic', '==', true),
+									where('soldierClass', '==', filterParams.value.selectedClass),
+									startAfter(lastVisible.value),
+									limit(12)
+								)
+							);
+						} else {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.isPublic', '==', true),
+									startAfter(lastVisible.value),
+									limit(12)
+								)
+							);
+						}
 					}
 				}
 				// ==============================
 				// If Loading from 'saved-builds'
 				else if (props.from === 'liked' && auth) {
 					if (!lastVisible.value) {
-						res = await getDocs(
-							query(
-								collection(db, 'builds'),
-								orderBy(
-									`data.${filterParams.value.sortByID}`,
-									filterParams.value.sortByMethod
-								),
-								where('data.isPublic', '==', true),
-								where('data.likedBy', 'array-contains', auth.uid),
-								limit(12)
-							)
-						);
+						if (filterParams.value.selectedClass) {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.isPublic', '==', true),
+									where('soldierClass', '==', filterParams.value.selectedClass),
+									where('data.likedBy', 'array-contains', auth.uid),
+									limit(12)
+								)
+							);
+						} else {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.isPublic', '==', true),
+									where('data.likedBy', 'array-contains', auth.uid),
+									limit(12)
+								)
+							);
+						}
 					} else {
-						res = await getDocs(
-							query(
-								collection(db, 'builds'),
-								orderBy(
-									`data.${filterParams.value.sortByID}`,
-									filterParams.value.sortByMethod
-								),
-								where('data.isPublic', '==', true),
-								where('data.likedBy', 'array-contains', auth.uid),
-								startAfter(lastVisible.value),
-								limit(12)
-							)
-						);
+						if (filterParams.value.selectedClass) {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.isPublic', '==', true),
+									where('soldierClass', '==', filterParams.value.selectedClass),
+									where('data.likedBy', 'array-contains', auth.uid),
+									startAfter(lastVisible.value),
+									limit(12)
+								)
+							);
+						} else {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.isPublic', '==', true),
+									where('data.likedBy', 'array-contains', auth.uid),
+									startAfter(lastVisible.value),
+									limit(12)
+								)
+							);
+						}
 					}
 				}
 				// ==============================
 				// If Loading from 'my-builds'
 				else if (props.from === 'my' && auth) {
 					if (!lastVisible.value) {
-						res = await getDocs(
-							query(
-								collection(db, 'builds'),
-								orderBy(
-									`data.${filterParams.value.sortByID}`,
-									filterParams.value.sortByMethod
-								),
-								where('data.author', '==', auth.uid),
-								limit(12)
-							)
-						);
+						if (filterParams.value.selectedClass) {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.author', '==', auth.uid),
+									where('soldierClass', '==', filterParams.value.selectedClass),
+									limit(12)
+								)
+							);
+						} else {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.author', '==', auth.uid),
+									limit(12)
+								)
+							);
+						}
 					} else {
-						res = await getDocs(
-							query(
-								collection(db, 'builds'),
-								orderBy(
-									`data.${filterParams.value.sortByID}`,
-									filterParams.value.sortByMethod
-								),
-								where('data.author', '==', auth.uid),
-								startAfter(lastVisible.value),
-								limit(12)
-							)
-						);
+						if (filterParams.value.selectedClass) {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.author', '==', auth.uid),
+									where('soldierClass', '==', filterParams.value.selectedClass),
+									startAfter(lastVisible.value),
+									limit(12)
+								)
+							);
+						} else {
+							res = await getDocs(
+								query(
+									collection(db, 'builds'),
+									orderBy(
+										`data.${filterParams.value.sortByID}`,
+										filterParams.value.sortByMethod
+									),
+									where('data.author', '==', auth.uid),
+									startAfter(lastVisible.value),
+									limit(12)
+								)
+							);
+						}
 					}
 				}
 
