@@ -5,14 +5,14 @@ function generateKey() {
 }
 
 export const items: IItem[] = [
-	{
-		name: 'Стандартный',
-		id: 'standart',
-		icon: 'unknown.svg',
-		tags: ['base'],
-		statsMod: [0, 0, 0],
-		perk: '',
-	},
+	// {
+	// 	name: 'Стандартный',
+	// 	id: 'standart',
+	// 	icon: 'unknown.svg',
+	// 	tags: ['base'],
+	// 	statsMod: [0, 0, 0],
+	// 	perk: '',
+	// },
 	{
 		name: 'Боец I',
 		id: 'rifleman1',
