@@ -2,15 +2,26 @@
 	<Teleport to="#sortBy">
 		<div class="filter__sort-by-block">
 			<span class="filter__sort-by-desc">Сортировка</span>
-			<button class="filter__sort-item btn" @click="setSortBy('nameLowercase')">
-				По названию
-			</button>
-			<button class="filter__sort-item btn" @click="setSortBy('likesAmount')">
-				По лайкам
-			</button>
-			<button class="filter__sort-item btn" @click="setSortBy('createdAt')">
-				По дате создания
-			</button>
+			<div class="filter__sort-items">
+				<button
+					class="btn btn-m btn-tertiary filter__sort-item"
+					@click="setSortBy('nameLowercase')"
+				>
+					По названию
+				</button>
+				<button
+					class="btn btn-m btn-tertiary filter__sort-item"
+					@click="setSortBy('likesAmount')"
+				>
+					По лайкам
+				</button>
+				<button
+					class="btn btn-m btn-tertiary filter__sort-item"
+					@click="setSortBy('createdAt')"
+				>
+					По дате создания
+				</button>
+			</div>
 		</div>
 	</Teleport>
 	<Teleport to="body">

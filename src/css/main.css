@@ -1338,12 +1338,6 @@ h3 {
   flex-wrap: wrap;
   gap: 0.8rem;
 }
-.filter__separator {
-  content: "";
-  height: 32px;
-  width: 1px;
-  background-color: rgb(56, 56, 56);
-}
 .filter__group {
   display: flex;
   flex-wrap: nowrap;
@@ -1379,37 +1373,36 @@ h3 {
   padding: 1.2rem 1.6rem 1.2rem 1.2rem;
 }
 .filter__sort-by-block {
-  z-index: 21;
+  z-index: 40;
   position: absolute;
   left: 50%;
   top: 90%;
   transform: translateX(-50%);
-  background: #262626;
-  padding: 1.5rem 1rem;
-  box-shadow: 0 0 2.5rem rgba(17, 17, 17, 0.4);
-  border-radius: 1rem;
-  min-width: 20rem;
+  background: rgb(39, 39, 39);
+  padding: 2rem 2.8rem;
+  box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
+  border-radius: 1.2rem;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 30rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 .filter__sort-by-desc {
-  font-size: 0.75em;
-  opacity: 0.8;
-  padding: 0.5rem 2rem 1rem;
+  font-size: 1.2rem;
+  color: rgb(116, 116, 116);
+  padding: 0 2.2rem;
+}
+.filter__sort-items {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .filter__sort-item {
-  padding: 1rem 2rem;
   width: 100%;
-  border-radius: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: 0.15s ease-in-out background, 0.15s ease-in-out color;
-}
-.filter__sort-item:hover {
-  background: #222222;
+  text-align: start;
 }
 .filter__under {
   margin-top: 3.2rem;
