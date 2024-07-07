@@ -1,7 +1,5 @@
 <template>
-	<div class="filter__title-block">
-		<h2 class="filter__title">{{ title }}</h2>
-	</div>
+	<h3 class="filter__title mt-l">{{ title }}</h3>
 	<div class="filter__block">
 		<!-- popups -->
 		<filter-classes
@@ -18,10 +16,10 @@
 		<!-- end of popups -->
 
 		<!-- temporary hide classes -->
-		<template v-if="false">
+		<template v-if="true">
 			<div class="filter__item">
 				<span class="filter__label"> Класс: </span>
-				<a href="" class="filter__selected" @click.prevent="showFilterClasses">
+				<button class="filter__selected" @click.prevent="showFilterClasses">
 					{{ selectedClassName }}
 					<span
 						><i
@@ -29,13 +27,13 @@
 							:class="{ rotate: isFilterClassesVisible }"
 						></i
 					></span>
-				</a>
+				</button>
 			</div>
 		</template>
 
 		<div class="filter__item" id="sortBy">
 			<!-- <span>Сортировка:</span> -->
-			<a href="" class="filter__selected" @click.prevent="showSortBy">
+			<button class="filter__selected" @click.prevent="showSortBy">
 				{{ sortByName }}
 				<span
 					><i
@@ -43,12 +41,11 @@
 						:class="{ rotate: isSortByVisible }"
 					></i
 				></span>
-			</a>
+			</button>
 		</div>
 
 		<div class="filter__item">
-			<a
-				href=""
+			<button
 				class="filter__selected filter__sort-by-method"
 				@click.prevent="changeSortByMethod"
 			>
@@ -72,7 +69,7 @@
 				<template v-if="sortByID == 'createdAt'">
 					{{ sortByMethod === 'asc' ? 'Сначала старые' : 'Сначала новые' }}
 				</template>
-			</a>
+			</button>
 		</div>
 	</div>
 </template>

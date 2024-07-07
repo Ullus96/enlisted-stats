@@ -1298,24 +1298,23 @@ h3 {
 
 .filter__block {
   position: relative;
+  margin-top: 3.2rem;
   display: flex;
   width: 100%;
-  background: #222222;
-  padding: 2rem 2rem;
-  gap: 3rem;
+  gap: 2rem;
 }
 .filter__item {
   position: relative;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.8rem;
 }
 .filter__selected {
   display: flex;
-  gap: 0.35rem;
+  gap: 0.4rem;
   transition: 0.15s ease-in-out color;
 }
 .filter__selected:hover {
-  color: #f9da75;
+  color: rgb(175, 61, 61);
 }
 .filter__chevron {
   font-size: 0.8em;
@@ -1407,17 +1406,8 @@ h3 {
 .filter__sort-item:hover {
   background: #222222;
 }
-.filter__title-block {
-  border-radius: 1rem 1rem 0 0;
-  padding: 2rem 2rem 1rem;
-  background-color: #222222;
-}
 .filter__under {
-  background-color: #262626;
-  width: 100%;
-  margin-bottom: 2rem;
-  padding: 1rem 2rem 2rem;
-  border-radius: 0 0 1rem 1rem;
+  margin-top: 3.2rem;
 }
 
 .aside {
@@ -2844,7 +2834,7 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0.8rem;
+  padding: 0.8rem 0.8rem 0.2rem;
   gap: 0.4rem;
 }
 .sbuild__likes-block {
@@ -2852,7 +2842,7 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0.8rem;
+  padding: 0.8rem 0.8rem 0.2rem;
   gap: 0.4rem;
 }
 .sbuild__likes-block:hover .sbuild__likes-svg path {

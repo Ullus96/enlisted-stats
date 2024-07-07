@@ -1,11 +1,11 @@
 <template>
-	<div class="container sbuild mt-m">
+	<div class="container sbuild">
 		<filters-block
 			@filterParams="filterParamsChanged"
 			:title="title"
 		></filters-block>
 		<div class="filter__under">
-			<button class="btn btn-small" @click="loadData(true)">
+			<button class="btn btn-m btn-primary" @click="loadData(true)">
 				Загрузить сборки
 			</button>
 		</div>
@@ -25,8 +25,8 @@
 				:isFinishedLoading="isFinishedLoading"
 			></build-card>
 		</div>
-		<div class="sbuild__load-more" v-if="lastVisible">
-			<button class="btn btn-small" @click="loadData(false)">
+		<div class="sbuild__load-more mt-m" v-if="lastVisible">
+			<button class="btn btn-m btn-tertiary" @click="loadData(false)">
 				Загрузить еще
 			</button>
 		</div>
