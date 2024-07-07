@@ -77,6 +77,15 @@
 						:tags="filteredItems[activeIdx].tags"
 						:soldierClass="filteredItems[activeIdx].id"
 					></calculator-block>
+					<div class="table__promo-buttons" style="margin-top: 1.2rem">
+						<span class="table__promo-or">ИЛИ</span>
+						<button
+							class="btn btn-m btn-secondary"
+							@click="filteredSoldierButtonHandler('presets')"
+						>
+							Назад
+						</button>
+					</div>
 				</div>
 
 				<div class="table__promo-block" v-else>
@@ -200,6 +209,7 @@ export default defineComponent({
 			loadedBuildIDs.clear();
 			lastVisible = null;
 			noMoreData = false;
+			if (isCalculatorSelected.value) return;
 			loadData();
 		}
 
@@ -235,6 +245,7 @@ export default defineComponent({
 					break;
 
 				default:
+					isCalculatorSelected.value = false;
 					break;
 			}
 		}
