@@ -75,7 +75,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, watch } from 'vue';
+import { defineComponent, PropType, Ref, ref, watch } from 'vue';
 import FilterClasses from './FilterClasses.vue';
 import FilterSortBy from './FilterSortBy.vue';
 import { SoldierID } from '@/type/Soldier';
@@ -89,6 +89,10 @@ export default defineComponent({
 		title: {
 			required: false,
 			type: String,
+		},
+		selectedClass: {
+			required: false,
+			default: false,
 		},
 	},
 	setup(props, context) {

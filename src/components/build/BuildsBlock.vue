@@ -3,7 +3,11 @@
 		<filters-block
 			@filterParams="filterParamsChanged"
 			:title="title"
+			:selectedClass="filterParams.selectedClass"
+			:sortByID="filterParams.sortByID"
+			:sortByMethod="filterParams.sortByMethod"
 		></filters-block>
+		{{ filterParams }}
 		<div class="filter__under">
 			<button class="btn btn-m btn-primary filter__btn" @click="loadData(true)">
 				Загрузить сборки
@@ -43,6 +47,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, reactive, Ref, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import {
 	saveToLocalStorageArray,
 	loadFromLocalStorageArray,
@@ -68,6 +73,7 @@ import { getLocalStorageUsersDataByKeyAndValue } from '@/functions/getDataByKeyA
 import FiltersBlock from '@/components/filter/FiltersBlock.vue';
 import { IFilterParams } from '@/components/filter/types';
 import { getAuth } from 'firebase/auth';
+import { SoldierID } from '@/type/Soldier';
 
 export default defineComponent({
 	components: { WorkInProgress, BuildCard, FiltersBlock },
@@ -415,6 +421,108 @@ export default defineComponent({
 			filterParams.value.selectedClass = payload.selectedClass;
 			filterParams.value.sortByID = payload.sortByID;
 			filterParams.value.sortByMethod = payload.sortByMethod;
+		}
+
+		// Query Validation
+		const validParams: {
+			selectedClass: SoldierID[];
+			sortByID: Array<'nameLowercase' | 'likesAmount' | 'createdAt'>;
+			sortByMethod: Array<'asc' | 'desc'>;
+		} = {
+			selectedClass: [
+				'custom',
+				'standart',
+				'rifleman1',
+				'rifleman2',
+				'rifleman3',
+				'medic',
+				'assaulter1',
+				'assaulter2',
+				'assaulter3',
+				'assaulter4',
+				'engineer1',
+				'engineer2',
+				'sniper1',
+				'sniper2',
+				'sniper3',
+				'at1',
+				'at2',
+				'mg1',
+				'mg2',
+				'mg3',
+				'radio1',
+				'radio2',
+				'mortar',
+				'flamethrower1',
+				'flamethrower2',
+				'pilot-fighter1',
+				'pilot-fighter2',
+				'pilot-fighter3',
+				'pilot-attacker1',
+				'pilot-attacker2',
+				'pilot-attacker3',
+				'tank1',
+				'tank2',
+				'tank3',
+				'moto1',
+				'apc-driver',
+			],
+			sortByID: ['nameLowercase', 'likesAmount', 'createdAt'],
+			sortByMethod: ['asc', 'desc'],
+		};
+
+		const isQueryParamsOk = reactive<{
+			selectedClass: boolean;
+			sortByID: boolean;
+			sortByMethod: boolean;
+		}>({
+			selectedClass: false,
+			sortByID: false,
+			sortByMethod: false,
+		});
+
+		// Set query params
+		const router = useRouter();
+
+		interface Params {
+			selectedClass?: string;
+			sortByID?: string;
+			sortByMethod?: string;
+		}
+		const params: Params = router.currentRoute.value.query;
+		console.log(router.currentRoute.value.query);
+
+		function validateParams(params: Params) {
+			if (
+				params.selectedClass &&
+				validParams.selectedClass.includes(params.selectedClass as any)
+			) {
+				// @ts-ignore
+				filterParams.value.selectedClass = params.selectedClass;
+			} else {
+				filterParams.value.selectedClass = false;
+			}
+
+			if (
+				params.sortByID &&
+				validParams.sortByID.includes(params.sortByID as any)
+			) {
+				filterParams.value.sortByID = params.sortByID;
+			}
+
+			// validate sortByMethod
+			if (
+				params.sortByMethod &&
+				validParams.sortByMethod.includes(params.sortByMethod as any)
+			) {
+				// @ts-ignore
+				filterParams.value.sortByMethod = params.sortByMethod;
+			}
+		}
+
+		if (params) {
+			validateParams(params);
+			loadData(false);
 		}
 
 		return {

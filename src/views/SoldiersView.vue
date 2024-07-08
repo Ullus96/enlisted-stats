@@ -110,7 +110,7 @@
 					<div class="table__promo-buttons">
 						<!-- TODO: сделать редирект на страницу сборок вместе 
 						с параметром поиска в виде класса и сорт бай нью, сначала новые -->
-						<router-link to="/test">
+						<router-link :to="link">
 							<button class="btn btn-m btn-secondary">Посмотреть еще</button>
 						</router-link>
 						<span class="table__promo-or">ИЛИ</span>
@@ -424,6 +424,12 @@ export default defineComponent({
 			isFinishedLoading.value = true;
 		}
 
+		// Make a link
+		const link = computed(
+			() =>
+				`/skill-builds?selectedClass=${soldierClass.value}&sortByID=likesAmount&sortByMethod=desc`
+		);
+
 		return {
 			items,
 			handleClick,
@@ -439,6 +445,7 @@ export default defineComponent({
 			loadedData,
 			loadedUserData,
 			isFinishedLoading,
+			link,
 		};
 	},
 });
