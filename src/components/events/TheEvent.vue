@@ -142,14 +142,24 @@
 									</p>
 								</div>
 								<div v-else>
+									<template
+										v-if="stagesWithRewards[currentStageInfo.index + 1]"
+									>
+										<p
+											class="event__reward-item event__reward-item--right"
+											v-for="item in separateLineBySemicolon(
+												stagesWithRewards[currentStageInfo.index + 1].reward
+											)"
+											:key="item"
+										>
+											{{ item ? item : '—' }}
+										</p>
+									</template>
 									<p
 										class="event__reward-item event__reward-item--right"
-										v-for="item in separateLineBySemicolon(
-											stagesWithRewards[currentStageInfo.index + 1].reward
-										)"
-										:key="item"
+										v-else
 									>
-										{{ item ? item : '—' }}
+										—
 									</p>
 								</div>
 							</transition>
