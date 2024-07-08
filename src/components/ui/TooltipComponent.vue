@@ -70,7 +70,7 @@ export default defineComponent({
 					tooltipElement.style.setProperty('--tooltip-arrow-position', '50%');
 				}
 
-				if (rect.left < 20) {
+				if (rect.left < 20 || (viewportWidth > 1024 && rect.left < 92)) {
 					tooltipElement.style.transform = 'translate(-20%, -100%)';
 					tooltipElement.style.setProperty('--tooltip-arrow-position', '20%');
 				} else if (rect.right > viewportWidth - 20) {
