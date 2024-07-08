@@ -109,6 +109,7 @@ export default defineComponent({
 			type: Object as PropType<ISkillBuild>,
 		},
 	},
+	emits: ['saveBuild', 'modifyBuild'],
 	setup(props, context) {
 		const title: Ref<string> = ref('');
 		const isPublic: Ref<boolean> = ref(true);

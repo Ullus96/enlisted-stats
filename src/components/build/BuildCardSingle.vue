@@ -245,7 +245,7 @@ import {
 	getSoldierData,
 } from '@/functions/convertSoldierDataToName';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
+import { deleteDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import AnimatedLikeEntity from './AnimatedLikeEntity.vue';
 import randomNum from '@/functions/randomNum';
@@ -387,21 +387,9 @@ export default defineComponent({
 				try {
 					const likedBy = [...dataFromDB.data.likedBy, userID];
 					let likesAmount = dataFromDB.data.likesAmount + 1 || 1;
-					await setDoc(docRef, {
-						data: {
-							author: dataFromDB.data.author,
-							createdAt: dataFromDB.data.createdAt,
-							isPublic: dataFromDB.data.isPublic,
-							isCloned: dataFromDB.data.isCloned,
-							name: dataFromDB.data.name,
-							nameLowercase: dataFromDB.data.nameLowercase,
-							likedBy,
-							likesAmount,
-						},
-						skillsData: dataFromDB.skillsData,
-						soldierClass: dataFromDB.soldierClass,
-						stats: dataFromDB.stats,
-						tags: dataFromDB.tags,
+					await updateDoc(docRef, {
+						'data.likedBy': likedBy,
+						'data.likesAmount': likesAmount,
 					});
 				} catch (err: any) {
 					console.log(
@@ -417,31 +405,17 @@ export default defineComponent({
 					if (likesAmount < 0) {
 						likesAmount = 0;
 					}
-					await setDoc(docRef, {
-						data: {
-							author: dataFromDB.data.author,
-							createdAt: dataFromDB.data.createdAt,
-							isPublic: dataFromDB.data.isPublic,
-							isCloned: dataFromDB.data.isCloned,
-							name: dataFromDB.data.name,
-							nameLowercase: dataFromDB.data.nameLowercase,
-							likedBy,
-							likesAmount,
-						},
-						skillsData: dataFromDB.skillsData,
-						soldierClass: dataFromDB.soldierClass,
-						stats: dataFromDB.stats,
-						tags: dataFromDB.tags,
+					await updateDoc(docRef, {
+						'data.likedBy': likedBy,
+						'data.likesAmount': likesAmount,
 					});
 				} catch (err: any) {
-					console.log(
-						'Error on adding a build to `likedBuilds`: ' + err.message
+					console.error(
+						'Error on removing a build from `likedBuilds`: ' + err.message
 					);
 				}
 			} else {
-				console.log(
-					'Something went wrong on handling a like button (on `builds` table)!'
-				);
+				console.error('Invalid operation type: ' + operation);
 			}
 		}
 
