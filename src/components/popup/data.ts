@@ -63,6 +63,13 @@ export const POPUP_DELETE_BUILD_SUCCESS: PopUp = {
 	duration: 3,
 };
 
+export const POPUP_BUILD_VISIBILITY_CHANGED: PopUp = {
+	type: 'success',
+	title: 'Видимость сборки изменена',
+	desc: '',
+	duration: 3,
+};
+
 export const POPUP_NOT_ENOUGH_POINTS: PopUp = {
 	type: 'danger',
 	title: 'Недостаточно очков!',

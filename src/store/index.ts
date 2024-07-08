@@ -11,6 +11,7 @@ export interface DialogState {
 	isDeletingEvent: boolean;
 	isLoggingOut: boolean;
 	isDeletingBuild: boolean;
+	isSwitchingBuildVisibility: boolean;
 }
 
 export interface PopUp {
@@ -67,6 +68,7 @@ export default createStore<State>({
 			isDeletingEvent: false,
 			isLoggingOut: false,
 			isDeletingBuild: false,
+			isSwitchingBuildVisibility: false,
 		},
 		loading: {
 			isAuthInitialized: false,

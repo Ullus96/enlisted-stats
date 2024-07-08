@@ -168,7 +168,16 @@
 						<TooltipComponent :direction="'left'" :width="22">
 							<p>Видна всем пользователям</p>
 						</TooltipComponent>
-						<div class="sbuild__card">
+						<button
+							class="sbuild__card"
+							v-if="currentUser && currentUser.uid == user.dbId"
+							@click="$store.state.dialog.isSwitchingBuildVisibility = true"
+						>
+							<IconBase :iconColor="'#a5a5a5'">
+								<IconGlobe />
+							</IconBase>
+						</button>
+						<div class="sbuild__card" v-else>
 							<IconBase :iconColor="'#a5a5a5'">
 								<IconGlobe />
 							</IconBase>
@@ -178,7 +187,16 @@
 						<TooltipComponent :direction="'left'" :width="22">
 							<p>Видна только вам</p>
 						</TooltipComponent>
-						<div class="sbuild__card">
+						<button
+							class="sbuild__card"
+							v-if="currentUser && currentUser.uid == user.dbId"
+							@click="$store.state.dialog.isSwitchingBuildVisibility = true"
+						>
+							<IconBase :iconColor="'#a5a5a5'">
+								<IconEyeSlash />
+							</IconBase>
+						</button>
+						<div class="sbuild__card" v-else>
 							<IconBase :iconColor="'#a5a5a5'">
 								<IconEyeSlash />
 							</IconBase>
@@ -230,6 +248,21 @@
 								>.
 							</p>
 						</DialogComponent>
+
+						<DialogComponent
+							:dialogName="'isSwitchingBuildVisibility'"
+							v-if="$store.state.dialog.isSwitchingBuildVisibility"
+							:yes="{ text: 'Переключить', type: 'tertiary' }"
+							:no="{ text: 'Отмена', type: 'primary' }"
+							@confirm="switchBuildVisibility"
+						>
+							<h3 class="dialog__title">Переключить видимость?</h3>
+							<p class="dialog__desc">
+								Это действие переключит видимость сборки
+								<span class="dialog__accent">{{ item.data.name }}</span
+								>.
+							</p>
+						</DialogComponent>
 					</template>
 				</template>
 			</div>
@@ -252,7 +285,10 @@ import randomNum from '@/functions/randomNum';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { createPopUp } from '@/components/popup/utils';
-import { POPUP_DELETE_BUILD_SUCCESS } from '@/components/popup/data';
+import {
+	POPUP_BUILD_VISIBILITY_CHANGED,
+	POPUP_DELETE_BUILD_SUCCESS,
+} from '@/components/popup/data';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
 import IconBase from '@/components/ui/icons/IconBase.vue';
@@ -419,12 +455,6 @@ export default defineComponent({
 			}
 		}
 
-		const isDeletePopupVisible: Ref<boolean> = ref(false);
-
-		function openDeletePopup() {
-			isDeletePopupVisible.value = !isDeletePopupVisible.value;
-		}
-
 		const router = useRouter();
 		async function deleteBuild() {
 			if (props.item.data.author !== currentUser.value?.uid) {
@@ -440,7 +470,27 @@ export default defineComponent({
 				router.push('/');
 			} catch (err: any) {
 				alert(`Произошла ошибка: ${err.message}`);
-				openDeletePopup();
+			}
+		}
+
+		async function switchBuildVisibility() {
+			const docRef = doc(db, 'builds', props.buildId);
+			const docSnap = await getDoc(docRef);
+			let dataFromDB;
+			if (docSnap.exists()) {
+				dataFromDB = docSnap.data();
+			} else {
+				return;
+			}
+
+			try {
+				await updateDoc(docRef, {
+					'data.isPublic': !dataFromDB.data.isPublic,
+				});
+				props.item.data.isPublic = !dataFromDB.data.isPublic;
+				createPopUp(store, POPUP_BUILD_VISIBILITY_CHANGED);
+			} catch (err: any) {
+				console.log('Error on switching build visibility: ' + err.message);
 			}
 		}
 
@@ -453,9 +503,8 @@ export default defineComponent({
 			likesAmountOnLoad,
 			handleLikeButton,
 			animatedHeartsAmount,
-			isDeletePopupVisible,
-			openDeletePopup,
 			deleteBuild,
+			switchBuildVisibility,
 		};
 	},
 });
