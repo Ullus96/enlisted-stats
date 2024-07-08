@@ -15,21 +15,18 @@
 		</filter-sort-by>
 		<!-- end of popups -->
 
-		<!-- temporary hide classes -->
-		<template v-if="true">
-			<div class="filter__item">
-				<span class="filter__label"> Класс: </span>
-				<button class="filter__selected" @click.prevent="showFilterClasses">
-					{{ selectedClassName }}
-					<span
-						><i
-							class="fa-solid fa-chevron-down filter__chevron"
-							:class="{ rotate: isFilterClassesVisible }"
-						></i
-					></span>
-				</button>
-			</div>
-		</template>
+		<div class="filter__item">
+			<span class="filter__label"> Класс: </span>
+			<button class="filter__selected" @click.prevent="showFilterClasses">
+				{{ selectedClassName }}
+				<span
+					><i
+						class="fa-solid fa-chevron-down filter__chevron"
+						:class="{ rotate: isFilterClassesVisible }"
+					></i
+				></span>
+			</button>
+		</div>
 
 		<div class="filter__item" id="sortBy">
 			<!-- <span>Сортировка:</span> -->
@@ -92,16 +89,32 @@ export default defineComponent({
 		},
 		selectedClass: {
 			required: false,
+			type: [String, Boolean] as PropType<SoldierID | false>,
 			default: false,
+		},
+		sortByID: {
+			required: false,
+			type: String as PropType<'nameLowercase' | 'likesAmount' | 'createdAt'>,
+			default: 'createdAt',
+		},
+		sortByMethod: {
+			required: false,
+			type: String as PropType<'asc' | 'desc'>,
+			default: 'desc',
 		},
 	},
 	setup(props, context) {
 		const isFilterClassesVisible: Ref<boolean> = ref(false);
 		const isSortByVisible: Ref<boolean> = ref(false);
-		const selectedClass: Ref<SoldierID | false> = ref(false);
+
+		const selectedClass: Ref<SoldierID | false> = ref(
+			props.selectedClass as SoldierID | false
+		);
 		const selectedClassName: Ref<SoldierID | 'Акционные' | 'Все'> = ref('Все');
-		const sortByID: Ref<string> = ref('createdAt');
-		const sortByMethod: Ref<'asc' | 'desc'> = ref('desc');
+
+		const sortByID: Ref<string> = ref(props.sortByID);
+
+		const sortByMethod: Ref<'asc' | 'desc'> = ref(props.sortByMethod);
 		const sortByName: Ref<string> = ref('По дате создания');
 
 		function showFilterClasses() {
@@ -111,7 +124,7 @@ export default defineComponent({
 			isSortByVisible.value = !isSortByVisible.value;
 		}
 
-		function setSoldierClass(soldierClass: SoldierID) {
+		function setSoldierClass(soldierClass: SoldierID | false) {
 			selectedClass.value = soldierClass;
 
 			if (soldierClass === 'custom') {
@@ -165,6 +178,10 @@ export default defineComponent({
 			filterParams.value.sortByMethod = newValue;
 			emitFilterParams();
 		});
+
+		// При инициализации обновляем данные
+		setSoldierClass(selectedClass.value);
+		setSortBy(sortByID.value);
 
 		// Функция для эмита события с объектом параметров фильтрации
 		function emitFilterParams() {

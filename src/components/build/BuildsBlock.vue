@@ -7,7 +7,6 @@
 			:sortByID="filterParams.sortByID"
 			:sortByMethod="filterParams.sortByMethod"
 		></filters-block>
-		{{ filterParams }}
 		<div class="filter__under">
 			<button class="btn btn-m btn-primary filter__btn" @click="loadData(true)">
 				Загрузить сборки
@@ -326,7 +325,7 @@ export default defineComponent({
 						// @ts-ignore
 						newData.push(parsedData);
 					});
-					console.log(newData);
+					// console.log(newData);
 
 					// Обновляем состояние loadedData
 					loadedData.push(...newData);
@@ -353,7 +352,7 @@ export default defineComponent({
 			) {
 				localStorageData = null;
 				saveToLocalStorage('usersData', localStorageData);
-				console.log(`usersData resetted because of TimeStamp has been expired`);
+				// console.log(`usersData resetted because of TimeStamp has been expired`);
 				// create a new TimeStamp
 				saveToLocalStorage('usersTimestamp', new Date());
 			}
@@ -369,7 +368,7 @@ export default defineComponent({
 							item.user === user
 					)
 				) {
-					console.log('User found in a localStorage');
+					// console.log('User found in a localStorage');
 					const userData = {
 						displayName: getLocalStorageUsersDataByKeyAndValue(
 							localStorageData,
@@ -386,7 +385,7 @@ export default defineComponent({
 					};
 					loadedUserData[user] = { ...userData };
 				} else {
-					console.log('No user in localStorage, making a fetch');
+					// console.log('No user in localStorage, making a fetch');
 					const userRef = doc(db, 'users', user);
 					const userSnap = await getDoc(userRef);
 
@@ -400,13 +399,13 @@ export default defineComponent({
 							displayName: 'Пользователь не найден',
 							photoURL: 'https://place-hold.it/80x80/8c8f94/8c8f94.jpg',
 						};
-						console.log('No such document!');
+						// console.log('No such document!');
 					}
 				}
 			});
 
-			console.log(`At the end of iterations, loadedUserData is:`);
-			console.log(loadedUserData);
+			// console.log(`At the end of iterations, loadedUserData is:`);
+			// console.log(loadedUserData);
 			isFinishedLoading.value = true;
 		}
 
@@ -490,7 +489,6 @@ export default defineComponent({
 			sortByMethod?: string;
 		}
 		const params: Params = router.currentRoute.value.query;
-		console.log(router.currentRoute.value.query);
 
 		function validateParams(params: Params) {
 			if (
@@ -520,7 +518,7 @@ export default defineComponent({
 			}
 		}
 
-		if (params) {
+		if (params && Object.keys(params).length) {
 			validateParams(params);
 			loadData(false);
 		}
