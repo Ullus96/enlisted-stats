@@ -1,107 +1,215 @@
 <template>
-	<template v-if="data.stages[currentStageInfo.index]?.startDate">
-		<div class="events container">
-			<div class="events__count-block">
-				<!-- check if there is more stages -->
-				<div class="events__title">{{ data.name }}.</div>
-				<template v-if="checkIfTheStageIsFinal(currentStageInfo.index + 1)">
-					<h2 class="events__count-title">
-						Следующий этап [{{ currentStageInfo.index + 2 }}/{{
-							data.stages.length
-						}}]
-					</h2>
-					<events-card-top
-						:stageIndex="currentStageInfo.index + 1"
-						:date="data.stages[currentStageInfo.index + 1].startDate"
-					></events-card-top>
-				</template>
-				<!-- else we show the timer until the end of the event -->
-				<template v-else>
-					<h2 class="events__count-title">До завершения события:</h2>
-				</template>
-				<div class="events__countdown-block">
-					<events-countdown-card
-						v-for="(item, index) in 3"
-						:key="item"
-						:timerValue="timerValues[index]"
-						:index="index"
-					></events-countdown-card>
-				</div>
+	<template v-if="status === 'going'">
+		<section class="container mt-l">
+			<h1 class="event__title">{{ data.name }}</h1>
 
-				<div class="events__reward-block">
-					<div class="events__reward-upper-block">
-						<div class="events__reward-bar events__reward-bar-left">
-							<div
-								class="events__reward-bar-progress"
-								:style="{
-									background: `linear-gradient(to right,  #47484a ${progressBarPercents}%, transparent ${progressBarPercents}%`,
-								}"
-							></div>
-							<div class="events__reward-bar-animated"></div>
-							<p class="events__reward-text">
-								{{
-									data.rewards[currentStageInfo.index]
-										? data.rewards[currentStageInfo.index]
-										: '—'
-								}}
-							</p>
-						</div>
-						<div class="events__reward-bar events__reward-bar-right">
-							<p class="events__reward-text">
-								{{
-									data.rewards[currentStageInfo.index + 1]
-										? data.rewards[currentStageInfo.index + 1]
-										: '—'
-								}}
-							</p>
+			<div class="event__content">
+				<div class="event__left-col">
+					<div class="event__header tooltip-anchor">
+						<h2>Все награды события</h2>
+						<div class="tooltip-anchor">
+							<TooltipComponent :direction="'top'" :width="37.5">
+								<p>
+									Если пропустил награды, нажимай по пропущенным этапам
+									слева-направо.
+								</p>
+								<p>
+									В случае некорректного отображения наград - перезагрузи
+									страницу.
+								</p>
+							</TooltipComponent>
+							<button class="btn btn-sm btn-tertiary">
+								<IconBase>
+									<IconQuestionCircle />
+								</IconBase>
+							</button>
 						</div>
 					</div>
-					<div class="events__reward-lower-block">
-						<p class="events__reward-description">текущая награда</p>
-						<p class="events__reward-description">следующая награда</p>
+
+					<div class="event__cards-flex">
+						<events-card
+							v-for="(item, index) in stagesWithRewards"
+							:key="item"
+							:cardData="item"
+							:stageIndex="index"
+							:reward="item.reward"
+							:isActive="index === currentStageInfo.index"
+							:isSkipped="skippedStages.includes(index)"
+							@skip-stage="handleSkipStage"
+						></events-card>
+
+						<div class="event__card finish">
+							<TooltipComponent :direction="'top'" :width="20">
+								<p>Конец события</p>
+							</TooltipComponent>
+							<p class="event__counter">
+								<i class="fa-regular fa-flag"></i>
+							</p>
+							<p class="event__date">{{ day }}</p>
+							<p class="event__month">{{ month }}</p>
+							<p class="event__time">{{ hours }}:00</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="event__right-col">
+					<div class="event__timer-block">
+						<events-countdown-card
+							v-for="(item, index) in 3"
+							:key="item"
+							:timerValue="timerValues[index]"
+							:index="index"
+						></events-countdown-card>
+					</div>
+
+					<div class="event__reward-block">
+						<button
+							class="event__chip"
+							:class="{ 'event__chip--active': activeReward === 'current' }"
+							@mouseenter="setActiveReward('current')"
+							@click="setActiveReward('current')"
+						>
+							<IconBase>
+								<IconCoins />
+							</IconBase>
+						</button>
+
+						<div class="event__progress-bar-block">
+							<div class="event__progress-bar">
+								<div
+									class="event__progress-bar-progress"
+									:style="{
+										background: `linear-gradient(to right,  #621313 ${progressBarPercents}%, transparent ${progressBarPercents}%`,
+									}"
+								></div>
+								<div class="event__progress-bar-animated"></div>
+							</div>
+
+							<span
+								class="event__progress-bar-stage event__progress-bar-stage--current"
+							>
+								{{ currentStageInfo.index + 1 }}
+							</span>
+							<span
+								v-if="checkIfTheStageIsNotFinal(currentStageInfo.index + 2)"
+								class="event__progress-bar-stage event__progress-bar-stage--next"
+							>
+								{{ currentStageInfo.index + 2 }}
+							</span>
+							<span
+								v-else
+								class="event__progress-bar-stage event__progress-bar-stage--next"
+							>
+								конец
+							</span>
+						</div>
+
+						<button
+							class="event__chip"
+							:class="{ 'event__chip--active': activeReward === 'next' }"
+							@mouseenter="setActiveReward('next')"
+							@click="setActiveReward('next')"
+						>
+							<IconBase>
+								<IconCoins />
+							</IconBase>
+						</button>
+					</div>
+
+					<div class="event__reward-description-block">
+						<div class="event__reward-wrapper">
+							<transition name="boundary-fade" mode="out-in">
+								<div
+									v-if="activeReward === 'current'"
+									class="event__reward-boundary event__reward-boundary--left"
+								></div>
+								<div
+									v-else
+									class="event__reward-boundary event__reward-boundary--right"
+								></div>
+							</transition>
+
+							<transition name="reward" mode="out-in">
+								<div v-if="activeReward === 'current'">
+									<p
+										class="event__reward-item"
+										v-for="item in separateLineBySemicolon(
+											stagesWithRewards[currentStageInfo.index].reward
+										)"
+										:key="item"
+									>
+										{{ item ? item : '—' }}
+									</p>
+								</div>
+								<div v-else>
+									<p
+										class="event__reward-item event__reward-item--right"
+										v-for="item in separateLineBySemicolon(
+											stagesWithRewards[currentStageInfo.index + 1].reward
+										)"
+										:key="item"
+									>
+										{{ item ? item : '—' }}
+									</p>
+								</div>
+							</transition>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="events__all-block">
-				<h2 class="events__all-title">Все этапы данного события:</h2>
-				<div class="events__all-cards-flex">
-					<events-card
-						v-for="(item, index) in data.stages"
-						:key="item"
-						:cardData="item"
-						:stageIndex="index"
-						:reward="data.rewards[index]"
-						:class="{
-							'events__all-card--active': index === currentStageInfo.index,
-						}"
-					></events-card>
+		</section>
+	</template>
 
-					<div class="events__card events__all-card finish">
-						<div class="events__card-tooltip">
-							<p>Конец события</p>
-						</div>
-						<p class="events__counter">
-							<i class="fa-regular fa-flag"></i>
-						</p>
-						<p class="events__date finish">{{ day }}</p>
-						<p class="events__month finish">{{ month }}</p>
-						<p class="events__time finish">{{ hours }}:00</p>
-					</div>
-				</div>
-			</div>
-		</div>
+	<template v-else-if="status === 'finished'">
+		<section class="container mt-l">
+			<p class="event__end">Событие "{{ data.name }}" завершилось.</p>
+		</section>
+	</template>
+
+	<template v-else-if="status === 'notStarted'">
+		<section class="container mt-l">
+			<p class="event__end">Событие "{{ data.name }}" еще не началось.</p>
+		</section>
 	</template>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, Ref, ref } from 'vue';
+import {
+	computed,
+	defineComponent,
+	onMounted,
+	onUnmounted,
+	PropType,
+	reactive,
+	Ref,
+	ref,
+} from 'vue';
 import EventsCard from '@/components/events/EventsCard.vue';
 import EventsCardTop from '@/components/events/EventsCardTop.vue';
 import EventsCountdownCard from '@/components/events/EventsCountdownCard.vue';
-import { IEvent } from '@/type/Events';
+import { IEvent, IEventFirestore } from '@/type/Events';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconQuestion from '@/components/ui/icons/IconQuestion.vue';
+import IconQuestionCircle from '@/components/ui/icons/IconQuestionCircle.vue';
+import IconCoins from '@/components/ui/icons/IconCoins.vue';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
+import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
+import {
+	loadFromLocalStorage,
+	saveToLocalStorage,
+} from '@/functions/localStorageUtils';
 
 export default defineComponent({
-	components: { EventsCard, EventsCardTop, EventsCountdownCard },
+	components: {
+		EventsCard,
+		EventsCardTop,
+		EventsCountdownCard,
+		IconBase,
+		IconQuestion,
+		IconQuestionCircle,
+		IconCoins,
+		TooltipComponent,
+	},
 	props: {
 		data: {
 			required: true,
@@ -110,6 +218,9 @@ export default defineComponent({
 	},
 	setup(props) {
 		const isFinalStage: Ref<boolean> = ref(false);
+		let status: 'notStarted' | 'going' | 'finished' | null = null;
+		const activeReward: Ref<'current' | 'next'> = ref('next');
+
 		function getCurrentStage(event: IEvent): {
 			index: number;
 			timeLeft: number;
@@ -118,6 +229,7 @@ export default defineComponent({
 
 			if (currentDate < event.startDate) {
 				// Событие еще не началось
+				status = 'notStarted';
 				return {
 					index: -1,
 					timeLeft: event.startDate.getTime() - currentDate.getTime(),
@@ -128,6 +240,7 @@ export default defineComponent({
 				const stage = event.stages[i];
 
 				if (currentDate >= stage.startDate && currentDate <= stage.endDate) {
+					status = 'going';
 					// Мы находимся внутри этапа
 					return {
 						index: i,
@@ -145,12 +258,16 @@ export default defineComponent({
 			}
 
 			// Событие уже завершилось
+			status = 'finished';
 			return { index: event.stages.length, timeLeft: 0 };
 		}
 
 		let currentStageInfo: { index: number; timeLeft: number } = reactive(
 			getCurrentStage(props.data)
 		);
+
+		// Timer
+		let intervalID: number | null = null;
 
 		function updateTimer() {
 			currentStageInfo = getCurrentStage(props.data);
@@ -159,8 +276,16 @@ export default defineComponent({
 				console.log(
 					`Событие "${props.data.name}" еще не началось. Время до начала: ${currentStageInfo.timeLeft}`
 				);
+				if (intervalID) {
+					clearInterval(intervalID);
+					intervalID = null;
+				}
 			} else if (currentStageInfo.index === props.data.stages.length) {
 				console.log(`Событие "${props.data.name}" уже завершилось.`);
+				if (intervalID) {
+					clearInterval(intervalID);
+					intervalID = null;
+				}
 			} else {
 				// обновляем переменные
 				const date = new Date(currentStageInfo.timeLeft);
@@ -175,9 +300,9 @@ export default defineComponent({
 		// get timer values on page load
 		updateTimer();
 		// then update every second
-		setInterval(updateTimer, 1000);
+		intervalID = setInterval(updateTimer, 1000);
 
-		function checkIfTheStageIsFinal(index: number): boolean {
+		function checkIfTheStageIsNotFinal(index: number): boolean {
 			if (props.data.stages[index]?.startDate) {
 				return true;
 			} else {
@@ -222,16 +347,138 @@ export default defineComponent({
 		const month = parts[1].split(' ')[2];
 		const hours = parts[1].split(' ')[6].split(':')[0];
 
+		function setActiveReward(status: 'current' | 'next') {
+			activeReward.value = status;
+		}
+
+		// Skipped stages
+		const skippedStages: Ref<number[]> = ref([]);
+		// @ts-ignore
+		const storageKey = props.data.dbId;
+		const endDateKey = `end-${storageKey}`;
+		const currentDate = new Date();
+
+		const stagesWithRewards = computed(() =>
+			props.data.stages.map((stage, index) => ({
+				...stage,
+				reward: calculateReward(index),
+			}))
+		);
+
+		function calculateReward(index: number) {
+			const rewards = [...props.data.rewards];
+			skippedStages.value.forEach((skippedIndex) => {
+				if (skippedIndex <= index) {
+					rewards.splice(skippedIndex, 0, rewards[skippedIndex - 1]);
+				}
+			});
+			return rewards[index];
+		}
+
+		function handleSkipStage(stageIndex: number) {
+			const stageIndexPosition = skippedStages.value.indexOf(stageIndex);
+			if (stageIndexPosition !== -1) {
+				skippedStages.value.splice(stageIndexPosition, 1);
+			} else {
+				skippedStages.value.push(stageIndex);
+			}
+			saveToLocalStorage(storageKey, skippedStages.value);
+			saveToLocalStorage(endDateKey, props.data.endDate);
+			updateRewards();
+		}
+
+		function updateRewards() {
+			stagesWithRewards.value; // Пересчитываем награды
+		}
+
+		function loadAndCleanLocalStorage() {
+			const savedSkippedStages = loadFromLocalStorage(storageKey);
+			const savedEndDate = new Date(loadFromLocalStorage(endDateKey));
+
+			if (
+				savedSkippedStages &&
+				savedSkippedStages.length > 0 &&
+				currentDate <= savedEndDate
+			) {
+				skippedStages.value = savedSkippedStages;
+			} else {
+				localStorage.removeItem(storageKey);
+				localStorage.removeItem(endDateKey);
+			}
+		}
+
+		onMounted(() => {
+			loadAndCleanLocalStorage();
+			updateRewards(); // Пересчитываем награды при загрузке компонента
+		});
+
+		onUnmounted(() => {
+			if (intervalID) {
+				clearInterval(intervalID);
+				intervalID = null;
+			}
+		});
+
 		return {
+			status,
 			currentStageInfo,
 			timerValues,
 			isFinalStage,
-			checkIfTheStageIsFinal,
+			checkIfTheStageIsNotFinal,
 			progressBarPercents,
 			day,
 			month,
 			hours,
+			activeReward,
+			setActiveReward,
+			separateLineBySemicolon,
+			skippedStages,
+			stagesWithRewards,
+			handleSkipStage,
+			updateRewards,
 		};
 	},
 });
 </script>
+
+<style scoped>
+.boundary-fade-enter-active,
+.boundary-fade-leave-active {
+	transition: opacity 0.1s 0.05s ease-in, transform 0.2s ease-in-out;
+}
+
+.boundary-fade-enter-from,
+.boundary-fade-leave-to {
+	opacity: 0;
+	transform: scaleY(0);
+}
+
+.boundary-fade-enter-to,
+.boundary-fade-leave-from {
+	opacity: 1;
+	transform: scaleY(1);
+}
+
+.reward-enter-active,
+.reward-leave-active {
+	transition: opacity 0.4s 0.1s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.reward-enter-from,
+.reward-leave-to {
+	opacity: 0;
+	transform: translateX(-2rem);
+}
+
+.event__reward-item--right.reward-enter-from,
+.event__reward-item--right.reward-leave-to {
+	opacity: 0;
+	transform: translateX(2rem);
+}
+
+.reward-enter-to,
+.reward-leave-from {
+	opacity: 1;
+	transform: translateX(0);
+}
+</style>

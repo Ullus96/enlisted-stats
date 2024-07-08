@@ -1,87 +1,32 @@
-// @mixin phone {
-// 	@media (max-width: 767px) {
-// 		@content;
-// 	}
-// }
-// @mixin tablet {
-// 	@media (min-width: 768px) and (max-width: 1023px) {
-// 		@content;
-// 	}
-// }
+@mixin desktop-medium {
+	@media (max-width: 1401px) {
+		@content;
+	}
+}
 
 @mixin desktop-small {
-	@media (min-width: 0px) and (max-width: 1123px) {
+	@media (max-width: 1123px) {
 		@content;
 	}
 }
 
-@mixin desktop-medium {
-	@media (min-width: 1124px) and (max-width: 1401px) {
+@mixin tablet {
+	@media (max-width: 849px) {
 		@content;
 	}
 }
 
-// @include desktop-small {
-
-// }
-
-// @include tablet {
-
-// }
-
-// @include phone {
-
-// }
-
-@mixin tooltip($direction: 'up') {
-	background-color: $color-black;
-	padding: 1.2rem 1.6rem;
-	text-align: center;
-	font-size: 0.8em;
-	display: none;
-	border-radius: 1rem;
-	position: absolute;
-	z-index: 10;
-	left: 50%;
-
-	@if $direction == 'up' {
-		top: -5px;
-		transform: translate(-50%, -100%);
-	} @else if $direction == 'down' {
-		bottom: -5px;
-		transform: translate(-50%, 100%);
-	}
-
-	&::after {
-		content: '';
-		position: absolute;
-		left: 50%;
-		width: 10px;
-		height: 10px;
-		z-index: 5;
-
-		@if $direction == 'up' {
-			bottom: 0px;
-			transform: translate(-50%, 50%) rotateZ(45deg);
-			background: linear-gradient(-45deg, $color-black 60%, transparent 60%);
-		} @else if $direction == 'down' {
-			top: 0px;
-			transform: translate(-50%, -50%) rotateZ(135deg);
-			background: linear-gradient(45deg, $color-black 60%, transparent 60%);
-		}
+@mixin phone {
+	@media (max-width: 499px) {
+		@content;
 	}
 }
 
-@mixin card-active {
-	border: 1px solid $color-highlight;
-	box-shadow: 0 0 2.5rem rgba($color-highlight, 0.4);
-}
-
-@mixin page-mask($opacity: 0.6) {
+@mixin page-mask($opacity: 0.4) {
 	position: absolute;
 	z-index: 20;
 	inset: 0 0 0 0;
-	background-color: rgba($color-black, $opacity);
+	background-color: rgba($color-bg-900, $opacity);
 	opacity: 1;
 	animation: fade-in 0.1s ease-in;
 }
@@ -146,4 +91,87 @@
 	100% {
 		left: calc(100% + 6rem);
 	}
+}
+
+@mixin ui-shadow {
+	box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
+}
+
+@mixin ui-background-blur {
+	backdrop-filter: blur(6px);
+}
+
+// Material UI states
+@mixin hovered($text-color, $background-color) {
+	background-color: mix($text-color, $background-color, 4%);
+}
+
+@mixin focused($text-color, $background-color) {
+	outline: 1px solid mix($text-color, $background-color, 100%);
+	background-color: mix($text-color, $background-color, 12%);
+}
+
+@mixin disabled-filled($background-color) {
+	color: $color-text-400;
+	background-color: mix($color-bg-050, $background-color, 12%);
+}
+
+@mixin disabled-outlined($text-color, $outline-color) {
+	color: $color-text-400;
+	// color: mix($color-bg-050, $text-color, 38%);
+	outline: 1px solid mix($color-bg-050, $outline-color, 12%);
+
+	& path {
+		fill: mix($color-bg-050, $text-color, 38%);
+	}
+}
+
+@mixin pressed($text-color, $background-color, $scale-size: 7) {
+	position: relative;
+	overflow: hidden;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		height: 100%;
+		aspect-ratio: 1/1;
+		background-color: mix($text-color, $background-color, 10%);
+		transform: translate(-50%, -50%) scale(0);
+		border-radius: 50%;
+		transition: transform 0.2s, opacity 0.2s;
+		opacity: 0;
+		z-index: -1;
+	}
+
+	&:active:after {
+		transform: translate(-50%, -50%) scale($scale-size);
+		opacity: 1;
+	}
+}
+
+@mixin showTooltip {
+	.tooltip {
+		transition: opacity 0.18s 0.15s ease-in, visibility 0.2s 0.2s ease-in;
+	}
+
+	&:hover {
+		.tooltip {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	&:focus {
+		.tooltip {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+
+@mixin link {
+	color: $color-primary-200;
+	text-decoration: underline;
 }

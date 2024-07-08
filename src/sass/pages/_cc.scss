@@ -1,16 +1,23 @@
-// custom calculator, if I would forget what is 'cc' stands for
+// сс = custom calculator
 .cc {
 	&__stats-block {
-		padding-top: 4rem;
 		display: flex;
+		gap: 4rem;
 		flex-direction: column;
 		align-items: center;
+
+		@include phone {
+			gap: 2rem;
+		}
 	}
 
-	&__stats-title {
-		margin-bottom: 2rem;
+	&__title {
+		@include tablet {
+			text-align: center;
+		}
 	}
 
+	// Upper stats block
 	&__stats-flexbox {
 		display: flex;
 		flex-wrap: wrap;
@@ -18,77 +25,82 @@
 		gap: 2rem;
 	}
 
-	// Upper stats block
 	&__stat-item {
-		background-color: $color-black-light-1;
-		min-width: 10rem;
-		border-radius: 1rem;
-		border: 1px solid $color-skill-inactive;
+		background-color: $color-bg-a-800;
+		min-width: 11rem;
+		border-radius: 0.8rem;
+		border: 1px solid $color-bg-a-050;
 		overflow: hidden;
 	}
 
 	&__stat-amount {
 		display: block;
-		max-width: 10rem;
-		padding: 1rem 0;
+		max-width: 11rem;
+		padding: 1.6rem;
 		margin: 0 auto;
 		text-align: center;
-		font-size: 4.6rem;
+		font-size: $ui-font-size-h1;
 	}
 
 	&__stat-name {
-		padding: 5px;
-		font-size: 1.2rem;
-		color: $color-black;
+		padding: 0.8rem 1.2rem;
+		font-size: $ui-font-size-xs;
+		color: $color-bg-800;
 		font-weight: 700;
 		text-transform: uppercase;
 		text-align: center;
 	}
 
-	// Tags block
-	&__tags-title {
-		position: relative;
-		margin-bottom: 2rem;
+	// main block
+	&__main-block {
+		margin-top: 10rem;
 		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 10px;
-	}
+		gap: 15%;
 
-	// tooltip on how tags works
-	&__tags-tooltip-icon:hover {
-		~ .cc__tags-tooltip {
-			display: flex;
+		@include tablet {
+			flex-direction: column;
+			gap: 6rem;
+			margin-top: 8rem;
+		}
+
+		@include phone {
+			gap: 4rem;
+			margin-top: 6rem;
 		}
 	}
 
-	&__tags-tooltip {
-		width: 150%;
-		@include tooltip('up');
+	&__col {
+		flex: 1 1 50%;
+	}
 
-		flex-direction: column;
-		gap: 2px;
+	&__text-desc {
+		margin-top: 1.6rem;
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
+	}
 
-		b {
-			color: $color-highlight;
+	&__chips-flex {
+		margin-top: 3.2rem;
+		display: flex;
+		flex-wrap: wrap;
+
+		&--square {
+			gap: 2rem;
+		}
+
+		&--wide {
+			gap: 1.2rem;
+		}
+
+		@include tablet {
+			justify-content: space-around;
 		}
 	}
 
+	// ========
+	// Это чипы
 	&__tag-item {
-		background-color: $color-black-light-1;
-		min-width: 10rem;
-		border-radius: 1rem;
-		border: 1px solid $color-skill-inactive;
 		position: relative;
-		padding: 1.5rem 2rem;
-
-		&:hover {
-			background-color: $color-black-light-2;
-		}
-
-		&:hover .cc__tag-tooltip {
-			display: block;
-		}
 	}
 
 	&__tag-checkbox {
@@ -105,74 +117,77 @@
 		cursor: pointer;
 	}
 
-	&__tag-add-btn {
-		display: block;
-		font-size: 6rem;
-		margin: 0 auto;
-		text-align: center;
-		margin-bottom: 1rem;
-
-		transition: transform 0.1s ease-out;
-	}
-
-	&__tag-name {
-		text-align: center;
-	}
-
 	// Tooltip
-	&__tag-tooltip {
-		width: 30rem;
-		@include tooltip('up');
+	&__tag-tooltip-classes-flex {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 5px;
 
-		&--description {
-			padding-bottom: 1rem;
-		}
-
-		&--title {
-			border-top: 1px solid $color-skill-inactive;
-			padding: 0.5rem 0;
-		}
-
-		&-classes-flex {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			gap: 5px;
-
-			& img {
-				max-width: 3rem;
-			}
+		& img {
+			height: 2.4rem;
+			aspect-ratio: 1/1;
 		}
 	}
 
-	// Tag active state
-	&__tag-item.active {
-		@include card-active;
+	&__tag-line {
+		display: block;
+		height: 1px;
+		margin: 0.4rem auto;
+		width: calc(100% - 2rem);
+		background-color: $color-bg-a-050;
 	}
 
-	&__tag-add-btn.active {
-		color: $color-highlight;
-		transform: rotateZ(45deg);
+	// Bottom element
+	&__btn {
+		margin: 4rem auto 0;
+		display: block;
 	}
 
 	&__disclaimer {
-		padding-top: 2rem;
-		color: rgba($color-white, 0.8);
+		color: $color-text-700;
+		font-size: $ui-font-size-s;
 		text-align: center;
-		margin: 0 auto;
-		width: 50%;
+		margin: 2rem auto 0;
+		width: 100%;
+		max-width: 54rem;
 
-		a {
-			color: $color-highlight;
+		& a {
+			@include link;
 		}
 	}
 
-	&__btn {
-		display: block;
-		margin: 6rem auto 0;
+	// Second stage styles
+	&__s-data-block {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4rem;
+		margin-top: 1.2rem;
 	}
 
-	&__btn-back {
-		margin-left: 2rem;
+	&__s-stats-block {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+	}
+
+	&__s-stat {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	&__s-inline-separator {
+		color: $color-text-700;
+	}
+
+	&__s-tags-block {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	&__s-btn-back {
+		margin-top: 2rem;
 	}
 }

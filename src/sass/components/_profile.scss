@@ -1,258 +1,58 @@
 .profile {
-	&__header {
+	&__avatar-block {
 		display: flex;
 		align-items: center;
-		gap: 2rem;
-		background-color: $color-black-light-1;
-		padding: 2rem;
-		border-radius: 2rem;
-		position: relative;
-		z-index: 2;
-
-		&-img {
-			min-width: 8rem;
-			min-height: 8rem;
-			object-fit: cover;
-			border-radius: 1rem;
-
-			&--blank {
-				background-color: $color-loading;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-
-				i {
-					font-size: 1.4em;
-					color: mix(#fff, $color-skill-inactive, 70%);
-				}
-			}
-
-			&.loading {
-				background-color: $color-loading;
-
-				@include loading-animation;
-			}
-		}
-
-		&-title {
-			&.loading {
-				background-color: $color-loading;
-				color: $color-loading;
-				border-radius: 1rem;
-				width: 30%;
-
-				@include loading-animation;
-			}
-		}
+		gap: 1.6rem;
+		margin-top: 4rem;
 	}
 
-	&__body {
-		background-color: $color-black-light-2;
-		padding: 4rem 2rem 2rem;
-		margin-top: -2rem;
-		position: relative;
-		z-index: 1;
-		border-radius: 0 0 2rem 2rem;
-
-		&.loading {
-			display: flex;
-			flex-direction: column;
-			gap: 3rem;
-		}
+	&__avatar {
+		height: 8rem;
+		aspect-ratio: 1/1;
+		object-fit: cover;
+		border-radius: 0.8rem;
 	}
 
-	&__inputs-flex {
+	&__block {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+		margin-top: 4rem;
+		width: 100%;
+		max-width: 52rem;
+	}
+
+	&__text-block {
+		display: flex;
+		flex-direction: column;
+		gap: 1.2rem;
+	}
+
+	&__change-photo-block {
+		display: flex;
+		align-items: center;
+		gap: 1.6rem;
+	}
+
+	&__change-photo-avatar {
+		height: 6rem;
+		aspect-ratio: 1/1;
+		object-fit: cover;
+		border-radius: 0.8rem;
+	}
+
+	&__option-desc {
+		font-size: $ui-font-size-s;
+		color: $color-text-400;
+	}
+
+	&__delete-block {
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
 	}
 
-	&__input {
-		&-block {
-			display: flex;
-			flex-direction: column;
-			gap: 0.5rem;
-			width: 100%;
-			max-width: 40rem;
-		}
-
-		&-flex {
-			display: flex;
-			gap: 1rem;
-		}
-
-		&-input {
-			flex-grow: 1;
-			color-scheme: dark;
-		}
-
-		&-btn {
-			background-color: $color-black;
-			padding: 0 1.2rem;
-			border: 1px solid $color-black;
-
-			&:hover {
-				background-color: mix(#fff, $color-black, 2%);
-				border: 1px solid mix(#fff, $color-black, 2%);
-			}
-		}
-
-		&-lower-info {
-			display: flex;
-			padding-right: 1rem;
-
-			&--inline-btn {
-				display: flex;
-				padding-right: 6rem;
-			}
-		}
-
-		&-error {
-			flex-grow: 1;
-			font-size: 1.2rem;
-			color: $color-error;
-
-			&--no-color {
-				color: $color-white;
-				opacity: 0.5;
-			}
-		}
-
-		&-counter {
-			flex-grow: 0.2;
-			font-size: 1.2rem;
-			opacity: 0.5;
-			text-align: right;
-		}
-
-		&-loading {
-			background-color: $color-loading;
-			color: $color-loading;
-			border-radius: 1rem;
-			font-size: 2.6rem;
-
-			@include loading-animation;
-
-			&--sm {
-				font-size: 0.7em;
-				width: 30%;
-			}
-		}
-	}
-
-	&__small-text {
-		max-width: 40rem;
-		padding-right: 1rem;
-		margin-top: -1.2rem;
-	}
-
-	&__no-img {
-		margin-top: 3rem;
-		width: 50rem;
-
-		&-inner {
-			margin-top: 0.5rem;
-			display: flex;
-			align-items: center;
-			gap: 1.5rem;
-		}
-
-		&--img {
-			min-width: 5rem;
-			width: 5rem;
-			min-height: 5rem;
-			height: 5rem;
-			aspect-ratio: 1/1;
-			object-fit: cover;
-			border-radius: 1rem;
-		}
-
-		&-desc {
-			opacity: 0.8;
-		}
-	}
-
-	// ===============
-	// = ADMIN PANEL =
-	// ===============
-	&__header-admin {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		background-color: $color-black-light-1;
-		padding: 2rem;
-		border-radius: 2rem;
-		position: relative;
-		z-index: 2;
-	}
-
-	&__tabs {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
-	}
-
-	&__tab {
-		padding: 1rem 2rem;
-		border-radius: 1rem;
-		border: 1px solid $color-skill-inactive;
-		background-color: $color-black-light-1;
-		transition: 0.15s ease-in-out background-color;
-
-		&:hover {
-			background-color: $color-skill-inactive;
-		}
-
-		&.active {
-			@include card-active;
-			color: $color-highlight;
-		}
-	}
-
-	&__sub-tabs {
-		margin-top: -2rem;
-		padding: 2rem 0 1rem;
-		// border-top: 1px solid rgba($color-skill-inactive, 0.4);
-	}
-
-	&__stages {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 1rem;
-	}
-
-	&__btn-admin {
-		max-width: 40rem;
-		background-color: $color-black;
-		padding: 1.2rem 1.8rem;
-		border-radius: 1rem;
-		border: 1px solid $color-skill-inactive;
-		transition: 0.15s ease-in-out background-color;
-
-		&:hover {
-			background-color: $color-skill-inactive;
-		}
-
-		&--delete {
-			background-color: $color-error;
-			padding: 1.2rem 1.8rem;
-			border-radius: 1rem;
-			border: 1px solid $color-skill-inactive;
-			transition: 0.15s ease-in-out background-color;
-
-			&:hover {
-				background-color: mix($color-white, $color-error, 15%);
-			}
-		}
-	}
-
-	&__update-delete-btns {
-		width: 40rem;
-		display: flex;
-		gap: 1rem;
-
-		& > .profile__btn-admin {
-			flex-grow: 1;
-		}
+	&__btn {
+		width: fit-content;
 	}
 }

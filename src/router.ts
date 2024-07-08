@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SoldiersView from '@/views/SoldiersView.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { checkIfUserAnAdmin } from '@/components/login/functions/checkIfUserAnAdmin';
+import { checkIfUserAnAdmin } from '@/components/auth/functions/checkIfUserAnAdmin';
 import { adminsList } from './firebase/adminsList';
 
 const router = createRouter({
@@ -45,6 +45,30 @@ const router = createRouter({
 			component: () => import('@/views/SingleBuildView.vue'),
 			meta: {
 				title: 'Сборка',
+			},
+		},
+		{
+			path: '/test',
+			name: 'Test page',
+			component: () => import('@/views/TestView.vue'),
+			meta: {
+				title: 'Тестовая страница',
+			},
+		},
+		{
+			path: '/privacy',
+			name: 'Privacy policy',
+			component: () => import('@/views/legal/PrivacyView.vue'),
+			meta: {
+				title: 'Политика конфиденциальности',
+			},
+		},
+		{
+			path: '/user-agreement',
+			name: 'User agreement',
+			component: () => import('@/views/legal/UserAgreementView.vue'),
+			meta: {
+				title: 'Пользовательское соглашение',
 			},
 		},
 		{

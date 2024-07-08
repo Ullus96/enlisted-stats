@@ -12,7 +12,6 @@ export interface IItem {
 	tags: SkillTag[];
 	statsMod: [number, number, number];
 	perk: string;
-	skills?: ISkills[];
 }
 
 // export interface IItem {

@@ -1,7 +1,17 @@
 .page-mask {
-	@include page-mask(0.25);
+	@include page-mask;
+
+	&--above {
+		z-index: 35;
+	}
 }
 
 .page-mask-darker {
-	@include page-mask;
+	@include page-mask(0.6);
+}
+
+.svg {
+	svg {
+		display: block;
+	}
 }

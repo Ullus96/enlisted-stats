@@ -16,7 +16,6 @@
 			:skillKey="index"
 			:branchRemainingStats="branchRemainingStats"
 			@statChanged="statChanged"
-			@notEnoughPoints="notEnoughPoints"
 		></calculator-skill>
 	</div>
 </template>
@@ -54,22 +53,12 @@ export default defineComponent({
 				branchTier: props.branchTier,
 				branchIndex: props.branchIndex,
 			});
-
-			// console.log('CalculatorTier payload:');
-			// console.log(payload);
 		}
 
-		function notEnoughPoints(payload: { title: string; desc: string }) {
-			context.emit('notEnoughPoints', payload);
-		}
-
-		onMounted(() => {
-			// console.log(props.branchRemainingStats);
-		});
+		onMounted(() => {});
 
 		return {
 			statChanged,
-			notEnoughPoints,
 		};
 	},
 });

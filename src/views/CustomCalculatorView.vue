@@ -1,8 +1,8 @@
 <template>
-	<div class="cc container">
+	<section class="container mt-l">
 		<template v-if="isEditingSettings">
 			<div class="cc__stats-block">
-				<h2 class="cc__stats-title">Распределить характеристики солдата</h2>
+				<h2 class="cc__title">Задай характеристики</h2>
 				<div class="cc__stats-flexbox">
 					<div class="cc__stat-item">
 						<input
@@ -12,7 +12,7 @@
 							id="ccFirstStat"
 							placeholder="16"
 						/>
-						<p class="cc__stat-name mobility-bg">Мобильность</p>
+						<p class="cc__stat-name mobility-bg-a">Мобильность</p>
 					</div>
 					<div class="cc__stat-item">
 						<input
@@ -21,7 +21,7 @@
 							v-model="stats[1]"
 							placeholder="16"
 						/>
-						<p class="cc__stat-name vitality-bg">Живучесть</p>
+						<p class="cc__stat-name vitality-bg-a">Живучесть</p>
 					</div>
 					<div class="cc__stat-item">
 						<input
@@ -30,50 +30,66 @@
 							v-model="stats[2]"
 							placeholder="16"
 						/>
-						<p class="cc__stat-name weapon-handling-bg">Оружие</p>
+						<p class="cc__stat-name weapon-bg-a">Оружие</p>
 					</div>
 				</div>
 			</div>
 
-			<div class="cc__stats-block">
-				<div class="cc__tags-title">
-					<h2>Выбрать специализации солдата</h2>
-					<i class="fa-regular fa-circle-question cc__tags-tooltip-icon"></i>
-					<div class="cc__tags-tooltip">
-						<p>
-							Выбери специализации для солдата, чтобы определить доступные ему
-							навыки.
-						</p>
-						<p>
-							Например, солдат со специализациями <b>пехотинец</b> и
-							<b>инженер</b> будет обладать навыками стрельбы (отдача и пр.) и
-							строительства.
-						</p>
-						<p>
-							В то время как солдат со специализациями <b>член экипажа</b> и
-							<b>танкист</b> будет обладать навыками танкиста.
-						</p>
+			<div class="cc__main-block">
+				<div class="cc__left-col cc__col">
+					<h2 class="cc__title">Выбери прототип солдата</h2>
+					<p class="cc__text-desc">
+						Выбирая прототип, ты выбираешь предустановки тегов. Этот шаг не
+						обязателен. Ты всегда можешь добавить теги, сделав из инженера -
+						десантника-инженера, или наоборот, выборочно удалить ненужные.
+					</p>
+
+					<div class="cc__chips-flex cc__chips-flex--square">
+						<div
+							class="chip chip-square tooltip-anchor"
+							v-for="(soldier, idx) in uniqueSoldiersList"
+							:key="soldier.name"
+							@click="setTags(idx)"
+						>
+							<TooltipComponent>
+								{{ soldier.name }}
+							</TooltipComponent>
+							<img
+								:src="require(`../assets/soldier_icons/${soldier.icon}`)"
+								alt=""
+							/>
+						</div>
 					</div>
 				</div>
 
-				<div class="cc__stats-flexbox">
-					<c-c-tag-item
-						v-for="(item, tag) in avaliableTags"
-						:key="item"
-						:item="item"
-						:tag="tag"
-						:activeTags="tags"
-						@tagClicked="tagClicked"
-					></c-c-tag-item>
+				<div class="cc__right-col cc__col">
+					<h2 class="cc__title">Выбери теги способностей</h2>
+					<p class="cc__text-desc">
+						Выбирая теги, ты определяешь то, какими способностями будет обладать
+						солдат. Например, солдат с тегами пехотинец и инженер будет иметь
+						навыки стрельбы (отдача&nbsp;и&nbsp;пр.) и строительства. Теги член
+						экипажа и танкист — навыками танкиста.
+					</p>
+
+					<div class="cc__chips-flex cc__chips-flex--wide">
+						<CcTagItem
+							v-for="(item, tag) in avaliableTags"
+							:key="item"
+							:item="item"
+							:tag="tag"
+							:activeTags="tags"
+							@tagClicked="tagClicked"
+						></CcTagItem>
+					</div>
 				</div>
 			</div>
 
 			<button
-				class="btn btn-main cc__btn"
+				class="btn btn-m btn-primary cc__btn"
 				@click.prevent="isEditingSettings = !isEditingSettings"
 				:disabled="isDisabled"
 			>
-				Продолжить <i class="fa-solid fa-arrow-right"></i>
+				Продолжить
 			</button>
 
 			<p class="cc__disclaimer">
@@ -85,13 +101,51 @@
 		</template>
 
 		<template v-else>
-			<div class="mt-s mb-m">
+			<div class="mt-l">
+				<h3>Текущие параметры</h3>
+				<div class="cc__s-data-block">
+					<div class="cc__s-stats-block">
+						<div class="cc__s-stat">
+							<IconBase>
+								<IconMobility />
+							</IconBase>
+							<span> {{ stats[0] }} </span>
+						</div>
+						<span class="cc__s-inline-separator"> - </span>
+						<div class="cc__s-stat">
+							<IconBase>
+								<IconVitality />
+							</IconBase>
+							<span> {{ stats[1] }} </span>
+						</div>
+						<span class="cc__s-inline-separator"> - </span>
+						<div class="cc__s-stat">
+							<IconBase>
+								<IconWeapon />
+							</IconBase>
+							<span> {{ stats[2] }} </span>
+						</div>
+					</div>
+
+					<div class="cc__s-tags-block">
+						<IconBase>
+							<IconTags />
+						</IconBase>
+						<div class="cc_s-tags">
+							<span v-for="(tag, idx) in tags" :key="tag">
+								{{ avaliableTags[tag].name
+								}}{{ idx < tags.length - 1 ? ', ' : '' }}
+							</span>
+						</div>
+					</div>
+				</div>
 				<button
-					class="btn btn-small mb-s cc__btn-back"
+					class="btn btn-m btn-secondary cc__s-btn-back"
 					@click="isEditingSettings = !isEditingSettings"
 				>
-					<i class="fa-solid fa-arrow-left"></i> Вернуться
+					Изменить параметры
 				</button>
+
 				<calculator-block
 					:stats="stats"
 					:tags="tags"
@@ -99,7 +153,7 @@
 				></calculator-block>
 			</div>
 		</template>
-	</div>
+	</section>
 </template>
 
 <script lang="ts">
@@ -113,12 +167,27 @@ import {
 	Ref,
 } from 'vue';
 import { avaliableTags } from '@/data/customCalculatorTags';
-import CCTagItem from '@/components/cc/CCTagItem.vue';
+import { uniqueSoldiersList } from '@/data/soldiersList';
+import CcTagItem from '@/components/cc/CcTagItem.vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
-import { useRouter } from 'vue-router';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconMobility from '@/components/ui/icons/IconMobility.vue';
+import IconVitality from '@/components/ui/icons/IconVitality.vue';
+import IconWeapon from '@/components/ui/icons/IconWeapon.vue';
+import IconTags from '@/components/ui/icons/IconTags.vue';
 
 export default defineComponent({
-	components: { CCTagItem, CalculatorBlock },
+	components: {
+		CcTagItem,
+		CalculatorBlock,
+		TooltipComponent,
+		IconBase,
+		IconMobility,
+		IconVitality,
+		IconWeapon,
+		IconTags,
+	},
 	setup() {
 		const stats = reactive([null, null, null]);
 		const tags = reactive(['base']);
@@ -137,14 +206,6 @@ export default defineComponent({
 			// add a new object if tags doesn't already have it
 			if (!tags.includes(tag) && operation === 'add') {
 				tags.push(tag);
-			}
-
-			// After handling tags, update the route
-			const router = useRouter();
-
-			if (!isEditingSettings.value) {
-				// If not editing settings, navigate to /calculator/edit
-				router.push({ path: '/calculator/edit' });
 			}
 		}
 
@@ -173,13 +234,20 @@ export default defineComponent({
 			return isNotFilled;
 		});
 
+		function setTags(idx: number) {
+			tags.length = 0;
+			tags.push(...uniqueSoldiersList[idx].tags);
+		}
+
 		return {
 			avaliableTags,
+			uniqueSoldiersList,
 			stats,
 			tags,
 			tagClicked,
 			isEditingSettings,
 			isDisabled,
+			setTags,
 		};
 	},
 });

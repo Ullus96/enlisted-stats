@@ -1,0 +1,51 @@
+.popup {
+	position: fixed;
+	bottom: 3.2rem;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 95%;
+	max-width: 60rem;
+	padding: 3.2rem 2rem 3.2rem 2.4rem;
+	background-color: $color-bg-a-500;
+	border-radius: 0.8rem;
+	overflow: hidden;
+	@include ui-background-blur;
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		width: 0.4rem;
+		top: 0;
+		bottom: 0;
+		background-color: $color-text-700;
+	}
+
+	&.danger {
+		&::after {
+			background-color: $color-danger-200;
+		}
+	}
+
+	&.warning {
+		&::after {
+			background-color: $color-warning-200;
+		}
+	}
+
+	&.success {
+		&::after {
+			background-color: $color-success-200;
+		}
+	}
+
+	&__wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+	}
+
+	&__desc {
+		color: $color-text-400;
+	}
+}

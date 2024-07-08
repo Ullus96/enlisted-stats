@@ -1,7 +1,4 @@
 <template>
-	<!-- <template v-if="!isEventsEnded()">
-		<the-event v-for="item in eventsData" :key="item" :data="item"></the-event>
-	</template> -->
 	<template v-if="isLoading">
 		<loading-spinner class="mt-xl mb-xl"></loading-spinner>
 	</template>
@@ -24,7 +21,7 @@ import TheEvent from '@/components/events/TheEvent.vue';
 import { IEvent } from '@/type/Events';
 import NoEvents from '@/components/no-page/NoEvents.vue';
 import getEvents from '@/functions/getEvents';
-import LoadingSpinner from '@/components/LoadingSpinner.vue';
+import LoadingSpinner from '@/components/ui/LoadingSpinner.vue';
 
 export default defineComponent({
 	components: { TheEvent, NoEvents, LoadingSpinner },
@@ -46,16 +43,16 @@ export default defineComponent({
 		// 	stages: [],
 		// 	rewards: ['',	'',	''],
 		// },
-		const eventsData: IEvent[] = [
-			{
-				name: '',
-				startDate: new Date(),
-				endDate: new Date(),
-				hoursInStage: 48,
-				stages: [],
-				rewards: [],
-			},
-		];
+		// const eventsData: IEvent[] = [
+		// 	{
+		// 		name: '',
+		// 		startDate: new Date(),
+		// 		endDate: new Date(),
+		// 		hoursInStage: 48,
+		// 		stages: [],
+		// 		rewards: [],
+		// 	},
+		// ];
 
 		function generateStages(event: IEvent) {
 			const twoDaysInMillis = 2 * 24 * 60 * 60 * 1000; // 2 дня в миллисекундах
@@ -73,9 +70,9 @@ export default defineComponent({
 			}
 		}
 
-		eventsData.forEach((element) => {
-			generateStages(element);
-		});
+		// eventsData.forEach((element) => {
+		// 	generateStages(element);
+		// });
 
 		function addSeconds(date: Date, seconds: number): Date {
 			const result = new Date(date);
@@ -104,7 +101,7 @@ export default defineComponent({
 
 		return {
 			isLoading,
-			eventsData,
+			// eventsData,
 			events,
 			isEventsEnded,
 		};

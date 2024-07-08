@@ -1,21 +1,40 @@
 .sbuild {
 	&__grid {
-		margin-top: 4rem;
+		margin-top: 6rem;
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 2rem;
+
+		@include desktop-small {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media (max-width: 700px) {
+			grid-template-columns: repeat(1, 1fr);
+		}
 	}
 
 	&__item {
-		background-color: $color-black-light-1;
-		border-radius: 1rem;
-		padding: 1rem;
-		cursor: pointer;
-		position: relative;
+		border-radius: 0.8rem;
+		background-color: $color-bg-a-500;
+		@include ui-background-blur;
+		display: flex;
+		gap: 1.2rem;
 
-		&:hover {
-			background-color: $color-black-light-2;
+		&--clickable {
+			cursor: pointer;
+			position: relative;
+
+			@include pressed($color-text-100, $color-bg-a-500, 4);
+			&:hover {
+				@include hovered($color-text-100, $color-bg-a-500);
+			}
 		}
+	}
+
+	&__main-content {
+		flex: 1 1 auto;
+		padding: 1.2rem;
 	}
 
 	&__link {
@@ -24,169 +43,89 @@
 		inset: 0 0 0 0;
 	}
 
-	&__header-block {
-		display: flex;
-		justify-content: space-between;
-		gap: 1rem;
-		margin-bottom: 2px;
-	}
-
+	// Left col
 	&__name {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		padding-right: 4rem;
+		font-size: 2rem;
 	}
-
-	&__visibility {
-		font-size: 0.6em;
-		vertical-align: middle;
-		color: rgba($color-white, 0.6);
-	}
-
-	&__likes-block {
-		position: absolute;
-		right: 0.5rem;
-		top: 0.5rem;
-		padding: 1rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-
-		&:hover {
-			.sbuild {
-				&__likes-svg path {
-					stroke: $color-error;
-				}
-			}
-		}
-	}
-
-	&__likes-svg {
-		height: 1.4rem;
-		path {
-			transition: 0.1s ease-in-out all;
-		}
-	}
-
-	// active state (if liked)
-	&__likes-block.active {
-		&:hover {
-			.sbuild {
-				&__likes-svg path {
-					fill: transparent;
-				}
-			}
-		}
-
-		.sbuild {
-			&__likes-amount {
-				color: $color-error;
-			}
-
-			&__likes-svg {
-				path {
-					stroke: $color-error;
-					fill: $color-error;
-				}
-			}
-		}
-	}
-	// end
-
-	// Likes animation
-	&__icon {
-		&-container {
-			position: relative;
-		}
-
-		&-sub {
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: 1;
-			opacity: 1;
-			transition: top 0.6s ease-out, left 0.6s ease-out, opacity 0.6s ease-out;
-
-			& path {
-				stroke: $color-error !important;
-				fill: $color-error !important;
-			}
-		}
-
-		&-main {
-			position: relative;
-			z-index: 2;
-		}
-	}
-	// end of likes animation
 
 	&__data-block {
+		margin-top: 0.8rem;
 		display: flex;
 		flex-direction: column;
-		// gap: 1rem;
-		margin-bottom: 1rem;
+		gap: 0.4rem;
 	}
 
-	&__data-left {
+	&__data-class {
 		display: flex;
 		align-items: center;
-		gap: 5px;
+		gap: 0.4rem;
+		color: $color-text-400;
+		// font-size: $ui-font-size-s;
 	}
 
 	&__data-icon {
 		height: 16px;
 		aspect-ratio: 1/1;
-	}
-
-	&__data-desc {
-		opacity: 0.8;
+		opacity: 0.6;
 	}
 
 	&__data-stats {
-		// min-width: 10rem;
-		padding-left: 2rem;
-		span:nth-child(1) {
-			color: $color-mobility;
-		}
-		span:nth-child(2) {
-			color: $color-vitality;
-		}
-		span:nth-child(3) {
-			color: $color-weapon-handling;
-		}
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
 	}
 
+	&__data-stat {
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+	}
+
+	&__data-separator {
+		color: $color-text-700;
+	}
+
+	// Author block
 	&__author-block {
+		margin-top: 1.6rem;
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.8rem;
 	}
 
 	&__author-avatar {
-		width: 5rem;
-		height: 5rem;
+		width: 4.8rem;
+		height: 4.8rem;
 		object-fit: cover;
-		border-radius: 1rem;
+		border-radius: 100%;
 	}
 
 	&__author-block-right {
 		display: flex;
 		flex-direction: column;
+		gap: 0.4rem;
+		line-height: 120%;
 	}
 
+	// &__author-name {
+	// 	color: $color-text-400;
+	// }
+
 	&__author-date {
-		color: $color-skill-inactive;
-		font-size: 0.8em;
+		color: $color-text-700;
+		font-size: $ui-font-size-s;
 	}
 
 	// single build page
 	&__single-build {
-		cursor: default;
+		cursor: auto;
 		margin-left: auto;
 		margin-right: auto;
-		width: 50%;
+		width: 100%;
+		max-width: 60rem;
+		margin-bottom: 3.2rem;
 
 		& .sbuild__likes-block {
 			cursor: pointer;
@@ -260,4 +199,115 @@
 			}
 		}
 	}
+
+	// Right col of icons
+	&__info-col {
+		flex: 0 0 auto;
+		padding: 0.4rem;
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	&__card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.8rem;
+		border-radius: 0.4rem;
+
+		@include pressed($color-text-100, $color-bg-a-200, 4);
+		&:hover {
+			@include hovered($color-text-100, $color-bg-a-200);
+		}
+	}
+
+	&__likes-block--no-anim {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 0.8rem 0.8rem 0.2rem;
+		gap: 0.4rem;
+	}
+
+	&__likes-block {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 0.8rem 0.8rem 0.2rem;
+		gap: 0.4rem;
+
+		&:hover {
+			.sbuild {
+				&__likes-svg path {
+					stroke: $color-danger-200;
+					fill: $color-danger-200;
+				}
+			}
+		}
+	}
+
+	&__likes-svg {
+		width: 1.6rem;
+		path {
+			transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
+		}
+	}
+
+	// active state (if liked)
+	&__likes-block.active {
+		&:hover {
+			.sbuild {
+				&__likes-svg path {
+					fill: transparent;
+				}
+			}
+		}
+
+		.sbuild {
+			&__likes-amount {
+				color: $color-danger-200;
+			}
+
+			&__likes-svg {
+				path {
+					stroke: $color-danger-200;
+					fill: $color-danger-200;
+				}
+			}
+		}
+	}
+	// end
+
+	// Likes animation
+	&__icon {
+		&-container {
+			position: relative;
+		}
+
+		&-sub {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			opacity: 1;
+			transition: top 0.6s ease-out, left 0.6s ease-out, opacity 0.6s ease-out;
+
+			& path {
+				stroke: $color-danger-200 !important;
+				fill: $color-danger-200 !important;
+			}
+		}
+
+		&-main {
+			position: relative;
+			z-index: 2;
+		}
+	}
+	// end of likes animation
 }

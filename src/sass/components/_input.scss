@@ -1,10 +1,80 @@
 .input {
-	border: 1px solid $color-skill-inactive;
-	padding: 1rem 1.5rem;
-}
+	&__label {
+		font-size: $ui-font-size-s;
+	}
 
-.input-rounded {
-	border: 1px solid $color-skill-inactive;
-	border-radius: 1rem;
-	padding: 1rem 1.5rem;
+	&__content {
+		margin-top: 0.4rem;
+		display: flex;
+		gap: 2rem;
+	}
+
+	&__btn {
+		padding: 1.2rem;
+		border-radius: 0.8rem;
+		height: min-content;
+		flex: 0 0 auto;
+
+		& > * {
+			display: block;
+		}
+	}
+
+	&__main-content {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		gap: 0.4rem;
+	}
+
+	&__input {
+		border-radius: 1.2rem;
+		padding: 1.2rem 1.6rem;
+		color: $color-text-100;
+		background-color: $color-bg-800;
+		outline: 1px solid $color-bg-a-050;
+		font-size: $ui-font-size-base;
+		color-scheme: dark;
+
+		&[type='datetime-local']::-webkit-calendar-picker-indicator {
+			filter: invert(28%);
+		}
+
+		&::placeholder {
+			color: $color-text-700;
+		}
+
+		&:focus {
+			@include focused($color-text-100, $color-bg-800);
+		}
+
+		&.error {
+			outline: 1px solid $color-danger-200;
+		}
+	}
+
+	&__sub-text {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		gap: 2rem;
+	}
+
+	&__error {
+		color: $color-danger-100;
+		font-size: $ui-font-size-m;
+	}
+
+	&__desc {
+		text-align: right;
+		align-self: flex-end;
+		color: $color-text-700;
+		font-size: $ui-font-size-xs;
+		flex: 0 0 auto;
+
+		@include tablet {
+			max-width: 80dvw;
+			word-break: break-word;
+		}
+	}
 }

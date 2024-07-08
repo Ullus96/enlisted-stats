@@ -1,7 +1,7 @@
 <template>
-	<div class="events__countdown-card">
-		<h2 class="events__countdown-time">{{ timerValue }}</h2>
-		<p class="events__countdown-desc">{{ description }}</p>
+	<div class="event__countdown-card">
+		<h2 class="event__countdown-time">{{ timerValue }}</h2>
+		<p class="event__countdown-desc">{{ description }}</p>
 	</div>
 </template>
 

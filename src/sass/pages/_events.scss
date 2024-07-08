@@ -1,245 +1,630 @@
-.events {
-	padding: 4rem 0;
+// .events {
+// 	padding: 4rem 0;
 
-	&:not(:last-child) {
-		margin-bottom: 6rem;
-	}
+// 	&:not(:last-child) {
+// 		margin-bottom: 6rem;
+// 	}
 
-	&__count-block {
-		text-align: center;
-		margin-bottom: 6rem;
-	}
+// 	&__count-block {
+// 		text-align: center;
+// 		margin-bottom: 6rem;
+// 	}
 
+// 	&__title {
+// 		font-family: 'machine', monospace;
+// 		letter-spacing: 3px;
+// 		font-size: 4.6rem;
+// 		font-weight: 700;
+// 		margin-bottom: 1rem;
+// 	}
+
+// 	&__count-title {
+// 		margin-bottom: 2rem;
+// 	}
+
+// 	&__card-top {
+// 		margin-bottom: 2rem;
+// 	}
+
+// 	&__reward {
+// 		&-block {
+// 			display: flex;
+// 			flex-direction: column;
+// 			align-items: center;
+// 		}
+
+// 		&-upper-block {
+// 			display: grid;
+// 			grid-template-columns: repeat(2, 1fr);
+// 			width: clamp(40rem, 50%, 100rem);
+// 			background-color: $color-black-light-1;
+// 			border-radius: 1rem;
+// 			overflow: hidden;
+// 		}
+
+// 		&-bar {
+// 			background-color: $color-black-light-1;
+// 			padding: 1.5rem;
+// 			display: flex;
+// 			justify-content: center;
+// 			align-items: center;
+// 		}
+
+// 		&-bar-left {
+// 			position: relative;
+// 		}
+
+// 		&-bar-progress {
+// 			position: absolute;
+// 			inset: 0 0 0 0;
+// 			z-index: 2;
+
+// 			background: linear-gradient(to right, #47484a 0, transparent 0);
+// 		}
+
+// 		&-bar-animated {
+// 			position: absolute;
+// 			inset: 0 0 0 -28px;
+// 			z-index: 1;
+// 			background: repeating-linear-gradient(
+// 				-45deg,
+// 				rgba($color-skill-inactive, 0.1),
+// 				rgba($color-skill-inactive, 0.1) 10px,
+// 				transparent 10px,
+// 				transparent 20px
+// 			);
+// 			animation: progressBarAnimation 4s linear infinite;
+// 		}
+
+// 		&-text {
+// 			position: relative;
+// 			z-index: 3;
+// 		}
+
+// 		&-bar-right {
+// 			position: relative;
+// 			z-index: 3;
+// 			border-left: 2px solid $color-blue;
+// 		}
+
+// 		&-lower-block {
+// 			display: grid;
+// 			grid-template-columns: repeat(2, 1fr);
+// 			width: clamp(40rem, 50%, 100rem);
+// 			padding-top: 0.5rem;
+// 			opacity: 0.4;
+// 			font-size: 1.2rem;
+// 		}
+// 	}
+
+// 	// card
+// 	&__card {
+// 		display: inline-block;
+// 		position: relative;
+// 		background-color: $color-black-light-1;
+// 		border: 1px solid $color-skill-inactive;
+// 		border-radius: 1rem;
+// 		text-align: center;
+// 		cursor: default;
+
+// 		width: 10rem;
+// 		padding: 1rem;
+
+// 		&.finish {
+// 			& > .finish {
+// 				color: $color-skill-inactive;
+// 			}
+// 		}
+// 	}
+
+// 	&__counter {
+// 		position: absolute;
+// 		font-size: 1.2rem;
+// 		color: $color-skill-inactive;
+// 		left: 6px;
+// 		top: 6px;
+// 	}
+
+// 	&__date {
+// 		font-size: 4.6rem;
+// 	}
+
+// 	&__month {
+// 		padding-bottom: 0.5rem;
+// 	}
+
+// 	&__card-tooltip {
+// 		width: clamp(100%, 200%, 300%);
+// 		@include tooltip('up');
+// 	}
+
+// 	&__card:hover &__card-tooltip {
+// 		display: flex;
+// 		flex-direction: column;
+// 		gap: 4px;
+// 	}
+
+// 	// countdown card
+// 	&__countdown-block {
+// 		display: flex;
+// 		justify-content: center;
+// 		gap: 1rem;
+// 		margin-bottom: 2rem;
+// 	}
+// 	&__countdown-card {
+// 		width: 7rem;
+// 		background-color: $color-black-light-1;
+// 		padding: 1rem;
+// 		border: 1px solid $color-skill-inactive;
+// 		border-radius: 1rem;
+// 	}
+
+// 	&__countdown-time {
+// 		font-weight: 400;
+// 	}
+
+// 	&__countdown-desc {
+// 		font-size: 1.2rem;
+// 		color: $color-skill-inactive;
+// 	}
+
+// 	// all cards of event
+// 	&__all-title {
+// 		padding-left: 2rem;
+// 		margin-bottom: 2rem;
+// 	}
+
+// 	&__all-cards-flex {
+// 		display: flex;
+// 		flex-wrap: wrap;
+// 		gap: 2rem;
+// 		padding-left: 2rem;
+// 	}
+
+// 	&__all-card {
+// 		position: relative;
+// 	}
+
+// 	&__all-card:not(:first-child):before {
+// 		content: '';
+// 		position: absolute;
+// 		top: 50%;
+// 		left: -2.1rem;
+// 		width: 2rem;
+// 		height: 2px;
+// 		transform: translateY(-50%);
+// 		background-color: $color-skill-inactive;
+// 		z-index: 2;
+// 	}
+
+// 	&__all-card:not(:last-child):after {
+// 		content: '';
+// 		position: absolute;
+// 		top: 50%;
+// 		right: 0;
+// 		width: 1rem;
+// 		height: 1rem;
+// 		border-radius: 100px;
+// 		transform: translate(50%, -50%);
+// 		background: linear-gradient(
+// 			to right,
+// 			transparent 50%,
+// 			$color-skill-inactive 50%
+// 		);
+// 		z-index: 3;
+// 	}
+
+// 	// active card
+// 	&__all-card--active {
+// 		@include card-active;
+// 	}
+
+// 	&__all-card--active:not(:last-child):after {
+// 		background: linear-gradient(
+// 			to right,
+// 			transparent 50%,
+// 			$color-highlight 50%
+// 		);
+// 	}
+
+// 	&__all-card--active > &__counter {
+// 		color: $color-highlight;
+// 	}
+// }
+
+.event {
 	&__title {
-		font-family: 'machine', monospace;
-		letter-spacing: 3px;
-		font-size: 4.6rem;
-		font-weight: 700;
-		margin-bottom: 1rem;
-	}
-
-	&__count-title {
-		margin-bottom: 2rem;
-	}
-
-	&__card-top {
-		margin-bottom: 2rem;
-	}
-
-	&__reward {
-		&-block {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-
-		&-upper-block {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			width: clamp(40rem, 50%, 100rem);
-			background-color: $color-black-light-1;
-			border-radius: 1rem;
-			overflow: hidden;
-		}
-
-		&-bar {
-			background-color: $color-black-light-1;
-			padding: 1.5rem;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		&-bar-left {
-			position: relative;
-		}
-
-		&-bar-progress {
-			position: absolute;
-			inset: 0 0 0 0;
-			z-index: 2;
-
-			background: linear-gradient(to right, #47484a 0, transparent 0);
-		}
-
-		&-bar-animated {
-			position: absolute;
-			inset: 0 0 0 -28px;
-			z-index: 1;
-			background: repeating-linear-gradient(
-				-45deg,
-				rgba($color-skill-inactive, 0.1),
-				rgba($color-skill-inactive, 0.1) 10px,
-				transparent 10px,
-				transparent 20px
-			);
-			animation: progressBarAnimation 4s linear infinite;
-		}
-
-		&-text {
-			position: relative;
-			z-index: 3;
-		}
-
-		&-bar-right {
-			position: relative;
-			z-index: 3;
-			border-left: 2px solid $color-blue;
-		}
-
-		&-lower-block {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			width: clamp(40rem, 50%, 100rem);
-			padding-top: 0.5rem;
-			opacity: 0.4;
-			font-size: 1.2rem;
-		}
-	}
-
-	// card
-	&__card {
-		display: inline-block;
-		position: relative;
-		background-color: $color-black-light-1;
-		border: 1px solid $color-skill-inactive;
-		border-radius: 1rem;
 		text-align: center;
-		cursor: default;
+	}
 
+	&__end {
+		text-align: center;
+		color: $color-text-400;
+	}
+
+	&__content {
+		margin-top: 6rem;
+		display: flex;
+		justify-content: space-between;
+		gap: 10rem;
+
+		@include desktop-small {
+			gap: 6rem;
+		}
+
+		@include tablet {
+			flex-direction: column;
+		}
+	}
+
+	&__left-col {
+		flex: 1 1 83rem;
+
+		@include tablet {
+			order: 1;
+			flex: 1 1 auto;
+		}
+	}
+
+	&__header {
+		display: flex;
+		align-items: baseline;
+		justify-content: center;
+		gap: 0.8rem;
+
+		& .btn {
+			padding: 0.8rem;
+			transform: translateY(-1px);
+		}
+
+		@include tablet {
+			align-items: center;
+			text-wrap: balance;
+			text-align: center;
+		}
+	}
+
+	&__cards-flex {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		margin-top: 4rem;
+
+		@include tablet {
+			justify-content: center;
+		}
+	}
+
+	// Cards
+	&__card {
+		position: relative;
 		width: 10rem;
-		padding: 1rem;
+		background-color: $color-bg-a-500;
+		border-radius: 0.8rem;
+		padding: 2rem 1.6rem;
+		transform: rotateZ(0) scale(1);
+		opacity: 1;
+		transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+		cursor: pointer;
+
+		@include ui-shadow;
+		@include ui-background-blur;
 
 		&.finish {
-			& > .finish {
-				color: $color-skill-inactive;
+			color: $color-text-700;
+
+			& .event__time {
+				color: $color-text-700;
 			}
 		}
+
+		&--active {
+			outline: 1px solid $color-primary-200;
+
+			& .event__counter {
+				color: $color-primary-200;
+			}
+		}
+
+		&.skipped {
+			opacity: 0.6;
+			transform: rotateZ(-6deg) scale(0.96);
+		}
+
+		@include showTooltip;
 	}
 
 	&__counter {
 		position: absolute;
-		font-size: 1.2rem;
-		color: $color-skill-inactive;
-		left: 6px;
-		top: 6px;
+		top: 0.6rem;
+		left: 0.6rem;
+		line-height: 100%;
+		color: $color-text-700;
+		font-size: $ui-font-size-s;
 	}
 
 	&__date {
-		font-size: 4.6rem;
+		font-size: 3.6rem;
+		text-align: center;
+		line-height: 100%;
 	}
 
 	&__month {
-		padding-bottom: 0.5rem;
+		margin-top: 0.4rem;
+		text-align: center;
+		line-height: 100%;
 	}
 
-	&__card-tooltip {
-		width: clamp(100%, 200%, 300%);
-		@include tooltip('up');
+	&__time {
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
+		text-align: center;
+		margin-top: 0.8rem;
 	}
 
-	&__card:hover &__card-tooltip {
+	&__mobile-reward-block {
+		border-top: 1px solid $color-bg-050;
+		margin-top: 0.4rem;
+		padding-top: 0.8rem;
+		color: $color-text-400;
+		word-break: break-word;
+		text-wrap: balance;
+		text-align: center;
+		hyphens: auto;
+		line-height: 130%;
 		display: flex;
 		flex-direction: column;
-		gap: 4px;
+		gap: 0.4rem;
+		font-size: $ui-font-size-xs;
+		display: none;
+
+		@include tablet {
+			display: flex;
+		}
 	}
 
-	// countdown card
-	&__countdown-block {
-		display: flex;
-		justify-content: center;
-		gap: 1rem;
-		margin-bottom: 2rem;
+	// Right column
+	&__right-col {
+		margin-top: 8rem;
+		flex: 0.5 0.5 45rem;
+
+		@include tablet {
+			margin-top: 0;
+			flex: 1 1 auto;
+		}
 	}
+
+	&__timer-block {
+		display: flex;
+		gap: 1.2rem;
+		justify-content: center;
+	}
+
 	&__countdown-card {
 		width: 7rem;
-		background-color: $color-black-light-1;
-		padding: 1rem;
-		border: 1px solid $color-skill-inactive;
-		border-radius: 1rem;
+		padding: 1.2rem 0.8rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 0.4rem;
+		background-color: $color-bg-500;
+		border-radius: 0.8rem;
+		@include ui-shadow;
 	}
 
 	&__countdown-time {
-		font-weight: 400;
+		line-height: 100%;
+		font-size: $ui-font-size-h3;
 	}
 
 	&__countdown-desc {
-		font-size: 1.2rem;
-		color: $color-skill-inactive;
+		line-height: 100%;
+		color: $color-text-400;
+		font-size: $ui-font-size-xs;
 	}
 
-	// all cards of event
-	&__all-title {
-		padding-left: 2rem;
-		margin-bottom: 2rem;
-	}
-
-	&__all-cards-flex {
+	&__reward-block {
+		margin-top: 4rem;
 		display: flex;
-		flex-wrap: wrap;
-		gap: 2rem;
-		padding-left: 2rem;
+		gap: 1.2rem;
 	}
 
-	&__all-card {
+	&__chip {
+		border-radius: 0.8rem;
+		padding: 1.2rem;
+		background-color: $color-bg-700;
+		border: none;
+		@include ui-shadow;
+		@include ui-background-blur;
+		flex: 0 0 auto;
+
+		& svg {
+			display: block;
+		}
+
+		@include pressed($color-text-100, $color-bg-700, 2.5);
+
+		&:hover {
+			@include hovered($color-text-100, $color-bg-700);
+		}
+
+		&:focus {
+			@include focused($color-text-100, $color-bg-700);
+		}
+
+		&--active {
+			background-color: $color-primary-600;
+
+			@include pressed($color-text-100, $color-primary-600, 2.5);
+
+			&:hover {
+				@include hovered($color-text-100, $color-primary-600);
+			}
+
+			&:focus {
+				@include focused($color-text-100, $color-primary-600);
+			}
+		}
+	}
+
+	&__progress-bar-block {
 		position: relative;
+		flex: 1 1 auto;
 	}
 
-	&__all-card:not(:first-child):before {
-		content: '';
+	&__progress-bar {
+		background-color: $color-bg-700;
+		height: 4rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		overflow: hidden;
+		border-radius: 0.8rem;
+	}
+
+	&__progress-bar-progress {
 		position: absolute;
-		top: 50%;
-		left: -2.1rem;
-		width: 2rem;
-		height: 2px;
-		transform: translateY(-50%);
-		background-color: $color-skill-inactive;
+		inset: 0 0 0 0;
 		z-index: 2;
+
+		background: linear-gradient(to right, $color-primary-600 0, transparent 0);
 	}
 
-	&__all-card:not(:last-child):after {
-		content: '';
+	&__progress-bar-animated {
 		position: absolute;
-		top: 50%;
-		right: 0;
-		width: 1rem;
-		height: 1rem;
-		border-radius: 100px;
-		transform: translate(50%, -50%);
-		background: linear-gradient(
-			to right,
-			transparent 50%,
-			$color-skill-inactive 50%
+		inset: 0 0 0 -28px;
+		z-index: 1;
+		background: repeating-linear-gradient(
+			-45deg,
+			rgba($color-text-700, 0.05),
+			rgba($color-text-700, 0.05) 10px,
+			transparent 10px,
+			transparent 20px
 		);
-		z-index: 3;
+		animation: progressBarAnimation 4s linear infinite;
 	}
 
-	// active card
-	&__all-card--active {
-		@include card-active;
+	&__progress-bar-stage {
+		position: absolute;
+		color: $color-text-700;
+		font-size: $ui-font-size-xs;
+		top: calc(100% + 0.4rem);
+
+		&--current {
+			left: 1.2rem;
+		}
+
+		&--next {
+			right: 1.2rem;
+		}
+
+		&::after {
+			position: absolute;
+			left: 50%;
+			bottom: calc(100% - 0.2rem);
+			content: '';
+			height: 2rem;
+			width: 1px;
+			background-color: $color-bg-050;
+			z-index: -1;
+		}
 	}
 
-	&__all-card--active:not(:last-child):after {
-		background: linear-gradient(
-			to right,
-			transparent 50%,
-			$color-highlight 50%
-		);
+	// description block
+	&__reward-description-block {
+		margin-top: 3.2rem;
+		padding: 0 5.2rem;
 	}
 
-	&__all-card--active > &__counter {
-		color: $color-highlight;
+	&__reward-wrapper {
+		position: relative;
+		padding: 0.8rem;
+	}
+
+	&__reward-item {
+		&--right {
+			text-align: right;
+		}
+	}
+
+	&__reward-boundary {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 5px;
+		border-top: 1px solid $color-bg-050;
+		border-bottom: 1px solid $color-bg-050;
+
+		&::after {
+			position: absolute;
+			content: '';
+			width: 3.3rem;
+			height: 1px;
+			top: 50%;
+			transform: translateY(-50%);
+			background-color: $color-bg-050;
+		}
+
+		&::before {
+			position: absolute;
+			content: '';
+			height: calc(100% + 2rem);
+			transform: translateY(calc(-50% - 1rem));
+			z-index: -1;
+			background-color: $color-bg-050;
+		}
+
+		&--left {
+			transform-origin: left;
+			left: 0;
+			border-left: 1px solid $color-bg-050;
+
+			&::after {
+				right: 5px;
+			}
+
+			&::before {
+				right: calc(5px + 3.2rem);
+				width: 1px;
+			}
+		}
+
+		&--right {
+			transform-origin: right;
+			right: 0;
+			border-right: 1px solid $color-bg-050;
+
+			&::after {
+				left: 5px;
+			}
+
+			&::before {
+				left: calc(5px + 3.2rem);
+				width: 1px;
+			}
+		}
 	}
 }
 
 @keyframes progressBarAnimation {
 	0% {
 		inset: 0 0 0 -28px;
-		// transform: translateX(0);
 	}
 
 	100% {
 		inset: 0 -28px 0 0;
-		// transform: translateX(2rem);
+	}
+}
+
+@keyframes skip-card {
+	from {
+		opacity: 1;
+		transform: rotateZ(0) scale(1);
+	}
+	to {
+		opacity: 0.6;
+		transform: rotateZ(-8deg) scale(0.9);
 	}
 }

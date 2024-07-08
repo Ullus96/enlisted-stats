@@ -1,38 +1,41 @@
 <template>
-	<div class="calculator__grid">
-		<calculator-branch
-			v-for="(branch, index) in skillsList"
-			:key="branch"
-			:skills="skillsList[index]"
-			:branchIndex="index"
-			:remainingStats="remainingStats ? remainingStats : statsPool"
-			:statsPool="statsPool"
-			:tags="tags"
-			:pointsSpentOnTier1="pointsSpentOnTier1"
-			:soldierClass="soldierClass"
-			@statChanged="statChanged"
-			@notEnoughPoints="notEnoughPoints"
-		></calculator-branch>
+	<div class="calculator">
+		<div class="calculator__grid">
+			<calculator-branch
+				v-for="(branch, index) in skillsList"
+				:key="branch"
+				:skills="skillsList[index]"
+				:branchIndex="index"
+				:remainingStats="remainingStats ? remainingStats : statsPool"
+				:statsPool="statsPool"
+				:tags="tags"
+				:pointsSpentOnTier1="pointsSpentOnTier1"
+				:soldierClass="soldierClass"
+				@statChanged="statChanged"
+			></calculator-branch>
+		</div>
 	</div>
 
 	<!-- if not authorized - tell user that he needs 
 		to login to save skill build -->
 	<template v-if="!auth">
 		<div class="calculator__tell-to-login">
-			Вы не авторизованы.
-			<a href="/login" @click.prevent="openLoginPopup"
-				>Зарегистрируйте или войдите</a
+			Ты не авторизован.
+			<a
+				href="#"
+				class="link"
+				@click.prevent="$store.state.modal.isLoginModalVisible = true"
+				>Зарегистрируйся или войди</a
 			>
-			в учетную запись, чтобы иметь возможность сохранять сборки, а так же
-			делиться ими с другими пользователями.
+			в аккаунт, чтобы сохранять свои сборки и делиться ими с другими.
 		</div>
 	</template>
 	<!-- Default behaviour if opened by Table or Calculator -->
 	<template v-if="!isOpenedBySkillBuild">
 		<div class="calculator__save-btn">
 			<button
-				class="btn btn-main"
-				@click="showSaveModal = true"
+				class="btn btn-m btn-primary"
+				@click="$store.state.modal.isBuildSaveModalVisible = true"
 				:disabled="!auth"
 				id="saveBuild"
 			>
@@ -44,8 +47,8 @@
 	<template v-if="openedInSingleBuild">
 		<div class="calculator__save-btn">
 			<button
-				class="btn btn-main"
-				@click="showSaveModal = true"
+				class="btn btn-m btn-primary"
+				@click="$store.state.modal.isBuildSaveModalVisible = true"
 				:disabled="!auth"
 				id="saveBuild"
 			>
@@ -56,8 +59,7 @@
 	<!-- modal on save -->
 	<Teleport to="body">
 		<calculator-save-modal
-			v-if="showSaveModal"
-			@closeModal="showSaveModal = false"
+			v-if="$store.state.modal.isBuildSaveModalVisible"
 			@saveBuild="saveBuild"
 			:soldierClass="soldierClass"
 			:openedInSingleBuild="openedInSingleBuild"
@@ -65,9 +67,6 @@
 			@modifyBuild="modifyBuild"
 		></calculator-save-modal>
 	</Teleport>
-
-	<!-- error -->
-	<error-block :errorArray="errorArray"></error-block>
 </template>
 
 <script lang="ts">
@@ -77,12 +76,6 @@ import CalculatorBranch from './CalculatorBranch.vue';
 import CalculatorSaveModal from './CalculatorSaveModal.vue';
 import { SkillBranch, SkillEntity, SkillPossibleTiers } from '@/type/Skills';
 import { SkillTag } from '@/type/SkillTag';
-import ErrorBlock from '@/components/error/ErrorBlock.vue';
-import { IErrorEntity } from '@/type/CustomErrors';
-import {
-	saveToLocalStorageArray,
-	loadFromLocalStorageArray,
-} from '@/functions/localStorageUtils';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useStore } from 'vuex';
 import {
@@ -98,7 +91,7 @@ import { db } from '@/firebase/firebase';
 import { useRoute } from 'vue-router';
 
 export default defineComponent({
-	components: { CalculatorBranch, ErrorBlock, CalculatorSaveModal },
+	components: { CalculatorBranch, CalculatorSaveModal },
 	props: {
 		stats: {
 			required: true,
@@ -291,40 +284,6 @@ export default defineComponent({
 					}
 				}
 			});
-		}
-
-		// Error Handler
-
-		const errorArray: Ref<IErrorEntity[]> = ref([]);
-		let timerId: ReturnType<typeof setTimeout>;
-
-		function notEnoughPoints(payload: IErrorEntity) {
-			clearErrors();
-			createError(payload);
-
-			timerId = setTimeout(() => {
-				clearErrors();
-			}, 2000);
-		}
-
-		function clearErrors() {
-			if (errorArray.value.length > 1) {
-				errorArray.value.shift();
-			}
-			clearTimeout(timerId);
-			clearArrayAfterDelay(errorArray.value, 2000);
-		}
-
-		function createError(payload: IErrorEntity) {
-			if (errorArray) {
-				errorArray.value.push(payload);
-			}
-		}
-
-		function clearArrayAfterDelay(array: IErrorEntity[], delay: number) {
-			timerId = setTimeout(() => {
-				array.shift();
-			}, delay);
 		}
 
 		// Save functionality
@@ -599,8 +558,6 @@ export default defineComponent({
 			remainingStats,
 			statChanged,
 			pointsSpentOnTier1,
-			notEnoughPoints,
-			errorArray,
 			showSaveModal,
 			saveBuild,
 			auth,

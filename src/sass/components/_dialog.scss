@@ -1,0 +1,29 @@
+.dialog {
+	&__title {
+		margin: 0 auto;
+		text-wrap: balance;
+	}
+
+	&__desc {
+		margin-top: 2rem;
+		text-align: left;
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
+	}
+
+	&__accent {
+		color: $color-primary-200;
+		font-weight: 700;
+	}
+
+	&__buttons {
+		margin-top: 4rem;
+		display: flex;
+		gap: 1.6rem;
+		width: 100%;
+
+		& .btn {
+			flex: 1 1 auto;
+		}
+	}
+}

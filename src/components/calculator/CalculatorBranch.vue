@@ -1,32 +1,39 @@
 <template>
 	<div class="calculator__branch">
-		<div class="calculator__hotkeys-block" v-if="branchIndex === 0">
-			<i class="fa-regular fa-circle-question"></i>
-			<div class="calculator__hotkeys-tooltip">
+		<div
+			class="calculator__hotkeys-block tooltip-anchor--no-relative"
+			v-if="branchIndex === 0"
+		>
+			<IconBase>
+				<IconQuestionCircle />
+			</IconBase>
+			<TooltipComponent :direction="'right'" :width="30" :color="'dark'">
 				<p>При нажатии по иконке скилла:</p>
 				<p><span class="hotkey">ЛКМ</span> - повысить уровень на 1</p>
 				<p><span class="hotkey">ПКМ</span> - понизить уровень на 1</p>
-			</div>
+			</TooltipComponent>
 		</div>
 		<div class="calculator__title-block">
-			<h2 class="calculator__title" :class="classBasedOnIndex">
-				{{ ['Мобильность', 'Живучесть', 'Оружие'][branchIndex] }}
+			<img
+				:src="require(`@/assets/stat_icons/${statIconLink}`)"
+				alt=""
+				class="calculator__icon"
+			/>
+			<h2 class="calculator__remaining-stats">
+				<span>{{ remainingStats[branchIndex] }}</span> /
 				<span>{{ statsPool[branchIndex] }}</span>
 			</h2>
-			<p>
-				Нераспределенные очки:
-				<span :class="classBasedOnIndex">{{
-					remainingStats[branchIndex]
-				}}</span>
-			</p>
-			<p class="calculator__header-tooltip">
-				{{ getBranchPerkDescription(branchIndex) }}
-				<span :class="classBasedOnIndex">{{
-					getBranchPerkAmount(branchIndex, statsPool[branchIndex])
-				}}</span>
-			</p>
+			<div class="calculator__branch-perk-description-wrapper">
+				<p class="calculator__branch-perk-description">
+					{{ getBranchPerkDescription(branchIndex) }}
+					<span :class="classBasedOnIndex">{{
+						getBranchPerkAmount(branchIndex, statsPool[branchIndex])
+					}}</span>
+				</p>
+			</div>
 		</div>
 		<!-- tier 1 -->
+		<div class="calculator__separator"></div>
 		<calculator-tier
 			:tierSkills="skills.tier1"
 			:tags="tags"
@@ -36,8 +43,9 @@
 			:branchRemainingStats="getRemainingStats(branchIndex)"
 			:soldierClass="soldierClass"
 			@statChanged="statChanged"
-			@notEnoughPoints="notEnoughPoints"
 		></calculator-tier>
+
+		<div class="calculator__separator"></div>
 
 		<div
 			class="calculator__restriction-block calculator__restriction-bg"
@@ -51,6 +59,7 @@
 			></calculator-restriction>
 
 			<!-- tier 2 -->
+
 			<calculator-tier
 				:tierSkills="skills.tier2"
 				:tags="tags"
@@ -60,10 +69,11 @@
 				:branchRemainingStats="getRemainingStats(branchIndex)"
 				:soldierClass="soldierClass"
 				@statChanged="statChanged"
-				@notEnoughPoints="notEnoughPoints"
 			></calculator-tier>
 
 			<!-- tier 3 -->
+			<div class="calculator__separator"></div>
+
 			<calculator-tier
 				:tierSkills="skills.tier3"
 				:tags="tags"
@@ -73,7 +83,6 @@
 				:branchRemainingStats="getRemainingStats(branchIndex)"
 				:soldierClass="soldierClass"
 				@statChanged="statChanged"
-				@notEnoughPoints="notEnoughPoints"
 			></calculator-tier>
 		</div>
 	</div>
@@ -85,9 +94,18 @@ import CalculatorTier from './CalculatorTier.vue';
 import CalculatorRestriction from './CalculatorRestriction.vue';
 import { SkillPossibleTiers } from '@/type/Skills';
 import { SoldierID } from '@/type/Soldier';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconQuestionCircle from '@/components/ui/icons/IconQuestionCircle.vue';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
-	components: { CalculatorTier, CalculatorRestriction },
+	components: {
+		CalculatorTier,
+		CalculatorRestriction,
+		IconBase,
+		IconQuestionCircle,
+		TooltipComponent,
+	},
 	props: {
 		skills: { required: true, type: Object },
 		branchIndex: { required: true, type: Number },
@@ -98,27 +116,38 @@ export default defineComponent({
 		soldierClass: { required: true, type: String as PropType<SoldierID> },
 	},
 	setup(props, context) {
-		type PossibleClass = 'mobility' | 'vitality' | 'weapon-handling';
+		type PossibleClass = 'mobility' | 'vitality' | 'weapon';
 
 		function getClassBasedOnIndex(): PossibleClass {
 			switch (props.branchIndex) {
 				case 0:
 					return 'mobility';
-					break;
 				case 1:
 					return 'vitality';
-					break;
 				case 2:
-					return 'weapon-handling';
-					break;
+					return 'weapon';
 
 				default:
 					throw new Error('No class found at getClassBasedOnIndex()');
-					break;
 			}
 		}
 
 		const classBasedOnIndex = getClassBasedOnIndex();
+		const statIconLink = getStatIconLink();
+
+		function getStatIconLink(): string {
+			switch (props.branchIndex) {
+				case 0:
+					return 'mobility.svg';
+				case 1:
+					return 'vitality.svg';
+				case 2:
+					return 'weapon.svg';
+
+				default:
+					return 'unknown.svg';
+			}
+		}
 
 		// const isRestricted: Ref<boolean> = ref(false);
 		function isHigherTiersBlocked(): boolean {
@@ -160,19 +189,15 @@ export default defineComponent({
 			return `${amounts[index]}%`;
 		}
 
-		function notEnoughPoints(payload: { title: string; desc: string }) {
-			context.emit('notEnoughPoints', payload);
-		}
-
 		return {
 			classBasedOnIndex,
+			statIconLink,
 			isHigherTiersBlocked,
 			howManyPointsToUnlock,
 			statChanged,
 			getRemainingStats,
 			getBranchPerkDescription,
 			getBranchPerkAmount,
-			notEnoughPoints,
 		};
 	},
 });

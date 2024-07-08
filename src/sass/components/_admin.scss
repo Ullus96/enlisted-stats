@@ -1,0 +1,104 @@
+@mixin admin-width {
+	width: 100%;
+	max-width: 48rem;
+}
+
+.admin {
+	&__tabs {
+		margin-top: 2rem;
+		display: flex;
+	}
+
+	&__tab {
+		padding: 0.8rem 1.2rem;
+		color: $color-text-700;
+		border-bottom: 2px solid $color-text-700;
+		transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
+
+		&.active {
+			color: $color-text-100;
+			border-bottom: 2px solid $color-text-100;
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__category {
+		margin-top: 3.2rem;
+	}
+
+	&__chips-flex {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.2rem;
+		margin-top: 1.2rem;
+	}
+
+	&__inputs-block {
+		@include admin-width;
+		display: flex;
+		flex-direction: column;
+		gap: 1.2rem;
+		margin-top: 4rem;
+	}
+
+	&__btn {
+		@include admin-width;
+		margin-top: 2.4rem;
+	}
+
+	&__small-text {
+		display: block;
+		@include admin-width;
+		margin-top: 0.8rem;
+		text-align: right;
+		color: $color-text-700;
+		font-size: $ui-font-size-xs;
+	}
+
+	&__stages-title {
+		margin-top: 2.4rem;
+	}
+
+	&__stages {
+		margin-top: 0.8rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+	}
+
+	&__input {
+		width: calc(33% - 1.6rem);
+		min-width: 24rem;
+		flex: 1 1 max(24rem, calc(33% - 1.6rem));
+	}
+
+	&__last-btns {
+		@include admin-width;
+		margin-top: 2.4rem;
+		display: flex;
+		gap: 0.8rem;
+	}
+
+	&__update-btn {
+		flex: 1 1 auto;
+	}
+
+	&__delete-btn {
+		padding: 1.6rem;
+		flex: 0 0 auto;
+	}
+
+	&__wrapper {
+		transform: translateY(10rem);
+		opacity: 0;
+		transition: opacity 0.4s ease-in-out, transform 0.3s ease-in-out;
+
+		&.animate {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+}

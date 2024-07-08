@@ -1,0 +1,429 @@
+.aside {
+	position: sticky;
+	margin-top: -100dvh;
+	top: 0;
+	height: 100dvh;
+	left: 0;
+	width: 7.2rem;
+	padding: 2.4rem 0 1.2rem;
+	background-color: $color-bg-a-700;
+	@include ui-background-blur;
+	z-index: 30;
+	white-space: nowrap;
+	display: flex;
+	flex-direction: column;
+	transition: width 0.2s ease-in-out;
+
+	&__profile {
+		position: relative;
+		display: flex;
+		gap: 0.8rem;
+	}
+
+	&__avatar {
+		display: block;
+		width: 5rem;
+		aspect-ratio: 1/1;
+		object-fit: cover;
+		border-radius: 100%;
+		margin: 0 1.1rem;
+		transition: margin 0.2s ease-in-out;
+	}
+
+	&__nickname {
+		display: none;
+		position: absolute;
+		top: 50%;
+		right: 2rem;
+		transform: translate(-40px, -50%);
+		opacity: 0;
+		left: calc(2rem + 5rem + 0.8rem);
+
+		& > .btn {
+			font-size: 1.6rem;
+		}
+	}
+
+	&__line {
+		min-height: 1px;
+		background-color: $color-text-900;
+		margin: 0 auto;
+		width: 100%;
+
+		&--top {
+			width: calc(100% - 4rem);
+			margin: 2rem auto 1.2rem;
+		}
+	}
+
+	&__main-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		flex: 1;
+		gap: 2.4rem;
+
+		@include desktop-small {
+			// 2rem - 1.2rem - paddings of Aside itself
+			// 5rem - height of the profile block
+			// 3.7rem - line (.1rem) + its' paddings
+			max-height: calc(100dvh - 2rem - 1.2rem - 5rem - 3.7rem);
+		}
+	}
+
+	&__navigation {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		padding: 0.4rem 2rem;
+		gap: 0.8rem;
+		flex: 1 1 auto;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+	&__links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		gap: 0.8rem;
+	}
+
+	&__link {
+		width: 100%;
+		line-height: 100%;
+		display: block;
+		padding: 0.8rem;
+		border-radius: 0.4rem;
+		display: flex;
+		gap: 0.8rem;
+		cursor: pointer;
+		z-index: 0;
+
+		@include pressed($color-text-100, $color-bg-a-700);
+
+		&:focus {
+			@include focused($color-text-100, $color-bg-a-700);
+		}
+
+		&:hover {
+			@include hovered($color-text-100, $color-bg-a-700);
+		}
+
+		&.router-link-active {
+			background-color: $color-bg-300;
+
+			&:focus {
+				@include focused($color-text-100, $color-bg-300);
+			}
+
+			&:hover {
+				@include hovered($color-text-100, $color-bg-300);
+			}
+
+			@include pressed($color-text-100, $color-bg-300);
+		}
+	}
+
+	&__link-desc {
+		position: absolute;
+		transform: translateX(-40px);
+		opacity: 0;
+	}
+
+	&__footer {
+		font-size: $ui-font-size-xs;
+		color: $color-text-700;
+		line-height: 150%;
+		white-space: normal;
+		position: absolute;
+		flex: 0 0 auto;
+		padding: 0.4rem 2rem;
+	}
+
+	&__footer-legal {
+		display: none;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
+	&__footer-links {
+		display: none;
+		margin-top: 1.2rem;
+
+		& a {
+			text-decoration: underline;
+		}
+	}
+
+	// Aside hover state
+	&:hover {
+		width: 24rem;
+
+		.aside {
+			&__profile {
+				padding-right: 2rem;
+			}
+
+			&__avatar {
+				margin: 0 2rem;
+			}
+
+			&__nickname {
+				display: block;
+				animation: nicknameSlide 0.4s ease-in-out forwards;
+			}
+
+			&__link-desc {
+				position: relative;
+				display: inline-block;
+				animation: navigationSlide 0.4s ease-in-out forwards;
+			}
+
+			&__footer {
+				animation: showFooter 0.6s ease-in-out forwards;
+			}
+
+			&__footer-legal {
+				display: flex;
+			}
+
+			&__footer-links {
+				display: block;
+			}
+		}
+	}
+
+	// Mobile layout
+	&__hamburger-wrapper {
+		position: sticky;
+		display: none;
+		margin: -4.8rem 0 0 auto;
+		z-index: 30;
+		bottom: 2.4rem;
+		right: 2.4rem;
+
+		@include desktop-small {
+			display: flex;
+		}
+	}
+
+	&__hamburger-btn {
+		display: none;
+		z-index: 1;
+		padding: 1.2rem;
+		background-color: $color-bg-a-700;
+		@include ui-background-blur;
+		border-radius: 0.8rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		@include pressed($color-text-100, $color-bg-a-500, 1.5);
+
+		&:hover {
+			@include hovered($color-text-100, $color-bg-a-700);
+		}
+
+		&:focus {
+			@include focused($color-text-100, $color-bg-a-700);
+		}
+
+		@include desktop-small {
+			display: flex;
+		}
+	}
+
+	&__hamburger-icon {
+		opacity: 0;
+		transform: rotate(-90deg);
+		transition: opacity 0.2s ease-in-out, transform 0.4s ease-in-out;
+
+		&.visible {
+			position: absolute;
+			opacity: 1;
+			transform: rotate(-0deg);
+		}
+	}
+
+	// Aside mobile structure with activated state
+	@include desktop-small {
+		display: none;
+
+		&__profile {
+			opacity: 0;
+		}
+
+		&.visible {
+			display: flex;
+			width: clamp(75%, 24rem, 100%);
+
+			.aside {
+				&__profile {
+					padding-right: 2rem;
+					animation: navigationSlideRelative 0.4s ease-out forwards;
+				}
+
+				&__avatar {
+					margin: 0 2rem;
+				}
+
+				&__nickname {
+					position: relative;
+					display: flex;
+					transform: none;
+					opacity: 1;
+					top: auto;
+					left: auto;
+					align-self: center;
+					animation: none;
+				}
+
+				&__link-desc {
+					position: relative;
+					display: inline-block;
+					animation: navigationSlide 0.4s ease-in-out forwards;
+				}
+
+				&__footer {
+					animation: showFooter 0.6s ease-in-out forwards;
+				}
+
+				&__footer-legal {
+					display: flex;
+				}
+
+				&__footer-links {
+					display: block;
+				}
+
+				&:hover {
+					width: 80%;
+
+					&__profile {
+						padding-right: 2rem;
+					}
+
+					&__avatar {
+						margin: 0 2rem;
+					}
+
+					&__nickname {
+						position: relative;
+						display: flex;
+						transform: none;
+						opacity: 1;
+						top: auto;
+						left: auto;
+						align-self: center;
+					}
+
+					&__link-desc {
+						position: relative;
+						display: inline-block;
+						animation: navigationSlide 0.4s ease-in-out forwards;
+					}
+
+					&__footer {
+						animation: showFooter 0.6s ease-in-out forwards;
+					}
+
+					&__footer-legal {
+						display: flex;
+					}
+
+					&__footer-links {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+}
+
+@keyframes navigationSlide {
+	0% {
+		position: absolute;
+		transform: translateX(-40px);
+	}
+
+	49% {
+		position: absolute;
+	}
+
+	50% {
+		position: relative;
+		opacity: 0;
+	}
+
+	100% {
+		position: relative;
+		transform: translateX(0px);
+		opacity: 1;
+	}
+}
+
+@keyframes nicknameSlide {
+	0% {
+		transform: translate(-40px, -50%);
+		white-space: nowrap;
+	}
+
+	50% {
+		opacity: 0;
+		white-space: normal;
+	}
+
+	100% {
+		white-space: normal;
+		transform: translate(0px, -50%);
+		opacity: 1;
+	}
+}
+
+@keyframes removeWhiteSpace {
+	0%,
+	75% {
+		white-space: nowrap;
+	}
+
+	100% {
+		white-space: normal;
+	}
+}
+
+@keyframes showFooter {
+	0% {
+		position: absolute;
+		opacity: 0;
+	}
+
+	50% {
+		position: relative;
+		opacity: 0;
+	}
+
+	100% {
+		position: relative;
+		opacity: 1;
+	}
+}
+
+@keyframes navigationSlideRelative {
+	0% {
+		transform: translateX(-40px);
+	}
+
+	50% {
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0px);
+		opacity: 1;
+	}
+}

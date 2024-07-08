@@ -4,6 +4,9 @@
 .mobility-bg {
 	background-color: $color-mobility;
 }
+.mobility-bg-a {
+	background-color: $color-mobility-a;
+}
 
 .vitality {
 	color: $color-vitality;
@@ -11,10 +14,16 @@
 .vitality-bg {
 	background-color: $color-vitality;
 }
-
-.weapon-handling {
-	color: $color-weapon-handling;
+.vitality-bg-a {
+	background-color: $color-vitality-a;
 }
-.weapon-handling-bg {
-	background-color: $color-weapon-handling;
+
+.weapon {
+	color: $color-weapon;
+}
+.weapon-bg {
+	background-color: $color-weapon;
+}
+.weapon-bg-a {
+	background-color: $color-weapon-a;
 }

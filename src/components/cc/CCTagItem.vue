@@ -1,5 +1,5 @@
 <template>
-	<div class="cc__tag-item" :class="{ active: isActive }">
+	<div class="cc__tag-item chip tooltip-anchor" :class="{ active: isActive }">
 		<input
 			type="checkbox"
 			:name="item.name"
@@ -10,16 +10,13 @@
 		<label :for="item.name" class="cc__tag-label" @click="handleClick()"
 			>&nbsp;</label
 		>
-		<i
-			class="fa-solid fa-plus cc__tag-add-btn"
-			:class="{ active: isActive }"
-		></i>
-		<p class="cc__tag-name">{{ item.name }}</p>
-		<div class="cc__tag-tooltip">
-			<p class="cc__tag-tooltip--description">
+		<p>{{ item.name }}</p>
+		<TooltipComponent :width="30">
+			<p>
 				{{ item.desc }}
 			</p>
-			<p class="cc__tag-tooltip--title">Кто использует:</p>
+			<div class="cc__tag-line"></div>
+			<p>Кто использует:</p>
 			<p class="cc__tag-tooltip-classes-flex">
 				<img
 					v-for="user in item.users"
@@ -27,27 +24,26 @@
 					:src="require('@/assets/soldier_icons/' + user + '.svg')"
 				/>
 			</p>
-		</div>
+		</TooltipComponent>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, Ref } from 'vue';
+import { computed, defineComponent, PropType, ref, Ref } from 'vue';
 import { ICCTagEntity } from '@/type/CCTags';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
-	components: {},
+	components: { TooltipComponent },
 	props: {
 		item: { required: true, type: Object as PropType<ICCTagEntity> },
 		tag: { required: true, type: String },
 		activeTags: { required: false, type: Object },
 	},
 	setup(props, context) {
-		const isActive: Ref<boolean> = ref(false);
-
-		if (props.activeTags && props.activeTags.includes(props.tag)) {
-			isActive.value = !isActive.value;
-		}
+		const isActive = computed(
+			() => props.activeTags?.includes(props.tag) ?? false
+		);
 
 		function handleClick() {
 			if (isActive.value) {

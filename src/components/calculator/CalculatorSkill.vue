@@ -1,5 +1,25 @@
 <template>
-	<div class="calculator__skill" v-if="hasTag()">
+	<div class="calculator__skill tooltip-anchor" v-if="hasTag()">
+		<TooltipComponent :width="25" class="calculator__tooltip" :color="'dark'">
+			<div>
+				<template
+					v-for="(progression, index) in skill.progression"
+					:key="progression"
+				>
+					<span :class="skill.curLvl == index + 1 ? branchColor : ''">{{
+						progression
+					}}</span>
+					<span>{{ index == skill.progression.length - 1 ? '' : ' / ' }}</span>
+				</template>
+			</div>
+
+			<div class="calculator__tooltip-desc-block">
+				<template v-for="desc in skill.desc.split(';')" :key="desc">
+					<span class="calculator__tooltip-desc">{{ desc }}</span>
+				</template>
+			</div>
+		</TooltipComponent>
+
 		<img
 			:src="require('@/assets/skill_icons/' + skill.icon)"
 			alt=""
@@ -8,28 +28,12 @@
 			@click="clickHandle('plus')"
 			@contextmenu.prevent="clickHandle('minus')"
 		/>
-		<div class="calculator__tooltip">
-			<!-- <span class="calculator__highlight">+25%</span>/+50%/+75% -->
-			<template
-				v-for="(progression, index) in skill.progression"
-				:key="progression"
-			>
-				<span
-					:class="skill.curLvl == index + 1 ? 'calculator__highlight' : ''"
-					>{{ progression }}</span
-				>
-				<span>{{ index == skill.progression.length - 1 ? '' : ' / ' }}</span>
-			</template>
 
-			<div class="calculator__tooltip-desc-block">
-				<template v-for="desc in skill.desc.split(';')" :key="desc">
-					<span class="calculator__tooltip-desc">{{ desc }}</span>
-				</template>
-			</div>
-		</div>
 		<div class="calculator__counter-block">
 			<button class="btn calculator__button" @click="clickHandle('minus')">
-				-
+				<IconBase :height="16" :width="16">
+					<IconMinus />
+				</IconBase>
 			</button>
 			<div class="calculator__bars-wrapper">
 				<div
@@ -45,12 +49,14 @@
 				</div>
 			</div>
 			<button class="btn calculator__button" @click="clickHandle('plus')">
-				+
+				<IconBase :height="16" :width="16">
+					<IconPlus />
+				</IconBase>
 			</button>
 		</div>
 		<div class="calculator__cost-block">
 			<template v-for="(item, index) in skill.maxLvl" :key="item">
-				<span :class="{ calculator__highlight: skill.curLvl == index + 1 }">{{
+				<span :class="{ [branchColor]: skill.curLvl == index + 1 }">{{
 					(index + 1) * skill.costPerLvl
 				}}</span>
 				<span>{{ index == skill.maxLvl - 1 ? '' : '/' }}</span>
@@ -62,8 +68,16 @@
 <script lang="ts">
 import { SkillEntity } from '@/type/Skills';
 import { defineComponent, PropType } from 'vue';
+import { useStore } from 'vuex';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconPlus from '@/components/ui/icons/IconPlus.vue';
+import IconMinus from '@/components/ui/icons/IconMinus.vue';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
+import { createPopUp } from '../popup/utils';
+import { POPUP_NOT_ENOUGH_POINTS } from '../popup/data';
 
 export default defineComponent({
+	components: { IconBase, IconPlus, IconMinus, TooltipComponent },
 	props: {
 		skill: {
 			required: true,
@@ -86,6 +100,8 @@ export default defineComponent({
 		},
 	},
 	setup(props, context) {
+		const store = useStore();
+
 		function clickHandle(operation: 'plus' | 'minus') {
 			if (operation === 'plus') {
 				if (props.skill.curLvl == props.skill.maxLvl) {
@@ -113,10 +129,7 @@ export default defineComponent({
 			if (typeof props.branchRemainingStats === 'number') {
 				// check if not enough points, then form an error
 				if (props.branchRemainingStats - cost < 0) {
-					context.emit('notEnoughPoints', {
-						title: 'Недостаточно очков!',
-						desc: 'Навык стоит больше, чем у тебя имеется очков в распоряжении.',
-					});
+					createPopUp(store, POPUP_NOT_ENOUGH_POINTS);
 				}
 				// if everything is okay, just add a skill lvl
 				return props.branchRemainingStats - cost >= 0;

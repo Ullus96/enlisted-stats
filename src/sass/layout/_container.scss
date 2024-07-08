@@ -2,12 +2,19 @@
 	margin-left: auto;
 	margin-right: auto;
 	min-width: 32rem;
-	max-width: 140rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
+	max-width: 144rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	padding-bottom: 2rem;
+	// overflow: hidden;
 
 	@include desktop-small {
 		max-width: 120rem;
+	}
+
+	@include phone {
+		padding-left: 1rem;
+		padding-right: 1rem;
 	}
 
 	// &:last-child {
@@ -20,20 +27,52 @@
 }
 
 .container-sm {
-	margin-left: auto;
-	margin-right: auto;
-	min-width: 32rem;
-	max-width: 100rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
+	width: 100%;
+	max-width: 80rem;
+	margin: 0 auto;
 }
 
 .page-wrapper {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
 }
 
+.visible-screen {
+	position: sticky;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 100dvh;
+	margin-top: -100dvh;
+	display: grid;
+	place-items: center;
+}
+
+#visible-screen {
+	z-index: 20;
+}
+
+#visible-screen-40 {
+	z-index: 40;
+	// margin-top: -200dvh;
+}
+
+.screen-bottom {
+	position: sticky;
+	transform: translateY(100dvh);
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 50;
+}
+
 .main {
+	margin-bottom: 6.4rem;
 	flex-grow: 1;
+	padding-left: 7.2rem;
+	@include desktop-small {
+		padding-left: 0;
+	}
 }

@@ -1,27 +1,46 @@
 <template>
-	<div class="events__card events__all-card">
-		<div class="events__card-tooltip">
+	<div
+		class="event__card"
+		:class="{
+			'event__card--active': isActive,
+			skipped: isSkipped,
+		}"
+		@click="handleClick"
+	>
+		<TooltipComponent :direction="'top'" :width="20">
 			<p>Награда:</p>
-			<p>{{ reward ? reward : '—' }}</p>
+			<p v-for="item in separateLineBySemicolon(reward)" :key="item">
+				{{ item ? item : '—' }}
+			</p>
+		</TooltipComponent>
+		<p class="event__counter">#{{ stageIndex + 1 }}</p>
+		<p class="event__date">{{ day }}</p>
+		<p class="event__month">{{ month }}</p>
+		<p class="event__time">{{ hours }}:00</p>
+		<div class="event__mobile-reward-block">
+			<p v-for="item in separateLineBySemicolon(reward)" :key="item">
+				{{ item ? item : '—' }}
+			</p>
 		</div>
-		<p class="events__counter">#{{ stageIndex + 1 }}</p>
-		<p class="events__date">{{ day }}</p>
-		<p class="events__month">{{ month }}</p>
-		<p class="events__time">{{ hours }}:00</p>
 	</div>
 </template>
 
 <script lang="ts">
 import { IStage } from '@/type/Events';
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, ref, Ref } from 'vue';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
+import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
 
 export default defineComponent({
+	components: { TooltipComponent },
 	props: {
 		cardData: { required: true, type: Object as PropType<IStage> },
 		stageIndex: { required: true, type: Number },
 		reward: { required: false, type: String, default: '—' },
+		isActive: { required: true, type: Boolean },
+		isSkipped: { required: true, type: Boolean },
 	},
-	setup(props) {
+	setup(props, context) {
 		const options: Intl.DateTimeFormatOptions = {
 			weekday: 'long',
 			year: 'numeric',
@@ -48,10 +67,16 @@ export default defineComponent({
 		const month = parts[1].split(' ')[2];
 		const hours = parts[1].split(' ')[6].split(':')[0];
 
+		function handleClick() {
+			context.emit('skip-stage', props.stageIndex);
+		}
+
 		return {
 			day,
 			month,
 			hours,
+			handleClick,
+			separateLineBySemicolon,
 		};
 	},
 });

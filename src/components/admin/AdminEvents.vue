@@ -1,156 +1,150 @@
 <template>
-	<template v-if="isLoading">
-		<loading-spinner class="mt-m mb-m"></loading-spinner>
-	</template>
-	<template v-else>
-		<h2 class="profile__sub-tabs">События в Базе:</h2>
-		<div class="profile__tabs mb-m">
-			<template v-if="events">
-				<button
-					class="btn profile__tab"
-					v-for="event in events"
-					:key="event.dbId"
-					@click="setActiveEvent(event.dbId)"
-					:class="{ active: event.dbId == eventData.dbId }"
-				>
-					{{ event.name }}
-				</button>
-			</template>
-			<button class="btn profile__tab" @click="createNewEvent">+</button>
-		</div>
+	<section class="admin__category">
+		<template v-if="isLoading">
+			<loading-spinner class="mt-xl mb-m"></loading-spinner>
+		</template>
 
-		<div class="profile__inputs-flex">
-			<div class="profile__input-block">
-				<label for="eventName">Название</label>
-				<div class="profile__input-flex">
-					<input
-						type="text"
-						class="input profile__input-input"
-						id="eventName"
-						v-model="eventData.name"
-						:placeholder="
-							operationNames[Math.floor(Math.random() * operationNames.length)]
-						"
-						:class="{ 'btn-error': false }"
-					/>
-				</div>
-				<div class="profile__input-lower-info">
-					<p class="profile__input-error"></p>
-					<p class="profile__input-counter">Кавычки - " ”</p>
-				</div>
-			</div>
+		<template v-else>
+			<p class="admin__category-title">События в базе:</p>
 
-			<div class="profile__input-block">
-				<label for="eventStartDate">Дата начала</label>
-				<div class="profile__input-flex">
-					<input
-						type="datetime-local"
-						class="input profile__input-input"
-						id="eventStartDate"
-						v-model="startDate"
-						:class="{ 'btn-error': false }"
-					/>
-				</div>
-				<div class="profile__input-lower-info">
-					<p
-						class="profile__input-error profile__input-error--no-color"
-						v-if="eventData.startDate && eventData.dbId"
-					>
-						{{ eventData.startDate }}
-					</p>
-					<p class="profile__input-error" v-else></p>
-					<p class="profile__input-counter">Часы по местному</p>
-				</div>
-			</div>
-
-			<div class="profile__input-block">
-				<label for="eventEndDate">Дата конца</label>
-				<div class="profile__input-flex">
-					<input
-						type="datetime-local"
-						class="input profile__input-input"
-						id="eventEndDate"
-						v-model="endDate"
-						:class="{ 'btn-error': false }"
-					/>
-				</div>
-				<div class="profile__input-lower-info">
-					<p
-						class="profile__input-error profile__input-error--no-color"
-						v-if="eventData.endDate && eventData.dbId"
-					>
-						{{ eventData.endDate }}
-					</p>
-					<p class="profile__input-error" v-else></p>
-					<p class="profile__input-counter">Часы по местному</p>
-				</div>
-			</div>
-
-			<div class="profile__input-block">
-				<label for="eventHoursInStage">Часов между этапами</label>
-				<div class="profile__input-flex">
-					<input
-						type="number"
-						class="input profile__input-input"
-						id="eventHoursInStage"
-						placeholder="48"
-						v-model="eventData.hoursInStage"
-						:class="{ 'btn-error': false }"
-					/>
-				</div>
-				<div class="profile__input-lower-info">
-					<p class="profile__input-error"></p>
-					<p class="profile__input-counter">24, 48, 72...</p>
-				</div>
-			</div>
-			<button class="btn profile__btn-admin" @click="calculateStages">
-				Рассчитать количество этапов
-			</button>
-			<div class="profile__small-text">
-				<p class="profile__input-counter">Сбросит все награды</p>
-			</div>
-
-			<template v-if="eventData.rewards.length">
-				<div class="profile__stages-title">Награда за этапы:</div>
-				<div class="profile__stages">
-					<input
-						type="text"
-						class="input profile__input-input"
-						v-for="(reward, idx) in eventData.rewards"
-						:key="idx"
-						v-model="eventData.rewards[idx]"
-						:placeholder="idx + 1"
-					/>
-				</div>
-			</template>
-			<template v-if="!eventData.dbId">
-				<button
-					class="btn profile__btn-admin"
-					:disabled="!eventData.rewards.length"
-					@click="addEventToDB"
-				>
-					Создать событие
-				</button>
-			</template>
-			<template v-else>
-				<div class="profile__update-delete-btns">
+			<div class="admin__chips-flex">
+				<template v-if="events">
 					<button
-						class="btn profile__btn-admin"
-						:disabled="!eventData.rewards.length"
-						@click="updateEvent"
+						class="chip admin__chip"
+						v-for="event in events"
+						:key="event.dbId"
+						@click="setActiveEvent(event.dbId)"
+						:class="{ active: event.dbId == eventData.dbId }"
 					>
-						Перезаписать
+						{{ event.name }}
 					</button>
+				</template>
+				<button
+					class="chip admin__chip"
+					@click="createNewEvent"
+					:class="{ active: !eventData.dbId }"
+				>
+					<IconBase>
+						<IconPlus />
+					</IconBase>
+				</button>
+			</div>
+
+			<transition name="slide-to-top" mode="out-in">
+				<div :key="eventData.dbId">
+					<div class="admin__inputs-block">
+						<InputComponent
+							:key="eventData.dbId"
+							:type="'text'"
+							:label="'Название события'"
+							:placeholder="operationName"
+							:presetInput="eventData.name"
+							@onChange="(val) => (eventData.name = val)"
+						/>
+
+						<InputComponent
+							:key="eventData.dbId"
+							:type="'datetime-local'"
+							:label="'Дата начала'"
+							:desc="eventData.dbId ? eventData.startDate : 'По местному'"
+							:presetInput="startDate"
+							@onChange="(val) => (startDate = val)"
+						/>
+
+						<InputComponent
+							:key="eventData.dbId"
+							:type="'datetime-local'"
+							:label="'Дата конца'"
+							:desc="eventData.dbId ? eventData.endDate : 'По местному'"
+							:presetInput="endDate"
+							@onChange="(val) => (endDate = val)"
+						/>
+
+						<InputComponent
+							:key="eventData.dbId"
+							:type="'number'"
+							:label="'Часов между этапами'"
+							:placeholder="48"
+							:desc="'24, 48, 72...'"
+							:presetInput="eventData.hoursInStage"
+							@onChange="(val) => (eventData.hoursInStage = val)"
+						/>
+					</div>
+
 					<button
-						class="btn profile__btn-admin--delete"
-						:disabled="!eventData.rewards.length"
-						@click="deleteEvent"
+						class="btn btn-secondary btn-m admin__btn"
+						@click="calculateStages"
 					>
-						<i class="fa-regular fa-trash-can"></i>
+						Рассчитать количество этапов
 					</button>
+					<span class="admin__small-text"
+						>Сбросит все существующие награды</span
+					>
+
+					<template v-if="eventData.rewards.length">
+						<p class="admin__stages-title">Награды за этапы</p>
+						<div class="admin__stages">
+							<input
+								type="text"
+								class="input__input admin__input"
+								v-for="(reward, idx) in eventData.rewards"
+								:key="idx"
+								v-model="eventData.rewards[idx]"
+								:placeholder="idx + 1"
+							/>
+						</div>
+					</template>
+
+					<template v-if="!eventData.dbId">
+						<div class="admin__last-btns">
+							<button
+								class="btn btn-m btn-primary admin__btn"
+								:disabled="!eventData.rewards.length"
+								@click="addEventToDB"
+							>
+								Создать событие
+							</button>
+						</div>
+					</template>
+					<template v-else>
+						<div class="admin__last-btns">
+							<button
+								class="btn btn-m btn-primary admin__update-btn"
+								:disabled="!eventData.rewards.length"
+								@click="updateEvent"
+							>
+								Обновить
+							</button>
+							<button
+								class="btn btn-m btn-secondary admin__delete-btn svg"
+								:disabled="!eventData.rewards.length"
+								@click="$store.state.dialog.isDeletingEvent = true"
+							>
+								<IconBase>
+									<IconTrash />
+								</IconBase>
+							</button>
+
+							<DialogComponent
+								:dialogName="'isDeletingEvent'"
+								v-if="$store.state.dialog.isDeletingEvent"
+								:yes="{ text: 'Удалить', type: 'tertiary' }"
+								:no="{ text: 'Отмена', type: 'primary' }"
+								@confirm="deleteEvent"
+							>
+								<h3 class="dialog__title">Удалить событие?</h3>
+								<p class="dialog__desc">
+									Это действие удалит событие
+									<span class="dialog__accent">{{ eventData.name }}</span
+									>.
+								</p>
+							</DialogComponent>
+						</div>
+					</template>
 				</div>
-			</template></div
-	></template>
+			</transition>
+		</template>
+	</section>
 </template>
 
 <script lang="ts">
@@ -166,10 +160,22 @@ import {
 } from 'firebase/firestore';
 import getEvents from '@/functions/getEvents';
 import { operationNames } from '@/data/operationNames';
-import LoadingSpinner from '../LoadingSpinner.vue';
+import LoadingSpinner from '../ui/LoadingSpinner.vue';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconPlus from '@/components/ui/icons/IconPlus.vue';
+import IconTrash from '@/components/ui/icons/IconTrash.vue';
+import InputComponent from '@/components/ui/InputComponent.vue';
+import DialogComponent from '@/components/ui/DialogComponent.vue';
 
 export default defineComponent({
-	components: { LoadingSpinner },
+	components: {
+		LoadingSpinner,
+		IconBase,
+		IconPlus,
+		IconTrash,
+		InputComponent,
+		DialogComponent,
+	},
 	setup() {
 		const startDate = ref();
 		const endDate = ref();
@@ -203,6 +209,9 @@ export default defineComponent({
 
 		function generateStages(event: IEvent | IEventFirestore) {
 			const stageDurationInMillis: number = event.hoursInStage * 60 * 60 * 1000; // 2 дня в миллисекундах
+
+			console.log(event.endDate);
+			console.log(typeof event.endDate);
 
 			const durationInMillis = +event.endDate - +event.startDate;
 
@@ -314,8 +323,13 @@ export default defineComponent({
 			loadEvents();
 		}
 
+		// Redesign
+		const operationName: Ref<string> = ref(
+			operationNames[Math.floor(Math.random() * operationNames.length)]
+		);
+
 		return {
-			operationNames,
+			operationName,
 			eventData,
 			calculateStages,
 			checkTime,
@@ -337,3 +351,21 @@ export default defineComponent({
 	},
 });
 </script>
+
+<style scoped>
+.slide-to-top-enter-active,
+.slide-to-top-leave-active {
+	transition: opacity 0.4s ease-in-out, transform 0.3s ease-in;
+}
+
+.slide-to-top-enter-from,
+.slide-to-top-leave-to {
+	transform: translateY(10rem);
+	opacity: 0;
+}
+.slide-to-top-enter-to,
+.slide-to-top-leave-from {
+	transform: translateY(0rem);
+	opacity: 1;
+}
+</style>

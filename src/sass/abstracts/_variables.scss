@@ -5,10 +5,6 @@ $color-black: #111111;
 $color-black-light-1: #222222;
 $color-black-light-2: #262626;
 
-$color-mobility: #97ff94;
-$color-vitality: #ff9497;
-$color-weapon-handling: #fffe9a;
-
 $color-highlight: #f9da75;
 $color-skill-inactive: #7f8388;
 
@@ -17,3 +13,89 @@ $color-success: #2ecc40;
 
 $color-loading: mix(#fff, $color-skill-inactive, 10%);
 $color-test: #9c0d63;
+
+// Redesign
+// ======
+// Colors
+// ======
+
+// Primary
+$color-primary-050: rgb(195, 143, 143);
+$color-primary-100: rgb(191, 96, 96);
+$color-primary-200: rgb(175, 61, 61);
+$color-primary-300: rgb(147, 46, 46);
+$color-primary-400: rgb(123, 32, 32);
+$color-primary-500: rgb(106, 24, 24);
+$color-primary-600: rgb(98, 19, 19);
+$color-primary-700: rgb(88, 14, 14);
+$color-primary-800: rgb(65, 5, 5);
+$color-primary-900: rgb(40, 13, 13);
+
+// Primary with transparency
+$color-primary-a-050: rgba(195, 143, 143, 0.75);
+$color-primary-a-100: rgba(191, 96, 96, 0.75);
+$color-primary-a-200: rgba(175, 61, 61, 0.75);
+$color-primary-a-300: rgba(147, 46, 46, 0.75);
+$color-primary-a-400: rgba(123, 32, 32, 0.75);
+$color-primary-a-500: rgba(106, 24, 24, 0.75);
+$color-primary-a-600: rgba(98, 19, 19, 0.75);
+$color-primary-a-700: rgba(88, 14, 14, 0.75);
+$color-primary-a-800: rgba(65, 5, 5, 0.75);
+$color-primary-a-900: rgba(40, 13, 13, 0.75);
+
+// BG
+$color-bg-050: rgb(56, 56, 56);
+$color-bg-100: rgb(53, 53, 53);
+$color-bg-200: rgb(51, 51, 51);
+$color-bg-300: rgb(47, 47, 47);
+$color-bg-400: rgb(44, 44, 44);
+$color-bg-500: rgb(39, 39, 39);
+$color-bg-600: rgb(37, 37, 37);
+$color-bg-700: rgb(35, 35, 35);
+$color-bg-800: rgb(30, 30, 30);
+$color-bg-900: rgb(18, 18, 18);
+
+// BG with transparency
+$color-bg-a-050: rgba(56, 56, 56, 0.75);
+$color-bg-a-100: rgba(53, 53, 53, 0.75);
+$color-bg-a-200: rgba(51, 51, 51, 0.75);
+$color-bg-a-300: rgba(47, 47, 47, 0.75);
+$color-bg-a-400: rgba(44, 44, 44, 0.75);
+$color-bg-a-500: rgba(39, 39, 39, 0.75);
+$color-bg-a-600: rgba(37, 37, 37, 0.75);
+$color-bg-a-700: rgba(35, 35, 35, 0.75);
+$color-bg-a-800: rgba(30, 30, 30, 0.75);
+$color-bg-a-900: rgba(18, 18, 18, 0.75);
+
+// Text
+$color-text-100: rgb(226, 226, 226);
+$color-text-400: rgb(165, 165, 165);
+$color-text-700: rgb(116, 116, 116);
+$color-text-900: rgb(57, 57, 57);
+
+// States
+$color-danger-200: rgb(201, 45, 55);
+$color-danger-100: rgb(255, 45, 55);
+$color-warning-200: rgb(185, 157, 58);
+$color-success-200: rgb(58, 185, 63);
+
+// Stats
+$color-mobility: rgb(151, 255, 148);
+$color-vitality: rgb(255, 148, 151);
+$color-weapon: rgb(255, 254, 154);
+
+// Stats with transparency
+$color-mobility-a: rgba(151, 255, 148, 0.75);
+$color-vitality-a: rgba(255, 148, 151, 0.75);
+$color-weapon-a: rgba(255, 254, 154, 0.75);
+
+// ====
+
+// Typography variables
+$ui-font-size-xs: 1.2rem;
+$ui-font-size-s: 1.4rem;
+$ui-font-size-base: 1.6rem;
+$ui-font-size-m: $ui-font-size-base;
+$ui-font-size-h1: 4.8rem;
+$ui-font-size-h2: 3.2rem;
+$ui-font-size-h3: 2.4rem;
