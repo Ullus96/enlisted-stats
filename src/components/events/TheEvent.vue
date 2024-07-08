@@ -178,6 +178,7 @@ import {
 	computed,
 	defineComponent,
 	onMounted,
+	onUnmounted,
 	PropType,
 	reactive,
 	Ref,
@@ -409,6 +410,13 @@ export default defineComponent({
 		onMounted(() => {
 			loadAndCleanLocalStorage();
 			updateRewards(); // Пересчитываем награды при загрузке компонента
+		});
+
+		onUnmounted(() => {
+			if (intervalID) {
+				clearInterval(intervalID);
+				intervalID = null;
+			}
 		});
 
 		return {
