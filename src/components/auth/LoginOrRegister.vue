@@ -3,14 +3,18 @@
 		<h3 class="modal__title">Войти или зарегистрироваться</h3>
 
 		<button class="modal__google-btn btn" @click="signInWithGoogle">
-			<IconBase
+			<svg
 				class="modal__google-icon"
-				:width="32"
-				:height="32"
-				:viewBox="`0 0 32 32`"
+				xmlns="http://www.w3.org/2000/svg"
+				width="32"
+				height="32"
+				viewBox="0 0 32 32"
+				role="presentation"
 			>
-				<IconGoogle />
-			</IconBase>
+				<g>
+					<IconGoogle />
+				</g>
+			</svg>
 			<span class="modal__google-text">Войти при помощи Google</span>
 		</button>
 
