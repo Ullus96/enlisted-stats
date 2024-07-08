@@ -279,7 +279,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, Ref, ref } from 'vue';
+import { defineComponent, onMounted, PropType, Ref, ref } from 'vue';
 import { ISkillBuild } from '@/type/SkillBuild';
 import {
 	convertSkillTagToName,
@@ -501,6 +501,15 @@ export default defineComponent({
 				console.log('Error on switching build visibility: ' + err.message);
 			}
 		}
+
+		onMounted(() => {
+			if (
+				!props.item.data.isPublic &&
+				props.item.data.author !== store.state.user.uid
+			) {
+				router.push('/');
+			}
+		});
 
 		return {
 			getTrueOrFalse,
