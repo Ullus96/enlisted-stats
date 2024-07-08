@@ -227,6 +227,9 @@
 	// Promo
 	&__promo-block {
 		margin-top: 6rem;
+	}
+
+	&__promo-title {
 		text-align: center;
 		text-wrap: balance;
 	}
@@ -249,7 +252,6 @@
 		border-radius: 1.2rem;
 		background-color: $color-bg-a-600;
 		@include ui-background-blur;
-		height: 20rem;
 		flex: 0 0 45rem;
 		min-width: 45rem;
 

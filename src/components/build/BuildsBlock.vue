@@ -5,7 +5,7 @@
 			:title="title"
 		></filters-block>
 		<div class="filter__under">
-			<button class="btn btn-m btn-primary" @click="loadData(true)">
+			<button class="btn btn-m btn-primary filter__btn" @click="loadData(true)">
 				Загрузить сборки
 			</button>
 		</div>
@@ -26,7 +26,10 @@
 			></build-card>
 		</div>
 		<div class="sbuild__load-more mt-m" v-if="lastVisible">
-			<button class="btn btn-m btn-tertiary" @click="loadData(false)">
+			<button
+				class="btn btn-m btn-tertiary filter__btn"
+				@click="loadData(false)"
+			>
 				Загрузить еще
 			</button>
 		</div>

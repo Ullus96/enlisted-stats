@@ -1303,6 +1303,11 @@ h3 {
   width: 100%;
   gap: 2rem;
 }
+@media (max-width: 499px) {
+  .filter__block {
+    flex-wrap: wrap;
+  }
+}
 .filter__item {
   position: relative;
   display: flex;
@@ -2614,6 +2619,16 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
+@media (max-width: 1123px) {
+  .sbuild__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 70rem) {
+  .sbuild__grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 .sbuild__item {
   border-radius: 0.8rem;
   background-color: rgba(39, 39, 39, 0.75);
@@ -3130,6 +3145,8 @@ h3 {
 }
 .table__promo-block {
   margin-top: 6rem;
+}
+.table__promo-title {
   text-align: center;
   text-wrap: balance;
 }
@@ -3152,7 +3169,6 @@ h3 {
   background-color: rgba(37, 37, 37, 0.75);
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
-  height: 20rem;
   flex: 0 0 45rem;
   min-width: 45rem;
 }

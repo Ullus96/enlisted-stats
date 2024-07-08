@@ -89,9 +89,10 @@
 				</div>
 
 				<div class="table__promo-block" v-else>
-					<h2>Популярные сборки от сообщества</h2>
+					<h2 class="table__promo-title">Популярные сборки от сообщества</h2>
 					<div class="table__promo-builds">
 						<build-card
+							class="table__build"
 							v-for="item in loadedData"
 							:key="item"
 							:item="item"
@@ -337,7 +338,6 @@ export default defineComponent({
 							loadedBuildIDs.add(doc.id);
 						}
 					});
-					console.log(newData);
 
 					// обновляем состояние loadedData
 					loadedData.push(...newData);
@@ -383,7 +383,7 @@ export default defineComponent({
 							item.user === user
 					)
 				) {
-					console.log('User found in a localStorage');
+					// console.log('User found in a localStorage');
 					const userData = {
 						displayName: getLocalStorageUsersDataByKeyAndValue(
 							localStorageData,
@@ -400,7 +400,7 @@ export default defineComponent({
 					};
 					loadedUserData[user] = { ...userData };
 				} else {
-					console.log('No user in localStorage, making a fetch');
+					// console.log('No user in localStorage, making a fetch');
 					const userRef = doc(db, 'users', user);
 					const userSnap = await getDoc(userRef);
 
@@ -414,13 +414,13 @@ export default defineComponent({
 							displayName: 'Пользователь не найден',
 							photoURL: 'https://place-hold.it/80x80/8c8f94/8c8f94.jpg',
 						};
-						console.log('No such document!');
+						// console.log('No such document!');
 					}
 				}
 			});
 
-			console.log(`At the end of iterations, loadedUserData is:`);
-			console.log(loadedUserData);
+			// console.log(`At the end of iterations, loadedUserData is:`);
+			// console.log(loadedUserData);
 			isFinishedLoading.value = true;
 		}
 
