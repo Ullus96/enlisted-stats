@@ -170,7 +170,11 @@
 						</TooltipComponent>
 						<button
 							class="sbuild__card"
-							v-if="currentUser && currentUser.uid == user.dbId"
+							v-if="
+								currentUser &&
+								currentUser.uid == user.dbId &&
+								!item.data.isCloned
+							"
 							@click="$store.state.dialog.isSwitchingBuildVisibility = true"
 						>
 							<IconBase :iconColor="'#a5a5a5'">
@@ -189,7 +193,11 @@
 						</TooltipComponent>
 						<button
 							class="sbuild__card"
-							v-if="currentUser && currentUser.uid == user.dbId"
+							v-if="
+								currentUser &&
+								currentUser.uid == user.dbId &&
+								!item.data.isCloned
+							"
 							@click="$store.state.dialog.isSwitchingBuildVisibility = true"
 						>
 							<IconBase :iconColor="'#a5a5a5'">
