@@ -1135,6 +1135,16 @@ h3 {
   width: -moz-fit-content;
   width: fit-content;
 }
+.profile__title-desc-action-block {
+  display: flex;
+  align-items: center;
+}
+.profile__checkbox-wrapper {
+  line-height: 100%;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.8rem;
+  transform: scale(1.5);
+}
 
 .tooltip-anchor {
   position: relative;

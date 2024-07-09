@@ -55,4 +55,16 @@
 	&__btn {
 		width: fit-content;
 	}
+
+	&__title-desc-action-block {
+		display: flex;
+		align-items: center;
+	}
+
+	&__checkbox-wrapper {
+		line-height: 100%;
+		padding: 0.8rem 1.2rem;
+		border-radius: 0.8rem;
+		transform: scale(1.5);
+	}
 }

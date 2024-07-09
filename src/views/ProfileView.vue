@@ -56,6 +56,22 @@
 					</button>
 				</div>
 			</section>
+
+			<h3 class="mt-l">Другие настройки</h3>
+			<section class="profile__block">
+				<div class="profile__title-desc-action-block">
+					<div class="profile__title-desc-block">
+						<p class="profile__option-name">Компактный режим калькулятора</p>
+						<p class="profile__option-desc">
+							Сделает размер калькулятора более миниатюрным, посредством
+							уменьшения размера иконок.
+						</p>
+					</div>
+					<label class="checkbox-wrapper-2 profile__checkbox-wrapper">
+						<input type="checkbox" class="sc-gJwTLC ikxBAC" />
+					</label>
+				</div>
+			</section>
 		</div>
 	</div>
 
