@@ -10,7 +10,8 @@
 	</div>
 	<div class="page-wrapper" id="page">
 		<auth-init></auth-init>
-		<vuex-debug></vuex-debug>
+		<settings-init></settings-init>
+		<!-- <vuex-debug></vuex-debug> -->
 		<the-aside></the-aside>
 		<main class="main">
 			<router-view></router-view>
@@ -21,6 +22,7 @@
 <script lang="ts">
 import TheAside from './components/TheAside.vue';
 import AuthInit from './components/auth/AuthInit.vue';
+import SettingsInit from './components/init/SettingsInit.vue';
 import VuexDebug from './components/debug/VuexDebug.vue';
 import { computed, defineComponent } from 'vue';
 import { useStore } from 'vuex';
@@ -31,6 +33,7 @@ export default defineComponent({
 	components: {
 		TheAside,
 		AuthInit,
+		SettingsInit,
 		VuexDebug,
 		PopUpHandler,
 	},
