@@ -2,6 +2,7 @@
 	<div
 		class="calculator__restriction-text-block"
 		:class="{ inactive: !isHigherTiersBlocked }"
+		v-if="!$store.state.settings.compactMode"
 	>
 		<IconBase :height="24" :width="24">
 			<IconLock />
@@ -12,6 +13,25 @@
 				>{{ howManyPointsToUnlock }} {{ getDeclension() }}</b
 			>, чтобы получить доступ к Tier&#8209;2/3 навыкам
 		</p>
+		<div class="calculator__separator"></div>
+	</div>
+
+	<div
+		class="calculator__restriction-text-block"
+		:class="{ inactive: !isHigherTiersBlocked }"
+		v-else
+	>
+		<div class="calculator__restriction-upper-block">
+			<IconBase :height="20" :width="20">
+				<IconLock />
+			</IconBase>
+			<p class="calculator__restriction-text">
+				Потрать еще
+				<b class="calculator__highlight"
+					>{{ howManyPointsToUnlock }} {{ getDeclension() }}</b
+				>.
+			</p>
+		</div>
 		<div class="calculator__separator"></div>
 	</div>
 </template>

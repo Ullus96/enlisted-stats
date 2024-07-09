@@ -1,5 +1,8 @@
 <template>
-	<div class="calculator">
+	<div
+		class="calculator"
+		:class="{ compact: $store.state.settings.compactMode }"
+	>
 		<div class="calculator__grid">
 			<calculator-branch
 				v-for="(branch, index) in skillsList"

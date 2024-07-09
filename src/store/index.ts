@@ -23,7 +23,6 @@ export interface PopUp {
 }
 export interface State {
 	showLoginPopup: boolean;
-	displayName: string;
 	inDevelop: boolean;
 	isNavigationVisible: boolean;
 	isPopUpExists: boolean;
@@ -40,14 +39,14 @@ export interface State {
 		photoUrl: string | null;
 		isAdmin: boolean;
 	};
+	settings: {
+		compactMode: boolean;
+	};
 }
 
 export default createStore<State>({
 	state: {
 		showLoginPopup: false,
-		// TODO: после завершения редизайна, удалить это
-		// свойство нахуй)) Оно в user.displayName дублировано
-		displayName: '',
 		inDevelop: !false,
 		isNavigationVisible: false,
 		isPopUpExists: false,
@@ -80,6 +79,9 @@ export default createStore<State>({
 			photoUrl: null,
 			isAdmin: false,
 		},
+		settings: {
+			compactMode: true,
+		},
 	},
 	mutations: {
 		showLoginPopup(state) {
@@ -91,7 +93,6 @@ export default createStore<State>({
 		},
 
 		setNewDisplayName(state, payload) {
-			state.displayName = payload;
 			state.user.displayName = payload;
 		},
 
