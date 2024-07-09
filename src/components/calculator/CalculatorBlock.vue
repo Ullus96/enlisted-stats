@@ -2,6 +2,7 @@
 	<div
 		class="calculator"
 		:class="{ compact: $store.state.settings.compactMode }"
+		ref="calcElem"
 	>
 		<div class="calculator__grid">
 			<calculator-branch
@@ -70,6 +71,25 @@
 			@modifyBuild="modifyBuild"
 		></calculator-save-modal>
 	</Teleport>
+
+	<!-- Кнопка для расположения калькулятора вверху экрана -->
+	<template v-if="mounted">
+		<Teleport to="#screen-bottom">
+			<div class="calculator__btn-screen-wrapper tooltip-anchor--no-relative">
+				<TooltipComponent :direction="'left'" :width="25" :color="'dark'">
+					<p>Расположить калькулятор сверху экрана</p>
+				</TooltipComponent>
+				<button
+					class="btn btn-m btn-secondary calculator__btn-screen"
+					@click="moveToUpperBoundary"
+				>
+					<IconBase>
+						<IconArrowUp />
+					</IconBase>
+				</button>
+			</div>
+		</Teleport>
+	</template>
 </template>
 
 <script lang="ts">
@@ -92,9 +112,18 @@ import { ISkillBuild } from '@/type/SkillBuild';
 import { SoldierID } from '@/type/Soldier';
 import { db } from '@/firebase/firebase';
 import { useRoute } from 'vue-router';
+import IconBase from '@/components/ui/icons/IconBase.vue';
+import IconArrowUp from '@/components/ui/icons/IconArrowUp.vue';
+import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({
-	components: { CalculatorBranch, CalculatorSaveModal },
+	components: {
+		CalculatorBranch,
+		CalculatorSaveModal,
+		IconBase,
+		IconArrowUp,
+		TooltipComponent,
+	},
 	props: {
 		stats: {
 			required: true,
@@ -552,7 +581,35 @@ export default defineComponent({
 			}
 		}
 
-		// Then you can work with reactiveSkillsList as a final product
+		// Adjust screen upper position button
+		const mounted = ref(false);
+		onMounted(() => {
+			mounted.value = true;
+		});
+
+		const calcElem: Ref<HTMLElement | null> = ref(null);
+		const upperBoundary: Ref<number> = ref(0);
+
+		onMounted(() => {
+			if (calcElem.value?.getBoundingClientRect().top) {
+				upperBoundary.value = calcElem.value?.getBoundingClientRect().top;
+			}
+		});
+
+		function moveToUpperBoundary() {
+			if (store.state.settings.compactMode) {
+				window.scrollTo({
+					top: upperBoundary.value - 16,
+					behavior: 'smooth',
+				});
+			} else {
+				window.scrollTo({
+					top: upperBoundary.value + 210,
+					behavior: 'smooth',
+				});
+			}
+		}
+
 		return {
 			skillsList: reactiveSkillsList,
 			statsPool,
@@ -566,6 +623,9 @@ export default defineComponent({
 			auth,
 			openLoginPopup,
 			modifyBuild,
+			mounted,
+			calcElem,
+			moveToUpperBoundary,
 		};
 	},
 });

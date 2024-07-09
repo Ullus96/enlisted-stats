@@ -751,6 +751,20 @@ h3 {
 .calculator__tell-to-login ~ .calculator__save-btn {
   margin: 2.4rem auto 0;
 }
+.calculator__btn-screen-wrapper {
+  position: absolute;
+  right: 4rem;
+  bottom: 2.4rem;
+  display: none;
+}
+@media (min-width: 1123px) {
+  .calculator__btn-screen-wrapper {
+    display: block;
+  }
+}
+.calculator__btn-screen {
+  padding: 2.4rem;
+}
 
 .compact.calculator .calculator__title-block {
   display: grid;

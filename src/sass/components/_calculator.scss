@@ -315,6 +315,21 @@
 	&__tell-to-login ~ .calculator__save-btn {
 		margin: 2.4rem auto 0;
 	}
+
+	&__btn-screen-wrapper {
+		position: absolute;
+		right: 4rem;
+		bottom: 2.4rem;
+		display: none;
+
+		@media (min-width: 1123px) {
+			display: block;
+		}
+	}
+
+	&__btn-screen {
+		padding: 2.4rem;
+	}
 }
 
 // Compact mode
