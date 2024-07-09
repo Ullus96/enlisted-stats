@@ -68,7 +68,11 @@
 						</p>
 					</div>
 					<label class="checkbox-wrapper-2 profile__checkbox-wrapper">
-						<input type="checkbox" class="sc-gJwTLC ikxBAC" />
+						<input
+							type="checkbox"
+							class="sc-gJwTLC ikxBAC"
+							v-model="compactMode"
+						/>
 					</label>
 				</div>
 			</section>
@@ -91,7 +95,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from 'vue';
+import { defineComponent, Ref, ref, watch } from 'vue';
 import { deleteUser, getAuth, updateProfile } from 'firebase/auth';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
@@ -106,6 +110,10 @@ import {
 	POPUP_DELETE_USER_SUCCESS,
 	POPUP_DELETE_USER_ERROR,
 } from '@/components/popup/data';
+import {
+	loadFromLocalStorage,
+	saveToLocalStorage,
+} from '@/functions/localStorageUtils';
 
 export default defineComponent({
 	components: { InputComponent, DialogComponent },
@@ -172,12 +180,23 @@ export default defineComponent({
 				});
 		}
 
+		// Компактный режим
+		const compactMode: Ref<boolean> = ref(
+			loadFromLocalStorage('compactMode') || false
+		);
+
+		watch(compactMode, (newVal) => {
+			saveToLocalStorage('compactMode', newVal);
+			store.commit('switchCompactMode', newVal);
+		});
+
 		return {
 			auth,
 			inputName,
 			modifyInputData,
 			updateDisplayName,
 			deleteAccount,
+			compactMode,
 		};
 	},
 });

@@ -3,6 +3,9 @@
 		<button class="btn btn-sm btn-tertiary" @click="isVisible = !isVisible">
 			Hide
 		</button>
+		<p class="debug__title">Settings</p>
+		<p>compactMode: {{ $store.state.settings.compactMode }}</p>
+		<div class="aside__line debug__line"></div>
 		<p class="debug__title">Other data:</p>
 		<p>isNavigationVisible: {{ $store.state.isNavigationVisible }}</p>
 		<p>isPopUpExists: {{ $store.state.isPopUpExists }}</p>

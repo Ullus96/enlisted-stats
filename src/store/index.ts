@@ -80,7 +80,7 @@ export default createStore<State>({
 			isAdmin: false,
 		},
 		settings: {
-			compactMode: true,
+			compactMode: false,
 		},
 	},
 	mutations: {
@@ -171,6 +171,10 @@ export default createStore<State>({
 			state.popUpData.duration = 5;
 			state.popUpData.id = Math.random();
 			state.isPopUpExists = false;
+		},
+
+		switchCompactMode(state, newVal: boolean) {
+			state.settings.compactMode = newVal;
 		},
 	},
 });
