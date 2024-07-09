@@ -1,63 +1,65 @@
 <template>
 	<div class="container mt-l">
 		<div class="container-sm">
-			<h3>Настройки профиля</h3>
+			<template v-if="$store.state.user.isLoggedIn">
+				<h3>Настройки профиля</h3>
 
-			<div class="profile__avatar-block">
-				<img
-					:src="$store.state.user.photoUrl"
-					alt="Profile picture"
-					class="profile__avatar"
-				/>
-				<h2 class="profile__nickname">{{ $store.state.user.displayName }}</h2>
-			</div>
-
-			<section class="profile__block">
-				<InputComponent
-					:label="'Отображаемое имя'"
-					:placeholder="$store.state.user.displayName"
-					:inlineButton="true"
-					:counter="32"
-					@onChange="modifyInputData"
-					@onConfirm="updateDisplayName"
-				/>
-
-				<div class="profile__text-block">
-					<p class="profile__option-name">Аватар пользователя</p>
-					<div class="profile__change-photo-block">
-						<img
-							:src="$store.state.user.photoUrl"
-							alt="Profile picture"
-							class="profile__change-photo-avatar"
-						/>
-						<p class="profile__option-desc">
-							Для смены аватара пользователя, перейди в Управление аккаунтом
-							Google - Личная информация, и поменяй фотографию пользователя там.
-							Обновление займет какое-то время.
-						</p>
-					</div>
+				<div class="profile__avatar-block">
+					<img
+						:src="$store.state.user.photoUrl"
+						alt="Profile picture"
+						class="profile__avatar"
+					/>
+					<h2 class="profile__nickname">{{ $store.state.user.displayName }}</h2>
 				</div>
 
-				<div class="profile__delete-block">
+				<section class="profile__block">
+					<InputComponent
+						:label="'Отображаемое имя'"
+						:placeholder="$store.state.user.displayName"
+						:inlineButton="true"
+						:counter="32"
+						@onChange="modifyInputData"
+						@onConfirm="updateDisplayName"
+					/>
+
 					<div class="profile__text-block">
-						<p class="profile__option-name">Удалить профиль</p>
-						<p class="profile__option-desc">
-							При удалении учетной записи, вся информация, включая электронную
-							почту пользователя, аватар пользователя, а так же отображаемое имя
-							будут удалены. Сборки все еще будут доступны, однако, автор сборки
-							сменится на “Неизвестен”
-						</p>
+						<p class="profile__option-name">Аватар пользователя</p>
+						<div class="profile__change-photo-block">
+							<img
+								:src="$store.state.user.photoUrl"
+								alt="Profile picture"
+								class="profile__change-photo-avatar"
+							/>
+							<p class="profile__option-desc">
+								Для смены аватара пользователя, перейди в Управление аккаунтом
+								Google - Личная информация, и поменяй фотографию пользователя
+								там. Обновление займет какое-то время.
+							</p>
+						</div>
 					</div>
-					<button
-						class="btn btn-secondary btn-m profile__btn"
-						@click="$store.state.dialog.isDeletingAccount = true"
-					>
-						Удалить профиль
-					</button>
-				</div>
-			</section>
 
-			<h3 class="mt-l">Другие настройки</h3>
+					<div class="profile__delete-block">
+						<div class="profile__text-block">
+							<p class="profile__option-name">Удалить профиль</p>
+							<p class="profile__option-desc">
+								При удалении учетной записи, вся информация, включая электронную
+								почту пользователя, аватар пользователя, а так же отображаемое
+								имя будут удалены. Сборки все еще будут доступны, однако, автор
+								сборки сменится на “Неизвестен”
+							</p>
+						</div>
+						<button
+							class="btn btn-secondary btn-m profile__btn"
+							@click="$store.state.dialog.isDeletingAccount = true"
+						>
+							Удалить профиль
+						</button>
+					</div>
+				</section>
+			</template>
+
+			<h3 class="mt-l">Настройки сайта</h3>
 			<section class="profile__block">
 				<div class="profile__title-desc-action-block">
 					<div class="profile__title-desc-block">

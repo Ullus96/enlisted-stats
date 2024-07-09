@@ -1152,6 +1152,12 @@ h3 {
 .profile__title-desc-action-block {
   display: flex;
   align-items: center;
+  gap: 2rem;
+}
+.profile__title-desc-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 .profile__checkbox-wrapper {
   line-height: 100%;

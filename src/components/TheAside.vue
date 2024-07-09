@@ -147,13 +147,12 @@
 					<router-link
 						@click="hideNavigationVisibility"
 						class="aside__link"
-						to="/profile"
-						v-if="$store.state.user.isLoggedIn"
+						to="/settings"
 					>
 						<IconBase>
 							<IconCog />
 						</IconBase>
-						<span class="aside__link-desc">Профиль</span>
+						<span class="aside__link-desc">Настройки</span>
 					</router-link>
 
 					<button @click="showContactsModal" class="aside__link" to="/contacts">

@@ -59,6 +59,13 @@
 	&__title-desc-action-block {
 		display: flex;
 		align-items: center;
+		gap: 2rem;
+	}
+
+	&__title-desc-block {
+		display: flex;
+		flex-direction: column;
+		gap: 1.2rem;
 	}
 
 	&__checkbox-wrapper {

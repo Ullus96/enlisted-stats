@@ -90,12 +90,11 @@ const router = createRouter({
 			},
 		},
 		{
-			path: '/profile',
-			name: 'Profile',
+			path: '/settings',
+			name: 'Settings',
 			component: () => import('@/views/ProfileView.vue'),
 			meta: {
-				title: 'Профиль',
-				requiresAuth: true,
+				title: 'Настройки',
 			},
 		},
 		{
