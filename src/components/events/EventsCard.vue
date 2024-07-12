@@ -4,6 +4,7 @@
 		:class="{
 			'event__card--active': isActive,
 			skipped: isSkipped,
+			'inline-rewards': $store.state.settings.inlineRewards,
 		}"
 		@click="handleClick"
 	>

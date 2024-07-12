@@ -77,6 +77,25 @@
 						/>
 					</label>
 				</div>
+
+				<div class="profile__title-desc-action-block">
+					<div class="profile__title-desc-block">
+						<p class="profile__option-name">
+							Отображение наград внутри карточек
+						</p>
+						<p class="profile__option-desc">
+							Отображает награды событий прямо на карточках, вместо всплывающих
+							подсказок.
+						</p>
+					</div>
+					<label class="checkbox-wrapper-2 profile__checkbox-wrapper">
+						<input
+							type="checkbox"
+							class="sc-gJwTLC ikxBAC"
+							v-model="inlineRewards"
+						/>
+					</label>
+				</div>
 			</section>
 		</div>
 	</div>
@@ -192,6 +211,16 @@ export default defineComponent({
 			store.commit('switchCompactMode', newVal);
 		});
 
+		// Инлайн награды
+		const inlineRewards: Ref<boolean> = ref(
+			loadFromLocalStorage('inlineRewards') || false
+		);
+
+		watch(inlineRewards, (newVal) => {
+			saveToLocalStorage('inlineRewards', newVal);
+			store.commit('switchInlineRewards', newVal);
+		});
+
 		return {
 			auth,
 			inputName,
@@ -199,6 +228,7 @@ export default defineComponent({
 			updateDisplayName,
 			deleteAccount,
 			compactMode,
+			inlineRewards,
 		};
 	},
 });

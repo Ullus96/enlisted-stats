@@ -41,6 +41,7 @@ export interface State {
 	};
 	settings: {
 		compactMode: boolean;
+		inlineRewards: boolean;
 	};
 }
 
@@ -81,6 +82,7 @@ export default createStore<State>({
 		},
 		settings: {
 			compactMode: false,
+			inlineRewards: false,
 		},
 	},
 	mutations: {
@@ -175,6 +177,10 @@ export default createStore<State>({
 
 		switchCompactMode(state, newVal: boolean) {
 			state.settings.compactMode = newVal;
+		},
+
+		switchInlineRewards(state, newVal: boolean) {
+			state.settings.inlineRewards = newVal;
 		},
 	},
 });
