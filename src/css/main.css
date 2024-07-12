@@ -2289,7 +2289,6 @@ h3 {
   -webkit-hyphens: auto;
           hyphens: auto;
   line-height: 130%;
-  display: flex;
   flex-direction: column;
   gap: 0.4rem;
   font-size: 1.2rem;
@@ -2539,6 +2538,10 @@ h3 {
     transform: rotateZ(-8deg) scale(0.9);
   }
 }
+.inline-rewards.event__card .event__mobile-reward-block {
+  display: flex;
+}
+
 .cc__stats-block {
   display: flex;
   gap: 4rem;

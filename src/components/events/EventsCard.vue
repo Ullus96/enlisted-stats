@@ -8,7 +8,11 @@
 		}"
 		@click="handleClick"
 	>
-		<TooltipComponent :direction="'top'" :width="20">
+		<TooltipComponent
+			:direction="'top'"
+			:width="20"
+			v-if="!$store.state.settings.inlineRewards"
+		>
 			<p>Награда:</p>
 			<p v-for="item in separateLineBySemicolon(reward)" :key="item">
 				{{ item ? item : '—' }}
