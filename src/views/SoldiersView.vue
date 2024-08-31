@@ -216,6 +216,7 @@ export default defineComponent({
 
 		function removeFilter() {
 			isFilteredToClass.value = false;
+			filteredSoldierButtonHandler('presets');
 			router.push({ name: 'Home' });
 		}
 
