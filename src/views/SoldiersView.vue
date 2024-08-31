@@ -1,5 +1,7 @@
 <template>
 	<div class="container mt-m">
+		{{ searchDebug }}
+
 		<label for="searchInput">
 			<div class="table__search">
 				<div class="table__search-icon tooltip-anchor">
@@ -13,9 +15,12 @@
 				<input
 					type="text"
 					class="table__input"
-					v-model.trim="search"
+					@input="setSearchValue($event.target.value)"
 					id="searchInput"
-					@keydown.esc="search = ''"
+					@keydown.esc="
+						clearSearchValue();
+						$event.target.value = '';
+					"
 					:placeholder="
 						!isFilteredToClass ? 'Начни вводить название класса' : ''
 					"
@@ -170,6 +175,7 @@ import {
 } from '@/functions/localStorageUtils';
 import { SoldierID } from '@/type/Soldier';
 import BuildCard from '@/components/build/BuildCard.vue';
+import { transliterateWithRomanCheck } from '@/functions/transliterate';
 
 export default defineComponent({
 	name: 'App',
@@ -228,7 +234,22 @@ export default defineComponent({
 			}
 		}
 
+		// Input
 		const search: Ref<string> = ref('');
+		const searchDebug: Ref<string> = ref('');
+
+		function setSearchValue(input: string | null) {
+			if (!input) {
+				search.value = '';
+				return;
+			}
+
+			search.value = transliterateWithRomanCheck(input);
+		}
+
+		function clearSearchValue() {
+			search.value = '';
+		}
 
 		const filteredItems = computed(() =>
 			items.filter((item) =>
@@ -439,6 +460,9 @@ export default defineComponent({
 			removeFilter,
 			getImgPath,
 			search,
+			searchDebug,
+			setSearchValue,
+			clearSearchValue,
 			filteredItems,
 			isCalculatorSelected,
 			filteredSoldierButtonHandler,
