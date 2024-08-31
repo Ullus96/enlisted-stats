@@ -12,11 +12,11 @@ export default defineComponent({
 	setup() {
 		const store = useStore();
 
-		let compactMode: Ref<boolean> = ref(false);
+		let compactMode: Ref<boolean> = ref(true);
 		let inlineRewards: Ref<boolean> = ref(false);
 
 		onMounted(() => {
-			compactMode.value = loadFromLocalStorage('compactMode') || false;
+			compactMode.value = loadFromLocalStorage('compactMode') || true;
 			inlineRewards.value = loadFromLocalStorage('inlineRewards') || false;
 			store.commit('switchCompactMode', compactMode.value);
 			store.commit('switchInlineRewards', compactMode.value);
