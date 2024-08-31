@@ -1,7 +1,5 @@
 <template>
 	<div class="container mt-m">
-		{{ searchDebug }}
-
 		<label for="searchInput">
 			<div class="table__search">
 				<div class="table__search-icon tooltip-anchor">
@@ -142,6 +140,7 @@ import {
 	onUpdated,
 	reactive,
 	ref,
+	watch,
 } from 'vue';
 import type { Ref } from 'vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
@@ -176,6 +175,8 @@ import {
 import { SoldierID } from '@/type/Soldier';
 import BuildCard from '@/components/build/BuildCard.vue';
 import { transliterateWithRomanCheck } from '@/functions/transliterate';
+import Fuse from 'fuse.js';
+import { IItem } from '@/type/Item';
 
 export default defineComponent({
 	name: 'App',
@@ -234,9 +235,9 @@ export default defineComponent({
 			}
 		}
 
-		// Input
+		// Input and search
 		const search: Ref<string> = ref('');
-		const searchDebug: Ref<string> = ref('');
+		const filteredItems: Ref<[] | IItem[]> = ref([]);
 
 		function setSearchValue(input: string | null) {
 			if (!input) {
@@ -245,17 +246,42 @@ export default defineComponent({
 			}
 
 			search.value = transliterateWithRomanCheck(input);
+
+			// используем fuse.js для поиска
+			const result = fuse.search(search.value);
+			// сохраняем результаты поиска
+			filteredItems.value = result.map((r) => r.item); // fuse возвращает объекты, нам нужны только items
 		}
 
 		function clearSearchValue() {
 			search.value = '';
 		}
 
-		const filteredItems = computed(() =>
-			items.filter((item) =>
-				item.name.toLowerCase().includes(search.value.toLowerCase())
-			)
-		);
+		// настройки для fuse.js
+		const fuseOptions = {
+			keys: ['name'], // ищем по имени
+			threshold: 0.3, // чувствительность поиска (чем меньше, тем точнее)
+			minMatchCharLength: 2, // минимальная длина совпадения
+		};
+
+		const fuse = new Fuse(items, fuseOptions);
+
+		function updateFilteredItems() {
+			if (search.value === '') {
+				filteredItems.value = items; // если пустой запрос, возвращаем все
+			} else {
+				const result = fuse.search(search.value);
+				filteredItems.value = result.map((r) => r.item);
+			}
+		}
+
+		// следим за изменением переменной search и обновляем фильтрованные элементы
+		watch(search, updateFilteredItems);
+
+		// инициализация начального состояния
+		updateFilteredItems();
+
+		// === End of Input and Search
 
 		const isCalculatorSelected: Ref<boolean> = ref(false);
 
@@ -460,7 +486,6 @@ export default defineComponent({
 			removeFilter,
 			getImgPath,
 			search,
-			searchDebug,
 			setSearchValue,
 			clearSearchValue,
 			filteredItems,
