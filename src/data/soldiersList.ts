@@ -78,6 +78,14 @@ export const items: IItem[] = [
 		perk: '+12% скорость перезарядки ручного оружия',
 	},
 	{
+		name: 'Партизан II',
+		id: 'partisan2',
+		icon: 'partisan.svg',
+		tags: ['base'],
+		statsMod: [5, 0, 3],
+		perk: '+5.3% скорость спринта',
+	},
+	{
 		name: 'Инженер I',
 		id: 'engineer1',
 		icon: 'engineer.svg',
@@ -301,6 +309,11 @@ export const uniqueSoldiersList = [
 	{
 		name: 'Штурмовик',
 		icon: 'assaulter.svg',
+		tags: ['base'],
+	},
+	{
+		name: 'Партизан',
+		icon: 'partisan.svg',
 		tags: ['base'],
 	},
 	{

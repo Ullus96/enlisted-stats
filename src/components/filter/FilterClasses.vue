@@ -50,6 +50,13 @@
 				<img src="@/assets/soldier_icons/medic.svg" class="filter__icon" />
 				<span>Медик</span>
 			</button>
+			<button
+				class="filter__class btn btn-m btn-tertiary"
+				@click="setClass('partisan2')"
+			>
+				<img src="@/assets/soldier_icons/partisan.svg" class="filter__icon" />
+				<span>Партизан</span>
+			</button>
 		</div>
 
 		<div class="filter__group">
