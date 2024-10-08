@@ -439,6 +439,7 @@ export default defineComponent({
 				'assaulter2',
 				'assaulter3',
 				'assaulter4',
+				'partisan2',
 				'engineer1',
 				'engineer2',
 				'sniper1',
@@ -489,6 +490,7 @@ export default defineComponent({
 			sortByMethod?: string;
 		}
 		const params: Params = router.currentRoute.value.query;
+		console.log(params);
 
 		function validateParams(params: Params) {
 			if (
