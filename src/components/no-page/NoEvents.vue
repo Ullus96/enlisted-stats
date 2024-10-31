@@ -1,12 +1,16 @@
 <template>
-	<div class="wip__block">
-		<img
-			:src="require(`@/assets/no_events/img-${randomImageIndex}.jpg`)"
-			alt="Work In Progress"
-			class="wip__img"
-		/>
-		<h2>События закончились</h2>
-		<p>Отдохни, солдат.</p>
+	<div class="mt-l">
+		<div class="container-sm wip">
+			<img
+				:src="require(`@/assets/no_events/img-${randomImageIndex}.jpg`)"
+				alt="Work In Progress"
+				class="wip__img"
+			/>
+			<div class="wip__text-block">
+				<h2 class="wip__title">События закончились</h2>
+				<p class="wip__desc">Отдохни, солдат.</p>
+			</div>
+		</div>
 	</div>
 </template>
 

@@ -2995,22 +2995,33 @@ h3 {
   z-index: 2;
 }
 
-.wip__block {
-  margin: 6rem auto 0;
-  width: 60rem;
+.wip {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
 }
-.wip__block img {
-  width: 70rem;
+.wip__img {
+  width: 100%;
   border-radius: 1.2rem;
 }
-.wip__block h2 {
-  margin-top: 2rem;
+@media (max-width: 849px) {
+  .wip__img {
+    width: 90%;
+  }
 }
-.wip__block p {
-  margin-top: 1rem;
+.wip__text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  text-align: center;
+}
+@media (max-width: 849px) {
+  .wip__title {
+    font-size: 2.4rem;
+  }
 }
 
 .table__search {
