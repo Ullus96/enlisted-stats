@@ -73,5 +73,9 @@
 		padding: 0.8rem 1.2rem;
 		border-radius: 0.8rem;
 		transform: scale(1.5);
+
+		@include tablet {
+			transform: scale(1.25);
+		}
 	}
 }

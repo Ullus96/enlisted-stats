@@ -490,7 +490,6 @@ export default defineComponent({
 			sortByMethod?: string;
 		}
 		const params: Params = router.currentRoute.value.query;
-		console.log(params);
 
 		function validateParams(params: Params) {
 			if (
