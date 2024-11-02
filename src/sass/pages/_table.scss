@@ -112,9 +112,7 @@
 		grid-template-columns: 16rem repeat(5, 1fr) 4fr;
 		gap: 0.8rem 0rem;
 
-		&:hover {
-			@include hovered($color-text-100, $color-bg-a-500);
-		}
+		@include hovered($color-text-100, $color-bg-a-500);
 
 		@include pressed($color-text-100, $color-bg-a-500);
 

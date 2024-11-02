@@ -103,7 +103,17 @@
 
 // Material UI states
 @mixin hovered($text-color, $background-color) {
-	background-color: mix($text-color, $background-color, 4%);
+	@media (hover: hover) {
+		&:hover {
+			background-color: mix($text-color, $background-color, 4%);
+		}
+	}
+
+	@media (hover: none) {
+		&:active {
+			background-color: mix($text-color, $background-color, 4%);
+		}
+	}
 }
 
 @mixin focused($text-color, $background-color) {

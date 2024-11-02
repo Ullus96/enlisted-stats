@@ -22,9 +22,7 @@
 
 		@include pressed($color-text-100, $color-primary-a-400, 2.5);
 
-		&:hover {
-			@include hovered($color-text-100, $color-primary-a-500);
-		}
+		@include hovered($color-text-100, $color-primary-a-500);
 
 		&:focus {
 			@include focused($color-text-100, $color-primary-a-500);
@@ -42,9 +40,7 @@
 
 		@include pressed($color-text-100, $color-bg-a-600, 2.5);
 
-		&:hover {
-			@include hovered($color-text-100, $color-bg-a-800);
-		}
+		@include hovered($color-text-100, $color-bg-a-800);
 
 		&:focus {
 			@include focused($color-text-100, $color-bg-a-800);
@@ -58,9 +54,7 @@
 	&-tertiary {
 		@include pressed($color-text-100, $color-bg-a-300, 2.5);
 
-		&:hover {
-			@include hovered($color-text-100, $color-bg-a-300);
-		}
+		@include hovered($color-text-100, $color-bg-a-300);
 
 		&:focus {
 			@include focused($color-text-100, $color-bg-a-300);

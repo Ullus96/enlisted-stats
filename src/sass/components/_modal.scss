@@ -42,9 +42,7 @@
 
 		@include pressed($color-bg-100, $color-text-100, 2.5);
 
-		&:hover {
-			@include hovered($color-bg-100, $color-text-100);
-		}
+		@include hovered($color-bg-100, $color-text-100);
 
 		&:focus {
 			@include focused($color-bg-100, $color-text-100);

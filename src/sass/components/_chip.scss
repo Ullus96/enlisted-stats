@@ -10,9 +10,7 @@
 
 	// @include pressed($color-text-100, $color-bg-a-500, 2.5);
 
-	&:hover {
-		@include hovered($color-text-100, $color-bg-a-500);
-	}
+	@include hovered($color-text-100, $color-bg-a-500);
 
 	&:focus {
 		@include focused($color-text-100, $color-bg-a-500);
@@ -54,9 +52,7 @@
 
 	// @include pressed($color-primary-200, $color-bg-a-500, 2.5);
 
-	&:hover {
-		@include hovered($color-primary-200, $color-bg-a-500);
-	}
+	@include hovered($color-primary-200, $color-bg-a-500);
 
 	&:focus {
 		@include focused($color-primary-200, $color-bg-a-500);

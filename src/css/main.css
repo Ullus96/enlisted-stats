@@ -383,8 +383,15 @@ h3 {
   transform: translate(-50%, -50%) scale(2.5);
   opacity: 1;
 }
-.btn-primary:hover {
-  background-color: rgba(114, 37, 37, 0.76);
+@media (hover: hover) {
+  .btn-primary:hover {
+    background-color: rgba(114, 37, 37, 0.76);
+  }
+}
+@media (hover: none) {
+  .btn-primary:active {
+    background-color: rgba(114, 37, 37, 0.76);
+  }
 }
 .btn-primary:focus {
   outline: 1px solid #e2e2e2;
@@ -420,8 +427,15 @@ h3 {
   transform: translate(-50%, -50%) scale(2.5);
   opacity: 1;
 }
-.btn-secondary:hover {
-  background-color: rgba(43, 43, 43, 0.76);
+@media (hover: hover) {
+  .btn-secondary:hover {
+    background-color: rgba(43, 43, 43, 0.76);
+  }
+}
+@media (hover: none) {
+  .btn-secondary:active {
+    background-color: rgba(43, 43, 43, 0.76);
+  }
 }
 .btn-secondary:focus {
   outline: 1px solid #e2e2e2;
@@ -456,8 +470,15 @@ h3 {
   transform: translate(-50%, -50%) scale(2.5);
   opacity: 1;
 }
-.btn-tertiary:hover {
-  background-color: rgba(59, 59, 59, 0.76);
+@media (hover: hover) {
+  .btn-tertiary:hover {
+    background-color: rgba(59, 59, 59, 0.76);
+  }
+}
+@media (hover: none) {
+  .btn-tertiary:active {
+    background-color: rgba(59, 59, 59, 0.76);
+  }
 }
 .btn-tertiary:focus {
   outline: 1px solid #e2e2e2;
@@ -648,8 +669,15 @@ h3 {
   transform: translate(-50%, -50%) scale(2.5);
   opacity: 1;
 }
-.calculator__button:hover {
-  background-color: #262626;
+@media (hover: hover) {
+  .calculator__button:hover {
+    background-color: #262626;
+  }
+}
+@media (hover: none) {
+  .calculator__button:active {
+    background-color: #262626;
+  }
 }
 .calculator__button:focus {
   outline: 1px solid #e2e2e2;
@@ -1035,8 +1063,15 @@ h3 {
   transform: translate(-50%, -50%) scale(2.5);
   opacity: 1;
 }
-.modal__google-btn:hover {
-  background-color: #dbdbdb;
+@media (hover: hover) {
+  .modal__google-btn:hover {
+    background-color: #dbdbdb;
+  }
+}
+@media (hover: none) {
+  .modal__google-btn:active {
+    background-color: #dbdbdb;
+  }
 }
 .modal__google-btn:focus {
   outline: 1px solid #353535;
@@ -1627,8 +1662,15 @@ h3 {
   outline: 1px solid #e2e2e2;
   background-color: rgba(70, 70, 70, 0.78);
 }
-.aside__link:hover {
-  background-color: rgba(47, 47, 47, 0.76);
+@media (hover: hover) {
+  .aside__link:hover {
+    background-color: rgba(47, 47, 47, 0.76);
+  }
+}
+@media (hover: none) {
+  .aside__link:active {
+    background-color: rgba(47, 47, 47, 0.76);
+  }
 }
 .aside__link.router-link-active {
   background-color: rgb(47, 47, 47);
@@ -1639,8 +1681,15 @@ h3 {
   outline: 1px solid #e2e2e2;
   background-color: #444444;
 }
-.aside__link.router-link-active:hover {
-  background-color: #363636;
+@media (hover: hover) {
+  .aside__link.router-link-active:hover {
+    background-color: #363636;
+  }
+}
+@media (hover: none) {
+  .aside__link.router-link-active:active {
+    background-color: #363636;
+  }
 }
 .aside__link.router-link-active::after {
   content: "";
@@ -1759,8 +1808,15 @@ h3 {
   transform: translate(-50%, -50%) scale(1.5);
   opacity: 1;
 }
-.aside__hamburger-btn:hover {
-  background-color: rgba(47, 47, 47, 0.76);
+@media (hover: hover) {
+  .aside__hamburger-btn:hover {
+    background-color: rgba(47, 47, 47, 0.76);
+  }
+}
+@media (hover: none) {
+  .aside__hamburger-btn:active {
+    background-color: rgba(47, 47, 47, 0.76);
+  }
 }
 .aside__hamburger-btn:focus {
   outline: 1px solid #e2e2e2;
@@ -2062,8 +2118,15 @@ h3 {
   cursor: pointer;
   transition: color 0.12s ease-in-out, border 0.12s ease-in-out;
 }
-.chip:hover {
-  background-color: rgba(51, 51, 51, 0.76);
+@media (hover: hover) {
+  .chip:hover {
+    background-color: rgba(51, 51, 51, 0.76);
+  }
+}
+@media (hover: none) {
+  .chip:active {
+    background-color: rgba(51, 51, 51, 0.76);
+  }
 }
 .chip:focus {
   outline: 1px solid #e2e2e2;
@@ -2102,8 +2165,15 @@ h3 {
 .chip.active path {
   fill: rgb(175, 61, 61);
 }
-.chip.active:hover {
-  background-color: rgba(48, 40, 40, 0.76);
+@media (hover: hover) {
+  .chip.active:hover {
+    background-color: rgba(48, 40, 40, 0.76);
+  }
+}
+@media (hover: none) {
+  .chip.active:active {
+    background-color: rgba(48, 40, 40, 0.76);
+  }
 }
 .chip.active:focus {
   outline: 1px solid #af3d3d;
@@ -2378,8 +2448,15 @@ h3 {
   transform: translate(-50%, -50%) scale(2.5);
   opacity: 1;
 }
-.event__chip:hover {
-  background-color: #2b2b2b;
+@media (hover: hover) {
+  .event__chip:hover {
+    background-color: #2b2b2b;
+  }
+}
+@media (hover: none) {
+  .event__chip:active {
+    background-color: #2b2b2b;
+  }
 }
 .event__chip:focus {
   outline: 1px solid #e2e2e2;
@@ -2408,8 +2485,15 @@ h3 {
   transform: translate(-50%, -50%) scale(2.5);
   opacity: 1;
 }
-.event__chip--active:hover {
-  background-color: #671b1b;
+@media (hover: hover) {
+  .event__chip--active:hover {
+    background-color: #671b1b;
+  }
+}
+@media (hover: none) {
+  .event__chip--active:active {
+    background-color: #671b1b;
+  }
 }
 .event__chip--active:focus {
   outline: 1px solid #e2e2e2;
@@ -2758,8 +2842,15 @@ h3 {
   transform: translate(-50%, -50%) scale(4);
   opacity: 1;
 }
-.sbuild__item--clickable:hover {
-  background-color: rgba(51, 51, 51, 0.76);
+@media (hover: hover) {
+  .sbuild__item--clickable:hover {
+    background-color: rgba(51, 51, 51, 0.76);
+  }
+}
+@media (hover: none) {
+  .sbuild__item--clickable:active {
+    background-color: rgba(51, 51, 51, 0.76);
+  }
 }
 .sbuild__main-content {
   flex: 1 1 auto;
@@ -2936,8 +3027,15 @@ h3 {
   transform: translate(-50%, -50%) scale(4);
   opacity: 1;
 }
-.sbuild__card:hover {
-  background-color: rgba(62, 62, 62, 0.76);
+@media (hover: hover) {
+  .sbuild__card:hover {
+    background-color: rgba(62, 62, 62, 0.76);
+  }
+}
+@media (hover: none) {
+  .sbuild__card:active {
+    background-color: rgba(62, 62, 62, 0.76);
+  }
 }
 .sbuild__likes-block--no-anim {
   display: flex;
@@ -3131,8 +3229,15 @@ h3 {
   position: relative;
   overflow: hidden;
 }
-.table__row--body:hover {
-  background-color: rgba(51, 51, 51, 0.76);
+@media (hover: hover) {
+  .table__row--body:hover {
+    background-color: rgba(51, 51, 51, 0.76);
+  }
+}
+@media (hover: none) {
+  .table__row--body:active {
+    background-color: rgba(51, 51, 51, 0.76);
+  }
 }
 .table__row--body::after {
   content: "";
