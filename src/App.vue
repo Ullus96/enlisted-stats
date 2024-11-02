@@ -49,6 +49,20 @@ export default defineComponent({
 			return Object.values(store.state.dialog).some((value) => value);
 		});
 
+		// Убираем фокус кнопки при клике
+		document.addEventListener('click', (event) => {
+			const target = event.target as HTMLElement;
+
+			// проверяем, если целевой элемент сам кнопка, или внутри кнопки
+			const button = target.closest(
+				'button, [type="button"]'
+			) as HTMLButtonElement | null;
+
+			if (button) {
+				button.blur();
+			}
+		});
+
 		return {
 			isAnyModalVisible,
 			isAnyDialogVisible,
