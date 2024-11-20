@@ -77,8 +77,11 @@ export default defineComponent({
 						const x = e.clientX - rect.left;
 						const y = e.clientY - rect.top;
 
-						const topIntensity = 1 - Math.min(y / 60, 1);
-						const bottomIntensity = 1 - Math.min((rect.height - y) / 60, 1);
+						const scalingFactor = rect.height / 1.35; // нормализуем "зону свечения" (1/1.35 высоты элемента)
+
+						const topIntensity = 1 - Math.min(y / scalingFactor, 1);
+						const bottomIntensity =
+							1 - Math.min((rect.height - y) / scalingFactor, 1);
 
 						topBorder.value.style.opacity = topIntensity.toFixed(2);
 						bottomBorder.value.style.opacity = bottomIntensity.toFixed(2);
