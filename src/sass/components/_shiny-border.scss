@@ -27,7 +27,8 @@
 		content: '';
 		position: absolute;
 		height: 100%;
-		width: 40px;
+		width: var(--left-guard-width, 40px);
+		// width: 40px;
 		left: 0;
 	}
 
@@ -36,7 +37,8 @@
 		content: '';
 		position: absolute;
 		height: 100%;
-		width: 40px;
+		width: var(--right-guard-width, 40px); // динамическая ширина
+		// width: 40px;
 		right: 0;
 	}
 }
@@ -48,9 +50,9 @@
 	& .shiny__bottom {
 		background: linear-gradient(
 			to right,
-			transparent 00%,
+			transparent var(--left-gradient-percent, 0%),
 			$color-primary-200 20%,
-			transparent 40%
+			transparent var(--right-gradient-percent, 40%)
 		);
 	}
 

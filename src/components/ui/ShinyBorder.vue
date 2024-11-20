@@ -78,10 +78,13 @@ export default defineComponent({
 						const y = e.clientY - rect.top;
 
 						const scalingFactor = rect.height / 1.35; // нормализуем "зону свечения" (1/1.35 высоты элемента)
+						const scaleIntensity = 0.75;
 
-						const topIntensity = 1 - Math.min(y / scalingFactor, 1);
+						const topIntensity =
+							1 - Math.min(y / scalingFactor, 1) * scaleIntensity;
 						const bottomIntensity =
-							1 - Math.min((rect.height - y) / scalingFactor, 1);
+							1 -
+							Math.min((rect.height - y) / scalingFactor, 1) * scaleIntensity;
 
 						topBorder.value.style.opacity = topIntensity.toFixed(2);
 						bottomBorder.value.style.opacity = bottomIntensity.toFixed(2);
@@ -89,6 +92,49 @@ export default defineComponent({
 						const gradientPosition = `${x - rect.width * 0.2}px`;
 						topBorder.value.style.backgroundPositionX = gradientPosition;
 						bottomBorder.value.style.backgroundPositionX = gradientPosition;
+
+						const xPercent = (x / rect.width) * 100;
+
+						if (xPercent > 50) {
+							let ratio = (xPercent - 50) / 50;
+							let newValue = 40 - ratio * (40 - 20);
+
+							topBorder.value.style.setProperty(
+								'--right-gradient-percent',
+								`${newValue}%`
+							);
+							bottomBorder.value.style.setProperty(
+								'--right-gradient-percent',
+								`${newValue}%`
+							);
+							topBorder.value.style.setProperty(
+								'--left-gradient-percent',
+								`${0}%`
+							);
+							bottomBorder.value.style.setProperty(
+								'--left-gradient-percent',
+								`${0}%`
+							);
+						} else {
+							let ratio = xPercent / 50;
+							let newValue = 20 - ratio * 20;
+							topBorder.value.style.setProperty(
+								'--right-gradient-percent',
+								`${40}%`
+							);
+							bottomBorder.value.style.setProperty(
+								'--right-gradient-percent',
+								`${40}%`
+							);
+							topBorder.value.style.setProperty(
+								'--left-gradient-percent',
+								`${newValue}%`
+							);
+							bottomBorder.value.style.setProperty(
+								'--left-gradient-percent',
+								`${newValue}%`
+							);
+						}
 					}
 
 					animationFrameId = null;
