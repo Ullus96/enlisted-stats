@@ -14,7 +14,9 @@
 		<!-- <vuex-debug></vuex-debug> -->
 		<the-aside></the-aside>
 		<main class="main">
-			<router-view></router-view>
+			<transition name="route">
+				<router-view></router-view>
+			</transition>
 		</main>
 	</div>
 </template>
@@ -70,3 +72,18 @@ export default defineComponent({
 	},
 });
 </script>
+
+<style scoped>
+.route-enter-to,
+.route-leave-from {
+	transition: 0.5s ease-out transform, 0.2s ease-in-out opacity;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.route-enter-from,
+.route-leave-to {
+	opacity: 0;
+	transform: translateY(20px);
+}
+</style>
