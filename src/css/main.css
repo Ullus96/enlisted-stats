@@ -2268,7 +2268,7 @@ h3 {
 }
 
 .shiny--table .shiny__top, .shiny--table .shiny__bottom {
-  background: linear-gradient(to right, transparent var(--left-gradient-percent, 0%), rgb(175, 61, 61) 20%, transparent var(--right-gradient-percent, 40%));
+  background: linear-gradient(to right, transparent var(--left-gradient-percent, 0%), rgb(116, 116, 116) 20%, transparent var(--right-gradient-percent, 40%));
 }
 .shiny--table .shiny__top::before, .shiny--table .shiny__bottom::before {
   background: linear-gradient(to right, #2e2e2e 20%, transparent);
