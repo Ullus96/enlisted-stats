@@ -96,8 +96,8 @@ export default defineComponent({
 						const xPercent = (x / rect.width) * 100;
 
 						if (xPercent > 50) {
-							let ratio = (xPercent - 50) / 50;
-							let newValue = 40 - ratio * (40 - 20);
+							const ratio = (xPercent - 50) / 50;
+							const newValue = 40 - ratio * (40 - 20);
 
 							topBorder.value.style.setProperty(
 								'--right-gradient-percent',
@@ -116,8 +116,8 @@ export default defineComponent({
 								`${0}%`
 							);
 						} else {
-							let ratio = xPercent / 50;
-							let newValue = 20 - ratio * 20;
+							const ratio = xPercent / 50;
+							const newValue = 20 - ratio * 20;
 							topBorder.value.style.setProperty(
 								'--right-gradient-percent',
 								`${40}%`

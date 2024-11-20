@@ -7,7 +7,7 @@
 				class="sbuild__link"
 				v-if="hasLink"
 			>
-				<ShinyBorder :colorClass="'shiny--table'" :zIndex="true" :height="3" />
+				<ShinyBorder :colorClass="'shiny--table'" :zIndex="true" :height="2" />
 			</router-link>
 			<div class="sbuild__main-content">
 				<p class="sbuild__name">
