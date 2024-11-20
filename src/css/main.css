@@ -2228,6 +2228,52 @@ h3 {
   color: rgb(165, 165, 165);
 }
 
+.highlight {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.highlight__top,
+.highlight__bottom {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: linear-gradient(to right, transparent 0%, rgb(175, 61, 61) 20%, transparent 40%);
+  opacity: 0;
+  transition: opacity 0.2s ease, background-position 0.2s ease;
+}
+
+.highlight__top::before,
+.highlight__bottom::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 40px;
+  left: 0;
+  background: linear-gradient(to right, #2e2e2e 20%, transparent);
+}
+
+.highlight__top::after,
+.highlight__bottom::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 40px;
+  right: 0;
+  background: linear-gradient(to left, #2e2e2e 20%, transparent);
+}
+
+.highlight__top {
+  top: 0;
+}
+
+.highlight__bottom {
+  bottom: 0;
+}
+
 .event__title {
   text-align: center;
 }
@@ -3219,6 +3265,7 @@ h3 {
   gap: 0.8rem;
 }
 .table__row--body {
+  position: relative;
   cursor: pointer;
   background-color: rgba(39, 39, 39, 0.75);
   padding: 2rem 1.6rem;

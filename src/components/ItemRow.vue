@@ -1,5 +1,6 @@
 <template>
 	<div class="table__row table__row--body">
+		<ShinyBorder />
 		<div class="table__col table__col--icon">
 			<img :src="require('@/assets/soldier_icons/' + item.icon)" />
 			<span class="table__col table__col--name">{{ item.name }}</span>
@@ -40,8 +41,10 @@
 import { IItem } from '@/type/Item';
 import { defineComponent, PropType } from 'vue';
 import { calculateStatsByLvl } from '@/functions/characterUtils';
+import ShinyBorder from './ui/ShinyBorder.vue';
 
 export default defineComponent({
+	components: { ShinyBorder },
 	props: {
 		item: {
 			required: true,

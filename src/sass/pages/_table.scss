@@ -104,6 +104,7 @@
 	}
 
 	&__row--body {
+		position: relative;
 		cursor: pointer;
 		background-color: $color-bg-a-500;
 		padding: 2rem 1.6rem;
