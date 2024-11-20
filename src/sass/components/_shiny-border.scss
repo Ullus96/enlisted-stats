@@ -1,12 +1,12 @@
-.highlight {
+.shiny {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	z-index: 1;
+	z-index: 0; // props.zIndex
 }
 
-.highlight__top,
-.highlight__bottom {
+.shiny__top,
+.shiny__bottom {
 	position: absolute;
 	left: 12px; // props.padding
 	right: 12px; // props.padding
@@ -21,8 +21,8 @@
 	transition: opacity 0.2s ease, background-position 0.2s ease;
 }
 
-.highlight__top::before,
-.highlight__bottom::before {
+.shiny__top::before,
+.shiny__bottom::before {
 	content: '';
 	position: absolute;
 	height: 100%;
@@ -35,8 +35,8 @@
 	);
 }
 
-.highlight__top::after,
-.highlight__bottom::after {
+.shiny__top::after,
+.shiny__bottom::after {
 	content: '';
 	position: absolute;
 	height: 100%;
@@ -49,10 +49,10 @@
 	);
 }
 
-.highlight__top {
+.shiny__top {
 	top: 0;
 }
 
-.highlight__bottom {
+.shiny__bottom {
 	bottom: 0;
 }

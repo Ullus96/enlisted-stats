@@ -1,6 +1,6 @@
 <template>
 	<div class="table__row table__row--body">
-		<ShinyBorder />
+		<ShinyBorder :z-index="true" />
 		<div class="table__col table__col--icon">
 			<img :src="require('@/assets/soldier_icons/' + item.icon)" />
 			<span class="table__col table__col--name">{{ item.name }}</span>

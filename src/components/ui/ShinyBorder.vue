@@ -1,12 +1,31 @@
+<docs>
+Предварительные требования:
+  - Родитель должен иметь position: relative
+  - Монтируется сразу после родительского элемента
+
+Props:
+  1. zIndex: true / false
+  Определяет, перекрывает ли этот элемент собой весь остальной контент.
+  Если да - нельзя будет выделять текст, но @mousemove будет
+  отрабатывать, независимо от того, где у нас мышка (а не только
+  на фоне)
+
+  2. height: any number
+  Высота рамки, преобразуется в пиксели.
+
+  3. padding: any number
+  Расстояние от края, преобразуется в пиксели
+</docs>
+
 <template>
 	<span
 		ref="container"
-		class="highlight"
+		class="shiny"
 		@mousemove="onMouseMove"
 		@mouseleave="onMouseLeave"
 	>
-		<span class="highlight__top" ref="topBorder"></span>
-		<span class="highlight__bottom" ref="bottomBorder"></span>
+		<span class="shiny__top" ref="topBorder"></span>
+		<span class="shiny__bottom" ref="bottomBorder"></span>
 	</span>
 </template>
 
@@ -15,6 +34,11 @@ import { defineComponent, onMounted, ref, Ref } from 'vue';
 
 export default defineComponent({
 	props: {
+		zIndex: {
+			type: Boolean,
+			required: false,
+			default: false,
+		},
 		height: {
 			type: Number,
 			required: false,
@@ -78,6 +102,10 @@ export default defineComponent({
 				topBorder.value.style.right = `${props.padding}px`;
 				bottomBorder.value.style.left = `${props.padding}px`;
 				bottomBorder.value.style.right = `${props.padding}px`;
+			}
+
+			if (container.value) {
+				container.value.style.zIndex = String(Number(props.zIndex));
 			}
 		});
 
