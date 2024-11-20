@@ -14,6 +14,18 @@
 import { defineComponent, onMounted, ref, Ref } from 'vue';
 
 export default defineComponent({
+	props: {
+		height: {
+			type: Number,
+			required: false,
+			default: 2,
+		},
+		padding: {
+			type: Number,
+			required: false,
+			default: 12,
+		},
+	},
 	setup(props) {
 		// Main functionality
 		const topBorder: Ref<null | HTMLSpanElement> = ref(null);
@@ -55,6 +67,19 @@ export default defineComponent({
 				bottomBorder.value.style.opacity = '0';
 			}
 		};
+
+		// Setting up props
+		onMounted(() => {
+			if (topBorder.value && bottomBorder.value) {
+				topBorder.value.style.height = `${props.height}px`;
+				bottomBorder.value.style.height = `${props.height}px`;
+
+				topBorder.value.style.left = `${props.padding}px`;
+				topBorder.value.style.right = `${props.padding}px`;
+				bottomBorder.value.style.left = `${props.padding}px`;
+				bottomBorder.value.style.right = `${props.padding}px`;
+			}
+		});
 
 		return { topBorder, bottomBorder, container, onMouseMove, onMouseLeave };
 	},
