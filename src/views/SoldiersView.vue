@@ -111,8 +111,6 @@
 						></build-card>
 					</div>
 					<div class="table__promo-buttons">
-						<!-- TODO: сделать редирект на страницу сборок вместе 
-						с параметром поиска в виде класса и сорт бай нью, сначала новые -->
 						<router-link :to="link">
 							<button class="btn btn-m btn-secondary">Посмотреть еще</button>
 						</router-link>

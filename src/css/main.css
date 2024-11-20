@@ -237,6 +237,10 @@ h3 {
   cursor: pointer;
 }
 
+.relative {
+  position: relative;
+}
+
 .mt-s {
   margin-top: 2rem;
 }

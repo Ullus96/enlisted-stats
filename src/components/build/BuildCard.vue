@@ -7,6 +7,7 @@
 				class="sbuild__link"
 				v-if="hasLink"
 			>
+				<ShinyBorder :colorClass="'shiny--table'" :zIndex="true" />
 			</router-link>
 			<div class="sbuild__main-content">
 				<p class="sbuild__name">
@@ -219,6 +220,7 @@ import IconCopy from '@/components/ui/icons/IconCopy.vue';
 import IconMobility from '@/components/ui/icons/IconMobility.vue';
 import IconVitality from '@/components/ui/icons/IconVitality.vue';
 import IconWeapon from '@/components/ui/icons/IconWeapon.vue';
+import ShinyBorder from '@/components/ui/ShinyBorder.vue';
 
 export default defineComponent({
 	props: {
@@ -250,6 +252,7 @@ export default defineComponent({
 	},
 	components: {
 		TooltipComponent,
+		ShinyBorder,
 		IconBase,
 		IconHeart,
 		IconGlobe,
