@@ -2234,44 +2234,43 @@ h3 {
   height: 100%;
   z-index: 0;
 }
-
-.shiny__top,
+.shiny__top {
+  top: 0;
+}
 .shiny__bottom {
+  bottom: 0;
+}
+.shiny__top, .shiny__bottom {
   position: absolute;
   left: 12px;
   right: 12px;
   height: 2px;
-  background: linear-gradient(to right, transparent 0%, rgb(175, 61, 61) 20%, transparent 40%);
   opacity: 0;
   transition: opacity 0.2s ease, background-position 0.2s ease;
 }
-
-.shiny__top::before,
-.shiny__bottom::before {
+.shiny__top::before, .shiny__bottom::before {
   content: "";
   position: absolute;
   height: 100%;
   width: 40px;
   left: 0;
-  background: linear-gradient(to right, #2e2e2e 20%, transparent);
 }
-
-.shiny__top::after,
-.shiny__bottom::after {
+.shiny__top::after, .shiny__bottom::after {
   content: "";
   position: absolute;
   height: 100%;
   width: 40px;
   right: 0;
+}
+
+.shiny--table .shiny__top, .shiny--table .shiny__bottom {
+  background: linear-gradient(to right, transparent 0%, rgb(175, 61, 61) 20%, transparent 40%);
+}
+.shiny--table .shiny__top::before, .shiny--table .shiny__bottom::before {
+  background: linear-gradient(to right, #2e2e2e 20%, transparent);
+}
+.shiny--table .shiny__top::after, .shiny--table .shiny__bottom::after {
   background: linear-gradient(to left, #2e2e2e 20%, transparent);
-}
-
-.shiny__top {
-  top: 0;
-}
-
-.shiny__bottom {
-  bottom: 0;
 }
 
 .event__title {

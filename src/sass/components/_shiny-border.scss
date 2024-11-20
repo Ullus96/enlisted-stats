@@ -3,56 +3,73 @@
 	width: 100%;
 	height: 100%;
 	z-index: 0; // props.zIndex
+
+	&__top {
+		top: 0;
+	}
+
+	&__bottom {
+		bottom: 0;
+	}
+
+	&__top,
+	&__bottom {
+		position: absolute;
+		left: 12px; // props.padding
+		right: 12px; // props.padding
+		height: 2px; // props.height
+		opacity: 0;
+		transition: opacity 0.2s ease, background-position 0.2s ease;
+	}
+
+	&__top::before,
+	&__bottom::before {
+		content: '';
+		position: absolute;
+		height: 100%;
+		width: 40px;
+		left: 0;
+	}
+
+	&__top::after,
+	&__bottom::after {
+		content: '';
+		position: absolute;
+		height: 100%;
+		width: 40px;
+		right: 0;
+	}
 }
 
-.shiny__top,
-.shiny__bottom {
-	position: absolute;
-	left: 12px; // props.padding
-	right: 12px; // props.padding
-	height: 2px; // props.height
-	background: linear-gradient(
-		to right,
-		transparent 00%,
-		$color-primary-200 20%,
-		transparent 40%
-	);
-	opacity: 0; // начальное состояние
-	transition: opacity 0.2s ease, background-position 0.2s ease;
-}
+// Color Classes
+.shiny--table {
+	// Цвет рамки
+	& .shiny__top,
+	& .shiny__bottom {
+		background: linear-gradient(
+			to right,
+			transparent 00%,
+			$color-primary-200 20%,
+			transparent 40%
+		);
+	}
 
-.shiny__top::before,
-.shiny__bottom::before {
-	content: '';
-	position: absolute;
-	height: 100%;
-	width: 40px;
-	left: 0;
-	background: linear-gradient(
-		to right,
-		mix($color-text-100, $color-bg-500, 4%) 20%,
-		transparent
-	);
-}
+	// Дефолтный цвет фона (затухание по краям)
+	& .shiny__top::before,
+	& .shiny__bottom::before {
+		background: linear-gradient(
+			to right,
+			mix($color-text-100, $color-bg-500, 4%) 20%,
+			transparent
+		);
+	}
 
-.shiny__top::after,
-.shiny__bottom::after {
-	content: '';
-	position: absolute;
-	height: 100%;
-	width: 40px;
-	right: 0;
-	background: linear-gradient(
-		to left,
-		mix($color-text-100, $color-bg-500, 4%) 20%,
-		transparent
-	);
-}
-
-.shiny__top {
-	top: 0;
-}
-
-.shiny__bottom {
-	bottom: 0;
+	& .shiny__top::after,
+	& .shiny__bottom::after {
+		background: linear-gradient(
+			to left,
+			mix($color-text-100, $color-bg-500, 4%) 20%,
+			transparent
+		);
+	}
 }

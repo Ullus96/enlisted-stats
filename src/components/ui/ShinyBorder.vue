@@ -21,6 +21,7 @@ Props:
 	<span
 		ref="container"
 		class="shiny"
+		:class="$props.colorClass"
 		@mousemove="onMouseMove"
 		@mouseleave="onMouseLeave"
 	>
@@ -48,6 +49,11 @@ export default defineComponent({
 			type: Number,
 			required: false,
 			default: 12,
+		},
+		colorClass: {
+			type: String,
+			required: false,
+			default: 'shiny--table',
 		},
 	},
 	setup(props) {
