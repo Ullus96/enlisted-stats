@@ -2250,7 +2250,7 @@ h3 {
   right: 12px;
   height: 2px;
   opacity: 0;
-  transition: opacity 0.2s ease, background-position 0.2s ease;
+  transition: opacity 0.2s ease, background-position 0.1s ease;
 }
 .shiny__top::before, .shiny__bottom::before {
   content: "";
