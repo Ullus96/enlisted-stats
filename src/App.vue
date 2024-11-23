@@ -1,5 +1,4 @@
 <template>
-	<div class="visible-screen" id="visible-screen" v-if="false"></div>
 	<div
 		class="visible-screen"
 		id="visible-screen-40"
