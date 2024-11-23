@@ -148,57 +148,6 @@
 		padding: 1.2rem 0;
 	}
 
-	// delete btn
-	&__delete-btn {
-		color: $color-loading;
-		padding: 0.6rem;
-		border-radius: 0.6rem;
-		align-self: center;
-		transition: 0.2s ease-in-out color;
-
-		&:hover {
-			color: $color-white;
-		}
-	}
-
-	&__delete-popup {
-		@include popup;
-		padding: 2rem;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 2rem;
-
-		&-btns {
-			display: flex;
-			gap: 1rem;
-		}
-
-		&-title {
-			font-weight: normal;
-		}
-
-		&-name {
-			font-weight: 700;
-		}
-
-		&-btn {
-			&--inner {
-				padding: 1.2rem 2.4rem;
-				border-radius: 1rem;
-			}
-
-			&--yes {
-				background-color: $color-error;
-			}
-
-			&--no {
-				background-color: $color-black-light-2;
-			}
-		}
-	}
-
 	// Right col of icons
 	&__info-col {
 		flex: 0 0 auto;

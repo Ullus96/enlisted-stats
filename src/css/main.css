@@ -42,20 +42,6 @@
     opacity: 1;
   }
 }
-@keyframes loading-shine {
-  0% {
-    left: -6rem;
-  }
-  20% {
-    left: -6rem;
-  }
-  80% {
-    left: calc(100% + 6rem);
-  }
-  100% {
-    left: calc(100% + 6rem);
-  }
-}
 *,
 *::before,
 *::after {
@@ -228,7 +214,7 @@ h3 {
 }
 
 .hotkey {
-  border: 1px solid #7f8388;
+  border: 1px solid rgb(116, 116, 116);
   border-radius: 3px;
   padding: 0.4rem 0.2rem;
 }
@@ -699,7 +685,7 @@ h3 {
   line-height: 100%;
 }
 .calculator__bar {
-  background-color: #7f8388;
+  background-color: rgb(116, 116, 116);
   flex: 1 1 auto;
   border-radius: 0.4rem;
 }
@@ -902,89 +888,6 @@ h3 {
   }
   100% {
     opacity: 1;
-  }
-}
-.error1 {
-  position: fixed;
-  left: 50%;
-  bottom: 4rem;
-  transform: translate(-50%, 0%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column-reverse;
-  gap: 1rem;
-}
-.error1__item {
-  background-color: #222222;
-  border-left: 5px solid #ff4136;
-  padding: 4rem 8rem 4rem 4rem;
-  animation: error-shaking-and-move-out 2s linear;
-}
-.error1__btn-close {
-  position: absolute;
-  opacity: 0.8;
-  right: 1rem;
-  top: 1rem;
-}
-.error1__title {
-  margin-bottom: 5px;
-}
-.error1__desc {
-  font-size: 0.8em;
-  opacity: 0.8;
-}
-
-@keyframes tilt-n-move-shaking {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(2px, 2px) rotate(2deg);
-  }
-  50% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  75% {
-    transform: translate(-2px, 2px) rotate(-2deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-}
-@keyframes move-out-down {
-  0% {
-    transform: translate(-50%, 0%) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, 200%) rotate(0deg);
-    opacity: 0;
-  }
-}
-@keyframes error-shaking-and-move-out {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  2.5% {
-    transform: translate(2px, 2px) rotate(2deg);
-  }
-  5% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  7.5% {
-    transform: translate(-2px, 2px) rotate(-2deg);
-  }
-  10% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  90% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(0, 200%) rotate(0deg);
-    opacity: 0;
   }
 }
 .page-mask {
@@ -2992,52 +2895,6 @@ h3 {
 .sbuild__no-more-text {
   display: block;
   padding: 1.2rem 0;
-}
-.sbuild__delete-btn {
-  color: #8c8f94;
-  padding: 0.6rem;
-  border-radius: 0.6rem;
-  align-self: center;
-  transition: 0.2s ease-in-out color;
-}
-.sbuild__delete-btn:hover {
-  color: #fff;
-}
-.sbuild__delete-popup {
-  position: fixed;
-  z-index: 21;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 40rem;
-  border-radius: 1rem;
-  background-color: #222222;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-}
-.sbuild__delete-popup-btns {
-  display: flex;
-  gap: 1rem;
-}
-.sbuild__delete-popup-title {
-  font-weight: normal;
-}
-.sbuild__delete-popup-name {
-  font-weight: 700;
-}
-.sbuild__delete-popup-btn--inner {
-  padding: 1.2rem 2.4rem;
-  border-radius: 1rem;
-}
-.sbuild__delete-popup-btn--yes {
-  background-color: #ff4136;
-}
-.sbuild__delete-popup-btn--no {
-  background-color: #262626;
 }
 .sbuild__info-col {
   flex: 0 0 auto;
