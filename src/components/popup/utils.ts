@@ -1,7 +1,7 @@
-import { PopUp } from '@/store';
+import { IPopUp } from './type';
 import { Store } from 'vuex';
 
-export function createPopUp(store: Store<any>, data: PopUp) {
+export function createPopUp(store: Store<any>, data: IPopUp) {
 	store.commit('deletePopUp');
 	store.commit('createPopUp', data);
 }

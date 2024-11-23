@@ -12,12 +12,11 @@
 			:duration="popUpData.duration"
 		/>
 	</transition>
-	<div></div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, Ref, ref } from 'vue';
-import PopUpComponent from '@/components/ui/PopUpComponent.vue';
+import PopUpComponent from '@/components/popup/PopUpComponent.vue';
 import { useStore } from 'vuex';
 
 export default defineComponent({

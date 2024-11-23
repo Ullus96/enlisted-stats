@@ -74,7 +74,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useStore } from 'vuex';
-import { PopUp } from '@/store/index';
+import { IPopUp } from '@/components/popup/type';
 import { createPopUp, deletePopUp } from '@/components/popup/utils';
 import {
 	POPUP_DELETE_USER_SUCCESS,
@@ -85,27 +85,27 @@ export default defineComponent({
 	setup() {
 		const store = useStore();
 
-		const dangerPopUp: PopUp = {
+		const dangerPopUp: IPopUp = {
 			type: 'danger',
 			title: 'Ахтунг!',
 			desc: 'Все пошло не так!!!',
 			duration: 1,
 		};
 
-		const warningPopUp: PopUp = {
+		const warningPopUp: IPopUp = {
 			type: 'warning',
 			title: 'Нарушение стабильности кристалла Суперматерии',
 			desc: 'Целостность кристалла 80%. Инженерному отделу необходимо вмешаться и стабилиризовать плазма-реакцию!',
 		};
 
-		const successPopUp: PopUp = {
+		const successPopUp: IPopUp = {
 			type: 'success',
 			title: 'Все хорошо',
 			desc: '',
 			duration: 10,
 		};
 
-		function createPopUpHandler(data: PopUp) {
+		function createPopUpHandler(data: IPopUp) {
 			createPopUp(store, data);
 		}
 

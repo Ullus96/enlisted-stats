@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import { IPopUp } from '@/components/popup/type';
 
 export interface ModalState {
 	isLoginModalVisible: boolean;
@@ -13,20 +14,12 @@ export interface DialogState {
 	isDeletingBuild: boolean;
 	isSwitchingBuildVisibility: boolean;
 }
-
-export interface PopUp {
-	type: 'danger' | 'warning' | 'success' | '';
-	title: string;
-	desc: string;
-	duration?: number;
-	id?: number;
-}
 export interface State {
 	showLoginPopup: boolean;
 	inDevelop: boolean;
 	isNavigationVisible: boolean;
 	isPopUpExists: boolean;
-	popUpData: PopUp;
+	popUpData: IPopUp;
 	modal: ModalState;
 	dialog: DialogState;
 	loading: {
@@ -160,7 +153,7 @@ export default createStore<State>({
 			state.dialog[name] = !state.dialog[name];
 		},
 
-		createPopUp(state, payload: PopUp) {
+		createPopUp(state, payload: IPopUp) {
 			state.popUpData = { ...payload };
 			state.popUpData.id = Math.random();
 			state.isPopUpExists = true;
