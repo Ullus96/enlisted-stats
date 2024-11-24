@@ -13,9 +13,11 @@
 		<!-- <vuex-debug></vuex-debug> -->
 		<the-aside></the-aside>
 		<main class="main">
-			<transition name="route">
-				<router-view></router-view>
-			</transition>
+			<router-view v-slot="{ Component }">
+				<transition name="route">
+					<component :is="Component" />
+				</transition>
+			</router-view>
 		</main>
 	</div>
 </template>
