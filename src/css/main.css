@@ -1910,7 +1910,7 @@ h3 {
   color: rgb(165, 165, 165);
   font-size: 1.4rem;
 }
-.dialog__accent {
+.dialog__accent, .dialog__desc span {
   color: rgb(175, 61, 61);
   font-weight: 700;
 }

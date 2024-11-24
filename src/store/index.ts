@@ -7,7 +7,7 @@ export interface IModalState {
 	isBuildSaveModalVisible: boolean;
 }
 
-export interface DialogState {
+export interface IDialogState {
 	isDeletingAccount: boolean;
 	isDeletingEvent: boolean;
 	isLoggingOut: boolean;
@@ -21,7 +21,7 @@ export interface State {
 	isPopUpExists: boolean;
 	popUpData: IPopUp;
 	modal: IModalState;
-	dialog: DialogState;
+	dialog: IDialogState;
 	loading: {
 		isAuthInitialized: boolean;
 	};

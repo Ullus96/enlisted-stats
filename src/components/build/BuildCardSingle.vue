@@ -245,31 +245,29 @@
 						<DialogComponent
 							:dialogName="'isDeletingBuild'"
 							v-if="$store.state.dialog.isDeletingBuild"
-							:yes="{ text: 'Удалить', type: 'tertiary' }"
-							:no="{ text: 'Отмена', type: 'primary' }"
+							:yes="{ text: 'Удалить', type: 'primary' }"
+							:no="{ text: 'Отмена', type: 'tertiary' }"
 							@confirm="deleteBuild"
 						>
-							<h3 class="dialog__title">Удалить сборку?</h3>
-							<p class="dialog__desc">
-								Это действие удалит сборку
-								<span class="dialog__accent">{{ item.data.name }}</span
-								>.
-							</p>
+							<template #title>Удалить сборку?</template>
+
+							Это действие удалит сборку
+							<span>{{ item.data.name }}</span
+							>.
 						</DialogComponent>
 
 						<DialogComponent
 							:dialogName="'isSwitchingBuildVisibility'"
 							v-if="$store.state.dialog.isSwitchingBuildVisibility"
-							:yes="{ text: 'Переключить', type: 'tertiary' }"
-							:no="{ text: 'Отмена', type: 'primary' }"
+							:yes="{ text: 'Переключить', type: 'primary' }"
+							:no="{ text: 'Отмена', type: 'tertiary' }"
 							@confirm="switchBuildVisibility"
 						>
-							<h3 class="dialog__title">Переключить видимость?</h3>
-							<p class="dialog__desc">
-								Это действие переключит видимость сборки
-								<span class="dialog__accent">{{ item.data.name }}</span
-								>.
-							</p>
+							<template #title>Переключить видимость?</template>
+
+							Это действие переключит видимость сборки
+							<span>{{ item.data.name }}</span
+							>.
 						</DialogComponent>
 					</template>
 				</template>

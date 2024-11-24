@@ -128,16 +128,15 @@
 							<DialogComponent
 								:dialogName="'isDeletingEvent'"
 								v-if="$store.state.dialog.isDeletingEvent"
-								:yes="{ text: 'Удалить', type: 'tertiary' }"
-								:no="{ text: 'Отмена', type: 'primary' }"
+								:yes="{ text: 'Удалить', type: 'primary' }"
+								:no="{ text: 'Отмена', type: 'tertiary' }"
 								@confirm="deleteEvent"
 							>
-								<h3 class="dialog__title">Удалить событие?</h3>
-								<p class="dialog__desc">
-									Это действие удалит событие
-									<span class="dialog__accent">{{ eventData.name }}</span
-									>.
-								</p>
+								<template #title>Удалить событие?</template>
+
+								Это действие удалит событие
+								<span>{{ eventData.name }}</span
+								>.
 							</DialogComponent>
 						</div>
 					</template>

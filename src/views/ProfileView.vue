@@ -103,15 +103,14 @@
 	<DialogComponent
 		:dialogName="'isDeletingAccount'"
 		v-if="$store.state.dialog.isDeletingAccount"
-		:yes="{ text: 'Удалить', type: 'tertiary' }"
-		:no="{ text: 'Отмена', type: 'primary' }"
+		:yes="{ text: 'Удалить', type: 'primary' }"
+		:no="{ text: 'Отмена', type: 'tertiary' }"
 		@confirm="deleteAccount"
 	>
-		<h3 class="dialog__title">Удалить учетную запись?</h3>
-		<p class="dialog__desc">
-			Это действие необратимо. Возможности восстановить учетную запись, а так же
-			все сохраненные сборки - не будет.
-		</p>
+		<template #title>Удалить учетную запись?</template>
+
+		Это действие необратимо. Возможности восстановить учетную запись, а так же
+		все сохраненные сборки - не будет.
 	</DialogComponent>
 </template>
 

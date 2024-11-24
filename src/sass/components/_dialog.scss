@@ -11,7 +11,8 @@
 		font-size: $ui-font-size-s;
 	}
 
-	&__accent {
+	&__accent,
+	&__desc span {
 		color: $color-primary-200;
 		font-weight: 700;
 	}
