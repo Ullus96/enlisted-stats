@@ -26,7 +26,7 @@ import AuthInit from './components/auth/AuthInit.vue';
 import SettingsInit from './components/init/SettingsInit.vue';
 import VuexDebug from './components/debug/VuexDebug.vue';
 import { computed, defineComponent } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 import PopUpHandler from './components/popup/PopUpHandler.vue';
 
 export default defineComponent({

@@ -17,7 +17,7 @@
 <script lang="ts">
 import { computed, defineComponent, Ref, ref } from 'vue';
 import PopUpComponent from '@/components/popup/PopUpComponent.vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 
 export default defineComponent({
 	components: { PopUpComponent },

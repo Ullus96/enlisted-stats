@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import SoldiersView from '@/views/SoldiersView.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { checkIfUserAnAdmin } from '@/components/auth/functions/checkIfUserAnAdmin';
-import { adminsList } from './firebase/adminsList';
+import { adminsList } from '../firebase/adminsList';
 
 export interface ICustomRouteMeta {
 	title: string;

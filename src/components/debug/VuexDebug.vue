@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 
 export default defineComponent({
 	setup() {

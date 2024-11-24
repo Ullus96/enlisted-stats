@@ -74,7 +74,7 @@
 <script lang="ts">
 import { SkillEntity } from '@/type/Skills';
 import { defineComponent, PropType } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconPlus from '@/components/ui/icons/IconPlus.vue';
 import IconMinus from '@/components/ui/icons/IconMinus.vue';

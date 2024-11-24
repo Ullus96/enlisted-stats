@@ -20,7 +20,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, PropType, Ref, ref } from 'vue';
 import { ModalState } from '@/store/index';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconTimes from '@/components/ui/icons/IconTimes.vue';
 

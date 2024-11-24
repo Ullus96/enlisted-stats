@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, Ref } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 import ModalComponent from '@/components/ui/ModalComponent.vue';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconGoogle from '@/components/ui/icons/IconGoogle.vue';

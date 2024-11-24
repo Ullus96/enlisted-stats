@@ -118,7 +118,7 @@
 <script lang="ts">
 import { defineComponent, Ref, ref, watch } from 'vue';
 import { deleteUser, getAuth, updateProfile } from 'firebase/auth';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 import { useRouter } from 'vue-router';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';

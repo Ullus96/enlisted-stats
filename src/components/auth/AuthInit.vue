@@ -8,7 +8,7 @@ import {
 	updateProfile,
 	User,
 } from 'firebase/auth';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 import { checkIfUserAnAdmin } from './functions/checkIfUserAnAdmin';
 import {
 	loadFromLocalStorage,

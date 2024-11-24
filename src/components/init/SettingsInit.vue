@@ -2,7 +2,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, Ref } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 import {
 	loadFromLocalStorage,
 	saveToLocalStorage,

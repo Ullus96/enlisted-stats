@@ -73,7 +73,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 import { IPopUp } from '@/components/popup/type';
 import { createPopUp, deletePopUp } from '@/components/popup/utils';
 import {

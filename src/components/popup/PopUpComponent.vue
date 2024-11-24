@@ -26,7 +26,7 @@ import { defineComponent, PropType, onBeforeUnmount } from 'vue';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconTimes from '@/components/ui/icons/IconTimes.vue';
 import { deletePopUp } from '@/components/popup/utils';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 
 export default defineComponent({
 	components: { IconBase, IconTimes },

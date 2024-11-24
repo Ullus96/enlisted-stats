@@ -291,7 +291,7 @@ import { db } from '@/firebase/firebase';
 import AnimatedLikeEntity from './AnimatedLikeEntity.vue';
 import randomNum from '@/functions/randomNum';
 import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 import { createPopUp } from '@/components/popup/utils';
 import {
 	POPUP_BUILD_VISIBILITY_CHANGED,

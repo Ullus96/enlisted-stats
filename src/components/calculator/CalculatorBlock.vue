@@ -100,7 +100,7 @@ import CalculatorSaveModal from './CalculatorSaveModal.vue';
 import { SkillBranch, SkillEntity, SkillPossibleTiers } from '@/type/Skills';
 import { SkillTag } from '@/type/SkillTag';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/useStore';
 import {
 	addDoc,
 	collection,
