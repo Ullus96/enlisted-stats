@@ -33,7 +33,7 @@ export default defineComponent({
 	props: {
 		type: {
 			required: false,
-			type: String as PropType<'danger' | 'warning' | 'success'>,
+			type: String as PropType<'danger' | 'warning' | 'success' | ''>,
 		},
 		title: {
 			required: true,

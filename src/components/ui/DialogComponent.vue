@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, PropType, Ref, ref } from 'vue';
-import { ModalState } from '@/store/index';
+import { IModalState } from '@/store/index';
 import { useStore } from '@/store/useStore';
 import IconBase from '@/components/ui/icons/IconBase.vue';
 import IconTimes from '@/components/ui/icons/IconTimes.vue';
@@ -41,7 +41,7 @@ export default defineComponent({
 	props: {
 		dialogName: {
 			required: true,
-			type: String as PropType<keyof ModalState>,
+			type: String as PropType<keyof IModalState>,
 		},
 		yes: {
 			required: false,

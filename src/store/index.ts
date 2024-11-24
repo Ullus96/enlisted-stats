@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import { IPopUp } from '@/components/popup/type';
 
-export interface ModalState {
+export interface IModalState {
 	isLoginModalVisible: boolean;
 	isContactsModalVisible: boolean;
 	isBuildSaveModalVisible: boolean;
@@ -20,7 +20,7 @@ export interface State {
 	isNavigationVisible: boolean;
 	isPopUpExists: boolean;
 	popUpData: IPopUp;
-	modal: ModalState;
+	modal: IModalState;
 	dialog: DialogState;
 	loading: {
 		isAuthInitialized: boolean;
