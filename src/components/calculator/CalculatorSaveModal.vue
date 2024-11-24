@@ -1,8 +1,8 @@
 <template>
 	<ModalComponent :modalName="'isBuildSaveModalVisible'">
-		<h3>Сохранить сборку</h3>
+		<template #title> Сохранить сборку </template>
 
-		<div class="modal__body">
+		<template #body>
 			<InputComponent
 				:label="'Название сборки'"
 				:placeholder="
@@ -53,7 +53,7 @@
 					<p class="modal__input-checkbox">Сборка будет видна только Вам</p>
 				</template>
 			</div>
-		</div>
+		</template>
 
 		<button
 			class="btn btn-m btn-primary modal__confirm"

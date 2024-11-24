@@ -1,8 +1,8 @@
 <template>
 	<ModalComponent :modalName="'isContactsModalVisible'">
-		<h3 class="modal__title">Связаться с автором сайта</h3>
+		<template #title>Связаться с автором сайта</template>
 
-		<div class="modal__body">
+		<template #body>
 			<p class="modal__desc">
 				Если есть какие-то вопросы, или если тобой были замечены какие-то
 				несостыковки в цифрах:
@@ -28,7 +28,7 @@
 			<p class="modal__desc">
 				Дискорд предпочтительнее, т.к. форум посещаю редко.
 			</p>
-		</div>
+		</template>
 	</ModalComponent>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
 	<ModalComponent :modalName="'isLoginModalVisible'">
-		<h3 class="modal__title">Войти или зарегистрироваться</h3>
+		<template #title> Войти или зарегистрироваться </template>
 
 		<button class="modal__google-btn btn" @click="signInWithGoogle">
 			<svg
