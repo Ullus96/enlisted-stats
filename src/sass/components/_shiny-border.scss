@@ -24,22 +24,33 @@
 
 	&__top::before,
 	&__bottom::before {
-		content: '';
-		position: absolute;
-		height: 100%;
 		width: var(--left-guard-width, 40px);
-		// width: 40px;
 		left: 0;
+		background: linear-gradient(
+			to right,
+			var(--guard-rail-color, transparent) 20%,
+			transparent
+		);
 	}
 
+	&__top::after,
+	&__bottom::after {
+		width: var(--right-guard-width, 40px); // динамическая ширина
+		right: 0;
+		background: linear-gradient(
+			to left,
+			var(--guard-rail-color, transparent) 20%,
+			transparent
+		);
+	}
+
+	&__top::before,
+	&__bottom::before,
 	&__top::after,
 	&__bottom::after {
 		content: '';
 		position: absolute;
 		height: 100%;
-		width: var(--right-guard-width, 40px); // динамическая ширина
-		// width: 40px;
-		right: 0;
 	}
 }
 

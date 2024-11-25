@@ -1,3 +1,7 @@
+:root {
+  --color-text-700: rgb(116, 116, 116);
+}
+
 .mobility {
   color: rgb(151, 255, 148);
 }
@@ -214,7 +218,7 @@ h3 {
 }
 
 .hotkey {
-  border: 1px solid rgb(116, 116, 116);
+  border: 1px solid var(--color-text-700);
   border-radius: 3px;
   padding: 0.4rem 0.2rem;
 }
@@ -681,7 +685,7 @@ h3 {
   line-height: 100%;
 }
 .calculator__bar {
-  background-color: rgb(116, 116, 116);
+  background-color: var(--color-text-700);
   flex: 1 1 auto;
   border-radius: 0.4rem;
 }
@@ -740,7 +744,7 @@ h3 {
 }
 .calculator__restriction-bg {
   margin-top: -2rem;
-  background: repeating-linear-gradient(-45deg, rgba(116, 116, 116, 0.05), rgba(116, 116, 116, 0.05) 15px, transparent 15px, transparent 40px);
+  background: repeating-linear-gradient(-45deg, rgba(var(--color-text-700), 0.05), rgba(var(--color-text-700), 0.05) 15px, transparent 15px, transparent 40px);
 }
 .calculator__restriction-bg.is-transparent {
   background: none;
@@ -1292,10 +1296,10 @@ h3 {
   filter: invert(28%);
 }
 .input__input::-moz-placeholder {
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
 }
 .input__input::placeholder {
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
 }
 .input__input:focus {
   outline: 1px solid #e2e2e2;
@@ -1317,7 +1321,7 @@ h3 {
 .input__desc {
   text-align: right;
   align-self: flex-end;
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
   font-size: 1.2rem;
   flex: 0 0 auto;
 }
@@ -1428,7 +1432,7 @@ h3 {
 }
 .filter__sort-by-desc {
   font-size: 1.2rem;
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
   padding: 0 2.2rem;
 }
 .filter__sort-items {
@@ -1619,7 +1623,7 @@ h3 {
 }
 .aside__footer {
   font-size: 1.2rem;
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
   line-height: 150%;
   white-space: normal;
   position: absolute;
@@ -1930,8 +1934,8 @@ h3 {
 }
 .admin__tab {
   padding: 0.8rem 1.2rem;
-  color: rgb(116, 116, 116);
-  border-bottom: 2px solid rgb(116, 116, 116);
+  color: var(--color-text-700);
+  border-bottom: 2px solid var(--color-text-700);
   transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
 }
 .admin__tab.active {
@@ -1969,7 +1973,7 @@ h3 {
   max-width: 48rem;
   margin-top: 0.8rem;
   text-align: right;
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
   font-size: 1.2rem;
 }
 .admin__stages-title {
@@ -2111,7 +2115,7 @@ h3 {
   width: 0.4rem;
   top: 0;
   bottom: 0;
-  background-color: rgb(116, 116, 116);
+  background-color: var(--color-text-700);
 }
 .popup.danger::after {
   background-color: rgb(201, 45, 55);
@@ -2152,22 +2156,23 @@ h3 {
   transition: opacity 0.2s ease, background-position 0.1s ease;
 }
 .shiny__top::before, .shiny__bottom::before {
-  content: "";
-  position: absolute;
-  height: 100%;
   width: var(--left-guard-width, 40px);
   left: 0;
+  background: linear-gradient(to right, var(--guard-rail-color, transparent) 20%, transparent);
 }
 .shiny__top::after, .shiny__bottom::after {
+  width: var(--right-guard-width, 40px);
+  right: 0;
+  background: linear-gradient(to left, var(--guard-rail-color, transparent) 20%, transparent);
+}
+.shiny__top::before, .shiny__bottom::before, .shiny__top::after, .shiny__bottom::after {
   content: "";
   position: absolute;
   height: 100%;
-  width: var(--right-guard-width, 40px);
-  right: 0;
 }
 
 .shiny--table .shiny__top, .shiny--table .shiny__bottom {
-  background: linear-gradient(to right, transparent var(--left-gradient-percent, 0%), rgb(116, 116, 116) 20%, transparent var(--right-gradient-percent, 40%));
+  background: linear-gradient(to right, transparent var(--left-gradient-percent, 0%), var(--color-text-700) 20%, transparent var(--right-gradient-percent, 40%));
 }
 .shiny--table .shiny__top::before, .shiny--table .shiny__bottom::before {
   background: linear-gradient(to right, #2e2e2e 20%, transparent);
@@ -2251,10 +2256,10 @@ h3 {
           backdrop-filter: blur(6px);
 }
 .event__card.finish {
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
 }
 .event__card.finish .event__time {
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
 }
 .event__card--active {
   outline: 1px solid rgb(175, 61, 61);
@@ -2282,7 +2287,7 @@ h3 {
   top: 0.6rem;
   left: 0.6rem;
   line-height: 100%;
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
   font-size: 1.4rem;
 }
 .event__date {
@@ -2471,12 +2476,12 @@ h3 {
   position: absolute;
   inset: 0 0 0 -28px;
   z-index: 1;
-  background: repeating-linear-gradient(-45deg, rgba(116, 116, 116, 0.05), rgba(116, 116, 116, 0.05) 10px, transparent 10px, transparent 20px);
+  background: repeating-linear-gradient(-45deg, rgba(var(--color-text-700), 0.05), rgba(var(--color-text-700), 0.05) 10px, transparent 10px, transparent 20px);
   animation: progressBarAnimation 4s linear infinite;
 }
 .event__progress-bar-stage {
   position: absolute;
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
   font-size: 1.2rem;
   top: calc(100% + 0.4rem);
 }
@@ -2703,7 +2708,7 @@ h3 {
   display: block;
 }
 .cc__disclaimer {
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
   font-size: 1.4rem;
   text-align: center;
   margin: 2rem auto 0;
@@ -2731,7 +2736,7 @@ h3 {
   gap: 0.4rem;
 }
 .cc__s-inline-separator {
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
 }
 .cc__s-tags-block {
   display: flex;
@@ -2842,7 +2847,7 @@ h3 {
   align-items: center;
 }
 .sbuild__data-separator {
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
 }
 .sbuild__author-block {
   margin-top: 1.6rem;
@@ -2864,7 +2869,7 @@ h3 {
   line-height: 120%;
 }
 .sbuild__author-date {
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
   font-size: 1.4rem;
 }
 .sbuild__single-build {
@@ -3036,7 +3041,7 @@ h3 {
   border-radius: 1.2rem;
 }
 .table__search path {
-  fill: rgb(116, 116, 116);
+  fill: var(--color-text-700);
 }
 .table__search:focus {
   outline: 1px solid #e2e2e2;
@@ -3055,10 +3060,10 @@ h3 {
   flex: 0 0 auto;
 }
 .table__input::-moz-placeholder {
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
 }
 .table__input::placeholder {
-  color: rgb(116, 116, 116);
+  color: var(--color-text-700);
 }
 .table__input.error {
   outline: 1px solid rgb(201, 45, 55);
