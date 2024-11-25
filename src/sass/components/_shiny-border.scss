@@ -53,36 +53,3 @@
 		height: 100%;
 	}
 }
-
-// Color Classes
-.shiny--table {
-	// Цвет рамки
-	& .shiny__top,
-	& .shiny__bottom {
-		background: linear-gradient(
-			to right,
-			transparent var(--left-gradient-percent, 0%),
-			$color-text-700 20%,
-			transparent var(--right-gradient-percent, 40%)
-		);
-	}
-
-	// Дефолтный цвет фона (затухание по краям)
-	& .shiny__top::before,
-	& .shiny__bottom::before {
-		background: linear-gradient(
-			to right,
-			mix($color-text-100, $color-bg-500, 4%) 20%,
-			transparent
-		);
-	}
-
-	& .shiny__top::after,
-	& .shiny__bottom::after {
-		background: linear-gradient(
-			to left,
-			mix($color-text-100, $color-bg-500, 4%) 20%,
-			transparent
-		);
-	}
-}

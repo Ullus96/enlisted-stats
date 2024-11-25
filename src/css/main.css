@@ -2171,16 +2171,6 @@ h3 {
   height: 100%;
 }
 
-.shiny--table .shiny__top, .shiny--table .shiny__bottom {
-  background: linear-gradient(to right, transparent var(--left-gradient-percent, 0%), var(--color-text-700) 20%, transparent var(--right-gradient-percent, 40%));
-}
-.shiny--table .shiny__top::before, .shiny--table .shiny__bottom::before {
-  background: linear-gradient(to right, #2e2e2e 20%, transparent);
-}
-.shiny--table .shiny__top::after, .shiny--table .shiny__bottom::after {
-  background: linear-gradient(to left, #2e2e2e 20%, transparent);
-}
-
 .event__title {
   text-align: center;
 }
