@@ -1,4 +1,5 @@
 import { DirectiveBinding } from 'vue';
+import { validateAndNormalizeBinding } from './validation';
 
 export default {
 	mounted(el: HTMLElement, binding: DirectiveBinding) {
@@ -7,13 +8,15 @@ export default {
 			el.style.position = 'relative';
 		}
 
+		const normalizedValue = validateAndNormalizeBinding(binding.value, el);
+
 		const topBorder = document.createElement('span');
 		const bottomBorder = document.createElement('span');
 
 		[topBorder, bottomBorder].forEach((border) => {
-			border.style.left = `${binding.value.padding || 12}px`;
-			border.style.right = `${binding.value.padding || 12}px`;
-			border.style.height = `${binding.value.height || 2}px`;
+			border.style.left = `${normalizedValue.padding}px`;
+			border.style.right = `${normalizedValue.padding}px`;
+			border.style.height = `${normalizedValue.height}px`;
 			border.style.opacity = '0';
 		});
 
@@ -25,47 +28,12 @@ export default {
 		el.appendChild(topBorder);
 		el.appendChild(bottomBorder);
 
-		let guardRailColor: string;
-		if (
-			binding.value.hoverRgbaColor &&
-			Array.isArray(binding.value.hoverRgbaColor) &&
-			binding.value.hoverRgbaColor.length == 4
-		) {
-			const [r, g, b, a] = binding.value.hoverRgbaColor;
-			guardRailColor = `rgba(${r}, ${g}, ${b}, ${a})`;
-		} else {
-			guardRailColor = computedStyle.backgroundColor || 'transparent';
-		}
-
+		let guardRailColor: string = normalizedValue.hoverRgbaColor;
 		topBorder.style.setProperty('--guard-rail-color', guardRailColor);
 		bottomBorder.style.setProperty('--guard-rail-color', guardRailColor);
 
-		const getGradientColor = () => {
-			if (
-				binding.value.borderRgbaColor &&
-				Array.isArray(binding.value.borderRgbaColor) &&
-				binding.value.borderRgbaColor.length == 4
-			) {
-				const [r, g, b, a] = binding.value.borderRgbaColor;
-				console.log(
-					`binding.value.borderRgbaColor found! Using: rgba(${r}, ${g}, ${b}, ${a})`
-				);
-				return `rgba(${r}, ${g}, ${b}, ${a})`;
-			}
-
-			const computedStyle = getComputedStyle(document.documentElement);
-			const color = computedStyle.getPropertyValue('--color-text-700');
-
-			if (color) {
-				console.log(`value isn't set, now using root ${color}`);
-				return color;
-			}
-
-			return `rgb(116, 116, 116)`;
-		};
-
 		const createGradient = () => {
-			return `linear-gradient(to right,	transparent var(--left-gradient-percent, 0%), ${getGradientColor()} 20%, transparent var(--right-gradient-percent, 40%))`;
+			return `linear-gradient(to right,	transparent var(--left-gradient-percent, 0%), ${normalizedValue.borderRgbaColor} var(--central-gradient-percent, 20%), transparent var(--right-gradient-percent, 40%))`;
 		};
 
 		let animationFrameId: number | null = null;
@@ -77,7 +45,6 @@ export default {
 					const rect = el.getBoundingClientRect();
 					const x = e.clientX - rect.left;
 					const y = e.clientY - rect.top;
-					const elWidth = rect.right - rect.left;
 
 					topBorder.style.transition =
 						'opacity 0.2s ease, background-position 0.1s ease';
@@ -99,7 +66,7 @@ export default {
 					bottomBorder.style.opacity = bottomIntensity.toFixed(2);
 
 					const gradientPosition = `${x - rect.width * 0.2}px`;
-					if (x > minLeftX && x < elWidth - minRightX) {
+					if (x > minLeftX && x < rect.width - minRightX) {
 						if (isFirstTrigger) {
 							isFirstTrigger = false;
 
@@ -120,16 +87,20 @@ export default {
 						bottomBorder.style.backgroundPositionX = gradientPosition;
 					}
 
-					const xPercent = (x / rect.width) * 100;
+					const xPercent = (x / (rect.width - (minLeftX + minRightX))) * 100;
 
 					if (xPercent > 50) {
 						const ratio = (xPercent - 50) / 50;
-						const newValue = Math.min(40 - ratio * (40 - 20) - 2, 40);
+						const newValue = Math.min(40 - ratio * (40 - 20), 40);
 
 						[bottomBorder, topBorder].forEach((border) => {
 							border.style.setProperty(
 								'--right-gradient-percent',
 								`${newValue}%`
+							);
+							border.style.setProperty(
+								'--central-gradient-percent',
+								`${newValue / 2}%`
 							);
 							border.style.setProperty('--left-gradient-percent', `${0}%`);
 						});
@@ -139,6 +110,7 @@ export default {
 
 						[bottomBorder, topBorder].forEach((border) => {
 							border.style.setProperty('--right-gradient-percent', `${40}%`);
+							border.style.setProperty('--central-gradient-percent', `${20}%`);
 							border.style.setProperty(
 								'--left-gradient-percent',
 								`${newValue}%`
