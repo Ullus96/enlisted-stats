@@ -1,13 +1,19 @@
 <template>
 	<template v-if="isFinishedLoading && loadedUserData">
-		<section class="sbuild__item sbuild__item--clickable">
+		<section
+			class="sbuild__item sbuild__item--clickable"
+			v-shiny-border="{
+				height: 2,
+				padding: 12,
+				hoverRgbaColor: [51, 51, 51, 0.76],
+			}"
+		>
 			<router-link
 				:to="/build/ + item.dbId"
 				target="_blank"
 				class="sbuild__link"
 				v-if="hasLink"
 			>
-				<ShinyBorder :colorClass="'shiny--table'" :zIndex="true" :height="2" />
 			</router-link>
 			<div class="sbuild__main-content">
 				<p class="sbuild__name">
@@ -220,7 +226,6 @@ import IconCopy from '@/components/ui/icons/IconCopy.vue';
 import IconMobility from '@/components/ui/icons/IconMobility.vue';
 import IconVitality from '@/components/ui/icons/IconVitality.vue';
 import IconWeapon from '@/components/ui/icons/IconWeapon.vue';
-import ShinyBorder from '@/components/ui/ShinyBorder.vue';
 
 export default defineComponent({
 	props: {
@@ -252,7 +257,6 @@ export default defineComponent({
 	},
 	components: {
 		TooltipComponent,
-		ShinyBorder,
 		IconBase,
 		IconHeart,
 		IconGlobe,

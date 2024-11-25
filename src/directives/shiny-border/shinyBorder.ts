@@ -100,7 +100,7 @@ export default {
 							);
 							border.style.setProperty(
 								'--central-gradient-percent',
-								`${newValue / 2}%`
+								`${newValue / 1.25}%`
 							);
 							border.style.setProperty('--left-gradient-percent', `${0}%`);
 						});

@@ -1,6 +1,12 @@
 <template>
-	<div class="table__row table__row--body">
-		<ShinyBorder :z-index="true" />
+	<div
+		class="table__row table__row--body"
+		v-shiny-border="{
+			height: 2,
+			padding: 12,
+			hoverRgbaColor: [51, 51, 51, 0.76],
+		}"
+	>
 		<div class="table__col table__col--icon">
 			<img :src="require('@/assets/soldier_icons/' + item.icon)" />
 			<span class="table__col table__col--name">{{ item.name }}</span>
@@ -41,10 +47,8 @@
 import { IItem } from '@/type/Item';
 import { defineComponent, PropType } from 'vue';
 import { calculateStatsByLvl } from '@/functions/characterUtils';
-import ShinyBorder from './ui/ShinyBorder.vue';
 
 export default defineComponent({
-	components: { ShinyBorder },
 	props: {
 		item: {
 			required: true,
