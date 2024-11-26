@@ -1,7 +1,7 @@
 import { RgbaColor, IBindingValue, INormalizedBindingValue } from './type';
 
 export function validateAndNormalizeBinding(
-	value: Partial<IBindingValue>,
+	value: Partial<IBindingValue> = {},
 	el: HTMLElement
 ): Required<INormalizedBindingValue> {
 	const rect = el.getBoundingClientRect();
