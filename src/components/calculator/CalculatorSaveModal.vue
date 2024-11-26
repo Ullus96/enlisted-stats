@@ -88,7 +88,7 @@ import { getAuth } from 'firebase/auth';
 import { ref, Ref, defineComponent, PropType } from 'vue';
 import { useStore } from '@/store/useStore';
 import ModalComponent from '@/components/ui/ModalComponent.vue';
-import InputComponent from '@/components/ui/InputComponent.vue';
+import InputComponent from '@/components/input/InputComponent.vue';
 import { createPopUp } from '../popup/utils';
 import { POPUP_BUILD_CREATED, POPUP_BUILD_MODIFIED } from '../popup/data';
 

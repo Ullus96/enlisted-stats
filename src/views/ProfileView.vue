@@ -121,7 +121,7 @@ import { useStore } from '@/store/useStore';
 import { useRouter } from 'vue-router';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
-import InputComponent from '@/components/ui/InputComponent.vue';
+import InputComponent from '@/components/input/InputComponent.vue';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
 import { createPopUp } from '@/components/popup/utils';
 import {

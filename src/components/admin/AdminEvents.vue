@@ -163,7 +163,7 @@ import LoadingSpinner from '../ui/LoadingSpinner.vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
 import IconPlus from '@/components/ui/icon/icons/IconPlus.vue';
 import IconTrash from '@/components/ui/icon/icons/IconTrash.vue';
-import InputComponent from '@/components/ui/InputComponent.vue';
+import InputComponent from '@/components/input/InputComponent.vue';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
 
 export default defineComponent({
