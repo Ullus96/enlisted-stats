@@ -7,7 +7,7 @@
 					class="input__input"
 					:class="{ error: errorMsg }"
 					:type="type"
-					:placeholder="placeholder"
+					:placeholder="String(placeholder)"
 					:required="required"
 					v-model="inputValue"
 				/>
@@ -24,7 +24,7 @@
 			<button
 				class="btn btn-secondary btn-m input__btn"
 				v-if="inlineButton"
-				:disabled="errorMsg || isEmpty || outOfCharacters"
+				:disabled="!!errorMsg || !!isEmpty || !!outOfCharacters"
 				@click="handleClick"
 			>
 				<IconBase>
@@ -39,7 +39,7 @@
 import { computed, defineComponent, PropType, Ref, ref, watch } from 'vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
 import IconCheck from '@/components/ui/icon/icons/IconCheck.vue';
-import { blacklistedWords } from '@/components/input/bannedSymbols';
+import { blacklistedWords } from './bannedSymbols';
 
 export default defineComponent({
 	props: {
@@ -50,6 +50,7 @@ export default defineComponent({
 		placeholder: {
 			required: false,
 			type: [String, Number, Date],
+			default: '',
 		},
 		desc: {
 			required: false,
@@ -152,8 +153,8 @@ export default defineComponent({
 
 		// Handle click
 		function handleClick() {
+			context.emit('onConfirm', inputValue.value);
 			resetInput();
-			context.emit('onConfirm');
 		}
 
 		function resetInput() {
