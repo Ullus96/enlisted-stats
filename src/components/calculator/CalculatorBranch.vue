@@ -94,8 +94,8 @@ import CalculatorTier from './CalculatorTier.vue';
 import CalculatorRestriction from './CalculatorRestriction.vue';
 import { SkillPossibleTiers } from '@/type/Skills';
 import { SoldierID } from '@/type/Soldier';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconQuestionCircle from '@/components/ui/icons/IconQuestionCircle.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconQuestionCircle from '@/components/ui/icon/icons/IconQuestionCircle.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({

@@ -75,9 +75,9 @@
 import { SkillEntity } from '@/type/Skills';
 import { defineComponent, PropType } from 'vue';
 import { useStore } from '@/store/useStore';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconPlus from '@/components/ui/icons/IconPlus.vue';
-import IconMinus from '@/components/ui/icons/IconMinus.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconPlus from '@/components/ui/icon/icons/IconPlus.vue';
+import IconMinus from '@/components/ui/icon/icons/IconMinus.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import { createPopUp } from '../popup/utils';
 import { POPUP_NOT_ENOUGH_POINTS } from '../popup/data';

@@ -37,8 +37,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, Ref, ref, watch } from 'vue';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconCheck from '@/components/ui/icons/IconCheck.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconCheck from '@/components/ui/icon/icons/IconCheck.vue';
 import { blacklistedWords } from '@/data/bannedSymbols';
 
 export default defineComponent({

@@ -160,9 +160,9 @@ import {
 import getEvents from '@/functions/getEvents';
 import { operationNames } from '@/data/operationNames';
 import LoadingSpinner from '../ui/LoadingSpinner.vue';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconPlus from '@/components/ui/icons/IconPlus.vue';
-import IconTrash from '@/components/ui/icons/IconTrash.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconPlus from '@/components/ui/icon/icons/IconPlus.vue';
+import IconTrash from '@/components/ui/icon/icons/IconTrash.vue';
 import InputComponent from '@/components/ui/InputComponent.vue';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
 

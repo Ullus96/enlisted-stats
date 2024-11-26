@@ -147,9 +147,9 @@ import CalculatorSkill from '@/components/calculator/CalculatorSkill.vue';
 import { calculateStatsByLvl } from '@/functions/characterUtils';
 import { items } from '@/data/soldiersList';
 import { useRoute, useRouter } from 'vue-router';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconSearch from '@/components/ui/icons/IconSearch.vue';
-import IconQuestionCircle from '@/components/ui/icons/IconQuestionCircle.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconSearch from '@/components/ui/icon/icons/IconSearch.vue';
+import IconQuestionCircle from '@/components/ui/icon/icons/IconQuestionCircle.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import { ISkillBuildWithID } from '@/type/SkillBuild';
 import {

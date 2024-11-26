@@ -171,11 +171,11 @@ import { uniqueSoldiersList } from '@/data/soldiersList';
 import CcTagItem from '@/components/cc/CcTagItem.vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconMobility from '@/components/ui/icons/IconMobility.vue';
-import IconVitality from '@/components/ui/icons/IconVitality.vue';
-import IconWeapon from '@/components/ui/icons/IconWeapon.vue';
-import IconTags from '@/components/ui/icons/IconTags.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconMobility from '@/components/ui/icon/icons/IconMobility.vue';
+import IconVitality from '@/components/ui/icon/icons/IconVitality.vue';
+import IconWeapon from '@/components/ui/icon/icons/IconWeapon.vue';
+import IconTags from '@/components/ui/icon/icons/IconTags.vue';
 
 export default defineComponent({
 	components: {

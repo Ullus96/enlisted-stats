@@ -198,10 +198,10 @@ import EventsCard from '@/components/events/EventsCard.vue';
 import EventsCardTop from '@/components/events/EventsCardTop.vue';
 import EventsCountdownCard from '@/components/events/EventsCountdownCard.vue';
 import { IEvent, IEventFirestore } from '@/type/Events';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconQuestion from '@/components/ui/icons/IconQuestion.vue';
-import IconQuestionCircle from '@/components/ui/icons/IconQuestionCircle.vue';
-import IconCoins from '@/components/ui/icons/IconCoins.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconQuestion from '@/components/ui/icon/icons/IconQuestion.vue';
+import IconQuestionCircle from '@/components/ui/icon/icons/IconQuestionCircle.vue';
+import IconCoins from '@/components/ui/icon/icons/IconCoins.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
 import {

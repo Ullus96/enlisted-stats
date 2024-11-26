@@ -112,8 +112,8 @@ import { ISkillBuild } from '@/type/SkillBuild';
 import { SoldierID } from '@/type/Soldier';
 import { db } from '@/firebase/firebase';
 import { useRoute } from 'vue-router';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconArrowUp from '@/components/ui/icons/IconArrowUp.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconArrowUp from '@/components/ui/icon/icons/IconArrowUp.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 
 export default defineComponent({

@@ -217,15 +217,15 @@ import {
 } from '@/functions/convertSoldierDataToName';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconHeart from '@/components/ui/icons/IconHeart.vue';
-import IconGlobe from '@/components/ui/icons/IconGlobe.vue';
-import IconEyeSlash from '@/components/ui/icons/IconEyeSlash.vue';
-import IconTrash from '@/components/ui/icons/IconTrash.vue';
-import IconCopy from '@/components/ui/icons/IconCopy.vue';
-import IconMobility from '@/components/ui/icons/IconMobility.vue';
-import IconVitality from '@/components/ui/icons/IconVitality.vue';
-import IconWeapon from '@/components/ui/icons/IconWeapon.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconHeart from '@/components/ui/icon/icons/IconHeart.vue';
+import IconGlobe from '@/components/ui/icon/icons/IconGlobe.vue';
+import IconEyeSlash from '@/components/ui/icon/icons/IconEyeSlash.vue';
+import IconTrash from '@/components/ui/icon/icons/IconTrash.vue';
+import IconCopy from '@/components/ui/icon/icons/IconCopy.vue';
+import IconMobility from '@/components/ui/icon/icons/IconMobility.vue';
+import IconVitality from '@/components/ui/icon/icons/IconVitality.vue';
+import IconWeapon from '@/components/ui/icon/icons/IconWeapon.vue';
 
 export default defineComponent({
 	props: {

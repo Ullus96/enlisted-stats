@@ -38,8 +38,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconLock from '@/components/ui/icons/IconLock.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconLock from '@/components/ui/icon/icons/IconLock.vue';
 
 export default defineComponent({
 	components: { IconBase, IconLock },

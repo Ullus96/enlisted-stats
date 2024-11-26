@@ -41,8 +41,8 @@
 import { defineComponent, ref, Ref } from 'vue';
 import { useStore } from '@/store/useStore';
 import ModalComponent from '@/components/ui/ModalComponent.vue';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconGoogle from '@/components/ui/icons/IconGoogle.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconGoogle from '@/components/ui/icon/icons/IconGoogle.vue';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { checkIfUserAnAdmin } from './functions/checkIfUserAnAdmin';
 import { createPopUp } from '@/components/popup/utils';

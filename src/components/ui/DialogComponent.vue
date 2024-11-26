@@ -45,8 +45,8 @@
 import { defineComponent, onMounted, PropType, Ref, ref, useSlots } from 'vue';
 import { IDialogState } from '@/store/index';
 import { useStore } from '@/store/useStore';
-import IconBase from '@/components/ui/icons/IconBase.vue';
-import IconTimes from '@/components/ui/icons/IconTimes.vue';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconTimes from '@/components/ui/icon/icons/IconTimes.vue';
 
 export default defineComponent({
 	props: {
