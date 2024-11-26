@@ -11,38 +11,49 @@
 				padding: 1.2rem;
 			"
 		>
-			<button class="btn btn-m btn-secondary">Create an empty popup</button>
+			<button class="btn btn-m btn-secondary" v-ripple>
+				Create an empty popup
+			</button>
 			<button
 				class="btn btn-m btn-secondary"
 				@click="createPopUpHandler(dangerPopUp)"
+				v-ripple
 			>
 				Create a danger popup
 			</button>
 			<button
 				class="btn btn-m btn-secondary"
 				@click="createPopUpHandler(warningPopUp)"
+				v-ripple
 			>
 				Create a warning popup
 			</button>
 			<button
 				class="btn btn-m btn-secondary"
 				@click="createPopUpHandler(successPopUp)"
+				v-ripple
 			>
 				Create a success popup
 			</button>
 			<button
 				class="btn btn-m btn-secondary"
 				@click="createPopUpHandler(POPUP_DELETE_USER_SUCCESS)"
+				v-ripple
 			>
 				Delete user (success)
 			</button>
 			<button
 				class="btn btn-m btn-secondary"
 				@click="createPopUpHandler(POPUP_DELETE_USER_ERROR)"
+				v-ripple
 			>
 				Delete user (error)
 			</button>
-			<button class="btn btn-m btn-secondary" @click="deletePopUpHandler">
+			<button
+				class="btn btn-m btn-secondary"
+				@click="deletePopUpHandler"
+				v-ripple
+			>
 				Delete a popup
 			</button>
 			<p>-</p>

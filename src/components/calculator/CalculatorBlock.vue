@@ -42,6 +42,7 @@
 				@click="$store.state.modal.isBuildSaveModalVisible = true"
 				:disabled="!auth"
 				id="saveBuild"
+				v-ripple
 			>
 				Сохранить сборку
 			</button>
@@ -55,6 +56,7 @@
 				@click="$store.state.modal.isBuildSaveModalVisible = true"
 				:disabled="!auth"
 				id="saveBuild"
+				v-ripple
 			>
 				Сохранить сборку
 			</button>
@@ -82,6 +84,7 @@
 				<button
 					class="btn btn-m btn-secondary calculator__btn-screen"
 					@click="moveToUpperBoundary"
+					v-ripple
 				>
 					<IconBase>
 						<IconArrowUp />

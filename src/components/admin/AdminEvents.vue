@@ -15,6 +15,7 @@
 						:key="event.dbId"
 						@click="setActiveEvent(event.dbId)"
 						:class="{ active: event.dbId == eventData.dbId }"
+						v-ripple
 					>
 						{{ event.name }}
 					</button>
@@ -23,6 +24,7 @@
 					class="chip admin__chip"
 					@click="createNewEvent"
 					:class="{ active: !eventData.dbId }"
+					v-ripple
 				>
 					<IconBase>
 						<IconPlus />
@@ -74,6 +76,7 @@
 					<button
 						class="btn btn-secondary btn-m admin__btn"
 						@click="calculateStages"
+						v-ripple
 					>
 						Рассчитать количество этапов
 					</button>
@@ -101,6 +104,7 @@
 								class="btn btn-m btn-primary admin__btn"
 								:disabled="!eventData.rewards.length"
 								@click="addEventToDB"
+								v-ripple
 							>
 								Создать событие
 							</button>
@@ -112,6 +116,7 @@
 								class="btn btn-m btn-primary admin__update-btn"
 								:disabled="!eventData.rewards.length"
 								@click="updateEvent"
+								v-ripple
 							>
 								Обновить
 							</button>
@@ -119,6 +124,7 @@
 								class="btn btn-m btn-secondary admin__delete-btn svg"
 								:disabled="!eventData.rewards.length"
 								@click="$store.state.dialog.isDeletingEvent = true"
+								v-ripple
 							>
 								<IconBase>
 									<IconTrash />

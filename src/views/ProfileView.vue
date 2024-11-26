@@ -52,6 +52,7 @@
 						<button
 							class="btn btn-secondary btn-m profile__btn"
 							@click="$store.state.dialog.isDeletingAccount = true"
+							v-ripple
 						>
 							Удалить профиль
 						</button>

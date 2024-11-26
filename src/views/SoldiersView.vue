@@ -85,6 +85,7 @@
 						<button
 							class="btn btn-m btn-secondary"
 							@click="filteredSoldierButtonHandler('presets')"
+							v-ripple
 						>
 							Назад
 						</button>
@@ -112,12 +113,15 @@
 					</div>
 					<div class="table__promo-buttons">
 						<router-link :to="link">
-							<button class="btn btn-m btn-secondary">Посмотреть еще</button>
+							<button class="btn btn-m btn-secondary" v-ripple>
+								Посмотреть еще
+							</button>
 						</router-link>
 						<span class="table__promo-or">ИЛИ</span>
 						<button
 							class="btn btn-m btn-primary"
 							@click="filteredSoldierButtonHandler('calculator')"
+							v-ripple
 						>
 							Создать свою сборку
 						</button>

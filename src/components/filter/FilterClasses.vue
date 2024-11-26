@@ -4,12 +4,14 @@
 			<button
 				class="filter__class filter__class--no-icons btn btn-m btn-tertiary"
 				@click="removeClass"
+				v-ripple
 			>
 				Все
 			</button>
 			<button
 				class="filter__class filter__class--no-icons btn btn-m btn-tertiary"
 				@click="setClass('custom')"
+				v-ripple
 			>
 				Акционные
 			</button>
@@ -24,18 +26,21 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('rifleman1')"
+					v-ripple
 				>
 					<span>I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('rifleman2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('rifleman3')"
+					v-ripple
 				>
 					<span>III</span>
 				</button>
@@ -46,6 +51,7 @@
 			<button
 				class="filter__class btn btn-m btn-tertiary"
 				@click="setClass('medic')"
+				v-ripple
 			>
 				<img src="@/assets/soldier_icons/medic.svg" class="filter__icon" />
 				<span>Медик</span>
@@ -53,6 +59,7 @@
 			<button
 				class="filter__class btn btn-m btn-tertiary"
 				@click="setClass('partisan2')"
+				v-ripple
 			>
 				<img src="@/assets/soldier_icons/partisan.svg" class="filter__icon" />
 				<span>Партизан</span>
@@ -69,24 +76,28 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('assaulter1')"
+					v-ripple
 				>
 					<span>I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('assaulter2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('assaulter3')"
+					v-ripple
 				>
 					<span>III</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('assaulter4')"
+					v-ripple
 				>
 					<span>IV</span>
 				</button>
@@ -103,12 +114,14 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('engineer1')"
+					v-ripple
 				>
 					<span>I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('engineer2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
@@ -125,18 +138,21 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('sniper1')"
+					v-ripple
 				>
 					<span>I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('sniper2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('sniper3')"
+					v-ripple
 				>
 					<span>III</span>
 				</button>
@@ -153,12 +169,14 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('at1')"
+					v-ripple
 				>
 					<span>I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('at2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
@@ -175,18 +193,21 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('mg1')"
+					v-ripple
 				>
 					<span>I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('mg2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('mg3')"
+					v-ripple
 				>
 					<span>III</span>
 				</button>
@@ -203,12 +224,14 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('radio1')"
+					v-ripple
 				>
 					<span>I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('radio2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
@@ -219,6 +242,7 @@
 			<button
 				class="filter__class btn btn-m btn-tertiary"
 				@click="setClass('mortar')"
+				v-ripple
 			>
 				<img src="@/assets/soldier_icons/mortar.svg" class="filter__icon" />
 				<span>Миномётчик</span>
@@ -238,12 +262,14 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('flamethrower1')"
+					v-ripple
 				>
 					<span>I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('flamethrower2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
@@ -263,18 +289,21 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('pilot-fighter1')"
+					v-ripple
 				>
 					<span>I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('pilot-fighter2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('pilot-fighter3')"
+					v-ripple
 				>
 					<span>III</span>
 				</button>
@@ -294,18 +323,21 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('pilot-attacker1')"
+					v-ripple
 				>
 					<span> I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('pilot-attacker2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('pilot-attacker3')"
+					v-ripple
 				>
 					<span>III</span>
 				</button>
@@ -322,18 +354,21 @@
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('tank1')"
+					v-ripple
 				>
 					<span>I</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('tank2')"
+					v-ripple
 				>
 					<span>II</span>
 				</button>
 				<button
 					class="filter__class btn btn-m btn-tertiary"
 					@click="setClass('tank3')"
+					v-ripple
 				>
 					<span>III</span>
 				</button>
@@ -344,6 +379,7 @@
 			<button
 				class="filter__class btn btn-m btn-tertiary"
 				@click="setClass('moto1')"
+				v-ripple
 			>
 				<img src="@/assets/soldier_icons/moto.svg" class="filter__icon" />
 				<span>Мотоциклист</span>
@@ -351,6 +387,7 @@
 			<button
 				class="filter__class btn btn-m btn-tertiary"
 				@click="setClass('apc-driver')"
+				v-ripple
 			>
 				<img src="@/assets/soldier_icons/apc-driver.svg" class="filter__icon" />
 				<span>Водитель БТР</span>

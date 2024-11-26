@@ -13,6 +13,7 @@
 					@click="setActiveTab('events')"
 					class="btn btn-tertiary admin__tab"
 					:class="{ active: activeTab == 'events' }"
+					v-ripple
 				>
 					События
 				</button>

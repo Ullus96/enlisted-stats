@@ -8,7 +8,11 @@
 			:sortByMethod="filterParams.sortByMethod"
 		></filters-block>
 		<div class="filter__under">
-			<button class="btn btn-m btn-primary filter__btn" @click="loadData(true)">
+			<button
+				class="btn btn-m btn-primary filter__btn"
+				@click="loadData(true)"
+				v-ripple
+			>
 				Загрузить сборки
 			</button>
 		</div>
@@ -32,6 +36,7 @@
 			<button
 				class="btn btn-m btn-tertiary filter__btn"
 				@click="loadData(false)"
+				v-ripple
 			>
 				Загрузить еще
 			</button>

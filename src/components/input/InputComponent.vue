@@ -26,6 +26,7 @@
 				v-if="inlineButton"
 				:disabled="!!errorMsg || !!isEmpty || !!outOfCharacters"
 				@click="handleClick"
+				v-ripple
 			>
 				<IconBase>
 					<IconCheck />

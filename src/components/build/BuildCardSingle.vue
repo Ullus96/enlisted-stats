@@ -176,6 +176,7 @@
 								!item.data.isCloned
 							"
 							@click="$store.state.dialog.isSwitchingBuildVisibility = true"
+							v-ripple
 						>
 							<IconBase :iconColor="'#a5a5a5'">
 								<IconGlobe />
@@ -199,6 +200,7 @@
 								!item.data.isCloned
 							"
 							@click="$store.state.dialog.isSwitchingBuildVisibility = true"
+							v-ripple
 						>
 							<IconBase :iconColor="'#a5a5a5'">
 								<IconEyeSlash />
@@ -235,6 +237,7 @@
 							<button
 								class="sbuild__card"
 								@click="$store.state.dialog.isDeletingBuild = true"
+								v-ripple
 							>
 								<IconBase :iconColor="'#a5a5a5'">
 									<IconTrash />

@@ -7,6 +7,7 @@
 				@click="closeModal"
 				@keydown.esc="closeModal"
 				ref="closeBtn"
+				v-ripple
 			>
 				<IconBase>
 					<IconTimes />

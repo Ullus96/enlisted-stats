@@ -8,7 +8,7 @@
 		<h2>Этой страницы не существует</h2>
 		<p>Возможно, сборка была удалена ее создателем.</p>
 		<router-link to="/skill-builds" class="mt-s">
-			<button class="btn btn-main">Посмотреть другие сборки</button>
+			<button class="btn btn-main" v-ripple>Посмотреть другие сборки</button>
 		</router-link>
 	</div>
 </template>

@@ -6,18 +6,21 @@
 				<button
 					class="btn btn-m btn-tertiary filter__sort-item"
 					@click="setSortBy('nameLowercase')"
+					v-ripple
 				>
 					По названию
 				</button>
 				<button
 					class="btn btn-m btn-tertiary filter__sort-item"
 					@click="setSortBy('likesAmount')"
+					v-ripple
 				>
 					По лайкам
 				</button>
 				<button
 					class="btn btn-m btn-tertiary filter__sort-item"
 					@click="setSortBy('createdAt')"
+					v-ripple
 				>
 					По дате создания
 				</button>

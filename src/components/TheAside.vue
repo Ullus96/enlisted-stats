@@ -39,6 +39,7 @@
 								$store.state.modal.isLoginModalVisible = true;
 							"
 							class="btn btn-sm btn-tertiary"
+							v-ripple
 						>
 							Войти
 						</button>
@@ -55,6 +56,7 @@
 						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/"
+						v-ripple
 					>
 						<IconBase>
 							<IconAngleDoubleUp />
@@ -66,6 +68,7 @@
 						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/calculator"
+						v-ripple
 					>
 						<IconBase>
 							<IconUserCog />
@@ -77,6 +80,7 @@
 						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/skill-builds"
+						v-ripple
 					>
 						<IconBase>
 							<IconBookOpen />
@@ -88,6 +92,7 @@
 						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/events"
+						v-ripple
 					>
 						<IconBase>
 							<IconCalendar />
@@ -104,6 +109,7 @@
 							@click="hideNavigationVisibility"
 							class="aside__link"
 							to="/my-builds"
+							v-ripple
 						>
 							<IconBase>
 								<IconHammer />
@@ -115,6 +121,7 @@
 							@click="hideNavigationVisibility"
 							class="aside__link"
 							to="/saved-builds"
+							v-ripple
 						>
 							<IconBase>
 								<IconBookmark />
@@ -132,6 +139,7 @@
 							@click="hideNavigationVisibility"
 							class="aside__link"
 							to="/admin"
+							v-ripple
 						>
 							<IconBase>
 								<IconCrown />
@@ -148,6 +156,7 @@
 						@click="hideNavigationVisibility"
 						class="aside__link"
 						to="/settings"
+						v-ripple
 					>
 						<IconBase>
 							<IconCog />
@@ -155,7 +164,12 @@
 						<span class="aside__link-desc">Настройки</span>
 					</router-link>
 
-					<button @click="showContactsModal" class="aside__link" to="/contacts">
+					<button
+						@click="showContactsModal"
+						class="aside__link"
+						to="/contacts"
+						v-ripple
+					>
 						<IconBase>
 							<IconDiscord />
 						</IconBase>
@@ -166,6 +180,7 @@
 						@click="handleSignOut"
 						class="aside__link"
 						to="/sign-out"
+						v-ripple
 						v-if="$store.state.user.isLoggedIn"
 					>
 						<IconBase>
@@ -209,6 +224,7 @@
 					class="btn btn-secondary aside__hamburger-btn"
 					tabindex="1"
 					@click="toggleNavigationVisibility"
+					v-ripple
 				>
 					<IconBase
 						:width="24"

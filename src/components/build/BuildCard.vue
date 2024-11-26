@@ -7,6 +7,7 @@
 				padding: 12,
 				hoverRgbaColor: [51, 51, 51, 0.76],
 			}"
+			v-ripple
 		>
 			<router-link
 				:to="/build/ + item.dbId"

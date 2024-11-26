@@ -1,6 +1,10 @@
 <template>
 	<div class="debug" v-if="isVisible">
-		<button class="btn btn-sm btn-tertiary" @click="isVisible = !isVisible">
+		<button
+			class="btn btn-sm btn-tertiary"
+			@click="isVisible = !isVisible"
+			v-ripple
+		>
 			Hide
 		</button>
 		<p class="debug__title">Settings</p>

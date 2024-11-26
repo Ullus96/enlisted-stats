@@ -6,6 +6,7 @@
 			padding: 12,
 			hoverRgbaColor: [51, 51, 51, 0.76],
 		}"
+		v-ripple
 	>
 		<div class="table__col table__col--icon">
 			<img :src="require('@/assets/soldier_icons/' + item.icon)" />

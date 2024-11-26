@@ -68,6 +68,7 @@
 							:class="{ 'event__chip--active': activeReward === 'current' }"
 							@mouseenter="setActiveReward('current')"
 							@click="setActiveReward('current')"
+							v-ripple
 						>
 							<IconBase>
 								<IconCoins />
@@ -109,6 +110,7 @@
 							:class="{ 'event__chip--active': activeReward === 'next' }"
 							@mouseenter="setActiveReward('next')"
 							@click="setActiveReward('next')"
+							v-ripple
 						>
 							<IconBase>
 								<IconCoins />

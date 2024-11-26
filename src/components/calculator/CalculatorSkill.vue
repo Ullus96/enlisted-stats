@@ -30,7 +30,11 @@
 		/>
 
 		<div class="calculator__counter-block">
-			<button class="btn calculator__button" @click="clickHandle('minus')">
+			<button
+				class="btn calculator__button"
+				@click="clickHandle('minus')"
+				v-ripple
+			>
 				<IconBase
 					:height="$store.state.settings.compactMode ? 12 : 16"
 					:width="$store.state.settings.compactMode ? 12 : 16"
@@ -51,7 +55,11 @@
 					&nbsp;
 				</div>
 			</div>
-			<button class="btn calculator__button" @click="clickHandle('plus')">
+			<button
+				class="btn calculator__button"
+				@click="clickHandle('plus')"
+				v-ripple
+			>
 				<IconBase
 					:height="$store.state.settings.compactMode ? 12 : 16"
 					:width="$store.state.settings.compactMode ? 12 : 16"

@@ -1,5 +1,9 @@
 <template>
-	<div class="cc__tag-item chip tooltip-anchor" :class="{ active: isActive }">
+	<div
+		class="cc__tag-item chip tooltip-anchor"
+		:class="{ active: isActive }"
+		v-ripple
+	>
 		<input
 			type="checkbox"
 			:name="item.name"

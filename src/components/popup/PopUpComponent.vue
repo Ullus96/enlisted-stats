@@ -7,7 +7,11 @@
 			success: type === 'success',
 		}"
 	>
-		<button class="btn btn-tertiary btn-sm modal__btn" @click="closePopup">
+		<button
+			class="btn btn-tertiary btn-sm modal__btn"
+			@click="closePopup"
+			v-ripple
+		>
 			<IconBase>
 				<IconTimes />
 			</IconBase>

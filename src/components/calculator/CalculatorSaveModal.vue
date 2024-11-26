@@ -59,6 +59,7 @@
 			class="btn btn-m btn-primary modal__confirm"
 			:disabled="isBtnDisabled"
 			@click="saveBuild"
+			v-ripple
 			v-if="!openedInSingleBuild"
 		>
 			Сохранить
@@ -67,6 +68,7 @@
 			class="btn btn-m btn-primary modal__confirm"
 			:disabled="isBtnDisabled"
 			@click="modifyBuild('update')"
+			v-ripple
 			v-else-if="item?.data.author == user?.uid"
 		>
 			Обновить
@@ -75,6 +77,7 @@
 			class="btn btn-m btn-primary modal__confirm"
 			:disabled="isBtnDisabled"
 			@click="modifyBuild('new')"
+			v-ripple
 			v-else
 		>
 			Сохранить для себя

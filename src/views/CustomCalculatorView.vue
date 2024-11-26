@@ -50,6 +50,7 @@
 							v-for="(soldier, idx) in uniqueSoldiersList"
 							:key="soldier.name"
 							@click="setTags(idx)"
+							v-ripple
 						>
 							<TooltipComponent>
 								{{ soldier.name }}
@@ -88,6 +89,7 @@
 				class="btn btn-m btn-primary cc__btn"
 				@click.prevent="isEditingSettings = !isEditingSettings"
 				:disabled="isDisabled"
+				v-ripple
 			>
 				Продолжить
 			</button>
@@ -142,6 +144,7 @@
 				<button
 					class="btn btn-m btn-secondary cc__s-btn-back"
 					@click="isEditingSettings = !isEditingSettings"
+					v-ripple
 				>
 					Изменить параметры
 				</button>

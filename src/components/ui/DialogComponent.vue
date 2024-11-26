@@ -7,6 +7,7 @@
 				@click="closeDialog"
 				@keydown.esc="closeDialog"
 				ref="closeBtn"
+				v-ripple
 			>
 				<IconBase>
 					<IconTimes />
@@ -26,6 +27,7 @@
 					class="btn btn-m"
 					:class="`btn-${yes.type}`"
 					@click="confirmDialog"
+					v-ripple
 				>
 					{{ yes.text }}
 				</button>
@@ -33,6 +35,7 @@
 					class="btn btn-m"
 					:class="`btn-${no.type}`"
 					@click="closeDialog"
+					v-ripple
 				>
 					{{ no.text }}
 				</button>

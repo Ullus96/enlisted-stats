@@ -17,7 +17,11 @@
 
 		<div class="filter__item">
 			<span class="filter__label"> Класс: </span>
-			<button class="filter__selected" @click.prevent="showFilterClasses">
+			<button
+				class="filter__selected"
+				@click.prevent="showFilterClasses"
+				v-ripple
+			>
 				{{ selectedClassName }}
 				<span
 					><i
@@ -30,7 +34,7 @@
 
 		<div class="filter__item" id="sortBy">
 			<!-- <span>Сортировка:</span> -->
-			<button class="filter__selected" @click.prevent="showSortBy">
+			<button class="filter__selected" @click.prevent="showSortBy" v-ripple>
 				{{ sortByName }}
 				<span
 					><i
@@ -45,6 +49,7 @@
 			<button
 				class="filter__selected filter__sort-by-method"
 				@click.prevent="changeSortByMethod"
+				v-ripple
 			>
 				<span
 					><i
