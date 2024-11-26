@@ -25,8 +25,6 @@
 			cursor: pointer;
 			position: relative;
 
-			@include pressed($color-text-100, $color-bg-a-500, 4);
-
 			@include hovered($color-text-100, $color-bg-a-500);
 		}
 	}
@@ -166,8 +164,6 @@
 		gap: 0.4rem;
 		padding: 0.8rem;
 		border-radius: 0.4rem;
-
-		@include pressed($color-text-100, $color-bg-a-200, 4);
 
 		@include hovered($color-text-100, $color-bg-a-200);
 	}

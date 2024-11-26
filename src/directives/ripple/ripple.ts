@@ -3,10 +3,7 @@ import { validateAndNormalizeBinding } from './validation';
 
 const Ripple: Directive = {
 	mounted(el, binding) {
-		const computedStyle = getComputedStyle(el);
-		if (computedStyle.position === 'static') {
-			el.style.position = 'relative';
-		}
+		el.style.position = 'relative';
 		el.style.overflow = 'hidden';
 
 		const options = validateAndNormalizeBinding(binding.value, el);

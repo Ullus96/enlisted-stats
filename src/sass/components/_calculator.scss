@@ -178,8 +178,6 @@
 		padding: 0.4rem 0.4rem;
 		flex: 0 0 auto;
 
-		@include pressed($color-text-100, $color-bg-800, 2.5);
-
 		@include hovered($color-text-100, $color-bg-800);
 
 		&:focus {

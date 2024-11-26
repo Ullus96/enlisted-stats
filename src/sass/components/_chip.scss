@@ -8,8 +8,6 @@
 	cursor: pointer;
 	transition: color 0.12s ease-in-out, border 0.12s ease-in-out;
 
-	// @include pressed($color-text-100, $color-bg-a-500, 2.5);
-
 	@include hovered($color-text-100, $color-bg-a-500);
 
 	&:focus {
@@ -49,8 +47,6 @@
 	& path {
 		fill: $color-primary-200;
 	}
-
-	// @include pressed($color-primary-200, $color-bg-a-500, 2.5);
 
 	@include hovered($color-primary-200, $color-bg-a-500);
 

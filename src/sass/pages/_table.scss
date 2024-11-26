@@ -115,8 +115,6 @@
 
 		@include hovered($color-text-100, $color-bg-a-500);
 
-		@include pressed($color-text-100, $color-bg-a-500);
-
 		@include tablet {
 			grid-template-columns: repeat(5, 1fr);
 			grid-template-rows: 1fr auto;

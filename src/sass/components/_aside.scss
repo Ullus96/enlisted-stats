@@ -103,8 +103,6 @@
 		cursor: pointer;
 		z-index: 0;
 
-		@include pressed($color-text-100, $color-bg-a-700);
-
 		&:focus {
 			@include focused($color-text-100, $color-bg-a-700);
 		}
@@ -119,8 +117,6 @@
 			}
 
 			@include hovered($color-text-100, $color-bg-300);
-
-			@include pressed($color-text-100, $color-bg-300);
 		}
 	}
 
@@ -218,8 +214,6 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-
-		@include pressed($color-text-100, $color-bg-a-500, 1.5);
 
 		@include hovered($color-text-100, $color-bg-a-700);
 

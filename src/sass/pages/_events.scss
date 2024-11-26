@@ -208,8 +208,6 @@
 			display: block;
 		}
 
-		@include pressed($color-text-100, $color-bg-700, 2.5);
-
 		@include hovered($color-text-100, $color-bg-700);
 
 		&:focus {
@@ -218,8 +216,6 @@
 
 		&--active {
 			background-color: $color-primary-600;
-
-			@include pressed($color-text-100, $color-primary-600, 2.5);
 
 			@include hovered($color-text-100, $color-primary-600);
 

@@ -40,8 +40,6 @@
 		border-radius: 0.8rem;
 		gap: 1.2rem;
 
-		@include pressed($color-bg-100, $color-text-100, 2.5);
-
 		@include hovered($color-bg-100, $color-text-100);
 
 		&:focus {

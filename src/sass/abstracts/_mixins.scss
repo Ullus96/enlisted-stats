@@ -95,31 +95,6 @@
 	}
 }
 
-@mixin pressed($text-color, $background-color, $scale-size: 7) {
-	position: relative;
-	overflow: hidden;
-
-	&::after {
-		content: '';
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		height: 100%;
-		aspect-ratio: 1/1;
-		background-color: mix($text-color, $background-color, 10%);
-		transform: translate(-50%, -50%) scale(0);
-		border-radius: 50%;
-		transition: transform 0.2s, opacity 0.2s;
-		opacity: 0;
-		z-index: -1;
-	}
-
-	&:active:after {
-		transform: translate(-50%, -50%) scale($scale-size);
-		opacity: 1;
-	}
-}
-
 @mixin showTooltip {
 	.tooltip {
 		transition: opacity 0.18s 0.15s ease-in, visibility 0.2s 0.2s ease-in;
