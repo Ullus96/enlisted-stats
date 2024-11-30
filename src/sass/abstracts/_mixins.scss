@@ -119,3 +119,17 @@
 	color: $color-primary-200;
 	text-decoration: underline;
 }
+
+@mixin hover-touch {
+	@media (hover: hover) {
+		&:hover {
+			@content;
+		}
+	}
+
+	@media (hover: none) {
+		&:active {
+			@content;
+		}
+	}
+}

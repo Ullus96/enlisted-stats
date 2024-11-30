@@ -1,11 +1,21 @@
 .tooltip-anchor {
 	position: relative;
 
-	@include showTooltip;
+	@include hover-touch {
+		.tooltip {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
 }
 
 .tooltip-anchor--no-relative {
-	@include showTooltip;
+	@include hover-touch {
+		.tooltip {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
 }
 
 .tooltip {
@@ -22,6 +32,8 @@
 	visibility: hidden;
 	opacity: 0;
 	cursor: auto;
+
+	transition: opacity 0.18s 0.15s ease-in, visibility 0.2s 0.2s ease-in;
 
 	@include ui-shadow;
 
