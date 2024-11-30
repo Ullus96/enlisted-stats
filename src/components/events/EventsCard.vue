@@ -5,6 +5,7 @@
 			'event__card--active': isActive,
 			skipped: isSkipped,
 			'inline-rewards': $store.state.settings.inlineRewards,
+			animated: allowAnimation,
 		}"
 		@click="handleClick"
 	>
@@ -76,12 +77,18 @@ export default defineComponent({
 			context.emit('skip-stage', props.stageIndex);
 		}
 
+		let allowAnimation: Ref<Boolean> = ref(false);
+		setTimeout(() => {
+			allowAnimation.value = true;
+		}, 200);
+
 		return {
 			day,
 			month,
 			hours,
 			handleClick,
 			separateLineBySemicolon,
+			allowAnimation,
 		};
 	},
 });

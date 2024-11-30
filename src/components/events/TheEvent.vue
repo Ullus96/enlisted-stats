@@ -29,7 +29,7 @@
 					<div class="event__cards-flex">
 						<events-card
 							v-for="(item, index) in stagesWithRewards"
-							:key="item"
+							:key="String(item.startDate)"
 							:cardData="item"
 							:stageIndex="index"
 							:reward="item.reward"
