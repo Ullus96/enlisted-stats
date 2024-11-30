@@ -1,12 +1,5 @@
 <template>
-	<div
-		class="visible-screen"
-		id="visible-screen-40"
-		v-if="isAnyModalVisible || isAnyDialogVisible"
-	></div>
-	<div class="screen-bottom" id="screen-bottom">
-		<PopUpHandler />
-	</div>
+	<ScreenOverlay />
 	<div class="page-wrapper" id="page">
 		<auth-init></auth-init>
 		<settings-init></settings-init>
@@ -27,9 +20,8 @@ import TheAside from './components/TheAside.vue';
 import AuthInit from './components/auth/AuthInit.vue';
 import SettingsInit from './components/init/SettingsInit.vue';
 import VuexDebug from './components/debug/VuexDebug.vue';
-import { computed, defineComponent } from 'vue';
-import { useStore } from '@/store/useStore';
-import PopUpHandler from './components/popup/PopUpHandler.vue';
+import { defineComponent } from 'vue';
+import ScreenOverlay from './components/screen-overlay/ScreenOverlay.vue';
 
 export default defineComponent({
 	name: 'App',
@@ -38,20 +30,9 @@ export default defineComponent({
 		AuthInit,
 		SettingsInit,
 		VuexDebug,
-		PopUpHandler,
+		ScreenOverlay,
 	},
 	setup() {
-		const store = useStore();
-
-		// Computed свойство для проверки, если любой modal видим
-		const isAnyModalVisible = computed(() => {
-			return Object.values(store.state.modal).some((value) => value);
-		});
-
-		const isAnyDialogVisible = computed(() => {
-			return Object.values(store.state.dialog).some((value) => value);
-		});
-
 		// Убираем фокус кнопки при клике
 		document.addEventListener('click', (event) => {
 			const target = event.target as HTMLElement;
@@ -66,10 +47,7 @@ export default defineComponent({
 			}
 		});
 
-		return {
-			isAnyModalVisible,
-			isAnyDialogVisible,
-		};
+		return {};
 	},
 });
 </script>

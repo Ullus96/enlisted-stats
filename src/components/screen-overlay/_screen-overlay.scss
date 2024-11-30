@@ -1,0 +1,23 @@
+.visible-screen {
+	position: sticky;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 100dvh;
+	margin-top: -100dvh;
+	display: grid;
+	place-items: center;
+}
+
+#visible-screen-40 {
+	z-index: 40;
+}
+
+.screen-bottom {
+	position: sticky;
+	transform: translateY(100dvh);
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 50;
+}

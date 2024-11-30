@@ -1014,28 +1014,30 @@ h3 {
 .tooltip-anchor {
   position: relative;
 }
-.tooltip-anchor .tooltip {
-  transition: opacity 0.18s 0.15s ease-in, visibility 0.2s 0.2s ease-in;
+@media (hover: hover) {
+  .tooltip-anchor:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
 }
-.tooltip-anchor:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-}
-.tooltip-anchor:focus .tooltip {
-  visibility: visible;
-  opacity: 1;
+@media (hover: none) {
+  .tooltip-anchor:active .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
-.tooltip-anchor--no-relative .tooltip {
-  transition: opacity 0.18s 0.15s ease-in, visibility 0.2s 0.2s ease-in;
+@media (hover: hover) {
+  .tooltip-anchor--no-relative:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
 }
-.tooltip-anchor--no-relative:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-}
-.tooltip-anchor--no-relative:focus .tooltip {
-  visibility: visible;
-  opacity: 1;
+@media (hover: none) {
+  .tooltip-anchor--no-relative:active .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .tooltip {
@@ -1052,6 +1054,7 @@ h3 {
   visibility: hidden;
   opacity: 0;
   cursor: auto;
+  transition: opacity 0.18s 0.15s ease-in, visibility 0.2s 0.2s ease-in;
   box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
   color: rgb(226, 226, 226);
   background-color: rgb(39, 39, 39);
@@ -3142,4 +3145,28 @@ h3 {
 
 .checkbox-wrapper-2 .ikxBAC:checked:hover {
   background-color: rgba(175, 61, 61, 0.75);
+}
+
+.visible-screen {
+  position: sticky;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100dvh;
+  margin-top: -100dvh;
+  display: grid;
+  place-items: center;
+}
+
+#visible-screen-40 {
+  z-index: 40;
+}
+
+.screen-bottom {
+  position: sticky;
+  transform: translateY(100dvh);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
 }/*# sourceMappingURL=main.css.map */
