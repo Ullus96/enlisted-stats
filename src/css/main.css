@@ -2102,7 +2102,22 @@ h3 {
 }
 .event__card.skipped {
   opacity: 0.6;
-  transform: rotateZ(-6deg) scale(0.96);
+  transform: scale(0.96);
+}
+.event__card.skipped:nth-child(5n+1) {
+  transform: rotateZ(-5deg) scale(0.97);
+}
+.event__card.skipped:nth-child(5n+2) {
+  transform: rotateZ(3deg) scale(0.97);
+}
+.event__card.skipped:nth-child(5n+3) {
+  transform: rotateZ(-10deg) scale(0.96);
+}
+.event__card.skipped:nth-child(5n+4) {
+  transform: rotateZ(-5deg) scale(0.98);
+}
+.event__card.skipped:nth-child(5n) {
+  transform: rotateZ(4deg) scale(0.9);
 }
 .event__card .tooltip {
   transition: opacity 0.18s 0.15s ease-in, visibility 0.2s 0.2s ease-in;
