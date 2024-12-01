@@ -15,7 +15,7 @@
 					class="table__input"
 					@input="setSearchValue($event.target.value)"
 					id="searchInput"
-					v-focus
+					v-focus="{ onMount: true, onUpdate: true }"
 					@keydown.esc="
 						clearSearchValue();
 						$event.target.value = '';
