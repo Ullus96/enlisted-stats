@@ -6,7 +6,7 @@
 				class="btn btn-tertiary btn-sm modal__btn"
 				@click="closeModal"
 				@keydown.esc="closeModal"
-				ref="closeBtn"
+				v-focus
 				v-ripple
 			>
 				<IconBase>
@@ -57,16 +57,7 @@ export default defineComponent({
 			});
 		}
 
-		const closeBtn: Ref<null | HTMLButtonElement> = ref(null);
-		function focusCloseBtn() {
-			if (closeBtn.value) {
-				closeBtn.value.focus();
-			}
-		}
-
-		onMounted(focusCloseBtn);
-
-		return { slots, closeModal, closeBtn };
+		return { slots, closeModal };
 	},
 });
 </script>

@@ -9,8 +9,8 @@
 							type="number"
 							class="cc__stat-amount"
 							v-model="stats[0]"
-							id="ccFirstStat"
 							placeholder="16"
+							v-focus
 						/>
 						<p class="cc__stat-name mobility-bg-a">Мобильность</p>
 					</div>
@@ -211,20 +211,6 @@ export default defineComponent({
 				tags.push(tag);
 			}
 		}
-
-		// https://stackoverflow.com/a/76009015
-		const setFocusToElement = async () => {
-			nextTick(() => {
-				const element = document.getElementById('ccFirstStat');
-				if (element) {
-					element.focus();
-				}
-			});
-		};
-
-		onMounted(() => {
-			setFocusToElement();
-		});
 
 		const isDisabled = computed(() => {
 			let isNotFilled = false;

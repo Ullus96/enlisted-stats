@@ -302,24 +302,6 @@ export default defineComponent({
 			}
 		}
 
-		// https://stackoverflow.com/a/76009015
-		// const setFocusToElement = async () => {
-		// 	nextTick(() => {
-		// 		const element = document.getElementById('searchInput');
-		// 		if (element) {
-		// 			element.focus();
-		// 		}
-		// 	});
-		// };
-
-		// onMounted(() => {
-		// 	setFocusToElement();
-		// });
-
-		// onUpdated(() => {
-		// 	setFocusToElement();
-		// });
-
 		// Load data
 		async function loadData() {
 			try {
