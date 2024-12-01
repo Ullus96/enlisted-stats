@@ -15,6 +15,7 @@
 					class="table__input"
 					@input="setSearchValue($event.target.value)"
 					id="searchInput"
+					v-focus
 					@keydown.esc="
 						clearSearchValue();
 						$event.target.value = '';
@@ -302,22 +303,22 @@ export default defineComponent({
 		}
 
 		// https://stackoverflow.com/a/76009015
-		const setFocusToElement = async () => {
-			nextTick(() => {
-				const element = document.getElementById('searchInput');
-				if (element) {
-					element.focus();
-				}
-			});
-		};
+		// const setFocusToElement = async () => {
+		// 	nextTick(() => {
+		// 		const element = document.getElementById('searchInput');
+		// 		if (element) {
+		// 			element.focus();
+		// 		}
+		// 	});
+		// };
 
-		onMounted(() => {
-			setFocusToElement();
-		});
+		// onMounted(() => {
+		// 	setFocusToElement();
+		// });
 
-		onUpdated(() => {
-			setFocusToElement();
-		});
+		// onUpdated(() => {
+		// 	setFocusToElement();
+		// });
 
 		// Load data
 		async function loadData() {

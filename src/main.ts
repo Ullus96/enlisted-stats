@@ -7,6 +7,7 @@ import './css/main.css';
 
 import shinyBorder from './directives/shiny-border/shinyBorder';
 import ripple from './directives/ripple/ripple';
+import focus from './directives/focus/focus';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
@@ -21,4 +22,5 @@ createApp(App)
 	.use(store, storeKey)
 	.directive('shiny-border', shinyBorder)
 	.directive('ripple', ripple)
+	.directive('focus', focus)
 	.mount('#app');
