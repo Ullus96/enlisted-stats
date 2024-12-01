@@ -1,8 +1,18 @@
 <template>
 	<div class="container mt-l">
 		<div class="container-sm">
+			<h3>Настройки</h3>
+			<TabsComponent
+				:tabs="[
+					{ id: 'test', text: 'Тестовый' },
+					{ id: 'profile', text: 'Профиль' },
+					{ id: 'app', text: 'Приложение' },
+				]"
+				:default-tab="$store.state.user.isLoggedIn ? 'profile' : 'app'"
+			/>
+
 			<template v-if="$store.state.user.isLoggedIn">
-				<h3>Настройки профиля</h3>
+				<h3 class="mt-l">Настройки профиля</h3>
 
 				<div class="profile__avatar-block">
 					<img
@@ -135,9 +145,10 @@ import {
 	loadFromLocalStorage,
 	saveToLocalStorage,
 } from '@/functions/localStorageUtils';
+import TabsComponent from '@/components/tabs/TabsComponent.vue';
 
 export default defineComponent({
-	components: { InputComponent, DialogComponent },
+	components: { InputComponent, DialogComponent, TabsComponent },
 	setup() {
 		const auth = getAuth();
 		const user = auth.currentUser;

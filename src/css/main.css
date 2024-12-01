@@ -3186,4 +3186,22 @@ h3 {
   left: 0;
   right: 0;
   z-index: 50;
+}
+
+.tabs {
+  margin-top: 2rem;
+  display: flex;
+}
+.tabs__tab {
+  padding: 0.8rem 1.2rem;
+  color: rgb(116, 116, 116);
+  border-bottom: 2px solid rgb(116, 116, 116);
+  transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
+}
+.tabs__tab.active {
+  color: rgb(226, 226, 226);
+  border-bottom: 2px solid rgb(226, 226, 226);
+}
+.tabs__tab:focus {
+  outline: none;
 }/*# sourceMappingURL=main.css.map */

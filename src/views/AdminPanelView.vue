@@ -1,9 +1,4 @@
 <template>
-	<!-- <div class="profile__body">
-			<p v-if="!activeTab">Выбери какой-нибудь пункт</p>
-			<admin-events v-if="activeTab == 'events'"></admin-events>
-		</div>
-	</div>  -->
 	<div class="container mt-l">
 		<div class="container-sm">
 			<h3>Панель администратора</h3>
@@ -39,7 +34,6 @@ export default defineComponent({
 	setup() {
 		type TActiveTab = 'events' | 'placeholder';
 		const activeTab: Ref<TActiveTab | null> = ref(null);
-		const animationStart: Ref<boolean> = ref(false);
 
 		function setActiveTab(name: TActiveTab) {
 			activeTab.value = name;
@@ -48,7 +42,6 @@ export default defineComponent({
 		return {
 			activeTab,
 			setActiveTab,
-			animationStart,
 		};
 	},
 });

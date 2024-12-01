@@ -96,7 +96,7 @@ const routes: Array<RouteRecordRaw & { meta?: ICustomRouteMeta }> = [
 	{
 		path: '/settings',
 		name: 'Settings',
-		component: () => import('@/views/ProfileView.vue'),
+		component: () => import('@/views/SettingsView.vue'),
 		meta: {
 			title: 'Настройки',
 		},
