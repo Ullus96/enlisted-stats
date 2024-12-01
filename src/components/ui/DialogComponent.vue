@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, Ref, ref, useSlots } from 'vue';
+import { defineComponent, PropType, useSlots } from 'vue';
 import { IDialogState } from '@/store/index';
 import { useStore } from '@/store/useStore';
 import IconBase from '@/components/ui/icon/IconBase.vue';
