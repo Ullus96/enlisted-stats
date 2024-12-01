@@ -99,20 +99,20 @@
 				</div>
 			</section>
 		</div>
+
+		<DialogComponent
+			:dialogName="'isDeletingAccount'"
+			v-if="$store.state.dialog.isDeletingAccount"
+			:yes="{ text: 'Удалить', type: 'primary' }"
+			:no="{ text: 'Отмена', type: 'tertiary' }"
+			@confirm="deleteAccount"
+		>
+			<template #title>Удалить учетную запись?</template>
+
+			Это действие необратимо. Возможности восстановить учетную запись, а так же
+			все сохраненные сборки - не будет.
+		</DialogComponent>
 	</div>
-
-	<DialogComponent
-		:dialogName="'isDeletingAccount'"
-		v-if="$store.state.dialog.isDeletingAccount"
-		:yes="{ text: 'Удалить', type: 'primary' }"
-		:no="{ text: 'Отмена', type: 'tertiary' }"
-		@confirm="deleteAccount"
-	>
-		<template #title>Удалить учетную запись?</template>
-
-		Это действие необратимо. Возможности восстановить учетную запись, а так же
-		все сохраненные сборки - не будет.
-	</DialogComponent>
 </template>
 
 <script lang="ts">

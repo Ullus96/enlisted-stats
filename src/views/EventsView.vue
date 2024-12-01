@@ -3,7 +3,7 @@
 		<loading-spinner class="mt-xl mb-xl"></loading-spinner>
 	</template>
 
-	<template v-else>
+	<div v-else>
 		<template v-if="!isEventsEnded()">
 			<the-event
 				v-for="item in events"
@@ -12,7 +12,7 @@
 			></the-event>
 		</template>
 		<no-events v-else></no-events>
-	</template>
+	</div>
 </template>
 
 <script lang="ts">
