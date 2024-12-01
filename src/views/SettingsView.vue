@@ -1,6 +1,20 @@
 <template>
 	<div class="container mt-l">
-		<div class="container-sm">
+		<div class="container-sm" v-if="isLoading">
+			<h3>Настройки</h3>
+			<div class="tabs skeleton__tabs">
+				<div class="skeleton__tab" v-for="n in 3" :key="n"></div>
+			</div>
+			<div class="skeleton__title mt-l"></div>
+			<div class="skeleton__flex-col">
+				<div class="skeleton__desc"></div>
+				<div class="skeleton__desc"></div>
+				<div class="skeleton__desc"></div>
+				<div class="skeleton__desc skeleton__desc--short"></div>
+			</div>
+		</div>
+
+		<div class="container-sm" v-else>
 			<h3>Настройки</h3>
 
 			<TabsComponent
@@ -172,10 +186,17 @@ export default defineComponent({
 		const store = useStore();
 		const router = useRouter();
 
+		const isLoading: Ref<boolean> = ref(true);
+
 		onBeforeMount(() => {
 			onAuthStateChanged(auth, (firebaseUser) => {
 				user.value = firebaseUser;
-				tabsList.unshift({ id: 'profile', text: 'Профиль' });
+
+				if (firebaseUser) {
+					tabsList.unshift({ id: 'profile', text: 'Профиль' });
+				}
+
+				isLoading.value = false;
 			});
 		});
 
@@ -265,6 +286,7 @@ export default defineComponent({
 		return {
 			auth,
 			user,
+			isLoading,
 			tabsList,
 			activeTab,
 			inputName,

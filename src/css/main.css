@@ -2029,6 +2029,37 @@ h3 {
   height: 100%;
 }
 
+.skeleton__tabs {
+  gap: 0.8rem;
+}
+.skeleton__tab {
+  width: 10rem;
+  height: 3rem;
+  background: rgb(57, 57, 57);
+  border-radius: 0.4rem;
+}
+.skeleton__title {
+  height: 2.4rem;
+  width: 24rem;
+  border-radius: 0.4rem;
+  background: rgb(57, 57, 57);
+}
+.skeleton__flex-col {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.skeleton__desc {
+  height: 1.4rem;
+  width: 80%;
+  border-radius: 0.4rem;
+  background: rgb(57, 57, 57);
+}
+.skeleton__desc--short {
+  width: 35%;
+}
+
 .event__title {
   text-align: center;
 }

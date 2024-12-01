@@ -1,0 +1,37 @@
+.skeleton {
+	&__tabs {
+		gap: 0.8rem;
+	}
+
+	&__tab {
+		width: 10rem;
+		height: 3rem;
+		background: $color-text-900;
+		border-radius: 0.4rem;
+	}
+
+	&__title {
+		height: 2.4rem;
+		width: 24rem;
+		border-radius: 0.4rem;
+		background: $color-text-900;
+	}
+
+	&__flex-col {
+		margin-top: 1.6rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+	}
+
+	&__desc {
+		height: 1.4rem;
+		width: 80%;
+		border-radius: 0.4rem;
+		background: $color-text-900;
+
+		&--short {
+			width: 35%;
+		}
+	}
+}
