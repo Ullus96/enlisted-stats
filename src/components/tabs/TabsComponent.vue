@@ -1,20 +1,20 @@
 <template>
 	<div class="tabs">
 		<button
-			@click="setActiveTab(item.id)"
+			@click="setActiveTab(tab.id)"
 			class="btn btn-tertiary tabs__tab"
-			:class="{ active: activeTab === item.id }"
+			:class="{ active: activeTab === tab.id }"
 			v-ripple
-			v-for="(item, idx) in tabs"
-			:key="`${item}-${idx}`"
+			v-for="(tab, idx) in tabs"
+			:key="`${tab}-${idx}`"
 		>
-			{{ item.text }}
+			{{ tab.text }}
 		</button>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, Ref } from 'vue';
+import { defineComponent, onMounted, PropType, ref, Ref } from 'vue';
 import { TabsStructure } from './types';
 
 export default defineComponent({
@@ -33,9 +33,11 @@ export default defineComponent({
 		type TabId = (typeof props.tabs)[number]['id'];
 		const activeTab: Ref<TabId | null> = ref(null);
 
-		if (props.defaultTab && allowedIds.includes(props.defaultTab)) {
-			setActiveTab(props.defaultTab);
-		}
+		onMounted(() => {
+			if (props.defaultTab && allowedIds.includes(props.defaultTab)) {
+				setActiveTab(props.defaultTab);
+			}
+		});
 
 		function setActiveTab(name: TabId) {
 			activeTab.value = name;

@@ -2,13 +2,15 @@
 	<div class="container mt-l">
 		<div class="container-sm">
 			<h3>Настройки</h3>
+
 			<TabsComponent
-				:tabs="[
-					{ id: 'test', text: 'Тестовый' },
-					{ id: 'profile', text: 'Профиль' },
-					{ id: 'app', text: 'Приложение' },
-				]"
-				:default-tab="$store.state.user.isLoggedIn ? 'profile' : 'app'"
+				:tabs="tabsList"
+				:default-tab="user ? 'profile' : 'app'"
+				@setActiveTab="
+					(tab) => {
+						activeTab = tab;
+					}
+				"
 			/>
 
 			<template v-if="$store.state.user.isLoggedIn">
@@ -126,8 +128,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, watch } from 'vue';
-import { deleteUser, getAuth, updateProfile } from 'firebase/auth';
+import {
+	defineComponent,
+	onBeforeMount,
+	onMounted,
+	Ref,
+	ref,
+	watch,
+} from 'vue';
+import {
+	deleteUser,
+	getAuth,
+	onAuthStateChanged,
+	updateProfile,
+	User,
+} from 'firebase/auth';
 import { useStore } from '@/store/useStore';
 import { useRouter } from 'vue-router';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
@@ -146,15 +161,30 @@ import {
 	saveToLocalStorage,
 } from '@/functions/localStorageUtils';
 import TabsComponent from '@/components/tabs/TabsComponent.vue';
+import { TabsStructure } from '@/components/tabs/types';
 
 export default defineComponent({
 	components: { InputComponent, DialogComponent, TabsComponent },
 	setup() {
 		const auth = getAuth();
-		const user = auth.currentUser;
+		const user: Ref<User | null> = ref(null);
+
 		const store = useStore();
 		const router = useRouter();
 
+		onBeforeMount(() => {
+			onAuthStateChanged(auth, (firebaseUser) => {
+				user.value = firebaseUser;
+				tabsList.unshift({ id: 'profile', text: 'Профиль' });
+			});
+		});
+
+		// Табы
+		const tabsList: TabsStructure = [{ id: 'app', text: 'Приложение' }];
+
+		const activeTab: Ref<(typeof tabsList)[number]['id'] | null> = ref(null);
+
+		// Сами настройки
 		const inputName: Ref<string | null> = ref(null);
 
 		function modifyInputData(newValue: string) {
@@ -190,25 +220,25 @@ export default defineComponent({
 
 		// Удаление
 		function deleteAccount() {
-			if (!user) return;
+			if (!user.value) return;
 
-			deleteUser(user)
+			const uid = user.value.uid;
+
+			deleteUser(user.value)
 				.then(() => {
-					// User deleted.
-					const docRef = doc(db, 'users', user.uid);
-
+					const docRef = doc(db, 'users', uid);
 					try {
 						deleteDoc(docRef);
 						createPopUp(store, POPUP_DELETE_USER_SUCCESS);
 						router.push('/');
 					} catch (error: any) {
 						createPopUp(store, POPUP_DELETE_USER_ERROR);
-						console.log(error.message);
+						console.error(error.message);
 					}
 				})
 				.catch((error) => {
 					createPopUp(store, POPUP_DELETE_USER_ERROR);
-					console.log(error.message);
+					console.error(error.message);
 				});
 		}
 
@@ -234,6 +264,9 @@ export default defineComponent({
 
 		return {
 			auth,
+			user,
+			tabsList,
+			activeTab,
 			inputName,
 			modifyInputData,
 			updateDisplayName,
