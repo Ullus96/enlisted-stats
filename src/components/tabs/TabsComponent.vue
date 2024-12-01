@@ -15,12 +15,13 @@
 
 <script lang="ts">
 import { defineComponent, PropType, ref, Ref } from 'vue';
+import { TabsStructure } from './types';
 
 export default defineComponent({
 	props: {
 		tabs: {
 			required: true,
-			type: Array as PropType<{ id: string; text: string }[]>,
+			type: Array as PropType<TabsStructure>,
 		},
 		defaultTab: {
 			required: false,

@@ -3,16 +3,14 @@
 		<div class="container-sm">
 			<h3>Панель администратора</h3>
 
-			<div class="admin__tabs">
-				<button
-					@click="setActiveTab('events')"
-					class="btn btn-tertiary admin__tab"
-					:class="{ active: activeTab == 'events' }"
-					v-ripple
-				>
-					События
-				</button>
-			</div>
+			<TabsComponent
+				:tabs="tabsList"
+				@setActiveTab="
+					(val) => {
+						activeTab = val;
+					}
+				"
+			/>
 
 			<transition name="slide-fade" mode="out-in">
 				<AdminEvents v-if="activeTab === 'events'" key="events" />
@@ -28,39 +26,27 @@
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue';
 import AdminEvents from '@/components/admin/AdminEvents.vue';
+import TabsComponent from '@/components/tabs/TabsComponent.vue';
+import { TabsStructure } from '@/components/tabs/types';
 
 export default defineComponent({
-	components: { AdminEvents },
+	components: { AdminEvents, TabsComponent },
 	setup() {
-		type TActiveTab = 'events' | 'placeholder';
-		const activeTab: Ref<TActiveTab | null> = ref(null);
+		const tabsList: TabsStructure = [
+			{
+				id: 'events',
+				text: 'События',
+			},
+		];
 
-		function setActiveTab(name: TActiveTab) {
-			activeTab.value = name;
-		}
+		const activeTab: Ref<(typeof tabsList)[number]['id'] | null> = ref(null);
 
 		return {
+			tabsList,
 			activeTab,
-			setActiveTab,
 		};
 	},
 });
 </script>
 
-<style scoped>
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-	transition: opacity 0.4s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-	transform: translateX(-10rem);
-	opacity: 0;
-}
-.slide-fade-enter-to,
-.slide-fade-leave-from {
-	transform: translateX(0rem);
-	opacity: 1;
-}
-</style>
+<style scoped></style>
