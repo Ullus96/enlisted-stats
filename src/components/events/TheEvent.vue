@@ -197,7 +197,6 @@ import {
 	ref,
 } from 'vue';
 import EventsCard from '@/components/events/EventsCard.vue';
-import EventsCardTop from '@/components/events/EventsCardTop.vue';
 import EventsCountdownCard from '@/components/events/EventsCountdownCard.vue';
 import { IEvent, IEventFirestore } from '@/type/Events';
 import IconBase from '@/components/ui/icon/IconBase.vue';
@@ -214,7 +213,6 @@ import {
 export default defineComponent({
 	components: {
 		EventsCard,
-		EventsCardTop,
 		EventsCountdownCard,
 		IconBase,
 		IconQuestion,
