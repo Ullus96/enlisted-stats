@@ -45,6 +45,12 @@ export default defineComponent({
 			if (button) {
 				button.blur();
 			}
+
+			const link = target.closest('a') as HTMLAnchorElement | null;
+
+			if (link) {
+				link.blur();
+			}
 		});
 
 		return {};
