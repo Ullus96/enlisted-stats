@@ -166,4 +166,13 @@ router.beforeEach(async (to, from, next) => {
 	}
 });
 
+router.afterEach(() => {
+	setTimeout(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
+	}, 0);
+});
+
 export default router;

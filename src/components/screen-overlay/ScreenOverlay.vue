@@ -28,28 +28,6 @@ export default defineComponent({
 			return Object.values(store.state.dialog).some((value) => value);
 		});
 
-		watch(
-			() => isAnyModalVisible.value,
-			(visible) => {
-				if (visible) {
-					document.body.style.overflow = 'hidden';
-				} else {
-					document.body.style.overflow = '';
-				}
-			}
-		);
-
-		watch(
-			() => isAnyDialogVisible.value,
-			(visible) => {
-				if (visible) {
-					document.body.style.overflow = 'hidden';
-				} else {
-					document.body.style.overflow = '';
-				}
-			}
-		);
-
 		return {
 			isAnyModalVisible,
 			isAnyDialogVisible,

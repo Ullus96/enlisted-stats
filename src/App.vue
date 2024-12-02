@@ -7,7 +7,7 @@
 		<the-aside></the-aside>
 		<main class="main">
 			<router-view v-slot="{ Component }">
-				<transition name="route">
+				<transition name="route" mode="out-in">
 					<component :is="Component" />
 				</transition>
 			</router-view>
