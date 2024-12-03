@@ -867,111 +867,6 @@ h3 {
   display: block;
 }
 
-.modal {
-  z-index: 40;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: clamp(20rem, 100% - 4rem, 34rem);
-  margin: 0 auto;
-  padding: 3.2rem 2rem 2rem;
-  background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
-  border-radius: 1.2rem;
-  text-align: center;
-}
-.modal__btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 1.2rem;
-}
-.modal__title {
-  margin: 0 auto;
-  text-wrap: balance;
-}
-.modal__google-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: rgb(226, 226, 226);
-  margin: 6rem auto 0;
-  padding: 1.2rem 1.2rem;
-  border-radius: 0.8rem;
-  gap: 1.2rem;
-}
-@media (hover: hover) {
-  .modal__google-btn:hover {
-    background-color: #dbdbdb;
-  }
-}
-@media (hover: none) {
-  .modal__google-btn:active {
-    background-color: #dbdbdb;
-  }
-}
-.modal__google-btn:focus {
-  outline: 1px solid #353535;
-  background-color: #cdcdcd;
-}
-.modal__google-icon {
-  flex: 0 0 auto;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.modal__google-text {
-  color: rgb(53, 53, 53);
-}
-.modal__legal {
-  margin-top: 6rem;
-  font-size: 1.4rem;
-  color: rgb(165, 165, 165);
-}
-.modal__link {
-  color: rgb(175, 61, 61);
-  text-decoration: underline;
-}
-.modal__body {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 2rem;
-  text-align: left;
-  color: rgb(165, 165, 165);
-  margin-top: 2.4rem;
-  font-size: 1.4rem;
-}
-.modal__contacts {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-.modal__contact {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-size: 1.6rem;
-  color: rgb(226, 226, 226);
-}
-.modal__contact.modal__link {
-  text-decoration: underline;
-}
-.modal__desc {
-  font-size: 1.4rem;
-}
-.modal__input-checkbox {
-  display: flex;
-  align-items: center;
-  color: rgb(226, 226, 226);
-  gap: 0.8rem;
-}
-.modal__confirm {
-  margin-top: 2rem;
-  width: 100%;
-}
-
 .profile__avatar-block {
   display: flex;
   align-items: center;
@@ -3268,4 +3163,118 @@ h3 {
 }
 .tabs__tab:focus {
   outline: none;
+}
+
+.modal {
+  z-index: 40;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(20rem, 100% - 4rem, 34rem);
+  margin: 0 auto;
+  padding: 3.2rem 2rem 2rem;
+  background-color: rgba(35, 35, 35, 0.75);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  border-radius: 1.2rem;
+  text-align: center;
+}
+.modal__btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 1.2rem;
+}
+.modal__title {
+  margin: 0 auto;
+  text-wrap: balance;
+}
+.modal__google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(226, 226, 226);
+  margin: 6rem auto 0;
+  padding: 1.2rem 1.2rem;
+  border-radius: 0.8rem;
+  gap: 1.2rem;
+}
+@media (hover: hover) {
+  .modal__google-btn:hover {
+    background-color: #dbdbdb;
+  }
+}
+@media (hover: none) {
+  .modal__google-btn:active {
+    background-color: #dbdbdb;
+  }
+}
+.modal__google-btn:focus {
+  outline: 1px solid #353535;
+  background-color: #cdcdcd;
+}
+.modal__google-icon {
+  flex: 0 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.modal__google-text {
+  color: rgb(53, 53, 53);
+}
+.modal__legal {
+  margin-top: 6rem;
+  font-size: 1.4rem;
+  color: rgb(165, 165, 165);
+}
+.modal__link {
+  color: rgb(175, 61, 61);
+  text-decoration: underline;
+}
+.modal__body {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: left;
+  color: rgb(165, 165, 165);
+  margin-top: 2.4rem;
+  font-size: 1.4rem;
+}
+.modal__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.modal__contact {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.6rem;
+  color: rgb(226, 226, 226);
+}
+.modal__contact.modal__link {
+  text-decoration: underline;
+}
+.modal__footer {
+  margin-top: 4rem;
+  display: flex;
+  gap: 1.6rem;
+  width: 100%;
+}
+.modal__footer .btn {
+  flex: 1 1 auto;
+}
+.modal__desc {
+  font-size: 1.4rem;
+}
+.modal__input-checkbox {
+  display: flex;
+  align-items: center;
+  color: rgb(226, 226, 226);
+  gap: 0.8rem;
+}
+.modal__confirm {
+  margin-top: 2rem;
+  width: 100%;
 }/*# sourceMappingURL=main.css.map */

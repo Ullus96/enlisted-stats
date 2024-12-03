@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ModalComponent from '@/components/ui/ModalComponent.vue';
+import ModalComponent from '@/components/modal/ModalComponent.vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
 import IconDiscord from '@/components/ui/icon/icons/IconDiscord.vue';
 import IconLetter from '@/components/ui/icon/icons/IconLetter.vue';

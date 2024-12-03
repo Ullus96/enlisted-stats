@@ -96,6 +96,17 @@
 		text-decoration: underline;
 	}
 
+	&__footer {
+		margin-top: 4rem;
+		display: flex;
+		gap: 1.6rem;
+		width: 100%;
+
+		& .btn {
+			flex: 1 1 auto;
+		}
+	}
+
 	// Save Modal
 	&__desc {
 		font-size: $ui-font-size-s;

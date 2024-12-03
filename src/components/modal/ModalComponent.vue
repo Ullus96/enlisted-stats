@@ -24,8 +24,16 @@
 
 			<slot name="default"></slot>
 
-			<div class="modal__footer" v-if="slots.footer">
+			<div class="modal__footer" v-if="slots.footer || closeBtn">
 				<slot name="footer"></slot>
+				<button
+					v-if="closeBtn"
+					class="btn btn-m"
+					:class="`btn-${closeBtn.variant}`"
+					@click="closeModal"
+				>
+					{{ closeBtn.text }}
+				</button>
 			</div>
 		</section>
 	</Teleport>
@@ -34,6 +42,7 @@
 <script lang="ts">
 import { defineComponent, PropType, useSlots } from 'vue';
 import { IModalState } from '@/store/index';
+import { IModalCloseBtn } from './types';
 import { useStore } from '@/store/useStore';
 import IconBase from '@/components/ui/icon/IconBase.vue';
 import IconTimes from '@/components/ui/icon/icons/IconTimes.vue';
@@ -43,6 +52,10 @@ export default defineComponent({
 		modalName: {
 			required: true,
 			type: String as PropType<keyof IModalState>,
+		},
+		closeBtn: {
+			required: false,
+			type: Object as PropType<IModalCloseBtn>,
 		},
 	},
 	components: { IconBase, IconTimes },
