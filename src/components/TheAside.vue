@@ -218,7 +218,7 @@
 	></div>
 
 	<template v-if="mounted">
-		<Teleport to="#page">
+		<Teleport to="#screen-bottom">
 			<div class="aside__hamburger-wrapper">
 				<button
 					class="btn btn-secondary aside__hamburger-btn"

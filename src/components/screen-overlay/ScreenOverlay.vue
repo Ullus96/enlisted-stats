@@ -6,9 +6,6 @@
 			display: screenOverlayVisibility,
 		}"
 	></div>
-	<div class="screen-bottom" id="screen-bottom">
-		<PopUpHandler />
-	</div>
 </template>
 
 <script lang="ts">
@@ -37,10 +34,10 @@ export default defineComponent({
 			(visible) => {
 				if (visible) {
 					screenOverlayVisibility.value = 'block';
-					// document.body.style.overflow = 'hidden';
+					document.body.style.overflow = 'hidden';
 				} else {
 					screenOverlayVisibility.value = 'none';
-					// document.body.style.overflow = '';
+					document.body.style.overflow = '';
 				}
 			}
 		);
@@ -50,10 +47,10 @@ export default defineComponent({
 			(visible) => {
 				if (visible) {
 					screenOverlayVisibility.value = 'block';
-					// document.body.style.overflow = 'hidden';
+					document.body.style.overflow = 'hidden';
 				} else {
 					screenOverlayVisibility.value = 'none';
-					// document.body.style.overflow = '';
+					document.body.style.overflow = '';
 				}
 			}
 		);

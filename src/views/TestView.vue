@@ -56,6 +56,25 @@
 			>
 				Delete a popup
 			</button>
+			<button
+				class="btn btn-m btn-secondary"
+				@click="$store.state.dialog.isSwitchingBuildVisibility = true"
+				v-ripple
+			>
+				Dialog
+			</button>
+
+			<DialogComponent
+				:dialogName="'isSwitchingBuildVisibility'"
+				v-if="$store.state.dialog.isSwitchingBuildVisibility"
+				:yes="{ text: 'Переключить', type: 'primary' }"
+				:no="{ text: 'Отмена', type: 'tertiary' }"
+			>
+				<template #title>Переключить видимость?</template>
+
+				Это действие переключит видимость сборки >.
+			</DialogComponent>
+
 			<p>-</p>
 			<p>-</p>
 			<p>-</p>
@@ -91,8 +110,10 @@ import {
 	POPUP_DELETE_USER_SUCCESS,
 	POPUP_DELETE_USER_ERROR,
 } from '@/components/popup/data';
+import DialogComponent from '@/components/ui/DialogComponent.vue';
 
 export default defineComponent({
+	components: { DialogComponent },
 	setup() {
 		const store = useStore();
 

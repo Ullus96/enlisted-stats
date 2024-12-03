@@ -54,3 +54,9 @@
 .aside:hover ~ .main {
 	margin-left: calc(7.2rem - 24rem);
 }
+
+@include desktop-small {
+	.aside:hover ~ .main {
+		margin-left: 0;
+	}
+}

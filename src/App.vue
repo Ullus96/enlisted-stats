@@ -1,4 +1,7 @@
 <template>
+	<div class="screen-bottom" id="screen-bottom">
+		<PopUpHandler />
+	</div>
 	<div class="page-wrapper" id="page">
 		<ScreenOverlay />
 
@@ -23,6 +26,7 @@ import SettingsInit from './components/init/SettingsInit.vue';
 import VuexDebug from './components/debug/VuexDebug.vue';
 import { defineComponent } from 'vue';
 import ScreenOverlay from './components/screen-overlay/ScreenOverlay.vue';
+import PopUpHandler from './components/popup/PopUpHandler.vue';
 
 export default defineComponent({
 	name: 'App',
@@ -32,6 +36,7 @@ export default defineComponent({
 		SettingsInit,
 		VuexDebug,
 		ScreenOverlay,
+		PopUpHandler,
 	},
 	setup() {
 		// Убираем фокус кнопки при клике

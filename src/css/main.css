@@ -349,6 +349,11 @@ h3 {
   margin-left: -16.8rem;
 }
 
+@media (max-width: 1123px) {
+  .aside:hover ~ .main {
+    margin-left: 0;
+  }
+}
 .btn {
   line-height: 100%;
 }
@@ -1454,6 +1459,7 @@ h3 {
   z-index: 30;
   bottom: 2.4rem;
   right: 2.4rem;
+  transform: translate(calc(100% - 2.4rem - 5rem), -7.4rem);
 }
 @media (max-width: 1123px) {
   .aside__hamburger-wrapper {
@@ -1510,8 +1516,13 @@ h3 {
     opacity: 0;
   }
   .aside.visible {
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    left: 0;
     display: flex;
     width: clamp(75%, 24rem, 100%);
+    margin-right: calc(clamp(75%, 24rem, 100%) * -1);
   }
   .aside.visible .aside__profile {
     padding-right: 2rem;
@@ -1545,7 +1556,7 @@ h3 {
     display: block;
   }
   .aside.visible .aside:hover {
-    width: 80%;
+    width: clamp(75%, 24rem, 100%);
   }
   .aside.visible .aside:hover__profile {
     padding-right: 2rem;
