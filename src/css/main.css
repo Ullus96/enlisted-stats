@@ -2079,7 +2079,7 @@ h3 {
   transform: rotateZ(4deg) scale(0.9);
 }
 .event__card .tooltip {
-  transition: opacity 0.18s 0.15s ease-in, visibility 0.2s 0.2s ease-in;
+  transition: opacity 0.18s 0.15s cubic-bezier(0.68, -0.55, 0.27, 1.55), visibility 0.2s 0.2s ease-in;
 }
 .event__card:hover .tooltip {
   visibility: visible;
