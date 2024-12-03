@@ -10,6 +10,8 @@
 	white-space: nowrap;
 	display: flex;
 	flex-direction: column;
+	flex: 0 0 auto;
+
 	transition: width 0.2s ease-in-out;
 
 	&__profile {
