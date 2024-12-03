@@ -2085,7 +2085,7 @@ h3 {
   color: rgb(165, 165, 165);
 }
 .event__content {
-  margin-top: 6rem;
+  margin-top: 4rem;
   display: flex;
   justify-content: space-between;
   gap: 10rem;
@@ -2111,8 +2111,7 @@ h3 {
 }
 .event__header {
   display: flex;
-  align-items: baseline;
-  justify-content: center;
+  align-items: center;
   gap: 0.8rem;
 }
 .event__header .btn {
@@ -2121,16 +2120,16 @@ h3 {
 }
 @media (max-width: 849px) {
   .event__header {
+    justify-content: center;
     align-items: center;
     text-wrap: balance;
-    text-align: center;
   }
 }
 .event__cards-flex {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 @media (max-width: 849px) {
   .event__cards-flex {
@@ -2241,7 +2240,7 @@ h3 {
   }
 }
 .event__right-col {
-  margin-top: 8rem;
+  margin-top: 6rem;
   flex: 0.5 0.5 45rem;
 }
 @media (max-width: 849px) {

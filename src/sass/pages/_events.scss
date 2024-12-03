@@ -9,7 +9,7 @@
 	}
 
 	&__content {
-		margin-top: 6rem;
+		margin-top: 4rem;
 		display: flex;
 		justify-content: space-between;
 		gap: 10rem;
@@ -34,8 +34,7 @@
 
 	&__header {
 		display: flex;
-		align-items: baseline;
-		justify-content: center;
+		align-items: center;
 		gap: 0.8rem;
 
 		& .btn {
@@ -44,9 +43,9 @@
 		}
 
 		@include tablet {
+			justify-content: center;
 			align-items: center;
 			text-wrap: balance;
-			text-align: center;
 		}
 	}
 
@@ -54,7 +53,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 2rem;
-		margin-top: 4rem;
+		margin-top: 2rem;
 
 		@include tablet {
 			justify-content: center;
@@ -170,7 +169,7 @@
 
 	// Right column
 	&__right-col {
-		margin-top: 8rem;
+		margin-top: 6rem;
 		flex: 0.5 0.5 45rem;
 
 		@include tablet {

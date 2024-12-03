@@ -5,8 +5,8 @@
 
 			<div class="event__content">
 				<div class="event__left-col">
-					<div class="event__header tooltip-anchor">
-						<h2>Все награды события</h2>
+					<span class="event__header">
+						<h3>Все награды события</h3>
 						<div class="tooltip-anchor">
 							<TooltipComponent :direction="'top'" :width="37.5">
 								<p>
@@ -24,7 +24,7 @@
 								</IconBase>
 							</button>
 						</div>
-					</div>
+					</span>
 
 					<div class="event__cards-flex">
 						<events-card
