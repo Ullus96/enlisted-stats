@@ -190,13 +190,12 @@
 
 	// Mobile layout
 	&__hamburger-wrapper {
-		position: sticky;
+		position: fixed;
 		display: none;
-		margin: -4.8rem 0 0 auto;
 		z-index: 30;
 		bottom: 2.4rem;
 		right: 2.4rem;
-		transform: translate(calc(100% - 2.4rem - 5rem), calc(-2.4rem - 5rem));
+		// transform: translate(calc(100% - 2.4rem - 5rem), calc(-2.4rem - 5rem));
 
 		@include desktop-small {
 			display: flex;

@@ -1453,13 +1453,11 @@ h3 {
   display: block;
 }
 .aside__hamburger-wrapper {
-  position: sticky;
+  position: fixed;
   display: none;
-  margin: -4.8rem 0 0 auto;
   z-index: 30;
   bottom: 2.4rem;
   right: 2.4rem;
-  transform: translate(calc(100% - 2.4rem - 5rem), -7.4rem);
 }
 @media (max-width: 1123px) {
   .aside__hamburger-wrapper {
