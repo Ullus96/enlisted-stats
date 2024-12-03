@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --color-text-700: rgb(116, 116, 116);
 }
@@ -327,43 +328,25 @@ h3 {
 .page-wrapper {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   min-height: 100vh;
-}
-
-.visible-screen {
-  position: sticky;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 100dvh;
-  margin-top: -100dvh;
-  display: grid;
-  place-items: center;
-}
-
-#visible-screen-40 {
-  z-index: 40;
-}
-
-.screen-bottom {
-  position: sticky;
-  transform: translateY(100dvh);
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
 }
 
 .main {
   margin-bottom: 6.4rem;
   flex-grow: 1;
   padding-left: 7.2rem;
+  margin-left: 0;
+  transition: margin-left 0.2s ease-in-out;
 }
 @media (max-width: 1123px) {
   .main {
     padding-left: 0;
   }
+}
+
+.aside:hover ~ .main {
+  margin-left: -16.8rem;
 }
 
 .btn {
@@ -843,9 +826,12 @@ h3 {
   }
 }
 .page-mask {
-  position: absolute;
+  position: fixed; /* фиксируем маску относительно экрана */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* перекрываем весь экран */
   z-index: 20;
-  inset: 0 0 0 0;
   background-color: rgba(18, 18, 18, 0.4);
   opacity: 1;
   animation: fade-in 0.1s ease-in;
@@ -855,9 +841,12 @@ h3 {
 }
 
 .page-mask-darker {
-  position: absolute;
+  position: fixed; /* фиксируем маску относительно экрана */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* перекрываем весь экран */
   z-index: 20;
-  inset: 0 0 0 0;
   background-color: rgba(18, 18, 18, 0.6);
   opacity: 1;
   animation: fade-in 0.1s ease-in;
@@ -1281,10 +1270,8 @@ h3 {
 
 .aside {
   position: sticky;
-  margin-top: -100dvh;
   top: 0;
   height: 100dvh;
-  left: 0;
   width: 7.2rem;
   padding: 2.4rem 0 1.2rem;
   background-color: rgba(35, 35, 35, 0.75);
@@ -1674,6 +1661,12 @@ h3 {
   margin: 1.6rem 0;
 }
 
+.dialog {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: 80dvh;
+}
 .dialog__title {
   margin: 0 auto;
   text-wrap: balance;
@@ -3124,14 +3117,16 @@ h3 {
 }
 
 .visible-screen {
-  position: sticky;
+  display: none;
+  position: fixed;
   left: 0;
-  right: 0;
   top: 0;
-  height: 100dvh;
-  margin-top: -100dvh;
-  display: grid;
-  place-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 40;
 }
 
 #visible-screen-40 {
@@ -3167,7 +3162,10 @@ h3 {
 
 .modal {
   z-index: 40;
-  position: relative;
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: 80dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3241,7 +3239,7 @@ h3 {
   margin-top: 2.4rem;
   font-size: 1.4rem;
 }
-.modal__accent, .modal__body span {
+.modal__accent {
   color: rgb(175, 61, 61);
   font-weight: 700;
 }

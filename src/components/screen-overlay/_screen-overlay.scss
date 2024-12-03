@@ -1,12 +1,14 @@
 .visible-screen {
-	position: sticky;
+	display: none;
+	position: fixed;
 	left: 0;
-	right: 0;
 	top: 0;
-	height: 100dvh;
-	margin-top: -100dvh;
-	display: grid;
-	place-items: center;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 40;
 }
 
 #visible-screen-40 {

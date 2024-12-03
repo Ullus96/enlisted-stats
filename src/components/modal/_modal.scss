@@ -1,7 +1,10 @@
 .modal {
 	// Base modal template styles
 	z-index: 40;
-	position: relative;
+	position: sticky;
+	top: 50%;
+	transform: translateY(-50%);
+	max-height: 80dvh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -78,8 +81,7 @@
 		font-size: $ui-font-size-s;
 	}
 
-	&__accent,
-	&__body span {
+	&__accent {
 		color: $color-primary-200;
 		font-weight: 700;
 	}

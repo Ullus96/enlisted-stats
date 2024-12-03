@@ -2,7 +2,9 @@
 	<div
 		class="visible-screen"
 		id="visible-screen-40"
-		v-if="isAnyModalVisible || isAnyDialogVisible"
+		:style="{
+			display: screenOverlayVisibility,
+		}"
 	></div>
 	<div class="screen-bottom" id="screen-bottom">
 		<PopUpHandler />
@@ -10,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, watch } from 'vue';
+import { computed, defineComponent, ref, Ref, watch } from 'vue';
 import { useStore } from '@/store/useStore';
 import PopUpHandler from '@/components/popup/PopUpHandler.vue';
 
@@ -28,9 +30,38 @@ export default defineComponent({
 			return Object.values(store.state.dialog).some((value) => value);
 		});
 
+		const screenOverlayVisibility: Ref<'block' | 'none'> = ref('none');
+
+		watch(
+			() => isAnyDialogVisible.value,
+			(visible) => {
+				if (visible) {
+					screenOverlayVisibility.value = 'block';
+					// document.body.style.overflow = 'hidden';
+				} else {
+					screenOverlayVisibility.value = 'none';
+					// document.body.style.overflow = '';
+				}
+			}
+		);
+
+		watch(
+			() => isAnyModalVisible.value,
+			(visible) => {
+				if (visible) {
+					screenOverlayVisibility.value = 'block';
+					// document.body.style.overflow = 'hidden';
+				} else {
+					screenOverlayVisibility.value = 'none';
+					// document.body.style.overflow = '';
+				}
+			}
+		);
+
 		return {
 			isAnyModalVisible,
 			isAnyDialogVisible,
+			screenOverlayVisibility,
 		};
 	},
 });
