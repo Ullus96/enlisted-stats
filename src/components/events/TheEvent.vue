@@ -7,23 +7,16 @@
 				<div class="event__left-col">
 					<span class="event__header">
 						<h3>Все награды события</h3>
-						<div class="tooltip-anchor">
-							<TooltipComponent :direction="'top'" :width="37.5">
-								<p>
-									Если пропустил награды, нажимай по пропущенным этапам
-									слева-направо.
-								</p>
-								<p>
-									В случае некорректного отображения наград - перезагрузи
-									страницу.
-								</p>
-							</TooltipComponent>
-							<button class="btn btn-sm btn-tertiary">
-								<IconBase>
-									<IconQuestionCircle />
-								</IconBase>
-							</button>
-						</div>
+						<button
+							class="btn btn-sm btn-tertiary"
+							@click="
+								$store.state.modal.isEventStageSkippingTutorialModalVisible = true
+							"
+						>
+							<IconBase>
+								<IconQuestionCircle />
+							</IconBase>
+						</button>
 					</span>
 
 					<div class="event__cards-flex">

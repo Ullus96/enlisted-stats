@@ -78,6 +78,12 @@
 		font-size: $ui-font-size-s;
 	}
 
+	&__accent,
+	&__body span {
+		color: $color-primary-200;
+		font-weight: 700;
+	}
+
 	&__contacts {
 		display: flex;
 		flex-direction: column;

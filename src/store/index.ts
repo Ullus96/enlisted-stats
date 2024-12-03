@@ -5,6 +5,7 @@ export interface IModalState {
 	isLoginModalVisible: boolean;
 	isContactsModalVisible: boolean;
 	isBuildSaveModalVisible: boolean;
+	isEventStageSkippingTutorialModalVisible: boolean;
 }
 
 export interface IDialogState {
@@ -55,6 +56,7 @@ export default createStore<State>({
 			isLoginModalVisible: false,
 			isContactsModalVisible: false,
 			isBuildSaveModalVisible: false,
+			isEventStageSkippingTutorialModalVisible: false,
 		},
 		dialog: {
 			isDeletingAccount: false,

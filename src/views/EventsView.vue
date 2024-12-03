@@ -10,6 +10,26 @@
 				:key="item.dbId"
 				:data="item"
 			></the-event>
+
+			<ModalComponent
+				:modal-name="'isEventStageSkippingTutorialModalVisible'"
+				v-if="$store.state.modal.isEventStageSkippingTutorialModalVisible"
+				:close-btn="{ text: 'Понятно', variant: 'primary' }"
+			>
+				<template #title> Пропуск этапов </template>
+				<template #body>
+					<p>
+						Чтобы отметить пропущенные этапы события, кликай по датам в порядке
+						<span>слева-направо</span>. Так ты сможешь перерасчитать актуальную
+						награду твоего текущего этапа.
+					</p>
+					<p>
+						Если вдруг награды отображаются некорректно, просто ещё раз пройди
+						все пропущенные этапы, начиная с самой ранней даты и до самой
+						поздней.
+					</p>
+				</template>
+			</ModalComponent>
 		</template>
 		<no-events v-else></no-events>
 	</div>
@@ -22,9 +42,10 @@ import { IEvent } from '@/type/Events';
 import NoEvents from '@/components/no-page/NoEvents.vue';
 import getEvents from '@/functions/getEvents';
 import LoadingSpinner from '@/components/ui/LoadingSpinner.vue';
+import ModalComponent from '@/components/modal/ModalComponent.vue';
 
 export default defineComponent({
-	components: { TheEvent, NoEvents, LoadingSpinner },
+	components: { TheEvent, NoEvents, LoadingSpinner, ModalComponent },
 	setup() {
 		const { events, error, loadEvents } = getEvents();
 		const isLoading: Ref<boolean> = ref(true);
