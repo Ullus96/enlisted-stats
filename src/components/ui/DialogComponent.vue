@@ -1,7 +1,7 @@
 <template>
 	<Teleport to="#visible-screen-40">
 		<div class="page-mask page-mask--above" @click.stop="closeDialog">
-			<section class="modal">
+			<section class="modal" @click.stop>
 				<button
 					class="btn btn-tertiary btn-sm modal__btn"
 					@click="closeDialog"
