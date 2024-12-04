@@ -1,41 +1,42 @@
 <template>
 	<Teleport to="#visible-screen-40">
-		<div class="page-mask page-mask--above" @click.stop="closeModal"></div>
-		<section class="modal">
-			<button
-				class="btn btn-tertiary btn-sm modal__btn"
-				@click="closeModal"
-				@keydown.esc="closeModal"
-				v-focus
-				v-ripple
-			>
-				<IconBase>
-					<IconTimes />
-				</IconBase>
-			</button>
-
-			<h3 class="modal__title" v-if="slots.title">
-				<slot name="title"> </slot>
-			</h3>
-
-			<div class="modal__body" v-if="slots.body">
-				<slot name="body"></slot>
-			</div>
-
-			<slot name="default"></slot>
-
-			<div class="modal__footer" v-if="slots.footer || closeBtn">
-				<slot name="footer"></slot>
+		<div class="page-mask page-mask--above" @click.stop="closeModal">
+			<section class="modal">
 				<button
-					v-if="closeBtn"
-					class="btn btn-m"
-					:class="`btn-${closeBtn.variant}`"
+					class="btn btn-tertiary btn-sm modal__btn"
 					@click="closeModal"
+					@keydown.esc="closeModal"
+					v-focus
+					v-ripple
 				>
-					{{ closeBtn.text }}
+					<IconBase>
+						<IconTimes />
+					</IconBase>
 				</button>
-			</div>
-		</section>
+
+				<h3 class="modal__title" v-if="slots.title">
+					<slot name="title"> </slot>
+				</h3>
+
+				<div class="modal__body" v-if="slots.body">
+					<slot name="body"></slot>
+				</div>
+
+				<slot name="default"></slot>
+
+				<div class="modal__footer" v-if="slots.footer || closeBtn">
+					<slot name="footer"></slot>
+					<button
+						v-if="closeBtn"
+						class="btn btn-m"
+						:class="`btn-${closeBtn.variant}`"
+						@click="closeModal"
+					>
+						{{ closeBtn.text }}
+					</button>
+				</div>
+			</section>
+		</div>
 	</Teleport>
 </template>
 

@@ -2,9 +2,8 @@
 	<div class="screen-bottom" id="screen-bottom">
 		<PopUpHandler />
 	</div>
+	<ScreenOverlay />
 	<div class="page-wrapper" id="page">
-		<ScreenOverlay />
-
 		<auth-init></auth-init>
 		<settings-init></settings-init>
 		<!-- <vuex-debug></vuex-debug> -->

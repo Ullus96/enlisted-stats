@@ -1,9 +1,7 @@
 .modal {
 	// Base modal template styles
 	z-index: 40;
-	position: sticky;
-	top: 50%;
-	transform: translateY(-50%);
+	align-self: center;
 	max-height: 80dvh;
 	display: flex;
 	flex-direction: column;

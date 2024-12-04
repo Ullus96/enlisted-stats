@@ -27,13 +27,13 @@ export default defineComponent({
 			return Object.values(store.state.dialog).some((value) => value);
 		});
 
-		const screenOverlayVisibility: Ref<'block' | 'none'> = ref('none');
+		const screenOverlayVisibility: Ref<'flex' | 'none'> = ref('none');
 
 		watch(
 			() => isAnyDialogVisible.value,
 			(visible) => {
 				if (visible) {
-					screenOverlayVisibility.value = 'block';
+					screenOverlayVisibility.value = 'flex';
 					document.body.style.overflow = 'hidden';
 				} else {
 					screenOverlayVisibility.value = 'none';
@@ -46,7 +46,7 @@ export default defineComponent({
 			() => isAnyModalVisible.value,
 			(visible) => {
 				if (visible) {
-					screenOverlayVisibility.value = 'block';
+					screenOverlayVisibility.value = 'flex';
 					document.body.style.overflow = 'hidden';
 				} else {
 					screenOverlayVisibility.value = 'none';

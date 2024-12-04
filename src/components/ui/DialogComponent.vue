@@ -1,46 +1,47 @@
 <template>
 	<Teleport to="#visible-screen-40">
-		<div class="page-mask page-mask--above" @click.stop="closeDialog"></div>
-		<section class="modal">
-			<button
-				class="btn btn-tertiary btn-sm modal__btn"
-				@click="closeDialog"
-				@keydown.esc="closeDialog"
-				v-focus
-				v-ripple
-			>
-				<IconBase>
-					<IconTimes />
-				</IconBase>
-			</button>
-
-			<h3 class="dialog__title" v-if="slots.title">
-				<slot name="title"></slot>
-			</h3>
-
-			<p class="dialog__desc" v-if="slots.default">
-				<slot> </slot>
-			</p>
-
-			<div class="dialog__buttons">
+		<div class="page-mask page-mask--above" @click.stop="closeDialog">
+			<section class="modal">
 				<button
-					class="btn btn-m"
-					:class="`btn-${yes.type}`"
-					@click="confirmDialog"
-					v-ripple
-				>
-					{{ yes.text }}
-				</button>
-				<button
-					class="btn btn-m"
-					:class="`btn-${no.type}`"
+					class="btn btn-tertiary btn-sm modal__btn"
 					@click="closeDialog"
+					@keydown.esc="closeDialog"
+					v-focus
 					v-ripple
 				>
-					{{ no.text }}
+					<IconBase>
+						<IconTimes />
+					</IconBase>
 				</button>
-			</div>
-		</section>
+
+				<h3 class="dialog__title" v-if="slots.title">
+					<slot name="title"></slot>
+				</h3>
+
+				<p class="dialog__desc" v-if="slots.default">
+					<slot> </slot>
+				</p>
+
+				<div class="dialog__buttons">
+					<button
+						class="btn btn-m"
+						:class="`btn-${yes.type}`"
+						@click="confirmDialog"
+						v-ripple
+					>
+						{{ yes.text }}
+					</button>
+					<button
+						class="btn btn-m"
+						:class="`btn-${no.type}`"
+						@click="closeDialog"
+						v-ripple
+					>
+						{{ no.text }}
+					</button>
+				</div>
+			</section>
+		</div>
 	</Teleport>
 </template>
 
