@@ -32,28 +32,26 @@ export default defineComponent({
 		watch(
 			() => isAnyDialogVisible.value,
 			(visible) => {
-				if (visible) {
-					screenOverlayVisibility.value = 'flex';
-					document.body.style.overflow = 'hidden';
-				} else {
-					screenOverlayVisibility.value = 'none';
-					document.body.style.overflow = '';
-				}
+				switchScreenOverlay(visible);
 			}
 		);
 
 		watch(
 			() => isAnyModalVisible.value,
 			(visible) => {
-				if (visible) {
-					screenOverlayVisibility.value = 'flex';
-					document.body.style.overflow = 'hidden';
-				} else {
-					screenOverlayVisibility.value = 'none';
-					document.body.style.overflow = '';
-				}
+				switchScreenOverlay(visible);
 			}
 		);
+
+		function switchScreenOverlay(visible: boolean) {
+			if (visible) {
+				screenOverlayVisibility.value = 'flex';
+				document.body.style.overflow = 'hidden';
+			} else {
+				screenOverlayVisibility.value = 'none';
+				document.body.style.overflow = '';
+			}
+		}
 
 		return {
 			isAnyModalVisible,
