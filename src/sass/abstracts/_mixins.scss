@@ -24,7 +24,22 @@
 
 @mixin page-mask($opacity: 0.4) {
 	display: flex;
-	position: sticky; /* фиксируем маску относительно экрана */
+	position: sticky;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100dvh;
+	z-index: 20;
+	background-color: rgba($color-bg-900, $opacity);
+	opacity: 1;
+	animation: fade-in 0.1s ease-in;
+}
+
+// Modal and Dialog page-mask
+@mixin modal-page-mask($opacity: 0.4) {
+	display: flex;
+	position: sticky;
 	top: 0;
 	bottom: 0;
 	left: 0;

@@ -1,4 +1,8 @@
 .dialog {
+	&__page-mask {
+		@include modal-page-mask;
+	}
+
 	&__title {
 		margin: 0 auto;
 		text-wrap: balance;

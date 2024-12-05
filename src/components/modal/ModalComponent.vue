@@ -1,6 +1,6 @@
 <template>
 	<Teleport to="#visible-screen-40">
-		<div class="page-mask page-mask--above" @click.stop="closeModal">
+		<div class="modal__page-mask" @click.stop="closeModal">
 			<section class="modal" @click.stop>
 				<button
 					class="btn btn-tertiary btn-sm modal__btn"

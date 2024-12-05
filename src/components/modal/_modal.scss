@@ -14,6 +14,10 @@
 	border-radius: 1.2rem;
 	text-align: center;
 
+	&__page-mask {
+		@include modal-page-mask;
+	}
+
 	&__btn {
 		position: absolute;
 		right: 0;
