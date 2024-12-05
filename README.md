@@ -6,7 +6,8 @@
 - отслеживать дату начала нового этапа события
 - перерасчитывать награды с учетом пропущенных этапов
 
-> [!NOTE] > **Использованные технологии:** Vue 3 Composition API, TypeScript, Vue Router, Vuex, Firebase (аутентификация), Firestore (БД), SCSS.
+
+**Использованные технологии:** Vue 3 Composition API, TypeScript, Vue Router, Vuex, Firebase (аутентификация), Firestore (БД), SCSS.
 
 # Сборки
 
