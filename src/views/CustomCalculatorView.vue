@@ -179,6 +179,8 @@ import IconMobility from '@/components/ui/icon/icons/IconMobility.vue';
 import IconVitality from '@/components/ui/icon/icons/IconVitality.vue';
 import IconWeapon from '@/components/ui/icon/icons/IconWeapon.vue';
 import IconTags from '@/components/ui/icon/icons/IconTags.vue';
+import { useStore } from '@/store/useStore';
+import { createPopUp } from '@/components/popup/utils';
 
 export default defineComponent({
 	components: {
@@ -192,6 +194,7 @@ export default defineComponent({
 		IconTags,
 	},
 	setup() {
+		const store = useStore();
 		const stats = reactive([null, null, null]);
 		const tags = reactive(['base']);
 		const isEditingSettings: Ref<boolean> = ref(true);
@@ -224,8 +227,22 @@ export default defineComponent({
 		});
 
 		function setTags(idx: number) {
+			const tagsList = uniqueSoldiersList[idx].tags;
+
 			tags.length = 0;
-			tags.push(...uniqueSoldiersList[idx].tags);
+			tags.push(...tagsList);
+
+			let translatedTags: string[] = [];
+			tagsList.forEach((tag) => {
+				translatedTags.push(avaliableTags[tag].name);
+			});
+
+			createPopUp(store, {
+				type: '',
+				title: 'Теги обновлены',
+				desc: `Заданные теги: ${translatedTags.join(', ')}`,
+				duration: 2,
+			});
 		}
 
 		return {
