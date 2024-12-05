@@ -44,12 +44,17 @@ export default defineComponent({
 		);
 
 		function switchScreenOverlay(visible: boolean) {
+			const scrollbarWidth =
+				window.innerWidth - document.documentElement.clientWidth;
+
 			if (visible) {
 				screenOverlayVisibility.value = 'flex';
 				document.body.style.overflow = 'hidden';
+				document.body.style.paddingRight = `${scrollbarWidth}px`;
 			} else {
 				screenOverlayVisibility.value = 'none';
 				document.body.style.overflow = '';
+				document.body.style.paddingRight = ``;
 			}
 		}
 
