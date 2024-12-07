@@ -1,5 +1,6 @@
 <template>
-	<section
+	<output
+		role="status"
 		class="popup"
 		:class="{
 			danger: type === 'danger',
@@ -10,6 +11,7 @@
 		<button
 			class="btn btn-tertiary btn-sm modal__btn"
 			@click="closePopup"
+			aria-label="Закрыть поп-ап"
 			v-ripple
 		>
 			<IconBase>
@@ -22,7 +24,7 @@
 				{{ desc }}
 			</p>
 		</div>
-	</section>
+	</output>
 </template>
 
 <script lang="ts">
