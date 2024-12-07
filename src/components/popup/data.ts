@@ -9,8 +9,8 @@ export const example: IPopUp = {
 
 export const POPUP_LOGOUT_SUCCESS: IPopUp = {
 	type: 'success',
-	title: '',
-	desc: 'Вы успешно вышли из аккаунта',
+	title: 'Вы успешно вышли из аккаунта',
+	desc: '',
 	duration: 3,
 };
 
