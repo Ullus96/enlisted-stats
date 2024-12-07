@@ -286,9 +286,9 @@ export default defineComponent({
 									skillKey as keyof typeof tier
 								] as SkillEntity;
 								// Находим соответствующий скилл в данных из БД и сбрасываем его уровень в 0
-								// @ts-ignore
+								// @ts-expect-error
 								const foundSkill = dataFromDB[currentBranch]?.[tierKey]?.find(
-									// @ts-ignore
+									// @ts-expect-error
 									(s) => s.skillKey === skillKey
 								);
 								if (foundSkill) {
@@ -335,7 +335,7 @@ export default defineComponent({
 					isPublic: isPublic,
 					isCloned: false,
 					likedBy: [],
-					// @ts-ignore
+					// @ts-expect-error
 					likesAmount: 0,
 				},
 				soldierClass: props.soldierClass,
@@ -449,7 +449,7 @@ export default defineComponent({
 						isPublic: false,
 						isCloned: true,
 						likedBy: [],
-						// @ts-ignore
+						// @ts-expect-error
 						likesAmount: 0,
 					},
 					soldierClass: props.soldierClass,
@@ -521,7 +521,7 @@ export default defineComponent({
 						isPublic: props.item?.data.isPublic || false,
 						isCloned: false,
 						likedBy: props.item?.data.likedBy || [],
-						// @ts-ignore
+						// @ts-expect-error
 						likesAmount: props.item?.data.likesAmount || 0,
 					},
 					soldierClass: props.soldierClass,

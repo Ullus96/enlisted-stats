@@ -327,7 +327,7 @@ export default defineComponent({
 					const newData: ISkillBuildWithID[] = [];
 					res.docs.forEach((doc) => {
 						let parsedData = { ...doc.data(), dbId: doc.id };
-						// @ts-ignore
+						// @ts-expect-error
 						newData.push(parsedData);
 					});
 					// console.log(newData);
@@ -501,7 +501,7 @@ export default defineComponent({
 				params.selectedClass &&
 				validParams.selectedClass.includes(params.selectedClass as any)
 			) {
-				// @ts-ignore
+				// @ts-expect-error
 				filterParams.value.selectedClass = params.selectedClass;
 			} else {
 				filterParams.value.selectedClass = false;
@@ -519,7 +519,7 @@ export default defineComponent({
 				params.sortByMethod &&
 				validParams.sortByMethod.includes(params.sortByMethod as any)
 			) {
-				// @ts-ignore
+				// @ts-expect-error
 				filterParams.value.sortByMethod = params.sortByMethod;
 			}
 		}

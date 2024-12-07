@@ -212,7 +212,7 @@ export default defineComponent({
 		function handleClick(idx: number) {
 			isFilteredToClass.value = true;
 			activeIdx.value = idx;
-			// @ts-ignore
+			// @ts-expect-error
 			soldierClass.value = filteredItems.value[idx].id;
 
 			// сбрасываем состояние перед загрузкой
@@ -366,7 +366,7 @@ export default defineComponent({
 					res.docs.forEach((doc) => {
 						if (!loadedBuildIDs.has(doc.id)) {
 							let parsedData = { ...doc.data(), dbId: doc.id };
-							// @ts-ignore
+							// @ts-expect-error
 							newData.push(parsedData);
 							loadedBuildIDs.add(doc.id);
 						}

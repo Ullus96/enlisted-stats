@@ -77,7 +77,7 @@ export default defineComponent({
 
 			if (buildSnap.exists()) {
 				const buildData = buildSnap.data();
-				// @ts-ignore
+				// @ts-expect-error
 				loadedData.value = buildData;
 				await loadUserFromDB();
 			} else {

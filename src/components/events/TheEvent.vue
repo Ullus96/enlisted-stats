@@ -356,7 +356,7 @@ export default defineComponent({
 
 		// Skipped stages
 		const skippedStages: Ref<number[]> = ref([]);
-		// @ts-ignore
+		// @ts-expect-error
 		const storageKey = props.data.dbId;
 		const endDateKey = `end-${storageKey}`;
 		const currentDate = new Date();
