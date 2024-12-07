@@ -111,6 +111,14 @@ const routes: Array<RouteRecordRaw & { meta?: ICustomRouteMeta }> = [
 			requiredAdminRights: true,
 		},
 	},
+	{
+		path: '/:pathMatch(.*)*',
+		name: 'Not Found',
+		component: () => import('@/views/404View.vue'),
+		meta: {
+			title: 'Упс! Что-то пошло не так.',
+		},
+	},
 ];
 
 const router = createRouter({

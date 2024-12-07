@@ -32,7 +32,7 @@
 		</template>
 
 		<template v-else>
-			<page-404></page-404>
+			<build-page-404></build-page-404>
 		</template>
 	</div>
 </template>
@@ -48,7 +48,7 @@ import { useRoute } from 'vue-router';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import LoadingSpinner from '@/components/ui/LoadingSpinner.vue';
-import Page404 from '@/components/no-page/Page404.vue';
+import BuildPage404 from '@/components/no-page/BuildPage404.vue';
 import {
 	loadFromLocalStorage,
 	saveToLocalStorage,
@@ -57,7 +57,12 @@ import {
 import { getLocalStorageUsersDataByKeyAndValue } from '@/functions/getDataByKeyAndValue';
 
 export default defineComponent({
-	components: { CalculatorBlock, BuildCardSingle, LoadingSpinner, Page404 },
+	components: {
+		CalculatorBlock,
+		BuildCardSingle,
+		LoadingSpinner,
+		BuildPage404,
+	},
 	setup() {
 		const loadedData: Ref<ISkillBuildWithID | null> = ref(null);
 		const userData = ref({ photoURL: '', displayName: '', dbId: '' });
