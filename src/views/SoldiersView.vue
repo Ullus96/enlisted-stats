@@ -1,7 +1,7 @@
 <template>
 	<div class="container mt-m">
 		<label for="searchInput">
-			<div class="table__search">
+			<search class="table__search" role="search">
 				<div class="table__search-icon tooltip-anchor">
 					<TooltipComponent :direction="'bottom'">
 						<p><span class="hotkey">Esc</span> - сбросить ввод</p>
@@ -25,7 +25,7 @@
 					"
 					:disabled="isFilteredToClass"
 				/>
-			</div>
+			</search>
 		</label>
 
 		<div class="table__wrapper mt-s">
