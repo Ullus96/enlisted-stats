@@ -116,7 +116,7 @@ const routes: Array<RouteRecordRaw & { meta?: ICustomRouteMeta }> = [
 		name: 'Not Found',
 		component: () => import('@/views/404View.vue'),
 		meta: {
-			title: 'Упс! Что-то пошло не так.',
+			title: 'Страница не найдена',
 		},
 	},
 ];
