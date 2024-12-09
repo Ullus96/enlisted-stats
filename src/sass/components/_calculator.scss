@@ -180,7 +180,7 @@
 
 		@include hovered($color-text-100, $color-bg-800);
 
-		&:focus {
+		&:focus-visible {
 			@include focused($color-text-100, $color-bg-800);
 		}
 	}

@@ -10,7 +10,7 @@
 
 	@include hovered($color-text-100, $color-bg-a-500);
 
-	&:focus {
+	&:focus-visible {
 		@include focused($color-text-100, $color-bg-a-500);
 	}
 
@@ -50,7 +50,7 @@
 
 	@include hovered($color-primary-200, $color-bg-a-500);
 
-	&:focus {
+	&:focus-visible {
 		@include focused($color-primary-200, $color-bg-a-500);
 	}
 

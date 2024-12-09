@@ -44,7 +44,7 @@
 			color: $color-text-700;
 		}
 
-		&:focus {
+		&:focus-visible {
 			@include focused($color-text-100, $color-bg-800);
 		}
 
