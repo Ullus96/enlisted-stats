@@ -45,7 +45,7 @@
 					</p>
 
 					<div class="cc__chips-flex cc__chips-flex--square">
-						<div
+						<button
 							class="chip chip-square tooltip-anchor"
 							v-for="(soldier, idx) in uniqueSoldiersList"
 							:key="soldier.name"
@@ -59,7 +59,7 @@
 								:src="require(`../assets/soldier_icons/${soldier.icon}`)"
 								alt=""
 							/>
-						</div>
+						</button>
 					</div>
 				</div>
 

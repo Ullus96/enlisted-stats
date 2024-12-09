@@ -103,8 +103,17 @@
 		position: relative;
 	}
 
+	&__tag-item:has(> input:focus-visible) {
+		@include focused($color-text-100, $color-bg-a-500);
+	}
+
+	&__tag-item:has(> input:focus-visible).active {
+		@include focused($color-primary-200, $color-bg-a-500);
+	}
+
 	&__tag-checkbox {
 		position: absolute;
+		inset: 0 0 0 0;
 		opacity: 0;
 	}
 

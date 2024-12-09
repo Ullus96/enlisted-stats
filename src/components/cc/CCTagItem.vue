@@ -10,10 +10,9 @@
 			:id="item.name"
 			v-model="isActive"
 			class="cc__tag-checkbox"
+			@click="handleClick()"
 		/>
-		<label :for="item.name" class="cc__tag-label" @click="handleClick()"
-			>&nbsp;</label
-		>
+		<label :for="item.name" class="cc__tag-label"></label>
 		<p>{{ item.name }}</p>
 		<TooltipComponent :width="30">
 			<p>
