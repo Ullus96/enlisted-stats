@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { nextTick } from 'vue';
 import SoldiersView from '@/views/SoldiersView.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { checkIfUserAnAdmin } from '@/components/auth/functions/checkIfUserAnAdmin';
@@ -145,6 +146,8 @@ router.beforeEach(async (to, from, next) => {
 	// If the route has a title, set it as the page title of the document/page
 	if (title) {
 		document.title = title;
+		updateMetaTag('og:title', `Enlisted Stats - ${title}`);
+		updateMetaTag('twitter:title', `Enlisted Stats - ${title}`);
 	}
 
 	if (to.matched.some((record) => record.meta.requiredAdminRights)) {
@@ -182,5 +185,20 @@ router.afterEach(() => {
 		});
 	}, 0);
 });
+
+function updateMetaTag(name: string, content: string) {
+	let tag = document.querySelector(`meta[property="${name}"]`);
+
+	if (!tag) {
+		tag = document.createElement('meta');
+		if (name.startsWith('og:') || name.startsWith('twitter:')) {
+			tag.setAttribute('property', name);
+		}
+
+		document.head.appendChild(tag);
+	}
+
+	tag.setAttribute('content', content);
+}
 
 export default router;
