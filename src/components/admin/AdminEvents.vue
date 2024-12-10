@@ -207,13 +207,17 @@ export default defineComponent({
 			eventData.startDate = new Date(startDateTimestamp);
 			eventData.endDate = new Date(endDataTimestamp);
 
-			eventData.rewards.length = 0;
 			eventData.stages.length = 0;
 			generateStages(eventData);
 
-			for (let i = 0; i < eventData.stages.length; i++) {
-				eventData.rewards.push('');
-			}
+			const tempArr = [...eventData.rewards];
+			eventData.rewards.length = 0;
+			eventData.rewards = Array.from(
+				{ length: eventData.stages.length },
+				(_, i) => {
+					return tempArr[i] || '';
+				}
+			);
 		}
 
 		function generateStages(event: IEvent | IEventFirestore) {
