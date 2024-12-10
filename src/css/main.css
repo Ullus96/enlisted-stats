@@ -1748,6 +1748,13 @@ h3 {
   color: rgb(116, 116, 116);
   font-size: 1.2rem;
 }
+.admin__separator {
+  display: block;
+  width: 100%;
+  max-width: 48rem;
+  height: 1.2rem;
+  margin-top: 0.8rem;
+}
 .admin__stages-title {
   margin-top: 2.4rem;
 }

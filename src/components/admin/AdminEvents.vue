@@ -84,9 +84,7 @@
 					>
 						Рассчитать количество этапов
 					</button>
-					<span class="admin__small-text"
-						>Сбросит все существующие награды</span
-					>
+					<span class="admin__separator"></span>
 
 					<template v-if="eventData.rewards.length">
 						<p class="admin__stages-title">Награды за этапы</p>

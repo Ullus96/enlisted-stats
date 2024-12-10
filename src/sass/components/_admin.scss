@@ -53,6 +53,13 @@
 		font-size: $ui-font-size-xs;
 	}
 
+	&__separator {
+		display: block;
+		@include admin-width;
+		height: $ui-font-size-xs;
+		margin-top: 0.8rem;
+	}
+
 	&__stages-title {
 		margin-top: 2.4rem;
 	}
