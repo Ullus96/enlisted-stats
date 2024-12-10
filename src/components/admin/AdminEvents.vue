@@ -48,7 +48,7 @@
 							:key="eventData.dbId"
 							:type="'datetime-local'"
 							:label="'Дата начала'"
-							:desc="eventData.dbId ? eventData.startDate : 'По местному'"
+							:desc="'По местному'"
 							:presetInput="
 								eventData.dbId ? setInputDateFormat(eventData.startDate) : ''
 							"
@@ -59,7 +59,7 @@
 							:key="eventData.dbId"
 							:type="'datetime-local'"
 							:label="'Дата конца'"
-							:desc="eventData.dbId ? eventData.endDate : 'По местному'"
+							:desc="'По местному'"
 							:presetInput="
 								eventData.dbId ? setInputDateFormat(eventData.endDate) : ''
 							"
@@ -97,7 +97,7 @@
 								v-for="(reward, idx) in eventData.rewards"
 								:key="idx"
 								v-model="eventData.rewards[idx]"
-								:placeholder="idx + 1"
+								:placeholder="String(idx + 1)"
 							/>
 						</div>
 					</template>
@@ -217,10 +217,7 @@ export default defineComponent({
 		}
 
 		function generateStages(event: IEvent | IEventFirestore) {
-			const stageDurationInMillis: number = event.hoursInStage * 60 * 60 * 1000; // 2 дня в миллисекундах
-
-			console.log(event.endDate);
-			console.log(typeof event.endDate);
+			const stageDurationInMillis: number = event.hoursInStage * 60 * 60 * 1000; // в миллисекундах
 
 			const durationInMillis = +event.endDate - +event.startDate;
 
@@ -366,11 +363,6 @@ export default defineComponent({
 			createNewEvent,
 			deleteEvent,
 			updateEvent,
-			// eventName,
-			// eventStartDate,
-			// eventEndDate,
-			// eventHoursInStage,
-			// eventStages,
 		};
 	},
 });
