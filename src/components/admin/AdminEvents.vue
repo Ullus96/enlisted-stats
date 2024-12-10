@@ -49,7 +49,9 @@
 							:type="'datetime-local'"
 							:label="'Дата начала'"
 							:desc="eventData.dbId ? eventData.startDate : 'По местному'"
-							:presetInput="startDate"
+							:presetInput="
+								eventData.dbId ? setInputDateFormat(eventData.startDate) : ''
+							"
 							@onChange="(val) => (startDate = val)"
 						/>
 
@@ -58,7 +60,9 @@
 							:type="'datetime-local'"
 							:label="'Дата конца'"
 							:desc="eventData.dbId ? eventData.endDate : 'По местному'"
-							:presetInput="endDate"
+							:presetInput="
+								eventData.dbId ? setInputDateFormat(eventData.endDate) : ''
+							"
 							@onChange="(val) => (endDate = val)"
 						/>
 
@@ -182,8 +186,8 @@ export default defineComponent({
 		DialogComponent,
 	},
 	setup() {
-		const startDate = ref();
-		const endDate = ref();
+		const startDate: Ref<Date> = ref(new Date());
+		const endDate: Ref<Date> = ref(new Date());
 		const isLoading: Ref<boolean> = ref(true);
 
 		let eventData: IEventFirestore = reactive({
@@ -236,6 +240,21 @@ export default defineComponent({
 		loadEvents().then(() => {
 			isLoading.value = false;
 		});
+
+		function setInputDateFormat(date: Date): string {
+			function setZero(num: number): string {
+				return String(num).padStart(2, '0');
+			}
+
+			const year = date.getFullYear();
+			const month = setZero(date.getMonth() + 1);
+			const day = setZero(date.getDate());
+			const hours = setZero(date.getHours());
+			const minutes = setZero(date.getMinutes());
+
+			// инпут принимает строку типа "yyyy-MM-ddThh:mm"
+			return `${year}-${month}-${day}T${hours}:${minutes}`;
+		}
 
 		const addEvent = async (data: IEvent) => {
 			try {
@@ -312,8 +331,8 @@ export default defineComponent({
 			const docRef = doc(db, 'events', eventData.dbId);
 			const data: IEvent = {
 				name: eventData.name,
-				startDate: eventData.startDate,
-				endDate: eventData.endDate,
+				startDate: new Date(startDate.value),
+				endDate: new Date(endDate.value),
 				hoursInStage: eventData.hoursInStage,
 				stages: eventData.stages,
 				rewards: eventData.rewards,
@@ -328,7 +347,6 @@ export default defineComponent({
 			loadEvents();
 		}
 
-		// Redesign
 		const operationName: Ref<string> = ref(
 			operationNames[Math.floor(Math.random() * operationNames.length)]
 		);
@@ -342,6 +360,7 @@ export default defineComponent({
 			endDate,
 			isLoading,
 			events,
+			setInputDateFormat,
 			addEventToDB,
 			setActiveEvent,
 			createNewEvent,
