@@ -105,25 +105,77 @@
 					<template v-if="!eventData.dbId">
 						<div class="admin__last-btns">
 							<button
-								class="btn btn-m btn-primary admin__btn"
+								class="btn btn-m btn-primary admin__main-btn"
 								:disabled="!eventData.rewards.length"
 								@click="addEventToDB"
 								v-ripple
 							>
 								Создать событие
 							</button>
+							<!-- Shift rewards -->
+							<button
+								class="btn btn-m btn-secondary admin__delete-btn svg"
+								:disabled="!eventData.rewards.length"
+								@click="shiftRewards('left')"
+								v-ripple
+							>
+								<IconBase
+									:style="{ rotate: '-90deg', scale: '1.2', translate: '-1px' }"
+								>
+									<IconAngleUp />
+								</IconBase>
+							</button>
+							<button
+								class="btn btn-m btn-secondary admin__delete-btn svg"
+								:disabled="!eventData.rewards.length"
+								@click="shiftRewards('right')"
+								v-ripple
+							>
+								<IconBase
+									:style="{ rotate: '90deg', scale: '1.2', translate: '1px' }"
+								>
+									<IconAngleUp />
+								</IconBase>
+							</button>
 						</div>
 					</template>
+
 					<template v-else>
 						<div class="admin__last-btns">
 							<button
-								class="btn btn-m btn-primary admin__update-btn"
+								class="btn btn-m btn-primary admin__main-btn"
 								:disabled="!eventData.rewards.length"
 								@click="updateEvent"
 								v-ripple
 							>
 								Обновить
 							</button>
+							<!-- Shift rewards -->
+							<button
+								class="btn btn-m btn-secondary admin__delete-btn svg"
+								:disabled="!eventData.rewards.length"
+								@click="shiftRewards('left')"
+								v-ripple
+							>
+								<IconBase
+									:style="{ rotate: '-90deg', scale: '1.2', translate: '-1px' }"
+								>
+									<IconAngleUp />
+								</IconBase>
+							</button>
+							<button
+								class="btn btn-m btn-secondary admin__delete-btn svg"
+								:disabled="!eventData.rewards.length"
+								@click="shiftRewards('right')"
+								v-ripple
+							>
+								<IconBase
+									:style="{ rotate: '90deg', scale: '1.2', translate: '1px' }"
+								>
+									<IconAngleUp />
+								</IconBase>
+							</button>
+							<!-- Delete -->
 							<button
 								class="btn btn-m btn-secondary admin__delete-btn svg"
 								:disabled="!eventData.rewards.length"
@@ -173,6 +225,7 @@ import LoadingSpinner from '../ui/LoadingSpinner.vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
 import IconPlus from '@/components/ui/icon/icons/IconPlus.vue';
 import IconTrash from '@/components/ui/icon/icons/IconTrash.vue';
+import IconAngleUp from '../ui/icon/icons/IconAngleUp.vue';
 import InputComponent from '@/components/input/InputComponent.vue';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
 
@@ -182,6 +235,7 @@ export default defineComponent({
 		IconBase,
 		IconPlus,
 		IconTrash,
+		IconAngleUp,
 		InputComponent,
 		DialogComponent,
 	},
@@ -234,6 +288,18 @@ export default defineComponent({
 				const end = new Date(+start + stageDurationInMillis - 1000);
 
 				event.stages.push({ startDate: start, endDate: end });
+			}
+		}
+
+		function shiftRewards(direction: 'left' | 'right') {
+			if (!eventData.rewards.length) return;
+
+			if (direction === 'left') {
+				eventData.rewards.shift();
+				eventData.rewards.push('');
+			} else {
+				eventData.rewards.pop();
+				eventData.rewards.unshift('');
 			}
 		}
 
@@ -367,6 +433,7 @@ export default defineComponent({
 			createNewEvent,
 			deleteEvent,
 			updateEvent,
+			shiftRewards,
 		};
 	},
 });

@@ -44,11 +44,6 @@
 		margin-top: 4rem;
 	}
 
-	&__btn {
-		@include admin-width;
-		margin-top: 2.4rem;
-	}
-
 	&__small-text {
 		display: block;
 		@include admin-width;
@@ -82,7 +77,7 @@
 		gap: 0.8rem;
 	}
 
-	&__update-btn {
+	&__main-btn {
 		flex: 1 1 auto;
 	}
 
