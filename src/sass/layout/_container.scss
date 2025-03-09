@@ -6,10 +6,10 @@
 	padding-left: 2rem;
 	padding-right: 2rem;
 	padding-bottom: 2rem;
-	// overflow: hidden;
 
 	@include desktop-small {
-		max-width: 120rem;
+		// max-width: 120rem;
+		max-width: 98dvw;
 	}
 
 	@include phone {

@@ -306,7 +306,7 @@ h3 {
 }
 @media (max-width: 1123px) {
   .container {
-    max-width: 120rem;
+    max-width: 98dvw;
   }
 }
 @media (max-width: 499px) {
