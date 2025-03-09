@@ -1764,6 +1764,11 @@ h3 {
   flex-wrap: wrap;
   gap: 0.8rem;
 }
+.admin__stages-useful-symbols {
+  margin-top: 0.4rem;
+  color: rgb(165, 165, 165);
+  font-size: 1.4rem;
+}
 .admin__input {
   width: calc(33% - 1.6rem);
   min-width: 24rem;

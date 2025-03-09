@@ -71,6 +71,12 @@
 		gap: 0.8rem;
 	}
 
+	&__stages-useful-symbols {
+		margin-top: 0.4rem;
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
+	}
+
 	&__input {
 		width: calc(33% - 1.6rem);
 		min-width: 24rem;

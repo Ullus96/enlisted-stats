@@ -87,6 +87,9 @@
 					<span class="admin__separator"></span>
 
 					<template v-if="eventData.rewards.length">
+						<p class="admin__stages-useful-symbols">
+							Символы, которые могут пригодиться: «»★
+						</p>
 						<p class="admin__stages-title">Награды за этапы</p>
 						<div class="admin__stages">
 							<input
