@@ -92,13 +92,13 @@
 						</p>
 						<p class="admin__stages-title">Награды за этапы</p>
 						<div class="admin__stages">
-							<input
-								type="text"
+							<textarea
 								class="input__input admin__input"
 								v-for="(reward, idx) in eventData.rewards"
 								:key="idx"
 								v-model="eventData.rewards[idx]"
 								:placeholder="String(idx + 1)"
+								@input="resizeAll"
 							/>
 						</div>
 					</template>
@@ -211,7 +211,7 @@
 
 <script lang="ts">
 import { IEvent, IEventFirestore } from '@/type/Events';
-import { defineComponent, reactive, ref, Ref } from 'vue';
+import { defineComponent, nextTick, reactive, ref, Ref, watch } from 'vue';
 import { db } from '@/firebase/firebase';
 import {
 	collection,
@@ -419,6 +419,49 @@ export default defineComponent({
 			operationNames[Math.floor(Math.random() * operationNames.length)]
 		);
 
+		function isHTMLTextAreaElement(
+			el: EventTarget | null
+		): el is HTMLTextAreaElement {
+			return el instanceof HTMLTextAreaElement;
+		}
+
+		function setHeight(el: HTMLTextAreaElement | EventTarget | null) {
+			if (isHTMLTextAreaElement(el)) {
+				el.style.height = 'auto';
+				el.style.height = `${el.scrollHeight}px`;
+			}
+		}
+
+		function resizeTextarea(event: Event) {
+			const textarea = event.target;
+
+			setHeight(textarea);
+		}
+
+		function resizeAll() {
+			nextTick(() => {
+				const textareas = document.querySelectorAll('.admin__input');
+
+				if (textareas) {
+					// console.log('ресайз всех textarea');
+					textareas.forEach((el) => {
+						setHeight(el);
+					});
+				} else {
+					// console.warn('❌ textareas пуст');
+				}
+			});
+		}
+
+		watch(
+			() => eventData.rewards,
+			() => {
+				setTimeout(() => {
+					resizeAll();
+				}, 500);
+			}
+		);
+
 		return {
 			operationName,
 			eventData,
@@ -435,6 +478,8 @@ export default defineComponent({
 			deleteEvent,
 			updateEvent,
 			shiftRewards,
+			resizeTextarea,
+			resizeAll,
 		};
 	},
 });
