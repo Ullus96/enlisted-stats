@@ -128,28 +128,25 @@
 						<div
 							class="profile__title-desc-block profile__title-desc-block--fw"
 						>
-							<p class="profile__option-name">
-								Ширина карточки награды события
-							</p>
+							<p class="profile__option-name">Размер карточек событий</p>
 							<p class="profile__option-desc">
-								Изменяет базовую ширину карточки.<br />
-								На смартфонах эта настройка не заметна.
+								Выберите x2 для увеличенной ширины.<br />
+								На телефонах оба варианта выглядят одинаково.
 							</p>
 						</div>
 						<div class="profile__chips-flex">
-							{{ eventCardWidth }}
-							<div
+							<button
 								class="chip"
 								v-for="scale in [1, 2]"
 								:key="scale"
 								@click="eventCardWidth = scale"
 								:class="{
-									active:
-										getRootVariable('--ui-card-width')[0] === String(scale),
+									active: eventCardWidth === scale,
 								}"
+								v-ripple
 							>
 								x{{ scale }}
-							</div>
+							</button>
 						</div>
 					</div>
 				</section>
