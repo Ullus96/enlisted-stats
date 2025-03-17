@@ -66,6 +66,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.2rem;
+
+		&--fw {
+			flex: 1 1 auto;
+		}
 	}
 
 	&__checkbox-wrapper {
@@ -76,6 +80,15 @@
 
 		@include tablet {
 			transform: scale(1.25);
+		}
+	}
+
+	&__chips-flex {
+		display: flex;
+		gap: 0.8rem;
+
+		& > .chip {
+			flex: 1 1 auto;
 		}
 	}
 }

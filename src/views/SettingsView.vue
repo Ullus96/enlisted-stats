@@ -123,6 +123,35 @@
 							/>
 						</label>
 					</div>
+
+					<div class="profile__title-desc-action-block">
+						<div
+							class="profile__title-desc-block profile__title-desc-block--fw"
+						>
+							<p class="profile__option-name">
+								Ширина карточки награды события
+							</p>
+							<p class="profile__option-desc">
+								Изменяет базовую ширину карточки.<br />
+								На смартфонах эта настройка не заметна.
+							</p>
+						</div>
+						<div class="profile__chips-flex">
+							{{ eventCardWidth }}
+							<div
+								class="chip"
+								v-for="scale in [1, 2]"
+								:key="scale"
+								@click="eventCardWidth = scale"
+								:class="{
+									active:
+										getRootVariable('--ui-card-width')[0] === String(scale),
+								}"
+							>
+								x{{ scale }}
+							</div>
+						</div>
+					</div>
 				</section>
 			</transition>
 		</div>
@@ -177,6 +206,11 @@ import {
 } from '@/functions/localStorageUtils';
 import TabsComponent from '@/components/tabs/TabsComponent.vue';
 import { TabsStructure } from '@/components/tabs/types';
+import {
+	TRootVariables,
+	updateRootVariable,
+	getRootVariable,
+} from '@/functions/rootVariables';
 
 export default defineComponent({
 	components: { InputComponent, DialogComponent, TabsComponent },
@@ -284,6 +318,18 @@ export default defineComponent({
 			store.commit('switchInlineRewards', newVal);
 		});
 
+		// Ширина карточки
+		const eventCardWidth: Ref<number> = ref(
+			loadFromLocalStorage('eventCardWidth') || false
+		);
+
+		watch(eventCardWidth, (newVal) => {
+			saveToLocalStorage('eventCardWidth', newVal);
+			store.commit('setEventCardWidth', newVal);
+
+			updateRootVariable('--ui-card-width', `${newVal * 10}rem`);
+		});
+
 		return {
 			auth,
 			user,
@@ -296,6 +342,9 @@ export default defineComponent({
 			deleteAccount,
 			compactMode,
 			inlineRewards,
+			eventCardWidth,
+			updateRootVariable,
+			getRootVariable,
 		};
 	},
 });

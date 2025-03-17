@@ -1,5 +1,5 @@
 :root {
-  --ui-card-width: 20rem;
+  --ui-card-width: 10rem;
 }
 
 :root {
@@ -923,6 +923,9 @@ h3 {
   flex-direction: column;
   gap: 1.2rem;
 }
+.profile__title-desc-block--fw {
+  flex: 1 1 auto;
+}
 .profile__checkbox-wrapper {
   line-height: 100%;
   padding: 0.8rem 1.2rem;
@@ -933,6 +936,13 @@ h3 {
   .profile__checkbox-wrapper {
     transform: scale(1.25);
   }
+}
+.profile__chips-flex {
+  display: flex;
+  gap: 0.8rem;
+}
+.profile__chips-flex > .chip {
+  flex: 1 1 auto;
 }
 
 .tooltip-anchor {
@@ -2053,7 +2063,7 @@ h3 {
   position: relative;
   min-width: auto;
   width: auto;
-  flex: 1 1 calc(var(--ui-card-width) - 2rem);
+  flex: 1 1 var(--ui-card-width);
   background-color: rgba(39, 39, 39, 0.75);
   border-radius: 0.8rem;
   padding: 2rem 1.6rem;
@@ -2066,7 +2076,7 @@ h3 {
 }
 @media (max-width: 499px) {
   .event__card {
-    flex: 1 1 calc(var(--ui-card-width) - 2rem);
+    flex: 1 1 var(--ui-card-width);
     min-width: 40%;
     max-width: 100%;
   }
