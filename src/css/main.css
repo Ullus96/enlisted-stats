@@ -2063,7 +2063,7 @@ h3 {
   position: relative;
   min-width: auto;
   width: auto;
-  flex: 1 1 var(--ui-card-width);
+  flex: 1 1 calc(var(--ui-card-width) - 1rem);
   background-color: rgba(39, 39, 39, 0.75);
   border-radius: 0.8rem;
   padding: 2rem 1.6rem;
@@ -2076,7 +2076,7 @@ h3 {
 }
 @media (max-width: 499px) {
   .event__card {
-    flex: 1 1 var(--ui-card-width);
+    flex: 1 1 calc(var(--ui-card-width) - 1rem);
     min-width: 40%;
     max-width: 100%;
   }
