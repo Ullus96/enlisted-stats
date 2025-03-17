@@ -317,7 +317,7 @@ export default defineComponent({
 
 		// Ширина карточки
 		const eventCardWidth: Ref<number> = ref(
-			loadFromLocalStorage('eventCardWidth') || false
+			loadFromLocalStorage('eventCardWidth') || 1
 		);
 
 		watch(eventCardWidth, (newVal) => {
