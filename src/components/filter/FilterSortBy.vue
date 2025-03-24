@@ -5,21 +5,21 @@
 			<div class="filter__sort-items">
 				<button
 					class="btn btn-m btn-tertiary filter__sort-item"
-					@click="setSortBy('nameLowercase')"
+					@click="setSortBy('name')"
 					v-ripple
 				>
 					По названию
 				</button>
 				<button
 					class="btn btn-m btn-tertiary filter__sort-item"
-					@click="setSortBy('likesAmount')"
+					@click="setSortBy('likes')"
 					v-ripple
 				>
 					По лайкам
 				</button>
 				<button
 					class="btn btn-m btn-tertiary filter__sort-item"
-					@click="setSortBy('createdAt')"
+					@click="setSortBy('date')"
 					v-ripple
 				>
 					По дате создания
@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { sortByValues } from './types';
 
 export default defineComponent({
 	emits: ['close', 'setSortBy'],
@@ -42,7 +43,7 @@ export default defineComponent({
 			context.emit('close');
 		}
 
-		function setSortBy(sortBy: string) {
+		function setSortBy(sortBy: sortByValues) {
 			context.emit('setSortBy', sortBy);
 			context.emit('close');
 		}

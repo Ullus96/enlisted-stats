@@ -1,7 +1,9 @@
 import { SoldierID } from '@/type/Soldier';
 
 export interface IFilterParams {
-	selectedClass: SoldierID | false;
-	sortByID: string;
-	sortByMethod: 'asc' | 'desc';
+	soldierClass: SoldierID | false;
+	sortBy: sortByValues;
+	order: 'asc' | 'desc';
 }
+
+export type sortByValues = 'likes' | 'date' | 'name';

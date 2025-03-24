@@ -22,7 +22,7 @@
 				@click.prevent="showFilterClasses"
 				v-ripple
 			>
-				{{ selectedClassName }}
+				{{ selectedClasasName }}
 				<span
 					><i
 						class="fa-solid fa-chevron-down filter__chevron"
@@ -48,28 +48,26 @@
 		<div class="filter__item">
 			<button
 				class="filter__selected filter__sort-by-method"
-				@click.prevent="changeSortByMethod"
+				@click.prevent="changeOrder"
 				v-ripple
 			>
 				<span
 					><i
 						class="fa-solid"
 						:class="{
-							'fa-arrow-down-wide-short': sortByMethod === 'desc',
-							'fa-arrow-down-short-wide': sortByMethod === 'asc',
+							'fa-arrow-down-wide-short': order === 'desc',
+							'fa-arrow-down-short-wide': order === 'asc',
 						}"
 					></i
 				></span>
-				<template v-if="sortByID == 'nameLowercase'">
-					{{ sortByMethod === 'asc' ? 'А → Я' : 'Я → А' }}
+				<template v-if="sortBy == 'name'">
+					{{ order === 'asc' ? 'А → Я' : 'Я → А' }}
 				</template>
-				<template v-if="sortByID == 'likesAmount'">
-					{{
-						sortByMethod === 'asc' ? 'Сначала наименьшее' : 'Сначала наибольшее'
-					}}
+				<template v-if="sortBy == 'likes'">
+					{{ order === 'asc' ? 'Сначала наименьшее' : 'Сначала наибольшее' }}
 				</template>
-				<template v-if="sortByID == 'createdAt'">
-					{{ sortByMethod === 'asc' ? 'Сначала старые' : 'Сначала новые' }}
+				<template v-if="sortBy == 'date'">
+					{{ order === 'asc' ? 'Сначала старые' : 'Сначала новые' }}
 				</template>
 			</button>
 		</div>
@@ -82,7 +80,7 @@ import FilterClasses from './FilterClasses.vue';
 import FilterSortBy from './FilterSortBy.vue';
 import { SoldierID } from '@/type/Soldier';
 import { getSoldierData } from '@/functions/convertSoldierDataToName';
-import { IFilterParams } from './types';
+import { IFilterParams, sortByValues } from './types';
 
 export default defineComponent({
 	components: { FilterClasses, FilterSortBy },
@@ -92,17 +90,17 @@ export default defineComponent({
 			required: false,
 			type: String,
 		},
-		selectedClass: {
+		soldierClass: {
 			required: false,
 			type: [String, Boolean] as PropType<SoldierID | false>,
 			default: false,
 		},
-		sortByID: {
+		sortBy: {
 			required: false,
-			type: String as PropType<'nameLowercase' | 'likesAmount' | 'createdAt'>,
+			type: String as PropType<sortByValues>,
 			default: 'createdAt',
 		},
-		sortByMethod: {
+		order: {
 			required: false,
 			type: String as PropType<'asc' | 'desc'>,
 			default: 'desc',
@@ -112,15 +110,15 @@ export default defineComponent({
 		const isFilterClassesVisible: Ref<boolean> = ref(false);
 		const isSortByVisible: Ref<boolean> = ref(false);
 
-		const selectedClass: Ref<SoldierID | false> = ref(
-			props.selectedClass as SoldierID | false
+		const soldierClass: Ref<SoldierID | false> = ref(
+			props.soldierClass as SoldierID | false
 		);
-		const selectedClassName: Ref<SoldierID | 'Акционные' | 'Все'> = ref('Все');
+		const selectedClasasName: Ref<SoldierID | 'Акционные' | 'Все'> = ref('Все');
 
-		const sortByID: Ref<string> = ref(props.sortByID);
-
-		const sortByMethod: Ref<'asc' | 'desc'> = ref(props.sortByMethod);
+		const sortBy: Ref<sortByValues> = ref(props.sortBy);
 		const sortByName: Ref<string> = ref('По дате создания');
+
+		const order: Ref<'asc' | 'desc'> = ref(props.order);
 
 		function showFilterClasses() {
 			isFilterClassesVisible.value = !isFilterClassesVisible.value;
@@ -129,64 +127,64 @@ export default defineComponent({
 			isSortByVisible.value = !isSortByVisible.value;
 		}
 
-		function setSoldierClass(soldierClass: SoldierID | false) {
-			selectedClass.value = soldierClass;
+		function setSoldierClass(newSoldierClass: SoldierID | false) {
+			soldierClass.value = newSoldierClass;
 
-			if (soldierClass === 'custom') {
-				selectedClassName.value = 'Акционные';
-			} else if (!soldierClass) {
-				selectedClassName.value = 'Все';
+			if (newSoldierClass === 'custom') {
+				selectedClasasName.value = 'Акционные';
+			} else if (!newSoldierClass) {
+				selectedClasasName.value = 'Все';
 			} else {
-				selectedClassName.value = getSoldierData(
+				selectedClasasName.value = getSoldierData(
 					'id',
-					soldierClass,
+					newSoldierClass,
 					'name'
 				) as SoldierID;
 			}
 		}
 
 		// sort
-		const sortByNames: Record<string, string> = {
-			nameLowercase: 'По названию',
-			likesAmount: 'По лайкам',
-			createdAt: 'По дате создания',
+		const sortByNames: Record<sortByValues, string> = {
+			name: 'По названию',
+			likes: 'По лайкам',
+			date: 'По дате создания',
 		};
-		function setSortBy(sortBy: string) {
-			sortByID.value = sortBy;
-			sortByName.value = sortByNames[sortBy];
+
+		function setSortBy(newSortBy: sortByValues) {
+			sortBy.value = newSortBy;
+			sortByName.value = sortByNames[newSortBy];
+			console.log(newSortBy);
 		}
 
-		function changeSortByMethod() {
-			sortByMethod.value === 'asc'
-				? (sortByMethod.value = 'desc')
-				: (sortByMethod.value = 'asc');
+		function changeOrder() {
+			order.value === 'asc' ? (order.value = 'desc') : (order.value = 'asc');
 		}
 
 		// Emit data:
 		const filterParams: Ref<IFilterParams> = ref({
-			selectedClass: selectedClass.value,
-			sortByID: sortByID.value,
-			sortByMethod: sortByMethod.value,
+			soldierClass: soldierClass.value,
+			sortBy: sortBy.value,
+			order: order.value,
 		});
 
-		watch(selectedClass, (newValue) => {
-			filterParams.value.selectedClass = newValue;
+		watch(soldierClass, (newValue) => {
+			filterParams.value.soldierClass = newValue;
 			emitFilterParams();
 		});
 
-		watch(sortByID, (newValue) => {
-			filterParams.value.sortByID = newValue;
+		watch(sortBy, (newValue: sortByValues) => {
+			filterParams.value.sortBy = newValue;
 			emitFilterParams();
 		});
 
-		watch(sortByMethod, (newValue) => {
-			filterParams.value.sortByMethod = newValue;
+		watch(order, (newValue) => {
+			filterParams.value.order = newValue;
 			emitFilterParams();
 		});
 
 		// При инициализации обновляем данные
-		setSoldierClass(selectedClass.value);
-		setSortBy(sortByID.value);
+		setSoldierClass(soldierClass.value);
+		setSortBy(sortBy.value);
 
 		// Функция для эмита события с объектом параметров фильтрации
 		function emitFilterParams() {
@@ -194,18 +192,18 @@ export default defineComponent({
 		}
 
 		return {
-			selectedClass,
-			selectedClassName,
+			soldierClass,
+			selectedClasasName,
 			isFilterClassesVisible,
 			showFilterClasses,
 			isSortByVisible,
 			showSortBy,
 			setSoldierClass,
 			setSortBy,
-			sortByID,
-			sortByMethod,
+			sortBy,
+			order,
 			sortByName,
-			changeSortByMethod,
+			changeOrder,
 		};
 	},
 });

@@ -460,7 +460,7 @@ export default defineComponent({
 		// Make a link
 		const link = computed(
 			() =>
-				`/skill-builds?selectedClass=${soldierClass.value}&sortByID=likesAmount&sortByMethod=desc`
+				`/skill-builds?soldierClass=${soldierClass.value}&sortBy=likes&order=desc`
 		);
 
 		return {

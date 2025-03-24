@@ -3,9 +3,9 @@
 		<filters-block
 			@filterParams="filterParamsChanged"
 			:title="title"
-			:selectedClass="filterParams.selectedClass"
-			:sortByID="filterParams.sortByID"
-			:sortByMethod="filterParams.sortByMethod"
+			:soldierClass="filterParams.soldierClass"
+			:sortBy="filterParams.sortBy"
+			:order="filterParams.order"
 		></filters-block>
 		<div class="filter__under">
 			<button
@@ -19,7 +19,7 @@
 		<div class="sbuild__grid">
 			<build-card
 				v-for="item in loadedData"
-				:key="item"
+				:key="item.dbId"
 				:item="item"
 				:loadedUserData="
 					loadedUserData && loadedUserData[item.data.author]
@@ -32,7 +32,7 @@
 				:isFinishedLoading="isFinishedLoading"
 			></build-card>
 		</div>
-		<div class="sbuild__load-more mt-m" v-if="lastVisible">
+		<div class="sbuild__load-more mt-m" v-if="lastIndex">
 			<button
 				class="btn btn-m btn-tertiary filter__btn"
 				@click="loadData(false)"
@@ -75,7 +75,7 @@ import {
 import { db } from '@/firebase/firebase';
 import { getLocalStorageUsersDataByKeyAndValue } from '@/functions/getDataByKeyAndValue';
 import FiltersBlock from '@/components/filter/FiltersBlock.vue';
-import { IFilterParams } from '@/components/filter/types';
+import { IFilterParams, sortByValues } from '@/components/filter/types';
 import { getAuth } from 'firebase/auth';
 import { SoldierID } from '@/type/Soldier';
 
@@ -117,14 +117,14 @@ export default defineComponent({
 			isFinishedLoading.value = true;
 		}
 
-		const lastVisible: any = ref('');
+		const lastIndex: any = ref('');
 		const loadedTimes: Ref<number> = ref(0);
 
 		async function loadBuildsFromDB(clearData: boolean) {
 			if (clearData) {
 				loadedData.length = 0;
 				loadedTimes.value = 0;
-				lastVisible.value = '';
+				lastIndex.value = '';
 			}
 
 			try {
@@ -133,18 +133,18 @@ export default defineComponent({
 				// ==============================
 				// If Loading from 'skill-builds'
 				if (props.from === 'base') {
-					if (!lastVisible.value) {
+					if (!lastIndex.value) {
 						// Check if there is a selected class
-						if (filterParams.value.selectedClass) {
+						if (filterParams.value.soldierClass) {
 							res = await getDocs(
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.isPublic', '==', true),
-									where('soldierClass', '==', filterParams.value.selectedClass),
+									where('soldierClass', '==', filterParams.value.soldierClass),
 									limit(12)
 								)
 							);
@@ -153,8 +153,8 @@ export default defineComponent({
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.isPublic', '==', true),
 									limit(12)
@@ -162,17 +162,17 @@ export default defineComponent({
 							);
 						}
 					} else {
-						if (filterParams.value.selectedClass) {
+						if (filterParams.value.soldierClass) {
 							res = await getDocs(
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.isPublic', '==', true),
-									where('soldierClass', '==', filterParams.value.selectedClass),
-									startAfter(lastVisible.value),
+									where('soldierClass', '==', filterParams.value.soldierClass),
+									startAfter(lastIndex.value),
 									limit(12)
 								)
 							);
@@ -181,11 +181,11 @@ export default defineComponent({
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.isPublic', '==', true),
-									startAfter(lastVisible.value),
+									startAfter(lastIndex.value),
 									limit(12)
 								)
 							);
@@ -195,17 +195,17 @@ export default defineComponent({
 				// ==============================
 				// If Loading from 'saved-builds'
 				else if (props.from === 'liked' && auth) {
-					if (!lastVisible.value) {
-						if (filterParams.value.selectedClass) {
+					if (!lastIndex.value) {
+						if (filterParams.value.soldierClass) {
 							res = await getDocs(
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.isPublic', '==', true),
-									where('soldierClass', '==', filterParams.value.selectedClass),
+									where('soldierClass', '==', filterParams.value.soldierClass),
 									where('data.likedBy', 'array-contains', auth.uid),
 									limit(12)
 								)
@@ -215,8 +215,8 @@ export default defineComponent({
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.isPublic', '==', true),
 									where('data.likedBy', 'array-contains', auth.uid),
@@ -225,18 +225,18 @@ export default defineComponent({
 							);
 						}
 					} else {
-						if (filterParams.value.selectedClass) {
+						if (filterParams.value.soldierClass) {
 							res = await getDocs(
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.isPublic', '==', true),
-									where('soldierClass', '==', filterParams.value.selectedClass),
+									where('soldierClass', '==', filterParams.value.soldierClass),
 									where('data.likedBy', 'array-contains', auth.uid),
-									startAfter(lastVisible.value),
+									startAfter(lastIndex.value),
 									limit(12)
 								)
 							);
@@ -245,12 +245,12 @@ export default defineComponent({
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.isPublic', '==', true),
 									where('data.likedBy', 'array-contains', auth.uid),
-									startAfter(lastVisible.value),
+									startAfter(lastIndex.value),
 									limit(12)
 								)
 							);
@@ -260,17 +260,17 @@ export default defineComponent({
 				// ==============================
 				// If Loading from 'my-builds'
 				else if (props.from === 'my' && auth) {
-					if (!lastVisible.value) {
-						if (filterParams.value.selectedClass) {
+					if (!lastIndex.value) {
+						if (filterParams.value.soldierClass) {
 							res = await getDocs(
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.author', '==', auth.uid),
-									where('soldierClass', '==', filterParams.value.selectedClass),
+									where('soldierClass', '==', filterParams.value.soldierClass),
 									limit(12)
 								)
 							);
@@ -279,8 +279,8 @@ export default defineComponent({
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.author', '==', auth.uid),
 									limit(12)
@@ -288,17 +288,17 @@ export default defineComponent({
 							);
 						}
 					} else {
-						if (filterParams.value.selectedClass) {
+						if (filterParams.value.soldierClass) {
 							res = await getDocs(
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.author', '==', auth.uid),
-									where('soldierClass', '==', filterParams.value.selectedClass),
-									startAfter(lastVisible.value),
+									where('soldierClass', '==', filterParams.value.soldierClass),
+									startAfter(lastIndex.value),
 									limit(12)
 								)
 							);
@@ -307,11 +307,11 @@ export default defineComponent({
 								query(
 									collection(db, 'builds'),
 									orderBy(
-										`data.${filterParams.value.sortByID}`,
-										filterParams.value.sortByMethod
+										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
+										filterParams.value.order
 									),
 									where('data.author', '==', auth.uid),
-									startAfter(lastVisible.value),
+									startAfter(lastIndex.value),
 									limit(12)
 								)
 							);
@@ -321,7 +321,7 @@ export default defineComponent({
 
 				// res будет всегда, просто компилятор ts ругается
 				if (res) {
-					lastVisible.value = res.docs[res.docs.length - 1];
+					lastIndex.value = res.docs[res.docs.length - 1];
 					loadedTimes.value++;
 
 					const newData: ISkillBuildWithID[] = [];
@@ -416,24 +416,37 @@ export default defineComponent({
 
 		// filters
 		const filterParams: Ref<IFilterParams> = ref({
-			selectedClass: false,
-			sortByID: 'createdAt',
-			sortByMethod: 'desc',
+			soldierClass: false,
+			sortBy: 'date',
+			order: 'desc',
 		});
 
 		function filterParamsChanged(payload: IFilterParams) {
-			filterParams.value.selectedClass = payload.selectedClass;
-			filterParams.value.sortByID = payload.sortByID;
-			filterParams.value.sortByMethod = payload.sortByMethod;
+			filterParams.value.soldierClass = payload.soldierClass;
+			filterParams.value.sortBy = payload.sortBy;
+			filterParams.value.order = payload.order;
+		}
+
+		function getDBsortByValue(
+			value: sortByValues
+		): 'likesAmount' | 'createdAt' | 'nameLowercase' {
+			const sortByValues = {
+				likes: 'likesAmount',
+				date: 'createdAt',
+				name: 'nameLowercase',
+			} as const;
+
+			return sortByValues[value];
 		}
 
 		// Query Validation
 		const validParams: {
-			selectedClass: SoldierID[];
-			sortByID: Array<'nameLowercase' | 'likesAmount' | 'createdAt'>;
-			sortByMethod: Array<'asc' | 'desc'>;
+			soldierClass: SoldierID[];
+			// sortByID: Array<'nameLowercase' | 'likesAmount' | 'createdAt'>;
+			sortBy: Array<'name' | 'likes' | 'date'>;
+			order: Array<'asc' | 'desc'>;
 		} = {
-			selectedClass: [
+			soldierClass: [
 				'custom',
 				'standart',
 				'rifleman1',
@@ -472,55 +485,51 @@ export default defineComponent({
 				'moto1',
 				'apc-driver',
 			],
-			sortByID: ['nameLowercase', 'likesAmount', 'createdAt'],
-			sortByMethod: ['asc', 'desc'],
+			sortBy: ['name', 'likes', 'date'],
+			// sortByID: ['nameLowercase', 'likesAmount', 'createdAt'],
+			order: ['asc', 'desc'],
 		};
 
 		const isQueryParamsOk = reactive<{
-			selectedClass: boolean;
-			sortByID: boolean;
-			sortByMethod: boolean;
+			soldierClass: boolean;
+			sortBy: boolean;
+			order: boolean;
 		}>({
-			selectedClass: false,
-			sortByID: false,
-			sortByMethod: false,
+			soldierClass: false,
+			sortBy: false,
+			order: false,
 		});
 
 		// Set query params
 		const router = useRouter();
 
 		interface Params {
-			selectedClass?: string;
-			sortByID?: string;
-			sortByMethod?: string;
+			soldierClass?: string;
+			sortBy?: string;
+			order?: string;
 		}
 		const params: Params = router.currentRoute.value.query;
 
 		function validateParams(params: Params) {
 			if (
-				params.selectedClass &&
-				validParams.selectedClass.includes(params.selectedClass as any)
+				params.soldierClass &&
+				validParams.soldierClass.includes(params.soldierClass as any)
 			) {
 				// @ts-expect-error
-				filterParams.value.selectedClass = params.selectedClass;
+				filterParams.value.soldierClass = params.soldierClass;
 			} else {
-				filterParams.value.selectedClass = false;
+				filterParams.value.soldierClass = false;
 			}
 
-			if (
-				params.sortByID &&
-				validParams.sortByID.includes(params.sortByID as any)
-			) {
-				filterParams.value.sortByID = params.sortByID;
-			}
-
-			// validate sortByMethod
-			if (
-				params.sortByMethod &&
-				validParams.sortByMethod.includes(params.sortByMethod as any)
-			) {
+			if (params.sortBy && validParams.sortBy.includes(params.sortBy as any)) {
 				// @ts-expect-error
-				filterParams.value.sortByMethod = params.sortByMethod;
+				filterParams.value.sortBy = params.sortBy;
+			}
+
+			// validate order
+			if (params.order && validParams.order.includes(params.order as any)) {
+				// @ts-expect-error
+				filterParams.value.order = params.order;
 			}
 		}
 
@@ -537,7 +546,7 @@ export default defineComponent({
 			isFinishedLoading,
 			filterParams,
 			filterParamsChanged,
-			lastVisible,
+			lastIndex,
 			loadedTimes,
 		};
 	},
