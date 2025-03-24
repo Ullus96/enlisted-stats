@@ -1,4 +1,16 @@
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require('@vue/cli-service');
 module.exports = defineConfig({
-  transpileDependencies: true
-})
+	transpileDependencies: true,
+	chainWebpack: (config) => {
+		config.module
+			.rule('vue')
+			.use('vue-loader')
+			.tap((options) => {
+				if (!options.compilerOptions) {
+					options.compilerOptions = {};
+				}
+				options.compilerOptions.isCustomElement = (tag) => tag === 'search';
+				return options;
+			});
+	},
+});

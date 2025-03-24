@@ -17,10 +17,11 @@ import { firebaseConfig } from '@/firebase/firebaseConfig';
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-createApp(App)
+const app = createApp(App)
 	.use(router)
 	.use(store, storeKey)
 	.directive('shiny-border', shinyBorder)
 	.directive('ripple', ripple)
-	.directive('focus', focus)
-	.mount('#app');
+	.directive('focus', focus);
+
+app.mount('#app');
