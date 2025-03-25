@@ -40,8 +40,18 @@
 							:type="'text'"
 							:label="'Название события'"
 							:placeholder="operationName"
+							:required="true"
 							:presetInput="eventData.name"
 							@onChange="(val) => (eventData.name = val)"
+						/>
+
+						<InputComponent
+							:key="eventData.dbId"
+							:type="'text'"
+							:label="'Ссылка на новость'"
+							:placeholder="'Необязательно'"
+							:presetInput="eventData.articleLink"
+							@onChange="(val) => (eventData.articleLink = val)"
 						/>
 
 						<InputComponent
@@ -49,6 +59,7 @@
 							:type="'datetime-local'"
 							:label="'Дата начала'"
 							:desc="'По местному'"
+							:required="true"
 							:presetInput="
 								eventData.dbId ? setInputDateFormat(eventData.startDate) : ''
 							"
@@ -60,6 +71,7 @@
 							:type="'datetime-local'"
 							:label="'Дата конца'"
 							:desc="'По местному'"
+							:required="true"
 							:presetInput="
 								eventData.dbId ? setInputDateFormat(eventData.endDate) : ''
 							"
@@ -72,6 +84,7 @@
 							:label="'Часов между этапами'"
 							:placeholder="48"
 							:desc="'24, 48, 72...'"
+							:required="true"
 							:presetInput="eventData.hoursInStage"
 							@onChange="(val) => (eventData.hoursInStage = val)"
 						/>
@@ -247,6 +260,7 @@ export default defineComponent({
 
 		let eventData: IEventFirestore = reactive({
 			name: '',
+			articleLink: '',
 			startDate: new Date(),
 			endDate: new Date(),
 			hoursInStage: 48,
@@ -328,6 +342,7 @@ export default defineComponent({
 			try {
 				const docRef = await addDoc(collection(db, 'events'), {
 					name: data.name,
+					articleLink: data.articleLink,
 					startDate: data.startDate,
 					endDate: data.endDate,
 					hoursInStage: data.hoursInStage,
@@ -353,6 +368,7 @@ export default defineComponent({
 					console.log('true');
 					const {
 						name,
+						articleLink,
 						startDate,
 						endDate,
 						hoursInStage,
@@ -361,6 +377,7 @@ export default defineComponent({
 						dbId,
 					} = event;
 					eventData.name = name;
+					eventData.articleLink = articleLink;
 					eventData.startDate = startDate;
 					eventData.endDate = endDate;
 					eventData.hoursInStage = hoursInStage;
@@ -373,6 +390,7 @@ export default defineComponent({
 
 		function createNewEvent() {
 			eventData.name = '';
+			eventData.articleLink = '';
 			eventData.dbId = '';
 			eventData.startDate = new Date();
 			eventData.endDate = new Date();
@@ -399,6 +417,7 @@ export default defineComponent({
 			const docRef = doc(db, 'events', eventData.dbId);
 			const data: IEvent = {
 				name: eventData.name,
+				articleLink: eventData.articleLink,
 				startDate: new Date(startDate.value),
 				endDate: new Date(endDate.value),
 				hoursInStage: eventData.hoursInStage,

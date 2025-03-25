@@ -5,6 +5,7 @@ export interface IStage {
 
 export interface IEvent {
 	name: string;
+	articleLink: string;
 	startDate: Date;
 	endDate: Date;
 	hoursInStage: number;

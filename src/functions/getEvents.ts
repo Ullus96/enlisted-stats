@@ -12,10 +12,18 @@ const getEvents = () => {
 				query(collection(db, 'events'), orderBy('startDate', 'asc'))
 			);
 			events.value = res.docs.map((doc) => {
-				const { name, startDate, endDate, hoursInStage, stages, rewards } =
-					doc.data();
+				const {
+					name,
+					articleLink,
+					startDate,
+					endDate,
+					hoursInStage,
+					stages,
+					rewards,
+				} = doc.data();
 				let singleEvent: IEvent = {
 					name: name,
+					articleLink: articleLink || '',
 					startDate: new Date(startDate.seconds * 1000),
 					endDate: new Date(endDate.seconds * 1000),
 					hoursInStage: hoursInStage,
