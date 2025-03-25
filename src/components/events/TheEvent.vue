@@ -1,7 +1,12 @@
 <template>
 	<template v-if="status === 'going'">
 		<section class="container mt-l">
-			<h1 class="event__title">{{ data.name }}</h1>
+			<h1 class="event__title" v-if="data.articleLink">
+				<a :href="data.articleLink" target="_blank" class="event__title--link">
+					{{ data.name }}
+				</a>
+			</h1>
+			<h1 class="event__title" v-else>{{ data.name }}</h1>
 
 			<div class="event__content">
 				<div class="event__left-col">

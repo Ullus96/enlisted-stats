@@ -3,6 +3,10 @@
 		text-align: center;
 	}
 
+	&__title--link:hover {
+		text-decoration: underline;
+	}
+
 	&__end {
 		text-align: center;
 		color: $color-text-400;

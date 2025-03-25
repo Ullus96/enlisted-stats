@@ -2003,6 +2003,9 @@ h3 {
 .event__title {
   text-align: center;
 }
+.event__title--link:hover {
+  text-decoration: underline;
+}
 .event__end {
   text-align: center;
   color: rgb(165, 165, 165);
