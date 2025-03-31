@@ -1305,7 +1305,11 @@ h3 {
   display: flex;
   gap: 0.8rem;
 }
+.aside__profile--logged-in:hover .aside__profile-settings-link {
+  opacity: 1;
+}
 .aside__avatar {
+  position: relative;
   display: block;
   width: 5rem;
   aspect-ratio: 1/1;
@@ -1314,6 +1318,23 @@ h3 {
   border-radius: 100%;
   margin: 0 1.1rem;
   transition: margin 0.2s ease-in-out;
+}
+.aside__profile-settings-link {
+  opacity: 0;
+  position: absolute;
+  width: 5rem;
+  aspect-ratio: 1/1;
+  left: 1.1rem;
+  background-color: rgba(39, 39, 39, 0.75);
+  border-radius: 100%;
+  transition: left 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+.aside__profile-settings-link > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 .aside__nickname {
   display: none;
@@ -1441,6 +1462,9 @@ h3 {
 }
 .aside:hover .aside__profile {
   padding-right: 2rem;
+}
+.aside:hover .aside__profile-settings-link {
+  left: 2rem;
 }
 .aside:hover .aside__avatar {
   margin: 0 2rem;

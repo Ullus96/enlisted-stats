@@ -15,12 +15,23 @@
 		<template v-else>
 			<!-- User is logged in -->
 			<template v-if="$store.state.user.isLoggedIn">
-				<div class="aside__profile">
+				<div class="aside__profile aside__profile--logged-in">
 					<img
 						:src="$store.state.user.photoUrl"
 						alt="Profile Picture"
 						class="aside__avatar"
 					/>
+					<div class="aside__profile-settings-link">
+						<router-link
+							@click="hideNavigationVisibility"
+							to="/settings"
+							v-ripple
+						>
+							<IconBase :width="20" :height="20">
+								<IconCog />
+							</IconBase>
+						</router-link>
+					</div>
 					<div class="aside__nickname">{{ $store.state.user.displayName }}</div>
 				</div>
 			</template>
