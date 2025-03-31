@@ -8,6 +8,10 @@
 	margin: 0;
 	position: relative;
 	width: 30px;
+
+	&:focus-visible {
+		box-shadow: inset 0 0 0 1px $color-text-100;
+	}
 }
 
 .checkbox-wrapper-2 .ikxBAC::before {
