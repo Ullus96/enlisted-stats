@@ -35,7 +35,6 @@ export interface State {
 	};
 	settings: {
 		compactMode: boolean;
-		inlineRewards: boolean;
 		eventCardWidth: 1 | 2;
 	};
 }
@@ -78,7 +77,6 @@ export default createStore<State>({
 		},
 		settings: {
 			compactMode: false,
-			inlineRewards: false,
 			eventCardWidth: 1,
 		},
 	},
@@ -174,10 +172,6 @@ export default createStore<State>({
 
 		switchCompactMode(state, newVal: boolean) {
 			state.settings.compactMode = newVal;
-		},
-
-		switchInlineRewards(state, newVal: boolean) {
-			state.settings.inlineRewards = newVal;
 		},
 
 		setEventCardWidth(state, newVal: 1 | 2) {

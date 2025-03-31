@@ -106,25 +106,6 @@
 					</div>
 
 					<div class="profile__title-desc-action-block">
-						<div class="profile__title-desc-block">
-							<p class="profile__option-name">
-								Отображение наград внутри карточек
-							</p>
-							<p class="profile__option-desc">
-								Отображает награды событий прямо на карточках, вместо
-								всплывающих подсказок.
-							</p>
-						</div>
-						<label class="checkbox-wrapper-2 profile__checkbox-wrapper">
-							<input
-								type="checkbox"
-								class="sc-gJwTLC ikxBAC"
-								v-model="inlineRewards"
-							/>
-						</label>
-					</div>
-
-					<div class="profile__title-desc-action-block">
 						<div
 							class="profile__title-desc-block profile__title-desc-block--fw"
 						>
@@ -305,16 +286,6 @@ export default defineComponent({
 			store.commit('switchCompactMode', newVal);
 		});
 
-		// Инлайн награды
-		const inlineRewards: Ref<boolean> = ref(
-			loadFromLocalStorage('inlineRewards') || false
-		);
-
-		watch(inlineRewards, (newVal) => {
-			saveToLocalStorage('inlineRewards', newVal);
-			store.commit('switchInlineRewards', newVal);
-		});
-
 		// Ширина карточки
 		const eventCardWidth: Ref<number> = ref(
 			loadFromLocalStorage('eventCardWidth') || 1
@@ -338,7 +309,6 @@ export default defineComponent({
 			updateDisplayName,
 			deleteAccount,
 			compactMode,
-			inlineRewards,
 			eventCardWidth,
 			updateRootVariable,
 			getRootVariable,

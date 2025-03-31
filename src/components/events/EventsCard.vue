@@ -1,24 +1,13 @@
 <template>
 	<div
-		class="event__card"
+		class="event__card inline-rewards"
 		:class="{
 			'event__card--active': isActive,
 			skipped: isSkipped,
-			'inline-rewards': $store.state.settings.inlineRewards,
 			animated: allowAnimation,
 		}"
 		@click="handleClick"
 	>
-		<TooltipComponent
-			:direction="'top'"
-			:width="20"
-			v-if="!$store.state.settings.inlineRewards"
-		>
-			<p>Награда:</p>
-			<p v-for="item in separateLineBySemicolon(reward)" :key="item">
-				{{ item ? item : '—' }}
-			</p>
-		</TooltipComponent>
 		<p class="event__counter">#{{ stageIndex + 1 }}</p>
 		<p class="event__date">{{ day }}</p>
 		<p class="event__month">{{ month }}</p>
@@ -34,11 +23,9 @@
 <script lang="ts">
 import { IStage } from '@/type/Events';
 import { defineComponent, PropType, ref, Ref } from 'vue';
-import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
 
 export default defineComponent({
-	components: { TooltipComponent },
 	props: {
 		cardData: { required: true, type: Object as PropType<IStage> },
 		stageIndex: { required: true, type: Number },
