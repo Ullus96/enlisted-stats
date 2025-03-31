@@ -24,7 +24,15 @@
 						</button>
 					</span>
 
-					<div class="event__cards-flex">
+					<div
+						class="event__cards-container"
+						:class="
+							stagesWithRewards.length <
+							6 / $store.state.settings.eventCardWidth
+								? 'event__cards-container--flex'
+								: 'event__cards-container--grid'
+						"
+					>
 						<events-card
 							v-for="(item, index) in stagesWithRewards"
 							:key="String(item.startDate)"

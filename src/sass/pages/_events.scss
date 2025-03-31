@@ -53,14 +53,25 @@
 		}
 	}
 
-	&__cards-flex {
-		display: flex;
-		flex-wrap: wrap;
+	&__cards-container {
 		gap: 2rem;
 		margin-top: 2rem;
 
 		@include tablet {
 			justify-content: center;
+		}
+
+		&--flex {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		&--grid {
+			display: grid;
+			grid-template-columns: repeat(
+				auto-fill,
+				minmax(calc(var(--ui-card-width) - 1rem), 1fr)
+			);
 		}
 	}
 

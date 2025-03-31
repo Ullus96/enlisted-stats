@@ -2051,16 +2051,22 @@ h3 {
     text-wrap: balance;
   }
 }
-.event__cards-flex {
-  display: flex;
-  flex-wrap: wrap;
+.event__cards-container {
   gap: 2rem;
   margin-top: 2rem;
 }
 @media (max-width: 849px) {
-  .event__cards-flex {
+  .event__cards-container {
     justify-content: center;
   }
+}
+.event__cards-container--flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.event__cards-container--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--ui-card-width) - 1rem), 1fr));
 }
 .event__card {
   position: relative;
