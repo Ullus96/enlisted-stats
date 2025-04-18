@@ -237,14 +237,16 @@ export default defineComponent({
 		let status: 'notStarted' | 'going' | 'finished' | null = null;
 		const activeReward: Ref<'current' | 'next'> = ref('next');
 
-		function getCurrentStage(event: IEvent): {
+		function getCurrentStage(
+			event: IEvent,
+			nowTimestamp: number = Date.now()
+		): {
 			index: number;
 			timeLeft: number;
 		} {
-			const currentDate: Date = new Date();
+			const currentDate = new Date(nowTimestamp);
 
 			if (currentDate < event.startDate) {
-				// Событие еще не началось
 				status = 'notStarted';
 				return {
 					index: -1,
@@ -257,7 +259,6 @@ export default defineComponent({
 
 				if (currentDate >= stage.startDate && currentDate <= stage.endDate) {
 					status = 'going';
-					// Мы находимся внутри этапа
 					return {
 						index: i,
 						timeLeft: stage.endDate.getTime() - currentDate.getTime(),
@@ -265,7 +266,6 @@ export default defineComponent({
 				}
 
 				if (currentDate < stage.startDate) {
-					// Мы находимся перед началом этапа
 					return {
 						index: i,
 						timeLeft: stage.startDate.getTime() - currentDate.getTime(),
@@ -273,7 +273,6 @@ export default defineComponent({
 				}
 			}
 
-			// Событие уже завершилось
 			status = 'finished';
 			return { index: event.stages.length, timeLeft: 0 };
 		}
@@ -326,21 +325,24 @@ export default defineComponent({
 			}
 		}
 
-		// progress bar
-		let progressBarPercents: Ref<number> = ref(0);
+		const timeNow = ref(Date.now());
 
-		function getProgressBarPercentage() {
-			const { timeLeft, index } = getCurrentStage(props.data);
-			const eventEndTimestamp = props.data.stages[index].endDate.getTime();
-			const eventStartTimestamp = props.data.stages[index].startDate.getTime();
-			const wholeStageDuration = eventEndTimestamp - eventStartTimestamp;
-			progressBarPercents.value = (1 - timeLeft / wholeStageDuration) * 100;
-		}
+		onMounted(() => {
+			setInterval(() => {
+				timeNow.value = Date.now();
+			}, 60000);
+		});
 
-		// get percents on page load
-		getProgressBarPercentage();
-		// then update percents every hour
-		setInterval(getProgressBarPercentage, 3600000);
+		const progressBarPercents = computed(() => {
+			const { timeLeft, index } = getCurrentStage(props.data, timeNow.value);
+			if (index === -1 || index >= props.data.stages.length) return 0;
+
+			const stage = props.data.stages[index];
+			const wholeStageDuration =
+				stage.endDate.getTime() - stage.startDate.getTime();
+
+			return (1 - timeLeft / wholeStageDuration) * 100;
+		});
 
 		const options: Intl.DateTimeFormatOptions = {
 			weekday: 'long',
