@@ -330,9 +330,11 @@ export default defineComponent({
 		let progressBarPercents: Ref<number> = ref(0);
 
 		function getProgressBarPercentage() {
-			const { timeLeft } = getCurrentStage(props.data);
-			const twoDaysInMs: number = 172800000;
-			progressBarPercents.value = (1 - timeLeft / twoDaysInMs) * 100;
+			const { timeLeft, index } = getCurrentStage(props.data);
+			const eventEndTimestamp = props.data.stages[index].endDate.getTime();
+			const eventStartTimestamp = props.data.stages[index].startDate.getTime();
+			const wholeStageDuration = eventEndTimestamp - eventStartTimestamp;
+			progressBarPercents.value = (1 - timeLeft / wholeStageDuration) * 100;
 		}
 
 		// get percents on page load
