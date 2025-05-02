@@ -1,4 +1,23 @@
 .faq {
+	&__section-title-wrapper {
+		display: flex;
+		justify-content: center;
+		margin: 6rem auto 0;
+	}
+
+	&__section-title {
+		text-transform: uppercase;
+
+		// text-decoration: underline $color-primary-200;
+		// text-decoration-thickness: 8px;
+		// text-underline-offset: -2px;
+		// text-decoration-skip-ink: none;
+	}
+
+	&__group-title {
+		margin: 6rem 0 2rem;
+	}
+
 	&__group {
 		display: flex;
 		flex-direction: column;

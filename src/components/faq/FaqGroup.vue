@@ -1,5 +1,5 @@
 <template>
-	<!-- Paste header of a group here -->
+	<h3 class="faq__group-title" v-if="title" v-text="title"></h3>
 	<div class="faq__group">
 		<slot></slot>
 	</div>
@@ -9,6 +9,12 @@
 import { defineComponent, provide, Ref, ref } from 'vue';
 
 export default defineComponent({
+	props: {
+		title: {
+			required: false,
+			type: String,
+		},
+	},
 	setup() {
 		const openedIndex: Ref<number | null> = ref(null);
 

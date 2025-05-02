@@ -132,8 +132,10 @@
 		</div>
 
 		<div class="container-sm">
-			<h2>Часто задаваемые вопросы</h2>
-			<FaqGroup>
+			<div class="faq__section-title-wrapper">
+				<h2 class="faq__section-title">Часто задаваемые вопросы</h2>
+			</div>
+			<FaqGroup :title="'Вопросы по прокачке'">
 				<FaqItem :title="'Тестовый заголовок №1'">
 					<p>Это тестовый текст под текстовый заголовок первого элемента</p>
 				</FaqItem>
