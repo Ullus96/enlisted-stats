@@ -130,6 +130,18 @@
 				</div>
 			</template>
 		</div>
+
+		<div class="container-sm">
+			<h2>Часто задаваемые вопросы</h2>
+			<FaqGroup>
+				<FaqItem :title="'Тестовый заголовок №1'" :index="0">
+					<p>Это тестовый текст под текстовый заголовок первого элемента</p>
+				</FaqItem>
+				<FaqItem :title="'Тестовый заголовок №2'" :index="1">
+					<p>Это тестовый текст под текстовый заголовок второго элемента</p>
+				</FaqItem>
+			</FaqGroup>
+		</div>
 	</div>
 </template>
 
@@ -180,6 +192,8 @@ import BuildCard from '@/components/build/BuildCard.vue';
 import { transliterateWithRomanCheck } from '@/functions/transliterate';
 import Fuse from 'fuse.js';
 import { IItem } from '@/type/Item';
+import FaqGroup from '@/components/faq/FaqGroup.vue';
+import FaqItem from '@/components/faq/FaqItem.vue';
 
 export default defineComponent({
 	name: 'App',
@@ -193,6 +207,8 @@ export default defineComponent({
 		IconQuestionCircle,
 		TooltipComponent,
 		BuildCard,
+		FaqGroup,
+		FaqItem,
 	},
 	setup() {
 		const isFilteredToClass: Ref<boolean> = ref(false);

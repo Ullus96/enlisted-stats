@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { nextTick } from 'vue';
-import SoldiersView from '@/views/SoldiersView.vue';
+import IndexView from '@/views/IndexView.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { checkIfUserAnAdmin } from '@/components/auth/functions/checkIfUserAnAdmin';
 import { adminsList } from '../firebase/adminsList';
@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw & { meta?: ICustomRouteMeta }> = [
 	{
 		path: '/',
 		name: 'Home',
-		component: SoldiersView,
+		component: IndexView,
 		meta: {
 			title: 'Таблица бойцов',
 		},
