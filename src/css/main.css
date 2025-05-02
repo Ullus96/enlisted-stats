@@ -2037,13 +2037,17 @@ h3 {
 .faq__item {
   border-radius: 1.2rem;
   overflow: hidden;
+  margin-bottom: 0;
+  transition: 0.2s ease-in-out margin-bottom;
+}
+.faq__item[open] {
+  margin-bottom: 1.6rem;
 }
 .faq__item[open] .faq__title {
   background-color: rgb(39, 39, 39);
   padding: 1.2rem 2.4rem 1.2rem 2rem;
 }
 .faq__item[open] .faq__content {
-  margin-bottom: 1.6rem;
   border-radius: 0 0 1.2rem 1.2rem;
 }
 .faq__title {
@@ -2060,8 +2064,6 @@ h3 {
   color: rgb(165, 165, 165);
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
-  margin-bottom: 0;
-  transition: 0.2s ease-in-out margin-bottom;
 }
 
 .faq__item summary {

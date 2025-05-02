@@ -18,7 +18,7 @@ export default defineComponent({
 	setup() {
 		const openedIndex: Ref<number | null> = ref(null);
 
-		function setOpenedIndex(index: number) {
+		function setOpenedIndex(index: number | null) {
 			openedIndex.value = index;
 		}
 

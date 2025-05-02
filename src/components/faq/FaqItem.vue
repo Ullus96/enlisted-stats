@@ -32,7 +32,9 @@ export default defineComponent({
 	emits: ['handleClick'],
 	setup() {
 		const openedIndex = inject('openedIndex') as Ref<number | null>;
-		const setOpenedIndex = inject('setOpenedIndex') as (index: number) => void;
+		const setOpenedIndex = inject('setOpenedIndex') as (
+			index: number | null
+		) => void;
 		const registerItem = inject('registerItem') as () => number;
 
 		const index: Ref<number | null> = ref(null);
@@ -44,7 +46,9 @@ export default defineComponent({
 		const isOpen = computed(() => openedIndex.value === index.value);
 
 		function handleClick() {
-			if (index.value !== null) {
+			if (isOpen.value) {
+				setOpenedIndex(null);
+			} else if (index.value !== null) {
 				setOpenedIndex(index.value);
 			}
 		}
