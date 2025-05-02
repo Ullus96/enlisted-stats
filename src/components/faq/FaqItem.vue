@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, Ref } from 'vue';
+import { computed, defineComponent, inject, onMounted, ref, Ref } from 'vue';
 
 export default defineComponent({
 	props: {
@@ -14,20 +14,25 @@ export default defineComponent({
 			required: true,
 			type: String,
 		},
-		index: {
-			required: true,
-			type: Number,
-		},
 	},
 	emits: ['handleClick'],
 	setup(props) {
 		const openedIndex = inject('openedIndex') as Ref<number | null>;
 		const setOpenedIndex = inject('setOpenedIndex') as (index: number) => void;
+		const registerItem = inject('registerItem') as () => number;
 
-		const isOpen = computed(() => openedIndex.value === props.index);
+		const index: Ref<number | null> = ref(null);
+
+		onMounted(() => {
+			index.value = registerItem();
+		});
+
+		const isOpen = computed(() => openedIndex.value === index.value);
 
 		function handleClick() {
-			setOpenedIndex(props.index);
+			if (index.value !== null) {
+				setOpenedIndex(index.value);
+			}
 		}
 
 		return { isOpen, handleClick };

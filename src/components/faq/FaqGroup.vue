@@ -15,8 +15,17 @@ export default defineComponent({
 			openedIndex.value = index;
 		}
 
+		const childCount = ref(0);
+
+		function registerItem(): number {
+			const index = childCount.value;
+			childCount.value++;
+			return index;
+		}
+
 		provide('openedIndex', openedIndex);
 		provide('setOpenedIndex', setOpenedIndex);
+		provide('registerItem', registerItem);
 
 		return {};
 	},
