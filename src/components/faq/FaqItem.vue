@@ -2,8 +2,8 @@
 	<details :open="isOpen" @click.prevent="handleClick" class="faq__item">
 		<summary>
 			<div class="faq__title">
-				<span v-text="title"></span>
-				<IconBase>
+				<span v-text="title" class="faq__title-text"></span>
+				<IconBase class="faq__expand">
 					<IconPlus v-if="!isOpen" />
 					<IconMinus v-else />
 				</IconBase>

@@ -6,6 +6,7 @@
 	}
 
 	&__section-title {
+		text-align: center;
 		text-transform: uppercase;
 
 		// text-decoration: underline $color-primary-200;
@@ -50,11 +51,21 @@
 	&__title {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+		gap: 1.2rem;
 		padding: 2rem 2.4rem 2rem 2rem;
 		background-color: $color-bg-900;
 		cursor: pointer;
 
 		transition: 0.2s ease-in-out padding;
+	}
+
+	&__title-text {
+		flex: 1 1 auto;
+	}
+
+	&__expand {
+		flex: 0 0 auto;
 	}
 
 	&__content {

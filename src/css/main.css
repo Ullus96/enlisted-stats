@@ -2024,6 +2024,7 @@ h3 {
   margin: 6rem auto 0;
 }
 .faq__section-title {
+  text-align: center;
   text-transform: uppercase;
 }
 .faq__group-title {
@@ -2053,10 +2054,18 @@ h3 {
 .faq__title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
   padding: 2rem 2.4rem 2rem 2rem;
   background-color: rgb(18, 18, 18);
   cursor: pointer;
   transition: 0.2s ease-in-out padding;
+}
+.faq__title-text {
+  flex: 1 1 auto;
+}
+.faq__expand {
+  flex: 0 0 auto;
 }
 .faq__content {
   padding: 1.2rem 2rem;
