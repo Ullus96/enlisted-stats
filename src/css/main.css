@@ -2018,6 +2018,51 @@ h3 {
   width: 35%;
 }
 
+.faq__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.faq__item {
+  border-radius: 1.2rem;
+  overflow: hidden;
+}
+.faq__item[open] .faq__title {
+  background-color: rgb(39, 39, 39);
+  padding: 1.2rem 2.4rem 1.2rem 2rem;
+}
+.faq__item[open] .faq__content {
+  margin-bottom: 1.6rem;
+  border-radius: 0 0 1.2rem 1.2rem;
+}
+.faq__title {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 2.4rem 2rem 2rem;
+  background-color: rgb(18, 18, 18);
+  cursor: pointer;
+  transition: 0.2s ease-in-out padding;
+}
+.faq__content {
+  padding: 1.2rem 2rem;
+  background-color: rgba(39, 39, 39, 0.75);
+  color: rgb(165, 165, 165);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  margin-bottom: 0;
+  transition: 0.2s ease-in-out margin-bottom;
+}
+
+.faq__item summary {
+  /* Hides marker on Chrome */
+  outline: none;
+  list-style: none;
+}
+.faq__item summary::-webkit-details-marker {
+  /* Hides marker on Safari */
+  display: none;
+}
+
 .event__title {
   text-align: center;
 }

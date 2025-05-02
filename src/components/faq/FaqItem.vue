@@ -1,14 +1,28 @@
 <template>
-	<details :open="isOpen" @click.prevent="handleClick">
-		<summary v-text="title"></summary>
-		<slot></slot>
+	<details :open="isOpen" @click.prevent="handleClick" class="faq__item">
+		<summary>
+			<div class="faq__title">
+				<span v-text="title"></span>
+				<IconBase>
+					<IconPlus v-if="!isOpen" />
+					<IconMinus v-else />
+				</IconBase>
+			</div>
+		</summary>
+		<div class="faq__content">
+			<slot></slot>
+		</div>
 	</details>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, inject, onMounted, ref, Ref } from 'vue';
+import IconBase from '../ui/icon/IconBase.vue';
+import IconPlus from '../ui/icon/icons/IconPlus.vue';
+import IconMinus from '../ui/icon/icons/IconMinus.vue';
 
 export default defineComponent({
+	components: { IconBase, IconPlus, IconMinus },
 	props: {
 		title: {
 			required: true,
@@ -16,7 +30,7 @@ export default defineComponent({
 		},
 	},
 	emits: ['handleClick'],
-	setup(props) {
+	setup() {
 		const openedIndex = inject('openedIndex') as Ref<number | null>;
 		const setOpenedIndex = inject('setOpenedIndex') as (index: number) => void;
 		const registerItem = inject('registerItem') as () => number;

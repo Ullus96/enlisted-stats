@@ -1,5 +1,6 @@
 <template>
-	<div>
+	<!-- Paste header of a group here -->
+	<div class="faq__group">
 		<slot></slot>
 	</div>
 </template>
