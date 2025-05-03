@@ -1,6 +1,6 @@
 <template>
 	<div class="container container-sm legal">
-		<h2 class="mt-l">Пользовательское соглашение</h2>
+		<h1 class="mt-l">Пользовательское соглашение</h1>
 		<section>
 			<h3>Пользовательское Соглашение</h3>
 			<p>

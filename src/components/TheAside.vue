@@ -217,6 +217,10 @@
 					<router-link @click="hideNavigationVisibility" to="/user-agreement"
 						>Пользовательское соглашение</router-link
 					>
+					|
+					<router-link @click="hideNavigationVisibility" to="/licenses"
+						>Лицензии инструментов</router-link
+					>
 				</div>
 			</footer>
 		</div>

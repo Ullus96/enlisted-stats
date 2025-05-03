@@ -1,0 +1,622 @@
+{
+  "@babel/parser@7.23.5": {
+    "licenses": "MIT",
+    "publisher": "The Babel Team",
+    "repository": "https://github.com/babel/babel",
+    "url": "https://babel.dev/team"
+  },
+  "@fastify/busboy@2.1.1": {
+    "licenses": "MIT",
+    "publisher": "Brian White",
+    "repository": "https://github.com/fastify/busboy"
+  },
+  "@firebase/analytics-compat@0.2.6": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/analytics-types@0.8.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/analytics@0.10.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/app-check-compat@0.3.8": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/app-check-interop-types@0.3.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/app-check-types@0.5.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/app-check@0.8.1": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/app-compat@0.2.25": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/app-types@0.9.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/app@0.9.25": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/auth-compat@0.5.1": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/auth-interop-types@0.2.1": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/auth-types@0.12.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/auth@1.5.1": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/component@0.6.4": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/database-compat@1.0.2": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/database-types@1.0.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/database@1.0.2": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/firestore-compat@0.3.23": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/firestore-types@3.0.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/firestore@4.4.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/functions-compat@0.3.6": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/functions-types@0.6.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/functions@0.11.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/installations-compat@0.2.4": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/installations-types@0.5.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/installations@0.6.4": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/logger@0.4.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/messaging-compat@0.2.5": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/messaging-interop-types@0.2.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/messaging@0.12.5": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/performance-compat@0.2.4": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/performance-types@0.2.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/performance@0.6.4": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/remote-config-compat@0.2.4": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/remote-config-types@0.3.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/remote-config@0.4.4": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/storage-compat@0.3.3": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/storage-types@0.8.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/storage@0.12.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/util@1.9.3": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@firebase/webchannel-wrapper@0.10.5": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "@grpc/grpc-js@1.9.15": {
+    "licenses": "Apache-2.0",
+    "publisher": "Google Inc.",
+    "repository": "https://github.com/grpc/grpc-node/tree/master/packages/grpc-js"
+  },
+  "@grpc/proto-loader@0.7.13": {
+    "licenses": "Apache-2.0",
+    "publisher": "Google Inc.",
+    "repository": "https://github.com/grpc/grpc-node"
+  },
+  "@jridgewell/sourcemap-codec@1.4.15": {
+    "licenses": "MIT",
+    "publisher": "Rich Harris",
+    "repository": "https://github.com/jridgewell/sourcemap-codec"
+  },
+  "@protobufjs/aspromise@1.1.2": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/protobuf.js"
+  },
+  "@protobufjs/base64@1.1.2": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/protobuf.js"
+  },
+  "@protobufjs/codegen@2.0.4": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/protobuf.js"
+  },
+  "@protobufjs/eventemitter@1.1.0": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/protobuf.js"
+  },
+  "@protobufjs/fetch@1.1.0": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/protobuf.js"
+  },
+  "@protobufjs/float@1.0.2": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/protobuf.js"
+  },
+  "@protobufjs/inquire@1.1.0": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/protobuf.js"
+  },
+  "@protobufjs/path@1.1.2": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/protobuf.js"
+  },
+  "@protobufjs/pool@1.1.0": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/protobuf.js"
+  },
+  "@protobufjs/utf8@1.1.0": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/protobuf.js"
+  },
+  "@types/node@20.10.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped"
+  },
+  "@vue/compiler-core@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "@vue/compiler-dom@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "@vue/compiler-sfc@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "@vue/compiler-ssr@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "@vue/devtools-api@6.5.1": {
+    "licenses": "MIT",
+    "publisher": "Guillaume Chau",
+    "repository": "https://github.com/vuejs/vue-devtools"
+  },
+  "@vue/reactivity-transform@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "@vue/reactivity@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "@vue/runtime-core@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "@vue/runtime-dom@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "@vue/server-renderer@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "@vue/shared@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "ansi-regex@5.0.1": {
+    "licenses": "MIT",
+    "publisher": "Sindre Sorhus",
+    "repository": "https://github.com/chalk/ansi-regex",
+    "url": "sindresorhus.com"
+  },
+  "ansi-styles@4.3.0": {
+    "licenses": "MIT",
+    "publisher": "Sindre Sorhus",
+    "repository": "https://github.com/chalk/ansi-styles",
+    "url": "sindresorhus.com"
+  },
+  "cliui@8.0.1": {
+    "licenses": "ISC",
+    "publisher": "Ben Coe",
+    "repository": "https://github.com/yargs/cliui"
+  },
+  "color-convert@2.0.1": {
+    "licenses": "MIT",
+    "publisher": "Heather Arthur",
+    "repository": "https://github.com/Qix-/color-convert"
+  },
+  "color-name@1.1.4": {
+    "licenses": "MIT",
+    "publisher": "DY",
+    "repository": "https://github.com/colorjs/color-name"
+  },
+  "core-js@3.33.3": {
+    "licenses": "MIT",
+    "publisher": "Denis Pushkarev",
+    "repository": "https://github.com/zloirock/core-js",
+    "url": "http://zloirock.ru"
+  },
+  "csstype@3.1.2": {
+    "licenses": "MIT",
+    "publisher": "Fredrik Nicol",
+    "repository": "https://github.com/frenic/csstype"
+  },
+  "emoji-regex@8.0.0": {
+    "licenses": "MIT",
+    "publisher": "Mathias Bynens",
+    "repository": "https://github.com/mathiasbynens/emoji-regex",
+    "url": "https://mathiasbynens.be/"
+  },
+  "enlisted-stats@0.1.0": {
+    "licenses": "UNLICENSED"
+  },
+  "escalade@3.1.1": {
+    "licenses": "MIT",
+    "publisher": "Luke Edwards",
+    "repository": "https://github.com/lukeed/escalade",
+    "url": "https://lukeed.com"
+  },
+  "estree-walker@2.0.2": {
+    "licenses": "MIT",
+    "publisher": "Rich Harris",
+    "repository": "https://github.com/Rich-Harris/estree-walker"
+  },
+  "faye-websocket@0.11.4": {
+    "licenses": "Apache-2.0",
+    "publisher": "James Coglan",
+    "repository": "https://github.com/faye/faye-websocket-node",
+    "url": "http://jcoglan.com/"
+  },
+  "firebase@10.7.1": {
+    "licenses": "Apache-2.0",
+    "publisher": "Firebase",
+    "repository": "https://github.com/firebase/firebase-js-sdk",
+    "url": "https://firebase.google.com/"
+  },
+  "fuse.js@7.0.0": {
+    "licenses": "Apache-2.0",
+    "publisher": "Kiro Risk",
+    "repository": "https://github.com/krisk/Fuse",
+    "url": "http://kiro.me"
+  },
+  "get-caller-file@2.0.5": {
+    "licenses": "ISC",
+    "publisher": "Stefan Penner",
+    "repository": "https://github.com/stefanpenner/get-caller-file"
+  },
+  "http-parser-js@0.5.8": {
+    "licenses": "MIT",
+    "publisher": "Tim Caswell",
+    "repository": "https://github.com/creationix/http-parser-js",
+    "url": "https://github.com/creationix"
+  },
+  "idb@7.0.1": {
+    "licenses": "ISC",
+    "publisher": "Jake Archibald",
+    "repository": "https://github.com/jakearchibald/idb"
+  },
+  "idb@7.1.1": {
+    "licenses": "ISC",
+    "publisher": "Jake Archibald",
+    "repository": "https://github.com/jakearchibald/idb"
+  },
+  "is-fullwidth-code-point@3.0.0": {
+    "licenses": "MIT",
+    "publisher": "Sindre Sorhus",
+    "repository": "https://github.com/sindresorhus/is-fullwidth-code-point",
+    "url": "sindresorhus.com"
+  },
+  "lodash.camelcase@4.3.0": {
+    "licenses": "MIT",
+    "publisher": "John-David Dalton",
+    "repository": "https://github.com/lodash/lodash",
+    "url": "http://allyoucanleet.com/"
+  },
+  "long@5.2.3": {
+    "licenses": "Apache-2.0",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/dcodeIO/long.js"
+  },
+  "magic-string@0.30.5": {
+    "licenses": "MIT",
+    "publisher": "Rich Harris",
+    "repository": "https://github.com/rich-harris/magic-string"
+  },
+  "nanoid@3.3.7": {
+    "licenses": "MIT",
+    "publisher": "Andrey Sitnik",
+    "repository": "https://github.com/ai/nanoid"
+  },
+  "picocolors@1.0.0": {
+    "licenses": "ISC",
+    "publisher": "Alexey Raspopov",
+    "repository": "https://github.com/alexeyraspopov/picocolors"
+  },
+  "postcss@8.4.32": {
+    "licenses": "MIT",
+    "publisher": "Andrey Sitnik",
+    "repository": "https://github.com/postcss/postcss"
+  },
+  "protobufjs@7.3.2": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Daniel Wirtz",
+    "repository": "https://github.com/protobufjs/protobuf.js"
+  },
+  "require-directory@2.1.1": {
+    "licenses": "MIT",
+    "publisher": "Troy Goode",
+    "repository": "https://github.com/troygoode/node-require-directory",
+    "url": "http://github.com/troygoode/"
+  },
+  "safe-buffer@5.2.1": {
+    "licenses": "MIT",
+    "publisher": "Feross Aboukhadijeh",
+    "repository": "https://github.com/feross/safe-buffer",
+    "url": "https://feross.org"
+  },
+  "source-map-js@1.0.2": {
+    "licenses": "BSD-3-Clause",
+    "publisher": "Valentin 7rulnik Semirulnik",
+    "repository": "https://github.com/7rulnik/source-map-js"
+  },
+  "string-width@4.2.3": {
+    "licenses": "MIT",
+    "publisher": "Sindre Sorhus",
+    "repository": "https://github.com/sindresorhus/string-width",
+    "url": "sindresorhus.com"
+  },
+  "strip-ansi@6.0.1": {
+    "licenses": "MIT",
+    "publisher": "Sindre Sorhus",
+    "repository": "https://github.com/chalk/strip-ansi",
+    "url": "sindresorhus.com"
+  },
+  "tslib@2.6.2": {
+    "licenses": "0BSD",
+    "publisher": "Microsoft Corp.",
+    "repository": "https://github.com/Microsoft/tslib"
+  },
+  "typescript@4.5.5": {
+    "licenses": "Apache-2.0",
+    "publisher": "Microsoft Corp.",
+    "repository": "https://github.com/Microsoft/TypeScript"
+  },
+  "undici-types@5.26.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/nodejs/undici"
+  },
+  "undici@5.26.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/nodejs/undici"
+  },
+  "vue-router@4.2.5": {
+    "licenses": "MIT",
+    "publisher": "Eduardo San Martin Morote",
+    "repository": "https://github.com/vuejs/router"
+  },
+  "vue@3.3.10": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/core"
+  },
+  "vuex@4.0.2": {
+    "licenses": "MIT",
+    "publisher": "Evan You",
+    "repository": "https://github.com/vuejs/vuex"
+  },
+  "websocket-driver@0.7.4": {
+    "licenses": "Apache-2.0",
+    "publisher": "James Coglan",
+    "repository": "https://github.com/faye/websocket-driver-node",
+    "url": "http://jcoglan.com/"
+  },
+  "websocket-extensions@0.1.4": {
+    "licenses": "Apache-2.0",
+    "publisher": "James Coglan",
+    "repository": "https://github.com/faye/websocket-extensions-node",
+    "url": "http://jcoglan.com/"
+  },
+  "wrap-ansi@7.0.0": {
+    "licenses": "MIT",
+    "publisher": "Sindre Sorhus",
+    "repository": "https://github.com/chalk/wrap-ansi",
+    "url": "https://sindresorhus.com"
+  },
+  "y18n@5.0.8": {
+    "licenses": "ISC",
+    "publisher": "Ben Coe",
+    "repository": "https://github.com/yargs/y18n"
+  },
+  "yargs-parser@21.1.1": {
+    "licenses": "ISC",
+    "publisher": "Ben Coe",
+    "repository": "https://github.com/yargs/yargs-parser"
+  },
+  "yargs@17.7.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/yargs/yargs"
+  }
+}

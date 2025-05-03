@@ -1,6 +1,6 @@
 <template>
 	<div class="container container-sm legal">
-		<h2 class="mt-l">Политика в отношении обработки персональных данных</h2>
+		<h1 class="mt-l">Политика в отношении обработки персональных данных</h1>
 		<section>
 			<h3>1. Общие положения</h3>
 			<p>

@@ -77,6 +77,14 @@ const routes: Array<RouteRecordRaw & { meta?: ICustomRouteMeta }> = [
 		},
 	},
 	{
+		path: '/licenses',
+		name: 'Licenses',
+		component: () => import('@/views/legal/LicensesView.vue'),
+		meta: {
+			title: 'Лицензии инструментов',
+		},
+	},
+	{
 		path: '/my-builds',
 		name: 'My builds',
 		component: () => import('@/views/MyBuildsView.vue'),
