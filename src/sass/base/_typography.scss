@@ -29,3 +29,11 @@ h3 {
 	font-size: $ui-font-size-h3;
 	line-height: 120%;
 }
+
+.section-title {
+	position: absolute;
+	left: -9999px;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}

@@ -1,5 +1,8 @@
 <template>
 	<section class="container mt-l">
+		<h1 class="section-title">
+			Калькулятор характеристик и способностей бойцов в Enlisted
+		</h1>
 		<template v-if="isEditingSettings">
 			<div class="cc__stats-block">
 				<h2 class="cc__title">Задай характеристики</h2>

@@ -1,5 +1,8 @@
 <template>
 	<template v-if="isLoading">
+		<h1 class="section-title">
+			События Enlisted - отслеживание этапов, таймер и награды
+		</h1>
 		<loading-spinner class="mt-xl mb-xl"></loading-spinner>
 	</template>
 

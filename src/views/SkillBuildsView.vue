@@ -1,5 +1,7 @@
 <template>
-	<builds-block :from="'base'" :title="'Список сборок'"></builds-block>
+	<builds-block :from="'base'" :title="'Список сборок'">
+		<h1 class="section-title">Топовые сборки бойцов Enlisted</h1>
+	</builds-block>
 </template>
 
 <script lang="ts">

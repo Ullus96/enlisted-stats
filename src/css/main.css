@@ -247,6 +247,14 @@ h3 {
   line-height: 120%;
 }
 
+.section-title {
+  position: absolute;
+  left: -9999px;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
 .hotkey {
   border: 1px solid rgb(116, 116, 116);
   border-radius: 3px;
@@ -2038,15 +2046,9 @@ h3 {
 .faq__item {
   border-radius: 1.2rem;
   overflow: hidden;
-  margin-bottom: 0;
-  transition: 0.2s ease-in-out margin-bottom;
-}
-.faq__item[open] {
-  margin-bottom: 1.6rem;
 }
 .faq__item[open] .faq__title {
   background-color: rgb(39, 39, 39);
-  padding: 1.2rem 2.4rem 1.2rem 2rem;
 }
 .faq__item[open] .faq__content {
   border-radius: 0 0 1.2rem 1.2rem;
@@ -2073,6 +2075,9 @@ h3 {
   color: rgb(165, 165, 165);
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
+}
+.faq__content p:not(:first-child) {
+  margin-top: 0.8rem;
 }
 
 .faq__item summary {

@@ -1,5 +1,6 @@
 <template>
 	<div class="container sbuild">
+		<slot></slot>
 		<filters-block
 			@filterParams="filterParamsChanged"
 			:title="title"
