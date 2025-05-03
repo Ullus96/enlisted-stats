@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+Disallow: /my-builds
+Disallow: /saved-builds
+Disallow: /settings
+Disallow: /admin
+Disallow: /test
+Disallow: /privacy
+Disallow: /user-agreement
+Disallow: /build
+Disallow: /build/
+Disallow: /build/*
+Disallow: /*?*
+
+Sitemap: https://enlisted-stats.web.app/sitemap.xml
