@@ -48,9 +48,6 @@
 							<TooltipComponent :direction="'top'" :width="20">
 								<p>Конец события</p>
 							</TooltipComponent>
-							<p class="event__counter">
-								<i class="fa-regular fa-flag"></i>
-							</p>
 							<p class="event__date">{{ day }}</p>
 							<p class="event__month">{{ month }}</p>
 							<p class="event__time">{{ hours }}:00</p>
