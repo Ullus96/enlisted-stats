@@ -23,12 +23,12 @@
 				v-ripple
 			>
 				{{ selectedClasasName }}
-				<span
-					><i
-						class="fa-solid fa-chevron-down filter__chevron"
-						:class="{ rotate: isFilterClassesVisible }"
-					></i
-				></span>
+				<IconBase
+					class="filter__chevron"
+					:class="{ rotate: isFilterClassesVisible }"
+				>
+					<IconAngleDown />
+				</IconBase>
 			</button>
 		</div>
 
@@ -36,12 +36,9 @@
 			<!-- <span>Сортировка:</span> -->
 			<button class="filter__selected" @click.prevent="showSortBy" v-ripple>
 				{{ sortByName }}
-				<span
-					><i
-						class="fa-solid fa-chevron-down filter__chevron"
-						:class="{ rotate: isSortByVisible }"
-					></i
-				></span>
+				<IconBase class="filter__chevron" :class="{ rotate: isSortByVisible }">
+					<IconAngleDown />
+				</IconBase>
 			</button>
 		</div>
 
@@ -51,15 +48,9 @@
 				@click.prevent="changeOrder"
 				v-ripple
 			>
-				<span
-					><i
-						class="fa-solid"
-						:class="{
-							'fa-arrow-down-wide-short': order === 'desc',
-							'fa-arrow-down-short-wide': order === 'asc',
-						}"
-					></i
-				></span>
+				<IconBase>
+					<component :is="currentIcon" />
+				</IconBase>
 				<template v-if="sortBy == 'name'">
 					{{ order === 'asc' ? 'А → Я' : 'Я → А' }}
 				</template>
@@ -75,15 +66,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, Ref, ref, watch } from 'vue';
+import { computed, defineComponent, PropType, Ref, ref, watch } from 'vue';
 import FilterClasses from './FilterClasses.vue';
 import FilterSortBy from './FilterSortBy.vue';
 import { SoldierID } from '@/type/Soldier';
 import { getSoldierData } from '@/functions/convertSoldierDataToName';
 import { IFilterParams, sortByValues } from './types';
+import IconBase from '@/components/ui/icon/IconBase.vue';
+import IconAngleDown from '@/components/ui/icon/icons/IconAngleDown.vue';
+import IconSortDesc from '@/components/ui/icon/icons/IconSortDesc.vue';
+import IconSortAsc from '@/components/ui/icon/icons/IconSortAsc.vue';
 
 export default defineComponent({
-	components: { FilterClasses, FilterSortBy },
+	components: {
+		FilterClasses,
+		FilterSortBy,
+		IconBase,
+		IconAngleDown,
+		IconSortDesc,
+		IconSortAsc,
+	},
 	emits: ['filterParams'],
 	props: {
 		title: {
@@ -119,6 +121,10 @@ export default defineComponent({
 		const sortByName: Ref<string> = ref('По дате создания');
 
 		const order: Ref<'asc' | 'desc'> = ref(props.order);
+
+		const currentIcon = computed(() =>
+			order.value === 'desc' ? IconSortAsc : IconSortDesc
+		);
 
 		function showFilterClasses() {
 			isFilterClassesVisible.value = !isFilterClassesVisible.value;
@@ -202,6 +208,7 @@ export default defineComponent({
 			setSortBy,
 			sortBy,
 			order,
+			currentIcon,
 			sortByName,
 			changeOrder,
 		};

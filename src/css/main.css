@@ -261,10 +261,6 @@ h3 {
   padding: 0.4rem 0.2rem;
 }
 
-.fa-circle-question {
-  cursor: pointer;
-}
-
 .relative {
   position: relative;
 }
@@ -1188,6 +1184,7 @@ h3 {
 }
 .filter__selected {
   display: flex;
+  align-items: center;
   gap: 0.4rem;
   transition: 0.15s ease-in-out color;
 }
@@ -1195,7 +1192,6 @@ h3 {
   color: rgb(175, 61, 61);
 }
 .filter__chevron {
-  font-size: 0.8em;
   transition: 0.15s ease-out transform;
 }
 .filter__chevron.rotate {
