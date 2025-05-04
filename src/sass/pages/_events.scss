@@ -362,52 +362,38 @@
 		border-top: 1px solid $color-bg-050;
 		border-bottom: 1px solid $color-bg-050;
 
-		&::after {
-			position: absolute;
-			content: '';
-			width: 3.3rem;
-			height: 1px;
-			top: 50%;
-			transform: translateY(-50%);
-			background-color: $color-bg-050;
-		}
-
 		&::before {
 			position: absolute;
+			border-color: $color-bg-050;
+			border-style: solid;
+			box-sizing: content-box;
 			content: '';
-			height: calc(100% + 2rem);
-			transform: translateY(calc(-50% - 1rem));
+			display: block;
+			width: 2.6rem;
+			height: calc(50% + 3.2rem);
+			transform: translateY(-3.2rem);
 			z-index: -1;
-			background-color: $color-bg-050;
 		}
 
 		&--left {
-			transform-origin: left;
-			left: 0;
+			left: -5px;
 			border-left: 1px solid $color-bg-050;
-
-			&::after {
-				right: 5px;
-			}
+			transform-origin: left;
 
 			&::before {
-				right: calc(5px + 3.2rem);
-				width: 1px;
+				border-width: 0 0 1px 1px;
+				left: -2.7rem;
 			}
 		}
 
 		&--right {
-			transform-origin: right;
-			right: 0;
+			right: -5px;
 			border-right: 1px solid $color-bg-050;
-
-			&::after {
-				left: 5px;
-			}
+			transform-origin: right;
 
 			&::before {
-				left: calc(5px + 3.2rem);
-				width: 1px;
+				border-width: 0 1px 1px 0;
+				right: -2.7rem;
 			}
 		}
 	}
