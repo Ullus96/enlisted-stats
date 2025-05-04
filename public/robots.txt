@@ -8,6 +8,7 @@ Disallow: /admin
 Disallow: /test
 Disallow: /privacy
 Disallow: /user-agreement
+Disallow: /licenses
 Disallow: /build
 Disallow: /build/
 Disallow: /build/*
