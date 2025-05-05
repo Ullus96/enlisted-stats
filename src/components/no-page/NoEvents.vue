@@ -2,7 +2,7 @@
 	<div class="mt-l">
 		<div class="container-sm wip">
 			<img
-				:src="require(`@/assets/no_events/img-${randomImageIndex}.jpg`)"
+				:src="require(`@/assets/no_events/img-${randomImageIndex}.webp`)"
 				alt="Work In Progress"
 				class="wip__img"
 			/>
@@ -22,7 +22,7 @@ export default defineComponent({
 		let randomImageIndex = ref(1);
 
 		onMounted(() => {
-			randomImageIndex.value = Math.floor(Math.random() * 4 + 1);
+			randomImageIndex.value = Math.floor(Math.random() * 8 + 1);
 		});
 
 		return { randomImageIndex };
