@@ -121,6 +121,29 @@ export default defineComponent({
 		const lastIndex: any = ref('');
 		const loadedTimes: Ref<number> = ref(0);
 
+		function getBuildsQueryConditions(
+			source: 'base' | 'liked' | 'my',
+			soldierClass: string | null,
+			userId: string | null
+		) {
+			const conditions: any[] = [];
+
+			if (source === 'base') {
+				conditions.push(where('data.isPublic', '==', true));
+			} else if (source === 'liked' && userId) {
+				conditions.push(where('data.isPublic', '==', true));
+				conditions.push(where('data.likedBy', 'array-contains', userId));
+			} else if (source === 'my' && userId) {
+				conditions.push(where('data.author', '==', userId));
+			}
+
+			if (soldierClass) {
+				conditions.push(where('soldierClass', '==', soldierClass));
+			}
+
+			return conditions;
+		}
+
 		async function loadBuildsFromDB(clearData: boolean) {
 			if (clearData) {
 				loadedData.length = 0;
@@ -129,218 +152,46 @@ export default defineComponent({
 			}
 
 			try {
-				let res;
+				const source = props.from;
+				const sortBy = `data.${getDBsortByValue(filterParams.value.sortBy)}`;
+				const sortOrder = filterParams.value.order;
+				const soldierClass = filterParams.value.soldierClass || null;
+				const userId = auth?.uid || null;
 
-				// ==============================
-				// If Loading from 'skill-builds'
-				if (props.from === 'base') {
-					if (!lastIndex.value) {
-						// Check if there is a selected class
-						if (filterParams.value.soldierClass) {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.isPublic', '==', true),
-									where('soldierClass', '==', filterParams.value.soldierClass),
-									limit(12)
-								)
-							);
-						} else {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.isPublic', '==', true),
-									limit(12)
-								)
-							);
-						}
-					} else {
-						if (filterParams.value.soldierClass) {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.isPublic', '==', true),
-									where('soldierClass', '==', filterParams.value.soldierClass),
-									startAfter(lastIndex.value),
-									limit(12)
-								)
-							);
-						} else {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.isPublic', '==', true),
-									startAfter(lastIndex.value),
-									limit(12)
-								)
-							);
-						}
-					}
-				}
-				// ==============================
-				// If Loading from 'saved-builds'
-				else if (props.from === 'liked' && auth) {
-					if (!lastIndex.value) {
-						if (filterParams.value.soldierClass) {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.isPublic', '==', true),
-									where('soldierClass', '==', filterParams.value.soldierClass),
-									where('data.likedBy', 'array-contains', auth.uid),
-									limit(12)
-								)
-							);
-						} else {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.isPublic', '==', true),
-									where('data.likedBy', 'array-contains', auth.uid),
-									limit(12)
-								)
-							);
-						}
-					} else {
-						if (filterParams.value.soldierClass) {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.isPublic', '==', true),
-									where('soldierClass', '==', filterParams.value.soldierClass),
-									where('data.likedBy', 'array-contains', auth.uid),
-									startAfter(lastIndex.value),
-									limit(12)
-								)
-							);
-						} else {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.isPublic', '==', true),
-									where('data.likedBy', 'array-contains', auth.uid),
-									startAfter(lastIndex.value),
-									limit(12)
-								)
-							);
-						}
-					}
-				}
-				// ==============================
-				// If Loading from 'my-builds'
-				else if (props.from === 'my' && auth) {
-					if (!lastIndex.value) {
-						if (filterParams.value.soldierClass) {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.author', '==', auth.uid),
-									where('soldierClass', '==', filterParams.value.soldierClass),
-									limit(12)
-								)
-							);
-						} else {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.author', '==', auth.uid),
-									limit(12)
-								)
-							);
-						}
-					} else {
-						if (filterParams.value.soldierClass) {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.author', '==', auth.uid),
-									where('soldierClass', '==', filterParams.value.soldierClass),
-									startAfter(lastIndex.value),
-									limit(12)
-								)
-							);
-						} else {
-							res = await getDocs(
-								query(
-									collection(db, 'builds'),
-									orderBy(
-										`data.${getDBsortByValue(filterParams.value.sortBy)}`,
-										filterParams.value.order
-									),
-									where('data.author', '==', auth.uid),
-									startAfter(lastIndex.value),
-									limit(12)
-								)
-							);
-						}
-					}
-				}
+				const conditions = getBuildsQueryConditions(
+					source,
+					soldierClass,
+					userId
+				);
 
-				// res будет всегда, просто компилятор ts ругается
+				const queryConstraints = [
+					orderBy(sortBy, sortOrder),
+					...conditions,
+					...(lastIndex.value ? [startAfter(lastIndex.value)] : []),
+					limit(12),
+				];
+
+				const buildsQuery = query(
+					collection(db, 'builds'),
+					...queryConstraints
+				);
+				const res = await getDocs(buildsQuery);
+
 				if (res) {
 					lastIndex.value = res.docs[res.docs.length - 1];
 					loadedTimes.value++;
 
-					const newData: ISkillBuildWithID[] = [];
-					res.docs.forEach((doc) => {
-						let parsedData = { ...doc.data(), dbId: doc.id };
-						// @ts-expect-error
-						newData.push(parsedData);
-					});
-					// console.log(newData);
+					// @ts-expect-error
+					const newData: ISkillBuildWithID[] = res.docs.map((doc) => ({
+						...doc.data(),
+						dbId: doc.id,
+					}));
 
-					// Обновляем состояние loadedData
 					loadedData.push(...newData);
 				}
 			} catch (err: any) {
 				console.log(err.message);
 			}
-
-			// return data;
 		}
 
 		async function loadUsersFromDB(IDs: Set<string>) {
