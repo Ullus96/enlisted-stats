@@ -7,6 +7,9 @@
 	</template>
 
 	<div v-else>
+		<h1 class="section-title">
+			События Enlisted - отслеживание этапов, таймер и награды
+		</h1>
 		<template v-if="!isEventsEnded()">
 			<the-event
 				v-for="item in events"

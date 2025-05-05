@@ -274,7 +274,7 @@ export default defineComponent({
 			return { index: event.stages.length, timeLeft: 0 };
 		}
 
-		let currentStageInfo: { index: number; timeLeft: number } = reactive(
+		const currentStageInfo: Ref<{ index: number; timeLeft: number }> = ref(
 			getCurrentStage(props.data)
 		);
 
@@ -282,17 +282,17 @@ export default defineComponent({
 		let intervalID: number | null = null;
 
 		function updateTimer() {
-			currentStageInfo = getCurrentStage(props.data);
+			currentStageInfo.value = getCurrentStage(props.data);
 
-			if (currentStageInfo.index === -1) {
+			if (currentStageInfo.value.index === -1) {
 				console.log(
-					`Событие "${props.data.name}" еще не началось. Время до начала: ${currentStageInfo.timeLeft}`
+					`Событие "${props.data.name}" еще не началось. Время до начала: ${currentStageInfo.value.timeLeft}`
 				);
 				if (intervalID) {
 					clearInterval(intervalID);
 					intervalID = null;
 				}
-			} else if (currentStageInfo.index === props.data.stages.length) {
+			} else if (currentStageInfo.value.index === props.data.stages.length) {
 				console.log(`Событие "${props.data.name}" уже завершилось.`);
 				if (intervalID) {
 					clearInterval(intervalID);
@@ -300,7 +300,7 @@ export default defineComponent({
 				}
 			} else {
 				// обновляем переменные
-				const date = new Date(currentStageInfo.timeLeft);
+				const date = new Date(currentStageInfo.value.timeLeft);
 				timerValues[0] = Math.floor(+date / (1000 * 60 * 60));
 				timerValues[1] = date.getMinutes();
 				timerValues[2] = date.getSeconds();
@@ -327,6 +327,7 @@ export default defineComponent({
 		onMounted(() => {
 			setInterval(() => {
 				timeNow.value = Date.now();
+				currentStageInfo.value = getCurrentStage(props.data);
 			}, 60000);
 		});
 
