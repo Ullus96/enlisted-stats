@@ -30,11 +30,7 @@
 			<transition name="slide-down-fade" mode="out-in">
 				<div v-if="activeTab === 'profile'">
 					<div class="profile__avatar-block">
-						<img
-							:src="$store.state.user.photoUrl"
-							alt="Profile picture"
-							class="profile__avatar"
-						/>
+						<UserAvatar class="profile__avatar" />
 						<h2 class="profile__nickname">
 							{{ $store.state.user.displayName }}
 						</h2>
@@ -43,7 +39,7 @@
 					<section class="profile__block">
 						<InputComponent
 							:label="'Отображаемое имя'"
-							:placeholder="$store.state.user.displayName"
+							:placeholder="store.state.user.displayName || ''"
 							:inlineButton="true"
 							:counter="32"
 							@onChange="modifyInputData"
@@ -53,17 +49,62 @@
 						<div class="profile__text-block">
 							<p class="profile__option-name">Аватар пользователя</p>
 							<div class="profile__change-photo-block">
-								<img
-									:src="$store.state.user.photoUrl"
-									alt="Profile picture"
-									class="profile__change-photo-avatar"
-								/>
-								<p class="profile__option-desc">
-									Для смены аватара пользователя, перейди в Управление аккаунтом
-									Google - Личная информация, и поменяй фотографию пользователя
-									там. Обновление займет какое-то время.
-								</p>
+								<UserAvatar class="profile__change-photo-avatar" />
+								<div class="profile__change-photo-radio-block">
+									<span class="profile__change-photo-radio-line">
+										<input
+											type="radio"
+											id="providerRadio1"
+											name="avatarProvider"
+											value="google"
+											v-model="chosenProvider"
+										/>
+										<label for="providerRadio1">Аватар с сервисов Google</label>
+									</span>
+
+									<span class="profile__change-photo-radio-line">
+										<input
+											type="radio"
+											id="providerRadio2"
+											name="avatarProvider"
+											value="gravatar"
+											v-model="chosenProvider"
+										/>
+										<label for="providerRadio2"
+											>Аватар с сервиса
+											<a href="https://gravatar.com/" class="link"
+												>gravatar.com</a
+											></label
+										>
+									</span>
+
+									<span class="profile__change-photo-radio-line">
+										<input
+											type="radio"
+											id="providerRadio3"
+											name="avatarProvider"
+											value="none"
+											v-model="chosenProvider"
+										/>
+										<label for="providerRadio3">Без аватара</label>
+									</span>
+								</div>
 							</div>
+							<p
+								class="profile__option-desc profile__option-desc--google"
+								:class="{ shown: chosenProvider === 'google' }"
+							>
+								Для смены аватара пользователя, перейди в Управление аккаунтом
+								Google - Личная информация, и поменяй фотографию пользователя
+								там. Обновление займет какое-то время.
+							</p>
+							<button
+								class="btn btn-secondary btn-m profile__btn"
+								@click="saveNewAvatarProvider"
+								v-ripple
+							>
+								Сохранить источник аватара
+							</button>
 						</div>
 
 						<div class="profile__delete-block">
@@ -77,7 +118,7 @@
 								</p>
 							</div>
 							<button
-								class="btn btn-secondary btn-m profile__btn"
+								class="btn btn-primary btn-m profile__btn"
 								@click="$store.state.dialog.isDeletingAccount = true"
 								v-ripple
 							>
@@ -151,6 +192,7 @@
 
 <script lang="ts">
 import {
+	computed,
 	defineComponent,
 	onBeforeMount,
 	onMounted,
@@ -189,14 +231,15 @@ import {
 	updateRootVariable,
 	getRootVariable,
 } from '@/functions/rootVariables';
+import UserAvatar from '@/components/avatar/UserAvatar.vue';
 
 export default defineComponent({
-	components: { InputComponent, DialogComponent, TabsComponent },
+	components: { InputComponent, DialogComponent, TabsComponent, UserAvatar },
 	setup() {
 		const auth = getAuth();
 		const user: Ref<User | null> = ref(null);
 
-		const store = useStore();
+		const store = computed(() => useStore());
 		const router = useRouter();
 
 		const isLoading: Ref<boolean> = ref(true);
@@ -231,8 +274,8 @@ export default defineComponent({
 					displayName: inputName.value,
 				})
 					.then(async () => {
-						createPopUp(store, POPUP_CHANGE_NAME_SUCCESS);
-						store.commit('setNewDisplayName', inputName.value);
+						createPopUp(store.value, POPUP_CHANGE_NAME_SUCCESS);
+						store.value.commit('setNewDisplayName', inputName.value);
 						// add data to DB
 						if (auth.currentUser) {
 							try {
@@ -246,7 +289,7 @@ export default defineComponent({
 						}
 					})
 					.catch((error) => {
-						createPopUp(store, POPUP_CHANGE_NAME_ERROR);
+						createPopUp(store.value, POPUP_CHANGE_NAME_ERROR);
 						console.log(error);
 					});
 			}
@@ -263,15 +306,15 @@ export default defineComponent({
 					const docRef = doc(db, 'users', uid);
 					try {
 						deleteDoc(docRef);
-						createPopUp(store, POPUP_DELETE_USER_SUCCESS);
+						createPopUp(store.value, POPUP_DELETE_USER_SUCCESS);
 						router.push('/');
 					} catch (error: any) {
-						createPopUp(store, POPUP_DELETE_USER_ERROR);
+						createPopUp(store.value, POPUP_DELETE_USER_ERROR);
 						console.error(error.message);
 					}
 				})
 				.catch((error) => {
-					createPopUp(store, POPUP_DELETE_USER_ERROR);
+					createPopUp(store.value, POPUP_DELETE_USER_ERROR);
 					console.error(error.message);
 				});
 		}
@@ -283,7 +326,7 @@ export default defineComponent({
 
 		watch(compactMode, (newVal) => {
 			saveToLocalStorage('compactMode', newVal);
-			store.commit('switchCompactMode', newVal);
+			store.value.commit('switchCompactMode', newVal);
 		});
 
 		// Ширина карточки
@@ -293,12 +336,31 @@ export default defineComponent({
 
 		watch(eventCardWidth, (newVal) => {
 			saveToLocalStorage('eventCardWidth', newVal);
-			store.commit('setEventCardWidth', newVal);
+			store.value.commit('setEventCardWidth', newVal);
 
 			updateRootVariable('--ui-card-width', `${newVal * 10}rem`);
 		});
 
+		// Аватарки
+		const chosenProvider = ref(store.value.state.user.avatarProvider || null);
+		watch(chosenProvider, (newVal) => {
+			setProvider(newVal);
+		});
+
+		function setProvider(
+			avatarProvider: 'google' | 'gravatar' | 'none' | null
+		) {
+			if (!avatarProvider) return;
+			store.value.commit('setUserData', {
+				...store.value.state.user,
+				avatarProvider,
+			});
+		}
+
+		function saveNewAvatarProvider() {}
+
 		return {
+			store,
 			auth,
 			user,
 			isLoading,
@@ -312,6 +374,8 @@ export default defineComponent({
 			eventCardWidth,
 			updateRootVariable,
 			getRootVariable,
+			chosenProvider,
+			saveNewAvatarProvider,
 		};
 	},
 });

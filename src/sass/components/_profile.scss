@@ -30,20 +30,35 @@
 
 	&__change-photo-block {
 		display: flex;
-		align-items: center;
 		gap: 1.6rem;
 	}
 
 	&__change-photo-avatar {
-		height: 6rem;
+		height: 8rem;
 		aspect-ratio: 1/1;
 		object-fit: cover;
 		border-radius: 0.8rem;
+		flex: 0 0 auto;
+	}
+
+	&__change-photo-radio-block {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+	}
+
+	&__change-photo-radio-line {
+		display: flex;
+		gap: 0.4rem;
 	}
 
 	&__option-desc {
 		font-size: $ui-font-size-s;
 		color: $color-text-400;
+
+		&--google {
+			@include slide-fade-toggle('shown', 180ms, 120px);
+		}
 	}
 
 	&__delete-block {

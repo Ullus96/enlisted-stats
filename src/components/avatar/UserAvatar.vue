@@ -1,32 +1,30 @@
 <template>
-	<div>
-		<img
-			v-if="!store.state.user.photoUrl"
-			src="@/assets/avatar-skeleton.svg"
-			alt="No avatar"
-			class="avatar-placeholder"
-		/>
-		<img
-			v-else-if="store.state.user.avatarProvider === 'google'"
-			:src="store.state.user.photoUrl"
-			:alt="`${store.state.user.displayName} profile picture`"
-			class="avatar-placeholder"
-		/>
-		<img
-			v-else-if="store.state.user.avatarProvider === 'gravatar'"
-			:src="getGravatarUrl()"
-			:alt="`${store.state.user.displayName} profile picture`"
-			class="avatar-placeholder"
-		/>
-		<div
-			v-else-if="store.state.user.avatarProvider === 'none'"
-			role="img"
-			:aria-label="`${store.state.user.displayName} profile picture`"
-			:style="avatarStyle"
-			class="avatar-placeholder"
-		>
-			{{ getUsersFirstLetter() }}
-		</div>
+	<img
+		v-if="!store.state.user.photoUrl"
+		src="@/assets/avatar-skeleton.svg"
+		alt="No avatar"
+		class="avatar-placeholder"
+	/>
+	<img
+		v-else-if="store.state.user.avatarProvider === 'google'"
+		:src="store.state.user.photoUrl"
+		:alt="`${store.state.user.displayName} profile picture`"
+		class="avatar-placeholder"
+	/>
+	<img
+		v-else-if="store.state.user.avatarProvider === 'gravatar'"
+		:src="getGravatarUrl()"
+		:alt="`${store.state.user.displayName} profile picture`"
+		class="avatar-placeholder"
+	/>
+	<div
+		v-else-if="store.state.user.avatarProvider === 'none'"
+		role="img"
+		:aria-label="`${store.state.user.displayName} profile picture`"
+		:style="avatarStyle"
+		class="avatar-placeholder"
+	>
+		{{ getUsersFirstLetter() }}
 	</div>
 </template>
 
@@ -38,7 +36,7 @@ export default defineComponent({
 	props: {
 		imgSize: {
 			required: false,
-			default: 50,
+			default: 128,
 			type: Number,
 		},
 	},
@@ -79,12 +77,13 @@ export default defineComponent({
 			return avatarColors[index];
 		}
 
-		const avatarColor = getAvatarColor(store.value.state.user.emailHash || '0');
+		const avatarColor = computed(() =>
+			getAvatarColor(store.value.state.user.emailHash)
+		);
 
 		const avatarStyle = computed(() => ({
-			backgroundColor: avatarColor[0],
-			color: avatarColor[1],
-			width: `${props.imgSize}px`,
+			backgroundColor: avatarColor.value[0],
+			color: avatarColor.value[1],
 			aspectRatio: '1 / 1',
 		}));
 
@@ -105,7 +104,6 @@ export default defineComponent({
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: 9999px;
 	font-weight: bold;
 	text-transform: uppercase;
 	user-select: none;

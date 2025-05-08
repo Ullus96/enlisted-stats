@@ -33,7 +33,7 @@ export interface State {
 		isAdmin: boolean;
 		photoUrl: string | null;
 		avatarProvider: 'google' | 'gravatar' | 'none' | null;
-		emailHash: string | null;
+		emailHash: string;
 	};
 	settings: {
 		compactMode: boolean;
@@ -77,7 +77,7 @@ export default createStore<State>({
 			photoUrl: null,
 			isAdmin: false,
 			avatarProvider: null,
-			emailHash: null,
+			emailHash: '0',
 		},
 		settings: {
 			compactMode: false,
@@ -114,7 +114,7 @@ export default createStore<State>({
 			state.user.photoUrl = null;
 			state.user.isAdmin = false;
 			state.user.avatarProvider = null;
-			state.user.emailHash = null;
+			state.user.emailHash = '0';
 		},
 
 		finishFirstAuthInitialization(state) {

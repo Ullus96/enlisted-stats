@@ -888,19 +888,40 @@ h3 {
 }
 .profile__change-photo-block {
   display: flex;
-  align-items: center;
   gap: 1.6rem;
 }
 .profile__change-photo-avatar {
-  height: 6rem;
+  height: 8rem;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 0.8rem;
+  flex: 0 0 auto;
+}
+.profile__change-photo-radio-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.profile__change-photo-radio-line {
+  display: flex;
+  gap: 0.4rem;
 }
 .profile__option-desc {
   font-size: 1.4rem;
   color: rgb(165, 165, 165);
+}
+.profile__option-desc--google {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 180ms ease-in-out, max-height 180ms ease-in-out, transform 180ms ease-in-out;
+  transform: translateY(-10px);
+}
+.profile__option-desc--google.shown {
+  opacity: 1;
+  max-height: 120px;
+  transform: translateY(0);
 }
 .profile__delete-block {
   display: flex;
