@@ -11,6 +11,7 @@
 				padding: 1.2rem;
 			"
 		>
+			<UserAvatar />
 			<button class="btn btn-m btn-secondary" v-ripple>
 				Create an empty popup
 			</button>
@@ -111,9 +112,10 @@ import {
 	POPUP_DELETE_USER_ERROR,
 } from '@/components/popup/data';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
+import UserAvatar from '@/components/avatar/UserAvatar.vue';
 
 export default defineComponent({
-	components: { DialogComponent },
+	components: { DialogComponent, UserAvatar },
 	setup() {
 		const store = useStore();
 
