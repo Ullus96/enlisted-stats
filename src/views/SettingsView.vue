@@ -380,6 +380,8 @@ export default defineComponent({
 					},
 					{ merge: true }
 				);
+				localStorage.removeItem('usersData');
+				localStorage.removeItem('usersTimestamp');
 				console.log('Avatar Provider updated in the database.');
 			} catch (err: any) {
 				console.log('Error updading avatar provider: ', err.message);
