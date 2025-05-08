@@ -103,6 +103,8 @@ export default createStore<State>({
 			state.user.displayName = payload.displayName;
 			state.user.photoUrl = payload.photoUrl;
 			state.user.isAdmin = payload.isAdmin;
+			state.user.avatarProvider = payload.avatarProvider;
+			state.user.emailHash = payload.emailHash;
 		},
 
 		clearUserData(state) {
@@ -111,6 +113,8 @@ export default createStore<State>({
 			state.user.displayName = null;
 			state.user.photoUrl = null;
 			state.user.isAdmin = false;
+			state.user.avatarProvider = null;
+			state.user.emailHash = null;
 		},
 
 		finishFirstAuthInitialization(state) {

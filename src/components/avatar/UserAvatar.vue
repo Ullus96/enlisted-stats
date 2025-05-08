@@ -1,12 +1,32 @@
 <template>
 	<div>
-		<img src="@/assets/avatar-skeleton.svg" alt="" />
-		<!-- <img :src="getGravatarUrl(user.email)" alt="avatar" />" -->
-		{{ store.state.user.photoUrl }}
-		<button class="btn btn-secondary" @click="changeURL">Change URL</button>
-		<button class="btn btn-secondary" @click="createHash('sometext')">
-			Create Hash
-		</button>
+		<img
+			v-if="!store.state.user.photoUrl"
+			src="@/assets/avatar-skeleton.svg"
+			alt="No avatar"
+			class="avatar-placeholder"
+		/>
+		<img
+			v-else-if="store.state.user.avatarProvider === 'google'"
+			:src="store.state.user.photoUrl"
+			:alt="`${store.state.user.displayName} profile picture`"
+			class="avatar-placeholder"
+		/>
+		<img
+			v-else-if="store.state.user.avatarProvider === 'gravatar'"
+			:src="getGravatarUrl()"
+			:alt="`${store.state.user.displayName} profile picture`"
+			class="avatar-placeholder"
+		/>
+		<div
+			v-else-if="store.state.user.avatarProvider === 'none'"
+			role="img"
+			:aria-label="`${store.state.user.displayName} profile picture`"
+			:style="avatarStyle"
+			class="avatar-placeholder"
+		>
+			{{ getUsersFirstLetter() }}
+		</div>
 	</div>
 </template>
 
@@ -23,31 +43,73 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const md5 = require('md5') as (input: string) => string;
 		const store = computed(() => useStore());
 
-		function createHash(email: string) {
-			email = email.trim().toLowerCase();
-			const hash = md5(email);
-
-			console.log(hash);
-			return hash;
+		function getGravatarUrl() {
+			return `https://www.gravatar.com/avatar/${store.value.state.user.emailHash}?s=${props.imgSize}&d=identicon`;
 		}
 
-		function changeURL() {
-			store.value.commit('setUserData', {
-				...store.value.state.user,
-				photoUrl: `https://www.gravatar.com/avatar/${createHash(
-					'somemail'
-				)}?s=${props.imgSize}&d=identicon`,
-			});
+		function getUsersFirstLetter() {
+			return store.value.state.user.displayName
+				? store.value.state.user.displayName[0]
+				: '';
 		}
 
-		function getGravatarUrl() {}
+		const avatarColors: [string, string][] = [
+			['#3498db', '#e2e2e2'], // синий
+			['#1abc9c', '#e2e2e2'], // бирюза
+			['#2ecc71', '#e2e2e2'], // зелёный
+			['#f1c40f', '#232323'], // жёлтый
+			['#e67e22', '#232323'], // оранжевый
+			['#9b59b6', '#e2e2e2'], // фиолетовый
+			['#16a085', '#e2e2e2'], // тёмная бирюза
+			['#27ae60', '#e2e2e2'], // тёмно-зелёный
+			['#2980b9', '#e2e2e2'], // тёмно-синий
+			['#8e44ad', '#e2e2e2'], // тёмный фиолет
+			['#f39c12', '#232323'], // янтарный
+			['#d35400', '#e2e2e2'], // кирпичный
+			['#7f8c8d', '#e2e2e2'], // серый
+			['#34495e', '#e2e2e2'], // графит
+			['#00b894', '#e2e2e2'], // морская волна
+			['#6c5ce7', '#e2e2e2'], // индиго
+		];
 
-		return { store, changeURL, createHash };
+		function getAvatarColor(emailHash: string): [string, string] {
+			const index = parseInt(emailHash.charAt(0), 16) % avatarColors.length;
+			return avatarColors[index];
+		}
+
+		const avatarColor = getAvatarColor(store.value.state.user.emailHash || '0');
+
+		const avatarStyle = computed(() => ({
+			backgroundColor: avatarColor[0],
+			color: avatarColor[1],
+			width: `${props.imgSize}px`,
+			aspectRatio: '1 / 1',
+		}));
+
+		return {
+			store,
+			getGravatarUrl,
+			getUsersFirstLetter,
+			getAvatarColor,
+			avatarColor,
+			avatarStyle,
+		};
 	},
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.avatar-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	font-weight: bold;
+	text-transform: uppercase;
+	user-select: none;
+	font-size: 1rem;
+	overflow: hidden;
+}
+</style>
