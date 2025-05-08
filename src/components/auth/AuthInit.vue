@@ -14,11 +14,12 @@ import {
 	loadFromLocalStorage,
 	saveToLocalStorage,
 } from '@/functions/localStorageUtils';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 
 export default defineComponent({
 	setup() {
+		const md5 = require('md5') as (input: string) => string;
 		const store = useStore();
 
 		let auth;
@@ -26,17 +27,39 @@ export default defineComponent({
 
 		onMounted(() => {
 			auth = getAuth();
-			onAuthStateChanged(auth, (user) => {
+			onAuthStateChanged(auth, async (user) => {
 				if (user) {
+					const userRef = doc(db, 'users', user.uid);
+					const userSnap = await getDoc(userRef);
+
+					let userData = userSnap.exists()
+						? (userSnap.data() as {
+								displayName?: string;
+								photoURL?: string;
+								avatarProvider?: 'google' | 'gravatar' | 'none';
+								emailHash?: string;
+						  })
+						: {};
+
+					const displayName =
+						userData.displayName || user.displayName || user.uid;
+					const photoUrl = userData.photoURL || user.photoURL || null;
+					const avatarProvider = userData.avatarProvider || 'google';
+					const emailHash =
+						userData.emailHash || (user.email ? md5(user.email) : null);
+
 					isUserAnAdmin.value = checkIfUserAnAdmin();
 					forceUpdatePhoto();
 					comparePhotoURLs(user);
+
 					setUserDataInStore({
 						isLoggedIn: true,
 						uid: user.uid,
-						displayName: user.displayName,
-						photoUrl: user.photoURL,
+						displayName,
+						photoUrl,
 						isAdmin: isUserAnAdmin.value,
+						avatarProvider,
+						emailHash,
 					});
 				} else {
 					finishFirstAuthInitialization();
@@ -52,6 +75,8 @@ export default defineComponent({
 			displayName: string | null;
 			photoUrl: string | null;
 			isAdmin: boolean;
+			avatarProvider: 'google' | 'gravatar' | 'none' | null;
+			emailHash: string | null;
 		}) {
 			store.commit('setUserData', payload);
 			finishFirstAuthInitialization();

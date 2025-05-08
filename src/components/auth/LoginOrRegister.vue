@@ -50,10 +50,13 @@ import {
 	POPUP_LOGIN_SUCCESS,
 	POPUP_LOGIN_ERROR,
 } from '@/components/popup/data';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '@/firebase/firebase';
 
 export default defineComponent({
 	components: { ModalComponent, IconBase, IconGoogle },
 	setup() {
+		const md5 = require('md5') as (input: string) => string;
 		const store = useStore();
 
 		function closeModalAndNavigation() {
@@ -70,18 +73,65 @@ export default defineComponent({
 		function signInWithGoogle() {
 			const provider = new GoogleAuthProvider();
 			signInWithPopup(getAuth(), provider)
-				.then((result) => {
+				.then(async () => {
 					createPopUp(store, POPUP_LOGIN_SUCCESS);
 
 					const auth = getAuth();
 					isUserAnAdmin.value = checkIfUserAnAdmin();
-					if (auth.currentUser) {
+					if (!auth.currentUser) return;
+
+					const user = auth.currentUser;
+					const userRef = doc(db, 'users', user.uid);
+					const userSnap = await getDoc(userRef);
+
+					type UserData = {
+						displayName?: string;
+						photoURL?: string;
+						avatarProvider?: 'google' | 'gravatar' | 'none';
+						emailHash?: string;
+					};
+
+					let userData: UserData = userSnap.exists()
+						? (userSnap.data() as UserData)
+						: {};
+
+					const displayName =
+						userData.displayName || user.displayName || user.uid;
+					const photoURL = userData.photoURL || user.photoURL || null;
+					const avatarProvider = userData.avatarProvider || 'google';
+					const emailHash =
+						userData.emailHash || (user.email ? md5(user.email) : null);
+
+					if (
+						!userSnap.exists() ||
+						!userData.displayName ||
+						!userData.photoURL ||
+						!userData.avatarProvider ||
+						!userData.emailHash
+					) {
+						try {
+							await setDoc(
+								userRef,
+								{
+									displayName,
+									photoURL,
+									avatarProvider,
+									emailHash,
+								},
+								{ merge: true }
+							);
+						} catch (err: any) {
+							console.log('Error updating user document:', err.message);
+						}
+
 						setUserDataInStore({
 							isLoggedIn: true,
 							uid: auth.currentUser.uid,
 							displayName: auth.currentUser.displayName,
 							photoUrl: auth.currentUser.photoURL,
 							isAdmin: isUserAnAdmin.value,
+							avatarProvider: avatarProvider,
+							emailHash: emailHash,
 						});
 					}
 				})
@@ -101,6 +151,8 @@ export default defineComponent({
 			displayName: string | null;
 			photoUrl: string | null;
 			isAdmin: boolean;
+			avatarProvider: 'google' | 'gravatar' | 'none' | null;
+			emailHash: string | null;
 		}) {
 			store.commit('setUserData', payload);
 		}

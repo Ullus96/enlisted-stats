@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<img src="@/assets/avatar-skeleton.svg" alt="" />
-		<img :src="getGravatarUrl(user.email)" alt="avatar" />"
+		<!-- <img :src="getGravatarUrl(user.email)" alt="avatar" />" -->
 		{{ store.state.user.photoUrl }}
 		<button class="btn btn-secondary" @click="changeURL">Change URL</button>
 		<button class="btn btn-secondary" @click="createHash('sometext')">
@@ -22,7 +22,7 @@ export default defineComponent({
 			type: Number,
 		},
 	},
-	setup() {
+	setup(props) {
 		const md5 = require('md5') as (input: string) => string;
 		const store = computed(() => useStore());
 
@@ -39,7 +39,7 @@ export default defineComponent({
 				...store.value.state.user,
 				photoUrl: `https://www.gravatar.com/avatar/${createHash(
 					'somemail'
-				)}?s=200&d=identicon`,
+				)}?s=${props.imgSize}&d=identicon`,
 			});
 		}
 

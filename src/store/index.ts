@@ -30,8 +30,10 @@ export interface State {
 		isLoggedIn: boolean;
 		uid: string | null;
 		displayName: string | null;
-		photoUrl: string | null;
 		isAdmin: boolean;
+		photoUrl: string | null;
+		avatarProvider: 'google' | 'gravatar' | 'none' | null;
+		emailHash: string | null;
 	};
 	settings: {
 		compactMode: boolean;
@@ -74,6 +76,8 @@ export default createStore<State>({
 			displayName: null,
 			photoUrl: null,
 			isAdmin: false,
+			avatarProvider: null,
+			emailHash: null,
 		},
 		settings: {
 			compactMode: false,
