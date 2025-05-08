@@ -16,11 +16,7 @@
 			<!-- User is logged in -->
 			<template v-if="$store.state.user.isLoggedIn">
 				<div class="aside__profile aside__profile--logged-in">
-					<img
-						:src="$store.state.user.photoUrl"
-						alt="Profile Picture"
-						class="aside__avatar"
-					/>
+					<UserAvatar class="aside__avatar" />
 					<div class="aside__profile-settings-link">
 						<router-link
 							@click="hideNavigationVisibility"
@@ -288,6 +284,7 @@ import { getAuth, signOut } from 'firebase/auth';
 import ContactsModal from '@/components/modals/ContactsModal.vue';
 import { createPopUp } from '@/components/popup/utils';
 import { POPUP_LOGOUT_SUCCESS } from '@/components/popup/data';
+import UserAvatar from './avatar/UserAvatar.vue';
 
 export default defineComponent({
 	components: {
@@ -306,6 +303,7 @@ export default defineComponent({
 		IconTimes,
 		LoginOrRegister,
 		ContactsModal,
+		UserAvatar,
 	},
 	setup() {
 		const store = useStore();
