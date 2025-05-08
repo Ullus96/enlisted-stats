@@ -110,6 +110,8 @@
 									: {
 											displayName: 'Пользователь не найден',
 											photoURL: 'https://place-hold.it/80x80/8c8f94/8c8f94.jpg',
+											emailHash: null,
+											avatarProvider: null,
 									  }
 							"
 							:isFinishedLoading="isFinishedLoading"
@@ -547,6 +549,18 @@ export default defineComponent({
 							user,
 							'photoURL'
 						),
+						avatarProvider: getLocalStorageUsersDataByKeyAndValue(
+							localStorageData,
+							'user',
+							user,
+							'avatarProvider'
+						),
+						emailHash: getLocalStorageUsersDataByKeyAndValue(
+							localStorageData,
+							'user',
+							user,
+							'emailHash'
+						),
 					};
 					loadedUserData[user] = { ...userData };
 				} else {
@@ -563,6 +577,8 @@ export default defineComponent({
 						loadedUserData[user] = {
 							displayName: 'Пользователь не найден',
 							photoURL: 'https://place-hold.it/80x80/8c8f94/8c8f94.jpg',
+							emailHash: null,
+							avatarProvider: null,
 						};
 						// console.log('No such document!');
 					}

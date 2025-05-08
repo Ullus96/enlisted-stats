@@ -61,9 +61,15 @@
 				</div>
 			</div>
 
-			<template v-if="user">
+			<template v-if="user && loadedUserData">
 				<div class="sbuild__author-block">
-					<img :src="user.photoURL" alt="" class="sbuild__author-avatar" />
+					<UserAvatar
+						:photo-u-r-l="loadedUserData.photoURL"
+						:display-name="String(loadedUserData.displayName)"
+						:email-hash="String(loadedUserData.emailHash) || ''"
+						:avatar-provider="loadedUserData.avatarProvider || 'google'"
+						class="sbuild__author-avatar"
+					/>
 					<div class="sbuild__author-block-right">
 						<p class="sbuild__author-name">
 							{{ user.displayName }}
@@ -81,9 +87,9 @@
 			<!-- else if we don't have any data (deleted user) -->
 			<template v-else>
 				<div class="sbuild__author-block">
-					<img
-						src="https://place-hold.it/80x80/8c8f94/8c8f94.jpg"
-						alt=""
+					<UserAvatar
+						:photo-u-r-l="'https://place-hold.it/80x80/8c8f94/8c8f94.jpg'"
+						:avatar-provider="'google'"
 						class="sbuild__author-avatar"
 					/>
 					<div class="sbuild__author-block-right">
@@ -309,6 +315,7 @@ import IconCopy from '@/components/ui/icon/icons/IconCopy.vue';
 import IconMobility from '@/components/ui/icon/icons/IconMobility.vue';
 import IconVitality from '@/components/ui/icon/icons/IconVitality.vue';
 import IconWeapon from '@/components/ui/icon/icons/IconWeapon.vue';
+import UserAvatar from '@/components/avatar/UserAvatar.vue';
 
 export default defineComponent({
 	props: {
@@ -327,11 +334,13 @@ export default defineComponent({
 			default: false,
 		},
 		loadedUserData: {
-			required: false,
-			type: Object,
-			// type: Object as PropType<
-			// 	Record<string, { displayName: string; photoURL: string }>
-			// >,
+			required: true,
+			type: Object as PropType<{
+				displayName: string;
+				photoURL: string;
+				avatarProvider: 'google' | 'gravatar' | 'none' | null;
+				emailHash: string;
+			}>,
 		},
 		user: {
 			required: true,
@@ -360,6 +369,7 @@ export default defineComponent({
 		IconMobility,
 		IconVitality,
 		IconWeapon,
+		UserAvatar,
 	},
 	setup(props) {
 		const store = useStore();

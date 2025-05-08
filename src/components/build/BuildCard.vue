@@ -79,16 +79,21 @@
 
 				<template
 					v-if="
-						loadedUserData &&
-						Object.keys(loadedUserData).length > 0 &&
-						loadedUserData.photoURL !== null &&
-						loadedUserData.displayName !== null
+						(loadedUserData &&
+							Object.keys(loadedUserData).length > 0 &&
+							loadedUserData.photoURL !== null &&
+							loadedUserData.displayName !== null &&
+							String(loadedUserData.avatarProvider) === 'google') ||
+						'gravatar' ||
+						'none'
 					"
 				>
 					<div class="sbuild__author-block">
-						<img
-							:src="loadedUserData.photoURL"
-							alt=""
+						<UserAvatar
+							:photo-u-r-l="String(loadedUserData.photoURL)"
+							:display-name="String(loadedUserData.displayName)"
+							:email-hash="String(loadedUserData.emailHash) || ''"
+							:avatar-provider="loadedUserData.avatarProvider || 'google'"
 							class="sbuild__author-avatar"
 						/>
 						<div class="sbuild__author-block-right">
@@ -108,9 +113,9 @@
 				<!-- else if we don't have any data (deleted user) -->
 				<template v-else>
 					<div class="sbuild__author-block">
-						<img
-							src="https://place-hold.it/80x80/8c8f94/8c8f94.jpg"
-							alt=""
+						<UserAvatar
+							:photo-u-r-l="'https://place-hold.it/80x80/8c8f94/8c8f94.jpg'"
+							:avatar-provider="'google'"
 							class="sbuild__author-avatar"
 						/>
 						<div class="sbuild__author-block-right">
@@ -210,7 +215,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, Ref, ref } from 'vue';
+import { defineComponent, PropType, Ref, ref, watch } from 'vue';
 import { ISkillBuild, ISkillBuildWithID } from '@/type/SkillBuild';
 import {
 	convertSkillTagToName,
@@ -227,6 +232,7 @@ import IconCopy from '@/components/ui/icon/icons/IconCopy.vue';
 import IconMobility from '@/components/ui/icon/icons/IconMobility.vue';
 import IconVitality from '@/components/ui/icon/icons/IconVitality.vue';
 import IconWeapon from '@/components/ui/icon/icons/IconWeapon.vue';
+import UserAvatar from '@/components/avatar/UserAvatar.vue';
 
 export default defineComponent({
 	props: {
@@ -245,10 +251,13 @@ export default defineComponent({
 			default: false,
 		},
 		loadedUserData: {
-			required: false,
-			type: Object as PropType<
-				Record<string, { displayName: string; photoURL: string }>
-			>,
+			required: true,
+			type: Object as PropType<{
+				displayName: string;
+				photoURL: string;
+				avatarProvider: 'google' | 'gravatar' | 'none' | null;
+				emailHash: string;
+			}>,
 		},
 		isFinishedLoading: {
 			required: false,
@@ -267,6 +276,7 @@ export default defineComponent({
 		IconMobility,
 		IconVitality,
 		IconWeapon,
+		UserAvatar,
 	},
 	setup(props) {
 		function getTrueOrFalse(): boolean {

@@ -9,6 +9,7 @@
 		<template v-else-if="pageExists">
 			<build-card-single
 				:item="loadedData"
+				:loadedUserData="userData"
 				:user="userData"
 				:buildId="id"
 				:hasLink="false"
@@ -65,7 +66,19 @@ export default defineComponent({
 	},
 	setup() {
 		const loadedData: Ref<ISkillBuildWithID | null> = ref(null);
-		const userData = ref({ photoURL: '', displayName: '', dbId: '' });
+		const userData: Ref<{
+			photoURL: string;
+			displayName: string;
+			emailHash?: string;
+			avatarProvider?: 'google' | 'gravatar' | 'none' | null;
+			dbId: string;
+		}> = ref({
+			photoURL: '',
+			displayName: '',
+			emailHash: '',
+			avatarProvider: null,
+			dbId: '',
+		});
 		const route = useRoute();
 		let id = route.path.split('/')[route.path.split('/').length - 1];
 		const isLoading: Ref<boolean> = ref(true);
@@ -135,9 +148,23 @@ export default defineComponent({
 						loadedData.value.data.author,
 						'photoURL'
 					);
+					userData.value.emailHash = getLocalStorageUsersDataByKeyAndValue(
+						localStorageData,
+						'user',
+						loadedData.value.data.author,
+						'emailHash'
+					);
+					userData.value.avatarProvider = getLocalStorageUsersDataByKeyAndValue(
+						localStorageData,
+						'user',
+						loadedData.value.data.author,
+						'avatarProvider'
+					);
 					userData.value = {
 						displayName: userData.value.displayName,
 						photoURL: userData.value.photoURL,
+						emailHash: userData.value.emailHash,
+						avatarProvider: userData.value.avatarProvider,
 						dbId: loadedData.value.data.author,
 					};
 				} else {
@@ -148,6 +175,8 @@ export default defineComponent({
 						const singleUserData = userSnap.data() as {
 							displayName: string;
 							photoURL: string;
+							avatarProvider?: 'google' | 'gravatar' | 'none' | null;
+							emailHash?: string;
 							dbId: string;
 						};
 						userData.value = { ...singleUserData, dbId: userSnap.id };
@@ -161,6 +190,8 @@ export default defineComponent({
 						userData.value = {
 							displayName: 'Пользователь не найден',
 							photoURL: 'https://place-hold.it/80x80/8c8f94/8c8f94.jpg',
+							emailHash: '',
+							avatarProvider: 'google',
 							dbId: '',
 						};
 						console.log('No such document!');
