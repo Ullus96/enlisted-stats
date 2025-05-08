@@ -1331,6 +1331,7 @@ h3 {
   position: relative;
   display: block;
   width: 5rem;
+  height: 5rem;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;

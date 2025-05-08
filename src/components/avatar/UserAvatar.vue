@@ -145,6 +145,5 @@ export default defineComponent({
 	text-transform: uppercase;
 	user-select: none;
 	font-size: 1rem;
-	overflow: hidden;
 }
 </style>
