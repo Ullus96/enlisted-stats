@@ -107,10 +107,13 @@ export default defineComponent({
 
 		async function updatePhotoURL(user: User) {
 			try {
-				await setDoc(doc(db, 'users', user.uid), {
-					displayName: user.displayName,
-					photoURL: user.photoURL,
-				});
+				await setDoc(
+					doc(db, 'users', user.uid),
+					{
+						photoURL: user.photoURL,
+					},
+					{ merge: true }
+				);
 				console.log('PhotoURL updated in the database.');
 			} catch (err: any) {
 				console.log('Error adding document: ', err.message);

@@ -6,19 +6,19 @@
 		class="avatar-placeholder"
 	/>
 	<img
-		v-else-if="store.state.user.avatarProvider === 'google'"
+		v-else-if="effectiveProvider === 'google'"
 		:src="store.state.user.photoUrl"
 		:alt="`${store.state.user.displayName} profile picture`"
 		class="avatar-placeholder"
 	/>
 	<img
-		v-else-if="store.state.user.avatarProvider === 'gravatar'"
+		v-else-if="effectiveProvider === 'gravatar'"
 		:src="getGravatarUrl()"
 		:alt="`${store.state.user.displayName} profile picture`"
 		class="avatar-placeholder"
 	/>
 	<div
-		v-else-if="store.state.user.avatarProvider === 'none'"
+		v-else-if="effectiveProvider === 'none'"
 		role="img"
 		:aria-label="`${store.state.user.displayName} profile picture`"
 		:style="avatarStyle"
@@ -29,11 +29,16 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, PropType, watch } from 'vue';
 import { useStore } from '@/store/useStore';
 
 export default defineComponent({
 	props: {
+		temporaryProvider: {
+			required: false,
+			default: null,
+			type: String as PropType<'google' | 'gravatar' | 'none' | null>,
+		},
 		imgSize: {
 			required: false,
 			default: 128,
@@ -42,6 +47,10 @@ export default defineComponent({
 	},
 	setup(props) {
 		const store = computed(() => useStore());
+
+		const effectiveProvider = computed(() => {
+			return props.temporaryProvider ?? store.value.state.user.avatarProvider;
+		});
 
 		function getGravatarUrl() {
 			return `https://www.gravatar.com/avatar/${store.value.state.user.emailHash}?s=${props.imgSize}&d=identicon`;
@@ -89,6 +98,7 @@ export default defineComponent({
 
 		return {
 			store,
+			effectiveProvider,
 			getGravatarUrl,
 			getUsersFirstLetter,
 			getAvatarColor,

@@ -49,7 +49,10 @@
 						<div class="profile__text-block">
 							<p class="profile__option-name">Аватар пользователя</p>
 							<div class="profile__change-photo-block">
-								<UserAvatar class="profile__change-photo-avatar" />
+								<UserAvatar
+									class="profile__change-photo-avatar"
+									:temporaryProvider="chosenProvider"
+								/>
 								<div class="profile__change-photo-radio-block">
 									<span class="profile__change-photo-radio-line">
 										<input
@@ -342,22 +345,46 @@ export default defineComponent({
 		});
 
 		// Аватарки
-		const chosenProvider = ref(store.value.state.user.avatarProvider || null);
-		watch(chosenProvider, (newVal) => {
-			setProvider(newVal);
-		});
+		const chosenProvider: Ref<'google' | 'gravatar' | 'none' | null> =
+			ref(null);
 
-		function setProvider(
-			avatarProvider: 'google' | 'gravatar' | 'none' | null
-		) {
-			if (!avatarProvider) return;
+		watch(
+			() => store.value.state.user.avatarProvider,
+			(newVal) => {
+				if (newVal) {
+					chosenProvider.value = newVal;
+				}
+			},
+			{ immediate: true }
+		);
+
+		function saveNewAvatarProvider() {
+			if (!chosenProvider.value) return;
+
 			store.value.commit('setUserData', {
 				...store.value.state.user,
-				avatarProvider,
+				avatarProvider: chosenProvider.value,
 			});
+			updateAvatarProvider(chosenProvider.value);
 		}
 
-		function saveNewAvatarProvider() {}
+		async function updateAvatarProvider(
+			provider: 'google' | 'gravatar' | 'none'
+		) {
+			try {
+				if (!auth.currentUser?.uid) return;
+				await setDoc(
+					doc(db, 'users', auth.currentUser.uid),
+					{
+						avatarProvider: provider,
+					},
+					{ merge: true }
+				);
+				console.log('Avatar Provider updated in the database.');
+			} catch (err: any) {
+				console.log('Error updading avatar provider: ', err.message);
+			}
+		}
 
 		return {
 			store,
