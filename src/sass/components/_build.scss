@@ -4,10 +4,18 @@
 		grid-template-columns: 1fr auto;
 		grid-template-rows: auto auto;
 		gap: 0.8rem;
+		border-radius: 1.2rem;
 
 		padding: 0.6rem;
 		background-color: $color-bg-a-700;
 		@include ui-background-blur;
+
+		&--clickable {
+			cursor: pointer;
+			position: relative;
+
+			@include hovered($color-text-100, $color-bg-a-500);
+		}
 	}
 
 	&__main {
@@ -69,6 +77,7 @@
 		grid-row: 1;
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
 		gap: 0.8rem;
 
 		&.fullheight {
@@ -81,8 +90,112 @@
 		flex-direction: column;
 		background-color: $color-bg-a-500;
 		border: 1px solid $color-panel-border;
-		border-radius: 0.4rem;
+		border-radius: 0.8rem;
 	}
+
+	&__button {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.8rem;
+		border-radius: 0.6rem;
+		cursor: pointer;
+
+		@include hovered($color-text-100, $color-bg-a-200);
+	}
+
+	&__likes-block--no-anim {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 0.8rem 0.8rem 0.2rem;
+		gap: 0.4rem;
+	}
+
+	&__likes-block {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 0.8rem 0.8rem 0.2rem;
+		gap: 0.4rem;
+
+		&:hover {
+			.build {
+				&__likes-svg path {
+					stroke: $color-danger-200;
+					fill: $color-danger-200;
+				}
+			}
+		}
+
+		&.clickable:hover {
+			cursor: pointer;
+			border-radius: 0.4rem;
+			@include hovered($color-text-100, $color-bg-a-200);
+		}
+	}
+
+	&__likes-svg {
+		width: 1.6rem;
+		path {
+			transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
+		}
+	}
+
+	// active state (if liked)
+	&__likes-block.active {
+		&:hover {
+			.build {
+				&__likes-svg path {
+					fill: transparent;
+				}
+			}
+		}
+
+		.build {
+			&__likes-amount {
+				color: $color-danger-200;
+			}
+
+			&__likes-svg {
+				path {
+					stroke: $color-danger-200;
+					fill: $color-danger-200;
+				}
+			}
+		}
+	}
+	// end
+
+	// Likes animation
+	&__icon {
+		&-container {
+			position: relative;
+		}
+
+		&-sub {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			opacity: 1;
+			transition: top 0.6s ease-out, left 0.6s ease-out, opacity 0.6s ease-out;
+
+			& path {
+				stroke: $color-danger-200 !important;
+				fill: $color-danger-200 !important;
+			}
+		}
+
+		&-main {
+			position: relative;
+			z-index: 2;
+		}
+	}
+	// end of likes animation
 
 	// Avatar
 	&__footer {
@@ -90,7 +203,7 @@
 		grid-row: 2;
 		background-color: rgba(92, 132, 145, 0.2);
 		border: 1px solid rgba(92, 132, 145, 0.3);
-		border-radius: 0.6rem;
+		border-radius: 0.8rem;
 		padding: 0.6rem;
 
 		&.fullwidth {

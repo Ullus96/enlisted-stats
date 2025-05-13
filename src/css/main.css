@@ -2113,10 +2113,25 @@ h3 {
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto;
   gap: 0.8rem;
+  border-radius: 1.2rem;
   padding: 0.6rem;
   background-color: rgba(35, 35, 35, 0.75);
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
+}
+.build__item--clickable {
+  cursor: pointer;
+  position: relative;
+}
+@media (hover: hover) {
+  .build__item--clickable:hover {
+    background-color: rgba(51, 51, 51, 0.76);
+  }
+}
+@media (hover: none) {
+  .build__item--clickable:active {
+    background-color: rgba(51, 51, 51, 0.76);
+  }
 }
 .build__main {
   grid-column: 1;
@@ -2167,6 +2182,7 @@ h3 {
   grid-row: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.8rem;
 }
 .build__buttons-wrapper.fullheight {
@@ -2177,14 +2193,102 @@ h3 {
   flex-direction: column;
   background-color: rgba(39, 39, 39, 0.75);
   border: 1px solid rgba(56, 56, 56, 0.5);
+  border-radius: 0.8rem;
+}
+.build__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .build__button:hover {
+    background-color: rgba(62, 62, 62, 0.76);
+  }
+}
+@media (hover: none) {
+  .build__button:active {
+    background-color: rgba(62, 62, 62, 0.76);
+  }
+}
+.build__likes-block--no-anim {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 0.8rem 0.2rem;
+  gap: 0.4rem;
+}
+.build__likes-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 0.8rem 0.2rem;
+  gap: 0.4rem;
+}
+.build__likes-block:hover .build__likes-svg path {
+  stroke: rgb(201, 45, 55);
+  fill: rgb(201, 45, 55);
+}
+.build__likes-block.clickable:hover {
+  cursor: pointer;
   border-radius: 0.4rem;
+}
+@media (hover: hover) {
+  .build__likes-block.clickable:hover:hover {
+    background-color: rgba(62, 62, 62, 0.76);
+  }
+}
+@media (hover: none) {
+  .build__likes-block.clickable:hover:active {
+    background-color: rgba(62, 62, 62, 0.76);
+  }
+}
+.build__likes-svg {
+  width: 1.6rem;
+}
+.build__likes-svg path {
+  transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
+}
+.build__likes-block.active:hover .build__likes-svg path {
+  fill: transparent;
+}
+.build__likes-block.active .build__likes-amount {
+  color: rgb(201, 45, 55);
+}
+.build__likes-block.active .build__likes-svg path {
+  stroke: rgb(201, 45, 55);
+  fill: rgb(201, 45, 55);
+}
+.build__icon-container {
+  position: relative;
+}
+.build__icon-sub {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 1;
+  transition: top 0.6s ease-out, left 0.6s ease-out, opacity 0.6s ease-out;
+}
+.build__icon-sub path {
+  stroke: rgb(201, 45, 55) !important;
+  fill: rgb(201, 45, 55) !important;
+}
+.build__icon-main {
+  position: relative;
+  z-index: 2;
 }
 .build__footer {
   grid-column: 1;
   grid-row: 2;
   background-color: rgba(92, 132, 145, 0.2);
   border: 1px solid rgba(92, 132, 145, 0.3);
-  border-radius: 0.6rem;
+  border-radius: 0.8rem;
   padding: 0.6rem;
 }
 .build__footer.fullwidth {
@@ -2823,73 +2927,6 @@ h3 {
     background-color: rgba(51, 51, 51, 0.76);
   }
 }
-.sbuild__main-content {
-  flex: 1 1 auto;
-  padding: 1.2rem;
-}
-.sbuild__link {
-  position: absolute;
-  z-index: 3;
-  inset: 0 0 0 0;
-}
-.sbuild__name {
-  font-size: 2rem;
-}
-.sbuild__data-block {
-  margin-top: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.sbuild__data-class {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: rgb(165, 165, 165);
-}
-.sbuild__data-icon {
-  height: 16px;
-  aspect-ratio: 1/1;
-  opacity: 0.6;
-}
-.sbuild__data-stats {
-  display: flex;
-  gap: 0.4rem;
-  align-items: center;
-  color: rgb(165, 165, 165);
-  font-size: 1.4rem;
-}
-.sbuild__data-stat {
-  display: flex;
-  gap: 0.4rem;
-  align-items: center;
-}
-.sbuild__data-separator {
-  color: rgb(116, 116, 116);
-}
-.sbuild__author-block {
-  margin-top: 1.6rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-.sbuild__author-avatar {
-  width: 4.8rem;
-  height: 4.8rem;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 100%;
-}
-.sbuild__author-block-right {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  line-height: 120%;
-}
-.sbuild__author-date {
-  color: rgb(116, 116, 116);
-  font-size: 1.4rem;
-}
 .sbuild__single-build {
   cursor: auto;
   margin-left: auto;
@@ -3264,7 +3301,6 @@ h3 {
   }
 }
 .table__build {
-  border-radius: 1.2rem;
   background-color: rgba(37, 37, 37, 0.75);
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
