@@ -37,7 +37,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, Ref, ref, watch } from 'vue';
+import {
+	computed,
+	defineComponent,
+	onMounted,
+	PropType,
+	Ref,
+	ref,
+	watch,
+} from 'vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
 import IconCheck from '@/components/ui/icon/icons/IconCheck.vue';
 import { blacklistedWords } from './bannedSymbols';
@@ -88,10 +96,13 @@ export default defineComponent({
 		const keysPressedCounter: Ref<number> = ref(0);
 		const isAfterReset: Ref<boolean> = ref(false);
 
-		if (props.presetInput) {
-			inputValue.value = props.presetInput;
-			context.emit('onChange', inputValue.value);
-		}
+		onMounted(() => {
+			if (props.presetInput) {
+				inputValue.value = props.presetInput;
+				context.emit('onChange', inputValue.value);
+				keysPressedCounter.value++;
+			}
+		});
 
 		watch(inputValue, (newValue) => {
 			if (isAfterReset.value) {

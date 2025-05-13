@@ -10,6 +10,7 @@
 				"
 				:counter="50"
 				:required="true"
+				:presetInput="presetValue"
 				@hasErrors="
 					(val) => {
 						isBtnDisabled = val;
@@ -111,10 +112,14 @@ export default defineComponent({
 			required: false,
 			type: Object as PropType<ISkillBuild>,
 		},
+		presetValue: {
+			required: false,
+			type: String,
+		},
 	},
 	emits: ['saveBuild', 'modifyBuild'],
 	setup(props, context) {
-		const title: Ref<string> = ref('');
+		const title: Ref<string> = ref(props.presetValue || '');
 		const isPublic: Ref<boolean> = ref(true);
 		const keysPressedCounter: Ref<number> = ref(0);
 		const user = getAuth().currentUser;

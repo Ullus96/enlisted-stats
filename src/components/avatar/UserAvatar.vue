@@ -90,7 +90,7 @@ export default defineComponent({
 
 		const avatarColors: [string, string][] = [
 			['#3498db', '#e2e2e2'],
-			['#1abc9c', '#e2e2e2'],
+			['#bfc1d0', '#232323'],
 			['#2ecc71', '#e2e2e2'],
 			['#f1c40f', '#232323'],
 			['#e67e22', '#232323'],

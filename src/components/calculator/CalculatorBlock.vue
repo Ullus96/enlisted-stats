@@ -7,7 +7,7 @@
 		<div class="calculator__grid">
 			<calculator-branch
 				v-for="(branch, index) in skillsList"
-				:key="branch"
+				:key="String(branch.tier1)"
 				:skills="skillsList[index]"
 				:branchIndex="index"
 				:remainingStats="remainingStats ? remainingStats : statsPool"
@@ -70,6 +70,7 @@
 			:soldierClass="soldierClass"
 			:openedInSingleBuild="openedInSingleBuild"
 			:item="item"
+			:preset-value="buildTitle"
 			@modifyBuild="modifyBuild"
 		></calculator-save-modal>
 	</Teleport>
@@ -420,6 +421,8 @@ export default defineComponent({
 			}
 		}
 
+		const buildTitle: Ref<string | undefined> = ref(props.item?.data.name);
+
 		function modifyBuild(payload: {
 			saveAction: 'update' | 'new';
 			title: string;
@@ -625,6 +628,7 @@ export default defineComponent({
 			saveBuild,
 			auth,
 			openLoginPopup,
+			buildTitle,
 			modifyBuild,
 			mounted,
 			calcElem,
