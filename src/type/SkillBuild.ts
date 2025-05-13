@@ -13,6 +13,7 @@ export interface ISkillBuild {
 		nameLowercase: string;
 		author: string;
 		createdAt: Timestamp;
+		updatedAt: Timestamp;
 		isCloned: boolean;
 		isPublic: boolean;
 		likedBy: string[];
@@ -46,6 +47,7 @@ export interface ISkillBuildWithID extends ISkillBuild {
 		nameLowercase: string;
 		author: string;
 		createdAt: Timestamp;
+		updatedAt: Timestamp;
 		isCloned: boolean;
 		isPublic: boolean;
 		likedBy: string[];

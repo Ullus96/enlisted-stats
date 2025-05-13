@@ -327,12 +327,14 @@ export default defineComponent({
 
 		async function saveBuild(payload: { title: string; isPublic: boolean }) {
 			const { title, isPublic } = payload;
+			const timestampNow = Timestamp.fromDate(new Date(Date.now()));
 			const savedData: ISkillBuild = {
 				data: {
 					name: title,
 					nameLowercase: title.toLowerCase(),
 					author: auth.value?.uid || '',
-					createdAt: Timestamp.fromDate(new Date(Date.now())),
+					createdAt: timestampNow,
+					updatedAt: timestampNow,
 					isPublic: isPublic,
 					isCloned: false,
 					likedBy: [],
@@ -438,6 +440,7 @@ export default defineComponent({
 			isPublic: boolean;
 		}) {
 			const { saveAction, title, isPublic } = payload;
+			const timestampNow = Timestamp.fromDate(new Date(Date.now()));
 
 			console.log(props.item);
 			console.log(skillsList);
@@ -448,7 +451,8 @@ export default defineComponent({
 						name: title,
 						nameLowercase: title.toLowerCase(),
 						author: auth.value?.uid || '',
-						createdAt: Timestamp.fromDate(new Date(Date.now())),
+						createdAt: props.item?.data.createdAt || timestampNow,
+						updatedAt: timestampNow,
 						isPublic: false,
 						isCloned: true,
 						likedBy: [],
@@ -520,7 +524,8 @@ export default defineComponent({
 						name: title,
 						nameLowercase: title.toLowerCase(),
 						author: auth.value?.uid || '',
-						createdAt: Timestamp.fromDate(new Date(Date.now())),
+						createdAt: props.item?.data.createdAt || timestampNow,
+						updatedAt: timestampNow,
 						isPublic: props.item?.data.isPublic || false,
 						isCloned: false,
 						likedBy: props.item?.data.likedBy || [],
