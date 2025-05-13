@@ -158,80 +158,14 @@
 
 			<!-- Avatar Panel -->
 			<div class="build__footer" :class="{ fullwidth: false }">
-				<template
-					v-if="
-						(loadedUserData &&
-							Object.keys(loadedUserData).length > 0 &&
-							loadedUserData.photoURL !== null &&
-							loadedUserData.displayName !== null &&
-							String(loadedUserData.avatarProvider) === 'google') ||
-						'gravatar' ||
-						'none'
-					"
-				>
-					<div class="build__footer-wrapper">
-						<UserAvatar
-							:photo-u-r-l="String(loadedUserData.photoURL)"
-							:display-name="String(loadedUserData.displayName)"
-							:email-hash="String(loadedUserData.emailHash) || ''"
-							:avatar-provider="loadedUserData.avatarProvider || 'google'"
-							class="build__avatar"
-						/>
-						<div class="build__footer-desc">
-							<p class="build__author-name">
-								{{ loadedUserData.displayName }}
-							</p>
-							<div class="build__footer-dates-wrapper">
-								<div class="build__footer-date-item">
-									<span class="build__date">
-										{{
-											new Date(
-												item.data.createdAt.seconds * 1000
-											).toLocaleDateString()
-										}}
-									</span>
-								</div>
-								<div
-									class="build__footer-date-item"
-									v-if="
-										item.data.updatedAt &&
-										item.data.updatedAt.seconds !== item.data.createdAt.seconds
-									"
-								>
-									<IconBase :width="12" :height="12">
-										<IconPen />
-									</IconBase>
-									<span class="build__date">
-										{{
-											new Date(
-												item.data.updatedAt.seconds * 1000
-											).toLocaleDateString()
-										}}
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</template>
-
-				<!-- In case if we don't have any data (deleted user) -->
-				<template v-else>
-					<div class="build__footer-wrapper">
-						<UserAvatar
-							:photo-u-r-l="'https://place-hold.it/80x80/8c8f94/8c8f94.jpg'"
-							:avatar-provider="'google'"
-							class="build__avatar"
-						/>
-						<div class="build__footer-desc">
-							<p class="build__author-name">Пользователь не найден</p>
-							<div class="build__footer-dates-wrapper">
-								<div class="build__footer-date-item">
-									<span class="build__date">— </span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</template>
+				<BuildAvatarPanel
+					:photo-u-r-l="String(loadedUserData.photoURL)"
+					:display-name="String(loadedUserData.displayName)"
+					:email-hash="String(loadedUserData.emailHash) || ''"
+					:avatar-provider="loadedUserData.avatarProvider || 'google'"
+					:created-at="item.data.createdAt"
+					:updated-at="item.data.updatedAt || null"
+				/>
 			</div>
 		</section>
 	</template>
@@ -258,6 +192,7 @@ import IconMobility from '@/components/ui/icon/icons/IconMobility.vue';
 import IconVitality from '@/components/ui/icon/icons/IconVitality.vue';
 import IconWeapon from '@/components/ui/icon/icons/IconWeapon.vue';
 import UserAvatar from '@/components/avatar/UserAvatar.vue';
+import BuildAvatarPanel from './BuildAvatarPanel.vue';
 
 export default defineComponent({
 	props: {
@@ -304,6 +239,7 @@ export default defineComponent({
 		IconVitality,
 		IconWeapon,
 		UserAvatar,
+		BuildAvatarPanel,
 	},
 	setup(props) {
 		function getTrueOrFalse(): boolean {

@@ -1,5 +1,5 @@
 <template>
-	<div class="build-author">
+	<div class="build__footer-wrapper">
 		<UserAvatar
 			:photo-u-r-l="photoURL"
 			:display-name="displayName"
@@ -7,20 +7,24 @@
 			:avatar-provider="avatarProvider"
 			class="build__avatar"
 		/>
-		<div class="build-author-desc">
+		<div class="build__footer-desc">
 			<p class="build__author-name">
 				{{ displayName || 'Пользователь не найден' }}
 			</p>
-			<div class="build__dates-wrapper">
-				<div class="build__date-item">
-					<span class="build__date">{{ createdAt || '—' }}</span>
+			<div class="build__footer-dates-wrapper">
+				<div class="build__footer-date-item">
+					<span class="build__date">{{
+						new Date(createdAt.seconds * 1000).toLocaleDateString() || '—'
+					}}</span>
 				</div>
 				<div
-					class="build__date-item"
-					v-if="updatedAt && updatedAt !== createdAt"
+					class="build__footer-date-item"
+					v-if="updatedAt && !isSameDay(updatedAt, createdAt)"
 				>
 					<IconBase :width="12" :height="12"><IconPen /></IconBase>
-					<span class="build__date">{{ updatedAt }}</span>
+					<span class="build__date">{{
+						new Date(updatedAt.seconds * 1000).toLocaleDateString()
+					}}</span>
 				</div>
 			</div>
 		</div>
@@ -63,9 +67,18 @@ export default defineComponent({
 		},
 	},
 	setup() {
-		return {};
+		function isSameDay(a: Timestamp, b: Timestamp) {
+			const dateA = new Date(a.seconds * 1000);
+			const dateB = new Date(b.seconds * 1000);
+
+			return (
+				dateA.getDate() === dateB.getDate() &&
+				dateA.getMonth() === dateB.getMonth() &&
+				dateA.getFullYear() === dateB.getFullYear()
+			);
+		}
+
+		return { isSameDay };
 	},
 });
 </script>
-
-<style scoped></style>
