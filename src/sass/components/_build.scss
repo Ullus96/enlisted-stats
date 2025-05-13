@@ -1,0 +1,137 @@
+.build {
+	&__item {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		grid-template-rows: auto auto;
+		gap: 0.8rem;
+
+		padding: 0.6rem;
+		background-color: $color-bg-a-700;
+		@include ui-background-blur;
+	}
+
+	&__main {
+		grid-column: 1;
+		grid-row: 1;
+
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		padding: 0.2rem 0.6rem;
+	}
+
+	&__title {
+		font-weight: 400;
+		margin: 0;
+		color: $color-text-100;
+	}
+
+	&__desc-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	&__class {
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+		color: $color-text-400;
+	}
+
+	&__class-icon {
+		height: 16px;
+		aspect-ratio: 1 / 1;
+		opacity: 0.6;
+	}
+
+	&__stats {
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
+	}
+
+	&__stat {
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+	}
+
+	&__separator {
+		color: $color-text-700;
+	}
+
+	// Buttons
+	&__buttons-wrapper {
+		grid-column: 2;
+		grid-row: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+
+		&.fullheight {
+			grid-row: 1/3;
+		}
+	}
+
+	&__buttons-group {
+		display: flex;
+		flex-direction: column;
+		background-color: $color-bg-a-500;
+		border: 1px solid $color-panel-border;
+		border-radius: 0.4rem;
+	}
+
+	// Avatar
+	&__footer {
+		grid-column: 1;
+		grid-row: 2;
+		background-color: rgba(92, 132, 145, 0.2);
+		border: 1px solid rgba(92, 132, 145, 0.3);
+		border-radius: 0.6rem;
+		padding: 0.6rem;
+
+		&.fullwidth {
+			grid-column: 1 / 3;
+		}
+	}
+
+	&__footer-wrapper {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+	}
+
+	&__avatar {
+		width: 4.8rem;
+		height: 4.8rem;
+		object-fit: cover;
+		border-radius: 0.6rem;
+	}
+
+	&__footer-desc {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	&__author-name {
+		font-size: $ui-font-size-m;
+	}
+
+	&__footer-dates-wrapper {
+		display: flex;
+		gap: 2rem;
+		color: $color-text-700;
+		font-size: $ui-font-size-s;
+	}
+
+	&__footer-date-item {
+		display: flex;
+		align-items: baseline;
+
+		gap: 0.4rem;
+	}
+}
