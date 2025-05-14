@@ -53,24 +53,6 @@
 		opacity: 0.6;
 	}
 
-	&__stats {
-		display: flex;
-		gap: 0.4rem;
-		align-items: center;
-		color: $color-text-400;
-		font-size: $ui-font-size-s;
-	}
-
-	&__stat {
-		display: flex;
-		gap: 0.4rem;
-		align-items: center;
-	}
-
-	&__separator {
-		color: $color-text-700;
-	}
-
 	// Buttons
 	&__buttons-wrapper {
 		grid-column: 2;

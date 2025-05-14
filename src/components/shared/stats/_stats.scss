@@ -1,0 +1,23 @@
+.stats {
+	&__wrapper {
+		display: flex;
+		gap: 0.8rem;
+		align-items: center;
+
+		&.build {
+			gap: 0.4rem;
+			font-size: $ui-font-size-s;
+			color: $color-text-400;
+		}
+	}
+
+	&__item {
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+	}
+
+	&__separator {
+		color: $color-text-700;
+	}
+}

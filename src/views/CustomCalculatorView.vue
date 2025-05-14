@@ -109,28 +109,7 @@
 			<div class="mt-l">
 				<h3>Текущие параметры</h3>
 				<div class="cc__s-data-block">
-					<div class="cc__s-stats-block">
-						<div class="cc__s-stat">
-							<IconBase>
-								<IconMobility />
-							</IconBase>
-							<span> {{ stats[0] }} </span>
-						</div>
-						<span class="cc__s-inline-separator"> - </span>
-						<div class="cc__s-stat">
-							<IconBase>
-								<IconVitality />
-							</IconBase>
-							<span> {{ stats[1] }} </span>
-						</div>
-						<span class="cc__s-inline-separator"> - </span>
-						<div class="cc__s-stat">
-							<IconBase>
-								<IconWeapon />
-							</IconBase>
-							<span> {{ stats[2] }} </span>
-						</div>
-					</div>
+					<StatsLine :stats="stats" class="cc__s-stats-block" />
 
 					<div class="cc__s-tags-block">
 						<IconBase>
@@ -178,10 +157,8 @@ import CcTagItem from '@/components/cc/CcTagItem.vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
-import IconMobility from '@/components/ui/icon/icons/IconMobility.vue';
-import IconVitality from '@/components/ui/icon/icons/IconVitality.vue';
-import IconWeapon from '@/components/ui/icon/icons/IconWeapon.vue';
 import IconTags from '@/components/ui/icon/icons/IconTags.vue';
+import StatsLine from '@/components/shared/stats/StatsLine.vue';
 import { useStore } from '@/store/useStore';
 import { createPopUp } from '@/components/popup/utils';
 
@@ -191,10 +168,8 @@ export default defineComponent({
 		CalculatorBlock,
 		TooltipComponent,
 		IconBase,
-		IconMobility,
-		IconVitality,
-		IconWeapon,
 		IconTags,
+		StatsLine,
 	},
 	setup() {
 		const store = useStore();

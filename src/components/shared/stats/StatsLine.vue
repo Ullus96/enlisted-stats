@@ -1,24 +1,36 @@
 <template>
-	<div class="build__stats">
-		<span class="build__stat">
-			<IconBase :iconColor="'#94FF94'" :width="14" :height="14">
+	<div class="stats__wrapper" :class="{ build: source === 'build' }">
+		<span class="stats__item">
+			<IconBase
+				:iconColor="source === 'build' ? '#94FF94' : 'currentcolor'"
+				:width="size === 'normal' ? 16 : 14"
+				:height="size === 'normal' ? 16 : 14"
+			>
 				<IconMobility />
 			</IconBase>
-			{{ stats[0] }}
+			{{ stats[0] != null ? stats[0] : '—' }}
 		</span>
-		<span class="build__separator">-</span>
-		<span class="build__stat">
-			<IconBase :iconColor="'#FF9494'" :width="14" :height="14">
+		<span class="stats__separator">-</span>
+		<span class="stats__item">
+			<IconBase
+				:iconColor="source === 'build' ? '#FF9494' : 'currentcolor'"
+				:width="size === 'normal' ? 16 : 14"
+				:height="size === 'normal' ? 16 : 14"
+			>
 				<IconMobility />
 			</IconBase>
-			{{ stats[1] }}
+			{{ stats[1] != null ? stats[1] : '—' }}
 		</span>
-		<span class="build__separator">-</span>
-		<span class="build__stat">
-			<IconBase :iconColor="'#FFFF94'" :width="14" :height="14">
+		<span class="stats__separator">-</span>
+		<span class="stats__item">
+			<IconBase
+				:iconColor="source === 'build' ? '#FFFF94' : 'currentcolor'"
+				:width="size === 'normal' ? 16 : 14"
+				:height="size === 'normal' ? 16 : 14"
+			>
 				<IconMobility />
 			</IconBase>
-			{{ stats[2] }}
+			{{ stats[2] != null ? stats[2] : '—' }}
 		</span>
 	</div>
 </template>
@@ -35,8 +47,17 @@ export default defineComponent({
 	props: {
 		stats: {
 			required: true,
-			type: Array as PropType<number[]>,
+			type: Array as PropType<Array<number | null>>,
 			default: [0, 0, 0],
+		},
+		source: {
+			required: false,
+			type: String as PropType<'build'>,
+		},
+		size: {
+			required: false,
+			type: String as PropType<'normal' | 'compact'>,
+			default: 'normal',
 		},
 	},
 	setup() {

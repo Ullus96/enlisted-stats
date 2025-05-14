@@ -20,7 +20,7 @@
 						:soldierClass="item.soldierClass"
 						:tags="item.tags"
 					/>
-					<StatsLine :stats="item.stats" />
+					<StatsLine :stats="item.stats" :source="'build'" :size="'compact'" />
 				</div>
 			</div>
 
