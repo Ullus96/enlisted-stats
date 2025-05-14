@@ -338,7 +338,6 @@ export default defineComponent({
 					isPublic: isPublic,
 					isCloned: false,
 					likedBy: [],
-					// @ts-expect-error
 					likesAmount: 0,
 				},
 				soldierClass: props.soldierClass,
@@ -456,7 +455,6 @@ export default defineComponent({
 						isPublic: false,
 						isCloned: true,
 						likedBy: [],
-						// @ts-expect-error
 						likesAmount: 0,
 					},
 					soldierClass: props.soldierClass,
@@ -529,7 +527,6 @@ export default defineComponent({
 						isPublic: props.item?.data.isPublic || false,
 						isCloned: false,
 						likedBy: props.item?.data.likedBy || [],
-						// @ts-expect-error
 						likesAmount: props.item?.data.likesAmount || 0,
 					},
 					soldierClass: props.soldierClass,

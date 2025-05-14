@@ -7,17 +7,20 @@ interface ITierSkill {
 	curLvl: number;
 }
 
+export interface ISkillBuildData {
+	name: string;
+	nameLowercase: string;
+	author: string;
+	createdAt: Timestamp;
+	updatedAt: Timestamp;
+	isCloned: boolean;
+	isPublic: boolean;
+	likedBy: string[];
+	likesAmount: number;
+}
+
 export interface ISkillBuild {
-	data: {
-		name: string;
-		nameLowercase: string;
-		author: string;
-		createdAt: Timestamp;
-		updatedAt: Timestamp;
-		isCloned: boolean;
-		isPublic: boolean;
-		likedBy: string[];
-	};
+	data: ISkillBuildData;
 	soldierClass: SoldierID;
 	tags: SkillTag[];
 	stats: [number, number, number];
@@ -42,15 +45,4 @@ export interface ISkillBuild {
 
 export interface ISkillBuildWithID extends ISkillBuild {
 	dbId: string;
-	data: {
-		name: string;
-		nameLowercase: string;
-		author: string;
-		createdAt: Timestamp;
-		updatedAt: Timestamp;
-		isCloned: boolean;
-		isPublic: boolean;
-		likedBy: string[];
-		likesAmount: number;
-	};
 }
