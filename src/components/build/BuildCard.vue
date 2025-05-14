@@ -16,59 +16,11 @@
 				</h4>
 
 				<div class="build__desc-wrapper">
-					<div class="build__class">
-						<!-- if soldier has a preset class -->
-						<template v-if="item.soldierClass !== 'custom'">
-							<img
-								:src="
-									require('@/assets/soldier_icons/' +
-										getSoldierData('id', item.soldierClass, 'icon'))
-								"
-								alt=""
-								class="build__class-icon"
-							/>
-							<p>
-								{{ getSoldierData('id', item.soldierClass, 'name') }}
-							</p>
-						</template>
-
-						<!-- else show his tags -->
-						<template v-else>
-							<img
-								:src="require('@/assets/soldier_icons/tags.svg')"
-								alt=""
-								class="build__class-icon"
-							/>
-							<p>
-								<span v-for="(tag, idx) in item.tags" :key="tag"
-									>{{ convertSkillTagToName(tag)
-									}}{{ idx + 1 < item.tags.length ? ', ' : '' }}</span
-								>
-							</p>
-						</template>
-					</div>
-					<div class="build__stats">
-						<span class="build__stat">
-							<IconBase :iconColor="'#94FF94'" :width="14" :height="14">
-								<IconMobility />
-							</IconBase>
-							{{ item.stats[0] }}
-						</span>
-						<span class="build__separator">-</span>
-						<span class="build__stat">
-							<IconBase :iconColor="'#FF9494'" :width="14" :height="14">
-								<IconMobility />
-							</IconBase>
-							{{ item.stats[1] }}
-						</span>
-						<span class="build__separator">-</span>
-						<span class="build__stat">
-							<IconBase :iconColor="'#FFFF94'" :width="14" :height="14">
-								<IconMobility />
-							</IconBase>
-							{{ item.stats[2] }}
-						</span>
-					</div>
+					<ClassOrTagsLine
+						:soldierClass="item.soldierClass"
+						:tags="item.tags"
+					/>
+					<StatsLine :stats="item.stats" />
 				</div>
 			</div>
 
@@ -174,10 +126,6 @@
 <script lang="ts">
 import { defineComponent, PropType, Ref, ref, watch } from 'vue';
 import { ISkillBuild, ISkillBuildWithID } from '@/type/SkillBuild';
-import {
-	convertSkillTagToName,
-	getSoldierData,
-} from '@/functions/convertSoldierDataToName';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
@@ -188,11 +136,10 @@ import IconTrash from '@/components/ui/icon/icons/IconTrash.vue';
 import IconCopy from '@/components/ui/icon/icons/IconCopy.vue';
 import IconMagic from '@/components/ui/icon/icons/IconMagic.vue';
 import IconPen from '@/components/ui/icon/icons/IconPen.vue';
-import IconMobility from '@/components/ui/icon/icons/IconMobility.vue';
-import IconVitality from '@/components/ui/icon/icons/IconVitality.vue';
-import IconWeapon from '@/components/ui/icon/icons/IconWeapon.vue';
 import UserAvatar from '@/components/avatar/UserAvatar.vue';
 import BuildAvatarPanel from './BuildAvatarPanel.vue';
+import StatsLine from './StatsLine.vue';
+import ClassOrTagsLine from './ClassOrTagsLine.vue';
 
 export default defineComponent({
 	props: {
@@ -235,11 +182,10 @@ export default defineComponent({
 		IconCopy,
 		IconMagic,
 		IconPen,
-		IconMobility,
-		IconVitality,
-		IconWeapon,
 		UserAvatar,
 		BuildAvatarPanel,
+		StatsLine,
+		ClassOrTagsLine,
 	},
 	setup(props) {
 		function getTrueOrFalse(): boolean {
@@ -274,8 +220,6 @@ export default defineComponent({
 		return {
 			currentUser,
 			getTrueOrFalse,
-			convertSkillTagToName,
-			getSoldierData,
 			isLikedByCurrentUser,
 			likesAmountOnLoad,
 		};
