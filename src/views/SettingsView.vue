@@ -234,7 +234,7 @@ import {
 	updateRootVariable,
 	getRootVariable,
 } from '@/functions/rootVariables';
-import UserAvatar from '@/components/avatar/UserAvatar.vue';
+import UserAvatar from '@/components/shared/avatar/UserAvatar.vue';
 
 export default defineComponent({
 	components: { InputComponent, DialogComponent, TabsComponent, UserAvatar },

@@ -34,7 +34,7 @@
 <script lang="ts">
 import { Timestamp } from 'firebase/firestore';
 import { defineComponent, PropType } from 'vue';
-import UserAvatar from '@/components/avatar/UserAvatar.vue';
+import UserAvatar from '@/components/shared/avatar/UserAvatar.vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
 import IconPen from '@/components/ui/icon/icons/IconPen.vue';
 

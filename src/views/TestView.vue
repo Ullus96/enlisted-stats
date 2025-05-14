@@ -112,7 +112,7 @@ import {
 	POPUP_DELETE_USER_ERROR,
 } from '@/components/popup/data';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
-import UserAvatar from '@/components/avatar/UserAvatar.vue';
+import UserAvatar from '@/components/shared/avatar/UserAvatar.vue';
 
 export default defineComponent({
 	components: { DialogComponent, UserAvatar },

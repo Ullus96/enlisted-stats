@@ -284,7 +284,7 @@ import { getAuth, signOut } from 'firebase/auth';
 import ContactsModal from '@/components/modals/ContactsModal.vue';
 import { createPopUp } from '@/components/popup/utils';
 import { POPUP_LOGOUT_SUCCESS } from '@/components/popup/data';
-import UserAvatar from './avatar/UserAvatar.vue';
+import UserAvatar from '@/components/shared/avatar/UserAvatar.vue';
 
 export default defineComponent({
 	components: {

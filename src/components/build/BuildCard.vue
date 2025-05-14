@@ -48,9 +48,9 @@
 import { defineComponent, PropType, Ref, ref, watch } from 'vue';
 import { ISkillBuild, ISkillBuildWithID } from '@/type/SkillBuild';
 
-import UserAvatar from '@/components/avatar/UserAvatar.vue';
+import UserAvatar from '@/components/shared/avatar/UserAvatar.vue';
 import BuildAvatarPanel from './BuildAvatarPanel.vue';
-import StatsLine from './StatsLine.vue';
+import StatsLine from '@/components/shared/stats/StatsLine.vue';
 import ClassOrTagsLine from './ClassOrTagsLine.vue';
 import BuildButtons from './BuildButtons.vue';
 

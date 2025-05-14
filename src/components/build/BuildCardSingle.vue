@@ -315,7 +315,7 @@ import IconCopy from '@/components/ui/icon/icons/IconCopy.vue';
 import IconMobility from '@/components/ui/icon/icons/IconMobility.vue';
 import IconVitality from '@/components/ui/icon/icons/IconVitality.vue';
 import IconWeapon from '@/components/ui/icon/icons/IconWeapon.vue';
-import UserAvatar from '@/components/avatar/UserAvatar.vue';
+import UserAvatar from '@/components/shared/avatar/UserAvatar.vue';
 
 export default defineComponent({
 	props: {
