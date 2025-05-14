@@ -78,9 +78,9 @@
 					<div class="cc__chips-flex cc__chips-flex--wide">
 						<CcTagItem
 							v-for="(item, tag) in avaliableTags"
-							:key="item"
+							:key="String(item)"
 							:item="item"
-							:tag="tag"
+							:tag="String(tag)"
 							:activeTags="tags"
 							@tagClicked="tagClicked"
 						></CcTagItem>
@@ -109,7 +109,7 @@
 			<div class="mt-l">
 				<h3>Текущие параметры</h3>
 				<div class="cc__s-data-block">
-					<StatsLine :stats="stats" class="cc__s-stats-block" />
+					<StatsLine :stats="finalStats" class="cc__s-stats-block" />
 
 					<div class="cc__s-tags-block">
 						<IconBase>
@@ -132,7 +132,7 @@
 				</button>
 
 				<calculator-block
-					:stats="stats"
+					:stats="finalStats"
 					:tags="tags"
 					:soldierClass="'custom'"
 				></calculator-block>
@@ -144,6 +144,7 @@
 <script lang="ts">
 import {
 	computed,
+	ComputedRef,
 	defineComponent,
 	nextTick,
 	onMounted,
@@ -172,8 +173,11 @@ export default defineComponent({
 		StatsLine,
 	},
 	setup() {
+		type StatTripletRaw = [number | null, number | null, number | null];
+		type StatTriplet = [number, number, number];
+
 		const store = useStore();
-		const stats = reactive([null, null, null]);
+		const stats: StatTripletRaw = reactive([null, null, null]);
 		const tags = reactive(['base']);
 		const isEditingSettings: Ref<boolean> = ref(true);
 
@@ -223,10 +227,15 @@ export default defineComponent({
 			});
 		}
 
+		const finalStats: ComputedRef<StatTriplet> = computed(() => {
+			return [stats[0] || 0, stats[1] || 0, stats[2] || 0];
+		});
+
 		return {
 			avaliableTags,
 			uniqueSoldiersList,
 			stats,
+			finalStats,
 			tags,
 			tagClicked,
 			isEditingSettings,
