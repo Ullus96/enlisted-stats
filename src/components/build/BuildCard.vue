@@ -25,12 +25,12 @@
 			</div>
 
 			<!-- Buttons -->
-			<div class="build__buttons-wrapper" :class="{ fullheight: true }">
-				<BuildButtons :data="item.data" :is-status-visible="isStatusVisible" />
+			<div class="build__buttons-wrapper" :class="{ fullheight: !isPreview }">
+				<BuildButtons :data="item.data" :variation="variation" />
 			</div>
 
 			<!-- Avatar Panel -->
-			<div class="build__footer" :class="{ fullwidth: false }">
+			<div class="build__footer" :class="{ fullwidth: isPreview }">
 				<BuildAvatarPanel
 					:photo-u-r-l="String(loadedUserData.photoURL)"
 					:display-name="String(loadedUserData.displayName)"
@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, Ref, ref, watch } from 'vue';
+import { computed, defineComponent, PropType, Ref, ref, watch } from 'vue';
 import { ISkillBuild, ISkillBuildWithID } from '@/type/SkillBuild';
 
 import UserAvatar from '@/components/shared/avatar/UserAvatar.vue';
@@ -84,6 +84,11 @@ export default defineComponent({
 			type: Boolean,
 			default: false,
 		},
+		variation: {
+			required: false,
+			type: String as PropType<'preview' | 'full'>,
+			default: 'preview',
+		},
 	},
 	components: {
 		UserAvatar,
@@ -92,8 +97,9 @@ export default defineComponent({
 		ClassOrTagsLine,
 		BuildButtons,
 	},
-	setup() {
-		return {};
+	setup(props) {
+		const isPreview = computed(() => props.variation === 'preview');
+		return { isPreview };
 	},
 });
 </script>

@@ -31,7 +31,7 @@
 			<span class="build__likes-amount">{{ likesAmountOnLoad }}</span>
 		</div>
 		<!-- Shows all buttons (visibility, cloned) -->
-		<template v-if="!isStatusVisible">
+		<template v-if="!isPreview">
 			<!-- Visibility -->
 			<div class="tooltip-anchor" v-if="data.isPublic">
 				<TooltipComponent :direction="'left'" :width="22">
@@ -67,7 +67,7 @@
 			</div>
 		</template>
 	</div>
-	<div class="build__buttons-group" v-if="!isStatusVisible">
+	<div class="build__buttons-group" v-if="!isPreview">
 		<div class="tooltip-anchor">
 			<TooltipComponent :direction="'left'" :width="10">
 				<p>Удалить</p>
@@ -82,7 +82,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, Ref, ref } from 'vue';
+import { computed, defineComponent, PropType, Ref, ref } from 'vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
 import IconGlobe from '@/components/ui/icon/icons/IconGlobe.vue';
@@ -106,16 +106,17 @@ export default defineComponent({
 			required: true,
 			type: Object as PropType<ISkillBuildData>,
 		},
-		isStatusVisible: {
+		variation: {
 			required: false,
-			type: Boolean,
-			default: false,
+			type: String as PropType<'preview' | 'full'>,
+			default: 'preview',
 		},
 	},
 	setup(props) {
 		const likesAmountOnLoad: Ref<number> = ref(props.data.likedBy.length);
 		const isLikedByCurrentUser: Ref<boolean> = ref(false);
 		let currentUser = ref(getAuth().currentUser);
+		const isPreview = computed(() => props.variation === 'preview');
 
 		function checkIfLikedByCurrentUser(userUid: any) {
 			if (userUid && props.data.likedBy.includes(userUid)) {
@@ -137,6 +138,7 @@ export default defineComponent({
 			isLikedByCurrentUser,
 			currentUser,
 			likesAmountOnLoad,
+			isPreview,
 		};
 	},
 });
