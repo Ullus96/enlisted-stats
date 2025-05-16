@@ -1,5 +1,5 @@
 <template>
-	<div class="build__buttons-group">
+	<div class="build__buttons-group" @click.stop>
 		<div
 			class="build__likes-block"
 			:class="{
@@ -67,7 +67,7 @@
 			</div>
 		</template>
 	</div>
-	<div class="build__buttons-group" v-if="!isPreview">
+	<div class="build__buttons-group" v-if="!isPreview" @click.stop>
 		<div class="tooltip-anchor">
 			<TooltipComponent :direction="'left'" :width="10">
 				<p>Удалить</p>

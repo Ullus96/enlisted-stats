@@ -1,5 +1,6 @@
 .build {
 	&__item {
+		position: relative;
 		display: grid;
 		grid-template-columns: 1fr auto;
 		grid-template-rows: auto auto;
@@ -16,6 +17,12 @@
 
 			@include hovered($color-text-100, $color-bg-a-500);
 		}
+	}
+
+	&__link {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
 	}
 
 	&__main {
@@ -73,6 +80,7 @@
 		background-color: $color-bg-a-500;
 		border: 1px solid $color-panel-border;
 		border-radius: 0.8rem;
+		z-index: 2;
 	}
 
 	&__button {

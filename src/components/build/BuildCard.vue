@@ -9,6 +9,12 @@
 			}"
 			v-ripple
 		>
+			<router-link
+				v-if="hasLink && item.dbId"
+				:to="'/build/' + item.dbId"
+				target="_blank"
+				class="build__link"
+			></router-link>
 			<!-- Main -->
 			<div class="build__main">
 				<h4 class="build__title">
@@ -99,6 +105,7 @@ export default defineComponent({
 	},
 	setup(props) {
 		const isPreview = computed(() => props.variation === 'preview');
+
 		return { isPreview };
 	},
 });
