@@ -112,7 +112,7 @@
 		padding: 0.8rem 0.8rem 0.2rem;
 		gap: 0.4rem;
 
-		&:hover {
+		&.clickable:hover {
 			.build {
 				&__likes-svg path {
 					stroke: $color-danger-200;
@@ -191,8 +191,10 @@
 	&__footer {
 		grid-column: 1;
 		grid-row: 2;
-		background-color: rgba(92, 132, 145, 0.15);
-		border: 1px solid rgba(92, 132, 145, 0.18);
+		background-color: $color-bg-a-700;
+		border: 1px solid $color-bg-a-300;
+		// background-color: rgba(92, 132, 145, 0.15);
+		// border: 1px solid rgba(92, 132, 145, 0.18);
 		border-radius: 0.8rem;
 		padding: 0.6rem;
 

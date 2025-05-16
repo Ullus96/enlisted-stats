@@ -2222,7 +2222,7 @@ h3 {
   padding: 0.8rem 0.8rem 0.2rem;
   gap: 0.4rem;
 }
-.build__likes-block:hover .build__likes-svg path {
+.build__likes-block.clickable:hover .build__likes-svg path {
   stroke: rgb(201, 45, 55);
   fill: rgb(201, 45, 55);
 }
@@ -2278,8 +2278,8 @@ h3 {
 .build__footer {
   grid-column: 1;
   grid-row: 2;
-  background-color: rgba(92, 132, 145, 0.15);
-  border: 1px solid rgba(92, 132, 145, 0.18);
+  background-color: rgba(35, 35, 35, 0.75);
+  border: 1px solid rgba(47, 47, 47, 0.75);
   border-radius: 0.8rem;
   padding: 0.6rem;
 }
