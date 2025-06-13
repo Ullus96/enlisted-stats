@@ -159,13 +159,9 @@ export default defineComponent({
 			required: false,
 			type: Object as PropType<ISkillBuild>,
 		},
-		userData: {
+		dbId: {
 			required: false,
-			type: Object as PropType<{
-				photoURL: string;
-				displayName: string;
-				dbId: string;
-			}>,
+			type: String,
 		},
 	},
 	setup(props) {
@@ -513,10 +509,7 @@ export default defineComponent({
 				} catch (e) {
 					console.error('Error adding document: ', e);
 				}
-			} else if (
-				saveAction === 'update' &&
-				props.userData?.dbId == auth.value?.uid
-			) {
+			} else if (saveAction === 'update' && props.dbId == auth.value?.uid) {
 				const savedData: ISkillBuild = {
 					data: {
 						name: title,

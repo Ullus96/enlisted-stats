@@ -7,7 +7,7 @@
 		</template>
 
 		<template v-else-if="pageExists">
-			<build-card-single
+			<!-- <build-card-single
 				:item="loadedData"
 				:loadedUserData="userData"
 				:user="userData"
@@ -15,9 +15,27 @@
 				:hasLink="false"
 				:isStatusVisible="true"
 				class="sbuild__single-build"
-			></build-card-single>
+			></build-card-single> -->
 
 			<template v-if="loadedData">
+				<build-card
+					:key="loadedData.dbId"
+					:item="loadedData"
+					:loadedUserData="
+						userData
+							? userData
+							: {
+									displayName: 'Пользователь не найден',
+									photoURL: 'https://place-hold.it/80x80/8c8f94/8c8f94.jpg',
+									emailHash: 'null',
+									avatarProvider: null,
+							  }
+					"
+					:isFinishedLoading="true"
+					:variation="'full'"
+					class="sbuild__single-build"
+				></build-card>
+
 				<!-- {{ loadedData }} -->
 				<calculator-block
 					:stats="loadedData.stats"
@@ -27,7 +45,7 @@
 					:isOpenedBySkillBuild="true"
 					:openedInSingleBuild="true"
 					:item="loadedData"
-					:userData="userData"
+					:dbId="loadedData.dbId"
 				></calculator-block>
 			</template>
 		</template>
@@ -42,6 +60,7 @@
 import { defineComponent, onMounted, reactive, Ref, ref } from 'vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
 import BuildCardSingle from '@/components/build/BuildCardSingle.vue';
+import BuildCard from '@/components/build/BuildCard.vue';
 import { ISkillBuild, ISkillBuildWithID } from '@/type/SkillBuild';
 import { items } from '@/data/soldiersList';
 import { getSoldierData } from '@/functions/convertSoldierDataToName';
@@ -61,6 +80,7 @@ export default defineComponent({
 	components: {
 		CalculatorBlock,
 		BuildCardSingle,
+		BuildCard,
 		LoadingSpinner,
 		BuildPage404,
 	},
@@ -69,15 +89,13 @@ export default defineComponent({
 		const userData: Ref<{
 			photoURL: string;
 			displayName: string;
-			emailHash?: string;
-			avatarProvider?: 'google' | 'gravatar' | 'none' | null;
-			dbId: string;
+			emailHash: string;
+			avatarProvider: 'google' | 'gravatar' | 'none' | null;
 		}> = ref({
 			photoURL: '',
 			displayName: '',
 			emailHash: '',
 			avatarProvider: null,
-			dbId: '',
 		});
 		const route = useRoute();
 		let id = route.path.split('/')[route.path.split('/').length - 1];
@@ -163,9 +181,8 @@ export default defineComponent({
 					userData.value = {
 						displayName: userData.value.displayName,
 						photoURL: userData.value.photoURL,
-						emailHash: userData.value.emailHash,
-						avatarProvider: userData.value.avatarProvider,
-						dbId: loadedData.value.data.author,
+						emailHash: userData.value.emailHash ?? 'none',
+						avatarProvider: userData.value.avatarProvider ?? null,
 					};
 				} else {
 					const userRef = doc(db, 'users', loadedData.value.data.author);
@@ -177,9 +194,12 @@ export default defineComponent({
 							photoURL: string;
 							avatarProvider?: 'google' | 'gravatar' | 'none' | null;
 							emailHash?: string;
-							dbId: string;
 						};
-						userData.value = { ...singleUserData, dbId: userSnap.id };
+						userData.value = {
+							...singleUserData,
+							avatarProvider: singleUserData.avatarProvider ?? null,
+							emailHash: singleUserData.emailHash ?? 'none',
+						};
 						saveToLocalStorageArray('usersData', { ...userData.value });
 
 						console.log('Document data:', userSnap.data());
@@ -192,7 +212,6 @@ export default defineComponent({
 							photoURL: 'https://place-hold.it/80x80/8c8f94/8c8f94.jpg',
 							emailHash: '',
 							avatarProvider: 'google',
-							dbId: '',
 						};
 						console.log('No such document!');
 						return Promise.reject('No such document');
