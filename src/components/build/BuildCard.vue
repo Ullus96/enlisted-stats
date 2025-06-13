@@ -32,7 +32,7 @@
 
 			<!-- Buttons -->
 			<div class="build__buttons-wrapper" :class="{ fullheight: !isPreview }">
-				<BuildButtons :data="item.data" :variation="variation" />
+				<BuildButtons :data="item.data" :variation="variation" :build="item" />
 			</div>
 
 			<!-- Avatar Panel -->

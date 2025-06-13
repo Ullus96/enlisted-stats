@@ -6,6 +6,7 @@
 				active: isLikedByCurrentUser,
 				clickable: data.author !== currentUser?.uid,
 			}"
+			@click="handleLikeButton"
 		>
 			<div class="build__icon-container">
 				<div class="build__icon-main">
@@ -26,6 +27,10 @@
 						/>
 					</svg>
 				</div>
+				<animated-like-entity
+					v-for="item in animatedHeartsAmount"
+					:key="item"
+				></animated-like-entity>
 			</div>
 
 			<span class="build__likes-amount">{{ likesAmountOnLoad }}</span>
@@ -89,8 +94,13 @@ import IconGlobe from '@/components/ui/icon/icons/IconGlobe.vue';
 import IconEyeSlash from '@/components/ui/icon/icons/IconEyeSlash.vue';
 import IconTrash from '@/components/ui/icon/icons/IconTrash.vue';
 import IconCopy from '@/components/ui/icon/icons/IconCopy.vue';
-import { ISkillBuildData } from '@/type/SkillBuild';
+import { ISkillBuildData, ISkillBuildWithID } from '@/type/SkillBuild';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+import AnimatedLikeEntity from './AnimatedLikeEntity.vue';
+import randomNum from '@/functions/randomNum';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { db } from '@/firebase/firebase';
 
 export default defineComponent({
 	components: {
@@ -100,11 +110,17 @@ export default defineComponent({
 		IconEyeSlash,
 		IconTrash,
 		IconCopy,
+
+		AnimatedLikeEntity,
 	},
 	props: {
 		data: {
 			required: true,
 			type: Object as PropType<ISkillBuildData>,
+		},
+		build: {
+			required: true,
+			type: Object as PropType<ISkillBuildWithID>,
 		},
 		variation: {
 			required: false,
@@ -134,11 +150,90 @@ export default defineComponent({
 			}
 		});
 
+		// Likes handler
+		const animatedHeartsAmount = ref(0);
+
+		function handleLikeButton() {
+			if (currentUser.value) {
+				if (!isLikedByCurrentUser.value) {
+					likesAmountOnLoad.value++;
+					animatedHeartsAmount.value = Math.floor(randomNum(4, 8));
+					firestoreBuildsLikedBy(
+						currentUser.value.uid,
+						props.build.dbId,
+						'add'
+					);
+				} else {
+					likesAmountOnLoad.value--;
+					animatedHeartsAmount.value = 0;
+					firestoreBuildsLikedBy(
+						currentUser.value.uid,
+						props.build.dbId,
+						'remove'
+					);
+				}
+			}
+
+			isLikedByCurrentUser.value = !isLikedByCurrentUser.value;
+		}
+
+		async function firestoreBuildsLikedBy(
+			userID: string,
+			buildID: string,
+			operation: 'add' | 'remove'
+		) {
+			const docRef = doc(db, 'builds', buildID);
+			const docSnap = await getDoc(docRef);
+			let dataFromDB;
+			if (docSnap.exists()) {
+				dataFromDB = docSnap.data();
+			} else {
+				return;
+			}
+
+			if (operation === 'add') {
+				try {
+					const likedBy = [...dataFromDB.data.likedBy, userID];
+					let likesAmount = dataFromDB.data.likesAmount + 1 || 1;
+					await updateDoc(docRef, {
+						'data.likedBy': likedBy,
+						'data.likesAmount': likesAmount,
+					});
+				} catch (err: any) {
+					console.log(
+						'Error on adding a build to `likedBuilds`: ' + err.message
+					);
+				}
+			} else if (operation === 'remove') {
+				try {
+					const likedBy = dataFromDB.data.likedBy.filter(
+						(id: string) => id !== userID
+					);
+					let likesAmount = dataFromDB.data.likesAmount - 1 || 0;
+					if (likesAmount < 0) {
+						likesAmount = 0;
+					}
+					await updateDoc(docRef, {
+						'data.likedBy': likedBy,
+						'data.likesAmount': likesAmount,
+					});
+				} catch (err: any) {
+					console.error(
+						'Error on removing a build from `likedBuilds`: ' + err.message
+					);
+				}
+			} else {
+				console.error('Invalid operation type: ' + operation);
+			}
+		}
+
 		return {
 			isLikedByCurrentUser,
 			currentUser,
 			likesAmountOnLoad,
 			isPreview,
+			animatedHeartsAmount,
+			handleLikeButton,
 		};
 	},
 });
