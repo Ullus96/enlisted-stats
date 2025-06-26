@@ -64,7 +64,8 @@ import BuildCard from '@/components/build/BuildCard.vue';
 import { ISkillBuild, ISkillBuildWithID } from '@/type/SkillBuild';
 import { items } from '@/data/soldiersList';
 import { getSoldierData } from '@/functions/convertSoldierDataToName';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import { useStore } from '@/store/useStore';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import LoadingSpinner from '@/components/ui/LoadingSpinner.vue';
@@ -99,6 +100,8 @@ export default defineComponent({
 			emailHash: '',
 			avatarProvider: null,
 		});
+		const store = useStore();
+		const router = useRouter();
 		const route = useRoute();
 		let id = route.path.split('/')[route.path.split('/').length - 1];
 		const isLoading: Ref<boolean> = ref(true);
@@ -127,6 +130,15 @@ export default defineComponent({
 				// userSnap.data() will be undefined in this case
 				console.log('No such document!');
 				return Promise.reject('No such document');
+			}
+
+			if (
+				// @ts-expect-error
+				!loadedData.value.data.isPublic &&
+				// @ts-expect-error
+				loadedData.value.data.author !== getAuth().currentUser?.uid
+			) {
+				router.push('/');
 			}
 
 			isLoading.value = false;
