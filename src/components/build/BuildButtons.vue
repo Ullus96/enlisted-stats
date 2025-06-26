@@ -82,7 +82,7 @@
 			</div>
 		</template>
 	</div>
-	<div class="build__buttons-group" v-if="!isPreview" @click.stop>
+	<div class="build__buttons-group" v-if="!isPreview" @click.stop="deleteBuild">
 		<div class="tooltip-anchor">
 			<TooltipComponent :direction="'left'" :width="10">
 				<p>Удалить</p>
@@ -98,6 +98,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, PropType, Ref, ref } from 'vue';
+import { useStore } from '@/store/useStore';
+import { useRouter } from 'vue-router';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
 import IconGlobe from '@/components/ui/icon/icons/IconGlobe.vue';
@@ -109,8 +111,10 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 import AnimatedLikeEntity from './AnimatedLikeEntity.vue';
 import randomNum from '@/functions/randomNum';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
+import { createPopUp } from '../popup/utils';
+import { POPUP_DELETE_BUILD_SUCCESS } from '../popup/data';
 
 export default defineComponent({
 	components: {
@@ -143,6 +147,8 @@ export default defineComponent({
 		const isLikedByCurrentUser: Ref<boolean> = ref(false);
 		let currentUser = ref(getAuth().currentUser);
 		const isPreview = computed(() => props.variation === 'preview');
+		const store = useStore();
+		const router = useRouter();
 
 		function checkIfLikedByCurrentUser(userUid: any) {
 			if (userUid && props.data.likedBy.includes(userUid)) {
@@ -237,8 +243,27 @@ export default defineComponent({
 			}
 		}
 
+		// Check if current user is an author
 		function isUserAnAuthor() {
 			return props.data.author === currentUser.value?.uid;
+		}
+
+		// Delete
+		async function deleteBuild() {
+			if (!isUserAnAuthor()) {
+				return false;
+			}
+
+			const docRef = doc(db, 'builds', props.build.dbId);
+
+			try {
+				await deleteDoc(docRef);
+				console.log(`${props.build.dbId} был удален из БД`);
+				createPopUp(store, POPUP_DELETE_BUILD_SUCCESS);
+				router.push('/');
+			} catch (err: any) {
+				alert(`Произошла ошибка: ${err.message}`);
+			}
 		}
 
 		onMounted(() => {
@@ -254,6 +279,7 @@ export default defineComponent({
 			animatedHeartsAmount,
 			handleLikeButton,
 			isUserAnAuthor,
+			deleteBuild,
 		};
 	},
 });
