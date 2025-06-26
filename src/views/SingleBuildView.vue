@@ -75,7 +75,7 @@ import {
 	saveToLocalStorageArray,
 } from '@/functions/localStorageUtils';
 import { getLocalStorageUsersDataByKeyAndValue } from '@/functions/getDataByKeyAndValue';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 export default defineComponent({
 	components: {
@@ -103,6 +103,14 @@ export default defineComponent({
 		let id = route.path.split('/')[route.path.split('/').length - 1];
 		const isLoading: Ref<boolean> = ref(true);
 		const pageExists: Ref<boolean> = ref(true);
+
+		onAuthStateChanged(getAuth(), (user) => {
+			if (user) {
+				currentUser.value = user;
+			} else {
+				currentUser.value = null;
+			}
+		});
 
 		async function loadData() {
 			const buildRef = doc(db, 'builds', id);

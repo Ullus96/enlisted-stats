@@ -60,7 +60,7 @@
 				<div
 					class="build__button"
 					:style="{
-						cursor: isUserAnAuthor() ? 'pointer' : 'default',
+						cursor: isUserAnAuthor() && !data.isCloned ? 'pointer' : 'default',
 					}"
 				>
 					<IconBase :iconColor="'#a5a5a5'">
@@ -74,7 +74,7 @@
 				<TooltipComponent :direction="'left'" :width="22">
 					<p>Сборка является копией</p>
 				</TooltipComponent>
-				<div class="build__button">
+				<div class="build__button" style="cursor: default">
 					<IconBase :iconColor="'#a5a5a5'">
 						<IconCopy />
 					</IconBase>
