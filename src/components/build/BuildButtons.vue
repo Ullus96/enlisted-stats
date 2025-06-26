@@ -38,21 +38,31 @@
 		<!-- Shows all buttons (visibility, cloned) -->
 		<template v-if="!isPreview">
 			<!-- Visibility -->
-			<div class="tooltip-anchor" v-if="data.isPublic">
+			<div v-if="data.isPublic" class="tooltip-anchor">
 				<TooltipComponent :direction="'left'" :width="22">
 					<p>Видна всем пользователям</p>
 				</TooltipComponent>
-				<div class="build__button">
+				<div
+					class="build__button"
+					:style="{
+						cursor: isUserAnAuthor() ? 'pointer' : 'default',
+					}"
+				>
 					<IconBase :iconColor="'#a5a5a5'">
 						<IconGlobe />
 					</IconBase>
 				</div>
 			</div>
-			<div class="tooltip-anchor" v-else>
+			<div v-else class="tooltip-anchor">
 				<TooltipComponent :direction="'left'" :width="22">
 					<p>Видна только вам</p>
 				</TooltipComponent>
-				<div class="build__button">
+				<div
+					class="build__button"
+					:style="{
+						cursor: isUserAnAuthor() ? 'pointer' : 'default',
+					}"
+				>
 					<IconBase :iconColor="'#a5a5a5'">
 						<IconEyeSlash />
 					</IconBase>
@@ -227,6 +237,10 @@ export default defineComponent({
 			}
 		}
 
+		function isUserAnAuthor() {
+			return props.data.author === currentUser.value?.uid;
+		}
+
 		onMounted(() => {
 			console.group(props.data, props.build);
 			console.groupEnd();
@@ -239,6 +253,7 @@ export default defineComponent({
 			isPreview,
 			animatedHeartsAmount,
 			handleLikeButton,
+			isUserAnAuthor,
 		};
 	},
 });

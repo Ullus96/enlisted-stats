@@ -32,7 +32,7 @@
 							  }
 					"
 					:isFinishedLoading="true"
-					:variation="'full'"
+					:variation="isUserAnAuthor() ? 'full' : 'preview'"
 					class="sbuild__single-build"
 				></build-card>
 
@@ -75,6 +75,7 @@ import {
 	saveToLocalStorageArray,
 } from '@/functions/localStorageUtils';
 import { getLocalStorageUsersDataByKeyAndValue } from '@/functions/getDataByKeyAndValue';
+import { getAuth } from 'firebase/auth';
 
 export default defineComponent({
 	components: {
@@ -86,6 +87,7 @@ export default defineComponent({
 	},
 	setup() {
 		const loadedData: Ref<ISkillBuildWithID | null> = ref(null);
+		let currentUser = ref(getAuth().currentUser);
 		const userData: Ref<{
 			photoURL: string;
 			displayName: string;
@@ -235,6 +237,10 @@ export default defineComponent({
 				pageExists.value = false;
 			});
 
+		function isUserAnAuthor() {
+			return loadedData.value?.data.author === currentUser.value?.uid;
+		}
+
 		return {
 			loadedData,
 			userData,
@@ -243,6 +249,7 @@ export default defineComponent({
 			pageExists,
 			getSoldierData,
 			id,
+			isUserAnAuthor,
 		};
 	},
 });
