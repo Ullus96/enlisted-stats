@@ -87,7 +87,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, Ref, ref } from 'vue';
+import { computed, defineComponent, onMounted, PropType, Ref, ref } from 'vue';
 import TooltipComponent from '@/components/ui/TooltipComponent.vue';
 import IconBase from '@/components/ui/icon/IconBase.vue';
 import IconGlobe from '@/components/ui/icon/icons/IconGlobe.vue';
@@ -193,11 +193,11 @@ export default defineComponent({
 
 			if (operation === 'add') {
 				try {
-					const likedBy = [...dataFromDB.data.likedBy, userID];
-					let likesAmount = dataFromDB.data.likesAmount + 1 || 1;
+					dataFromDB.data.likedBy.push(userID);
+
 					await updateDoc(docRef, {
-						'data.likedBy': likedBy,
-						'data.likesAmount': likesAmount,
+						'data.likedBy': dataFromDB.data.likedBy,
+						'data.likesAmount': dataFromDB.data.likesAmount + 1 || 1,
 					});
 				} catch (err: any) {
 					console.log(
@@ -226,6 +226,11 @@ export default defineComponent({
 				console.error('Invalid operation type: ' + operation);
 			}
 		}
+
+		onMounted(() => {
+			console.group(props.data, props.build);
+			console.groupEnd();
+		});
 
 		return {
 			isLikedByCurrentUser,

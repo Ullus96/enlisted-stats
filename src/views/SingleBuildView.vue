@@ -110,6 +110,8 @@ export default defineComponent({
 				const buildData = buildSnap.data();
 				// @ts-expect-error
 				loadedData.value = buildData;
+				// @ts-expect-error
+				loadedData.value.dbId = buildSnap.id;
 				await loadUserFromDB();
 			} else {
 				// userSnap.data() will be undefined in this case
