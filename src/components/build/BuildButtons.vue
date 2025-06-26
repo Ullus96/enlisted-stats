@@ -36,7 +36,7 @@
 				></animated-like-entity>
 			</div>
 
-			<span class="build__likes-amount">{{ likesAmountOnLoad }}</span>
+			<span class="build__likes-amount">{{ localLikesAmount }}</span>
 		</button>
 		<!-- Shows all buttons (visibility, cloned) -->
 		<template v-if="!isPreview">
@@ -150,7 +150,15 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 import AnimatedLikeEntity from './AnimatedLikeEntity.vue';
 import randomNum from '@/functions/randomNum';
-import { deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
+import {
+	arrayRemove,
+	arrayUnion,
+	deleteDoc,
+	doc,
+	getDoc,
+	increment,
+	updateDoc,
+} from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import { createPopUp } from '../popup/utils';
 import {
@@ -186,7 +194,7 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const likesAmountOnLoad: Ref<number> = ref(props.data.likedBy.length);
+		const localLikesAmount: Ref<number> = ref(props.data.likedBy.length);
 		const isLikedByCurrentUser: Ref<boolean> = ref(false);
 		let currentUser = ref(getAuth().currentUser);
 		const isPreview = computed(() => props.variation === 'preview');
@@ -212,80 +220,103 @@ export default defineComponent({
 		// Likes handler
 		const animatedHeartsAmount = ref(0);
 
-		function handleLikeButton() {
+		async function handleLikeButton() {
 			if (currentUser.value) {
 				if (isUserAnAuthor()) return;
+				const docRef = doc(db, 'builds', props.build.dbId);
+
 				if (!isLikedByCurrentUser.value) {
-					likesAmountOnLoad.value++;
+					localLikesAmount.value++;
 					animatedHeartsAmount.value = Math.floor(randomNum(4, 8));
-					firestoreBuildsLikedBy(
-						currentUser.value.uid,
-						props.build.dbId,
-						'add'
-					);
+
+					try {
+						await updateDoc(docRef, {
+							'data.likedBy': arrayUnion(currentUser.value.uid),
+							'data.likesAmount': increment(1),
+						});
+					} catch (error) {
+						console.error('Ошибка при обновлении:', error);
+						localLikesAmount.value--;
+						animatedHeartsAmount.value = 0;
+					}
+					// firestoreBuildsLikedBy(
+					// 	currentUser.value.uid,
+					// 	props.build.dbId,
+					// 	'add'
+					// );
 				} else {
-					likesAmountOnLoad.value--;
+					localLikesAmount.value--;
 					animatedHeartsAmount.value = 0;
-					firestoreBuildsLikedBy(
-						currentUser.value.uid,
-						props.build.dbId,
-						'remove'
-					);
+
+					try {
+						await updateDoc(docRef, {
+							'data.likedBy': arrayRemove(currentUser.value.uid),
+							'data.likesAmount': increment(-1),
+						});
+					} catch (error) {
+						console.error('Ошибка при обновлении:', error);
+						localLikesAmount.value++;
+					}
+					// firestoreBuildsLikedBy(
+					// 	currentUser.value.uid,
+					// 	props.build.dbId,
+					// 	'remove'
+					// );
 				}
 			}
 
 			isLikedByCurrentUser.value = !isLikedByCurrentUser.value;
 		}
 
-		async function firestoreBuildsLikedBy(
-			userID: string,
-			buildID: string,
-			operation: 'add' | 'remove'
-		) {
-			const docRef = doc(db, 'builds', buildID);
-			const docSnap = await getDoc(docRef);
-			let dataFromDB;
-			if (docSnap.exists()) {
-				dataFromDB = docSnap.data();
-			} else {
-				return;
-			}
+		// async function firestoreBuildsLikedBy(
+		// 	userID: string,
+		// 	buildID: string,
+		// 	operation: 'add' | 'remove'
+		// ) {
+		// 	const docRef = doc(db, 'builds', buildID);
+		// 	const docSnap = await getDoc(docRef);
+		// 	let dataFromDB;
+		// 	if (docSnap.exists()) {
+		// 		dataFromDB = docSnap.data();
+		// 	} else {
+		// 		return;
+		// 	}
 
-			if (operation === 'add') {
-				try {
-					dataFromDB.data.likedBy.push(userID);
+		// 	if (operation === 'add') {
+		// 		try {
+		// 			dataFromDB.data.likedBy.push(userID);
 
-					await updateDoc(docRef, {
-						'data.likedBy': dataFromDB.data.likedBy,
-						'data.likesAmount': dataFromDB.data.likesAmount + 1 || 1,
-					});
-				} catch (err: any) {
-					console.log(
-						'Error on adding a build to `likedBuilds`: ' + err.message
-					);
-				}
-			} else if (operation === 'remove') {
-				try {
-					const likedBy = dataFromDB.data.likedBy.filter(
-						(id: string) => id !== userID
-					);
-					let likesAmount = dataFromDB.data.likesAmount - 1 || 0;
-					if (likesAmount < 0) {
-						likesAmount = 0;
-					}
-					await updateDoc(docRef, {
-						'data.likedBy': likedBy,
-						'data.likesAmount': likesAmount,
-					});
-				} catch (err: any) {
-					console.error(
-						'Error on removing a build from `likedBuilds`: ' + err.message
-					);
-				}
-			} else {
-				console.error('Invalid operation type: ' + operation);
-			}
-		}
+		// 			await updateDoc(docRef, {
+		// 				'data.likedBy': dataFromDB.data.likedBy,
+		// 				'data.likesAmount': dataFromDB.data.likesAmount + 1 || 1,
+		// 			});
+		// 		} catch (err: any) {
+		// 			console.log(
+		// 				'Error on adding a build to `likedBuilds`: ' + err.message
+		// 			);
+		// 		}
+		// 	} else if (operation === 'remove') {
+		// 		try {
+		// 			const likedBy = dataFromDB.data.likedBy.filter(
+		// 				(id: string) => id !== userID
+		// 			);
+		// 			let likesAmount = dataFromDB.data.likesAmount - 1 || 0;
+		// 			if (likesAmount < 0) {
+		// 				likesAmount = 0;
+		// 			}
+		// 			await updateDoc(docRef, {
+		// 				'data.likedBy': likedBy,
+		// 				'data.likesAmount': likesAmount,
+		// 			});
+		// 		} catch (err: any) {
+		// 			console.error(
+		// 				'Error on removing a build from `likedBuilds`: ' + err.message
+		// 			);
+		// 		}
+		// 	} else {
+		// 		console.error('Invalid operation type: ' + operation);
+		// 	}
+		// }
 
 		// Check if current user is an author
 		function isUserAnAuthor() {
@@ -349,7 +380,7 @@ export default defineComponent({
 		return {
 			isLikedByCurrentUser,
 			currentUser,
-			likesAmountOnLoad,
+			localLikesAmount,
 			isPreview,
 			animatedHeartsAmount,
 			handleLikeButton,
