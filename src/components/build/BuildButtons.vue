@@ -4,7 +4,10 @@
 			class="build__likes-block"
 			:class="{
 				active: isLikedByCurrentUser,
-				clickable: data.author !== currentUser?.uid,
+				clickable: !isUserAnAuthor(),
+			}"
+			:style="{
+				cursor: isUserAnAuthor() ? 'default' : 'pointer',
 			}"
 			@click="handleLikeButton"
 		>
@@ -211,6 +214,7 @@ export default defineComponent({
 
 		function handleLikeButton() {
 			if (currentUser.value) {
+				if (isUserAnAuthor()) return;
 				if (!isLikedByCurrentUser.value) {
 					likesAmountOnLoad.value++;
 					animatedHeartsAmount.value = Math.floor(randomNum(4, 8));
