@@ -82,17 +82,35 @@
 			</div>
 		</template>
 	</div>
-	<div class="build__buttons-group" v-if="!isPreview" @click.stop="deleteBuild">
+	<div class="build__buttons-group" v-if="!isPreview" @click.stop>
 		<div class="tooltip-anchor">
 			<TooltipComponent :direction="'left'" :width="10">
 				<p>Удалить</p>
 			</TooltipComponent>
-			<button class="build__button">
+			<button
+				class="build__button"
+				@click="$store.state.dialog.isDeletingBuild = true"
+				v-ripple
+			>
 				<IconBase :iconColor="'#a5a5a5'">
 					<IconTrash />
 				</IconBase>
 			</button>
 		</div>
+
+		<DialogComponent
+			:dialogName="'isDeletingBuild'"
+			v-if="$store.state.dialog.isDeletingBuild"
+			:yes="{ text: 'Удалить', type: 'primary' }"
+			:no="{ text: 'Отмена', type: 'tertiary' }"
+			@confirm="deleteBuild"
+		>
+			<template #title>Удалить сборку?</template>
+
+			Это действие удалит сборку
+			<span>{{ data.name }}</span
+			>.
+		</DialogComponent>
 	</div>
 </template>
 
@@ -115,6 +133,7 @@ import { deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import { createPopUp } from '../popup/utils';
 import { POPUP_DELETE_BUILD_SUCCESS } from '../popup/data';
+import DialogComponent from '@/components/ui/DialogComponent.vue';
 
 export default defineComponent({
 	components: {
@@ -124,7 +143,7 @@ export default defineComponent({
 		IconEyeSlash,
 		IconTrash,
 		IconCopy,
-
+		DialogComponent,
 		AnimatedLikeEntity,
 	},
 	props: {
@@ -249,7 +268,6 @@ export default defineComponent({
 		}
 
 		// Delete
-
 		async function deleteBuild() {
 			if (!isUserAnAuthor()) {
 				return false;
