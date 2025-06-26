@@ -1,6 +1,6 @@
 <template>
 	<div class="build__buttons-group" @click.stop>
-		<div
+		<button
 			class="build__likes-block"
 			:class="{
 				active: isLikedByCurrentUser,
@@ -34,7 +34,7 @@
 			</div>
 
 			<span class="build__likes-amount">{{ likesAmountOnLoad }}</span>
-		</div>
+		</button>
 		<!-- Shows all buttons (visibility, cloned) -->
 		<template v-if="!isPreview">
 			<!-- Visibility -->
@@ -42,7 +42,7 @@
 				<TooltipComponent :direction="'left'" :width="22">
 					<p>Видна всем пользователям</p>
 				</TooltipComponent>
-				<div
+				<button
 					class="build__button"
 					:style="{
 						cursor: isUserAnAuthor() ? 'pointer' : 'default',
@@ -51,13 +51,13 @@
 					<IconBase :iconColor="'#a5a5a5'">
 						<IconGlobe />
 					</IconBase>
-				</div>
+				</button>
 			</div>
 			<div v-else class="tooltip-anchor">
 				<TooltipComponent :direction="'left'" :width="22">
 					<p>Видна только вам</p>
 				</TooltipComponent>
-				<div
+				<button
 					class="build__button"
 					:style="{
 						cursor: isUserAnAuthor() && !data.isCloned ? 'pointer' : 'default',
@@ -66,7 +66,7 @@
 					<IconBase :iconColor="'#a5a5a5'">
 						<IconEyeSlash />
 					</IconBase>
-				</div>
+				</button>
 			</div>
 			<!-- End of Visibility -->
 			<!-- Cloned -->
@@ -74,11 +74,11 @@
 				<TooltipComponent :direction="'left'" :width="22">
 					<p>Сборка является копией</p>
 				</TooltipComponent>
-				<div class="build__button" style="cursor: default">
+				<button class="build__button" style="cursor: default">
 					<IconBase :iconColor="'#a5a5a5'">
 						<IconCopy />
 					</IconBase>
-				</div>
+				</button>
 			</div>
 		</template>
 	</div>
@@ -87,11 +87,11 @@
 			<TooltipComponent :direction="'left'" :width="10">
 				<p>Удалить</p>
 			</TooltipComponent>
-			<div class="build__button">
+			<button class="build__button">
 				<IconBase :iconColor="'#a5a5a5'">
 					<IconTrash />
 				</IconBase>
-			</div>
+			</button>
 		</div>
 	</div>
 </template>
@@ -249,6 +249,7 @@ export default defineComponent({
 		}
 
 		// Delete
+
 		async function deleteBuild() {
 			if (!isUserAnAuthor()) {
 				return false;
