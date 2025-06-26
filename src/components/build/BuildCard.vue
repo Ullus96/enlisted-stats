@@ -1,19 +1,17 @@
 <template>
 	<template v-if="isFinishedLoading && loadedUserData">
-		<section
-			class="build__item"
-			v-shiny-border="{
-				height: 2,
-				padding: 12,
-				hoverRgbaColor: [51, 51, 51, 0.76],
-			}"
-			v-ripple
-		>
+		<section class="build__item">
 			<router-link
-				v-if="hasLink && item.dbId"
+				v-if="isClickable && hasLink && item.dbId"
 				:to="'/build/' + item.dbId"
 				target="_blank"
 				class="build__link"
+				v-shiny-border="{
+					height: 2,
+					padding: 12,
+					hoverRgbaColor: [51, 51, 51, 0.76],
+				}"
+				v-ripple
 			></router-link>
 			<!-- Main -->
 			<div class="build__main">
@@ -94,6 +92,11 @@ export default defineComponent({
 			required: false,
 			type: String as PropType<'preview' | 'full'>,
 			default: 'preview',
+		},
+		isClickable: {
+			required: false,
+			type: Boolean,
+			default: true,
 		},
 	},
 	components: {

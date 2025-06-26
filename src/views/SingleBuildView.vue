@@ -33,6 +33,7 @@
 					"
 					:isFinishedLoading="true"
 					:variation="isUserAnAuthor() ? 'full' : 'preview'"
+					:is-clickable="false"
 					class="sbuild__single-build"
 				></build-card>
 
