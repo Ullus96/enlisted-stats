@@ -47,6 +47,8 @@
 					:style="{
 						cursor: isUserAnAuthor() ? 'pointer' : 'default',
 					}"
+					@click="handleVisibilitySwitchButton"
+					v-ripple
 				>
 					<IconBase :iconColor="'#a5a5a5'">
 						<IconGlobe />
@@ -62,6 +64,8 @@
 					:style="{
 						cursor: isUserAnAuthor() && !data.isCloned ? 'pointer' : 'default',
 					}"
+					@click="handleVisibilitySwitchButton"
+					v-ripple
 				>
 					<IconBase :iconColor="'#a5a5a5'">
 						<IconEyeSlash />
@@ -111,6 +115,20 @@
 			<span>{{ data.name }}</span
 			>.
 		</DialogComponent>
+
+		<DialogComponent
+			:dialogName="'isSwitchingBuildVisibility'"
+			v-if="$store.state.dialog.isSwitchingBuildVisibility"
+			:yes="{ text: 'Переключить', type: 'primary' }"
+			:no="{ text: 'Отмена', type: 'tertiary' }"
+			@confirm="switchBuildVisibility"
+		>
+			<template #title>Переключить видимость?</template>
+
+			Это действие переключит видимость сборки
+			<span>{{ data.name }}</span
+			>.
+		</DialogComponent>
 	</div>
 </template>
 
@@ -132,7 +150,10 @@ import randomNum from '@/functions/randomNum';
 import { deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import { createPopUp } from '../popup/utils';
-import { POPUP_DELETE_BUILD_SUCCESS } from '../popup/data';
+import {
+	POPUP_BUILD_VISIBILITY_CHANGED,
+	POPUP_DELETE_BUILD_SUCCESS,
+} from '../popup/data';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
 
 export default defineComponent({
@@ -285,6 +306,37 @@ export default defineComponent({
 			}
 		}
 
+		// Visibility switch
+		function handleVisibilitySwitchButton() {
+			if (!isUserAnAuthor()) return;
+			if (props.data.isCloned) return;
+
+			store.commit('toggleDialogVisibility', {
+				name: 'isSwitchingBuildVisibility',
+			});
+		}
+
+		async function switchBuildVisibility() {
+			const docRef = doc(db, 'builds', props.build.dbId);
+			const docSnap = await getDoc(docRef);
+			let dataFromDB;
+			if (docSnap.exists()) {
+				dataFromDB = docSnap.data();
+			} else {
+				return;
+			}
+
+			try {
+				await updateDoc(docRef, {
+					'data.isPublic': !dataFromDB.data.isPublic,
+				});
+				props.data.isPublic = !dataFromDB.data.isPublic;
+				createPopUp(store, POPUP_BUILD_VISIBILITY_CHANGED);
+			} catch (err: any) {
+				console.log('Error on switching build visibility: ' + err.message);
+			}
+		}
+
 		onMounted(() => {
 			console.group(props.data, props.build);
 			console.groupEnd();
@@ -299,6 +351,8 @@ export default defineComponent({
 			handleLikeButton,
 			isUserAnAuthor,
 			deleteBuild,
+			handleVisibilitySwitchButton,
+			switchBuildVisibility,
 		};
 	},
 });
