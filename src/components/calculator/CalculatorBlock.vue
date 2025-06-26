@@ -437,9 +437,6 @@ export default defineComponent({
 			const { saveAction, title, isPublic } = payload;
 			const timestampNow = Timestamp.fromDate(new Date(Date.now()));
 
-			console.log(props.item);
-			console.log(skillsList);
-
 			if (saveAction === 'new') {
 				const savedData: ISkillBuild = {
 					data: {
@@ -509,7 +506,7 @@ export default defineComponent({
 				} catch (e) {
 					console.error('Error adding document: ', e);
 				}
-			} else if (saveAction === 'update' && props.dbId == auth.value?.uid) {
+			} else if (saveAction === 'update') {
 				const savedData: ISkillBuild = {
 					data: {
 						name: title,
