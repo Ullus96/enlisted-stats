@@ -7,16 +7,6 @@
 		</template>
 
 		<template v-else-if="pageExists">
-			<!-- <build-card-single
-				:item="loadedData"
-				:loadedUserData="userData"
-				:user="userData"
-				:buildId="id"
-				:hasLink="false"
-				:isStatusVisible="true"
-				class="sbuild__single-build"
-			></build-card-single> -->
-
 			<template v-if="loadedData">
 				<build-card
 					:key="loadedData.dbId"
@@ -60,7 +50,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, Ref, ref } from 'vue';
 import CalculatorBlock from '@/components/calculator/CalculatorBlock.vue';
-import BuildCardSingle from '@/components/build/BuildCardSingle.vue';
 import BuildCard from '@/components/build/BuildCard.vue';
 import { ISkillBuild, ISkillBuildWithID } from '@/type/SkillBuild';
 import { items } from '@/data/soldiersList';
@@ -82,7 +71,6 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 export default defineComponent({
 	components: {
 		CalculatorBlock,
-		BuildCardSingle,
 		BuildCard,
 		LoadingSpinner,
 		BuildPage404,
