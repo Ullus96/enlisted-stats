@@ -13,8 +13,6 @@
 		>
 			<UserAvatar />
 
-			<PassFailStamp :text="'pass'" />
-
 			<button class="btn btn-m btn-secondary" v-ripple>
 				Create an empty popup
 			</button>
@@ -116,10 +114,9 @@ import {
 } from '@/components/popup/data';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
 import UserAvatar from '@/components/shared/avatar/UserAvatar.vue';
-import PassFailStamp from '@/components/events/PassFailStamp.vue';
 
 export default defineComponent({
-	components: { DialogComponent, UserAvatar, PassFailStamp },
+	components: { DialogComponent, UserAvatar },
 	setup() {
 		const store = useStore();
 

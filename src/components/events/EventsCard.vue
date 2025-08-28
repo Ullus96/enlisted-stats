@@ -8,6 +8,7 @@
 		}"
 		@click="handleClick"
 	>
+		<PassFailStamp :text="Math.random() < 0.5 ? 'fail' : 'pass'" />
 		<p class="event__counter">#{{ stageIndex + 1 }}</p>
 		<p class="event__date">{{ day }}</p>
 		<p class="event__month">{{ month }}</p>
@@ -24,8 +25,10 @@
 import { IStage } from '@/type/Events';
 import { defineComponent, PropType, ref, Ref } from 'vue';
 import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
+import PassFailStamp from './PassFailStamp.vue';
 
 export default defineComponent({
+	components: { PassFailStamp },
 	props: {
 		cardData: { required: true, type: Object as PropType<IStage> },
 		stageIndex: { required: true, type: Number },

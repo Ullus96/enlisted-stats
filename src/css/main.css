@@ -2503,6 +2503,15 @@ h3 {
     display: flex;
   }
 }
+.event__stamp-wrapper {
+  position: absolute;
+  transform: translateX(-50%);
+  padding: 0.6rem 0.8rem;
+  background-color: #eeddba;
+  outline: 3px dotted #eeddba;
+  outline-offset: -2px;
+  border-radius: 3px;
+}
 .event__stamp {
   position: relative;
   width: -moz-fit-content;
@@ -2510,6 +2519,7 @@ h3 {
   padding: 0.8rem 1.2rem;
   font-family: monospace;
   font-size: 3.2rem;
+  z-index: 1;
 }
 .event__stamp--fail {
   color: rgb(201, 45, 55);
@@ -2522,7 +2532,7 @@ h3 {
 .event__border {
   position: absolute;
   border-style: solid;
-  z-index: -1;
+  z-index: 1;
 }
 .event__border--outer {
   inset: -3px;

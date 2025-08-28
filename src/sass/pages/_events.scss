@@ -197,12 +197,24 @@
 	}
 
 	// Fail or Pass stamp
+	&__stamp-wrapper {
+		position: absolute;
+
+		transform: translateX(-50%);
+		padding: 0.6rem 0.8rem;
+		background-color: #eeddba;
+		outline: 3px dotted #eeddba;
+		outline-offset: -2px;
+		border-radius: 3px;
+	}
+
 	&__stamp {
 		position: relative;
 		width: fit-content;
 		padding: 0.8rem 1.2rem;
 		font-family: monospace;
 		font-size: $ui-font-size-h2;
+		z-index: 1;
 
 		&--fail {
 			color: $color-danger-200;
@@ -218,7 +230,7 @@
 	&__border {
 		position: absolute;
 		border-style: solid;
-		z-index: -1;
+		z-index: 1;
 
 		&--outer {
 			inset: -3px;
