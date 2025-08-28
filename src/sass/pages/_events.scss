@@ -196,6 +196,33 @@
 		}
 	}
 
+	// Checkbox to mark as passed
+	&__card:hover {
+		.event__checkbox {
+			opacity: 1;
+		}
+	}
+
+	&__checkbox:focus-visible {
+		opacity: 1;
+	}
+
+	&__checkbox {
+		display: flex;
+		opacity: 0;
+		width: fit-content;
+		transition: 0.12s opacity allow-discrete ease-in-out;
+
+		position: absolute;
+		top: 0.6rem;
+		left: 0.6rem;
+		z-index: 1;
+
+		& input {
+			display: none;
+		}
+	}
+
 	// Fail or Pass stamp
 	&__stamp-wrapper {
 		position: absolute;
