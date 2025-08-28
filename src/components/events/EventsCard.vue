@@ -44,6 +44,7 @@ import IconCheck from '../ui/icon/icons/IconCheck.vue';
 
 export default defineComponent({
 	components: { PassFailStamp, IconBase, IconCheck },
+	emits: ['complete-stage', 'skip-stage'],
 	props: {
 		cardData: { required: true, type: Object as PropType<IStage> },
 		stageIndex: { required: true, type: Number },
@@ -96,7 +97,9 @@ export default defineComponent({
 			context.emit('skip-stage', props.stageIndex);
 		}
 
-		function handleStageCompletion() {}
+		function handleStageCompletion() {
+			context.emit('complete-stage', props.stageIndex);
+		}
 
 		return {
 			day,

@@ -41,7 +41,9 @@
 							:reward="item.reward"
 							:isActive="index === currentStageInfo.index"
 							:isSkipped="skippedStages.includes(index)"
+							:isPassed="completedStages.includes(index)"
 							@skip-stage="handleSkipStage"
+							@complete-stage="handleCompleteStage"
 						></events-card>
 
 						<div class="event__card finish">
@@ -371,6 +373,7 @@ export default defineComponent({
 
 		// Skipped stages
 		const skippedStages: Ref<number[]> = ref([]);
+		const completedStages: Ref<number[]> = ref([]);
 		// @ts-expect-error
 		const storageKey = props.data.dbId;
 		const endDateKey = `end-${storageKey}`;
@@ -400,9 +403,20 @@ export default defineComponent({
 			} else {
 				skippedStages.value.push(stageIndex);
 			}
-			saveToLocalStorage(storageKey, skippedStages.value);
+			saveToLocalStorage(`${storageKey}-skipped`, skippedStages.value);
 			saveToLocalStorage(endDateKey, props.data.endDate);
 			updateRewards();
+		}
+
+		function handleCompleteStage(stageIndex: number) {
+			const stageIndexPosition = completedStages.value.indexOf(stageIndex);
+			if (stageIndexPosition !== -1) {
+				completedStages.value.splice(stageIndexPosition, 1);
+			} else {
+				completedStages.value.push(stageIndex);
+			}
+			saveToLocalStorage(`${storageKey}-passed`, completedStages.value);
+			saveToLocalStorage(endDateKey, props.data.endDate);
 		}
 
 		function updateRewards() {
@@ -410,18 +424,22 @@ export default defineComponent({
 		}
 
 		function loadAndCleanLocalStorage() {
-			const savedSkippedStages = loadFromLocalStorage(storageKey);
+			const savedSkippedStages = loadFromLocalStorage(`${storageKey}-skipped`);
+			const savedPassedStages = loadFromLocalStorage(`${storageKey}-passed`);
 			const savedEndDate = new Date(loadFromLocalStorage(endDateKey));
 
-			if (
-				savedSkippedStages &&
-				savedSkippedStages.length > 0 &&
-				currentDate <= savedEndDate
-			) {
-				skippedStages.value = savedSkippedStages;
-			} else {
-				localStorage.removeItem(storageKey);
+			if (currentDate >= savedEndDate) {
+				localStorage.removeItem(`${storageKey}-skipped`);
+				localStorage.removeItem(`${storageKey}-passed`);
 				localStorage.removeItem(endDateKey);
+			}
+
+			if (savedSkippedStages && savedSkippedStages.length > 0) {
+				skippedStages.value = savedSkippedStages;
+			}
+
+			if (savedPassedStages && savedPassedStages.length > 0) {
+				completedStages.value = savedPassedStages;
 			}
 		}
 
@@ -451,8 +469,10 @@ export default defineComponent({
 			setActiveReward,
 			separateLineBySemicolon,
 			skippedStages,
+			completedStages,
 			stagesWithRewards,
 			handleSkipStage,
+			handleCompleteStage,
 			updateRewards,
 		};
 	},
