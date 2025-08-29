@@ -129,19 +129,19 @@
 			transform: scale(0.96);
 
 			&:nth-child(5n + 1) {
-				transform: rotateZ(-5deg) scale(0.97);
+				transform: rotateZ(-3deg) scale(0.97);
 			}
 			&:nth-child(5n + 2) {
-				transform: rotateZ(3deg) scale(0.97);
+				transform: rotateZ(2deg) scale(0.97);
 			}
 			&:nth-child(5n + 3) {
-				transform: rotateZ(-10deg) scale(0.96);
+				transform: rotateZ(-5deg) scale(0.96);
 			}
 			&:nth-child(5n + 4) {
-				transform: rotateZ(-5deg) scale(0.98);
+				transform: rotateZ(-2deg) scale(0.98);
 			}
 			&:nth-child(5n) {
-				transform: rotateZ(4deg) scale(0.9);
+				transform: rotateZ(2deg) scale(0.9);
 			}
 		}
 
