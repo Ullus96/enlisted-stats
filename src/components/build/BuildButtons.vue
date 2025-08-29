@@ -149,7 +149,7 @@ import { ISkillBuildData, ISkillBuildWithID } from '@/type/SkillBuild';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 import AnimatedLikeEntity from './AnimatedLikeEntity.vue';
-import randomNum from '@/functions/randomNum';
+import randomBetween from '@/functions/randomBetween';
 import {
 	arrayRemove,
 	arrayUnion,
@@ -227,7 +227,7 @@ export default defineComponent({
 
 				if (!isLikedByCurrentUser.value) {
 					localLikesAmount.value++;
-					animatedHeartsAmount.value = Math.floor(randomNum(4, 8));
+					animatedHeartsAmount.value = Math.floor(randomBetween(4, 8));
 
 					try {
 						await updateDoc(docRef, {

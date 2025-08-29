@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import randomNum from '@/functions/randomNum';
+import randomBetween from '@/functions/randomBetween';
 
 export default defineComponent({
 	setup() {
@@ -39,9 +39,9 @@ export default defineComponent({
 		const opacity = ref(1);
 
 		setTimeout(() => {
-			left.value = randomNum(-100, 100) + '%';
-			top.value = randomNum(-125, -25) + '%';
-			scaleNum.value = randomNum(0.4, 0.85);
+			left.value = randomBetween(-100, 100) + '%';
+			top.value = randomBetween(-125, -25) + '%';
+			scaleNum.value = randomBetween(0.4, 0.85);
 			opacity.value = 0;
 		}, 50);
 

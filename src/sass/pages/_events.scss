@@ -196,6 +196,25 @@
 		}
 	}
 
+	&__reward-skipped {
+		display: inline;
+		color: $color-bg-900;
+		background-color: $color-bg-900;
+		position: relative;
+
+		--left: 0rem;
+		--right: 0rem;
+
+		&::before {
+			content: '';
+			position: absolute;
+			height: 100%;
+			right: 100%;
+			width: var(--left);
+			background-color: $color-bg-900;
+		}
+	}
+
 	// Checkbox to mark as passed
 	&__card:hover {
 		.event__checkbox {
@@ -208,8 +227,8 @@
 	}
 
 	&__checkbox {
-		display: flex;
 		opacity: 0;
+		display: flex;
 		width: fit-content;
 		transition: 0.12s opacity allow-discrete ease-in-out;
 

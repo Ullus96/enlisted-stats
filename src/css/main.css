@@ -2503,6 +2503,22 @@ h3 {
     display: flex;
   }
 }
+.event__reward-skipped {
+  display: inline;
+  color: rgb(18, 18, 18);
+  background-color: rgb(18, 18, 18);
+  position: relative;
+  --left: 0rem;
+  --right: 0rem;
+}
+.event__reward-skipped::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  right: 100%;
+  width: var(--left);
+  background-color: rgb(18, 18, 18);
+}
 .event__card:hover .event__checkbox {
   opacity: 1;
 }
@@ -2510,8 +2526,8 @@ h3 {
   opacity: 1;
 }
 .event__checkbox {
-  display: flex;
   opacity: 0;
+  display: flex;
   width: -moz-fit-content;
   width: fit-content;
   transition: 0.12s opacity allow-discrete ease-in-out;

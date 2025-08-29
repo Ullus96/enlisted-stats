@@ -27,7 +27,11 @@
 		<p class="event__month">{{ month }}</p>
 		<p class="event__time">{{ hours }}:00</p>
 		<div class="event__mobile-reward-block">
-			<p v-for="item in separateLineBySemicolon(reward)" :key="item">
+			<p
+				v-for="item in separateLineBySemicolon(reward)"
+				:key="item"
+				:class="{ 'event__reward-skipped': isSkipped }"
+			>
 				{{ item ? item : '—' }}
 			</p>
 		</div>
@@ -41,6 +45,7 @@ import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
 import PassFailStamp from './PassFailStamp.vue';
 import IconBase from '../ui/icon/IconBase.vue';
 import IconCheck from '../ui/icon/icons/IconCheck.vue';
+import randomBetween from '@/functions/randomBetween';
 
 export default defineComponent({
 	components: { PassFailStamp, IconBase, IconCheck },
@@ -101,6 +106,11 @@ export default defineComponent({
 			context.emit('complete-stage', props.stageIndex);
 		}
 
+		const blackoutWidth = {
+			left: randomBetween(0, 1.2),
+			right: randomBetween(0, 1.2),
+		};
+
 		return {
 			day,
 			month,
@@ -110,6 +120,8 @@ export default defineComponent({
 			stampText,
 			handleClick,
 			handleStageCompletion,
+			randomBetween,
+			blackoutWidth,
 		};
 	},
 });

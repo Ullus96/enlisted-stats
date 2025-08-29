@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue';
+import randomBetween from '@/functions/randomBetween';
 
 export default defineComponent({
 	props: {
@@ -33,15 +34,11 @@ export default defineComponent({
 			return props.text === 'fail' ? '⨉' : '✔';
 		});
 
-		function randomBetween(min: number, max: number): number {
-			return Math.random() * (max - min + 1) + min;
-		}
-
 		const randomizedPosition = computed(() => {
 			return {
-				top: `${randomBetween(1.4, 4.2).toFixed(2)}rem`,
-				left: `calc(50% + ${randomBetween(-0.2, 0.2).toFixed(2)}rem)`,
-				rotate: `${randomBetween(-8, 8).toFixed(2)}deg`,
+				top: `${randomBetween(1.4, 5.2).toFixed(2)}rem`,
+				left: `calc(50% + ${randomBetween(-0.6, 0.6).toFixed(2)}rem)`,
+				rotate: `${randomBetween(-9, 9).toFixed(2)}deg`,
 			};
 		});
 
