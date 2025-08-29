@@ -2430,22 +2430,21 @@ h3 {
 }
 .event__card.skipped {
   opacity: 0.6;
-  transform: scale(0.96);
 }
 .event__card.skipped:nth-child(5n+1) {
-  transform: rotateZ(-3deg) scale(0.97);
+  transform: rotateZ(-3deg);
 }
 .event__card.skipped:nth-child(5n+2) {
-  transform: rotateZ(2deg) scale(0.97);
+  transform: rotateZ(2deg);
 }
 .event__card.skipped:nth-child(5n+3) {
-  transform: rotateZ(-5deg) scale(0.96);
+  transform: rotateZ(-5deg);
 }
 .event__card.skipped:nth-child(5n+4) {
-  transform: rotateZ(-2deg) scale(0.98);
+  transform: rotateZ(-2deg);
 }
 .event__card.skipped:nth-child(5n) {
-  transform: rotateZ(2deg) scale(0.9);
+  transform: rotateZ(2deg);
 }
 .event__card .tooltip {
   transition: opacity 0.18s 0.15s cubic-bezier(0.68, -0.55, 0.27, 1.55), visibility 0.2s 0.2s ease-in;
