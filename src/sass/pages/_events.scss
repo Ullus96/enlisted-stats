@@ -205,13 +205,23 @@
 		--left: 0rem;
 		--right: 0rem;
 
-		&::before {
+		&::before,
+		&::after {
 			content: '';
 			position: absolute;
-			height: 100%;
+			top: 0;
+			bottom: 0;
+			background-color: $color-bg-900;
+		}
+
+		&::before {
 			right: 100%;
 			width: var(--left);
-			background-color: $color-bg-900;
+		}
+
+		&::after {
+			left: 100%;
+			width: var(--right);
 		}
 	}
 

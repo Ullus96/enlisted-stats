@@ -2511,13 +2511,20 @@ h3 {
   --left: 0rem;
   --right: 0rem;
 }
-.event__reward-skipped::before {
+.event__reward-skipped::before, .event__reward-skipped::after {
   content: "";
   position: absolute;
-  height: 100%;
+  top: 0;
+  bottom: 0;
+  background-color: rgb(18, 18, 18);
+}
+.event__reward-skipped::before {
   right: 100%;
   width: var(--left);
-  background-color: rgb(18, 18, 18);
+}
+.event__reward-skipped::after {
+  left: 100%;
+  width: var(--right);
 }
 .event__card:hover .event__checkbox {
   opacity: 1;

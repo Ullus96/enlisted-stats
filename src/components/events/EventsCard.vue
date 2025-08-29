@@ -28,9 +28,13 @@
 		<p class="event__time">{{ hours }}:00</p>
 		<div class="event__mobile-reward-block">
 			<p
-				v-for="item in separateLineBySemicolon(reward)"
+				v-for="(item, index) in separateLineBySemicolon(reward)"
 				:key="item"
-				:class="{ 'event__reward-skipped': isSkipped }"
+				:class="[{ 'event__reward-skipped': isSkipped }, itemUuids[index]]"
+				:style="{
+					'--left': `${blackoutWidth[index][0]}rem`,
+					'--right': `${blackoutWidth[index][1]}rem`,
+				}"
 			>
 				{{ item ? item : '—' }}
 			</p>
@@ -46,6 +50,7 @@ import PassFailStamp from './PassFailStamp.vue';
 import IconBase from '../ui/icon/IconBase.vue';
 import IconCheck from '../ui/icon/icons/IconCheck.vue';
 import randomBetween from '@/functions/randomBetween';
+import { generateUUID } from '@/functions/generateUuid';
 
 export default defineComponent({
 	components: { PassFailStamp, IconBase, IconCheck },
@@ -106,10 +111,18 @@ export default defineComponent({
 			context.emit('complete-stage', props.stageIndex);
 		}
 
-		const blackoutWidth = {
-			left: randomBetween(0, 1.2),
-			right: randomBetween(0, 1.2),
-		};
+		const blackoutWidth: Array<[number, number]> = [];
+
+		const itemUuids: string[] = [];
+
+		separateLineBySemicolon(props.reward).forEach((line) => {
+			itemUuids.push(generateUUID());
+
+			const left = randomBetween(0, 0.4);
+			const right = randomBetween(0, 0.4);
+
+			blackoutWidth.push([left, right]);
+		});
 
 		return {
 			day,
@@ -122,6 +135,7 @@ export default defineComponent({
 			handleStageCompletion,
 			randomBetween,
 			blackoutWidth,
+			itemUuids,
 		};
 	},
 });
