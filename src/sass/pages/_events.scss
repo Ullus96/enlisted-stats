@@ -226,9 +226,11 @@
 	}
 
 	// Checkbox to mark as passed
-	&__card:hover {
-		.event__checkbox {
-			opacity: 1;
+	&__card {
+		@include hover-touch {
+			.event__checkbox {
+				opacity: 1;
+			}
 		}
 	}
 
@@ -249,6 +251,12 @@
 
 		& input {
 			display: none;
+		}
+
+		@include tablet {
+			opacity: 0.25;
+			left: auto;
+			right: 0.6rem;
 		}
 	}
 

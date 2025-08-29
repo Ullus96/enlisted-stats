@@ -2526,8 +2526,15 @@ h3 {
   left: 100%;
   width: var(--right);
 }
-.event__card:hover .event__checkbox {
-  opacity: 1;
+@media (hover: hover) {
+  .event__card:hover .event__checkbox {
+    opacity: 1;
+  }
+}
+@media (hover: none) {
+  .event__card:active .event__checkbox {
+    opacity: 1;
+  }
 }
 .event__checkbox:focus-visible {
   opacity: 1;
@@ -2545,6 +2552,13 @@ h3 {
 }
 .event__checkbox input {
   display: none;
+}
+@media (max-width: 849px) {
+  .event__checkbox {
+    opacity: 0.25;
+    left: auto;
+    right: 0.6rem;
+  }
 }
 .event__stamp-wrapper {
   position: absolute;
