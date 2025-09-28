@@ -11,6 +11,9 @@
 		<label
 			for="markAsPassed"
 			class="event__checkbox btn btn-sm btn-secondary"
+			:class="{
+				'event__checkbox--completed': isPassed,
+			}"
 			:style="{
 				display: !isSkipped ? 'flex' : 'none',
 			}"
