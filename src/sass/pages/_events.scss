@@ -150,7 +150,8 @@
 		}
 
 		&:hover .event__stamp-wrapper {
-			transform: translateX(calc(-50% - 0.2rem)) translateY(-0.8rem);
+			transform: translateX(calc(-50% - 0.5rem)) translateY(-1rem)
+				rotateX(30deg) rotateY(-10deg) scale(1.05);
 			opacity: 0;
 		}
 
@@ -234,7 +235,7 @@
 		}
 	}
 
-	// Checkbox to mark as passed
+	// Checkbox for a passed checkmark
 	&__card {
 		@include hover-touch {
 			.event__checkbox {
@@ -286,7 +287,8 @@
 		outline-offset: -2px;
 		border-radius: 3px;
 
-		transition: transform 0.12s ease-in, opacity 0.5s ease-in-out;
+		transition: transform 0.15s cubic-bezier(0.95, 1.16, 0.87, 0.63),
+			opacity 0.6s ease-in-out;
 	}
 
 	&__stamp {

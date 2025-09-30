@@ -2451,7 +2451,7 @@ h3 {
   opacity: 1;
 }
 .event__card:hover .event__stamp-wrapper {
-  transform: translateX(calc(-50% - 0.2rem)) translateY(-0.8rem);
+  transform: translateX(calc(-50% - 0.5rem)) translateY(-1rem) rotateX(30deg) rotateY(-10deg) scale(1.05);
   opacity: 0;
 }
 .event__card .tooltip {
@@ -2588,7 +2588,7 @@ h3 {
   outline: 3px dotted #eeddba;
   outline-offset: -2px;
   border-radius: 3px;
-  transition: transform 0.12s ease-in, opacity 0.5s ease-in-out;
+  transition: transform 0.15s cubic-bezier(0.95, 1.16, 0.87, 0.63), opacity 0.6s ease-in-out;
 }
 .event__stamp {
   position: relative;
