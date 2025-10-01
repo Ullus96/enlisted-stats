@@ -238,9 +238,27 @@
 	// Checkbox for a passed checkmark
 	&__card {
 		@include hover-touch {
-			.event__checkbox {
+			.event__pass-or-fail-wrapper {
 				opacity: 1;
 			}
+		}
+	}
+
+	&__pass-or-fail-wrapper {
+		position: absolute;
+		top: 0.6rem;
+		right: 0.6rem;
+		width: fit-content;
+		max-width: 85%;
+		z-index: 1;
+		opacity: 0;
+
+		display: flex;
+		flex-direction: row;
+		gap: 0.4rem;
+
+		@include tablet {
+			opacity: 0.35;
 		}
 	}
 
@@ -249,30 +267,24 @@
 	}
 
 	&__checkbox {
-		opacity: 0;
 		display: flex;
 		width: fit-content;
 		transition: 0.12s opacity allow-discrete ease-in-out;
 
-		position: absolute;
-		top: 0.6rem;
-		left: 0.6rem;
-		z-index: 1;
-
-		&--completed {
+		&.passed {
 			color: $color-success-200;
 
 			@include hovered($color-success-200, $color-bg-a-800);
 		}
 
-		& input {
-			display: none;
+		&.skipped {
+			color: $color-danger-200;
+
+			@include hovered($color-danger-200, $color-bg-a-800);
 		}
 
-		@include tablet {
-			opacity: 0.25;
-			left: auto;
-			right: 0.6rem;
+		& input {
+			display: none;
 		}
 	}
 

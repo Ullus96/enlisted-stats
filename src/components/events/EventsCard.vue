@@ -6,24 +6,38 @@
 			skipped: isSkipped,
 			animated: allowAnimation,
 		}"
-		@click="handleClick"
+		@click="handleStageSkip"
 	>
-		<label
-			for="markAsPassed"
-			class="event__checkbox btn btn-sm btn-secondary"
-			:class="{
-				'event__checkbox--completed': isPassed,
-			}"
-			:style="{
-				display: !isSkipped ? 'flex' : 'none',
-			}"
-			@click.stop="handleStageCompletion"
-		>
-			<input type="checkbox" name="markAsPassed" />
-			<IconBase>
-				<IconCheck />
-			</IconBase>
-		</label>
+		<div class="event__pass-or-fail-wrapper">
+			<label
+				for="markAsPassed"
+				class="event__checkbox btn btn-sm btn-secondary"
+				:class="{
+					passed: isPassed,
+				}"
+				@click.stop="handleStagePass"
+				v-ripple
+			>
+				<input type="checkbox" name="markAsPassed" />
+				<IconBase>
+					<IconCheck />
+				</IconBase>
+			</label>
+			<label
+				for="markAsSkipped"
+				class="event__checkbox btn btn-sm btn-secondary"
+				:class="{
+					skipped: isSkipped,
+				}"
+				@click.stop="handleStageSkip"
+				v-ripple
+			>
+				<input type="checkbox" name="markAsSkipped" />
+				<IconBase>
+					<IconTimes />
+				</IconBase>
+			</label>
+		</div>
 		<PassFailStamp v-if="stampText" :text="stampText" />
 		<p class="event__counter">#{{ stageIndex + 1 }}</p>
 		<p class="event__date">{{ day }}</p>
@@ -52,11 +66,12 @@ import { separateLineBySemicolon } from '@/functions/separateLineBySemicolon';
 import PassFailStamp from './PassFailStamp.vue';
 import IconBase from '../ui/icon/IconBase.vue';
 import IconCheck from '../ui/icon/icons/IconCheck.vue';
+import IconTimes from '../ui/icon/icons/IconTimes.vue';
 import randomBetween from '@/functions/randomBetween';
 import { generateUUID } from '@/functions/generateUuid';
 
 export default defineComponent({
-	components: { PassFailStamp, IconBase, IconCheck },
+	components: { PassFailStamp, IconBase, IconCheck, IconTimes },
 	emits: ['complete-stage', 'skip-stage'],
 	props: {
 		cardData: { required: true, type: Object as PropType<IStage> },
@@ -106,12 +121,20 @@ export default defineComponent({
 			}
 		});
 
-		function handleClick() {
+		function handleStageSkip() {
 			context.emit('skip-stage', props.stageIndex);
+
+			if (props.isPassed) {
+				handleStagePass();
+			}
 		}
 
-		function handleStageCompletion() {
+		function handleStagePass() {
 			context.emit('complete-stage', props.stageIndex);
+
+			if (props.isSkipped) {
+				handleStageSkip();
+			}
 		}
 
 		const blackoutWidth: Array<[number, number]> = [];
@@ -134,8 +157,8 @@ export default defineComponent({
 			separateLineBySemicolon,
 			allowAnimation,
 			stampText,
-			handleClick,
-			handleStageCompletion,
+			handleStageSkip,
+			handleStagePass,
 			randomBetween,
 			blackoutWidth,
 			itemUuids,

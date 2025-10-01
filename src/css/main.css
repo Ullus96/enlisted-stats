@@ -2534,51 +2534,70 @@ h3 {
   width: var(--right);
 }
 @media (hover: hover) {
-  .event__card:hover .event__checkbox {
+  .event__card:hover .event__pass-or-fail-wrapper {
     opacity: 1;
   }
 }
 @media (hover: none) {
-  .event__card:active .event__checkbox {
+  .event__card:active .event__pass-or-fail-wrapper {
     opacity: 1;
+  }
+}
+.event__pass-or-fail-wrapper {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 85%;
+  z-index: 1;
+  opacity: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+}
+@media (max-width: 849px) {
+  .event__pass-or-fail-wrapper {
+    opacity: 0.35;
   }
 }
 .event__checkbox:focus-visible {
   opacity: 1;
 }
 .event__checkbox {
-  opacity: 0;
   display: flex;
   width: -moz-fit-content;
   width: fit-content;
   transition: 0.12s opacity allow-discrete ease-in-out;
-  position: absolute;
-  top: 0.6rem;
-  left: 0.6rem;
-  z-index: 1;
 }
-.event__checkbox--completed {
+.event__checkbox.passed {
   color: rgb(58, 185, 63);
 }
 @media (hover: hover) {
-  .event__checkbox--completed:hover {
+  .event__checkbox.passed:hover {
     background-color: rgba(31.8181818182, 40.0649350649, 32.1428571429, 0.76);
   }
 }
 @media (hover: none) {
-  .event__checkbox--completed:active {
+  .event__checkbox.passed:active {
     background-color: rgba(31.8181818182, 40.0649350649, 32.1428571429, 0.76);
+  }
+}
+.event__checkbox.skipped {
+  color: rgb(201, 45, 55);
+}
+@media (hover: hover) {
+  .event__checkbox.skipped:hover {
+    background-color: rgba(41.1038961039, 30.974025974, 31.6233766234, 0.76);
+  }
+}
+@media (hover: none) {
+  .event__checkbox.skipped:active {
+    background-color: rgba(41.1038961039, 30.974025974, 31.6233766234, 0.76);
   }
 }
 .event__checkbox input {
   display: none;
-}
-@media (max-width: 849px) {
-  .event__checkbox {
-    opacity: 0.25;
-    left: auto;
-    right: 0.6rem;
-  }
 }
 .event__stamp-wrapper {
   position: absolute;
