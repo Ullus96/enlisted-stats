@@ -224,6 +224,23 @@
 	// Promo
 	&__promo-block {
 		margin-top: 6rem;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 4rem;
+
+		@include desktop-small {
+			gap: 0;
+		}
+
+		@include tablet {
+			display: flex;
+			flex-direction: column;
+			gap: 4rem;
+		}
+	}
+
+	&__promo-popular {
+		grid-column: 2/-1;
 	}
 
 	&__promo-title {

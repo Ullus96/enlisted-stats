@@ -98,40 +98,43 @@
 
 				<div class="table__promo-block" v-else>
 					<CompactBuildsBlock />
-					<h2 class="table__promo-title">Популярные сборки от сообщества</h2>
-					<div class="table__promo-builds">
-						<build-card
-							class="table__build"
-							v-for="item in loadedData"
-							:key="item"
-							:item="item"
-							:loadedUserData="
-								loadedUserData && loadedUserData[item.data.author]
-									? loadedUserData[item.data.author]
-									: {
-											displayName: 'Пользователь не найден',
-											photoURL: 'https://place-hold.it/80x80/8c8f94/8c8f94.jpg',
-											emailHash: null,
-											avatarProvider: null,
-									  }
-							"
-							:isFinishedLoading="isFinishedLoading"
-						></build-card>
-					</div>
-					<div class="table__promo-buttons">
-						<router-link :to="link">
-							<button class="btn btn-m btn-secondary" v-ripple>
-								Посмотреть еще
+					<div class="table__promo-popular">
+						<h2 class="table__promo-title">Популярные сборки от сообщества</h2>
+						<div class="table__promo-builds">
+							<build-card
+								class="table__build"
+								v-for="item in loadedData"
+								:key="item"
+								:item="item"
+								:loadedUserData="
+									loadedUserData && loadedUserData[item.data.author]
+										? loadedUserData[item.data.author]
+										: {
+												displayName: 'Пользователь не найден',
+												photoURL:
+													'https://place-hold.it/80x80/8c8f94/8c8f94.jpg',
+												emailHash: null,
+												avatarProvider: null,
+										  }
+								"
+								:isFinishedLoading="isFinishedLoading"
+							></build-card>
+						</div>
+						<div class="table__promo-buttons">
+							<router-link :to="link">
+								<button class="btn btn-m btn-secondary" v-ripple>
+									Посмотреть еще
+								</button>
+							</router-link>
+							<span class="table__promo-or">ИЛИ</span>
+							<button
+								class="btn btn-m btn-primary"
+								@click="filteredSoldierButtonHandler('calculator')"
+								v-ripple
+							>
+								Создать свою сборку
 							</button>
-						</router-link>
-						<span class="table__promo-or">ИЛИ</span>
-						<button
-							class="btn btn-m btn-primary"
-							@click="filteredSoldierButtonHandler('calculator')"
-							v-ripple
-						>
-							Создать свою сборку
-						</button>
+						</div>
 					</div>
 				</div>
 			</template>

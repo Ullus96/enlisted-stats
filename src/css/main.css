@@ -2318,6 +2318,45 @@ h3 {
   gap: 0.4rem;
 }
 
+.ccard {
+  background-color: rgba(37, 37, 37, 0.75);
+  width: 100%;
+  max-width: 45rem;
+}
+.ccard__block {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+@media (max-width: 849px) {
+  .ccard__block {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 45rem;
+  }
+}
+.ccard__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.ccard__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.ccard__build-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.ccard__tutorial {
+  font-size: 1.4rem;
+  color: rgb(165, 165, 165);
+  text-align: center;
+}
+
 .event__title {
   text-align: center;
 }
@@ -3409,6 +3448,24 @@ h3 {
 }
 .table__promo-block {
   margin-top: 6rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+}
+@media (max-width: 1123px) {
+  .table__promo-block {
+    gap: 0;
+  }
+}
+@media (max-width: 849px) {
+  .table__promo-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+}
+.table__promo-popular {
+  grid-column: 2/-1;
 }
 .table__promo-title {
   text-align: center;

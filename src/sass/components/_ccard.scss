@@ -1,2 +1,49 @@
 .ccard {
+	// ======
+	// Block with cards
+	// ======
+	&__block {
+		flex: 0 0 auto;
+
+		display: flex;
+		flex-direction: column;
+		gap: 2.4rem;
+
+		@include tablet {
+			margin: 0 auto;
+			width: 100%;
+			max-width: 45rem;
+		}
+	}
+
+	&__header {
+		display: flex;
+		flex-direction: column;
+		gap: 1.2rem;
+	}
+
+	&__chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+	}
+
+	&__build-cards {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+	}
+
+	&__tutorial {
+		font-size: $ui-font-size-s;
+		color: $color-text-400;
+		text-align: center;
+	}
+
+	// ======
+	// Individual card
+	// ======
+	background-color: $color-bg-a-600;
+	width: 100%;
+	max-width: 45rem;
 }
