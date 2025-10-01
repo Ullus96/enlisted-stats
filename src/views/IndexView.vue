@@ -97,6 +97,7 @@
 				</div>
 
 				<div class="table__promo-block" v-else>
+					<CompactBuildsBlock />
 					<h2 class="table__promo-title">Популярные сборки от сообщества</h2>
 					<div class="table__promo-builds">
 						<build-card
@@ -297,6 +298,7 @@ import Fuse from 'fuse.js';
 import { IItem } from '@/type/Item';
 import FaqGroup from '@/components/faq/FaqGroup.vue';
 import FaqItem from '@/components/faq/FaqItem.vue';
+import CompactBuildsBlock from '@/components/build-compact/CompactBuildsBlock.vue';
 
 export default defineComponent({
 	name: 'App',
@@ -312,6 +314,7 @@ export default defineComponent({
 		BuildCard,
 		FaqGroup,
 		FaqItem,
+		CompactBuildsBlock,
 	},
 	setup() {
 		const isFilteredToClass: Ref<boolean> = ref(false);
