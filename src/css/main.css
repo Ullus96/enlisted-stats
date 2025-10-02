@@ -2322,6 +2322,9 @@ h3 {
   background-color: rgba(37, 37, 37, 0.75);
   width: 100%;
   max-width: 45rem;
+  display: flex;
+  padding: 0.8rem 0 0.8rem 1.2rem;
+  border-radius: 0.8rem;
 }
 .ccard__block {
   flex: 0 0 auto;
@@ -2355,6 +2358,91 @@ h3 {
   font-size: 1.4rem;
   color: rgb(165, 165, 165);
   text-align: center;
+}
+.ccard__main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.ccard__pin {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+.ccard__pin-btn {
+  padding: 1.2rem;
+}
+.ccard__title-section {
+  display: flex;
+  gap: 0.8rem;
+}
+.ccard__title {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.ccard__likes-wrapper {
+  display: flex;
+  gap: 0.4rem;
+}
+.ccard__author-section {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+.ccard__pfp {
+  width: 1.6rem;
+  aspect-ratio: 1/1;
+}
+.ccard__name-date-section {
+  display: flex;
+  gap: 0.6rem;
+  color: rgb(116, 116, 116);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.ccard__pin-btn path {
+  stroke: rgb(57, 57, 57);
+  fill: transparent;
+}
+@media (hover: hover) {
+  .ccard__pin-btn:hover {
+    background-color: rgba(47.6493506494, 47.6493506494, 47.6493506494, 0.76);
+  }
+}
+@media (hover: none) {
+  .ccard__pin-btn:active {
+    background-color: rgba(47.6493506494, 47.6493506494, 47.6493506494, 0.76);
+  }
+}
+.ccard__pin-btn:focus-visible {
+  outline: 1px solid #393939;
+  background-color: rgba(48.8518518519, 48.8518518519, 48.8518518519, 0.78);
+}
+.ccard__pin-btn:hover path {
+  stroke: rgb(185, 157, 58);
+  fill: transparent;
+}
+.ccard__pin-btn.active path {
+  stroke: rgb(185, 157, 58);
+  fill: rgb(185, 157, 58);
+}
+@media (hover: hover) {
+  .ccard__pin-btn.active:hover {
+    background-color: rgba(55.961038961, 54.1428571429, 47.7142857143, 0.76);
+  }
+}
+@media (hover: none) {
+  .ccard__pin-btn.active:active {
+    background-color: rgba(55.961038961, 54.1428571429, 47.7142857143, 0.76);
+  }
+}
+.ccard__pin-btn.active:focus-visible {
+  outline: 1px solid #b99d3a;
+  background-color: rgba(72.5555555556, 67.3703703704, 49.037037037, 0.78);
+}
+.ccard__pin-icon path {
+  transition: stroke 0.2s ease-in-out, fill 0.2s ease-in-out;
 }
 
 .event__title {

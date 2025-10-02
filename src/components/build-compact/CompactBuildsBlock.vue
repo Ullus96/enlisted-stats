@@ -10,9 +10,7 @@
 		</div>
 
 		<div class="ccard__build-cards">
-			<CompactBuildCard />
-			<CompactBuildCard />
-			<CompactBuildCard />
+			<CompactBuildCard v-for="item in 5" />
 		</div>
 
 		<p class="ccard__tutorial">
