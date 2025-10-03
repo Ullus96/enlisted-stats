@@ -9,7 +9,7 @@
 				v-shiny-border="{
 					height: 2,
 					padding: 12,
-					hoverRgbaColor: [51, 51, 51, 0.76],
+					hoverRgbaColor: [37, 37, 37, 0.75],
 				}"
 				v-ripple
 			></router-link>
