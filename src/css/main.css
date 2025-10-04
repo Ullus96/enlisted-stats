@@ -2358,6 +2358,21 @@ h3 {
   font-size: 1.4rem;
   color: rgb(165, 165, 165);
   text-align: center;
+  text-wrap: pretty;
+}
+.ccard__load-more {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+}
+.ccard__load-more-desc {
+  font-size: 1.4rem;
+  color: rgb(165, 165, 165);
+}
+.ccard__load-more-number {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .ccard__main {
   flex: 1 0 auto;

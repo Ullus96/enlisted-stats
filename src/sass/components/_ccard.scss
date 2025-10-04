@@ -40,6 +40,24 @@
 		font-size: $ui-font-size-s;
 		color: $color-text-400;
 		text-align: center;
+		text-wrap: pretty;
+	}
+
+	&__load-more {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		align-items: center;
+	}
+
+	&__load-more-desc {
+		font-size: $ui-font-size-s;
+		color: $color-text-400;
+	}
+
+	&__load-more-number {
+		text-decoration: underline;
+		text-underline-offset: 2px;
 	}
 
 	// =====================

@@ -14,8 +14,23 @@
 		</div>
 
 		<p class="ccard__tutorial">
-			♡ Лайкните сборки других и они появятся здесь!
+			<template v-if="true">
+				♡ Создайте свою, или лайкните сборки других и они появятся здесь!
+			</template>
+			<template v-if="false">
+				♡ Лайкните сборки других и они появятся здесь!
+			</template>
 		</p>
+
+		<div class="ccard__load-more">
+			<span class="ccard__load-more-desc">
+				Есть еще
+				<span class="ccard__load-more-number"
+					>{{ Math.floor(Math.random() * 15 + 1) }} сборок</span
+				>
+			</span>
+			<button class="btn btn-m btn-secondary">Показать еще</button>
+		</div>
 	</section>
 </template>
 
