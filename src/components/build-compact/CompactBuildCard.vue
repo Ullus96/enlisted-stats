@@ -86,8 +86,7 @@ export default defineComponent({
 		},
 	},
 	components: { IconBase, IconBookmark, UserAvatar },
-	setup(props) {
-		console.log(props.loadedUserData);
+	setup() {
 		return {};
 	},
 });

@@ -100,7 +100,7 @@ export default defineComponent({
 	props: {
 		soldierClass: {
 			type: String,
-			required: false,
+			required: true,
 			default: 'rifleman1',
 		},
 	},
@@ -176,14 +176,26 @@ export default defineComponent({
 				const sortOrder: 'desc' | 'asc' = 'desc';
 				const userId = auth?.uid || null;
 
-				const source = chosenFilter.value === 'all' ? 'base' : chosenFilter.value;
+				const source =
+					chosenFilter.value === 'all' ? 'base' : chosenFilter.value;
 
 				const soldierClass = props.soldierClass || null;
-				const conditions = getBuildsQueryConditions(source as any, userId, soldierClass);
+				const conditions = getBuildsQueryConditions(
+					source as any,
+					userId,
+					soldierClass,
+				);
 
-				const queryConstraints = [orderBy(sortBy, sortOrder), ...conditions, limit(12)];
+				const queryConstraints = [
+					orderBy(sortBy, sortOrder),
+					...conditions,
+					limit(12),
+				];
 
-				const buildsQuery = query(collection(db, 'builds'), ...queryConstraints);
+				const buildsQuery = query(
+					collection(db, 'builds'),
+					...queryConstraints,
+				);
 				const res = await getDocs(buildsQuery);
 
 				if (res) {
@@ -204,11 +216,17 @@ export default defineComponent({
 		async function loadUsersFromDB() {
 			const IDs = new Set<string>(loadedData.map((d) => d.data.author));
 
-			const localStorageTimestamp: Date | null = loadFromLocalStorage('usersTimestamp');
+			const localStorageTimestamp: Date | null =
+				loadFromLocalStorage('usersTimestamp');
 			const timeNow = new Date();
 			let localStorageData = loadFromLocalStorage('usersData');
 
-			if (!localStorageTimestamp || (localStorageTimestamp && timeNow.getTime() - new Date(localStorageTimestamp).getTime() > 3_600_000)) {
+			if (
+				!localStorageTimestamp ||
+				(localStorageTimestamp &&
+					timeNow.getTime() - new Date(localStorageTimestamp).getTime() >
+						3_600_000)
+			) {
 				localStorageData = null;
 				saveToLocalStorage('usersData', localStorageData);
 				saveToLocalStorage('usersTimestamp', new Date());
@@ -221,10 +239,30 @@ export default defineComponent({
 					localStorageData.some((item: any) => item.user === user)
 				) {
 					const userData = {
-						displayName: getLocalStorageUsersDataByKeyAndValue(localStorageData, 'user', user, 'displayName'),
-						photoURL: getLocalStorageUsersDataByKeyAndValue(localStorageData, 'user', user, 'photoURL'),
-						avatarProvider: getLocalStorageUsersDataByKeyAndValue(localStorageData, 'user', user, 'avatarProvider'),
-						emailHash: getLocalStorageUsersDataByKeyAndValue(localStorageData, 'user', user, 'emailHash'),
+						displayName: getLocalStorageUsersDataByKeyAndValue(
+							localStorageData,
+							'user',
+							user,
+							'displayName',
+						),
+						photoURL: getLocalStorageUsersDataByKeyAndValue(
+							localStorageData,
+							'user',
+							user,
+							'photoURL',
+						),
+						avatarProvider: getLocalStorageUsersDataByKeyAndValue(
+							localStorageData,
+							'user',
+							user,
+							'avatarProvider',
+						),
+						emailHash: getLocalStorageUsersDataByKeyAndValue(
+							localStorageData,
+							'user',
+							user,
+							'emailHash',
+						),
 					};
 					loadedUserData[user] = { ...userData };
 				} else {
@@ -249,8 +287,15 @@ export default defineComponent({
 			await loadUsersFromDB();
 
 			const uid = auth?.uid || null;
-			myBuildsAmount.value = uid ? loadedData.filter((i) => i.data.author === uid).length : 0;
-			likedBuildsAmount.value = uid ? loadedData.filter((i) => Array.isArray(i.data.likedBy) && i.data.likedBy.includes(uid)).length : 0;
+			myBuildsAmount.value = uid
+				? loadedData.filter((i) => i.data.author === uid).length
+				: 0;
+			likedBuildsAmount.value = uid
+				? loadedData.filter(
+						(i) =>
+							Array.isArray(i.data.likedBy) && i.data.likedBy.includes(uid),
+				  ).length
+				: 0;
 			buildsLeftUnloaded.value = Math.max(0, 0);
 		}
 

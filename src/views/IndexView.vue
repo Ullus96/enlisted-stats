@@ -97,7 +97,7 @@
 				</div>
 
 				<div class="table__promo-block" v-else>
-					<CompactBuildsBlock />
+					<CompactBuildsBlock :soldierClass="filteredItems[activeIdx].id" />
 					<div class="table__promo-popular">
 						<h2 class="table__promo-title">Популярные сборки от сообщества</h2>
 						<div class="table__promo-builds">
@@ -470,7 +470,7 @@ export default defineComponent({
 						where('data.isPublic', '==', true),
 						where('soldierClass', '==', soldierClass.value),
 						startAfter(lastVisible),
-						limit(3)
+						limit(3),
 					);
 				} else {
 					q = query(
@@ -478,7 +478,7 @@ export default defineComponent({
 						orderBy(`data.likesAmount`, 'desc'),
 						where('data.isPublic', '==', true),
 						where('soldierClass', '==', soldierClass.value),
-						limit(3)
+						limit(3),
 					);
 				}
 
@@ -538,7 +538,7 @@ export default defineComponent({
 					localStorageData.length &&
 					localStorageData.some(
 						(item: { displayName: string; photoURL: string; user: string }) =>
-							item.user === user
+							item.user === user,
 					)
 				) {
 					// console.log('User found in a localStorage');
@@ -547,25 +547,25 @@ export default defineComponent({
 							localStorageData,
 							'user',
 							user,
-							'displayName'
+							'displayName',
 						),
 						photoURL: getLocalStorageUsersDataByKeyAndValue(
 							localStorageData,
 							'user',
 							user,
-							'photoURL'
+							'photoURL',
 						),
 						avatarProvider: getLocalStorageUsersDataByKeyAndValue(
 							localStorageData,
 							'user',
 							user,
-							'avatarProvider'
+							'avatarProvider',
 						),
 						emailHash: getLocalStorageUsersDataByKeyAndValue(
 							localStorageData,
 							'user',
 							user,
-							'emailHash'
+							'emailHash',
 						),
 					};
 					loadedUserData[user] = { ...userData };
@@ -599,7 +599,7 @@ export default defineComponent({
 		// Make a link
 		const link = computed(
 			() =>
-				`/skill-builds?soldierClass=${soldierClass.value}&sortBy=likes&order=desc`
+				`/skill-builds?soldierClass=${soldierClass.value}&sortBy=likes&order=desc`,
 		);
 
 		return {
