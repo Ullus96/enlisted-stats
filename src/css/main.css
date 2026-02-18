@@ -101,9 +101,7 @@ body {
   background-color: rgb(30, 30, 30);
   padding: 0;
   min-height: 100dvh;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  overflow-x: hidden;
+  backdrop-filter: blur(10px);
 }
 body::before {
   content: "";
@@ -122,6 +120,9 @@ body::after {
   inset: 0 0 0 0;
   background: url("@/assets/noise.png") repeat;
   opacity: 0.08;
+}
+body {
+  overflow-x: hidden;
 }
 
 a,
@@ -353,11 +354,11 @@ h3 {
     margin-left: 0;
   }
 }
-.btn {
-  line-height: 100%;
-}
 .btn:disabled {
   cursor: not-allowed;
+}
+.btn {
+  line-height: 100%;
 }
 .btn-m {
   padding: 1.6rem 2.4rem;
@@ -371,8 +372,7 @@ h3 {
 }
 .btn-primary {
   background-color: rgba(106, 24, 24, 0.75);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 @media (hover: hover) {
   .btn-primary:hover {
@@ -395,8 +395,7 @@ h3 {
 .btn-secondary {
   background-color: rgba(30, 30, 30, 0.75);
   outline: 1px solid rgb(56, 56, 56);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 @media (hover: hover) {
   .btn-secondary:hover {
@@ -476,8 +475,7 @@ h3 {
   position: relative;
   border-radius: 1.2rem;
   scroll-snap-align: start;
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 .calculator__title-block {
   padding: 2.4rem 1.2rem 0;
@@ -994,7 +992,7 @@ h3 {
 }
 
 .tooltip {
-  --tooltip-arrow-position: "50%";
+  --tooltip-arrow-position: '50%';
   position: absolute;
   padding: 0.8rem 1.2rem;
   display: flex;
@@ -1310,8 +1308,7 @@ h3 {
   width: 7.2rem;
   padding: 2.4rem 0 1.2rem;
   background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   z-index: 30;
   white-space: nowrap;
   display: flex;
@@ -1524,8 +1521,7 @@ h3 {
   z-index: 1;
   padding: 1.2rem;
   background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   border-radius: 0.8rem;
   display: flex;
   flex-direction: column;
@@ -1862,8 +1858,7 @@ h3 {
   background-color: rgba(39, 39, 39, 0.75);
   border: 1px solid rgb(56, 56, 56);
   box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   cursor: pointer;
   transition: color 0.12s ease-in-out, border 0.12s ease-in-out;
 }
@@ -1947,8 +1942,7 @@ h3 {
   background-color: rgba(39, 39, 39, 0.75);
   border-radius: 0.8rem;
   overflow: hidden;
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 .popup::after {
   content: "";
@@ -2091,8 +2085,7 @@ h3 {
   padding: 1.2rem 2rem;
   background-color: rgba(39, 39, 39, 0.75);
   color: rgb(165, 165, 165);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 .faq__content p:not(:first-child) {
   margin-top: 0.8rem;
@@ -2117,8 +2110,7 @@ h3 {
   border-radius: 1.2rem;
   padding: 0.6rem;
   background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 .build__item--clickable {
   cursor: pointer;
@@ -2318,14 +2310,6 @@ h3 {
   gap: 0.4rem;
 }
 
-.ccard {
-  background-color: rgba(37, 37, 37, 0.75);
-  width: 100%;
-  max-width: 45rem;
-  display: flex;
-  padding: 0.8rem 0.4rem 0.8rem 1.2rem;
-  border-radius: 0.8rem;
-}
 .ccard__block {
   flex: 0 0 auto;
   display: flex;
@@ -2374,6 +2358,14 @@ h3 {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+.ccard {
+  background-color: rgba(37, 37, 37, 0.75);
+  width: 100%;
+  max-width: 45rem;
+  display: flex;
+  padding: 0.8rem 0.4rem 0.8rem 1.2rem;
+  border-radius: 0.8rem;
+}
 .ccard__main {
   flex: 1 0 auto;
   display: flex;
@@ -2384,6 +2376,7 @@ h3 {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
+  z-index: 1;
 }
 .ccard__pin-btn {
   padding: 1.2rem;
@@ -2540,9 +2533,7 @@ h3 {
   opacity: 1;
   cursor: pointer;
   box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
-  transition: opacity 0.12s ease-in-out;
+  backdrop-filter: blur(6px);
 }
 @media (max-width: 499px) {
   .event__card {
@@ -2588,6 +2579,9 @@ h3 {
 }
 .event__card.skipped:nth-child(5n) {
   transform: rotateZ(2deg);
+}
+.event__card {
+  transition: opacity 0.12s ease-in-out;
 }
 .event__card.skipped:hover {
   opacity: 1;
@@ -2639,8 +2633,7 @@ h3 {
   word-break: break-word;
   text-wrap: balance;
   text-align: center;
-  -webkit-hyphens: auto;
-          hyphens: auto;
+  hyphens: auto;
   line-height: 130%;
   flex-direction: column;
   gap: 0.4rem;
@@ -2828,8 +2821,7 @@ h3 {
   background-color: rgb(35, 35, 35);
   border: none;
   box-shadow: 0 3px 6px rgba(18, 18, 18, 0.15);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   flex: 0 0 auto;
 }
 .event__chip svg {
@@ -3178,8 +3170,7 @@ h3 {
 .sbuild__item {
   border-radius: 0.8rem;
   background-color: rgba(39, 39, 39, 0.75);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   display: flex;
   gap: 1.2rem;
 }
@@ -3590,8 +3581,7 @@ h3 {
 }
 .table__build {
   background-color: rgba(37, 37, 37, 0.75);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   flex: 0 0 45rem;
   min-width: 45rem;
 }
@@ -3776,8 +3766,7 @@ h3 {
   margin: 0 auto;
   padding: 3.2rem 2rem 2rem;
   background-color: rgba(35, 35, 35, 0.75);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   border-radius: 1.2rem;
   text-align: center;
 }

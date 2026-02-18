@@ -8,9 +8,8 @@
 		}"
 	>
 		<div class="ccard__main">
-			<!-- сюда линк -->
-			<!-- <router-link
-				v-if="isClickable && hasLink && item.dbId"
+			<router-link
+				v-if="item.dbId"
 				:to="'/build/' + item.dbId"
 				target="_blank"
 				class="build__link"
@@ -20,20 +19,29 @@
 					hoverRgbaColor: [51, 51, 51, 0.76],
 				}"
 				v-ripple
-			></router-link> -->
+			></router-link>
 			<div class="ccard__title-section">
 				<h4 class="ccard__title">{{ item.data.name }}</h4>
 				<div class="ccard__likes-wrapper">
 					<span>♥</span>
-					<span>14</span>
+					<span>{{ item.data.likesAmount }}</span>
 				</div>
 			</div>
 			<div class="ccard__author-section">
-				<UserAvatar class="ccard__pfp" />
+				<UserAvatar
+					class="ccard__pfp"
+					:display-name="loadedUserData.displayName"
+					:photo-u-r-l="loadedUserData.photoURL"
+					:email-hash="loadedUserData.emailHash"
+					:avatar-provider="loadedUserData.avatarProvider"
+				/>
 				<div class="ccard__name-date-section">
-					<span class="ccard__author"> Name </span>
+					<span class="ccard__author"> {{ loadedUserData.displayName }} </span>
 					<span>•</span>
-					<span class="ccard__date">14.10.2024</span>
+					<span class="ccard__date">{{
+						new Date(item.data.createdAt.seconds * 1000).toLocaleDateString()
+					}}</span>
+					<!-- сюда добавить карандаш и updatedAt -->
 				</div>
 			</div>
 		</div>
@@ -67,9 +75,19 @@ export default defineComponent({
 			required: true,
 			type: Object as PropType<ISkillBuildWithID>,
 		},
+		loadedUserData: {
+			required: true,
+			type: Object as PropType<{
+				displayName: string;
+				photoURL: string;
+				avatarProvider: 'google' | 'gravatar' | 'none' | null;
+				emailHash: string;
+			}>,
+		},
 	},
 	components: { IconBase, IconBookmark, UserAvatar },
-	setup() {
+	setup(props) {
+		console.log(props.loadedUserData);
 		return {};
 	},
 });
