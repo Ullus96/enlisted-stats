@@ -2316,7 +2316,7 @@ h3 {
   flex-direction: column;
   gap: 2.4rem;
 }
-@media (max-width: 849px) {
+@media (max-width: 1123px) {
   .ccard__block {
     margin: 0 auto;
     width: 100%;
@@ -2420,8 +2420,15 @@ h3 {
   font-size: 1.4rem;
   line-height: 1;
 }
+@media (max-width: 1123px) {
+  .ccard__name-date-section:has(.ccard__updated-block) .ccard__date {
+    display: none;
+  }
+  .ccard__name-date-section:has(.ccard__updated-block) .ccard__updated-block {
+    margin-left: 0rem;
+  }
+}
 .ccard__updated-block {
-  margin-left: 0.4rem;
   display: flex;
   gap: 0.2rem;
 }
@@ -3565,10 +3572,6 @@ h3 {
 @media (max-width: 1123px) {
   .table__promo-block {
     gap: 0;
-  }
-}
-@media (max-width: 849px) {
-  .table__promo-block {
     display: flex;
     flex-direction: column;
     gap: 4rem;

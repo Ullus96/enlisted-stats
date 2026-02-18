@@ -11,7 +11,7 @@
 		flex-direction: column;
 		gap: 2.4rem;
 
-		@include tablet {
+		@include desktop-small {
 			margin: 0 auto;
 			width: 100%;
 			max-width: 45rem;
@@ -142,8 +142,20 @@
 		line-height: 1;
 	}
 
+	&__name-date-section {
+		&:has(.ccard__updated-block) {
+			@include desktop-small {
+				.ccard__date {
+					display: none;
+				}
+				.ccard__updated-block {
+					margin-left: 0rem;
+				}
+			}
+		}
+	}
+
 	&__updated-block {
-		margin-left: 0.4rem;
 		display: flex;
 		gap: 0.2rem;
 	}

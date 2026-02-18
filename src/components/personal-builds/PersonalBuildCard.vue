@@ -35,9 +35,14 @@
 				<div class="ccard__name-date-section">
 					<span class="ccard__author"> {{ loadedUserData.displayName }} </span>
 					<span>•</span>
-					<span class="ccard__date">{{
-						new Date(item.data.createdAt.seconds * 1000).toLocaleDateString()
-					}}</span>
+					<span
+						class="ccard__date"
+						v-if="!item.data.updatedAt"
+						:style="{ 'margin-right': '0.4rem' }"
+						>{{
+							new Date(item.data.createdAt.seconds * 1000).toLocaleDateString()
+						}}</span
+					>
 					<span
 						class="ccard__updated-block"
 						v-if="
