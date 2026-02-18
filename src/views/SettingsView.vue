@@ -342,7 +342,8 @@ export default defineComponent({
 
 		// Компактный режим
 		const compactMode: Ref<boolean> = ref(
-			loadFromLocalStorage('compactMode') || false,
+			loadFromLocalStorage('compactMode') ||
+				store.value.state.settings.compactMode,
 		);
 
 		watch(compactMode, (newVal) => {

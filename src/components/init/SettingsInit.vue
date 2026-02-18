@@ -22,26 +22,15 @@ export default defineComponent({
 		let showTutorial: Ref<boolean> = ref(true);
 
 		onMounted(() => {
-			compactMode.value = loadFromLocalStorage('compactMode');
-			console.log(`compactMode.value: ${compactMode.value}`);
+			compactMode.value = loadFromLocalStorage('compactMode') ?? true;
 			store.commit('switchCompactMode', compactMode.value);
 
-			showTutorial.value = loadFromLocalStorage('showTutorial');
-			console.log(`showTutorial.value: ${showTutorial.value}`);
+			showTutorial.value = loadFromLocalStorage('showTutorial') ?? true;
 			store.commit('switchTutorialVisibility', showTutorial.value);
 
 			eventCardWidth.value = loadFromLocalStorage('eventCardWidth') || 1;
 			store.commit('setEventCardWidth', eventCardWidth.value);
 			updateRootVariable('--ui-card-width', `${eventCardWidth.value * 10}rem`);
-
-			// console.log(
-			// 	`settingsInit finished initializing. compactMode data: ${compactMode.value}`
-			// );
-			// console.log(
-			// 	`settingsInit finished initializing. eventCardWidth data: ${
-			// 		eventCardWidth.value
-			// 	} | ${eventCardWidth.value * 10}rem`
-			// );
 		});
 	},
 });
