@@ -2360,6 +2360,7 @@ h3 {
 }
 .ccard {
   background-color: rgba(37, 37, 37, 0.75);
+  backdrop-filter: blur(6px);
   width: 100%;
   max-width: 45rem;
   display: flex;

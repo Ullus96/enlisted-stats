@@ -13,11 +13,6 @@
 				:to="'/build/' + item.dbId"
 				target="_blank"
 				class="build__link"
-				v-shiny-border="{
-					height: 2,
-					padding: 12,
-					hoverRgbaColor: [51, 51, 51, 0.76],
-				}"
 				v-ripple
 			></router-link>
 			<div class="ccard__title-section">
