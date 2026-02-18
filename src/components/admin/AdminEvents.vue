@@ -100,9 +100,60 @@
 					<span class="admin__separator"></span>
 
 					<template v-if="eventData.rewards.length">
-						<p class="admin__stages-useful-symbols">
-							Символы, которые могут пригодиться: «»★
-						</p>
+						<div class="admin__stages-useful-symbols-wrapper">
+							<span>Для копирования: </span>
+							<div class="admin__stages-useful-symbols">
+								<button
+									v-ripple
+									class="btn-xs btn-tertiary"
+									@click="copyToClipboard('★«»')"
+								>
+									★«»
+								</button>
+								<button
+									v-ripple
+									class="btn-xs btn-tertiary"
+									@click="copyToClipboard('★')"
+								>
+									★
+								</button>
+								<button
+									v-ripple
+									class="btn-xs btn-tertiary"
+									@click="copyToClipboard('«»')"
+								>
+									«»
+								</button>
+								<button
+									v-ripple
+									class="btn-xs btn-tertiary"
+									@click="copyToClipboard('5к серебра')"
+								>
+									5к серебра
+								</button>
+								<button
+									v-ripple
+									class="btn-xs btn-tertiary"
+									@click="copyToClipboard('x30 заявок на смену внешности')"
+								>
+									x30 заявок на смену внешности
+								</button>
+								<button
+									v-ripple
+									class="btn-xs btn-tertiary"
+									@click="copyToClipboard('x1 заявка на улучшение')"
+								>
+									x1 заявка на улучшение
+								</button>
+								<button
+									v-ripple
+									class="btn-xs btn-tertiary"
+									@click="copyToClipboard('Портрет «»')"
+								>
+									Портрет «»
+								</button>
+							</div>
+						</div>
 						<p class="admin__stages-title">Награды за этапы</p>
 						<div class="admin__stages">
 							<textarea
@@ -285,7 +336,7 @@ export default defineComponent({
 				{ length: eventData.stages.length },
 				(_, i) => {
 					return tempArr[i] || '';
-				}
+				},
 			);
 		}
 
@@ -295,7 +346,7 @@ export default defineComponent({
 			const durationInMillis = +event.endDate - +event.startDate;
 
 			const numberOfStages = Math.ceil(
-				durationInMillis / stageDurationInMillis
+				durationInMillis / stageDurationInMillis,
 			);
 
 			for (let i = 0; i < numberOfStages; i++) {
@@ -435,11 +486,11 @@ export default defineComponent({
 		}
 
 		const operationName: Ref<string> = ref(
-			operationNames[Math.floor(Math.random() * operationNames.length)]
+			operationNames[Math.floor(Math.random() * operationNames.length)],
 		);
 
 		function isHTMLTextAreaElement(
-			el: EventTarget | null
+			el: EventTarget | null,
 		): el is HTMLTextAreaElement {
 			return el instanceof HTMLTextAreaElement;
 		}
@@ -478,7 +529,7 @@ export default defineComponent({
 				setTimeout(() => {
 					resizeAll();
 				}, 500);
-			}
+			},
 		);
 
 		return {

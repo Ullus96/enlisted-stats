@@ -16,6 +16,12 @@
 		border-radius: 0.8rem;
 	}
 
+	&-xs {
+		padding: 0.4rem 0.8rem;
+		font-size: 1.4rem;
+		border-radius: 0.6rem;
+	}
+
 	&-primary {
 		background-color: $color-primary-a-500;
 		@include ui-background-blur;

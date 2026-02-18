@@ -60,6 +60,26 @@
 		margin-top: 0.8rem;
 	}
 
+	&__stages-useful-symbols-wrapper {
+		margin-top: 0.4rem;
+		color: $color-text-400;
+		font-size: $ui-font-size-s;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+
+		& > span {
+			flex: 0 0 auto;
+		}
+	}
+
+	&__stages-useful-symbols {
+		display: flex;
+		align-items: center;
+		gap: 0.2rem;
+		flex-wrap: wrap;
+	}
+
 	&__stages-title {
 		margin-top: 2.4rem;
 	}
@@ -69,12 +89,6 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.8rem;
-	}
-
-	&__stages-useful-symbols {
-		margin-top: 0.4rem;
-		color: $color-text-400;
-		font-size: $ui-font-size-s;
 	}
 
 	&__input {
