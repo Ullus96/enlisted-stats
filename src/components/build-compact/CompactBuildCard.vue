@@ -56,17 +56,14 @@
 							}}
 						</span>
 					</span>
-					<!-- сюда добавить карандаш и updatedAt -->
 				</div>
 			</div>
 		</div>
 		<div class="ccard__pin">
 			<button
 				class="btn btn-sm btn-tertiary ccard__pin-btn"
-				:class="{
-					active: Math.random() < 0.5 ? true : false,
-				}"
-				@click.stop
+				:class="{ active: isPinned }"
+				@click.stop="togglePin($event)"
 				v-ripple
 			>
 				<IconBase>
@@ -88,6 +85,7 @@ import { ISkillBuildWithID } from '@/type/SkillBuild';
 import { Timestamp } from 'firebase/firestore';
 
 export default defineComponent({
+	emits: ['toggle-pin'],
 	props: {
 		item: {
 			required: true,
@@ -102,9 +100,14 @@ export default defineComponent({
 				emailHash: string;
 			}>,
 		},
+		isPinned: {
+			required: false,
+			type: Boolean,
+			default: false,
+		},
 	},
 	components: { IconBase, IconBookmark, UserAvatar, IconHeart, IconPen },
-	setup() {
+	setup(props, { emit }) {
 		function isSameDay(a: Timestamp, b: Timestamp) {
 			const dateA = new Date(a.seconds * 1000);
 			const dateB = new Date(b.seconds * 1000);
@@ -116,7 +119,14 @@ export default defineComponent({
 			);
 		}
 
-		return { isSameDay };
+		function togglePin(e: Event) {
+			e.stopPropagation();
+			if (props.item && props.item.dbId) {
+				emit('toggle-pin', props.item.dbId);
+			}
+		}
+
+		return { isSameDay, togglePin };
 	},
 });
 </script>

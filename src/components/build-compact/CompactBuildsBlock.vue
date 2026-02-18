@@ -42,6 +42,8 @@
 				:key="item.dbId"
 				:item="item"
 				:loadedUserData="loadedUserData[item.data.author] || defaultUserData"
+				:isPinned="pinnedSet.has(item.dbId)"
+				@toggle-pin="onTogglePin"
 			/>
 		</div>
 
@@ -123,6 +125,9 @@ export default defineComponent({
 		const loadedUserData: any = reactive({});
 		const isFinishedLoading: Ref<boolean> = ref(false);
 		const auth = getAuth().currentUser;
+
+		// @ts-expect-error
+		const pinnedSet: Ref<Set<string>> = ref(new Set());
 
 		const myBuildsAmount: Ref<number> = ref(0);
 		const likedBuildsAmount: Ref<number> = ref(0);
@@ -231,7 +236,16 @@ export default defineComponent({
 				const merged = Array.from(map.values()).sort(
 					(a, b) => tsToMs(b.data.createdAt) - tsToMs(a.data.createdAt),
 				);
-				loadedData.push(...merged);
+
+				// load pinned ids from localStorage for this soldierClass
+				const pinnedKey = `pinned_builds_${props.soldierClass}`;
+				const pinnedFromStorage: string[] | null =
+					loadFromLocalStorage(pinnedKey) || [];
+				pinnedSet.value = new Set(pinnedFromStorage || []);
+
+				const pinnedList = merged.filter((m) => pinnedSet.value.has(m.dbId));
+				const rest = merged.filter((m) => !pinnedSet.value.has(m.dbId));
+				loadedData.push(...[...pinnedList, ...rest]);
 			} catch (err: any) {
 				console.log(err?.message || err);
 			}
@@ -326,6 +340,28 @@ export default defineComponent({
 			buildsLeftUnloaded.value = 0;
 		}
 
+		function savePinnedToStorage() {
+			const key = `pinned_builds_${props.soldierClass}`;
+			saveToLocalStorage(key, Array.from(pinnedSet.value));
+		}
+
+		function onTogglePin(id: string) {
+			if (!id) return;
+			if (pinnedSet.value.has(id)) {
+				pinnedSet.value.delete(id);
+			} else {
+				pinnedSet.value.add(id);
+			}
+
+			savePinnedToStorage();
+
+			// reorder loadedData so pinned are on top
+			const pinnedList = loadedData.filter((m) => pinnedSet.value.has(m.dbId));
+			const rest = loadedData.filter((m) => !pinnedSet.value.has(m.dbId));
+			loadedData.length = 0;
+			loadedData.push(...[...pinnedList, ...rest]);
+		}
+
 		onMounted(() => {
 			loadData(true);
 		});
@@ -359,6 +395,8 @@ export default defineComponent({
 			defaultUserData,
 			isFinishedLoading,
 			loadData,
+			pinnedSet,
+			onTogglePin,
 		};
 	},
 });

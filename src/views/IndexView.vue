@@ -98,12 +98,14 @@
 
 				<div class="table__promo-block" v-else>
 					<CompactBuildsBlock
-						v-if="auth"
+						v-if="$store.state.user.isLoggedIn"
 						:soldierClass="filteredItems[activeIdx].id"
 					/>
 					<div
 						class="table__promo-popular"
-						:class="{ 'table__promo-popular--full-width': !auth }"
+						:class="{
+							'table__promo-popular--full-width': !$store.state.user.isLoggedIn,
+						}"
 					>
 						<h2 class="table__promo-title">Популярные сборки от сообщества</h2>
 						<div class="table__promo-builds">
