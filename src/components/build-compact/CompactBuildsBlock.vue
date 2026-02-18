@@ -1,7 +1,7 @@
 <template>
 	<section class="ccard__block">
 		<div class="ccard__header">
-			<h3 class="ccard__title">Сборки: Мои и избранные</h3>
+			<h3 class="ccard__title">Персональные сборки</h3>
 			<div class="ccard__chips">
 				<div
 					class="chip ccard__chip"
@@ -40,7 +40,10 @@
 			<CompactBuildCard v-for="item in 5" />
 		</div>
 
-		<p class="ccard__tutorial" v-if="hasLikedAndOwnedBuilds">
+		<p
+			class="ccard__tutorial"
+			v-if="!hasLikedAndOwnedBuilds || likedBuildsAmount === 0"
+		>
 			<template v-if="myBuildsAmount === 0">
 				♡ Создайте свою, или лайкните сборки других и они появятся здесь!
 			</template>
@@ -49,7 +52,7 @@
 			</template>
 		</p>
 
-		<div class="ccard__load-more">
+		<div class="ccard__load-more" v-if="buildsLeftUnloaded > 0">
 			<span class="ccard__load-more-desc">
 				Есть еще
 				<span class="ccard__load-more-number"
@@ -77,10 +80,10 @@ export default defineComponent({
 			chosenFilter.value = filter;
 		}
 
-		const myBuildsAmount: Ref<number> = ref(2);
+		const myBuildsAmount: Ref<number> = ref(0);
 		const likedBuildsAmount: Ref<number> = ref(1);
 		const hasLikedAndOwnedBuilds = computed(
-			() => !!(myBuildsAmount.value + likedBuildsAmount.value)
+			() => !!(myBuildsAmount.value + likedBuildsAmount.value),
 		);
 
 		const buildsLeftUnloaded: Ref<number> = ref(5);

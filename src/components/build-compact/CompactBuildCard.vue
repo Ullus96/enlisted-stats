@@ -55,12 +55,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import IconBase from '../ui/icon/IconBase.vue';
 import IconBookmark from '../ui/icon/icons/IconBookmark.vue';
 import UserAvatar from '../shared/avatar/UserAvatar.vue';
+import { ISkillBuildWithID } from '@/type/SkillBuild';
 
 export default defineComponent({
+	props: {
+		item: {
+			required: true,
+			type: Object as PropType<ISkillBuildWithID>,
+		},
+	},
 	components: { IconBase, IconBookmark, UserAvatar },
 	setup() {
 		return {};
