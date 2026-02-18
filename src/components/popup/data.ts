@@ -90,3 +90,10 @@ export const POPUP_BUILD_MODIFIED: IPopUp = {
 	desc: 'Все изменения были сохранены.',
 	duration: 5,
 };
+
+export const POPUP_COPY_TO_CLIPBOARD_SUCCESS: IPopUp = {
+	type: 'success',
+	title: 'Скопировано!',
+	desc: '',
+	duration: 0.5,
+};

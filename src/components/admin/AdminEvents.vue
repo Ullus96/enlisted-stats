@@ -293,6 +293,10 @@ import IconTrash from '@/components/ui/icon/icons/IconTrash.vue';
 import IconAngleUp from '../ui/icon/icons/IconAngleUp.vue';
 import InputComponent from '@/components/input/InputComponent.vue';
 import DialogComponent from '@/components/ui/DialogComponent.vue';
+import { IPopUp } from '../popup/type';
+import { POPUP_COPY_TO_CLIPBOARD_SUCCESS } from '../popup/data';
+import { createPopUp, deletePopUp } from '../popup/utils';
+import { useStore } from '@/store/useStore';
 
 export default defineComponent({
 	components: {
@@ -308,6 +312,7 @@ export default defineComponent({
 		const startDate: Ref<Date> = ref(new Date());
 		const endDate: Ref<Date> = ref(new Date());
 		const isLoading: Ref<boolean> = ref(true);
+		const store = useStore();
 
 		let eventData: IEventFirestore = reactive({
 			name: '',
@@ -532,6 +537,15 @@ export default defineComponent({
 			},
 		);
 
+		async function copyToClipboard(str: string) {
+			try {
+				await navigator.clipboard.writeText(str);
+				createPopUp(store, POPUP_COPY_TO_CLIPBOARD_SUCCESS);
+			} catch (error: any) {
+				console.error(error.message);
+			}
+		}
+
 		return {
 			operationName,
 			eventData,
@@ -550,6 +564,7 @@ export default defineComponent({
 			shiftRewards,
 			resizeTextarea,
 			resizeAll,
+			copyToClipboard,
 		};
 	},
 });
