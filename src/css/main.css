@@ -2340,7 +2340,7 @@ h3 {
 }
 .ccard__tutorial {
   font-size: 1.4rem;
-  color: rgb(165, 165, 165);
+  color: rgb(116, 116, 116);
   text-align: center;
   text-wrap: pretty;
 }
@@ -2384,7 +2384,7 @@ h3 {
 }
 .ccard__title-section {
   display: flex;
-  gap: 0.8rem;
+  gap: 1.2rem;
 }
 .ccard__header-title {
   font-size: 1.6rem;
@@ -2397,7 +2397,12 @@ h3 {
 }
 .ccard__likes-wrapper {
   display: flex;
-  gap: 0.4rem;
+  align-items: center;
+  gap: 0.2rem;
+  color: rgb(116, 116, 116);
+}
+.ccard__heart-icon {
+  transform: translateY(-1px);
 }
 .ccard__author-section {
   display: flex;
@@ -2414,6 +2419,11 @@ h3 {
   color: rgb(116, 116, 116);
   font-size: 1.4rem;
   line-height: 1;
+}
+.ccard__updated-block {
+  margin-left: 0.4rem;
+  display: flex;
+  gap: 0.2rem;
 }
 .ccard__pin-btn path {
   stroke: rgb(57, 57, 57);

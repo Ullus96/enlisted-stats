@@ -17,8 +17,10 @@
 			></router-link>
 			<div class="ccard__title-section">
 				<h4 class="ccard__title">{{ item.data.name }}</h4>
-				<div class="ccard__likes-wrapper">
-					<span>♥</span>
+				<div class="ccard__likes-wrapper" v-if="item.data.likesAmount">
+					<IconBase class="ccard__heart-icon" :height="10">
+						<IconHeart />
+					</IconBase>
 					<span>{{ item.data.likesAmount }}</span>
 				</div>
 			</div>
@@ -36,6 +38,24 @@
 					<span class="ccard__date">{{
 						new Date(item.data.createdAt.seconds * 1000).toLocaleDateString()
 					}}</span>
+					<span
+						class="ccard__updated-block"
+						v-if="
+							item.data.updatedAt &&
+							!isSameDay(item.data.updatedAt, item.data.createdAt)
+						"
+					>
+						<IconBase :height="11">
+							<IconPen />
+						</IconBase>
+						<span>
+							{{
+								new Date(
+									item.data.updatedAt.seconds * 1000,
+								).toLocaleDateString()
+							}}
+						</span>
+					</span>
 					<!-- сюда добавить карандаш и updatedAt -->
 				</div>
 			</div>
@@ -61,8 +81,11 @@
 import { defineComponent, PropType } from 'vue';
 import IconBase from '../ui/icon/IconBase.vue';
 import IconBookmark from '../ui/icon/icons/IconBookmark.vue';
+import IconHeart from '../ui/icon/icons/IconHeart.vue';
+import IconPen from '../ui/icon/icons/IconPen.vue';
 import UserAvatar from '../shared/avatar/UserAvatar.vue';
 import { ISkillBuildWithID } from '@/type/SkillBuild';
+import { Timestamp } from 'firebase/firestore';
 
 export default defineComponent({
 	props: {
@@ -80,9 +103,20 @@ export default defineComponent({
 			}>,
 		},
 	},
-	components: { IconBase, IconBookmark, UserAvatar },
+	components: { IconBase, IconBookmark, UserAvatar, IconHeart, IconPen },
 	setup() {
-		return {};
+		function isSameDay(a: Timestamp, b: Timestamp) {
+			const dateA = new Date(a.seconds * 1000);
+			const dateB = new Date(b.seconds * 1000);
+
+			return (
+				dateA.getDate() === dateB.getDate() &&
+				dateA.getMonth() === dateB.getMonth() &&
+				dateA.getFullYear() === dateB.getFullYear()
+			);
+		}
+
+		return { isSameDay };
 	},
 });
 </script>
