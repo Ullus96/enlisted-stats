@@ -1,7 +1,7 @@
 <template>
 	<section class="ccard__block">
 		<div class="ccard__header">
-			<h3 class="ccard__title">Персональные сборки</h3>
+			<h3 class="ccard__header-title">Персональные сборки</h3>
 			<div class="ccard__chips">
 				<div
 					class="chip ccard__chip"
@@ -193,7 +193,7 @@ export default defineComponent({
 					orderBy('data.createdAt', 'desc'),
 					where('data.author', '==', uid),
 					...(soldierClass ? [where('soldierClass', '==', soldierClass)] : []),
-					limit(15),
+					limit(10),
 				];
 				const myQuery = query(collection(db, 'builds'), ...myConstraints);
 				const myRes = await getDocs(myQuery);
@@ -203,7 +203,7 @@ export default defineComponent({
 					where('data.isPublic', '==', true),
 					where('data.likedBy', 'array-contains', uid),
 					...(soldierClass ? [where('soldierClass', '==', soldierClass)] : []),
-					limit(15),
+					limit(7),
 				];
 				const likedQuery = query(collection(db, 'builds'), ...likedConstraints);
 				const likedRes = await getDocs(likedQuery);

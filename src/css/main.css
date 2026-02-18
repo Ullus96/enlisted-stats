@@ -2385,6 +2385,11 @@ h3 {
   display: flex;
   gap: 0.8rem;
 }
+.ccard__header-title {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: rgb(165, 165, 165);
+}
 .ccard__title {
   font-size: 1.6rem;
   font-weight: 400;
@@ -3560,6 +3565,9 @@ h3 {
 }
 .table__promo-popular {
   grid-column: 2/-1;
+}
+.table__promo-popular--full-width {
+  grid-column: 1/-1;
 }
 .table__promo-title {
   text-align: center;

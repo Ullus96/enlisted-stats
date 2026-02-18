@@ -97,8 +97,14 @@
 				</div>
 
 				<div class="table__promo-block" v-else>
-					<CompactBuildsBlock :soldierClass="filteredItems[activeIdx].id" />
-					<div class="table__promo-popular">
+					<CompactBuildsBlock
+						v-if="auth"
+						:soldierClass="filteredItems[activeIdx].id"
+					/>
+					<div
+						class="table__promo-popular"
+						:class="{ 'table__promo-popular--full-width': !auth }"
+					>
 						<h2 class="table__promo-title">Популярные сборки от сообщества</h2>
 						<div class="table__promo-builds">
 							<build-card
@@ -302,6 +308,7 @@ import { IItem } from '@/type/Item';
 import FaqGroup from '@/components/faq/FaqGroup.vue';
 import FaqItem from '@/components/faq/FaqItem.vue';
 import CompactBuildsBlock from '@/components/build-compact/CompactBuildsBlock.vue';
+import { getAuth } from 'firebase/auth';
 
 export default defineComponent({
 	name: 'App',
@@ -333,6 +340,7 @@ export default defineComponent({
 		let lastVisible: any = null; // Для пагинации
 		const loadedBuildIDs: Set<string> = new Set(); // Для хранения ID загруженных билдов
 		let noMoreData: boolean = false; // Флаг для проверки наличия данных
+		const auth = getAuth().currentUser;
 
 		function handleClick(idx: number) {
 			isFilteredToClass.value = true;
@@ -620,6 +628,7 @@ export default defineComponent({
 			loadedUserData,
 			isFinishedLoading,
 			link,
+			auth,
 		};
 	},
 });

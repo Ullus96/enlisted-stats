@@ -243,6 +243,10 @@
 		grid-column: 2/-1;
 	}
 
+	&__promo-popular--full-width {
+		grid-column: 1/-1;
+	}
+
 	&__promo-title {
 		text-align: center;
 		text-wrap: balance;
