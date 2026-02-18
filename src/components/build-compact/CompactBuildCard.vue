@@ -22,7 +22,7 @@
 				v-ripple
 			></router-link> -->
 			<div class="ccard__title-section">
-				<h4 class="ccard__title">Название сборки</h4>
+				<h4 class="ccard__title">{{ item.data.name }}</h4>
 				<div class="ccard__likes-wrapper">
 					<span>♥</span>
 					<span>14</span>
