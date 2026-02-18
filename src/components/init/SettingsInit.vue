@@ -19,10 +19,16 @@ export default defineComponent({
 
 		let compactMode: Ref<boolean> = ref(true);
 		let eventCardWidth: Ref<number> = ref(1);
+		let showTutorial: Ref<boolean> = ref(true);
 
 		onMounted(() => {
-			compactMode.value = loadFromLocalStorage('compactMode') || true;
+			compactMode.value = loadFromLocalStorage('compactMode');
+			console.log(`compactMode.value: ${compactMode.value}`);
 			store.commit('switchCompactMode', compactMode.value);
+
+			showTutorial.value = loadFromLocalStorage('showTutorial');
+			console.log(`showTutorial.value: ${showTutorial.value}`);
+			store.commit('switchTutorialVisibility', showTutorial.value);
 
 			eventCardWidth.value = loadFromLocalStorage('eventCardWidth') || 1;
 			store.commit('setEventCardWidth', eventCardWidth.value);

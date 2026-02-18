@@ -38,6 +38,7 @@ export interface State {
 	settings: {
 		compactMode: boolean;
 		eventCardWidth: 1 | 2;
+		showTutorial: boolean;
 	};
 }
 
@@ -82,6 +83,7 @@ export default createStore<State>({
 		settings: {
 			compactMode: false,
 			eventCardWidth: 1,
+			showTutorial: true,
 		},
 	},
 	mutations: {
@@ -134,7 +136,7 @@ export default createStore<State>({
 			payload: {
 				name: keyof State['modal'];
 				forceClose: boolean | undefined;
-			}
+			},
 		) {
 			const { name, forceClose } = payload;
 			console.log(payload);
@@ -151,7 +153,7 @@ export default createStore<State>({
 			payload: {
 				name: keyof State['dialog'];
 				forceClose: boolean | undefined;
-			}
+			},
 		) {
 			const { name, forceClose } = payload;
 			console.log(payload);
@@ -184,6 +186,10 @@ export default createStore<State>({
 
 		setEventCardWidth(state, newVal: 1 | 2) {
 			state.settings.eventCardWidth = newVal;
+		},
+
+		switchTutorialVisibility(state, newVal: boolean) {
+			state.settings.showTutorial = newVal;
 		},
 	},
 });

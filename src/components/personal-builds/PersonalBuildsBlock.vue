@@ -49,12 +49,15 @@
 
 		<p
 			class="ccard__tutorial"
-			v-if="!hasLikedAndOwnedBuilds || likedBuildsAmount === 0"
+			v-if="
+				(!hasLikedAndOwnedBuilds || likedBuildsAmount === 0) &&
+				$store.state.settings.showTutorial
+			"
 		>
 			<template v-if="myBuildsAmount === 0">
 				♡ Создайте свою, или лайкните сборки других и они появятся здесь!
 			</template>
-			<template v-else-if="likedBuildsAmount === 0">
+			<template v-else-if="likedBuildsAmount === 0 && chosenFilter !== 'my'">
 				♡ Лайкните сборки других и они появятся здесь!
 			</template>
 		</p>

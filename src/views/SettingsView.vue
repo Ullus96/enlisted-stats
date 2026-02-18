@@ -174,6 +174,24 @@
 							</button>
 						</div>
 					</div>
+
+					<div class="profile__title-desc-action-block">
+						<div class="profile__title-desc-block">
+							<p class="profile__option-name">Показывать обучение</p>
+							<p class="profile__option-desc">
+								Включает текстовые подсказки, например, напоминание о
+								необходимости ставить лайки для отображения сборок в
+								"персональных сборках".
+							</p>
+						</div>
+						<label class="checkbox-wrapper-2 profile__checkbox-wrapper">
+							<input
+								type="checkbox"
+								class="sc-gJwTLC ikxBAC"
+								v-model="showTutorial"
+							/>
+						</label>
+					</div>
 				</section>
 			</transition>
 		</div>
@@ -324,7 +342,7 @@ export default defineComponent({
 
 		// Компактный режим
 		const compactMode: Ref<boolean> = ref(
-			loadFromLocalStorage('compactMode') || false
+			loadFromLocalStorage('compactMode') || false,
 		);
 
 		watch(compactMode, (newVal) => {
@@ -334,7 +352,7 @@ export default defineComponent({
 
 		// Ширина карточки
 		const eventCardWidth: Ref<number> = ref(
-			loadFromLocalStorage('eventCardWidth') || 1
+			loadFromLocalStorage('eventCardWidth') || 1,
 		);
 
 		watch(eventCardWidth, (newVal) => {
@@ -342,6 +360,17 @@ export default defineComponent({
 			store.value.commit('setEventCardWidth', newVal);
 
 			updateRootVariable('--ui-card-width', `${newVal * 10}rem`);
+		});
+
+		// Туториал
+		const showTutorial: Ref<boolean> = ref(
+			loadFromLocalStorage('showTutorial') ||
+				store.value.state.settings.showTutorial,
+		);
+
+		watch(showTutorial, (newVal) => {
+			saveToLocalStorage('showTutorial', newVal);
+			store.value.commit('switchTutorialVisibility', newVal);
 		});
 
 		// Аватарки
@@ -355,7 +384,7 @@ export default defineComponent({
 					chosenProvider.value = newVal;
 				}
 			},
-			{ immediate: true }
+			{ immediate: true },
 		);
 
 		function saveNewAvatarProvider() {
@@ -369,7 +398,7 @@ export default defineComponent({
 		}
 
 		async function updateAvatarProvider(
-			provider: 'google' | 'gravatar' | 'none'
+			provider: 'google' | 'gravatar' | 'none',
 		) {
 			try {
 				if (!auth.currentUser?.uid) return;
@@ -378,7 +407,7 @@ export default defineComponent({
 					{
 						avatarProvider: provider,
 					},
-					{ merge: true }
+					{ merge: true },
 				);
 				localStorage.removeItem('usersData');
 				localStorage.removeItem('usersTimestamp');
@@ -401,6 +430,7 @@ export default defineComponent({
 			deleteAccount,
 			compactMode,
 			eventCardWidth,
+			showTutorial,
 			updateRootVariable,
 			getRootVariable,
 			chosenProvider,
