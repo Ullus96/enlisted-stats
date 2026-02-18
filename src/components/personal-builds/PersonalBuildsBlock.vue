@@ -37,7 +37,7 @@
 		</div>
 
 		<div class="ccard__build-cards">
-			<CompactBuildCard
+			<PersonalBuildCard
 				v-for="item in filteredData"
 				:key="item.dbId"
 				:item="item"
@@ -76,7 +76,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, Ref, reactive, onMounted } from 'vue';
-import CompactBuildCard from './CompactBuildCard.vue';
+import PersonalBuildCard from './PersonalBuildCard.vue';
 import {
 	saveToLocalStorageArray,
 	loadFromLocalStorage,
@@ -98,7 +98,7 @@ import { getAuth } from 'firebase/auth';
 import { ISkillBuildWithID } from '@/type/SkillBuild';
 
 export default defineComponent({
-	components: { CompactBuildCard },
+	components: { PersonalBuildCard },
 	props: {
 		soldierClass: {
 			type: String,

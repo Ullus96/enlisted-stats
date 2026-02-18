@@ -97,7 +97,7 @@
 				</div>
 
 				<div class="table__promo-block" v-else>
-					<CompactBuildsBlock
+					<PersonalBuildsBlock
 						v-if="$store.state.user.isLoggedIn"
 						:soldierClass="filteredItems[activeIdx].id"
 					/>
@@ -309,7 +309,7 @@ import Fuse from 'fuse.js';
 import { IItem } from '@/type/Item';
 import FaqGroup from '@/components/faq/FaqGroup.vue';
 import FaqItem from '@/components/faq/FaqItem.vue';
-import CompactBuildsBlock from '@/components/build-compact/CompactBuildsBlock.vue';
+import PersonalBuildsBlock from '@/components/personal-builds/PersonalBuildsBlock.vue';
 import { getAuth } from 'firebase/auth';
 
 export default defineComponent({
@@ -326,7 +326,7 @@ export default defineComponent({
 		BuildCard,
 		FaqGroup,
 		FaqItem,
-		CompactBuildsBlock,
+		PersonalBuildsBlock,
 	},
 	setup() {
 		const isFilteredToClass: Ref<boolean> = ref(false);
