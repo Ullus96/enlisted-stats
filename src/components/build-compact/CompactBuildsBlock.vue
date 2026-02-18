@@ -38,7 +38,7 @@
 
 		<div class="ccard__build-cards">
 			<CompactBuildCard
-				v-for="item in loadedData"
+				v-for="item in filteredData"
 				:key="item.dbId"
 				:item="item"
 				:loadedUserData="loadedUserData[item.data.author] || defaultUserData"
@@ -109,7 +109,6 @@ export default defineComponent({
 		const chosenFilter: Ref<Filter> = ref('all');
 		function setFilter(filter: Filter) {
 			chosenFilter.value = filter;
-			loadData(true);
 		}
 
 		const defaultUserData = {
@@ -165,52 +164,79 @@ export default defineComponent({
 			return conditions;
 		}
 
-		async function loadBuildsFromDB(clearData: boolean) {
-			if (clearData) {
-				loadedData.length = 0;
-				isFinishedLoading.value = false;
+		// For compact view we fetch once: my builds + liked builds (two queries), merge and dedupe, take up to 15
+		function tsToMs(value: any) {
+			if (!value) return 0;
+			if (typeof value === 'number') return value;
+			if (typeof value.toMillis === 'function') return value.toMillis();
+			if (value.seconds) return value.seconds * 1000;
+			const parsed = Date.parse(String(value));
+			return isNaN(parsed) ? 0 : parsed;
+		}
+
+		async function loadInitialBuilds() {
+			loadedData.length = 0;
+			isFinishedLoading.value = false;
+
+			const uid = auth?.uid || null;
+			if (!uid) {
+				// no user: nothing to fetch for my/liked
+				isFinishedLoading.value = true;
+				return;
 			}
 
 			try {
-				const sortBy = 'data.createdAt';
-				const sortOrder: 'desc' | 'asc' = 'desc';
-				const userId = auth?.uid || null;
-
-				const source =
-					chosenFilter.value === 'all' ? 'base' : chosenFilter.value;
-
 				const soldierClass = props.soldierClass || null;
-				const conditions = getBuildsQueryConditions(
-					source as any,
-					userId,
-					soldierClass,
-				);
 
-				const queryConstraints = [
-					orderBy(sortBy, sortOrder),
-					...conditions,
-					limit(12),
+				// my builds
+				const myConstraints = [
+					orderBy('data.createdAt', 'desc'),
+					where('data.author', '==', uid),
+					...(soldierClass ? [where('soldierClass', '==', soldierClass)] : []),
+					limit(15),
 				];
+				const myQuery = query(collection(db, 'builds'), ...myConstraints);
+				const myRes = await getDocs(myQuery);
+				// liked builds (public only)
+				const likedConstraints = [
+					orderBy('data.createdAt', 'desc'),
+					where('data.isPublic', '==', true),
+					where('data.likedBy', 'array-contains', uid),
+					...(soldierClass ? [where('soldierClass', '==', soldierClass)] : []),
+					limit(15),
+				];
+				const likedQuery = query(collection(db, 'builds'), ...likedConstraints);
+				const likedRes = await getDocs(likedQuery);
 
-				const buildsQuery = query(
-					collection(db, 'builds'),
-					...queryConstraints,
-				);
-				const res = await getDocs(buildsQuery);
+				const map = new Map<string, ISkillBuildWithID>();
 
-				if (res) {
+				if (myRes) {
 					// @ts-expect-error
-					const newData: ISkillBuildWithID[] = res.docs.map((doc) => ({
-						...doc.data(),
-						dbId: doc.id,
+					const myData: ISkillBuildWithID[] = myRes.docs.map((d) => ({
+						...d.data(),
+						dbId: d.id,
 					}));
-
-					loadedData.push(...newData);
+					myData.forEach((b) => map.set(b.dbId, b));
 				}
+
+				if (likedRes) {
+					// @ts-expect-error
+					const likedData: ISkillBuildWithID[] = likedRes.docs.map((d) => ({
+						...d.data(),
+						dbId: d.id,
+					}));
+					likedData.forEach((b) => map.set(b.dbId, b));
+				}
+
+				const merged = Array.from(map.values()).sort(
+					(a, b) => tsToMs(b.data.createdAt) - tsToMs(a.data.createdAt),
+				);
+				loadedData.push(...merged);
 			} catch (err: any) {
-				// keep console log minimal
 				console.log(err?.message || err);
 			}
+
+			isFinishedLoading.value = true;
 		}
 
 		async function loadUsersFromDB() {
@@ -283,7 +309,8 @@ export default defineComponent({
 		}
 
 		async function loadData(clearData = false) {
-			await loadBuildsFromDB(clearData);
+			// keep for manual refresh: re-run initial load
+			await loadInitialBuilds();
 			await loadUsersFromDB();
 
 			const uid = auth?.uid || null;
@@ -296,11 +323,26 @@ export default defineComponent({
 							Array.isArray(i.data.likedBy) && i.data.likedBy.includes(uid),
 				  ).length
 				: 0;
-			buildsLeftUnloaded.value = Math.max(0, 0);
+			buildsLeftUnloaded.value = 0;
 		}
 
 		onMounted(() => {
 			loadData(true);
+		});
+
+		const filteredData = computed(() => {
+			const uid = auth?.uid || null;
+			if (chosenFilter.value === 'all') return loadedData;
+			if (chosenFilter.value === 'my')
+				return uid ? loadedData.filter((i) => i.data.author === uid) : [];
+			if (chosenFilter.value === 'liked')
+				return uid
+					? loadedData.filter(
+							(i) =>
+								Array.isArray(i.data.likedBy) && i.data.likedBy.includes(uid),
+					  )
+					: [];
+			return loadedData;
 		});
 
 		return {
@@ -312,6 +354,7 @@ export default defineComponent({
 			buildsLeftUnloaded,
 			getDeclension,
 			loadedData,
+			filteredData,
 			loadedUserData,
 			defaultUserData,
 			isFinishedLoading,
