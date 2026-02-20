@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .filter {
 	&__block {
@@ -27,7 +27,7 @@
 		transition: 0.15s ease-in-out color;
 
 		&:hover {
-			color: variables.$color-primary-200;
+			color: v.$color-primary-200;
 		}
 	}
 
@@ -45,7 +45,7 @@
 		position: absolute;
 		left: 0;
 		top: 90%;
-		background: variables.$color-bg-500;
+		background: v.$color-bg-500;
 		padding: 2rem 2.8rem;
 		@include mixins.ui-shadow;
 		border-radius: 1.2rem;
@@ -106,7 +106,7 @@
 		left: 50%;
 		top: 90%;
 		transform: translateX(-50%);
-		background: variables.$color-bg-500;
+		background: v.$color-bg-500;
 		padding: 2rem 2.8rem;
 		@include mixins.ui-shadow;
 		border-radius: 1.2rem;
@@ -118,8 +118,8 @@
 	}
 
 	&__sort-by-desc {
-		font-size: variables.$ui-font-size-xs;
-		color: variables.$color-text-700;
+		font-size: v.$ui-font-size-xs;
+		color: v.$color-text-700;
 		padding: 0 2.2rem;
 	}
 

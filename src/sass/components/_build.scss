@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .build {
 	&__item {
@@ -11,14 +11,14 @@
 		border-radius: 1.2rem;
 
 		padding: 0.6rem;
-		background-color: variables.$color-bg-a-700;
+		background-color: v.$color-bg-a-700;
 		@include mixins.ui-background-blur;
 
 		&--clickable {
 			cursor: pointer;
 			position: relative;
 
-			@include mixins.hovered(variables.$color-text-100, variables.$color-bg-a-500);
+			@include mixins.hovered(v.$color-text-100, v.$color-bg-a-500);
 		}
 	}
 
@@ -41,7 +41,7 @@
 	&__title {
 		font-weight: 400;
 		margin: 0;
-		color: variables.$color-text-100;
+		color: v.$color-text-100;
 	}
 
 	&__desc-wrapper {
@@ -54,7 +54,7 @@
 		display: flex;
 		gap: 0.4rem;
 		align-items: center;
-		color: variables.$color-text-400;
+		color: v.$color-text-400;
 	}
 
 	&__class-icon {
@@ -80,8 +80,8 @@
 	&__buttons-group {
 		display: flex;
 		flex-direction: column;
-		background-color: variables.$color-bg-a-500;
-		border: 1px solid variables.$color-panel-border;
+		background-color: v.$color-bg-a-500;
+		border: 1px solid v.$color-panel-border;
 		border-radius: 0.8rem;
 		z-index: 2;
 	}
@@ -95,7 +95,7 @@
 		border-radius: 0.6rem;
 		cursor: pointer;
 
-		@include mixins.hovered(variables.$color-text-100, variables.$color-bg-a-200);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-a-200);
 	}
 
 	&__likes-block--no-anim {
@@ -118,8 +118,8 @@
 		&.clickable:hover {
 			.build {
 				&__likes-svg path {
-					stroke: variables.$color-danger-200;
-					fill: variables.$color-danger-200;
+					stroke: v.$color-danger-200;
+					fill: v.$color-danger-200;
 				}
 			}
 		}
@@ -127,7 +127,7 @@
 		&.clickable:hover {
 			cursor: pointer;
 			border-radius: 0.4rem;
-			@include mixins.hovered(variables.$color-text-100, variables.$color-bg-a-200);
+			@include mixins.hovered(v.$color-text-100, v.$color-bg-a-200);
 		}
 	}
 
@@ -150,13 +150,13 @@
 
 		.build {
 			&__likes-amount {
-				color: variables.$color-danger-200;
+				color: v.$color-danger-200;
 			}
 
 			&__likes-svg {
 				path {
-					stroke: variables.$color-danger-200;
-					fill: variables.$color-danger-200;
+					stroke: v.$color-danger-200;
+					fill: v.$color-danger-200;
 				}
 			}
 		}
@@ -178,8 +178,8 @@
 			transition: top 0.6s ease-out, left 0.6s ease-out, opacity 0.6s ease-out;
 
 			& path {
-				stroke: variables.$color-danger-200 !important;
-				fill: variables.$color-danger-200 !important;
+				stroke: v.$color-danger-200 !important;
+				fill: v.$color-danger-200 !important;
 			}
 		}
 
@@ -194,8 +194,8 @@
 	&__footer {
 		grid-column: 1;
 		grid-row: 2;
-		background-color: variables.$color-bg-a-700;
-		border: 1px solid variables.$color-bg-a-300;
+		background-color: v.$color-bg-a-700;
+		border: 1px solid v.$color-bg-a-300;
 		// background-color: rgba(92, 132, 145, 0.15);
 		// border: 1px solid rgba(92, 132, 145, 0.18);
 		border-radius: 0.8rem;
@@ -226,14 +226,14 @@
 	}
 
 	&__author-name {
-		font-size: variables.$ui-font-size-m;
+		font-size: v.$ui-font-size-m;
 	}
 
 	&__footer-dates-wrapper {
 		display: flex;
 		gap: 2rem;
-		color: variables.$color-text-700;
-		font-size: variables.$ui-font-size-s;
+		color: v.$color-text-700;
+		font-size: v.$ui-font-size-s;
 	}
 
 	&__footer-date-item {

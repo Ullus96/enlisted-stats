@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .event {
 	&__title {
@@ -12,7 +12,7 @@
 
 	&__end {
 		text-align: center;
-		color: variables.$color-text-400;
+		color: v.$color-text-400;
 	}
 
 	&__content {
@@ -84,7 +84,7 @@
 		min-width: auto;
 		width: auto;
 		flex: 1 1 calc(var(--ui-card-width) - 1rem);
-		background-color: variables.$color-bg-a-500;
+		background-color: v.$color-bg-a-500;
 		border-radius: 0.8rem;
 		padding: 2rem 1.6rem;
 		transform: rotateZ(0) scale(1);
@@ -112,18 +112,18 @@
 		}
 
 		&.finish {
-			color: variables.$color-text-700;
+			color: v.$color-text-700;
 
 			& .event__time {
-				color: variables.$color-text-700;
+				color: v.$color-text-700;
 			}
 		}
 
 		&--active {
-			outline: 1px solid variables.$color-primary-200;
+			outline: 1px solid v.$color-primary-200;
 
 			& .event__counter {
-				color: variables.$color-primary-200;
+				color: v.$color-primary-200;
 			}
 		}
 
@@ -166,8 +166,8 @@
 		top: 0.6rem;
 		left: 0.6rem;
 		line-height: 100%;
-		color: variables.$color-text-700;
-		font-size: variables.$ui-font-size-s;
+		color: v.$color-text-700;
+		font-size: v.$ui-font-size-s;
 	}
 
 	&__date {
@@ -183,17 +183,17 @@
 	}
 
 	&__time {
-		color: variables.$color-text-400;
-		font-size: variables.$ui-font-size-s;
+		color: v.$color-text-400;
+		font-size: v.$ui-font-size-s;
 		text-align: center;
 		margin-top: 0.8rem;
 	}
 
 	&__mobile-reward-block {
-		border-top: 1px solid variables.$color-bg-050;
+		border-top: 1px solid v.$color-bg-050;
 		margin-top: 0.4rem;
 		padding-top: 0.8rem;
-		color: variables.$color-text-400;
+		color: v.$color-text-400;
 		word-break: break-word;
 		text-wrap: balance;
 		text-align: center;
@@ -201,7 +201,7 @@
 		line-height: 130%;
 		flex-direction: column;
 		gap: 0.4rem;
-		font-size: variables.$ui-font-size-xs;
+		font-size: v.$ui-font-size-xs;
 		display: none;
 
 		@include mixins.tablet {
@@ -211,8 +211,8 @@
 
 	&__reward-skipped {
 		display: inline;
-		color: variables.$color-bg-900;
-		background-color: variables.$color-bg-900;
+		color: v.$color-bg-900;
+		background-color: v.$color-bg-900;
 		position: relative;
 
 		--left: 0rem;
@@ -224,7 +224,7 @@
 			position: absolute;
 			top: 0;
 			bottom: 0;
-			background-color: variables.$color-bg-900;
+			background-color: v.$color-bg-900;
 		}
 
 		&::before {
@@ -275,15 +275,15 @@
 		transition: 0.12s opacity allow-discrete ease-in-out;
 
 		&.passed {
-			color: variables.$color-success-200;
+			color: v.$color-success-200;
 
-			@include mixins.hovered(variables.$color-success-200, variables.$color-bg-a-800);
+			@include mixins.hovered(v.$color-success-200, v.$color-bg-a-800);
 		}
 
 		&.skipped {
-			color: variables.$color-danger-200;
+			color: v.$color-danger-200;
 
-			@include mixins.hovered(variables.$color-danger-200, variables.$color-bg-a-800);
+			@include mixins.hovered(v.$color-danger-200, v.$color-bg-a-800);
 		}
 
 		& input {
@@ -311,17 +311,17 @@
 		width: fit-content;
 		padding: 0.8rem 1.2rem;
 		font-family: monospace;
-		font-size: variables.$ui-font-size-h2;
+		font-size: v.$ui-font-size-h2;
 		z-index: 1;
 
 		&--fail {
-			color: variables.$color-danger-200;
-			border-color: variables.$color-danger-200;
+			color: v.$color-danger-200;
+			border-color: v.$color-danger-200;
 		}
 
 		&--pass {
-			color: variables.$color-success-200;
-			border-color: variables.$color-success-200;
+			color: v.$color-success-200;
+			border-color: v.$color-success-200;
 		}
 	}
 
@@ -366,20 +366,20 @@
 		justify-content: center;
 		align-items: center;
 		gap: 0.4rem;
-		background-color: variables.$color-bg-500;
+		background-color: v.$color-bg-500;
 		border-radius: 0.8rem;
 		@include mixins.ui-shadow;
 	}
 
 	&__countdown-time {
 		line-height: 100%;
-		font-size: variables.$ui-font-size-h3;
+		font-size: v.$ui-font-size-h3;
 	}
 
 	&__countdown-desc {
 		line-height: 100%;
-		color: variables.$color-text-400;
-		font-size: variables.$ui-font-size-xs;
+		color: v.$color-text-400;
+		font-size: v.$ui-font-size-xs;
 	}
 
 	&__reward-block {
@@ -391,7 +391,7 @@
 	&__chip {
 		border-radius: 0.8rem;
 		padding: 1.2rem;
-		background-color: variables.$color-bg-700;
+		background-color: v.$color-bg-700;
 		border: none;
 		@include mixins.ui-shadow;
 		@include mixins.ui-background-blur;
@@ -401,19 +401,19 @@
 			display: block;
 		}
 
-		@include mixins.hovered(variables.$color-text-100, variables.$color-bg-700);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-700);
 
 		&:focus-visible {
-			@include mixins.focused(variables.$color-text-100, variables.$color-bg-700);
+			@include mixins.focused(v.$color-text-100, v.$color-bg-700);
 		}
 
 		&--active {
-			background-color: variables.$color-primary-600;
+			background-color: v.$color-primary-600;
 
-			@include mixins.hovered(variables.$color-text-100, variables.$color-primary-600);
+			@include mixins.hovered(v.$color-text-100, v.$color-primary-600);
 
 			&:focus-visible {
-				@include mixins.focused(variables.$color-text-100, variables.$color-primary-600);
+				@include mixins.focused(v.$color-text-100, v.$color-primary-600);
 			}
 		}
 	}
@@ -424,7 +424,7 @@
 	}
 
 	&__progress-bar {
-		background-color: variables.$color-bg-700;
+		background-color: v.$color-bg-700;
 		height: 4rem;
 		display: flex;
 		justify-content: center;
@@ -439,7 +439,11 @@
 		inset: 0 0 0 0;
 		z-index: 2;
 
-		background: linear-gradient(to right, variables.$color-primary-600 0, transparent 0);
+		background: linear-gradient(
+			to right,
+			v.$color-primary-600 0,
+			transparent 0
+		);
 	}
 
 	&__progress-bar-animated {
@@ -448,8 +452,8 @@
 		z-index: 1;
 		background: repeating-linear-gradient(
 			-45deg,
-			rgba(variables.$color-text-700, 0.05),
-			rgba(variables.$color-text-700, 0.05) 10px,
+			rgba(v.$color-text-700, 0.05),
+			rgba(v.$color-text-700, 0.05) 10px,
 			transparent 10px,
 			transparent 20px
 		);
@@ -458,8 +462,8 @@
 
 	&__progress-bar-stage {
 		position: absolute;
-		color: variables.$color-text-700;
-		font-size: variables.$ui-font-size-xs;
+		color: v.$color-text-700;
+		font-size: v.$ui-font-size-xs;
 		top: calc(100% + 0.4rem);
 
 		&--current {
@@ -477,7 +481,7 @@
 			content: '';
 			height: 2rem;
 			width: 1px;
-			background-color: variables.$color-bg-050;
+			background-color: v.$color-bg-050;
 			z-index: -1;
 		}
 	}
@@ -504,12 +508,12 @@
 		top: 0;
 		bottom: 0;
 		width: 5px;
-		border-top: 1px solid variables.$color-bg-050;
-		border-bottom: 1px solid variables.$color-bg-050;
+		border-top: 1px solid v.$color-bg-050;
+		border-bottom: 1px solid v.$color-bg-050;
 
 		&::before {
 			position: absolute;
-			border-color: variables.$color-bg-050;
+			border-color: v.$color-bg-050;
 			border-style: solid;
 			box-sizing: content-box;
 			content: '';
@@ -522,7 +526,7 @@
 
 		&--left {
 			left: -5px;
-			border-left: 1px solid variables.$color-bg-050;
+			border-left: 1px solid v.$color-bg-050;
 			transform-origin: left;
 
 			&::before {
@@ -533,7 +537,7 @@
 
 		&--right {
 			right: -5px;
-			border-right: 1px solid variables.$color-bg-050;
+			border-right: 1px solid v.$color-bg-050;
 			transform-origin: right;
 
 			&::before {

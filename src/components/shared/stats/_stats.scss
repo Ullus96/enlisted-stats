@@ -1,4 +1,4 @@
-@use "../../../sass/abstracts/variables";
+@use '../../../sass/abstracts/variables' as v;
 
 .stats {
 	&__wrapper {
@@ -8,8 +8,8 @@
 
 		&.build {
 			gap: 0.4rem;
-			font-size: variables.$ui-font-size-s;
-			color: variables.$color-text-400;
+			font-size: v.$ui-font-size-s;
+			color: v.$color-text-400;
 		}
 	}
 
@@ -20,6 +20,6 @@
 	}
 
 	&__separator {
-		color: variables.$color-text-700;
+		color: v.$color-text-700;
 	}
 }

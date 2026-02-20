@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .ccard {
 	// ==========
@@ -40,8 +40,8 @@
 	}
 
 	&__tutorial {
-		font-size: variables.$ui-font-size-s;
-		color: variables.$color-text-700;
+		font-size: v.$ui-font-size-s;
+		color: v.$color-text-700;
 		text-align: center;
 		text-wrap: pretty;
 	}
@@ -54,8 +54,8 @@
 	}
 
 	&__load-more-desc {
-		font-size: variables.$ui-font-size-s;
-		color: variables.$color-text-400;
+		font-size: v.$ui-font-size-s;
+		color: v.$color-text-400;
 	}
 
 	&__load-more-number {
@@ -68,7 +68,7 @@
 	// Individual card
 	// =====================
 	// =====================
-	background-color: variables.$color-bg-a-600;
+	background-color: v.$color-bg-a-600;
 	@include mixins.ui-background-blur;
 	width: 100%;
 	max-width: 45rem;
@@ -103,13 +103,13 @@
 	}
 
 	&__header-title {
-		font-size: variables.$ui-font-size-m;
+		font-size: v.$ui-font-size-m;
 		font-weight: 400;
-		color: variables.$color-text-400;
+		color: v.$color-text-400;
 	}
 
 	&__title {
-		font-size: variables.$ui-font-size-m;
+		font-size: v.$ui-font-size-m;
 		font-weight: 400;
 	}
 
@@ -117,7 +117,7 @@
 		display: flex;
 		align-items: center;
 		gap: 0.2rem;
-		color: variables.$color-text-700;
+		color: v.$color-text-700;
 	}
 
 	&__heart-icon {
@@ -140,8 +140,8 @@
 		display: flex;
 		gap: 0.6rem;
 
-		color: variables.$color-text-700;
-		font-size: variables.$ui-font-size-s;
+		color: v.$color-text-700;
+		font-size: v.$ui-font-size-s;
 		line-height: 1;
 	}
 
@@ -171,34 +171,34 @@
 
 	&__pin-btn {
 		& path {
-			stroke: variables.$color-text-900;
+			stroke: v.$color-text-900;
 			fill: transparent;
 		}
 
-		@include mixins.hovered(variables.$color-text-900, variables.$color-bg-a-300);
+		@include mixins.hovered(v.$color-text-900, v.$color-bg-a-300);
 
 		&:focus-visible {
-			@include mixins.focused(variables.$color-text-900, variables.$color-bg-a-300);
+			@include mixins.focused(v.$color-text-900, v.$color-bg-a-300);
 		}
 	}
 
 	&__pin-btn:hover {
 		& path {
-			stroke: variables.$color-warning-200;
+			stroke: v.$color-warning-200;
 			fill: transparent;
 		}
 	}
 
 	&__pin-btn.active {
 		& path {
-			stroke: variables.$color-warning-200;
-			fill: variables.$color-warning-200;
+			stroke: v.$color-warning-200;
+			fill: v.$color-warning-200;
 		}
 
-		@include mixins.hovered(variables.$color-warning-200, variables.$color-bg-a-300);
+		@include mixins.hovered(v.$color-warning-200, v.$color-bg-a-300);
 
 		&:focus-visible {
-			@include mixins.focused(variables.$color-warning-200, variables.$color-bg-a-300);
+			@include mixins.focused(v.$color-warning-200, v.$color-bg-a-300);
 		}
 	}
 

@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .faq {
 	&__section-title-wrapper {
@@ -40,7 +40,7 @@
 
 			.faq {
 				&__title {
-					background-color: variables.$color-bg-500;
+					background-color: v.$color-bg-500;
 					// padding: 1.2rem 2.4rem 1.2rem 2rem;
 				}
 
@@ -57,7 +57,7 @@
 		align-items: center;
 		gap: 1.2rem;
 		padding: 2rem 2.4rem 2rem 2rem;
-		background-color: variables.$color-bg-900;
+		background-color: v.$color-bg-900;
 		cursor: pointer;
 
 		transition: 0.2s ease-in-out padding;
@@ -73,8 +73,8 @@
 
 	&__content {
 		padding: 1.2rem 2rem;
-		background-color: variables.$color-bg-a-500;
-		color: variables.$color-text-400;
+		background-color: v.$color-bg-a-500;
+		color: v.$color-text-400;
 		@include mixins.ui-background-blur;
 
 		& p:not(:first-child) {

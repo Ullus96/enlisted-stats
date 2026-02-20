@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .calculator {
 	margin-top: 2rem;
@@ -31,7 +31,7 @@
 	}
 
 	&__branch {
-		background-color: variables.$color-bg-a-600;
+		background-color: v.$color-bg-a-600;
 		display: flex;
 		flex-direction: column;
 		position: relative;
@@ -70,8 +70,8 @@
 	&__branch-perk-description {
 		text-align: center;
 		text-wrap: balance;
-		color: variables.$color-text-400;
-		font-size: variables.$ui-font-size-s;
+		color: v.$color-text-400;
+		font-size: v.$ui-font-size-s;
 	}
 
 	// hotkeys tooltip
@@ -87,7 +87,7 @@
 		width: calc(100% - 5.6rem);
 		height: 1px;
 		margin: 2rem 2.8rem;
-		background-color: variables.$color-bg-a-050;
+		background-color: v.$color-bg-a-050;
 	}
 
 	// Branch-Tier
@@ -161,7 +161,7 @@
 
 	&__tooltip {
 		text-align: center;
-		font-size: variables.$ui-font-size-s;
+		font-size: v.$ui-font-size-s;
 	}
 
 	&__tooltip-desc {
@@ -176,15 +176,15 @@
 	}
 
 	&__button {
-		background-color: variables.$color-bg-800;
+		background-color: v.$color-bg-800;
 		border-radius: 0.4rem;
 		padding: 0.4rem 0.4rem;
 		flex: 0 0 auto;
 
-		@include mixins.hovered(variables.$color-text-100, variables.$color-bg-800);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-800);
 
 		&:focus-visible {
-			@include mixins.focused(variables.$color-text-100, variables.$color-bg-800);
+			@include mixins.focused(v.$color-text-100, v.$color-bg-800);
 		}
 	}
 
@@ -201,39 +201,39 @@
 	}
 
 	&__bar {
-		background-color: variables.$color-text-700;
+		background-color: v.$color-text-700;
 		flex: 1 1 auto;
 		border-radius: 0.4rem;
 	}
 
 	.base-perk {
-		color: variables.$color-primary-100;
+		color: v.$color-primary-100;
 	}
 
 	&__bar-highlight {
-		background-color: variables.$color-primary-100;
+		background-color: v.$color-primary-100;
 
 		&.mobility {
-			background-color: variables.$color-mobility;
+			background-color: v.$color-mobility;
 		}
 
 		&.vitality {
-			background-color: variables.$color-vitality;
+			background-color: v.$color-vitality;
 		}
 
 		&.weapon {
-			background-color: variables.$color-weapon;
+			background-color: v.$color-weapon;
 		}
 	}
 
 	&__cost-block {
-		font-size: variables.$ui-font-size-xs;
+		font-size: v.$ui-font-size-xs;
 		padding: 0.4rem;
 		display: flex;
 		gap: 2px;
 		justify-content: center;
 		align-items: center;
-		color: variables.$color-text-400;
+		color: v.$color-text-400;
 	}
 
 	// Restriction
@@ -271,15 +271,15 @@
 	}
 
 	&__highlight {
-		color: variables.$color-primary-200;
+		color: v.$color-primary-200;
 	}
 
 	&__restriction-bg {
 		margin-top: -2rem;
 		background: repeating-linear-gradient(
 			-45deg,
-			rgba(variables.$color-text-700, 0.05),
-			rgba(variables.$color-text-700, 0.05) 15px,
+			rgba(v.$color-text-700, 0.05),
+			rgba(v.$color-text-700, 0.05) 15px,
 			transparent 15px,
 			transparent 40px
 		);
@@ -296,7 +296,7 @@
 		padding: 0 1.2rem;
 		width: 100%;
 		max-width: 60rem;
-		color: variables.$color-text-400;
+		color: v.$color-text-400;
 	}
 
 	// save btn and modal
@@ -359,7 +359,7 @@
 
 		&__branch-perk-description {
 			@include mixins.desktop-medium {
-				font-size: variables.$ui-font-size-xs;
+				font-size: v.$ui-font-size-xs;
 			}
 		}
 		// End of header

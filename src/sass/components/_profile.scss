@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .profile {
 	&__avatar-block {
@@ -56,8 +56,8 @@
 	}
 
 	&__option-desc {
-		font-size: variables.$ui-font-size-s;
-		color: variables.$color-text-400;
+		font-size: v.$ui-font-size-s;
+		color: v.$color-text-400;
 
 		&--google {
 			@include mixins.slide-fade-toggle('shown', 180ms, 120px);

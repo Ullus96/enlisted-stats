@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 // сс = custom calculator
 .cc {
@@ -29,10 +29,10 @@
 	}
 
 	&__stat-item {
-		background-color: variables.$color-bg-a-800;
+		background-color: v.$color-bg-a-800;
 		min-width: 11rem;
 		border-radius: 0.8rem;
-		border: 1px solid variables.$color-bg-a-050;
+		border: 1px solid v.$color-bg-a-050;
 		overflow: hidden;
 	}
 
@@ -42,13 +42,13 @@
 		padding: 1.6rem;
 		margin: 0 auto;
 		text-align: center;
-		font-size: variables.$ui-font-size-h1;
+		font-size: v.$ui-font-size-h1;
 	}
 
 	&__stat-name {
 		padding: 0.8rem 1.2rem;
-		font-size: variables.$ui-font-size-xs;
-		color: variables.$color-bg-800;
+		font-size: v.$ui-font-size-xs;
+		color: v.$color-bg-800;
 		font-weight: 700;
 		text-transform: uppercase;
 		text-align: center;
@@ -78,8 +78,8 @@
 
 	&__text-desc {
 		margin-top: 1.6rem;
-		color: variables.$color-text-400;
-		font-size: variables.$ui-font-size-s;
+		color: v.$color-text-400;
+		font-size: v.$ui-font-size-s;
 	}
 
 	&__chips-flex {
@@ -107,11 +107,11 @@
 	}
 
 	&__tag-item:has(> input:focus-visible) {
-		@include mixins.focused(variables.$color-text-100, variables.$color-bg-a-500);
+		@include mixins.focused(v.$color-text-100, v.$color-bg-a-500);
 	}
 
 	&__tag-item:has(> input:focus-visible).active {
-		@include mixins.focused(variables.$color-primary-200, variables.$color-bg-a-500);
+		@include mixins.focused(v.$color-primary-200, v.$color-bg-a-500);
 	}
 
 	&__tag-checkbox {
@@ -147,7 +147,7 @@
 		height: 1px;
 		margin: 0.4rem auto;
 		width: calc(100% - 2rem);
-		background-color: variables.$color-bg-a-050;
+		background-color: v.$color-bg-a-050;
 	}
 
 	// Bottom element
@@ -157,8 +157,8 @@
 	}
 
 	&__disclaimer {
-		color: variables.$color-text-700;
-		font-size: variables.$ui-font-size-s;
+		color: v.$color-text-700;
+		font-size: v.$ui-font-size-s;
 		text-align: center;
 		margin: 2rem auto 0;
 		width: 100%;
@@ -190,7 +190,7 @@
 	}
 
 	&__s-inline-separator {
-		color: variables.$color-text-700;
+		color: v.$color-text-700;
 	}
 
 	&__s-tags-block {

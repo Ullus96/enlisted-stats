@@ -1,24 +1,24 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .chip {
 	padding: 0.8rem 1.2rem;
 	border-radius: 0.8rem;
-	background-color: variables.$color-bg-a-500;
-	border: 1px solid variables.$color-bg-050;
+	background-color: v.$color-bg-a-500;
+	border: 1px solid v.$color-bg-050;
 	@include mixins.ui-shadow;
 	@include mixins.ui-background-blur;
 	cursor: pointer;
 	transition: color 0.12s ease-in-out, border 0.12s ease-in-out;
 
-	@include mixins.hovered(variables.$color-text-100, variables.$color-bg-a-500);
+	@include mixins.hovered(v.$color-text-100, v.$color-bg-a-500);
 
 	&:focus-visible {
-		@include mixins.focused(variables.$color-text-100, variables.$color-bg-a-500);
+		@include mixins.focused(v.$color-text-100, v.$color-bg-a-500);
 	}
 
 	&:disabled {
-		@include mixins.disabled-outlined(variables.$color-text-100, variables.$color-bg-050);
+		@include mixins.disabled-outlined(v.$color-text-100, v.$color-bg-050);
 	}
 
 	& svg {
@@ -44,20 +44,23 @@
 }
 
 .chip.active {
-	color: variables.$color-primary-200;
-	border: 1px solid variables.$color-primary-200;
+	color: v.$color-primary-200;
+	border: 1px solid v.$color-primary-200;
 
 	& path {
-		fill: variables.$color-primary-200;
+		fill: v.$color-primary-200;
 	}
 
-	@include mixins.hovered(variables.$color-primary-200, variables.$color-bg-a-500);
+	@include mixins.hovered(v.$color-primary-200, v.$color-bg-a-500);
 
 	&:focus-visible {
-		@include mixins.focused(variables.$color-primary-200, variables.$color-bg-a-500);
+		@include mixins.focused(v.$color-primary-200, v.$color-bg-a-500);
 	}
 
 	&:disabled {
-		@include mixins.disabled-outlined(variables.$color-primary-200, variables.$color-primary-200);
+		@include mixins.disabled-outlined(
+			v.$color-primary-200,
+			v.$color-primary-200
+		);
 	}
 }

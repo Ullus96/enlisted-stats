@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .btn {
 	&:disabled {
@@ -26,45 +26,45 @@
 	}
 
 	&-primary {
-		background-color: variables.$color-primary-a-500;
+		background-color: v.$color-primary-a-500;
 		@include mixins.ui-background-blur;
 
-		@include mixins.hovered(variables.$color-text-100, variables.$color-primary-a-500);
+		@include mixins.hovered(v.$color-text-100, v.$color-primary-a-500);
 
 		&:focus-visible {
-			@include mixins.focused(variables.$color-text-100, variables.$color-primary-a-500);
+			@include mixins.focused(v.$color-text-100, v.$color-primary-a-500);
 		}
 
 		&:disabled {
-			@include mixins.disabled-filled(variables.$color-primary-a-500);
+			@include mixins.disabled-filled(v.$color-primary-a-500);
 		}
 	}
 
 	&-secondary {
-		background-color: variables.$color-bg-a-800;
-		outline: 1px solid variables.$color-bg-050;
+		background-color: v.$color-bg-a-800;
+		outline: 1px solid v.$color-bg-050;
 		@include mixins.ui-background-blur;
 
-		@include mixins.hovered(variables.$color-text-100, variables.$color-bg-a-800);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-a-800);
 
 		&:focus-visible {
-			@include mixins.focused(variables.$color-text-100, variables.$color-bg-a-800);
+			@include mixins.focused(v.$color-text-100, v.$color-bg-a-800);
 		}
 
 		&:disabled {
-			@include mixins.disabled-outlined(variables.$color-text-100, variables.$color-bg-050);
+			@include mixins.disabled-outlined(v.$color-text-100, v.$color-bg-050);
 		}
 	}
 
 	&-tertiary {
-		@include mixins.hovered(variables.$color-text-100, variables.$color-bg-a-300);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-a-300);
 
 		&:focus-visible {
-			@include mixins.focused(variables.$color-text-100, variables.$color-bg-a-300);
+			@include mixins.focused(v.$color-text-100, v.$color-bg-a-300);
 		}
 
 		&:disabled {
-			@include mixins.disabled-outlined(variables.$color-text-100, variables.$color-bg-050);
+			@include mixins.disabled-outlined(v.$color-text-100, v.$color-bg-050);
 		}
 	}
 }

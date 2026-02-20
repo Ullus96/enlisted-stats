@@ -1,31 +1,31 @@
-@use "variables";
+@use 'variables' as v;
 
 .mobility {
-	color: variables.$color-mobility;
+	color: v.$color-mobility;
 }
 .mobility-bg {
-	background-color: variables.$color-mobility;
+	background-color: v.$color-mobility;
 }
 .mobility-bg-a {
-	background-color: variables.$color-mobility-a;
+	background-color: v.$color-mobility-a;
 }
 
 .vitality {
-	color: variables.$color-vitality;
+	color: v.$color-vitality;
 }
 .vitality-bg {
-	background-color: variables.$color-vitality;
+	background-color: v.$color-vitality;
 }
 .vitality-bg-a {
-	background-color: variables.$color-vitality-a;
+	background-color: v.$color-vitality-a;
 }
 
 .weapon {
-	color: variables.$color-weapon;
+	color: v.$color-weapon;
 }
 .weapon-bg {
-	background-color: variables.$color-weapon;
+	background-color: v.$color-weapon;
 }
 .weapon-bg-a {
-	background-color: variables.$color-weapon-a;
+	background-color: v.$color-weapon-a;
 }

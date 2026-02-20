@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .sbuild {
 	&__grid {
@@ -19,7 +19,7 @@
 
 	&__item {
 		border-radius: 0.8rem;
-		background-color: variables.$color-bg-a-500;
+		background-color: v.$color-bg-a-500;
 		@include mixins.ui-background-blur;
 		display: flex;
 		gap: 1.2rem;
@@ -28,7 +28,7 @@
 			cursor: pointer;
 			position: relative;
 
-			@include mixins.hovered(variables.$color-text-100, variables.$color-bg-a-500);
+			@include mixins.hovered(v.$color-text-100, v.$color-bg-a-500);
 		}
 	}
 
@@ -67,8 +67,8 @@
 	&__info-col {
 		flex: 0 0 auto;
 		padding: 0.4rem;
-		color: variables.$color-text-400;
-		font-size: variables.$ui-font-size-s;
+		color: v.$color-text-400;
+		font-size: v.$ui-font-size-s;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -82,7 +82,7 @@
 		padding: 0.8rem;
 		border-radius: 0.4rem;
 
-		@include mixins.hovered(variables.$color-text-100, variables.$color-bg-a-200);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-a-200);
 	}
 
 	&__likes-block--no-anim {
@@ -105,8 +105,8 @@
 		&:hover {
 			.sbuild {
 				&__likes-svg path {
-					stroke: variables.$color-danger-200;
-					fill: variables.$color-danger-200;
+					stroke: v.$color-danger-200;
+					fill: v.$color-danger-200;
 				}
 			}
 		}
@@ -131,13 +131,13 @@
 
 		.sbuild {
 			&__likes-amount {
-				color: variables.$color-danger-200;
+				color: v.$color-danger-200;
 			}
 
 			&__likes-svg {
 				path {
-					stroke: variables.$color-danger-200;
-					fill: variables.$color-danger-200;
+					stroke: v.$color-danger-200;
+					fill: v.$color-danger-200;
 				}
 			}
 		}
@@ -159,8 +159,8 @@
 			transition: top 0.6s ease-out, left 0.6s ease-out, opacity 0.6s ease-out;
 
 			& path {
-				stroke: variables.$color-danger-200 !important;
-				fill: variables.$color-danger-200 !important;
+				stroke: v.$color-danger-200 !important;
+				fill: v.$color-danger-200 !important;
 			}
 		}
 

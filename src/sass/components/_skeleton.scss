@@ -1,4 +1,4 @@
-@use "../abstracts/variables";
+@use '../abstracts/variables' as v;
 
 .skeleton {
 	&__tabs {
@@ -8,7 +8,7 @@
 	&__tab {
 		width: 10rem;
 		height: 3rem;
-		background: variables.$color-text-900;
+		background: v.$color-text-900;
 		border-radius: 0.4rem;
 	}
 
@@ -16,7 +16,7 @@
 		height: 2.4rem;
 		width: 24rem;
 		border-radius: 0.4rem;
-		background: variables.$color-text-900;
+		background: v.$color-text-900;
 	}
 
 	&__flex-col {
@@ -30,7 +30,7 @@
 		height: 1.4rem;
 		width: 80%;
 		border-radius: 0.4rem;
-		background: variables.$color-text-900;
+		background: v.$color-text-900;
 
 		&--short {
 			width: 35%;

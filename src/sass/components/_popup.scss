@@ -1,5 +1,5 @@
-@use "../abstracts/mixins";
-@use "../abstracts/variables";
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
 
 .popup {
 	position: fixed;
@@ -9,7 +9,7 @@
 	width: 95%;
 	max-width: 60rem;
 	padding: 3.2rem 2rem 3.2rem 2.4rem;
-	background-color: variables.$color-bg-a-500;
+	background-color: v.$color-bg-a-500;
 	border-radius: 0.8rem;
 	overflow: hidden;
 	@include mixins.ui-background-blur;
@@ -21,24 +21,24 @@
 		width: 0.4rem;
 		top: 0;
 		bottom: 0;
-		background-color: variables.$color-text-700;
+		background-color: v.$color-text-700;
 	}
 
 	&.danger {
 		&::after {
-			background-color: variables.$color-danger-200;
+			background-color: v.$color-danger-200;
 		}
 	}
 
 	&.warning {
 		&::after {
-			background-color: variables.$color-warning-200;
+			background-color: v.$color-warning-200;
 		}
 	}
 
 	&.success {
 		&::after {
-			background-color: variables.$color-success-200;
+			background-color: v.$color-success-200;
 		}
 	}
 
@@ -49,6 +49,6 @@
 	}
 
 	&__desc {
-		color: variables.$color-text-400;
+		color: v.$color-text-400;
 	}
 }
