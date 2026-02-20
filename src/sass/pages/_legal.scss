@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as v;
+
 .legal {
 	display: flex;
 	flex-direction: column;
@@ -17,27 +19,27 @@
 	}
 
 	& table {
-		background-color: $color-bg-a-600;
+		background-color: v.$color-bg-a-600;
 
 		td {
 			padding: 0.8rem 1.2rem;
 		}
 
 		tr td:nth-child(1) {
-			border-right: solid 1px $color-bg-050;
-			border-left: solid 1px $color-bg-050;
+			border-right: solid 1px v.$color-bg-050;
+			border-left: solid 1px v.$color-bg-050;
 		}
 
 		tr td:nth-child(2) {
-			border-right: solid 1px $color-bg-050;
+			border-right: solid 1px v.$color-bg-050;
 		}
 
 		tr:nth-child(1) td {
-			border-top: 1px solid $color-bg-050;
+			border-top: 1px solid v.$color-bg-050;
 		}
 
 		td {
-			border-bottom: 1px solid $color-bg-050;
+			border-bottom: 1px solid v.$color-bg-050;
 		}
 	}
 }

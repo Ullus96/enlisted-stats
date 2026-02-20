@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as v;
+
 @mixin admin-width {
 	width: 100%;
 	max-width: 48rem;
@@ -11,13 +13,13 @@
 
 	&__tab {
 		padding: 0.8rem 1.2rem;
-		color: $color-text-700;
-		border-bottom: 2px solid $color-text-700;
+		color: v.$color-text-700;
+		border-bottom: 2px solid v.$color-text-700;
 		transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
 
 		&.active {
-			color: $color-text-100;
-			border-bottom: 2px solid $color-text-100;
+			color: v.$color-text-100;
+			border-bottom: 2px solid v.$color-text-100;
 		}
 
 		&:focus {
@@ -49,21 +51,21 @@
 		@include admin-width;
 		margin-top: 0.8rem;
 		text-align: right;
-		color: $color-text-700;
-		font-size: $ui-font-size-xs;
+		color: v.$color-text-700;
+		font-size: v.$ui-font-size-xs;
 	}
 
 	&__separator {
 		display: block;
 		@include admin-width;
-		height: $ui-font-size-xs;
+		height: v.$ui-font-size-xs;
 		margin-top: 0.8rem;
 	}
 
 	&__stages-useful-symbols-wrapper {
 		margin-top: 0.4rem;
-		color: $color-text-400;
-		font-size: $ui-font-size-s;
+		color: v.$color-text-400;
+		font-size: v.$ui-font-size-s;
 		display: flex;
 		flex-direction: column;
 		gap: 0.4rem;

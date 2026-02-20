@@ -1,3 +1,6 @@
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
+
 .faq {
 	&__section-title-wrapper {
 		display: flex;
@@ -37,7 +40,7 @@
 
 			.faq {
 				&__title {
-					background-color: $color-bg-500;
+					background-color: v.$color-bg-500;
 					// padding: 1.2rem 2.4rem 1.2rem 2rem;
 				}
 
@@ -54,7 +57,7 @@
 		align-items: center;
 		gap: 1.2rem;
 		padding: 2rem 2.4rem 2rem 2rem;
-		background-color: $color-bg-900;
+		background-color: v.$color-bg-900;
 		cursor: pointer;
 
 		transition: 0.2s ease-in-out padding;
@@ -70,9 +73,9 @@
 
 	&__content {
 		padding: 1.2rem 2rem;
-		background-color: $color-bg-a-500;
-		color: $color-text-400;
-		@include ui-background-blur;
+		background-color: v.$color-bg-a-500;
+		color: v.$color-text-400;
+		@include mixins.ui-background-blur;
 
 		& p:not(:first-child) {
 			margin-top: 0.8rem;

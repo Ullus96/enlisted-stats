@@ -1,3 +1,6 @@
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
+
 .table {
 	&__search {
 		margin: 0 auto;
@@ -6,16 +9,16 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: $color-bg-800;
-		border: 1px solid $color-bg-a-050;
+		background-color: v.$color-bg-800;
+		border: 1px solid v.$color-bg-a-050;
 		border-radius: 1.2rem;
 
 		& path {
-			fill: $color-text-700;
+			fill: v.$color-text-700;
 		}
 
 		&:focus-visible {
-			@include focused($color-text-100, $color-bg-800);
+			@include mixins.focused(v.$color-text-100, v.$color-bg-800);
 		}
 	}
 
@@ -26,29 +29,29 @@
 
 	&__input {
 		padding: 1.2rem 1.6rem 1.2rem 0.8rem;
-		font-size: $ui-font-size-base;
+		font-size: v.$ui-font-size-base;
 		color-scheme: dark;
 		width: calc(100% - 3.2rem);
 		max-width: 40rem;
 		flex: 0 0 auto;
 
 		&::placeholder {
-			color: $color-text-700;
+			color: v.$color-text-700;
 		}
 
 		&.error {
-			outline: 1px solid $color-danger-200;
+			outline: 1px solid v.$color-danger-200;
 		}
 
 		&:disabled {
-			color: $color-text-400;
+			color: v.$color-text-400;
 			cursor: auto;
 		}
 	}
 
 	// table itself
 	&__header {
-		background-color: $color-bg-900;
+		background-color: v.$color-bg-900;
 		padding: 2rem;
 		display: grid;
 		grid-template-columns: 16rem repeat(5, 1fr) 4fr;
@@ -57,7 +60,7 @@
 			cursor: auto;
 		}
 
-		@include tablet {
+		@include mixins.tablet {
 			grid-template-columns: repeat(5, 1fr);
 		}
 	}
@@ -65,7 +68,7 @@
 	&__col--first {
 		display: flex;
 		align-items: center;
-		@include tablet {
+		@include mixins.tablet {
 			display: none;
 		}
 	}
@@ -78,8 +81,8 @@
 		display: flex;
 		justify-content: center;
 
-		@include tablet {
-			font-size: $ui-font-size-xs;
+		@include mixins.tablet {
+			font-size: v.$ui-font-size-xs;
 		}
 	}
 
@@ -87,7 +90,7 @@
 		display: flex;
 		justify-content: center;
 
-		@include tablet {
+		@include mixins.tablet {
 			display: none;
 		}
 	}
@@ -106,16 +109,16 @@
 	&__row--body {
 		position: relative;
 		cursor: pointer;
-		background-color: $color-bg-a-500;
+		background-color: v.$color-bg-a-500;
 		padding: 2rem 1.6rem;
-		font-size: $ui-font-size-s;
+		font-size: v.$ui-font-size-s;
 		display: grid;
 		grid-template-columns: 16rem repeat(5, 1fr) 4fr;
 		gap: 0.8rem 0rem;
 
-		@include hovered($color-text-100, $color-bg-a-500);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-a-500);
 
-		@include tablet {
+		@include mixins.tablet {
 			grid-template-columns: repeat(5, 1fr);
 			grid-template-rows: 1fr auto;
 		}
@@ -135,13 +138,13 @@
 			width: 1px;
 			top: -1.2rem;
 			bottom: -1.2rem;
-			background-color: $color-bg-050;
+			background-color: v.$color-bg-050;
 		}
 
-		@include tablet {
+		@include mixins.tablet {
 			grid-column: 1/3;
 			padding-bottom: 0.4rem;
-			border-bottom: 1px solid $color-bg-050;
+			border-bottom: 1px solid v.$color-bg-050;
 
 			&::after {
 				display: none;
@@ -179,17 +182,17 @@
 	}
 
 	&__col--stat span:nth-child(1) {
-		color: $color-mobility;
+		color: v.$color-mobility;
 		font-weight: 700;
 	}
 
 	&__col--stat span:nth-child(3) {
-		color: $color-vitality;
+		color: v.$color-vitality;
 		font-weight: 700;
 	}
 
 	&__col--stat span:nth-child(5) {
-		color: $color-weapon;
+		color: v.$color-weapon;
 		font-weight: 700;
 	}
 
@@ -205,15 +208,15 @@
 			width: 1px;
 			top: -1.2rem;
 			bottom: -1.2rem;
-			background-color: $color-bg-050;
+			background-color: v.$color-bg-050;
 		}
 
-		@include tablet {
-			font-size: $ui-font-size-xs;
+		@include mixins.tablet {
+			font-size: v.$ui-font-size-xs;
 			grid-row: 1/2;
 			grid-column: 3/6;
 			padding-bottom: 0.4rem;
-			border-bottom: 1px solid $color-bg-050;
+			border-bottom: 1px solid v.$color-bg-050;
 
 			&::before {
 				display: none;
@@ -228,7 +231,7 @@
 		grid-template-columns: repeat(3, 1fr);
 		gap: 4rem;
 
-		@include desktop-small {
+		@include mixins.desktop-small {
 			gap: 0;
 			display: flex;
 			flex-direction: column;
@@ -256,7 +259,7 @@
 		flex-wrap: wrap;
 		gap: 2rem;
 
-		@include phone {
+		@include mixins.phone {
 			flex-wrap: nowrap;
 			flex-direction: column;
 			align-items: center;
@@ -264,12 +267,12 @@
 	}
 
 	&__build {
-		background-color: $color-bg-a-600;
-		@include ui-background-blur;
+		background-color: v.$color-bg-a-600;
+		@include mixins.ui-background-blur;
 		flex: 0 0 45rem;
 		min-width: 45rem;
 
-		@include phone {
+		@include mixins.phone {
 			flex: 1 1 auto;
 			min-width: 100%;
 		}
@@ -284,8 +287,8 @@
 	}
 
 	&__promo-or {
-		color: $color-text-400;
-		font-size: $ui-font-size-s;
+		color: v.$color-text-400;
+		font-size: v.$ui-font-size-s;
 	}
 
 	&__calculator {

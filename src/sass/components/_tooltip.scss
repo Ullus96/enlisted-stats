@@ -1,7 +1,10 @@
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
+
 .tooltip-anchor {
 	position: relative;
 
-	@include hover-touch {
+	@include mixins.hover-touch {
 		.tooltip {
 			visibility: visible;
 			opacity: 1;
@@ -10,7 +13,7 @@
 }
 
 .tooltip-anchor--no-relative {
-	@include hover-touch {
+	@include mixins.hover-touch {
 		.tooltip {
 			visibility: visible;
 			opacity: 1;
@@ -35,13 +38,13 @@
 
 	transition: opacity 0.18s 0.15s ease-in, visibility 0.2s 0.2s ease-in;
 
-	@include ui-shadow;
+	@include mixins.ui-shadow;
 
-	color: $color-text-100;
-	background-color: $color-bg-500;
+	color: v.$color-text-100;
+	background-color: v.$color-bg-500;
 
 	&.dark {
-		background-color: $color-bg-800;
+		background-color: v.$color-bg-800;
 	}
 
 	&::after {
@@ -82,7 +85,7 @@
 		&::after {
 			bottom: 0px;
 			transform: translate(-50%, 50%) rotateZ(45deg);
-			background: linear-gradient(-45deg, $color-bg-500 60%, transparent 60%);
+			background: linear-gradient(-45deg, v.$color-bg-500 60%, transparent 60%);
 		}
 
 		&::before {
@@ -91,7 +94,7 @@
 	}
 
 	&.dark.top::after {
-		background: linear-gradient(-45deg, $color-bg-800 60%, transparent 60%);
+		background: linear-gradient(-45deg, v.$color-bg-800 60%, transparent 60%);
 	}
 
 	// bottom
@@ -102,7 +105,7 @@
 		&::after {
 			top: 0px;
 			transform: translate(-50%, -50%) rotateZ(135deg);
-			background: linear-gradient(45deg, $color-bg-500 60%, transparent 60%);
+			background: linear-gradient(45deg, v.$color-bg-500 60%, transparent 60%);
 		}
 
 		&::before {
@@ -111,7 +114,7 @@
 	}
 
 	&.dark.bottom::after {
-		background: linear-gradient(45deg, $color-bg-800 60%, transparent 60%);
+		background: linear-gradient(45deg, v.$color-bg-800 60%, transparent 60%);
 	}
 
 	// left
@@ -124,7 +127,7 @@
 			right: 0;
 			top: 50%;
 			transform: translate(50%, -50%) rotateZ(-135deg);
-			background: linear-gradient(45deg, $color-bg-500 60%, transparent 60%);
+			background: linear-gradient(45deg, v.$color-bg-500 60%, transparent 60%);
 		}
 
 		&::before {
@@ -136,7 +139,7 @@
 	}
 
 	&.dark.left::after {
-		background: linear-gradient(45deg, $color-bg-800 60%, transparent 60%);
+		background: linear-gradient(45deg, v.$color-bg-800 60%, transparent 60%);
 	}
 
 	// right
@@ -154,7 +157,7 @@
 			left: 0;
 			top: 50%;
 			transform: translate(-50%, -50%) rotateZ(45deg);
-			background: linear-gradient(45deg, $color-bg-500 60%, transparent 60%);
+			background: linear-gradient(45deg, v.$color-bg-500 60%, transparent 60%);
 		}
 
 		&::before {
@@ -166,6 +169,6 @@
 	}
 
 	&.dark.right::after {
-		background: linear-gradient(45deg, $color-bg-800 60%, transparent 60%);
+		background: linear-gradient(45deg, v.$color-bg-800 60%, transparent 60%);
 	}
 }

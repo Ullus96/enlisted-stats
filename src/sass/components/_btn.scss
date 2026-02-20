@@ -1,3 +1,6 @@
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
+
 .btn {
 	&:disabled {
 		cursor: not-allowed;
@@ -23,45 +26,45 @@
 	}
 
 	&-primary {
-		background-color: $color-primary-a-500;
-		@include ui-background-blur;
+		background-color: v.$color-primary-a-500;
+		@include mixins.ui-background-blur;
 
-		@include hovered($color-text-100, $color-primary-a-500);
+		@include mixins.hovered(v.$color-text-100, v.$color-primary-a-500);
 
 		&:focus-visible {
-			@include focused($color-text-100, $color-primary-a-500);
+			@include mixins.focused(v.$color-text-100, v.$color-primary-a-500);
 		}
 
 		&:disabled {
-			@include disabled-filled($color-primary-a-500);
+			@include mixins.disabled-filled(v.$color-primary-a-500);
 		}
 	}
 
 	&-secondary {
-		background-color: $color-bg-a-800;
-		outline: 1px solid $color-bg-050;
-		@include ui-background-blur;
+		background-color: v.$color-bg-a-800;
+		outline: 1px solid v.$color-bg-050;
+		@include mixins.ui-background-blur;
 
-		@include hovered($color-text-100, $color-bg-a-800);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-a-800);
 
 		&:focus-visible {
-			@include focused($color-text-100, $color-bg-a-800);
+			@include mixins.focused(v.$color-text-100, v.$color-bg-a-800);
 		}
 
 		&:disabled {
-			@include disabled-outlined($color-text-100, $color-bg-050);
+			@include mixins.disabled-outlined(v.$color-text-100, v.$color-bg-050);
 		}
 	}
 
 	&-tertiary {
-		@include hovered($color-text-100, $color-bg-a-300);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-a-300);
 
 		&:focus-visible {
-			@include focused($color-text-100, $color-bg-a-300);
+			@include mixins.focused(v.$color-text-100, v.$color-bg-a-300);
 		}
 
 		&:disabled {
-			@include disabled-outlined($color-text-100, $color-bg-050);
+			@include mixins.disabled-outlined(v.$color-text-100, v.$color-bg-050);
 		}
 	}
 }

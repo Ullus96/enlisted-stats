@@ -1,11 +1,14 @@
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
+
 .aside {
 	position: sticky;
 	top: 0;
 	height: 100dvh;
 	width: 7.2rem;
 	padding: 2.4rem 0 1.2rem;
-	background-color: $color-bg-a-700;
-	@include ui-background-blur;
+	background-color: v.$color-bg-a-700;
+	@include mixins.ui-background-blur;
 	z-index: 30;
 	white-space: nowrap;
 	display: flex;
@@ -43,7 +46,7 @@
 		width: 5rem;
 		aspect-ratio: 1/1;
 		left: 1.1rem;
-		background-color: rgba($color-bg-500, 0.75);
+		background-color: rgba(v.$color-bg-500, 0.75);
 		border-radius: 100%;
 		transition: left 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
@@ -72,7 +75,7 @@
 
 	&__line {
 		min-height: 1px;
-		background-color: $color-text-900;
+		background-color: v.$color-text-900;
 		margin: 0 auto;
 		width: 100%;
 
@@ -90,7 +93,7 @@
 		flex: 1;
 		gap: 2.4rem;
 
-		@include desktop-small {
+		@include mixins.desktop-small {
 			// 2rem - 1.2rem - paddings of Aside itself
 			// 5rem - height of the profile block
 			// 3.7rem - line (.1rem) + its' paddings
@@ -130,19 +133,19 @@
 		z-index: 0;
 
 		&:focus-visible {
-			@include focused($color-text-100, $color-bg-a-700);
+			@include mixins.focused(v.$color-text-100, v.$color-bg-a-700);
 		}
 
-		@include hovered($color-text-100, $color-bg-a-700);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-a-700);
 
 		&.router-link-active {
-			background-color: $color-bg-300;
+			background-color: v.$color-bg-300;
 
 			&:focus-visible {
-				@include focused($color-text-100, $color-bg-300);
+				@include mixins.focused(v.$color-text-100, v.$color-bg-300);
 			}
 
-			@include hovered($color-text-100, $color-bg-300);
+			@include mixins.hovered(v.$color-text-100, v.$color-bg-300);
 		}
 	}
 
@@ -153,8 +156,8 @@
 	}
 
 	&__footer {
-		font-size: $ui-font-size-xs;
-		color: $color-text-700;
+		font-size: v.$ui-font-size-xs;
+		color: v.$color-text-700;
 		line-height: 150%;
 		white-space: normal;
 		position: absolute;
@@ -228,7 +231,7 @@
 		right: 2.4rem;
 		// transform: translate(calc(100% - 2.4rem - 5rem), calc(-2.4rem - 5rem));
 
-		@include desktop-small {
+		@include mixins.desktop-small {
 			display: flex;
 		}
 	}
@@ -237,21 +240,21 @@
 		display: none;
 		z-index: 1;
 		padding: 1.2rem;
-		background-color: $color-bg-a-700;
-		@include ui-background-blur;
+		background-color: v.$color-bg-a-700;
+		@include mixins.ui-background-blur;
 		border-radius: 0.8rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 
-		@include hovered($color-text-100, $color-bg-a-700);
+		@include mixins.hovered(v.$color-text-100, v.$color-bg-a-700);
 
 		&:focus-visible {
-			@include focused($color-text-100, $color-bg-a-700);
+			@include mixins.focused(v.$color-text-100, v.$color-bg-a-700);
 		}
 
-		@include desktop-small {
+		@include mixins.desktop-small {
 			display: flex;
 		}
 	}
@@ -269,7 +272,7 @@
 	}
 
 	// Aside mobile structure with activated state
-	@include desktop-small {
+	@include mixins.desktop-small {
 		display: none;
 
 		&__profile {

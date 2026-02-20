@@ -1,3 +1,6 @@
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as v;
+
 .ccard {
 	// ==========
 	// ==========
@@ -11,7 +14,7 @@
 		flex-direction: column;
 		gap: 2.4rem;
 
-		@include desktop-small {
+		@include mixins.desktop-small {
 			margin: 0 auto;
 			width: 100%;
 			max-width: 45rem;
@@ -37,8 +40,8 @@
 	}
 
 	&__tutorial {
-		font-size: $ui-font-size-s;
-		color: $color-text-700;
+		font-size: v.$ui-font-size-s;
+		color: v.$color-text-700;
 		text-align: center;
 		text-wrap: pretty;
 	}
@@ -51,8 +54,8 @@
 	}
 
 	&__load-more-desc {
-		font-size: $ui-font-size-s;
-		color: $color-text-400;
+		font-size: v.$ui-font-size-s;
+		color: v.$color-text-400;
 	}
 
 	&__load-more-number {
@@ -65,8 +68,8 @@
 	// Individual card
 	// =====================
 	// =====================
-	background-color: $color-bg-a-600;
-	@include ui-background-blur;
+	background-color: v.$color-bg-a-600;
+	@include mixins.ui-background-blur;
 	width: 100%;
 	max-width: 45rem;
 	display: flex;
@@ -100,13 +103,13 @@
 	}
 
 	&__header-title {
-		font-size: $ui-font-size-m;
+		font-size: v.$ui-font-size-m;
 		font-weight: 400;
-		color: $color-text-400;
+		color: v.$color-text-400;
 	}
 
 	&__title {
-		font-size: $ui-font-size-m;
+		font-size: v.$ui-font-size-m;
 		font-weight: 400;
 	}
 
@@ -114,7 +117,7 @@
 		display: flex;
 		align-items: center;
 		gap: 0.2rem;
-		color: $color-text-700;
+		color: v.$color-text-700;
 	}
 
 	&__heart-icon {
@@ -137,14 +140,14 @@
 		display: flex;
 		gap: 0.6rem;
 
-		color: $color-text-700;
-		font-size: $ui-font-size-s;
+		color: v.$color-text-700;
+		font-size: v.$ui-font-size-s;
 		line-height: 1;
 	}
 
 	&__name-date-section {
 		&:has(.ccard__updated-block) {
-			@include desktop-small {
+			@include mixins.desktop-small {
 				.ccard__date {
 					display: none;
 				}
@@ -168,34 +171,34 @@
 
 	&__pin-btn {
 		& path {
-			stroke: $color-text-900;
+			stroke: v.$color-text-900;
 			fill: transparent;
 		}
 
-		@include hovered($color-text-900, $color-bg-a-300);
+		@include mixins.hovered(v.$color-text-900, v.$color-bg-a-300);
 
 		&:focus-visible {
-			@include focused($color-text-900, $color-bg-a-300);
+			@include mixins.focused(v.$color-text-900, v.$color-bg-a-300);
 		}
 	}
 
 	&__pin-btn:hover {
 		& path {
-			stroke: $color-warning-200;
+			stroke: v.$color-warning-200;
 			fill: transparent;
 		}
 	}
 
 	&__pin-btn.active {
 		& path {
-			stroke: $color-warning-200;
-			fill: $color-warning-200;
+			stroke: v.$color-warning-200;
+			fill: v.$color-warning-200;
 		}
 
-		@include hovered($color-warning-200, $color-bg-a-300);
+		@include mixins.hovered(v.$color-warning-200, v.$color-bg-a-300);
 
 		&:focus-visible {
-			@include focused($color-warning-200, $color-bg-a-300);
+			@include mixins.focused(v.$color-warning-200, v.$color-bg-a-300);
 		}
 	}
 
