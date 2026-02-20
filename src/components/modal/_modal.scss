@@ -1,3 +1,6 @@
+@use "../../sass/abstracts/mixins";
+@use "../../sass/abstracts/variables";
+
 .modal {
 	// Base modal template styles
 	z-index: 40;
@@ -9,13 +12,13 @@
 	width: clamp(20rem, calc(100% - 4rem), 34rem);
 	margin: 0 auto;
 	padding: 3.2rem 2rem 2rem;
-	background-color: $color-bg-a-700;
-	@include ui-background-blur;
+	background-color: variables.$color-bg-a-700;
+	@include mixins.ui-background-blur;
 	border-radius: 1.2rem;
 	text-align: center;
 
 	&__page-mask {
-		@include modal-page-mask;
+		@include mixins.modal-page-mask;
 	}
 
 	&__btn {
@@ -39,16 +42,16 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		background-color: $color-text-100;
+		background-color: variables.$color-text-100;
 		margin: 6rem auto 0;
 		padding: 1.2rem 1.2rem;
 		border-radius: 0.8rem;
 		gap: 1.2rem;
 
-		@include hovered($color-bg-100, $color-text-100);
+		@include mixins.hovered(variables.$color-bg-100, variables.$color-text-100);
 
 		&:focus {
-			@include focused($color-bg-100, $color-text-100);
+			@include mixins.focused(variables.$color-bg-100, variables.$color-text-100);
 		}
 	}
 
@@ -58,17 +61,17 @@
 	}
 
 	&__google-text {
-		color: $color-bg-100;
+		color: variables.$color-bg-100;
 	}
 
 	&__legal {
 		margin-top: 6rem;
-		font-size: $ui-font-size-s;
-		color: $color-text-400;
+		font-size: variables.$ui-font-size-s;
+		color: variables.$color-text-400;
 	}
 
 	&__link {
-		@include link;
+		@include mixins.link;
 	}
 
 	// "Contacts" modal
@@ -78,13 +81,13 @@
 		flex-direction: column;
 		gap: 2rem;
 		text-align: left;
-		color: $color-text-400;
+		color: variables.$color-text-400;
 		margin-top: 2.4rem;
-		font-size: $ui-font-size-s;
+		font-size: variables.$ui-font-size-s;
 	}
 
 	&__accent {
-		color: $color-primary-200;
+		color: variables.$color-primary-200;
 		font-weight: 700;
 	}
 
@@ -98,8 +101,8 @@
 		display: flex;
 		align-items: center;
 		gap: 0.8rem;
-		font-size: $ui-font-size-base;
-		color: $color-text-100;
+		font-size: variables.$ui-font-size-base;
+		color: variables.$color-text-100;
 	}
 
 	&__contact.modal__link {
@@ -119,13 +122,13 @@
 
 	// Save Modal
 	&__desc {
-		font-size: $ui-font-size-s;
+		font-size: variables.$ui-font-size-s;
 	}
 
 	&__input-checkbox {
 		display: flex;
 		align-items: center;
-		color: $color-text-100;
+		color: variables.$color-text-100;
 		gap: 0.8rem;
 	}
 

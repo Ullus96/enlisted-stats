@@ -1,29 +1,31 @@
+@use "variables";
+
 .mobility {
-	color: $color-mobility;
+	color: variables.$color-mobility;
 }
 .mobility-bg {
-	background-color: $color-mobility;
+	background-color: variables.$color-mobility;
 }
 .mobility-bg-a {
-	background-color: $color-mobility-a;
+	background-color: variables.$color-mobility-a;
 }
 
 .vitality {
-	color: $color-vitality;
+	color: variables.$color-vitality;
 }
 .vitality-bg {
-	background-color: $color-vitality;
+	background-color: variables.$color-vitality;
 }
 .vitality-bg-a {
-	background-color: $color-vitality-a;
+	background-color: variables.$color-vitality-a;
 }
 
 .weapon {
-	color: $color-weapon;
+	color: variables.$color-weapon;
 }
 .weapon-bg {
-	background-color: $color-weapon;
+	background-color: variables.$color-weapon;
 }
 .weapon-bg-a {
-	background-color: $color-weapon-a;
+	background-color: variables.$color-weapon-a;
 }

@@ -1,15 +1,17 @@
+@use "../abstracts/variables";
+
 .debug {
 	position: absolute;
 	right: 0;
 	top: 20%;
 	width: 40rem;
 	padding: 1.6rem 2.4rem;
-	background-color: $color-bg-a-500;
+	background-color: variables.$color-bg-a-500;
 	overflow: hidden;
 
 	&__title {
 		margin-bottom: 0.4rem;
-		color: $color-text-400;
+		color: variables.$color-text-400;
 	}
 
 	&__line {

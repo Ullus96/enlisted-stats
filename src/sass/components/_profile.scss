@@ -1,3 +1,6 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 .profile {
 	&__avatar-block {
 		display: flex;
@@ -53,11 +56,11 @@
 	}
 
 	&__option-desc {
-		font-size: $ui-font-size-s;
-		color: $color-text-400;
+		font-size: variables.$ui-font-size-s;
+		color: variables.$color-text-400;
 
 		&--google {
-			@include slide-fade-toggle('shown', 180ms, 120px);
+			@include mixins.slide-fade-toggle('shown', 180ms, 120px);
 		}
 	}
 
@@ -93,7 +96,7 @@
 		border-radius: 0.8rem;
 		transform: scale(1.5);
 
-		@include tablet {
+		@include mixins.tablet {
 			transform: scale(1.25);
 		}
 	}

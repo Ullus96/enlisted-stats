@@ -1,16 +1,18 @@
+@use "../../sass/abstracts/variables";
+
 .tabs {
 	margin-top: 2rem;
 	display: flex;
 
 	&__tab {
 		padding: 0.8rem 1.2rem;
-		color: $color-text-700;
-		border-bottom: 2px solid $color-text-700;
+		color: variables.$color-text-700;
+		border-bottom: 2px solid variables.$color-text-700;
 		transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
 
 		&.active {
-			color: $color-text-100;
-			border-bottom: 2px solid $color-text-100;
+			color: variables.$color-text-100;
+			border-bottom: 2px solid variables.$color-text-100;
 		}
 
 		&:focus {

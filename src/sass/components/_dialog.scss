@@ -1,6 +1,9 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 .dialog {
 	&__page-mask {
-		@include modal-page-mask;
+		@include mixins.modal-page-mask;
 	}
 
 	&__title {
@@ -11,13 +14,13 @@
 	&__desc {
 		margin-top: 2rem;
 		text-align: left;
-		color: $color-text-400;
-		font-size: $ui-font-size-s;
+		color: variables.$color-text-400;
+		font-size: variables.$ui-font-size-s;
 	}
 
 	&__accent,
 	&__desc span {
-		color: $color-primary-200;
+		color: variables.$color-primary-200;
 		font-weight: 700;
 	}
 

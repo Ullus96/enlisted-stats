@@ -1,5 +1,7 @@
+@use "../abstracts/variables";
+
 .hotkey {
-	border: 1px solid $color-text-700;
+	border: 1px solid variables.$color-text-700;
 	border-radius: 3px;
 	padding: 0.4rem 0.2rem;
 }

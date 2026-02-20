@@ -1,3 +1,6 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 .filter {
 	&__block {
 		position: relative;
@@ -6,7 +9,7 @@
 		width: 100%;
 		gap: 2rem;
 
-		@include phone {
+		@include mixins.phone {
 			flex-wrap: wrap;
 		}
 	}
@@ -24,7 +27,7 @@
 		transition: 0.15s ease-in-out color;
 
 		&:hover {
-			color: $color-primary-200;
+			color: variables.$color-primary-200;
 		}
 	}
 
@@ -42,9 +45,9 @@
 		position: absolute;
 		left: 0;
 		top: 90%;
-		background: $color-bg-500;
+		background: variables.$color-bg-500;
 		padding: 2rem 2.8rem;
-		@include ui-shadow;
+		@include mixins.ui-shadow;
 		border-radius: 1.2rem;
 		display: flex;
 		flex-direction: column;
@@ -103,9 +106,9 @@
 		left: 50%;
 		top: 90%;
 		transform: translateX(-50%);
-		background: $color-bg-500;
+		background: variables.$color-bg-500;
 		padding: 2rem 2.8rem;
-		@include ui-shadow;
+		@include mixins.ui-shadow;
 		border-radius: 1.2rem;
 		width: max-content;
 		max-width: 30rem;
@@ -115,8 +118,8 @@
 	}
 
 	&__sort-by-desc {
-		font-size: $ui-font-size-xs;
-		color: $color-text-700;
+		font-size: variables.$ui-font-size-xs;
+		color: variables.$color-text-700;
 		padding: 0 2.2rem;
 	}
 

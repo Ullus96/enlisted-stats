@@ -1,3 +1,6 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 .calculator {
 	margin-top: 2rem;
 
@@ -28,13 +31,13 @@
 	}
 
 	&__branch {
-		background-color: $color-bg-a-600;
+		background-color: variables.$color-bg-a-600;
 		display: flex;
 		flex-direction: column;
 		position: relative;
 		border-radius: 1.2rem;
 		scroll-snap-align: start;
-		@include ui-background-blur;
+		@include mixins.ui-background-blur;
 	}
 
 	&__title-block {
@@ -67,8 +70,8 @@
 	&__branch-perk-description {
 		text-align: center;
 		text-wrap: balance;
-		color: $color-text-400;
-		font-size: $ui-font-size-s;
+		color: variables.$color-text-400;
+		font-size: variables.$ui-font-size-s;
 	}
 
 	// hotkeys tooltip
@@ -84,7 +87,7 @@
 		width: calc(100% - 5.6rem);
 		height: 1px;
 		margin: 2rem 2.8rem;
-		background-color: $color-bg-a-050;
+		background-color: variables.$color-bg-a-050;
 	}
 
 	// Branch-Tier
@@ -101,7 +104,7 @@
 			padding-bottom: 2rem;
 		}
 
-		@include tablet {
+		@include mixins.tablet {
 			padding: 0 1rem;
 		}
 
@@ -112,7 +115,7 @@
 				min-height: calc(12.1rem * 2 + 4rem);
 			}
 
-			@include tablet {
+			@include mixins.tablet {
 				min-height: calc(13.8rem * 2 + 2rem);
 			}
 		}
@@ -125,7 +128,7 @@
 		position: relative;
 		height: fit-content;
 
-		@include tablet {
+		@include mixins.tablet {
 			width: 30%;
 		}
 	}
@@ -158,7 +161,7 @@
 
 	&__tooltip {
 		text-align: center;
-		font-size: $ui-font-size-s;
+		font-size: variables.$ui-font-size-s;
 	}
 
 	&__tooltip-desc {
@@ -173,15 +176,15 @@
 	}
 
 	&__button {
-		background-color: $color-bg-800;
+		background-color: variables.$color-bg-800;
 		border-radius: 0.4rem;
 		padding: 0.4rem 0.4rem;
 		flex: 0 0 auto;
 
-		@include hovered($color-text-100, $color-bg-800);
+		@include mixins.hovered(variables.$color-text-100, variables.$color-bg-800);
 
 		&:focus-visible {
-			@include focused($color-text-100, $color-bg-800);
+			@include mixins.focused(variables.$color-text-100, variables.$color-bg-800);
 		}
 	}
 
@@ -198,39 +201,39 @@
 	}
 
 	&__bar {
-		background-color: $color-text-700;
+		background-color: variables.$color-text-700;
 		flex: 1 1 auto;
 		border-radius: 0.4rem;
 	}
 
 	.base-perk {
-		color: $color-primary-100;
+		color: variables.$color-primary-100;
 	}
 
 	&__bar-highlight {
-		background-color: $color-primary-100;
+		background-color: variables.$color-primary-100;
 
 		&.mobility {
-			background-color: $color-mobility;
+			background-color: variables.$color-mobility;
 		}
 
 		&.vitality {
-			background-color: $color-vitality;
+			background-color: variables.$color-vitality;
 		}
 
 		&.weapon {
-			background-color: $color-weapon;
+			background-color: variables.$color-weapon;
 		}
 	}
 
 	&__cost-block {
-		font-size: $ui-font-size-xs;
+		font-size: variables.$ui-font-size-xs;
 		padding: 0.4rem;
 		display: flex;
 		gap: 2px;
 		justify-content: center;
 		align-items: center;
-		color: $color-text-400;
+		color: variables.$color-text-400;
 	}
 
 	// Restriction
@@ -268,15 +271,15 @@
 	}
 
 	&__highlight {
-		color: $color-primary-200;
+		color: variables.$color-primary-200;
 	}
 
 	&__restriction-bg {
 		margin-top: -2rem;
 		background: repeating-linear-gradient(
 			-45deg,
-			rgba($color-text-700, 0.05),
-			rgba($color-text-700, 0.05) 15px,
+			rgba(variables.$color-text-700, 0.05),
+			rgba(variables.$color-text-700, 0.05) 15px,
 			transparent 15px,
 			transparent 40px
 		);
@@ -293,7 +296,7 @@
 		padding: 0 1.2rem;
 		width: 100%;
 		max-width: 60rem;
-		color: $color-text-400;
+		color: variables.$color-text-400;
 	}
 
 	// save btn and modal
@@ -355,8 +358,8 @@
 		}
 
 		&__branch-perk-description {
-			@include desktop-medium {
-				font-size: $ui-font-size-xs;
+			@include mixins.desktop-medium {
+				font-size: variables.$ui-font-size-xs;
 			}
 		}
 		// End of header

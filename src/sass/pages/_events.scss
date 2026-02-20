@@ -1,3 +1,6 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 .event {
 	&__title {
 		text-align: center;
@@ -9,7 +12,7 @@
 
 	&__end {
 		text-align: center;
-		color: $color-text-400;
+		color: variables.$color-text-400;
 	}
 
 	&__content {
@@ -18,11 +21,11 @@
 		justify-content: space-between;
 		gap: 10rem;
 
-		@include desktop-small {
+		@include mixins.desktop-small {
 			gap: 6rem;
 		}
 
-		@include tablet {
+		@include mixins.tablet {
 			flex-direction: column;
 		}
 	}
@@ -30,7 +33,7 @@
 	&__left-col {
 		flex: 1 1 83rem;
 
-		@include tablet {
+		@include mixins.tablet {
 			order: 1;
 			flex: 1 1 auto;
 		}
@@ -46,7 +49,7 @@
 			transform: translateY(-1px);
 		}
 
-		@include tablet {
+		@include mixins.tablet {
 			justify-content: center;
 			align-items: center;
 			text-wrap: balance;
@@ -57,7 +60,7 @@
 		gap: 2rem;
 		margin-top: 2rem;
 
-		@include tablet {
+		@include mixins.tablet {
 			justify-content: center;
 		}
 
@@ -81,17 +84,17 @@
 		min-width: auto;
 		width: auto;
 		flex: 1 1 calc(var(--ui-card-width) - 1rem);
-		background-color: $color-bg-a-500;
+		background-color: variables.$color-bg-a-500;
 		border-radius: 0.8rem;
 		padding: 2rem 1.6rem;
 		transform: rotateZ(0) scale(1);
 		opacity: 1;
 		cursor: pointer;
 
-		@include ui-shadow;
-		@include ui-background-blur;
+		@include mixins.ui-shadow;
+		@include mixins.ui-background-blur;
 
-		@include phone {
+		@include mixins.phone {
 			flex: 1 1 calc(var(--ui-card-width) - 1rem);
 			min-width: 40%;
 			max-width: 100%;
@@ -109,18 +112,18 @@
 		}
 
 		&.finish {
-			color: $color-text-700;
+			color: variables.$color-text-700;
 
 			& .event__time {
-				color: $color-text-700;
+				color: variables.$color-text-700;
 			}
 		}
 
 		&--active {
-			outline: 1px solid $color-primary-200;
+			outline: 1px solid variables.$color-primary-200;
 
 			& .event__counter {
-				color: $color-primary-200;
+				color: variables.$color-primary-200;
 			}
 		}
 
@@ -155,7 +158,7 @@
 			opacity: 0;
 		}
 
-		@include showTooltip;
+		@include mixins.showTooltip;
 	}
 
 	&__counter {
@@ -163,8 +166,8 @@
 		top: 0.6rem;
 		left: 0.6rem;
 		line-height: 100%;
-		color: $color-text-700;
-		font-size: $ui-font-size-s;
+		color: variables.$color-text-700;
+		font-size: variables.$ui-font-size-s;
 	}
 
 	&__date {
@@ -180,17 +183,17 @@
 	}
 
 	&__time {
-		color: $color-text-400;
-		font-size: $ui-font-size-s;
+		color: variables.$color-text-400;
+		font-size: variables.$ui-font-size-s;
 		text-align: center;
 		margin-top: 0.8rem;
 	}
 
 	&__mobile-reward-block {
-		border-top: 1px solid $color-bg-050;
+		border-top: 1px solid variables.$color-bg-050;
 		margin-top: 0.4rem;
 		padding-top: 0.8rem;
-		color: $color-text-400;
+		color: variables.$color-text-400;
 		word-break: break-word;
 		text-wrap: balance;
 		text-align: center;
@@ -198,18 +201,18 @@
 		line-height: 130%;
 		flex-direction: column;
 		gap: 0.4rem;
-		font-size: $ui-font-size-xs;
+		font-size: variables.$ui-font-size-xs;
 		display: none;
 
-		@include tablet {
+		@include mixins.tablet {
 			display: flex;
 		}
 	}
 
 	&__reward-skipped {
 		display: inline;
-		color: $color-bg-900;
-		background-color: $color-bg-900;
+		color: variables.$color-bg-900;
+		background-color: variables.$color-bg-900;
 		position: relative;
 
 		--left: 0rem;
@@ -221,7 +224,7 @@
 			position: absolute;
 			top: 0;
 			bottom: 0;
-			background-color: $color-bg-900;
+			background-color: variables.$color-bg-900;
 		}
 
 		&::before {
@@ -237,7 +240,7 @@
 
 	// Checkbox for a passed checkmark
 	&__card {
-		@include hover-touch {
+		@include mixins.hover-touch {
 			.event__pass-or-fail-wrapper {
 				opacity: 1;
 			}
@@ -257,7 +260,7 @@
 		flex-direction: row;
 		gap: 0.4rem;
 
-		@include tablet {
+		@include mixins.tablet {
 			opacity: 0.35;
 		}
 	}
@@ -272,15 +275,15 @@
 		transition: 0.12s opacity allow-discrete ease-in-out;
 
 		&.passed {
-			color: $color-success-200;
+			color: variables.$color-success-200;
 
-			@include hovered($color-success-200, $color-bg-a-800);
+			@include mixins.hovered(variables.$color-success-200, variables.$color-bg-a-800);
 		}
 
 		&.skipped {
-			color: $color-danger-200;
+			color: variables.$color-danger-200;
 
-			@include hovered($color-danger-200, $color-bg-a-800);
+			@include mixins.hovered(variables.$color-danger-200, variables.$color-bg-a-800);
 		}
 
 		& input {
@@ -308,17 +311,17 @@
 		width: fit-content;
 		padding: 0.8rem 1.2rem;
 		font-family: monospace;
-		font-size: $ui-font-size-h2;
+		font-size: variables.$ui-font-size-h2;
 		z-index: 1;
 
 		&--fail {
-			color: $color-danger-200;
-			border-color: $color-danger-200;
+			color: variables.$color-danger-200;
+			border-color: variables.$color-danger-200;
 		}
 
 		&--pass {
-			color: $color-success-200;
-			border-color: $color-success-200;
+			color: variables.$color-success-200;
+			border-color: variables.$color-success-200;
 		}
 	}
 
@@ -343,7 +346,7 @@
 		margin-top: 6rem;
 		flex: 0.5 0.5 45rem;
 
-		@include tablet {
+		@include mixins.tablet {
 			margin-top: 0;
 			flex: 1 1 auto;
 		}
@@ -363,20 +366,20 @@
 		justify-content: center;
 		align-items: center;
 		gap: 0.4rem;
-		background-color: $color-bg-500;
+		background-color: variables.$color-bg-500;
 		border-radius: 0.8rem;
-		@include ui-shadow;
+		@include mixins.ui-shadow;
 	}
 
 	&__countdown-time {
 		line-height: 100%;
-		font-size: $ui-font-size-h3;
+		font-size: variables.$ui-font-size-h3;
 	}
 
 	&__countdown-desc {
 		line-height: 100%;
-		color: $color-text-400;
-		font-size: $ui-font-size-xs;
+		color: variables.$color-text-400;
+		font-size: variables.$ui-font-size-xs;
 	}
 
 	&__reward-block {
@@ -388,29 +391,29 @@
 	&__chip {
 		border-radius: 0.8rem;
 		padding: 1.2rem;
-		background-color: $color-bg-700;
+		background-color: variables.$color-bg-700;
 		border: none;
-		@include ui-shadow;
-		@include ui-background-blur;
+		@include mixins.ui-shadow;
+		@include mixins.ui-background-blur;
 		flex: 0 0 auto;
 
 		& svg {
 			display: block;
 		}
 
-		@include hovered($color-text-100, $color-bg-700);
+		@include mixins.hovered(variables.$color-text-100, variables.$color-bg-700);
 
 		&:focus-visible {
-			@include focused($color-text-100, $color-bg-700);
+			@include mixins.focused(variables.$color-text-100, variables.$color-bg-700);
 		}
 
 		&--active {
-			background-color: $color-primary-600;
+			background-color: variables.$color-primary-600;
 
-			@include hovered($color-text-100, $color-primary-600);
+			@include mixins.hovered(variables.$color-text-100, variables.$color-primary-600);
 
 			&:focus-visible {
-				@include focused($color-text-100, $color-primary-600);
+				@include mixins.focused(variables.$color-text-100, variables.$color-primary-600);
 			}
 		}
 	}
@@ -421,7 +424,7 @@
 	}
 
 	&__progress-bar {
-		background-color: $color-bg-700;
+		background-color: variables.$color-bg-700;
 		height: 4rem;
 		display: flex;
 		justify-content: center;
@@ -436,7 +439,7 @@
 		inset: 0 0 0 0;
 		z-index: 2;
 
-		background: linear-gradient(to right, $color-primary-600 0, transparent 0);
+		background: linear-gradient(to right, variables.$color-primary-600 0, transparent 0);
 	}
 
 	&__progress-bar-animated {
@@ -445,8 +448,8 @@
 		z-index: 1;
 		background: repeating-linear-gradient(
 			-45deg,
-			rgba($color-text-700, 0.05),
-			rgba($color-text-700, 0.05) 10px,
+			rgba(variables.$color-text-700, 0.05),
+			rgba(variables.$color-text-700, 0.05) 10px,
 			transparent 10px,
 			transparent 20px
 		);
@@ -455,8 +458,8 @@
 
 	&__progress-bar-stage {
 		position: absolute;
-		color: $color-text-700;
-		font-size: $ui-font-size-xs;
+		color: variables.$color-text-700;
+		font-size: variables.$ui-font-size-xs;
 		top: calc(100% + 0.4rem);
 
 		&--current {
@@ -474,7 +477,7 @@
 			content: '';
 			height: 2rem;
 			width: 1px;
-			background-color: $color-bg-050;
+			background-color: variables.$color-bg-050;
 			z-index: -1;
 		}
 	}
@@ -501,12 +504,12 @@
 		top: 0;
 		bottom: 0;
 		width: 5px;
-		border-top: 1px solid $color-bg-050;
-		border-bottom: 1px solid $color-bg-050;
+		border-top: 1px solid variables.$color-bg-050;
+		border-bottom: 1px solid variables.$color-bg-050;
 
 		&::before {
 			position: absolute;
-			border-color: $color-bg-050;
+			border-color: variables.$color-bg-050;
 			border-style: solid;
 			box-sizing: content-box;
 			content: '';
@@ -519,7 +522,7 @@
 
 		&--left {
 			left: -5px;
-			border-left: 1px solid $color-bg-050;
+			border-left: 1px solid variables.$color-bg-050;
 			transform-origin: left;
 
 			&::before {
@@ -530,7 +533,7 @@
 
 		&--right {
 			right: -5px;
-			border-right: 1px solid $color-bg-050;
+			border-right: 1px solid variables.$color-bg-050;
 			transform-origin: right;
 
 			&::before {

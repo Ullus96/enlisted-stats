@@ -1,6 +1,9 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 .input {
 	&__label {
-		font-size: $ui-font-size-s;
+		font-size: variables.$ui-font-size-s;
 	}
 
 	&__content {
@@ -30,10 +33,10 @@
 	&__input {
 		border-radius: 1.2rem;
 		padding: 1.2rem 1.6rem;
-		color: $color-text-100;
-		background-color: $color-bg-800;
-		outline: 1px solid $color-bg-a-050;
-		font-size: $ui-font-size-base;
+		color: variables.$color-text-100;
+		background-color: variables.$color-bg-800;
+		outline: 1px solid variables.$color-bg-a-050;
+		font-size: variables.$ui-font-size-base;
 		color-scheme: dark;
 
 		&[type='datetime-local']::-webkit-calendar-picker-indicator {
@@ -41,15 +44,15 @@
 		}
 
 		&::placeholder {
-			color: $color-text-700;
+			color: variables.$color-text-700;
 		}
 
 		&:focus-visible {
-			@include focused($color-text-100, $color-bg-800);
+			@include mixins.focused(variables.$color-text-100, variables.$color-bg-800);
 		}
 
 		&.error {
-			outline: 1px solid $color-danger-200;
+			outline: 1px solid variables.$color-danger-200;
 		}
 	}
 
@@ -61,18 +64,18 @@
 	}
 
 	&__error {
-		color: $color-danger-100;
-		font-size: $ui-font-size-m;
+		color: variables.$color-danger-100;
+		font-size: variables.$ui-font-size-m;
 	}
 
 	&__desc {
 		text-align: right;
 		align-self: flex-end;
-		color: $color-text-700;
-		font-size: $ui-font-size-xs;
+		color: variables.$color-text-700;
+		font-size: variables.$ui-font-size-xs;
 		flex: 0 0 auto;
 
-		@include tablet {
+		@include mixins.tablet {
 			max-width: 80dvw;
 			word-break: break-word;
 		}

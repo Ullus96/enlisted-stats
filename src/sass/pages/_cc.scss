@@ -1,3 +1,6 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 // сс = custom calculator
 .cc {
 	&__stats-block {
@@ -6,13 +9,13 @@
 		flex-direction: column;
 		align-items: center;
 
-		@include phone {
+		@include mixins.phone {
 			gap: 2rem;
 		}
 	}
 
 	&__title {
-		@include tablet {
+		@include mixins.tablet {
 			text-align: center;
 		}
 	}
@@ -26,10 +29,10 @@
 	}
 
 	&__stat-item {
-		background-color: $color-bg-a-800;
+		background-color: variables.$color-bg-a-800;
 		min-width: 11rem;
 		border-radius: 0.8rem;
-		border: 1px solid $color-bg-a-050;
+		border: 1px solid variables.$color-bg-a-050;
 		overflow: hidden;
 	}
 
@@ -39,13 +42,13 @@
 		padding: 1.6rem;
 		margin: 0 auto;
 		text-align: center;
-		font-size: $ui-font-size-h1;
+		font-size: variables.$ui-font-size-h1;
 	}
 
 	&__stat-name {
 		padding: 0.8rem 1.2rem;
-		font-size: $ui-font-size-xs;
-		color: $color-bg-800;
+		font-size: variables.$ui-font-size-xs;
+		color: variables.$color-bg-800;
 		font-weight: 700;
 		text-transform: uppercase;
 		text-align: center;
@@ -57,13 +60,13 @@
 		display: flex;
 		gap: 15%;
 
-		@include tablet {
+		@include mixins.tablet {
 			flex-direction: column;
 			gap: 6rem;
 			margin-top: 8rem;
 		}
 
-		@include phone {
+		@include mixins.phone {
 			gap: 4rem;
 			margin-top: 6rem;
 		}
@@ -75,8 +78,8 @@
 
 	&__text-desc {
 		margin-top: 1.6rem;
-		color: $color-text-400;
-		font-size: $ui-font-size-s;
+		color: variables.$color-text-400;
+		font-size: variables.$ui-font-size-s;
 	}
 
 	&__chips-flex {
@@ -92,7 +95,7 @@
 			gap: 1.2rem;
 		}
 
-		@include tablet {
+		@include mixins.tablet {
 			justify-content: space-around;
 		}
 	}
@@ -104,11 +107,11 @@
 	}
 
 	&__tag-item:has(> input:focus-visible) {
-		@include focused($color-text-100, $color-bg-a-500);
+		@include mixins.focused(variables.$color-text-100, variables.$color-bg-a-500);
 	}
 
 	&__tag-item:has(> input:focus-visible).active {
-		@include focused($color-primary-200, $color-bg-a-500);
+		@include mixins.focused(variables.$color-primary-200, variables.$color-bg-a-500);
 	}
 
 	&__tag-checkbox {
@@ -144,7 +147,7 @@
 		height: 1px;
 		margin: 0.4rem auto;
 		width: calc(100% - 2rem);
-		background-color: $color-bg-a-050;
+		background-color: variables.$color-bg-a-050;
 	}
 
 	// Bottom element
@@ -154,15 +157,15 @@
 	}
 
 	&__disclaimer {
-		color: $color-text-700;
-		font-size: $ui-font-size-s;
+		color: variables.$color-text-700;
+		font-size: variables.$ui-font-size-s;
 		text-align: center;
 		margin: 2rem auto 0;
 		width: 100%;
 		max-width: 54rem;
 
 		& a {
-			@include link;
+			@include mixins.link;
 		}
 	}
 
@@ -187,7 +190,7 @@
 	}
 
 	&__s-inline-separator {
-		color: $color-text-700;
+		color: variables.$color-text-700;
 	}
 
 	&__s-tags-block {
