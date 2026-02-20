@@ -33,11 +33,12 @@ const Ripple: Directive = {
 			ripple.style.opacity = '0.6';
 			ripple.style.transform = 'scale(0)';
 			ripple.style.transition = `transform ${options.duration}ms ease, opacity ${options.duration}ms ease`;
+			ripple.style.pointerEvents = 'none';
 			ripple.classList.add('ripple-effect');
 
 			if (options.single) {
 				el.querySelectorAll('.ripple-effect').forEach(
-					(oldRipple: HTMLDivElement) => oldRipple.remove()
+					(oldRipple: HTMLDivElement) => oldRipple.remove(),
 				);
 			}
 
