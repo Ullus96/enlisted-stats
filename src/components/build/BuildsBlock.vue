@@ -126,7 +126,7 @@ export default defineComponent({
 		function getBuildsQueryConditions(
 			source: 'base' | 'liked' | 'my',
 			soldierClass: string | null,
-			userId: string | null
+			userId: string | null,
 		) {
 			const conditions: any[] = [];
 
@@ -163,7 +163,7 @@ export default defineComponent({
 				const conditions = getBuildsQueryConditions(
 					source,
 					soldierClass,
-					userId
+					userId,
 				);
 
 				const queryConstraints = [
@@ -175,7 +175,7 @@ export default defineComponent({
 
 				const buildsQuery = query(
 					collection(db, 'builds'),
-					...queryConstraints
+					...queryConstraints,
 				);
 				const res = await getDocs(buildsQuery);
 
@@ -224,7 +224,7 @@ export default defineComponent({
 					localStorageData.length &&
 					localStorageData.some(
 						(item: { displayName: string; photoURL: string; user: string }) =>
-							item.user === user
+							item.user === user,
 					)
 				) {
 					// console.log('User found in a localStorage');
@@ -233,25 +233,25 @@ export default defineComponent({
 							localStorageData,
 							'user',
 							user,
-							'displayName'
+							'displayName',
 						),
 						photoURL: getLocalStorageUsersDataByKeyAndValue(
 							localStorageData,
 							'user',
 							user,
-							'photoURL'
+							'photoURL',
 						),
 						avatarProvider: getLocalStorageUsersDataByKeyAndValue(
 							localStorageData,
 							'user',
 							user,
-							'avatarProvider'
+							'avatarProvider',
 						),
 						emailHash: getLocalStorageUsersDataByKeyAndValue(
 							localStorageData,
 							'user',
 							user,
-							'emailHash'
+							'emailHash',
 						),
 					};
 					loadedUserData[user] = { ...userData };
@@ -296,7 +296,7 @@ export default defineComponent({
 		}
 
 		function getDBsortByValue(
-			value: sortByValues
+			value: sortByValues,
 		): 'likesAmount' | 'createdAt' | 'nameLowercase' {
 			const sortByValues = {
 				likes: 'likesAmount',
@@ -326,6 +326,7 @@ export default defineComponent({
 				'assaulter3',
 				'assaulter4',
 				'partisan2',
+				'saboteur',
 				'engineer1',
 				'engineer2',
 				'sniper1',

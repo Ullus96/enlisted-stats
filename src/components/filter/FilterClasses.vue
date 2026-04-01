@@ -64,6 +64,14 @@
 				<img src="@/assets/soldier_icons/partisan.svg" class="filter__icon" />
 				<span>Партизан</span>
 			</button>
+			<button
+				class="filter__class btn btn-m btn-tertiary"
+				@click="setClass('saboteur')"
+				v-ripple
+			>
+				<img src="@/assets/soldier_icons/saboteur.svg" class="filter__icon" />
+				<span>Диверсант</span>
+			</button>
 		</div>
 
 		<div class="filter__group">

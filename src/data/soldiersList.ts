@@ -86,6 +86,14 @@ export const items: IItem[] = [
 		perk: '+5.3% скорость спринта',
 	},
 	{
+		name: 'Диверсант',
+		id: 'saboteur',
+		icon: 'saboteur.svg',
+		tags: ['base'],
+		statsMod: [5, 6, 4],
+		perk: '+15% скорость спринта',
+	},
+	{
 		name: 'Инженер I',
 		id: 'engineer1',
 		icon: 'engineer.svg',

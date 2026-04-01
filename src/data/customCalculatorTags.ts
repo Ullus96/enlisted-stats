@@ -9,6 +9,7 @@ export const avaliableTags: IAvaliableTagsItems = {
 			'medic',
 			'assaulter',
 			'partisan',
+			'saboteur',
 			'engineer',
 			'sniper',
 			'antitank',
